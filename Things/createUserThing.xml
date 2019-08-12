@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b937"
+ majorVersion="8"
+ minorVersion="3"
+ modelPersistenceProviderPackage="H2PersistenceProviderPackage"
+ revision="3"
+ schemaVersion="1030"
+ universal="">
+    <Things>
+        <Thing
+         description=""
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         enabled="true"
+         homeMashup=""
+         identifier=""
+         lastModifiedDate="2019-01-11T13:39:30.212+05:30"
+         name="createUserThing"
+         projectName=""
+         published="false"
+         tags=""
+         thingTemplate="GenericThing"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="createUser">
+                        <ResultType
+                         aspect.dataShape="userDataShape"
+                         aspect.isDataTableEntry="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="createUserFromInfotable">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="createUser">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                        	maxItems: undefined /* NUMBER */
+                                        };
+                                        
+                                        // result: INFOTABLE
+                                        var result = Things["userdatatable"].GetDataTableEntries(params);
+                                        
+                                        var tableLength = result.rows.length;
+                                        
+                                        for (var x = 0; x < tableLength; x++) {
+                                        	var row = result.rows[x];
+                                            logger.warn("row username is"+ row.username);
+                                            
+                                        var params = {
+                                        	password: "rohit12345" /* STRING */,
+                                        	name: row.username /* STRING */,
+                                        	description: undefined /* STRING */,
+                                        	tags: undefined /* TAGS */
+                                        };
+                                        
+                                        // no return
+                                        Resources["EntityServices"].CreateUser(params);
+                                        
+                                        
+                                        	//Your code here
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="createUserFromInfotable">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                        	maxItems: undefined /* NUMBER */
+                                        };
+                                        
+                                        // result: INFOTABLE
+                                        var result = Things["userdatatable"].GetDataTableEntries(params);
+                                        
+                                        var tableLength = result.rows.length;
+                                        
+                                        for (var x = 0; x < tableLength; x++) {
+                                        	var row = result.rows[x];
+                                        	//Your code here
+                                            // userDataShape entry object
+                                        
+                                        var params1 = {
+                                        	infoTableName : "InfoTable",
+                                        	dataShapeName : "userDataShape"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(userDataShape)
+                                        var result1 = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params1);
+                                        
+                                        result1 = row.username;
+                                            
+                                        var params2 = {
+                                        	userOptions: result1 /* INFOTABLE */
+                                        };
+                                        
+                                        // no return
+                                        Resources["EntityServices"].CreateUserWithOptions(params2);
+                                        
+                                        
+                                        
+                                        }
+                                        
+                                        
+                                        // userDataShape entry object
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ImplementedShapes></ImplementedShapes>
+            <ThingProperties></ThingProperties>
+        </Thing>
+    </Things>
+</Entities>

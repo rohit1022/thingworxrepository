@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b937"
+ majorVersion="8"
+ minorVersion="3"
+ modelPersistenceProviderPackage="H2PersistenceProviderPackage"
+ revision="3"
+ schemaVersion="1030"
+ universal="">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description=""
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2019-01-31T10:31:53.519+05:30"
+         name="GitBackup.Status.Mashup"
+         projectName=""
+         rows="0.0"
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="THINGNAME"
+                 description=""
+                 name="GitThing"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things></Things>
+            <ThingShapes>
+                <ThingShape>Git.Utility.ThingShape</ThingShape>
+            </ThingShapes>
+            <ThingTemplates>
+                <ThingTemplate>GitBackupTemplate</ThingTemplate>
+            </ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "DynamicThingShapes_Git.Utility.ThingShape" : {
+                  "DataName" : "DynamicThingShapes_Git.Utility.ThingShape",
+                  "EntityName" : "Git.Utility.ThingShape",
+                  "EntityType" : "DynamicThingShapes",
+                  "Id" : "40a02a13-d1a9-4a07-9a56-ab7771fee5fb",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "4d293d60-f818-40c9-9394-3dfd28868789",
+                    "Name" : "QueryStatus",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "QueryStatus"
+                  } ]
+                },
+                "DynamicThingTemplates_GitBackupTemplate" : {
+                  "DataName" : "DynamicThingTemplates_GitBackupTemplate",
+                  "EntityName" : "GitBackupTemplate",
+                  "EntityType" : "DynamicThingTemplates",
+                  "Id" : "7b2bc282-9dd7-4ab5-984e-d88726cf71bf",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "36451d0a-2260-40f7-9136-0dc3c625508a",
+                    "Name" : "GetDiffPerFile",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetDiffPerFile"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "4f0858a0-b47c-40bb-9877-e79cae2e3c49",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GitThing",
+                  "SourcePropertyBaseType" : "THINGNAME",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "THINGNAME",
+                  "TargetPropertyType" : "Entity"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EntityName",
+                "TargetSection" : "DynamicThingTemplates_GitBackupTemplate"
+              }, {
+                "Id" : "844caeb8-2394-4b76-9d4b-05294698e674",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "InputText",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetDiffPerFile",
+                "SourceSection" : "DynamicThingTemplates_GitBackupTemplate",
+                "TargetArea" : "UI",
+                "TargetId" : "DiffViewer-8",
+                "TargetSection" : ""
+              }, {
+                "Id" : "c4d5b2b0-9181-4ff5-9d89-6a206e1f2e41",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GitThing",
+                  "SourcePropertyBaseType" : "THINGNAME",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "THINGNAME",
+                  "TargetPropertyType" : "Entity"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EntityName",
+                "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
+              }, {
+                "Id" : "56f61379-514d-4c9c-86fa-7aa53cde00a7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "SearchTerm",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "textbox-12",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "QueryStatus",
+                "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
+              }, {
+                "Id" : "1a38665e-0631-4cd4-8f97-e83aace7cbea",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "QueryStatus",
+                "SourceSection" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "TargetArea" : "UI",
+                "TargetId" : "dhxgrid-9",
+                "TargetSection" : ""
+              }, {
+                "Id" : "943ecac5-ef15-469f-90dc-a2cca92c354a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "File",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "File",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "SelectedRows",
+                "SourceId" : "QueryStatus",
+                "SourceSection" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "TargetArea" : "Data",
+                "TargetId" : "GetDiffPerFile",
+                "TargetSection" : "DynamicThingTemplates_GitBackupTemplate"
+              } ],
+              "DesignTimePermissions" : { },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "DynamicThingTemplates_GitBackupTemplate",
+                "EventHandlerService" : "GetDiffPerFile",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "SelectedRowsChanged",
+                "EventTriggerId" : "QueryStatus",
+                "EventTriggerSection" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "Id" : "a02265e2-7f73-49f1-9567-e46ab59492d4"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "EventHandlerService" : "QueryStatus",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "EnterKeyPressed",
+                "EventTriggerId" : "textbox-12",
+                "EventTriggerSection" : "",
+                "Id" : "e3e8a461-9063-4dde-b67c-bbb75469b089"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "EventHandlerService" : "QueryStatus",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "68d7676b-0adf-4344-8721-ce67af4206a9"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "textbox-12",
+                "EventHandlerService" : "ResetToDefaultValue",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-13",
+                "EventTriggerSection" : "",
+                "Id" : "24ca88db-ced3-467a-a7b0-8aeeb9d74451"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "EventHandlerService" : "QueryStatus",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-13",
+                "EventTriggerSection" : "",
+                "Id" : "f71fd535-7164-4614-ad4a-3dcf2d581675"
+              } ],
+              "RunTimePermissions" : { },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "THINGNAME",
+                    "Description" : "",
+                    "ParameterName" : "GitThing"
+                  } ],
+                  "id_index" : 13,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Columns" : 2,
+                    "DisplayName" : "layout-2",
+                    "Footer" : false,
+                    "FooterHeight" : 0,
+                    "Header" : true,
+                    "HeaderHeight" : 40,
+                    "Id" : "layout-2",
+                    "IncludeSpacingInFixedAreas" : false,
+                    "IsPrintLayout" : false,
+                    "Left" : 185,
+                    "LeftSidebar" : false,
+                    "LeftSidebarWidth" : 0,
+                    "Orientation" : "vertical",
+                    "PctColumn1" : 50,
+                    "PctColumn2" : 50,
+                    "PctColumn3" : 1,
+                    "PctColumn4" : 1,
+                    "PctColumn5" : 1,
+                    "PctColumn6" : 1,
+                    "PctColumn7" : 1,
+                    "PctColumn8" : 1,
+                    "PctRow1" : 50,
+                    "PctRow2" : 50,
+                    "PctRow3" : 0,
+                    "PctRow4" : 0,
+                    "PctRow5" : 0,
+                    "PctRow6" : 0,
+                    "PctRow7" : 0,
+                    "PctRow8" : 0,
+                    "PrintMarginLeftRight" : 0.5,
+                    "PrintMarginTopBottom" : 0.5,
+                    "PrintWidth" : 650,
+                    "ResponsiveLayout" : true,
+                    "RightSidebar" : false,
+                    "RightSidebarWidth" : 0,
+                    "Rows" : 2,
+                    "ShowDataLoading" : true,
+                    "Spacing" : 0,
+                    "Top" : 80,
+                    "Type" : "layout",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Layout"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Header",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-10",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "panel-11",
+                        "Height" : 200,
+                        "HideScrollbars" : false,
+                        "HorizontalAnchor" : "left",
+                        "Id" : "panel-11",
+                        "Left" : 25,
+                        "ResponsiveLayout" : true,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultPanelStyle",
+                        "Top" : 10,
+                        "Type" : "panel",
+                        "VerticalAnchor" : "top",
+                        "Visible" : true,
+                        "Width" : 300,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Panel"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "CursorPosition" : 0,
+                          "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
+                          "DisplayName" : "textbox-12",
+                          "Height" : 24,
+                          "Id" : "textbox-12",
+                          "InnerShadow" : true,
+                          "Label" : "",
+                          "LabelAlignment" : "left",
+                          "Left" : 10,
+                          "MaskInputCharacters" : false,
+                          "PlaceholderText" : "",
+                          "ReadOnly" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Style" : "DefaultTextBoxStyle",
+                          "TabSequence" : 0,
+                          "Text" : "",
+                          "TextAlign" : "left",
+                          "TextboxLabelStyle" : "DefaultWidgetLabelStyle",
+                          "ToolTipField" : "",
+                          "ToolTipStyle" : "DefaultTooltipStyle",
+                          "Top" : 7,
+                          "Type" : "textbox",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "TextBox",
+                          "__supportsLabel" : true,
+                          "__supportsTooltip" : true
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "ActiveStyle" : {
+                            "backgroundColor" : "#c0c0c0",
+                            "displayString" : "",
+                            "fontEmphasisBold" : false,
+                            "fontEmphasisItalic" : false,
+                            "fontEmphasisUnderline" : false,
+                            "foregroundColor" : "",
+                            "image" : "",
+                            "lineColor" : "",
+                            "lineStyle" : "solid",
+                            "lineThickness" : 0,
+                            "secondaryBackgroundColor" : "#cdcdcd",
+                            "textSize" : "normal"
+                          },
+                          "Area" : "UI",
+                          "CancelConfirmationButton" : "button2",
+                          "ConfirmationButton1Label" : "Yes",
+                          "ConfirmationButton2Label" : "No",
+                          "ConfirmationPrompt" : "Do Action?",
+                          "ConfirmationRequired" : false,
+                          "ConfirmationTitle" : "Confirm Action",
+                          "ContextId" : "",
+                          "DefaultConfirmationButton" : "button1",
+                          "Disabled" : false,
+                          "DisabledStyle" : "DefaultButtonDisabledStyle",
+                          "DisplayName" : "btn_Clear",
+                          "FocusStyle" : {
+                            "backgroundColor" : "#808080",
+                            "displayString" : "",
+                            "fontEmphasisBold" : false,
+                            "fontEmphasisItalic" : false,
+                            "fontEmphasisUnderline" : false,
+                            "foregroundColor" : "",
+                            "image" : "GIT.RefreshIcon.ME",
+                            "lineColor" : "",
+                            "lineStyle" : "solid",
+                            "lineThickness" : 1,
+                            "secondaryBackgroundColor" : "#c0c0c0",
+                            "textSize" : "normal"
+                          },
+                          "Height" : 24,
+                          "HoverStyle" : {
+                            "backgroundColor" : "#d8d8d8",
+                            "displayString" : "",
+                            "fontEmphasisBold" : false,
+                            "fontEmphasisItalic" : false,
+                            "fontEmphasisUnderline" : false,
+                            "foregroundColor" : "",
+                            "image" : "GIT.RefreshIcon.ME",
+                            "lineColor" : "",
+                            "lineStyle" : "solid",
+                            "lineThickness" : 1,
+                            "secondaryBackgroundColor" : "#cfcfcf",
+                            "textSize" : "normal"
+                          },
+                          "IconAlignment" : "left",
+                          "Id" : "button-13",
+                          "Label" : "",
+                          "Left" : 213,
+                          "ResponsiveLayout" : false,
+                          "RoundedCorners" : true,
+                          "ShowDataLoading" : true,
+                          "Style" : {
+                            "backgroundColor" : "#c0c0c0",
+                            "displayString" : "",
+                            "fontEmphasisBold" : false,
+                            "fontEmphasisItalic" : false,
+                            "fontEmphasisUnderline" : false,
+                            "foregroundColor" : "",
+                            "image" : "GIT.RefreshIcon.ME",
+                            "lineColor" : "",
+                            "lineStyle" : "solid",
+                            "lineThickness" : 1,
+                            "secondaryBackgroundColor" : "#cbcbcb",
+                            "textSize" : "normal"
+                          },
+                          "TabSequence" : 0,
+                          "ToolTipField" : "",
+                          "ToolTipStyle" : "DefaultTooltipStyle",
+                          "Top" : 7,
+                          "Type" : "button",
+                          "Visible" : true,
+                          "Width" : 24,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Button",
+                          "__supportsTooltip" : true
+                        },
+                        "Widgets" : [ ]
+                      } ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Column 1",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-3",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "AlignHeader" : false,
+                        "Area" : "UI",
+                        "AutoSelectFirstRow" : true,
+                        "CellTextWrapping" : false,
+                        "ColumnFormat" : {
+                          "formatInfo" : [ {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "FieldName" : "File",
+                            "FormatOptions" : {
+                              "FormatString" : "full",
+                              "formatInfo" : {
+                                "FieldName" : "",
+                                "StateDefinition" : "",
+                                "StateDefinitionType" : "fixed",
+                                "StateFormats" : [ {
+                                  "state" : "",
+                                  "stateName" : "fixed"
+                                } ]
+                              },
+                              "renderer" : "STRING",
+                              "roundingEnabled" : true
+                            },
+                            "Title" : "File",
+                            "ValidationExpression" : "",
+                            "ValidationMessage" : "",
+                            "Width" : "auto"
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "FieldName" : "Status",
+                            "FormatOptions" : {
+                              "FormatString" : "limit20",
+                              "formatInfo" : {
+                                "FieldName" : "",
+                                "StateDefinition" : "",
+                                "StateDefinitionType" : "fixed",
+                                "StateFormats" : [ {
+                                  "state" : "",
+                                  "stateName" : "fixed"
+                                } ]
+                              },
+                              "renderer" : "STRING",
+                              "roundingEnabled" : true
+                            },
+                            "Title" : "Status",
+                            "ValidationExpression" : "",
+                            "ValidationMessage" : "",
+                            "Width" : "auto"
+                          } ]
+                        },
+                        "CurrentScrollTop" : 0,
+                        "DisplayName" : "dhxgrid-9",
+                        "FocusStyle" : "DefaultFocusStyle",
+                        "GridBackgroundStyle" : "DefaultGridBackgroundStyle",
+                        "GridEditableFieldStyle" : "DefaultGridEditableFieldStyle",
+                        "GridHeaderStyle" : "DefaultGridHeaderStyle",
+                        "GridHeaderTextCase" : "capitalize",
+                        "GridInvalidFieldStyle" : "DefaultGridInvalidFieldStyle",
+                        "Height" : 200,
+                        "Id" : "dhxgrid-9",
+                        "IsEditable" : false,
+                        "IsPrintLayout" : false,
+                        "Left" : 130,
+                        "MultiSelect" : false,
+                        "ResponsiveLayout" : true,
+                        "RowAlternateBackgroundStyle" : "DefaultRowAlternateBackgroundStyle",
+                        "RowBackgroundStyle" : "DefaultRowBackgroundStyle",
+                        "RowFormat_StateParameters" : [ ],
+                        "RowHeight" : 30,
+                        "RowHoverStyle" : "DefaultRowHoverStyle",
+                        "RowSelectedStyle" : "DefaultRowSelectedStyle",
+                        "ScrollTop" : 0,
+                        "ShowAllColumns" : false,
+                        "ShowDataLoading" : true,
+                        "TabSequence" : 0,
+                        "Top" : 45,
+                        "Type" : "dhxgrid",
+                        "Visible" : true,
+                        "Width" : 400,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Grid"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Column 2",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-4",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "DiffViewer-8",
+                        "Id" : "DiffViewer-8",
+                        "InputText" : "",
+                        "Label" : "",
+                        "Left" : 200,
+                        "ResponsiveLayout" : true,
+                        "ShowDataLoading" : true,
+                        "Top" : 170,
+                        "Type" : "DiffViewer",
+                        "Visible" : true,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "DiffViewer",
+                        "__supportsLabel" : true
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+        </Mashup>
+    </Mashups>
+</Entities>
