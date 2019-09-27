@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b937"
+ majorVersion="8"
+ minorVersion="3"
+ modelPersistenceProviderPackage="H2PersistenceProviderPackage"
+ revision="3"
+ schemaVersion="1030"
+ universal="">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         className=""
+         description=""
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2019-01-31T10:31:53.427+05:30"
+         name="Git.Utility.ThingShape"
+         projectName=""
+         tags="">
+            <PropertyDefinitions></PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetFilteredDirectoryListing">
+                    <ResultType
+                     aspect.dataShape="FileSystemDirectory"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="HasRows">
+                    <ResultType
+                     baseType="BOOLEAN"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="INFOTABLE"
+                         description=""
+                         name="infotable"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="InitExtensionImportTargets">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="address"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="QueryStatus">
+                    <ResultType
+                     aspect.dataShape="Git.Status.DataShape"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="SearchTerm"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="RemoveEntityHistoryInfo">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetFilteredDirectoryListing">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                    	tableName: "Configuration" /* STRING */
+                                    };
+                                    
+                                    // result: INFOTABLE dataShape: "undefined"
+                                    var cfg = me.GetConfigurationTable(params);
+                                    
+                                    var strRepo = cfg.FileRepository;
+                                    var str_RepoPath = cfg.RepoPathName;
+                                    var params2 = {
+                                    	inclusive: true /* BOOLEAN */,
+                                    	fieldName: "parentPath" /* STRING */,
+                                    	t: Things[strRepo].GetDirectoryStructure() /* INFOTABLE */,
+                                        pattern:"^"+str_RepoPath+".*$"
+                                    };
+                                    
+                                    // result: INFOTABLE
+                                    var result = Resources["InfoTableFunctions"].RegexFilter(params2);
+                                    // FileSystemDirectory entry object
+                                    var newEntry = new Object();
+                                    newEntry.path = str_RepoPath; // STRING [Primary Key]
+                                    newEntry.parentPath = "/"; // STRING
+                                    newEntry.name = str_RepoPath.replace("/",""); // STRING
+                                    result.AddRow(newEntry);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="HasRows">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = (infotable.getRowCount()) >= 1 ? false : true;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="InitExtensionImportTargets">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                    var dt_ExpDate = dateAddYears(new Date(), 1);
+                                    if (ApplicationKeys["GitExtensionAppKey"]) 
+                                    {
+                                        Resources["EntityServices"].DeleteApplicationKey({name: "GitExtensionAppKey" /* APPLICATIONKEYNAME */});
+                                    }
+                                    //if the current user does now have rights to import extensions, then the whole extension import process will fail
+                                    var params = {
+                                        clientName: undefined /* STRING */,
+                                        name: "GitExtensionAppKey" /* STRING */,
+                                        description: "Appkey generated by the Git Extension; do not remove or reuse in any script or code; it's automatically refreshed each time the home mashup is opened." /* STRING */,
+                                        whitelist: undefined /* STRING */,
+                                        user: str_CurrentUser /* USERNAME */,
+                                        tags: undefined /* TAGS */,
+                                        expirationDate: dt_ExpDate /* DATETIME */
+                                    };
+                                    
+                                    Resources["EntityServices"].CreateApplicationKey(params);
+                                    
+                                    var existingRow = new Object();
+                                    existingRow.name = "localhost";
+                                    var CurrentTargets = Things["ExtensionImportTargets"].importTargets;
+                                    CurrentTargets.Delete(existingRow);
+                                    Things["ExtensionImportTargets"].importTargets=CurrentTargets;
+                                    
+                                    // ExtensionImportTargetDS entry object
+                                    var newEntry = new Object();
+                                    newEntry.baseURL = address+"/Thingworx";
+                                    // STRING
+                                    newEntry.name = "localhost";
+                                    // STRING - isPrimaryKey = true
+                                    newEntry.appKey =   encryptPropertyValue(ApplicationKeys["GitExtensionAppKey"].GetKeyID());
+                                    // PASSWORD
+                                    
+                                    
+                                    
+                                    var CurrentTargets = Things["ExtensionImportTargets"].importTargets;
+                                    CurrentTargets.AddRow(newEntry);
+                                    Things["ExtensionImportTargets"].importTargets=CurrentTargets;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="QueryStatus">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var iftbl_Status = Things[me.name].Status();
+                                    var query = {
+                                      "filters": {
+                                        "fieldName": "File",
+                                        "type": "LIKE",
+                                        "value": "*"+SearchTerm+"*"
+                                      }
+                                    };
+                                    if (SearchTerm&&SearchTerm!="")
+                                    {
+                                    var params = {
+                                    	t: iftbl_Status /* INFOTABLE */,
+                                    	query: query /* QUERY */
+                                    };
+                                    
+                                    // result: INFOTABLE
+                                    var result = Resources["InfoTableFunctions"].Query(params);
+                                    }
+                                    else
+                                        result=iftbl_Status;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="RemoveEntityHistoryInfo">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                    	tableName: "Configuration" /* STRING */
+                                    };
+                                    
+                                    var cfg = me.GetConfigurationTable(params);
+                                    var strRepo = cfg.FileRepository;
+                                    var str_RepoPath = cfg.RepoPathName;
+                                    
+                                    //get all files that have been exported for this project and clean out history info
+                                    // result: INFOTABLE dataShape: "FileSystemDirectory"
+                                    var dirs = Things[strRepo].ListDirectories({
+                                    	path: "/"+str_RepoPath /* STRING */,
+                                    	nameMask: undefined /* STRING */
+                                    });
+                                    
+                                    for (var x=0; x < dirs.rows.length; x++) {
+                                        var dir = dirs.rows[x];
+                                        //may use GetEntityExportListing here; ListFiles can be used with remote repositories as well
+                                        // GetEntityExportListing may be safer when also handling Data exports!
+                                        var files =  Things[strRepo].ListFiles({
+                                            path: dir.path /* STRING */,
+                                            nameMask: "*.xml" /* STRING */
+                                        });
+                                        for (var xx=0; xx < files.rows.length; xx++) {
+                                            var path = files.rows[xx].path;
+                                            var content =  Things[strRepo].LoadXML({
+                                                path: path /* STRING */
+                                            });
+                                            var history = content..ConfigurationChanges;
+                                            delete content..ConfigurationChanges;
+                                            var lastModifTS = content.*.*.@lastModifiedDate;
+                                            delete content.*.*.@lastModifiedDate;
+                                             Things[strRepo].SaveXML({
+                                                path: path /* STRING */,
+                                                content: content /* XML */
+                                            });
+                                            if(history && history.length()>0){
+                                                history.@lastModifiedDate=lastModifTS;
+                                                Things[strRepo].SaveXML({
+                                                    path: path+".history" /* STRING */,
+                                                    content: history[0] /* XML */
+                                                });
+                                                //TODO: create incremental change files
+                                                //parked because the handling in the SCM systems is not clear - you may want to add commit comments 
+                                                //based on last commit date and compare it to the change dates inside the xml of the .history file  
+                                            }
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

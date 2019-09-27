@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b937"
+ majorVersion="8"
+ minorVersion="3"
+ modelPersistenceProviderPackage="H2PersistenceProviderPackage"
+ revision="3"
+ schemaVersion="1030"
+ universal="">
+    <Things>
+        <Thing
+         description=""
+         documentationContent=""
+         effectiveThingPackage="RemoteThingWithFileTransfer"
+         enabled="true"
+         homeMashup=""
+         identifier=""
+         lastModifiedDate="2018-12-14T19:24:05.657+05:30"
+         name="newEdgeTestThing"
+         projectName=""
+         published="false"
+         tags=""
+         thingTemplate="RemoteThingWithFileTransfer"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="transferFile">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="transferFile">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                        	async: false /* BOOLEAN */,
+                                        	sourceRepo: "newEdgeTestThing" /* STRING */,
+                                        	metadata: undefined /* JSON */,
+                                        	targetRepo: "SystemRepository" /* STRING */,
+                                        	targetFile: "Sammy4.1UserGuide.docx" /* STRING */,
+                                        	targetPath: "/files" /* STRING */,
+                                        	queueable: undefined /* BOOLEAN */,
+                                        	sourceFile: "Sammy4.1UserGuide.docx" /* STRING */,
+                                        	sourcePath: "/Out" /* STRING */,
+                                        	timeout: 60 /* INTEGER */
+                                        };
+                                        
+                                        // result: INFOTABLE dataShape: FileTransferJob
+                                        var result = Subsystems["FileTransferSubsystem"].Copy(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ImplementedShapes></ImplementedShapes>
+            <ThingProperties>
+                <lastConnection>
+                    <Value>2018-12-14T17:18:41.354+05:30</Value>
+                    <Timestamp>2018-12-14T17:18:41.354+05:30</Timestamp>
+                    <Quality>GOOD</Quality>
+                </lastConnection>
+            </ThingProperties>
+        </Thing>
+    </Things>
+</Entities>
