@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b937"
+ majorVersion="8"
+ minorVersion="3"
+ modelPersistenceProviderPackage="H2PersistenceProviderPackage"
+ revision="3"
+ schemaVersion="1030"
+ universal="">
+    <Things>
+        <Thing
+         aspect.isExtension="true"
+         description=""
+         documentationContent="&lt;p&gt;&lt;br&gt;&lt;/p&gt;"
+         effectiveThingPackage="FileRepositoryThing"
+         enabled="true"
+         homeMashup=""
+         identifier=""
+         lastModifiedDate="2019-01-08T16:05:33.528+05:30"
+         name="JDBCExtensionCreator"
+         projectName=""
+         published="false"
+         tags="Applications:JDBCExtensionCreator"
+         thingTemplate="FileRepository"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CreateExtension">
+                        <ResultType
+                         aspect.dataShape="FileSystemFileWithLinks"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="fileName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="CreateExtension">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var jdbcName = fileName.substring(0, fileName.length-4);
+                                        
+                                        jdbcName = jdbcName.replace(/([.*+?^=!: $#@%{}()|\[\]\/\\])/g, "");
+                                        
+                                        var params = {
+                                            path: "/lib/common"
+                                        };
+                                        me.CreateFolder(params); 
+                                        
+                                        var params = {
+                                                targetPath: "/lib/common/" + fileName,
+                                                overwrite: true,
+                                                sourcePath: "/" + fileName
+                                        };
+                                        me.MoveFile(params);
+                                        
+                                        var extXml = <Entities>
+                                          <ExtensionPackages>
+                                            <ExtensionPackage name="ExtensionPackage"
+                                                  description="Description"
+                                                  vendor="ThingWorx Customer Service"
+                                                  packageVersion="1.0"
+                                                  minimumThingWorxVersion="7.0.0">
+                                            </ExtensionPackage>
+                                          </ExtensionPackages>
+                                          <ThingTemplates>
+                                            <ThingTemplate baseThingTemplate="Database" description="JDBC Connector" documentationContent="" effectiveThingPackage="" homeMashup="" lastModifiedDate="2015-01-01T12:00:00.000-05:00" name="JDBCTemplateName" tags="" thingPackage="">
+                                              <avatar/>
+                                              <DesignTimePermissions>
+                                                <Create/>
+                                                <Read/>
+                                                <Update/>
+                                                <Delete/>
+                                                <Metadata/>
+                                              </DesignTimePermissions>
+                                              <RunTimePermissions/>
+                                                        <ConfigurationTables>
+                                                          <ConfigurationTable name="ConnectionInfo">
+                                                                <DataShape description="Connection parameters" name="Database.ConnectionInfo">
+                                                                  <FieldDefinitions>
+                                                                        <FieldDefinition aspect.defaultValue="5.0" baseType="NUMBER" description="Maximum number of connections in the pool" name="maxConnections" ordinal="0"/>
+                                                                        <FieldDefinition baseType="STRING" description="jDBCDriverClass" name="jDBCDriverClass"/>
+                                                                        <FieldDefinition baseType="STRING" description="jDBCConnectionURL" name="jDBCConnectionURL"/>
+                                                                        <FieldDefinition baseType="STRING" description="connectionValidationString" name="connectionValidationString"/>
+                                                                        <FieldDefinition baseType="STRING" description="Database user name" name="userName" ordinal="0"/>
+                                                                        <FieldDefinition baseType="PASSWORD" description="Database password" name="password" ordinal="0"/>
+                                                                  </FieldDefinitions>
+                                                                </DataShape>
+                                                                <Rows>
+                                                                  <Row>
+                                                                        <jDBCDriverClass>com.driverclassname.jdbc.Driver</jDBCDriverClass>
+                                                                        <jDBCConnectionURL>jdbc:driverclass://localhost;databaseName=LiveWorx2020</jDBCConnectionURL>
+                                                                        <connectionValidationString>SELECT GETDATE()</connectionValidationString>
+                                                                        <userName />
+                                                                        <password />
+                                                                  </Row>
+                                                                </Rows>
+                                                          </ConfigurationTable>
+                                                          <ConfigurationTable description="" isMultiRow="false" name="ConnectionMonitoring">
+                                                                <DataShape>
+                                                                  <FieldDefinitions>
+                                                                        <FieldDefinition aspect.defaultValue="1.0" baseType="NUMBER" description="Number of retries" name="numberOfRetries" ordinal="0"/>
+                                                                        <FieldDefinition aspect.defaultValue="2000.0" baseType="NUMBER" description="Retry delay in milliseconds" name="retryDelay" ordinal="0"/>
+                                                                        <FieldDefinition aspect.defaultValue="false" baseType="BOOLEAN" description="Enable connection monitoring" name="enableMonitor" ordinal="0"/>
+                                                                        <FieldDefinition aspect.defaultValue="30000.0" baseType="NUMBER" description="Monitor rate in milliseconds" name="connectionMonitorRate" ordinal="0"/>
+                                                                  </FieldDefinitions>
+                                                                </DataShape>
+                                                                <Rows>
+                                                                  <Row>
+                                                                        <numberOfRetries>1.0</numberOfRetries>
+                                                                        <retryDelay>2000.0</retryDelay>
+                                                                        <enableMonitor>false</enableMonitor>
+                                                                        <connectionMonitorRate>3000.0</connectionMonitorRate>
+                                                                  </Row>
+                                                                </Rows>
+                                                          </ConfigurationTable>
+                                                        </ConfigurationTables>
+                                                  <ThingShape description="" documentationContent="" lastModifiedDate="2015-01-01T12:00:00.000-05:00" name="" tags="">
+                                                <PropertyDefinitions/>
+                                                <ServiceDefinitions/>
+                                                <EventDefinitions/>
+                                                <ServiceMappings/>
+                                                <ServiceImplementations/>
+                                                <Subscriptions/>
+                                              </ThingShape>
+                                              <ImplementedShapes/>
+                                              <SharedConfigurationTables/>
+                                              <InstanceDesignTimePermissions>
+                                                <Create/>
+                                                <Read/>
+                                                <Update/>
+                                                <Delete/>
+                                                <Metadata/>
+                                              </InstanceDesignTimePermissions>
+                                              <InstanceRunTimePermissions/>
+                                            </ThingTemplate>
+                                          </ThingTemplates>
+                                        </Entities>;
+                                        
+                                        extXml.ExtensionPackages.ExtensionPackage.@name = jdbcName + "_ExtensionPackage";
+                                        extXml.ExtensionPackages.ExtensionPackage.@description = jdbcName + " Extension Created by File Uploader";
+                                        extXml.ExtensionPackages.ExtensionPackage.JarResources.FileResource.@file = fileName;
+                                        extXml.ExtensionPackages.ExtensionPackage.JarResources.FileResource.@description = fileName + " JDBC File";
+                                        extXml.ExtensionPackages.ExtensionPackage.JarResources.FileResource.@type = "JAR";
+                                        extXml.ThingTemplates.ThingTemplate.@name = jdbcName + "JDBCTemplate";
+                                        extXml.ThingTemplates.ThingTemplate.@description = jdbcName + " JDBC Template";
+                                              
+                                        var params = {
+                                                content: extXml,
+                                                path: "/metadata.xml"
+                                        };
+                                        me.SaveXML(params);
+                                        
+                                        var params = {
+                                                files: "/lib/common/" + fileName + "," + "/metadata.xml",
+                                                path: "/",
+                                                newFileName: jdbcName + "JDBC.zip"
+                                        };
+                                        var zipped = me.CreateZipArchive(params);
+                                        
+                                        var params = {
+                                                nameMask: jdbcName + "JDBC.zip",
+                                                path: "/"
+                                        };
+                                        var result = me.GetFileListingWithLinks(params);
+                                        
+                                        var params = {
+                                        	path: "metadata.xml"
+                                        };
+                                        
+                                        me.DeleteFile(params);
+                                        
+                                        var params = {
+                                        	path: "/lib/common"
+                                        };
+                                        me.DeleteFolder(params);
+                                        
+                                        var params = {
+                                        	path: "/lib"
+                                        };
+                                        me.DeleteFolder(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ImplementedShapes></ImplementedShapes>
+            <ThingProperties></ThingProperties>
+        </Thing>
+    </Things>
+</Entities>
