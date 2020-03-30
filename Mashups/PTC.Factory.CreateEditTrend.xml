@@ -1,0 +1,1606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="false"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Create a new trend/Edit trend. {PTC.Factory.CreateEditTrend}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:54.881+05:30"
+         name="PTC.Factory.CreateEditTrend"
+         projectName="PTC.SCA.SCO.Troubleshooting Tool"
+         rows="0.0"
+         tags="PTC:sca-sco-troubleshootingtool;PTC:sca-common;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:Trend&amp;Troubleshooting"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="8"
+                 baseType="BOOLEAN"
+                 description=""
+                 name="addDelete"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="11"
+                 baseType="MASHUPNAME"
+                 description="child mashup"
+                 name="childMashup"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="7"
+                 baseType="TEXT"
+                 description=""
+                 name="currentTags"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="2"
+                 baseType="BOOLEAN"
+                 description=""
+                 name="edit"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="3"
+                 baseType="MASHUPNAME"
+                 description=""
+                 name="honeMashup"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="10"
+                 baseType="MASHUPNAME"
+                 description="master mashup"
+                 name="masterMashup"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="4"
+                 baseType="MASHUPNAME"
+                 description=""
+                 name="mobileMashup"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="PTC.SCA.SCO.ServerTagDataShape"
+                 aspect.ordinal="9"
+                 baseType="INFOTABLE"
+                 description=""
+                 name="seletedTags"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description=""
+                 name="trendId"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="PTC.Factory.TrendDataShape"
+                 aspect.ordinal="1"
+                 baseType="INFOTABLE"
+                 description=""
+                 name="trendInfo"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="6"
+                 baseType="STRING"
+                 description=""
+                 name="trendRange"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="5"
+                 baseType="STRING"
+                 description=""
+                 name="trendType"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.Factory.TrendManagementUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Resources_CurrentSessionInfo" : {
+                  "DataName" : "Resources_CurrentSessionInfo",
+                  "EntityName" : "CurrentSessionInfo",
+                  "EntityType" : "Resources",
+                  "Id" : "3bd0f8be-212f-408e-8337-242a4c79bb6c",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "1597f9c6-6415-44b0-8c79-23bc5d851341",
+                    "Name" : "GetCurrentUser",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUser"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC_Factory_TrendManagementUtils" : {
+                  "DataName" : "Things_PTC_Factory_TrendManagementUtils",
+                  "EntityName" : "PTC.Factory.TrendManagementUtils",
+                  "EntityType" : "Things",
+                  "Id" : "72e45512-d4bc-4499-8735-e7cec81cdb95",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "df7bb6c0-b647-450f-88c8-1465865bc045",
+                    "Name" : "CreateTrend",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "ShowErrorMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "CreateTrend"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "03f6ccaa-2c73-465b-a06c-3115885c33d0",
+                    "Name" : "UpdateTrend",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "UpdateTrend"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "7bbd6961-6743-49fe-ab53-b030b979da75",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendInfo.TrendName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "Textbox-115",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateTrend",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "58f33f14-00d4-4e36-8c5d-74f6c064bebe",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendInfo.description",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "Textbox-116",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CheckTrendInputField",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "0c706844-62d9-4d98-8c22-1791608764cb",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendInfo.description",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "Textbox-116",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateTrend",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "899299b5-c43f-4feb-a5d0-61df46da59ff",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "userName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetCurrentUser",
+                "SourceSection" : "Resources_CurrentSessionInfo",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateTrend",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "b9dbd547-3aed-4abf-a842-811359d44b8f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "trendInfo",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "SubProperty" : "TrendName",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Textbox-115",
+                "TargetSection" : ""
+              }, {
+                "Id" : "a53effa2-baae-4a23-a7a2-46a96b96c521",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "trendInfo",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "SubProperty" : "description",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Textbox-116",
+                "TargetSection" : ""
+              }, {
+                "Id" : "ddae1701-a2f5-4502-86e6-977918f9505c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "trendId",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendId",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetTagInfo",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "43f6d7a5-2c98-4e28-a7d3-d36c5525d8aa",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "trendInfo",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "description",
+                  "TargetProperty" : "currentTags",
+                  "TargetPropertyBaseType" : "TEXT"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "b2ee8c6b-7068-46e6-a6b9-1e2c45c1dc81",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "currentTags",
+                  "SourcePropertyBaseType" : "TEXT",
+                  "TargetProperty" : "trendInfo",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetSubProperty" : "Range"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "283b157d-2b29-4d99-aef0-18d08ce19c27",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "currentTags",
+                  "SourcePropertyBaseType" : "TEXT",
+                  "TargetProperty" : "trendInfo",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetSubProperty" : "TrendName8"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "24ce9272-6a89-47f8-8152-495fc946d893",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "currentTags",
+                  "SourcePropertyBaseType" : "TEXT",
+                  "TargetProperty" : "trendInfo",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetSubProperty" : "TrendName9"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "11101456-7537-4f18-88e1-59f1b70cf44d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "edit",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ValueDisplay-182",
+                "TargetSection" : ""
+              }, {
+                "Id" : "81f91080-73f8-4a8a-8093-aef4aea08009",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "Expression-183",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ValueDisplay-4",
+                "TargetSection" : ""
+              }, {
+                "Id" : "8235a44d-e6e9-4528-aa53-a1012f9cf6b5",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "edit",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "edit",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Expression-183",
+                "TargetSection" : ""
+              }, {
+                "Id" : "0e103e9c-0da2-496f-84e7-0dafe482ae76",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "Expression-183",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Button-71",
+                "TargetSection" : ""
+              }, {
+                "Id" : "f482e48f-9bef-459a-9ccd-78977b6a6ca0",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "edit",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Button-184",
+                "TargetSection" : ""
+              }, {
+                "Id" : "b9cd03aa-9dde-43b5-8980-427552a22d18",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendInfo.description",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "Textbox-116",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateTrend",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "59c51b72-6d66-4de8-add6-221e2e15c28d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendInfo.TrendName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "Textbox-115",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateTrend",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "c3e7f8a8-890c-4135-82cb-a7b6f4756f3c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "trendId",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendInfo.Name",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateTrend",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "74c7ba91-ff24-4dab-a318-bd027799e08c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "userName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetCurrentUser",
+                "SourceSection" : "Resources_CurrentSessionInfo",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateTrend",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "afdb6001-d0a8-4172-9feb-e7da2dca46ae",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "trendId",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendInfo.Id",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateTrend",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "f58d29b6-73bb-451b-9050-6a8ba766ce11",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "outputResultParam",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendId",
+                  "TargetPropertyBaseType" : ""
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "CreateTrend",
+                "SourceSection" : "Things_PTC_Factory_TrendManagementUtils",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "8e6fc84f-a24f-4e4c-a458-da415ccc021c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "status",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "servStat",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "UpdateTrend",
+                "SourceSection" : "Things_PTC_Factory_TrendManagementUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "Validator-190",
+                "TargetSection" : ""
+              }, {
+                "Id" : "39bd5dfe-f9c8-4a9f-8a25-5759588c5953",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "executionResultMessage",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "message",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "UpdateTrend",
+                "SourceSection" : "Things_PTC_Factory_TrendManagementUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "Validator-190",
+                "TargetSection" : ""
+              }, {
+                "Id" : "59bd8660-ce59-4d89-83a2-23fce6592a65",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "executionResultMessage",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "message",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "CreateTrend",
+                "SourceSection" : "Things_PTC_Factory_TrendManagementUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "Validator-189",
+                "TargetSection" : ""
+              }, {
+                "Id" : "ca4fd940-d7fe-48d5-ab00-24c06e39febc",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "executionResultMessage",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "Message",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "UpdateTrend",
+                "SourceSection" : "Things_PTC_Factory_TrendManagementUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "StatusMessage-192",
+                "TargetSection" : ""
+              }, {
+                "Id" : "5aec15a6-05eb-4e3a-a521-5868d1916c6e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "executionResultMessage",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "Message",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "CreateTrend",
+                "SourceSection" : "Things_PTC_Factory_TrendManagementUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "StatusMessage-191",
+                "TargetSection" : ""
+              }, {
+                "Id" : "5de0ec40-32ee-4884-b257-d96bc2cfa4c0",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "seletedTags",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "selectedTags",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "AddSelectedTags",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "6df4e040-fe9e-4a00-89cf-3562108a817e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "status",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "servStat",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "CreateTrend",
+                "SourceSection" : "Things_PTC_Factory_TrendManagementUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "Validator-189",
+                "TargetSection" : ""
+              }, {
+                "Id" : "257021a0-9c82-40fa-803e-209c03a7114c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "trendRange",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendInfo.Range",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateTrend",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "52cc5d1c-3037-4d66-8b84-1417a88fc632",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "trendType",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendInfo.Type",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateTrend",
+                "TargetSection" : "Things_PTC_Factory_TrendManagementUtils"
+              }, {
+                "Id" : "d5b1195a-f84e-4ab9-94e1-0377d8fe6276",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "trendInfo",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "TrendName",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "textbox-206",
+                "TargetSection" : ""
+              }, {
+                "Id" : "a07aa540-48a5-496d-a140-561e4af4e1d6",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "Expression-183",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Textbox-115",
+                "TargetSection" : ""
+              }, {
+                "Id" : "35c5c986-34d4-400a-9340-ddb940cab17a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "edit",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "textbox-206",
+                "TargetSection" : ""
+              }, {
+                "Id" : "e669b205-1471-41d0-a97d-dbbb87720464",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "SourceURL",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-208",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "link-207",
+                "TargetSection" : ""
+              }, {
+                "Id" : "fcb5c5a8-f6f3-406e-96ca-fd114ab8b226",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "trendId",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendId",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-208",
+                "TargetSection" : ""
+              }, {
+                "Id" : "bc268e80-bf1e-47ec-9fb5-8e72b49fccf4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "masterMashup",
+                  "SourcePropertyBaseType" : "MASHUPNAME",
+                  "TargetProperty" : "masterMashup",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-208",
+                "TargetSection" : ""
+              }, {
+                "Id" : "d424846a-dd09-4097-8700-1bdf19a199a3",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "childMashup",
+                  "SourcePropertyBaseType" : "MASHUPNAME",
+                  "TargetProperty" : "childMashup",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-208",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-22",
+                "EventTriggerSection" : "",
+                "Id" : "3dfeebb5-c8e4-4bb3-8ab6-7bd691f2fa14"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Expression-34",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "UploadComplete",
+                "EventTriggerId" : "FileUpload-17",
+                "EventTriggerSection" : "",
+                "Id" : "3f936d5e-0337-429c-bd0d-030a76c2bf28"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-36",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-35",
+                "EventTriggerSection" : "",
+                "Id" : "83d8f9ee-a29f-493f-bb58-b56242953559"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "StatusMessage-37",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "Validator-36",
+                "EventTriggerSection" : "",
+                "Id" : "c79e9f24-cbf1-45be-86c0-b66efd17fb9c"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_CurrentSessionInfo",
+                "EventHandlerService" : "GetCurrentUser",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "ab9c1236-02ca-4c6e-852d-c39d3ff86953"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "StatusMessage-155",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "Validator-151",
+                "EventTriggerSection" : "",
+                "Id" : "ce97125a-b86f-4ac7-8069-dad7d382e747"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Expression-183",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "c2d89a6d-5daa-4c6a-80f6-184d8107dfe0"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-190",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "UpdateTrend",
+                "EventTriggerSection" : "Things_PTC_Factory_TrendManagementUtils",
+                "Id" : "4b8afa01-7269-4933-be7a-e706f33fa912"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "StatusMessage-191",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "Validator-189",
+                "EventTriggerSection" : "",
+                "Id" : "7db96947-d98e-4591-87e3-092255a32001"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-190",
+                "EventTriggerSection" : "",
+                "Id" : "853aed46-6fc0-4501-8f08-7452350db5df"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "StatusMessage-192",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "Validator-190",
+                "EventTriggerSection" : "",
+                "Id" : "2d46dd2d-9ee8-456f-8336-5cafecc733e0"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC_Factory_TrendManagementUtils",
+                "EventHandlerService" : "UpdateTrend",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-184",
+                "EventTriggerSection" : "",
+                "Id" : "4a238205-1077-4fb3-a9aa-2237d778dc89"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-189",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "CreateTrend",
+                "EventTriggerSection" : "Things_PTC_Factory_TrendManagementUtils",
+                "Id" : "5676c279-ac39-4dd2-9dde-6b378d5f8fab"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC_Factory_TrendManagementUtils",
+                "EventHandlerService" : "CreateTrend",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-71",
+                "EventTriggerSection" : "",
+                "Id" : "4923d89f-5f19-498f-86c8-7b146d2d490f"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-208",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-189",
+                "EventTriggerSection" : "",
+                "Id" : "c65d56f0-586e-4cca-ab49-b58e8c82c130"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "link-207",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "expression-208",
+                "EventTriggerSection" : "",
+                "Id" : "948a5973-27e7-4c19-8ac0-bee4f027ef72"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "Description" : "",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 283,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : false,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 440,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "trendId"
+                  }, {
+                    "Aspects" : {
+                      "dataShape" : "PTC.Factory.TrendDataShape"
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "",
+                    "ParameterName" : "trendInfo"
+                  }, {
+                    "BaseType" : "BOOLEAN",
+                    "DefaultValue" : false,
+                    "Description" : "",
+                    "ParameterName" : "edit"
+                  }, {
+                    "BaseType" : "MASHUPNAME",
+                    "DefaultValue" : "PTC.FactoryConsole",
+                    "Description" : "",
+                    "ParameterName" : "honeMashup"
+                  }, {
+                    "BaseType" : "MASHUPNAME",
+                    "DefaultValue" : "PTC.FactoryConsole",
+                    "Description" : "",
+                    "ParameterName" : "mobileMashup"
+                  }, {
+                    "BaseType" : "STRING",
+                    "DefaultValue" : "Raw",
+                    "Description" : "",
+                    "ParameterName" : "trendType"
+                  }, {
+                    "BaseType" : "STRING",
+                    "DefaultValue" : "Week",
+                    "Description" : "",
+                    "ParameterName" : "trendRange"
+                  }, {
+                    "BaseType" : "TEXT",
+                    "Description" : "",
+                    "ParameterName" : "currentTags"
+                  }, {
+                    "BaseType" : "BOOLEAN",
+                    "Description" : "",
+                    "ParameterName" : "addDelete"
+                  }, {
+                    "Aspects" : {
+                      "dataShape" : "PTC.SCA.SCO.ServerTagDataShape"
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "",
+                    "ParameterName" : "seletedTags"
+                  }, {
+                    "BaseType" : "MASHUPNAME",
+                    "Description" : "master mashup",
+                    "ParameterName" : "masterMashup"
+                  }, {
+                    "BaseType" : "MASHUPNAME",
+                    "Description" : "child mashup",
+                    "ParameterName" : "childMashup"
+                  } ],
+                  "edit" : false,
+                  "honeMashup" : "PTC.FactoryConsole",
+                  "id_index" : 208,
+                  "mobileMashup" : "PTC.FactoryConsole",
+                  "supportsAutoResize" : true,
+                  "trendRange" : "Week",
+                  "trendType" : "Raw"
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                    "Area" : "UI",
+                    "CancelConfirmationButton" : "button2",
+                    "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                    "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                    "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                    "ConfirmationRequired" : false,
+                    "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                    "ContextId" : "",
+                    "DefaultConfirmationButton" : "button1",
+                    "Disabled" : false,
+                    "DisabledStyle" : "PTC.SCA.SCO.Core.ButtonDisabledStyle",
+                    "DisplayName" : "Button-cancel",
+                    "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                    "Height" : 32,
+                    "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                    "IconAlignment" : "left",
+                    "Id" : "Button-22",
+                    "Label" : "[[PTC.SCA.SCO.Core.Cancel]]",
+                    "Left" : 315,
+                    "ResponsiveLayout" : false,
+                    "RoundedCorners" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNo",
+                    "TabSequence" : 7,
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 225,
+                    "Type" : "button",
+                    "Visible" : true,
+                    "Width" : 105,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Button",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                    "Area" : "UI",
+                    "CancelConfirmationButton" : "button2",
+                    "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                    "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                    "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                    "ConfirmationRequired" : false,
+                    "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                    "ContextId" : "",
+                    "DefaultConfirmationButton" : "button1",
+                    "Disabled" : false,
+                    "DisabledStyle" : "PTC.Factory.Generic.DisableButton",
+                    "DisplayName" : "Button-Create",
+                    "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                    "Height" : 32,
+                    "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                    "IconAlignment" : "left",
+                    "Id" : "Button-71",
+                    "Label" : "[[PTC.SCA.SCO.Core.OK]]",
+                    "Left" : 190,
+                    "ResponsiveLayout" : false,
+                    "RoundedCorners" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupOkOrYes",
+                    "TabSequence" : 5,
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 225,
+                    "Type" : "button",
+                    "Visible" : true,
+                    "Width" : 105,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Button",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "Panel-3",
+                    "Height" : 40,
+                    "HideScrollbars" : false,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "Panel-3",
+                    "Left" : 0,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                    "Top" : 0,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 440,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "Description" : "",
+                      "DisplayName" : "CreateTrendTitle",
+                      "Height" : 25,
+                      "Id" : "ValueDisplay-4",
+                      "ImageScaling" : "width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "Left" : 10,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.TrendAndTroubleshooting.NEW_TREND.TITLE]]",
+                      "TextIfNoValueOffset" : 10,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                      "TextWrap" : true,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 12,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 180,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "AnyRowsSelected" : false,
+                      "Area" : "UI",
+                      "DisplayName" : "InfotableMerged",
+                      "Height" : 28,
+                      "Id" : "InfotableSelector-165",
+                      "Left" : 230,
+                      "NoRowsSelected" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 5,
+                      "Type" : "infotableselector",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Infotable Selector"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "Description" : "",
+                      "DisplayName" : "UpdateTrendTitle",
+                      "Height" : 25,
+                      "Id" : "ValueDisplay-182",
+                      "ImageScaling" : "width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "Left" : 10,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.TrendAndTroubleshooting.EDIT_TREND.TITLE]]",
+                      "TextIfNoValueOffset" : 10,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                      "TextWrap" : true,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 12,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 180,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : true,
+                      "DataChangeType" : "VALUE",
+                      "Description" : "",
+                      "DisplayName" : "IsCreate",
+                      "Expression" : "!edit",
+                      "FireOnFirstValue" : true,
+                      "Height" : 28,
+                      "Id" : "Expression-183",
+                      "Left" : 200,
+                      "OutputBaseType" : "BOOLEAN",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 5,
+                      "Type" : "expression",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Expression",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "BOOLEAN",
+                        "Description" : "",
+                        "ParameterName" : "edit"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "Fieldset-114",
+                    "FieldsetLabelStyle" : "DefaultAutoRefreshToggleOffStyle",
+                    "FieldsetStyle" : "PTC.Factory.Generic.DialogBoxFieldSetInterior",
+                    "Height" : 121,
+                    "Id" : "Fieldset-114",
+                    "Left" : 20,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Title" : "",
+                    "Top" : 81,
+                    "Type" : "fieldset",
+                    "Visible" : true,
+                    "Width" : 400,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Fieldset"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "CursorPosition" : 0,
+                      "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
+                      "DisplayName" : "Textbox-CreateTrend",
+                      "Height" : 25,
+                      "Id" : "Textbox-115",
+                      "InnerShadow" : false,
+                      "Label" : "[[PTC.Factory.Trend Name]]",
+                      "LabelAlignment" : "left",
+                      "Left" : 9,
+                      "MaskInputCharacters" : false,
+                      "PlaceholderText" : "",
+                      "ReadOnly" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.DialogBoxTextInputField",
+                      "TabSequence" : 1,
+                      "Text" : "",
+                      "TextAlign" : "left",
+                      "TextboxLabelStyle" : "PTC.Factory.Generic.DialogBoxFieldSetInterior",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 8,
+                      "Type" : "textbox",
+                      "Visible" : true,
+                      "Width" : 380,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Textbox",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "CursorPosition" : 0,
+                      "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
+                      "DisplayName" : "Textbox-description",
+                      "Height" : 24,
+                      "Id" : "Textbox-116",
+                      "InnerShadow" : false,
+                      "Label" : "[[PTC.Factory.Description]]",
+                      "LabelAlignment" : "left",
+                      "Left" : 9,
+                      "MaskInputCharacters" : false,
+                      "PlaceholderText" : "",
+                      "ReadOnly" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.DialogBoxTextInputField",
+                      "TabSequence" : 3,
+                      "Text" : "",
+                      "TextAlign" : "left",
+                      "TextboxLabelStyle" : "PTC.Factory.Generic.DialogBoxFieldSetInterior",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 63,
+                      "Type" : "textbox",
+                      "Visible" : true,
+                      "Width" : 380,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Textbox",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "CursorPosition" : 0,
+                      "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
+                      "DisplayName" : "textbox-EditTrend",
+                      "Height" : 25,
+                      "Id" : "textbox-206",
+                      "InnerShadow" : false,
+                      "Label" : "[[PTC.Factory.Trend Name]]",
+                      "LabelAlignment" : "left",
+                      "Left" : 9,
+                      "MaskInputCharacters" : false,
+                      "PlaceholderText" : "",
+                      "ReadOnly" : true,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.DialogBoxTextInputFieldDisabled",
+                      "TabSequence" : 1,
+                      "Text" : "",
+                      "TextAlign" : "left",
+                      "TextboxLabelStyle" : "PTC.Factory.Generic.DialogBoxFieldSetInterior",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 8,
+                      "Type" : "textbox",
+                      "Visible" : true,
+                      "Width" : 380,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Textbox",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                }, {
+                  "Properties" : {
+                    "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                    "Area" : "UI",
+                    "CancelConfirmationButton" : "button2",
+                    "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                    "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                    "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                    "ConfirmationRequired" : false,
+                    "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                    "ContextId" : "",
+                    "DefaultConfirmationButton" : "button1",
+                    "Disabled" : false,
+                    "DisabledStyle" : "PTC.Factory.Generic.DisableButton",
+                    "DisplayName" : "Button-Edit",
+                    "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                    "Height" : 32,
+                    "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                    "IconAlignment" : "left",
+                    "Id" : "Button-184",
+                    "Label" : "[[PTC.SCA.SCO.Core.OK]]",
+                    "Left" : 190,
+                    "ResponsiveLayout" : false,
+                    "RoundedCorners" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupOkOrYes",
+                    "TabSequence" : 5,
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 225,
+                    "Type" : "button",
+                    "Visible" : true,
+                    "Width" : 105,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Button",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "Description" : "",
+                    "DisplayName" : "Validator-CreateExecution",
+                    "Expression" : "servStat",
+                    "Height" : 28,
+                    "Id" : "Validator-189",
+                    "Left" : 25,
+                    "Output" : false,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 600,
+                    "Type" : "validator",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Validator",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "servStat"
+                    }, {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "message"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "Description" : "",
+                    "DisplayName" : "Validator-UpdateExecution",
+                    "Expression" : "servStat",
+                    "Height" : 28,
+                    "Id" : "Validator-190",
+                    "Left" : 10,
+                    "Output" : false,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 620,
+                    "Type" : "validator",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Validator",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "servStat"
+                    }, {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "message"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "StatusMessage-CreateFailed",
+                    "Height" : 28,
+                    "Id" : "StatusMessage-191",
+                    "Left" : 190,
+                    "MessageType" : "warning",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 625,
+                    "Type" : "statusmessage",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Status Message"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "StatusMessage-UpdateFailed",
+                    "Height" : 28,
+                    "Id" : "StatusMessage-192",
+                    "Left" : 385,
+                    "MessageType" : "info",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 630,
+                    "Type" : "statusmessage",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Status Message"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Alignment" : "left",
+                    "AllowEllipsis" : false,
+                    "Area" : "UI",
+                    "DisplayName" : "label-FieldSet",
+                    "Height" : 9,
+                    "Id" : "label-205",
+                    "Left" : 20,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.SCA.SCO.FieldsetLabelStyle",
+                    "Text" : "[[PTC.Factory.Trend]]",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 60,
+                    "Type" : "label",
+                    "Visible" : true,
+                    "Width" : 125,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Label",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Alignment" : "left",
+                    "Area" : "UI",
+                    "DisplayName" : "linkToTrendDetails",
+                    "Height" : 20,
+                    "Id" : "link-207",
+                    "Left" : 15.000030517578125,
+                    "LinkDisplay" : "noText",
+                    "LinkHoverStyle" : "DefaultLinkHoverStyle",
+                    "LinkStyle" : "DefaultLinkStyle",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : false,
+                    "SourceURL" : "",
+                    "TabSequence" : 0,
+                    "TargetWindow" : "replace",
+                    "Text" : "goToTrendDetails",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 240.00001525878906,
+                    "Type" : "link",
+                    "Visible" : false,
+                    "Width" : 100,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Link",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "ALWAYS",
+                    "DisplayName" : "urlBuilderExpression",
+                    "Expression" : "\"index.html#master=\"+masterMashup+\"&mashup=\"+childMashup+\"&TrendId=\"+trendId",
+                    "FireOnFirstValue" : false,
+                    "Height" : 13,
+                    "Id" : "expression-208",
+                    "Left" : 15,
+                    "Output" : "",
+                    "OutputBaseType" : "STRING",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : false,
+                    "Top" : 260.00001525878906,
+                    "Type" : "expression",
+                    "Visible" : false,
+                    "Width" : 180,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "DefaultValue" : "",
+                      "Description" : "",
+                      "ParameterName" : "trendId"
+                    }, {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "masterMashup"
+                    }, {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "childMashup"
+                    } ],
+                    "trendId" : ""
+                  },
+                  "Widgets" : [ ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview></preview>
+        </Mashup>
+    </Mashups>
+</Entities>

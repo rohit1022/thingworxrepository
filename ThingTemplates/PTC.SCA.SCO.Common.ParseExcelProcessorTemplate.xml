@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="Thing Template with services used in parsing excel"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.799+05:30"
+         name="PTC.SCA.SCO.Common.ParseExcelProcessorTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:factory-mv;PTC:sca-common;PTC:ThingTemplate"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke></EventInvoke>
+                    <EventSubscribe></EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Parse data from excel file"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ParseImportFile">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportExportDataShape"
+                         baseType="INFOTABLE"
+                         description="InfoTable with data from excel file"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Name of the excel file"
+                             name="fileName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ParseImportFile">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = (function () {
+                                          var constants = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetImportExportConstants();
+                                        
+                                          logger.trace("Parsing process started");
+                                          var user = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                          var lastFileEntry = Things["PTC.SCA.SCO.Common.ImportProcessHistoryDataTable"].GetDataTableEntryByKey({ key: user });
+                                          // Invoke service which parses equipment data
+                                          var parsedInfoTable = Resources["PTC.Factory.CommonUtilities"].ParseImportFile({
+                                            fileName: lastFileEntry.FileName /* STRING */ ,
+                                            dataShape: constants.importExportDataShape /* DATASHAPENAME */
+                                          });
+                                        
+                                          logger.trace("Parsing process completed");
+                                        
+                                          return parsedInfoTable;
+                                        })();
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility></Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

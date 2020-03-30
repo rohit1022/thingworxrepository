@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Mashup for the shift and crew hub page. {PTC.SCA.SCO.ShiftAndCrewHubOverview}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.564+05:30"
+         name="PTC.SCA.SCO.ShiftAndCrewHubOverview"
+         projectName=""
+         rows="0.0"
+         tags="PTC:sca-sco-common">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions></ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.ShiftManagementUtils</Thing>
+                <Thing>PTC.SCA.SCO.Common.LicenseManager</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.Common.LicenseManager" : {
+                  "DataName" : "Things_PTC.SCA.SCO.Common.LicenseManager",
+                  "EntityName" : "PTC.SCA.SCO.Common.LicenseManager",
+                  "EntityType" : "Things",
+                  "Id" : "60d58c4b-9310-478f-8132-fee13f92335e",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "f9d0966f-2929-4162-b8d0-763143cb5f1f",
+                    "Name" : "InitializeLicenseSeats",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "InitializeLicenseSeats"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.ShiftManagementUtils" : {
+                  "DataName" : "Things_PTC.SCA.SCO.ShiftManagementUtils",
+                  "EntityName" : "PTC.SCA.SCO.ShiftManagementUtils",
+                  "EntityType" : "Things",
+                  "Id" : "c5569dbc-8cab-4f09-9d08-b21775593a59",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "ac69a66b-4541-4930-b5e5-3813fc0a602e",
+                    "Name" : "GetHubTiles",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetHubTiles"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "57ca1e45-0f9b-4557-9ee2-2247517dedc9",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetHubTiles",
+                "SourceSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "collection-2",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.LicenseManager",
+                "EventHandlerService" : "InitializeLicenseSeats",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "1152d2db-f35f-4df9-be1c-628c4778779e"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ShiftManagementUtils",
+                "EventHandlerService" : "GetHubTiles",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "InitializeLicenseSeats",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.LicenseManager",
+                "Id" : "a4ca60b4-6ad8-468b-b72c-095bea95c91e"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "Master" : "PTC.SCA.SCO.Console.Master",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "PTC.SCA.SCO.NoStyle",
+                  "StyleTheme" : "PTC Convergence Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseMasterTheme" : false,
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "id_index" : 4,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Columns" : 0,
+                    "DisplayName" : "layout-3",
+                    "Footer" : false,
+                    "FooterHeight" : 0,
+                    "Header" : false,
+                    "HeaderHeight" : 0,
+                    "Id" : "layout-3",
+                    "IncludeSpacingInFixedAreas" : false,
+                    "IsPrintLayout" : false,
+                    "LastContainer" : false,
+                    "Left" : 60,
+                    "LeftSidebar" : false,
+                    "LeftSidebarWidth" : 0,
+                    "Orientation" : "vertical",
+                    "PctColumn1" : 50,
+                    "PctColumn2" : 50,
+                    "PctColumn3" : 1,
+                    "PctColumn4" : 1,
+                    "PctColumn5" : 1,
+                    "PctColumn6" : 1,
+                    "PctColumn7" : 1,
+                    "PctColumn8" : 1,
+                    "PctRow1" : 100,
+                    "PctRow2" : 0,
+                    "PctRow3" : 0,
+                    "PctRow4" : 0,
+                    "PctRow5" : 0,
+                    "PctRow6" : 0,
+                    "PctRow7" : 0,
+                    "PctRow8" : 0,
+                    "PrintMarginLeftRight" : 0.5,
+                    "PrintMarginTopBottom" : 0.5,
+                    "PrintWidth" : 650,
+                    "ResponsiveLayout" : true,
+                    "RightSidebar" : false,
+                    "RightSidebarWidth" : 0,
+                    "Rows" : 1,
+                    "ShowDataLoading" : true,
+                    "Spacing" : 2,
+                    "Top" : 40,
+                    "Type" : "layout",
+                    "Visible" : true,
+                    "Z-index" : 15,
+                    "__TypeDisplayName" : "Layout"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Row 1",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-4",
+                      "LastContainer" : false,
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container",
+                      "userCannotRemove" : true
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "AllowSelection" : true,
+                        "AlwaysUseCustomScrollerOniOS" : true,
+                        "Area" : "UI",
+                        "AutoSelectFirstRow" : false,
+                        "BottomPadding" : 22,
+                        "CellActiveStyle" : "DefaultCollectionCellActiveStyle",
+                        "CellBorderRadius" : 0,
+                        "CellBoxShadow" : "",
+                        "CellHoverStyle" : "DefaultCollectionCellHoverStyle",
+                        "CellMashupSelectedField" : "",
+                        "CellMenuStatesIconGravity" : "Left",
+                        "CellMenuStatesIconSize" : 16,
+                        "CellMenuStatesOrientation" : "Horizontal",
+                        "CellMenuStatesUseBuiltin" : false,
+                        "CellMultipleSelectionType" : "Disabled",
+                        "CellPointer" : "pointer",
+                        "CellSelectedStyle" : "DefaultCollectionCellSelectedStyle",
+                        "CellStyle" : "DefaultCollectionCellStyle",
+                        "DisableWrapping" : false,
+                        "DisplayName" : "collection-2",
+                        "FlowLayoutAlignment" : "Top",
+                        "FlowLayoutContentGravity" : "Top",
+                        "FlowLayoutGravity" : "Center",
+                        "FooterHeight" : 44,
+                        "FooterSectionParam" : "",
+                        "HandleSelectionUpdates" : true,
+                        "HasSelectedCells" : false,
+                        "HeaderHeight" : 44,
+                        "HeaderSectionParam" : "",
+                        "Height" : 300,
+                        "Id" : "collection-2",
+                        "ItemLoadBehavior" : "loadUnload",
+                        "LastContainer" : false,
+                        "Left" : 45,
+                        "LeftAlignFinalRow" : false,
+                        "Mashup" : "PTC.SCA.SCO.ShiftAndCrewHubTile",
+                        "MashupGlobalPropertyBinding" : { },
+                        "MashupHeight" : 210,
+                        "MashupPropertyBinding" : {
+                          "ImageLink" : "TileIcon",
+                          "ImageTitle" : "LocalizedLabel",
+                          "MashupName" : "MashupLink"
+                        },
+                        "MashupWidth" : 210,
+                        "MinimumSpacing" : 40,
+                        "MultiSelect" : false,
+                        "OffScreenBufferFactor" : 0.1,
+                        "PinFootersToBottom" : false,
+                        "PinHeadersToTop" : false,
+                        "PlaysIntroAnimation" : true,
+                        "ResponsiveLayout" : true,
+                        "RippleEffectStyle" : "DefaultCollectionRippleStyle",
+                        "RowSpacing" : 44,
+                        "ScrollbarType" : "hover",
+                        "ScrollsToSelectedCell" : false,
+                        "SectionInsetBottom" : 0,
+                        "SectionInsetLeft" : 0,
+                        "SectionInsetRight" : 0,
+                        "SectionInsetTop" : 0,
+                        "SelectedCellsCount" : 0,
+                        "ShowDataLoading" : true,
+                        "ShowFooters" : false,
+                        "ShowHeaders" : false,
+                        "SortAscending" : false,
+                        "Top" : 45,
+                        "TopPadding" : 41,
+                        "Type" : "collection",
+                        "UIDField" : "Position",
+                        "UseCustomScrollerOnWindowsDesktops" : true,
+                        "UseMashupDimensions" : false,
+                        "UseRippleEffect" : false,
+                        "View" : "flow",
+                        "Visible" : true,
+                        "Width" : 400,
+                        "Z-index" : 10,
+                        "_CanDoubleClick" : false,
+                        "_EventDataShape" : {
+                          "ImageLink" : {
+                            "aspects" : {
+                              "isPrimaryKey" : false
+                            },
+                            "baseType" : "IMAGELINK",
+                            "description" : "",
+                            "name" : "ImageLink",
+                            "ordinal" : 2
+                          },
+                          "ImageTitle" : {
+                            "aspects" : {
+                              "isPrimaryKey" : false
+                            },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "ImageTitle",
+                            "ordinal" : 3
+                          },
+                          "UID" : {
+                            "aspects" : {
+                              "isPrimaryKey" : true
+                            },
+                            "baseType" : "LONG",
+                            "description" : "",
+                            "name" : "UID",
+                            "ordinal" : 1
+                          }
+                        },
+                        "_GlobalDataShape" : { },
+                        "_MenuDefinition" : "[]",
+                        "__TypeDisplayName" : "Collection"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview></preview>
+        </Mashup>
+    </Mashups>
+</Entities>

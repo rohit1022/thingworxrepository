@@ -1,0 +1,1191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="Thing template for PlantStatusUtils.. {PTC.Factory.PlantStatusUtilsThingTemplate}"
+         documentationContent=""
+         effectiveThingPackage="PTC.Factory.PlantStatusUtilsPackage"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:59.957+05:30"
+         name="PTC.Factory.PlantStatusUtilsThingTemplate"
+         projectName="PTC.SCA.SCO.Production KPI"
+         tags="PTC:sca-sco-productionkpi;PTC:sca-mfg;PTC:ThingTemplate"
+         thingPackage="PTC.Factory.PlantStatusUtilsPackage"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves the information for the default KPIs: Availability, Effectiveness, QualityRatio, and OEE."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetDefaultKPIInformation">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.DefaultKPIInformation"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="lastKPIUpdateTime"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.thingShape="PTC.SCA.SCO.KPIElementThingShape"
+                             baseType="THINGNAME"
+                             description=""
+                             name="thingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     category=""
+                     description="Retrieves the equipment structure with KPI information and populates the Production KPIs tree grid."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentStructureWithKPIs">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.PlantStatusTreeDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="Result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="contextName"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="QUERY"
+                             description=""
+                             name="filterQuery"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description=""
+                             name="includeStructureInFilter"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves the current KPI information (value, trend, name, color) for a specific Thing."
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetKPIInformation">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.KPIInformation"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             aspect.thingShape="PTC.SCA.SCO.KPIElementThingShape"
+                             baseType="THINGNAME"
+                             description=""
+                             name="thingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Return localized display value of last kpi calculation date, service is used for Production KPI tile."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetLastCalculationDateDisplayValue">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="lastKPIUpdateTime"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             aspect.thingShape="PTC.SCA.SCO.KPIElementThingShape"
+                             baseType="THINGNAME"
+                             description=""
+                             name="thingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Given a thing, if it implements thing shape PTC.SCA.SCO.KPIElementThingShape then return last time KPIs get updated on this thing"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetLastKPICalculationTime">
+                        <ResultType
+                         baseType="DATETIME"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             aspect.thingShape="PTC.SCA.SCO.KPIElementThingShape"
+                             baseType="THINGNAME"
+                             description=""
+                             name="thingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Populates the column values for the Production KPIs tree grid."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="PopulateProductionKPIsTreeGrid">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.PlantStatusTreeDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.Factory.PlantStatusTreeDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Infotable of tree structure that will be completed in this service."
+                             name="Network"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="***DEPRECATED-J*** This service has been replaced by PlantStatusUtils.PopulateProductionKPIsTreeGrid, and will be deleted in a future release. This service is to Update the network info with the fields respective to it"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="UpdateNetworkInfo">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.EquipmentStatusTreeDataShape"
+                         baseType="INFOTABLE"
+                         description="Returns the InfoTable of the context name"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.Factory.EquipmentStatusTreeDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Infotable containing tree structure with updated info of each equipment in the network."
+                             name="Network"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetDefaultKPIInformation">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function addKPIValue(values,kpiName){
+                                          	var params = {
+                                                infoTableName : "InfoTable",
+                                                dataShapeName : "PTC.SCA.SCO.KPIInformation"
+                                            };
+                                        
+                                            // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.KPIValue)
+                                            var infoTableResult = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        	var valueCollection = kpis.Find({"name":kpiName});
+                                        	infoTableResult.AddRow(valueCollection);
+                                            return infoTableResult;
+                                        }
+                                        
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.DefaultKPIInformation"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.DefaultKPIInformation)
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        var kpis = me.GetKPIInformation({
+                                            thingName: thingName /* THINGNAME */
+                                        });
+                                        // PTC.SCA.SCO.DefaultKPIInformation entry object
+                                        var newEntry = new Object();
+                                        newEntry.Availability = addKPIValue(kpis,"Availability");
+                                        newEntry.Effectiveness = addKPIValue(kpis,"Effectiveness");
+                                        newEntry.QualityRatio = addKPIValue(kpis,"QualityRatio");
+                                        newEntry.OEE = addKPIValue(kpis,"OEE");
+                                        newEntry.kpiUpdateDisplayMessage = me.GetLastCalculationDateDisplayValue({thingName: thingName, lastKPIUpdateTime: lastKPIUpdateTime});
+                                        result.AddRow(newEntry);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentStructureWithKPIs">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var network = me.GetPlantNetwork({
+                                        	contextName: contextName /* STRING */,
+                                        	includeStructureInFilter: includeStructureInFilter /* BOOLEAN */
+                                        });
+                                        
+                                        var processedNetworkTable = me.PopulateProductionKPIsTreeGrid({
+                                        	Network: network /* INFOTABLE */
+                                        });
+                                        
+                                        if (filterQuery) {
+                                            processedNetworkTable = Resources["InfoTableFunctions"].Query({
+                                            	"t": processedNetworkTable /* INFOTABLE */,
+                                            	"query": filterQuery /* QUERY */
+                                            });
+                                        }
+                                        
+                                        result = processedNetworkTable;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetKPIInformation">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.KPIInformation"
+                                        };
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.KPIInformation)
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        var equipment = Things[thingName];
+                                        var localizationFunctions = Resources["RuntimeLocalizationFunctions"];
+                                        if ( equipment && equipment.ImplementsShape({thingShapeName: "PTC.SCA.SCO.KPIElementThingShape"})){
+                                           var isConfigured = equipment.IsConfigured();
+                                           var kpiNames =  equipment.GetKPINames();
+                                           var kpiNamesArray = kpiNames.split(",");
+                                            for (var i = 0; i < kpiNamesArray.length; i++) {
+                                                var kpiName = kpiNamesArray[i];
+                                                try{
+                                                    var newEntry = new Object();
+                                                    var token = "PTC.SCA.SCO.KPI."+kpiName+".DisplayName";
+                                                    newEntry.displayName =  localizationFunctions.GetEffectiveToken({token:token});
+                                                    newEntry.name = kpiName;
+                                        
+                                                    if (isConfigured) {
+                                                        var currentValue = equipment["Get_" + kpiName + "_CurrentValue"]();
+                                                        var trend = equipment["Get_" + kpiName + "_Trend"]();
+                                                        var threadshold = equipment[ "Get_" + kpiName + "_ThresholdValues"]();
+                                        
+                                                        newEntry.value = currentValue;
+                                                        newEntry.trend = trend;
+                                        
+                                                        if (threadshold && threadshold.getRowCount() > 0){
+                                                            newEntry.color = threadshold.getRow(0).color;
+                                                        }
+                                                    }
+                                        
+                                                result.AddRow(newEntry);
+                                        
+                                                } catch(e) {
+                                                    logger.warn("PTC.Factory.PlantStatusUtils GetKPIInformation error retrieving kpi info for["+thingName+"]:" + kpiName);
+                                                }                                            
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetLastCalculationDateDisplayValue">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = "";
+                                        	// Here we require lastKPICalculationTime to be a passed in string value.
+                                        	// We don't want to have logic to retrieve last KPI calculated time and convert it to formatted
+                                        	// string here in this service because that will lead to a time generated base on time zone of server.
+                                        	// We want this time to be based on time zone of client (browser side)
+                                        	// that means the conversion from DateTime to string MUST happen on client side.
+                                        	// We use Expression widget on mashup to achieve that
+                                        	//var lastKPICalculationTime = lastKPIUpdateTime;
+                                            // result: NUMBER
+                                            var kpisCalculationPeriod = parseInt(Things["PTC.SCA.SCO.KPIScheduler"].GetKPICalculationRate())+"";
+                                            logger.debug("kpisCalculationPeriod:"+kpisCalculationPeriod);
+                                            var token = "PTC.SCA.SCO.KPI.Updated";
+                                            if(kpisCalculationPeriod === "1") {
+                                            	token = "PTC.SCA.SCO.KPI.Updated.OneMinute";
+                                        	}
+                                            
+                                            var messageParams = {
+                                                value: kpisCalculationPeriod /* STRING */,
+                                                label: token /* TEXT */
+                                            };
+                                            logger.debug("kpisCalculationPeriod:"+Resources["PTC.Resource.Factory.MessageFormatUtilities"].GetLocalizedMessageOneParam(messageParams));
+                                        	result = Resources["PTC.Resource.Factory.MessageFormatUtilities"].GetLocalizedMessageOneParam(messageParams);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetLastKPICalculationTime">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = '';
+                                        if ( Things[thingName].ImplementsShape({thingShapeName: "PTC.SCA.SCO.KPIElementThingShape"})){
+                                            result = Things[thingName].GetLastKPICalculationTime();
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="PopulateProductionKPIsTreeGrid">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var KPI_DISPLAY_HTML_PART1 = '<p style="color:white; display:table-cell; border-radius:0%; box-sizing: border-box; line-height:26px; font-size:12px; font-weight:normal; text-align: center; border-radius: 50%; width: 26px; height:26px; max-width: 26px; max-height:26px; line-height:26px; display:table-cell; background-color:';
+                                        var PTC_FACTORY_BELL_DISABLED = "PTC.Factory.BellDisabled";
+                                        var PTC_FACTORY_BELL_ACTIVE = "PTC.Factory.BellActive";
+                                        var GRAY_COLOR = "#a2a2a2";
+                                        
+                                        var customLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.PlantStatusUtil.PopulateProductionKPIsTreeGrid");
+                                        
+                                        var isEmpty = function (value) {
+                                            return value == null || value === '';
+                                        }
+                                        
+                                        var statusDefinition = function(thingName){
+                                            var statusDefinition = Things["PTC.SCA.SCO.StatusUtils"].GetStatusDefinitions({
+                                                "thingName": thingName /* THINGNAME */,
+                                                "actualStatusOnly": true /* BOOLEAN */
+                                            })[0];
+                                            return statusDefinition;
+                                        };
+                                        
+                                        var getStatusDisplayName = function(nodeId, definition){
+                                            var localizedValue = Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({
+                                                token: definition.localizationToken /* STRING */
+                                            });
+                                        
+                                            if(localizedValue === '???'){
+                                                // This means  token do not have localized content.
+                                                localizedValue = definition.internalName;
+                                                customLogger.warn("Token is not localized for the status " + localizedValue + " of entity: " + nodeId);
+                                            }
+                                            return localizedValue;
+                                        };
+                                        
+                                        var statusHTML = function(imageLink, displayName) {
+                                            var iconHtml = "<span><a><img src='/Thingworx/MediaEntities/" + imageLink +
+                                                "' class='gridCellImage'></a><span class='label-grid-text-url-hidden'>" + displayName +
+                                                "</span></span>";
+                                            return iconHtml;
+                                        };
+                                        
+                                        var iconLink = function(nodeId) {
+                                            return Things["PTC.SCA.SCO.UIProvider"].GetAlertIcon({
+                                                activeAlertsIcon: PTC_FACTORY_BELL_ACTIVE /* STRING */,
+                                                source: nodeId /* STRING */,
+                                                noAlertIcon: PTC_FACTORY_BELL_DISABLED /* STRING */
+                                            });
+                                        };
+                                        
+                                        var hasAlerts = function(nodeId) {
+                                            return Things["PTC.SCA.SCO.UIProvider"].HasAlerts({
+                                                serverName: nodeId /* STRING */
+                                            });
+                                        };
+                                        
+                                        var retrieveAlerts = function(nodeId) {
+                                            var alerts = Things[nodeId].GetAlertStatuses();
+                                            return (alerts.getRowCount() > 0);
+                                        };
+                                        
+                                        var isKpiShapeImplemented = function(nodeId) {
+                                            var isKpiShapeImplemented =  Things[nodeId].ImplementsShape({
+                                                thingShapeName: "PTC.SCA.SCO.KPIElementThingShape" /* THINGSHAPENAME */
+                                            });
+                                            return isKpiShapeImplemented;
+                                        };
+                                        
+                                        var getKPINamesInArray = function(nodeId) {
+                                            var kpiNames = "";
+                                            
+                                            if ( isKpiShapeImplemented(nodeId) ){
+                                                kpiNames = entityThing.GetKPINames().trim();
+                                            }
+                                            // Split kpiNames string per ","
+                                            return kpiNames ? kpiNames.split(/\s*,\s*/) : [];
+                                        };
+                                        
+                                        var getKPISaveInfo = function(key, valueArray) {
+                                            var found = false;
+                                            var result = {};
+                                            for (var i = 0; i < valueArray.length; i++) {
+                                                var oneValue = valueArray[i];
+                                                if (oneValue.kpiName === key) {
+                                                    result = oneValue;
+                                                    found = true;
+                                                    break;
+                                                }
+                                            }
+                                            if (!found) {
+                                                customLogger.error("KPI name : " + kpiName + " is not in Save Information array, might not supported for now.");
+                                            }
+                                            return result;
+                                        };
+                                        
+                                        // By default, kpiValue should be in percentage
+                                        var getThresholdHTML = function(kpiValue, backgroundColor) {
+                                            var color = backgroundColor ? backgroundColor : GRAY_COLOR;
+                                            // Round up KPI value so that there is no decimal
+                                            var kpiDisplayValue = Math.round(kpiValue * 100);
+                                            return KPI_DISPLAY_HTML_PART1 + color + ';">' + kpiDisplayValue + '</p>';
+                                        };
+                                        
+                                        var tableLength = Networks ? Network.rows.length : 0;
+                                        for (var i = 0; i < tableLength; i++) {
+                                            var row = Network.rows[i];
+                                            var nodeId = row.Id;
+                                        
+                                            var entityThing = Things[nodeId];
+                                        
+                                            if (!row.displayName) {
+                                                row.displayName = entityThing.name;
+                                            }
+                                            customLogger.debug('displaName is: ' + row.displayName);
+                                        
+                                            var params = {
+                                                linkURL: "" /* STRING */ ,
+                                                tooltip: row.displayName /* STRING */ ,
+                                                linkText: row.displayName /* STRING */
+                                            };
+                                        
+                                            // result: STRING
+                                            row.displayNameHTML = Resources["PTC.Factory.CommonUtilities"].GetTextHtmlLink(params);
+                                        
+                                            if (!row.description) {
+                                                row.description = entityThing.description;
+                                            }
+                                            customLogger.debug('description is: ' + row.description);
+                                        
+                                            // A map between OOTB KPI names and fields of result datashape for each KPI
+                                            var kpiSaveInfoArray = [
+                                                {kpiName: "QualityRatio", saveFieldName: "quality", htmlSaveFieldName: "quality_displaycirclehtml"},
+                                                {kpiName: "Effectiveness", saveFieldName: "performance", htmlSaveFieldName: "performance_displaycirclehtml"},
+                                                {kpiName: "Availability", saveFieldName: "availability", htmlSaveFieldName: "availability_displaycirclehtml"},
+                                                {kpiName: "OEE", saveFieldName: "oee", htmlSaveFieldName: "oee_displaycirclehtml"}];
+                                        
+                                            var isStatusShapeImplemented =  entityThing.ImplementsShape({
+                                                thingShapeName: "PTC.SCA.SCO.StatusThingShape" /* THINGSHAPENAME */
+                                            });
+                                        
+                                            var isConfigured =  isStatusShapeImplemented && entityThing.IsConfigured();
+                                        
+                                            // For each OOTB KPI, call services on "entityThing" to retrieve its value
+                                            var kpiNamesArray = getKPINamesInArray(nodeId);
+                                            for (var j = 0; j < kpiNamesArray.length; j++) {
+                                                // Get name of service that retrieve KPI value
+                                                var kpiName = kpiNamesArray[j];
+                                                 
+                                                var kpiSaveInfo = getKPISaveInfo(kpiName, kpiSaveInfoArray);
+                                                if ( typeof(kpiSaveInfo.htmlSaveFieldName) !== "undefined" && kpiSaveInfo.htmlSaveFieldName !== null ) {
+                                                    var kpiValue = entityThing["Get_" + kpiName + "_CurrentValue"]();
+                                                    // Get threshold value of this KPI value
+                                                    var kpiThresholdValue = entityThing["Get_" + kpiName + "_ThresholdValues"]();
+                                                    customLogger.debug('Retrieve KPI: ' + kpiName + ' with value: ' + kpiValue + ', based on defined threshold, its display color is ' + kpiThresholdValue.color);
+                                                    // Save this KPI value to result
+                                                    row[kpiSaveInfo.saveFieldName] = Math.round(kpiValue * 100);
+                                        
+                                                    // Based on threshold, get this KPI's display HTML and save it to result
+                                                    if (isConfigured) {
+                                                        row[kpiSaveInfo.htmlSaveFieldName] = getThresholdHTML(kpiValue, kpiThresholdValue.color);
+                                                    } else {
+                                                        row[kpiSaveInfo.htmlSaveFieldName] = KPI_DISPLAY_HTML_PART1 + GRAY_COLOR + ';"></p>';
+                                                    }
+                                                }
+                                            }
+                                        
+                                            // lastCalculationTime is the time when KPIs is updated most recently
+                                            if ( isKpiShapeImplemented(nodeId) ){
+                                                row.lastCalculationTime = entityThing.GetLastKPICalculationTime();
+                                                customLogger.debug('lastCalculationTime is: ' + row.lastCalculationTime);
+                                            }
+                                        
+                                            if (isStatusShapeImplemented) {
+                                                //set the status
+                                                try {
+                                                    if (isEmpty(row.status) || isEmpty(row.statusLocalizedName)) {
+                                                        var definition = statusDefinition(nodeId);
+                                                        var statusDisplayName = getStatusDisplayName(nodeId, definition);
+                                        
+                                                        if (isEmpty(row.status)) {
+                                                            row.status = statusHTML(definition.icon, statusDisplayName);
+                                                        }
+                                        
+                                                        if (isEmpty(row.statusLocalizedName)) {
+                                                            row.statusLocalizedName = statusDisplayName;
+                                                        }
+                                                        customLogger.debug('Status is defined on equipment: ' + nodeId + ', current status is ' + statusDisplayName);
+                                                    }
+                                                } catch (err) {
+                                                    customLogger.warn("Status may not be defined for " + nodeId + ": " + err);
+                                                }
+                                            }
+                                        
+                                            try {
+                                                row.AlertHTMLString = iconLink(nodeId);
+                                                row.hasAlert = hasAlerts(nodeId);
+                                                customLogger.debug('Equipmenet ' + nodeId + ' has active alert(s).');
+                                            } catch (err) {
+                                                customLogger.warn("Alerts may not be defined for " + nodeId + " : " + err);
+                                            }
+                                        }
+                                        
+                                        var result = Network;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="UpdateNetworkInfo">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // ***DEPRECATED-J*** This service has been replaced by PlantStatusUtils.PopulateProductionKPIsTreeGrid, and will be deleted in a future release.
+                                        var isCustomized = function() {
+                                        	return Things["PTC.Factory.StatusExpressionUtils"].IsKPICustomized();
+                                        };
+                                        
+                                        var areAllPerformanceMetricsConfigured = function(row) {
+                                            return isResourceConfigured(row) && isQualityConfigured(row) && isPerformanceConfigured(row);
+                                        };
+                                        
+                                        var isResourceConfigured = function(row) {
+                                            return Things["PTC.SCA.SCO.ManageResourceUtils"].IsResourceConfigured({
+                                                row: row /* JSON */
+                                            });
+                                        };
+                                        
+                                        var isQualityConfigured = function(row) {
+                                         // result: BOOLEAN
+                                            return Things["PTC.SCA.SCO.ManageResourceUtils"].IsQualityConfigured({
+                                                row: row /* JSON */
+                                            });
+                                        };
+                                        
+                                        var isPerformanceConfigured = function(row) {
+                                            // result: BOOLEAN
+                                            return Things["PTC.SCA.SCO.ManageResourceUtils"].IsPerformanceConfigured({
+                                                row: row /* JSON */
+                                            });
+                                        };
+                                        
+                                        var infoTableIndex = function(infoTable, fieldName) {
+                                            var tableLength = infoTable.rows.length;
+                                        
+                                        	var params = {
+                                        		infoTableName: "infoTableIndex", /* STRING */
+                                        		dataShapeName: "PTC.Factory.StringJSONKeyValuePair" /* STRING */
+                                        	};
+                                        
+                                        	// result: INFOTABLE
+                                        	var tableIndex = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        	for (var x=0; x < tableLength; x++) {
+                                            	var row = infoTable.getRow(x);
+                                        
+                                            	//create infotable of key value and add row
+                                                var newRow = new Object();
+                                                if(row) {
+                                                    newRow.key = row[fieldName];
+                                                    newRow.value = row;
+                                                    tableIndex.AddRow(newRow);
+                                                }
+                                        	}
+                                        	return tableIndex;
+                                        };
+                                        
+                                        var thingBaseProperties = function(nodeId) {
+                                            var filter =
+                                                {	filters: {
+                                                    	type: "LIKE",
+                                                    	fieldName: "Id",
+                                                    	value: nodeId
+                                                }};
+                                            var result = Things["PTC.Factory.StatusExpressionResourceProvider"].Get({
+                                        		query: filter /* QUERY */,
+                                        		extraParams: undefined /* JSON */,
+                                        		dataShapeName: "PTC.Factory.PlantStatusTreeDataShape" /* DATASHAPENAME */,
+                                        		dataShape: undefined /* INFOTABLE */
+                                        	});
+                                        	return result.getRow(0);
+                                        };
+                                        
+                                        var findValues = function(tableRowIndex, nodeId) {
+                                            //find the value to return the key value pair for the key = nodeId and value will be the rows object
+                                            var tableLength = tableRowIndex.rows.length;
+                                            for (var x=0;x < tableLength;x++) {
+                                            	var row = tableRowIndex.rows[x];
+                                            	if (row.key === nodeId) {
+                                            		return row.value;
+                                            	}
+                                            }
+                                        };
+                                        
+                                        var kpiPercentages = function(row) {
+                                            var newRow = new Object();
+                                            try {
+                                                newRow.oee = row.oee !== 'undefined' ? calculatePercentage(row.oee) : undefined;
+                                                newRow.availability = row.availability !== 'undefined' ? calculatePercentage(row.availability): undefined;
+                                                newRow.quality = row.quality !== 'undefined'? calculatePercentage(row.quality) : undefined;
+                                                newRow.performance = row.performance !== 'undefined' ? calculatePercentage(row.performance) : undefined;
+                                            } catch (err) {
+                                            	logger.error("Could not calculate the KPI of " + row + ": " + err);
+                                            }
+                                            return newRow;
+                                        };
+                                        
+                                        var calculatePercentage = function(value) {
+                                        	var MAX_KPI_VALUE = 999;
+                                        	var MIN_KPI_VALUE = 0;
+                                        	var percentage = Math.round(parseFloat(value)*100);
+                                        	percentage = percentage > MAX_KPI_VALUE ? MAX_KPI_VALUE : percentage < MIN_KPI_VALUE ? MIN_KPI_VALUE : percentage;
+                                        	return percentage;
+                                        };
+                                        
+                                            // result: INFOTABLE dataShape: ""
+                                        var statuses =  Things["PTC.Factory.StatusExpressionResourceProvider"].Get({
+                                        	query: undefined /* QUERY */,
+                                        	extraParams: undefined /* JSON */,
+                                        	dataShapeName: "PTC.Factory.PlantStatusTreeDataShape" /* DATASHAPENAME */,
+                                        	dataShape: undefined /* INFOTABLE */
+                                        });
+                                        
+                                        var oeeHTML = function(oeeObject, oee, isCustomized ) {
+                                        	var oeeMin = oeeObject.oEE_MinThreshold;
+                                        	var oeeMax = oeeObject.oEE_MaxThreshold;
+                                        
+                                            if(!areAllPerformanceMetricsConfigured(oeeObject) && !isCustomized) {
+                                        		oee = -1;
+                                        	}
+                                        
+                                        	return Things["PTC.Factory.IconTooltipURLUtils"].GetCircleWithTextHTMLString({
+                                        		MinLimit: String(oeeMin) /* STRING */,
+                                        		Value: String(oee) /* STRING */,
+                                        		MaxLimit: String(oeeMax) /* STRING */
+                                        	});
+                                        };
+                                        
+                                        var qualityHTML = function(qualityObject, quality, isCustomized) {
+                                            // result: STRING
+                                            return Things["PTC.SCA.SCO.ManageResourceUtils"].GetQualityHTML({
+                                                qualityObject: qualityObject /* JSON */,
+                                                isCustomized: isCustomized /* BOOLEAN */,
+                                                quality: quality /* INTEGER */
+                                            });
+                                        };
+                                        
+                                        var availabilityHTML = function(availabilityObject, availability) {
+                                            // result: String
+                                        	return Things["PTC.SCA.SCO.ManageResourceUtils"].GetAvailabilityHTML({
+                                                availabilityObject: availabilityObject /* JSON */,
+                                                availability: availability /* INTEGER */
+                                            });
+                                        };
+                                        
+                                        var performanceHTML = function(performanceObject, performance, isCustomized) {
+                                            // result: STRING
+                                            return Things["PTC.SCA.SCO.ManageResourceUtils"].GetPerformanceHTML({
+                                                performance: performance /* INTEGER */,
+                                                isCustomized: isCustomized /* BOOLEAN */,
+                                                performanceObject: performanceObject /* JSON */
+                                            });
+                                        };
+                                        
+                                        var isEmpty = function (value) {
+                                            return value == null || value === '';
+                                        }
+                                        
+                                        var statusDefinition = function(thingName){
+                                            var statusDefinition = Things["PTC.SCA.SCO.StatusUtils"].GetStatusDefinitions({
+                                                "thingName": thingName /* THINGNAME */,
+                                                "actualStatusOnly": true /* BOOLEAN */
+                                            })[0];
+                                            return statusDefinition;
+                                        };
+                                        
+                                        var getStatusDisplayName = function(nodeId, definition){
+                                            var localizedValue = Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({
+                                                token: definition.localizationToken /* STRING */
+                                            });
+                                        
+                                            if(localizedValue === '???'){
+                                                // This means  token do not have localized content.
+                                                localizedValue = definition.internalName;
+                                                logger.warn("Token is not localized for the status " + localizedValue + " of entity: " + nodeId);
+                                            }
+                                            return localizedValue;
+                                        };
+                                        
+                                        var statusHTML = function(imageLink,displayName) {
+                                            var iconHtml = "<span><a><img src='/Thingworx/MediaEntities/" + imageLink +
+                                                "' class='gridCellImage'></a><span class='label-grid-text-url-hidden'>" + displayName +
+                                                "</span></span>";
+                                            return iconHtml;
+                                        };
+                                        
+                                        var iconLink = function(nodeId) {
+                                            var PTC_FACTORY_BELL_DISABLED = "PTC.Factory.BellDisabled";
+                                            var PTC_FACTORY_BELL_ACTIVE = "PTC.Factory.BellActive";
+                                            return Things["PTC.SCA.SCO.UIProvider"].GetAlertIcon({
+                                                activeAlertsIcon: PTC_FACTORY_BELL_ACTIVE /* STRING */,
+                                                source: nodeId /* STRING */,
+                                                noAlertIcon: PTC_FACTORY_BELL_DISABLED /* STRING */
+                                            });
+                                        };
+                                        
+                                        var hasAlerts = function(nodeId) {
+                                            // result: STRING
+                                            return Things["PTC.SCA.SCO.UIProvider"].HasAlerts({
+                                                 serverName: nodeId /* STRING */
+                                            });
+                                        };
+                                        
+                                        var retrieveAlerts = function(nodeId) {
+                                         	var alerts = Things[nodeId].GetAlertStatuses();
+                                            if (alerts.getRowCount() > 0) {
+                                            	return true;
+                                            }
+                                            return false;
+                                        };
+                                        
+                                        var infoTableRowIndex = null;
+                                        if (statuses !== null && statuses.rows.length > 0) {
+                                            infoTableRowIndex = infoTableIndex(statuses, "Id");
+                                        }
+                                        
+                                        var tableLength = Network.rows.length;
+                                        for (var i=0; i < tableLength; i++) {
+                                            var row = Network.rows[i];
+                                            var nodeId = row.Id;
+                                        
+                                            if (!row.displayName) {
+                                                row.displayName = Things[nodeId].name;
+                                            }
+                                        
+                                            var params = {
+                                                linkURL: "" /* STRING */ ,
+                                                tooltip: row.displayName /* STRING */ ,
+                                                linkText: row.displayName /* STRING */
+                                            };
+                                        
+                                            // result: STRING
+                                            row.displayNameHTML = Resources["PTC.Factory.CommonUtilities"].GetTextHtmlLink(params);
+                                        
+                                            if (!row.description) {
+                                                var description = Things[nodeId].description;
+                                                row.description = description;
+                                            }
+                                        
+                                            var nodeThingBaseProperties = null;
+                                            if (statuses === null || statuses.rows.length === 0) {
+                                                nodeThingBaseProperties = thingBaseProperties(nodeId);
+                                            } else {
+                                                nodeThingBaseProperties = findValues(infoTableRowIndex, nodeId);
+                                            }
+                                        
+                                            //Log error for the asset that is undefined
+                                            if (!nodeThingBaseProperties) {
+                                                logger.error("The " + nodeId + " does not have defined kpis.");
+                                            }
+                                            var kpiPercent = kpiPercentages(nodeThingBaseProperties);
+                                        
+                                            //Side note: there used to be a vc.putAll in the java which adds the nodeThingBaseProperties to the valuecollection
+                                            //This may only happen when the statuses is null
+                                            //vc.putAll(nodeThingBaseProperties);
+                                            //row = nodeThingBaseProperties;
+                                        
+                                            var isKpiShapeImplemented =  Things[nodeId].ImplementsShape({
+                                                thingShapeName: "PTC.SCA.SCO.KPIsThingShape" /* THINGSHAPENAME */
+                                            });
+                                        
+                                            var isStatusShapeImplemented =  Things[nodeId].ImplementsShape({
+                                                thingShapeName: "PTC.SCA.SCO.StatusThingShape" /* THINGSHAPENAME */
+                                            });
+                                        
+                                            //Set logic for the KPI if the shape exists such as: OEE, Quality, Performance
+                                            if (isKpiShapeImplemented) {
+                                                try {
+                                                    //set oee
+                                                    row.oee_displaycirclehtml = oeeHTML(row, kpiPercent.oee, isCustomized());
+                                                    row.oee = kpiPercent.oee;
+                                                    //set quality
+                                                    row.quality_displaycirclehtml = qualityHTML(row, kpiPercent.quality, isCustomized());
+                                                    row.quality = kpiPercent.quality;
+                                                    //set performance
+                                                    row.performance_displaycirclehtml = performanceHTML(row, kpiPercent.performance, isCustomized());
+                                                    row.performance = kpiPercent.performance;
+                                                } catch (err) {
+                                                    logger.warn("kpi may not be defined for " + nodeId + " : " + err);
+                                                }
+                                            }
+                                        
+                                            if (isStatusShapeImplemented) {
+                                                try {
+                                                //set the availability
+                                                    row.availability_displaycirclehtml = availabilityHTML(row, kpiPercent.availability);
+                                                    row.availability = kpiPercent.availability;
+                                                } catch (err) {
+                                                    logger.warn("Availability may not be defined for " + nodeId + " : " + err);
+                                                }
+                                                //set the status
+                                                try {
+                                                    if (isEmpty(row.status) || isEmpty(row.statusLocalizedName)) {
+                                                        var definition = statusDefinition(nodeId);
+                                                        var statusDisplayName = getStatusDisplayName(nodeId, definition);
+                                        
+                                                        if (isEmpty(row.status)) {
+                                                            row.status = statusHTML(definition.icon, statusDisplayName);
+                                                        }
+                                        
+                                                        if (isEmpty(row.statusLocalizedName)) {
+                                                            row.statusLocalizedName = statusDisplayName;
+                                                        }
+                                                        customLogger.debug('Status is defined on equipment: ' + nodeId + ', current status is ' + statusDisplayName);
+                                                    }
+                                                } catch (err) {
+                                                    logger.warn("Status may not be defined for " + nodeId + ": " + err);
+                                                }
+                                        
+                                        
+                                            }
+                                            try {
+                                                var hasAlert = hasAlerts(nodeId);
+                                                row.AlertHTMLString = iconLink(nodeId);
+                                                row.hasAlert = hasAlert;
+                                            } catch (err) {
+                                                logger.warn("Alerts may not be defined for " + nodeId + " : " + err);
+                                            }
+                                        
+                                            var statusRow = new Object();
+                                            statusRow.statusIndex = row.statusIndex;
+                                            if (!isResourceConfigured(statusRow)) {
+                                                //remove the property of the row.lastcalculationTime if the resource is not configured
+                                                delete row.lastCalculationTime;
+                                            }
+                                        }
+                                        var result = Network;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:ManageElements"
+                     type="OrganizationalUnit"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:PlantStatus"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

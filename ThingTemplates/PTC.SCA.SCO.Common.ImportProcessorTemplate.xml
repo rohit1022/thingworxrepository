@@ -1,0 +1,2901 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="Thing Template with services used in importing equipment from excel"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.891+05:30"
+         name="PTC.SCA.SCO.Common.ImportProcessorTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:factory-mv;PTC:sca-common;PTC:ThingTemplate"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Import equipment"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="Import">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.ReportDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Import operation can be 'HIERARCHY' for importing hierarchy only or 'ALL' for importing equipment and it's structure"
+                             name="importOperation"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ImportExportDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="parsedInfoTable"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Import hierarchy from parsed equipment data"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ImportEquipmentHierarchy">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.ReportDataShape"
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ImportExportDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="parsedInfoTable"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ImportEquipmentInformation">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.ReportDataShape"
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.EquipmentGeneralInformationDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="equipmentInformation"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.EquipmentGeneralInformationDataShape"
+                             aspect.isRequired="true"
+                             aspect.tagType="ModelTags"
+                             baseType="INFOTABLE"
+                             description="Information which columns containing information about equipment was parsed"
+                             name="equipmentMetadata"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Import equipment information from parsed data"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ImportGeneralInformation">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.ReportDataShape"
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ImportExportDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="parsedInfoTable"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ImportLocallyBoundProperty">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.EquipmentPropertiesDataShape"
+                             aspect.isRequired="true"
+                             aspect.tagType="ModelTags"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="equipmentProperty"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ImportNoneBoundProperty">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.EquipmentPropertiesDataShape"
+                             aspect.isRequired="true"
+                             aspect.tagType="ModelTags"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="equipmentProperty"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ImportProperties">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.ReportDataShape"
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ImportExportDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="parsedInfoTable"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ImportRemotelyBoundProperty">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.EquipmentPropertiesDataShape"
+                             aspect.isRequired="true"
+                             aspect.tagType="ModelTags"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="equipmentProperty"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="***DEPRECATED-J*** This service will be deleted in the future release"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ImportThing">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.ReportDataShape"
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.EquipmentGeneralInformationDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="equipmentInformation"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Dropdown list for import type in import mashup."
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ImportTypes">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ConfiguratioAndSetup.ImportTypes"
+                         baseType="INFOTABLE"
+                         description="Infotable with name and type for import type dropdown list."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="PostImport">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.ReportDataShape"
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ImportExportDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="parsedInfoTable"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Prepare parsed data for import processing"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="PreImport">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportExportDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ImportExportDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="parsedInfoTable"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="Import">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function checkIfImportProceedSuccessfully(reportInfoTable, reportDataShapeFields) {
+                                          var invalidHeader = reportDataShapeFields[3];
+                                        
+                                          var isImportSuccessful = true;
+                                        
+                                          for (var i = 0; i < reportInfoTable.rows.length; i++) {
+                                            var row = reportInfoTable.getRow(i);
+                                        
+                                            if (row[invalidHeader] > 0) {
+                                              isImportSuccessful = false;
+                                              break;
+                                            }
+                                          }
+                                        
+                                          return isImportSuccessful;
+                                        }
+                                        
+                                        function getBooleanValue(value, defaultValue) {
+                                          return Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetBooleanValue({
+                                            defaultValue: defaultValue /* BOOLEAN */ ,
+                                            value: value /* STRING */ ,
+                                            invalidValue: defaultValue /* STRING */
+                                          });
+                                        }
+                                        
+                                        function disableEquipment(generalInformation) {
+                                          var generalEquipmentDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                            dataShapeName: constants.equipmentGeneralInformationDataShape
+                                          })["array"];
+                                        
+                                          // Declare headers from Data Shape
+                                          var nameHeader = generalEquipmentDataShapeFields[0];
+                                          var activeHeader = generalEquipmentDataShapeFields[10];
+                                        
+                                          for (var i = 0; i < generalInformation.length; i++) {
+                                            var row = generalInformation.getRow(i);
+                                        
+                                            // Create variables for data from InfoTable
+                                            var name = row[nameHeader];
+                                            
+                                            if(name == null){
+                                              continue;
+                                            }
+                                            
+                                            var active = getBooleanValue(row[activeHeader], true);
+                                        
+                                            var thingExists = Things[name];
+                                        
+                                            if (thingExists && active === false) {
+                                              Things[name].DisableThing();
+                                            }
+                                          }
+                                        }
+                                        
+                                        
+                                        var constants = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetImportExportConstants();
+                                        
+                                        var currentUserLanguage = Resources["CurrentSessionInfo"].GetCurrentUserLanguage();
+                                        logger.trace("Import process started");
+                                        
+                                        var validationResultDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.validationResultDataShape
+                                        })["array"];
+                                        var reportDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.importReportDataShape
+                                        })["array"];
+                                        
+                                        var reportHeader = validationResultDataShapeFields[0];
+                                        var hierarchyHeader = validationResultDataShapeFields[1];
+                                        var generalInformationHeader = validationResultDataShapeFields[2];
+                                        var propertiesHeader = validationResultDataShapeFields[3];
+                                        
+                                        var importHierarchyOnly;
+                                        if (importOperation === "HIERARCHY") {
+                                          importHierarchyOnly = true;
+                                        } else {
+                                          importHierarchyOnly = false;
+                                        }
+                                        
+                                        // Run pre-import process
+                                        var preImportResult = me.PreImport({
+                                          parsedInfoTable: parsedInfoTable
+                                        });
+                                        
+                                        // Run validation process
+                                        var validationResult = Things["PTC.SCA.SCO.Common.ImportValidator"].ValidateImportFile({
+                                          parsedInfoTable: preImportResult,
+                                          importOperation: importOperation
+                                        });
+                                        
+                                        var generalInfoTemp = parsedInfoTable[generalInformationHeader];
+                                        
+                                        /* Edit parsedInfoTable to contain only validated rows */
+                                        parsedInfoTable[hierarchyHeader] = validationResult[hierarchyHeader];
+                                        parsedInfoTable[generalInformationHeader] = validationResult[generalInformationHeader];
+                                        if (!importHierarchyOnly) {
+                                          parsedInfoTable[propertiesHeader] = validationResult[propertiesHeader];
+                                        }
+                                        
+                                        if (!importHierarchyOnly) {
+                                          // Run import process for general information tab
+                                          me.ImportGeneralInformation({
+                                            parsedInfoTable: parsedInfoTable
+                                          });
+                                        
+                                          try {
+                                            // Run import process for properties tab
+                                            me.ImportProperties({
+                                              parsedInfoTable: parsedInfoTable
+                                            });
+                                          } catch (ex) {
+                                            logger.error("Import process failed while importing properties : " + ex);
+                                          }
+                                        }
+                                        
+                                        // Run import process for hierarchy tab
+                                        me.ImportEquipmentHierarchy({
+                                          parsedInfoTable: parsedInfoTable
+                                        });
+                                        
+                                        // Run post-import process
+                                        me.PostImport({
+                                          parsedInfoTable: parsedInfoTable
+                                        });
+                                        
+                                        disableEquipment(generalInfoTemp);
+                                        
+                                        logger.trace("Import process completed");
+                                        
+                                        var reportInfoTable = validationResult[reportHeader];
+                                        var isImportSuccessful = checkIfImportProceedSuccessfully(reportInfoTable, reportDataShapeFields);
+                                        
+                                        var currentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        
+                                        var paramsAtFinish = {
+                                          user: currentUser /* STRING */ ,
+                                          IsSuccessful: isImportSuccessful /* BOOLEAN */ ,
+                                          Result: reportInfoTable /* INFOTABLE */
+                                        };
+                                        Things["PTC.SCA.SCO.Common.ImportProcessHistoryDataTable"].FinishProcess(paramsAtFinish);
+                                        
+                                        var result = reportInfoTable;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ImportEquipmentHierarchy">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /**
+                                         * Return if it is possible to create new connection between new parent and child
+                                         * @param parentType equipment type of current parent equipment
+                                         * @param newParentType equipment type of new parent equipment
+                                         * @param childType equipment type of child equipment
+                                         */
+                                        function isManyToManyAllowed(params) {
+                                        
+                                         //check if the ManyToMany is allowed for the existed relationship in system for params.parentType and params.childType
+                                          var row = getRelationshipInfo(params.parentType, params.childType, params.context);
+                                          var allowManyToManyFromSystem = row!== null && row["Enabled"] === true && row["ManyToManyCardinality"] === true;
+                                          
+                                         //check if the ManyToMany is allowed for the new relationship in import of params.newParentType and params.childType
+                                          var newRow = getRelationshipInfo(params.newParentType, params.childType, params.context);
+                                          var allowManyToManyFromImport = newRow !== null && newRow["Enabled"] === true && newRow["ManyToManyCardinality"] === true;
+                                          
+                                          return allowManyToManyFromSystem === true && allowManyToManyFromImport === true;
+                                        }
+                                        
+                                        /**
+                                         * Return the valid relationship infomation for the current parent-child
+                                         * @param parentType equipment type of parent equipment
+                                         * @param childType equipment type of child equipment
+                                         */
+                                        function getRelationshipInfo(parentType, childType, context) {
+                                          var relationshipRow = null;
+                                          if (isEmpty(childType) || isEmpty(context)) {
+                                              return null;
+                                          }
+                                        
+                                          if (parentType === null || parentType === undefined) {
+                                             parentType = "";
+                                          }
+                                          
+                                          var relationShipdKey = context+":"+parentType+":"+childType;
+                                          if (relationshipMap.hasOwnProperty(relationShipdKey)) {
+                                              relationshipRow = relationshipMap[relationShipdKey];
+                                          } else {
+                                            relationshipRow = getRelationshipRowInConfigurationTable(parentType, childType, context);
+                                            if (relationshipRow !== null) {
+                                                relationshipMap[relationShipdKey] = {
+                                                    "ManyToManyCardinality": relationshipRow["ManyToManyCardinality"],
+                                                    "Enabled": relationshipRow["Enabled"] 
+                                                };
+                                            }
+                                          }
+                                          return relationshipRow;
+                                        }
+                                        
+                                        function getRelationshipRowInConfigurationTable(parentType, childType, context) {
+                                          var relationshipRow = null;
+                                          var isAddingToRootNode = isEmpty(parentType);
+                                          var relationShipTable = null;
+                                          if (relationShipTableMap.hasOwnProperty(context)) {
+                                            relationShipTable = relationShipTableMap[context];
+                                          } else {
+                                            relationShipTable = getEquipmentRelationshipTableByContext(context);
+                                            if (relationShipTable !== null) {
+                                              relationShipTableMap[context] = relationShipTable;
+                                            }
+                                          }
+                                          if (relationShipTable !== null && relationShipTable !== undefined) {
+                                            for (var i = 0; i < relationShipTable.getRowCount(); i++) {
+                                                var row = relationShipTable.getRow(i);
+                                                var childTypeInRow = row["Child"];
+                                                var parentTypeInRow = row["Parent"];   
+                                                if (isAddingToRootNode && (childTypeInRow === childType || parentTypeInRow === childType)){
+                                                   relationshipRow = row;
+                                                   break;
+                                                } else if (!isAddingToRootNode && childTypeInRow === childType && parentTypeInRow === parentType){
+                                                   relationshipRow = row;
+                                                   break;
+                                                }
+                                            }
+                                            if (relationshipRow === null) {
+                                              var equipmentObject = {
+                                                parentType: parentType,
+                                                childType: childType,
+                                                contextName: context
+                                              };
+                                              var relationshipInfo = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetRelationshipInfoForDerivesFrom(equipmentObject);
+                                              if (relationshipInfo !== null  && relationshipInfo.getRowCount() > 0) {
+                                                 relationshipRow = relationshipInfo.getRow(0);
+                                              }
+                                            }
+                                          }
+                                          return relationshipRow;
+                                        }
+                                        
+                                        function getEquipmentRelationshipTableByContext(context) {
+                                          var relationshipTable = null;
+                                          if (!isEmpty(context)) {
+                                            try {
+                                              contextConfigurationRow = Things[constants.launchPointName].GetContextConfigurationRowByContextName({
+                                                contextName: context /* STRING */
+                                              });
+                                              var equipmentRelationshipTableName = contextConfigurationRow[constants.equipmentRelationshipSettings];
+                                              if (Things[equipmentRelationshipTableName] !== null) {
+                                                relationshipTable = Things[equipmentRelationshipTableName].GetDataTableEntries();
+                                              }
+                                            } catch (error) {
+                                              logger.error(error);
+                                            }
+                                          }
+                                          return relationshipTable;
+                                        }
+                                        
+                                        function isEmpty(str) {
+                                            return (str === null || str === undefined || /^\s*$/.test(str));
+                                        }
+                                        
+                                        /**
+                                         * Return the valid contexts for creation
+                                         */
+                                        function getValidContexts() {
+                                          var contexts = {};
+                                          try {
+                                            var contextSettings =  Things[constants.launchPointName].GetConfigurationTable({tableName: "EquipmentContextSettings"});
+                                            for (var i = 0; i < contextSettings.rows.length; i++) {
+                                              var row = contextSettings[i];
+                                              var contextName = row[constants.ContextName];
+                                              if (!contexts.hasOwnProperty(contextName)) {
+                                                contexts[contextName] = row[constants.Network];
+                                              }
+                                            }
+                                          } catch (error){
+                                            logger.error(error);
+                                          }
+                                          return contexts;
+                                        }
+                                        
+                                        var constants = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetImportExportConstants();
+                                        
+                                        var importExportDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.importExportDataShape
+                                        })["array"];
+                                        var hierarchyDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.equipmentHierarchyDataShape
+                                        })["array"];
+                                        var generalInformationDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.equipmentGeneralInformationDataShape
+                                        })["array"];
+                                        
+                                        // Declare headers constants
+                                        var nameHierarchyHeader = hierarchyDataShapeFields[0];
+                                        var parentHeader = hierarchyDataShapeFields[1];
+                                        var contextHeader = hierarchyDataShapeFields[2];
+                                        var typeHeader = generalInformationDataShapeFields[1];
+                                        var hierarchyHeader = importExportDataShapeFields[1];
+                                        var generalInformationHeader = importExportDataShapeFields[2];
+                                        
+                                        var relationshipMap = {};
+                                        var relationShipTableMap = {};
+                                        
+                                        var validContexts = getValidContexts();
+                                        
+                                        var equipmentHierarchyInfoTable = parsedInfoTable[hierarchyHeader];
+                                        var equipmentInformationInfoTable = parsedInfoTable[generalInformationHeader];
+                                        
+                                        for (var i = 0; i < equipmentHierarchyInfoTable.rows.length; i++) {
+                                          var row = equipmentHierarchyInfoTable.getRow(i);
+                                        
+                                          var name = row[nameHierarchyHeader];
+                                          var parent = row[parentHeader];
+                                          var context = row[contextHeader];
+                                          var network = validContexts[context];
+                                          var plantNetwork = Networks[network];
+                                        
+                                          var thingExists = Things[name]; 
+                                          if (thingExists) {
+                                            var childRow = equipmentInformationInfoTable.Find({name: name});
+                                            var isChildInNetwork = plantNetwork.IsInNetwork({name: name});
+                                            var parentNameInNetwork = plantNetwork.GetParentName({name: name});
+                                            var connectionExists;
+                                            if (!!parent) {
+                                              if (Things[parent] === null) {
+                                                logger.warn("Import Process: [Equipment Structure Tab] [Parent : " + parent + "] : The parent thing doesn't exist in system. ");
+                                                continue;
+                                              }
+                                              var parentRow = equipmentInformationInfoTable.Find({name: parent});
+                                              var parentType = parentRow[typeHeader];
+                                              var childType = childRow[typeHeader];
+                                        	
+                                              // Check if child is already connected to that thing
+                                              connectionExists = plantNetwork.IsChild({
+                                                start: parent,
+                                                name: name
+                                              });
+                                              if (connectionExists) {
+                                                continue;
+                                              }
+                                        
+                                              var isManyToMany = false;
+                                              if (!isEmpty(parentNameInNetwork)) {
+                                                  var newParentTemplate =  Things[parentNameInNetwork].thingTemplate;
+                                                  var newParentTypeRow = Things[constants.launchPointName].GetEquipmentTypeSettingRowByThingTemplate({thingTemplate: newParentTemplate});
+                                                  if (newParentTypeRow.getRowCount() > 0) {
+                                                     var paramsManyToManyAllowed = {
+                                                       newParentType: newParentTypeRow.getRow(0).EquipmentType,
+                                                       parentType: parentType,
+                                                       childType: childType,
+                                                       context: context,
+                                                     };
+                                                     isManyToMany = isManyToManyAllowed(paramsManyToManyAllowed);
+                                                  }
+                                              }
+                                        
+                                              // Check if child is at the root or if it's ManyToMany cardinality is not allowed for that relationship
+                                              if (isChildInNetwork && parentNameInNetwork !== null && parentNameInNetwork.length === 0) {
+                                                plantNetwork.DeleteConnection({
+                                                  from: undefined,
+                                                  to: name
+                                                });
+                                              } else if (isChildInNetwork && !isManyToMany) {
+                                                while (!isEmpty(parentNameInNetwork)) {
+                                                  plantNetwork.DeleteConnection({
+                                                    from: parentNameInNetwork,
+                                                    to: name
+                                                  });
+                                                  parentNameInNetwork = plantNetwork.GetParentName({name: name});
+                                                }
+                                              }
+                                        
+                                              var isParentInNetwork = plantNetwork.IsInNetwork({
+                                                name: parent
+                                              });
+                                        
+                                              // Check if parent is already in network.
+                                              // If not, connect it at root node
+                                              if (!isParentInNetwork) {
+                                                plantNetwork.AddConnection({
+                                                  from: undefined,
+                                                  to: parent,
+                                                  connectionType: "CONTAINS"
+                                                });
+                                              }
+                                        
+                                              // Create connection between child and parent
+                                              plantNetwork.AddConnection({
+                                                from: parent,
+                                                to: name,
+                                                connectionType: "CONTAINS"
+                                              });
+                                            } else {
+                                              // Check if child is in network and currently is linked to some parent
+                                              // If true iterate over all parents and delete connection between them
+                                              if (isChildInNetwork) {
+                                                while (!isEmpty(parentNameInNetwork)) {
+                                                  plantNetwork.DeleteConnection({
+                                                    from: parentNameInNetwork,
+                                                    to: name
+                                                  });
+                                                  parentNameInNetwork = plantNetwork.GetParentName({
+                                                    name: name
+                                                  });
+                                                }
+                                              }
+                                        
+                                              connectionExists = plantNetwork.IsChild({
+                                                start: undefined,
+                                                name: name
+                                              });
+                                        
+                                              // Check if connection doesn't exists
+                                              if (!connectionExists) {
+                                                plantNetwork.AddConnection({
+                                                  from: undefined,
+                                                  to: name,
+                                                  connectionType: "CONTAINS"
+                                                });
+                                              }
+                                            }
+                                          } else {
+                                            logger.warn("Import Process: [Equipment Structure Tab] [Name : " + name + "] : The child thing doesn't exist in system. ");
+                                          }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ImportEquipmentInformation">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /**
+                                         * Convert string tag representation into object
+                                         *
+                                         * @param tag String text representing tag in format vocabulary:vocabularyTerm
+                                         */
+                                        function splitTagIntoVocabularyObject(tag) {
+                                          var tagParts = tag.split(":");
+                                          var valueTag = {
+                                            vocabulary: tagParts[0],
+                                            vocabularyTerm: tagParts[1]
+                                          };
+                                          return valueTag;
+                                        }
+                                        
+                                        /**
+                                         * Function responsible for tag parsing
+                                         *
+                                         */
+                                        function parseTags(tags) {
+                                          var splitMultipleTags = function (tags, existingTagsInfoTable) {
+                                            var splittedTags = tags.split(";");
+                                            var correctTags = [];
+                                        
+                                            for (var i = 0; i < splittedTags.length; i++) {
+                                              var tag = splittedTags[i];
+                                              if (tag.indexOf(":") !== -1) {
+                                                var valueTag = splitTagIntoVocabularyObject(tag);
+                                                if (checkIfTagExists(existingTagsInfoTable, valueTag)) {
+                                                  correctTags.push(valueTag);
+                                                }
+                                              }
+                                            }
+                                        
+                                            return correctTags;
+                                          };
+                                        
+                                          var splitOneTag = function (tags, existingTagsInfoTable) {
+                                            if (tags.indexOf(":") !== -1) {
+                                              var correctTags = [];
+                                              var valueTag = splitTagIntoVocabularyObject(tags);
+                                              if (checkIfTagExists(existingTagsInfoTable, valueTag)) {
+                                                correctTags.push(valueTag);
+                                                return correctTags;
+                                              }
+                                            }
+                                            return undefined;
+                                          };
+                                        
+                                          var checkIfTagExists = function (existingTagsInfoTable, valueTag) {
+                                            var tagRow = existingTagsInfoTable.Find(valueTag);
+                                            return tagRow !== null && tagRow.vocabulary === valueTag.vocabulary && tagRow.vocabularyTerm === valueTag.vocabularyTerm;
+                                          };
+                                        
+                                          if (tags.length == 0) {
+                                            return undefined;
+                                          }
+                                        
+                                          var existingTagsInfoTable = Resources["SearchFunctions"].SearchVocabularyTerms({
+                                            maxItems: undefined /* NUMBER */ ,
+                                            searchExpression: "***" /* STRING */ ,
+                                            names: undefined /* JSON */ ,
+                                            type: "ModelTags" /* STRING */
+                                          });
+                                        
+                                          if (tags.indexOf(";") != -1) {
+                                            return splitMultipleTags(tags, existingTagsInfoTable);
+                                          } else {
+                                            return splitOneTag(tags, existingTagsInfoTable);
+                                          }
+                                        }
+                                        
+                                        /**
+                                         * Function responsible for extracting tags from object array
+                                         * @param objectArray array which contains tag objects
+                                         */
+                                        function extractTagsFromObjects(objectArray) {
+                                          var stringArray = [];
+                                          var i = objectArray.length;
+                                          while (i--) {
+                                            stringArray.push(objectArray[i].vocabulary + ":" + objectArray[i].vocabularyTerm);
+                                          }
+                                          return stringArray;
+                                        }
+                                        
+                                        function compareTagArrays(tagsFromThing, tagsFromExcel, defaultTags) {
+                                          for (var i = 0; i < tagsFromExcel.length; i++) {
+                                            if (tagsFromThing.indexOf(tagsFromExcel[i]) === -1) {
+                                              return false;
+                                            }
+                                          }
+                                        
+                                          for (i = 0; i < defaultTags.length; i++) {
+                                            if (tagsFromThing.indexOf(defaultTags[i]) === -1) {
+                                              return false;
+                                            }
+                                          }
+                                            
+                                          for (i = 0; i < tagsFromThing.length; i++) {
+                                            if (tagsFromExcel.indexOf(tagsFromThing[i]) === -1 && defaultTags.indexOf(tagsFromThing[i]) === -1) {
+                                              return false;
+                                            }
+                                          }
+                                          return true;
+                                        }
+                                        
+                                        function getNullSafeString(value) {
+                                          return (value === null || value === undefined) ? "" : value;
+                                        }
+                                        
+                                        function getBooleanValue(value, defaultValue) {
+                                          return Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetBooleanValue({
+                                            defaultValue: defaultValue /* BOOLEAN */ ,
+                                            value: value /* STRING */ ,
+                                            invalidValue: defaultValue /* STRING */
+                                          });
+                                        }
+                                        
+                                        /**
+                                         * Gives array of OOTB tags for proper type of equipment
+                                         *
+                                         * @param type Type of the equipment (Site, Line or Asset)
+                                         * @returns Array of OOTB tags for given type of equipment
+                                         */
+                                        function getDefaultTagsForType(type) {
+                                          var defaultTags = [
+                                            'PTC:factory-mv',
+                                            'PTC:FactoryEquipmentInstance'
+                                          ];
+                                        
+                                          if (type === constants.site) {
+                                            defaultTags = defaultTags.concat(constants.siteDefaultTags);
+                                          } else if (type === constants.line) {
+                                            defaultTags = defaultTags.concat(constants.lineDefaultTags);
+                                          } else if (type === constants.asset) {
+                                            defaultTags = defaultTags.concat(constants.assetDefaultTags);
+                                          }
+                                        
+                                          return defaultTags;
+                                        }
+                                        
+                                        function addImplementedShapes(name, parsedShapes) {
+                                          var locallyImplementedShapes = Things[name].GetLocallyImplementedShapes();
+                                        
+                                          for (var i = 0; i < parsedShapes.length; i++) {
+                                            var shapeToFind = {};
+                                            shapeToFind[constants.name] = parsedShapes[i];
+                                        
+                                            var shapeRow = locallyImplementedShapes.Find(shapeToFind);
+                                        
+                                            if (shapeRow == null) {
+                                              Resources["EntityServices"].AddShapeToThing({
+                                                name: name,
+                                                thingShapeName: parsedShapes[i]
+                                              });
+                                            }
+                                          }
+                                        }
+                                        
+                                        function updateThing(params) {
+                                          var thing = Things[params.name];
+                                        
+                                          if (params.descriptionMetadata && thing.GetDescription() !== params.description) {
+                                            thing.SetDescription({
+                                              description: params.description
+                                            });
+                                          }
+                                        
+                                          if (params.displayName.length > 0 && thing.displayName !== params.displayName) {
+                                            thing.displayName = params.displayName;
+                                          }
+                                        
+                                          if (params.correctTags !== undefined && !params.tagsEqual) {
+                                            // Get default tags for equipment type
+                                            var defaultTags = getDefaultTagsForType(params.type);
+                                        
+                                            // Get existing tags on Thing
+                                            var tagFromThing = thing.GetTags().toString().split(';');
+                                        
+                                            var correctTagsString = extractTagsFromObjects(correctTags);
+                                            for (var i = 0; i < defaultTags.length; i++) {
+                                              if(correctTagsString.indexOf(defaultTags[i]) === -1){
+                                                correctTags.push(splitTagIntoVocabularyObject(defaultTags[i]));
+                                              }
+                                            }
+                                        
+                                            thing.SetTags({
+                                              tags: correctTags
+                                            });
+                                          }
+                                        
+                                          if (params.project.length > 0 && thing.GetProjectName() !== params.project && Projects[params.project] != null) {
+                                            thing.SetProjectName({
+                                              projectName: params.project
+                                            });
+                                          }
+                                        
+                                          if (params.identifier.length > 0 && thing.GetIdentifier() !== params.identifier) {
+                                            thing.SetIdentifier({
+                                              identifier: params.identifier
+                                            });
+                                          }
+                                        
+                                          if (params.homeMashup.length > 0 && thing.GetHomeMashup() !== params.homeMashup && Mashups[params.homeMashup] != null) {
+                                            thing.SetHomeMashup({
+                                              name: params.homeMashup
+                                            });
+                                          }
+                                        
+                                          if (params.valueStream.length > 0 && thing.GetValueStream() !== params.valueStream && Things[params.valueStream] != null) {
+                                            thing.SetValueStream({
+                                              name: params.valueStream
+                                            });
+                                          }
+                                        
+                                          if (params.published != null && thing.GetPublished() !== params.published) {
+                                            thing.SetPublished({
+                                              publish: params.published
+                                            });
+                                          }
+                                        
+                                          addImplementedShapes(params.name, params.implementedShapes);
+                                          
+                                          //update context/network
+                                          UpdateContexts(params.name);
+                                          
+                                          setVisibilityPermissions(params.name, params.visibility);
+                                          setRunTimePermissions(params.name, params.propertyRead, params.propertyWrite, params.serviceExecute, params.eventExecute, params.eventSubscribe, false);
+                                        }
+                                        
+                                        function isThingShapeValid(thingShape) {
+                                          return ThingShapes[thingShape] != null;
+                                        }
+                                        
+                                        function validateMultipleThingShapes(thingShapeArray) {
+                                          var implementedShapes = [];
+                                        
+                                          thingShapeArray.forEach(function (element) {
+                                            if (isThingShapeValid(element)) {
+                                              implementedShapes.push(element);
+                                            }
+                                          });
+                                        
+                                          return implementedShapes;
+                                        }
+                                        
+                                        function parseImplementedShapes(shapesString) {
+                                          var implementedShapes = [];
+                                        
+                                          if (shapesString.length === 0) {
+                                            return implementedShapes;
+                                          }
+                                        
+                                          if (shapesString.indexOf(';') > -1) {
+                                            var splittedShapes = shapesString.split(';');
+                                            implementedShapes = validateMultipleThingShapes(splittedShapes);
+                                          } else {
+                                            if (isThingShapeValid(shapesString)) {
+                                              implementedShapes.push(shapesString);
+                                            }
+                                          }
+                                        
+                                          return implementedShapes;
+                                        }
+                                        
+                                        /**
+                                         * Return the valid contexts for creation in the root level
+                                         */
+                                        function getImportNetworks(contextValue) {
+                                          var contextArray = contextValue.split(",");
+                                          var networks = {};
+                                          try {
+                                            var contextSettings =  Things[constants.launchPointName].GetConfigurationTable({tableName: "EquipmentContextSettings"});
+                                            for (var i = 0; i < contextSettings.rows.length; i++) {
+                                              var row = contextSettings[i];
+                                              var contextName = row[constants.ContextName];
+                                              var networkName = row[constants.Network];
+                                              if (contextArray.indexOf(contextName) >= 0 && !networks.hasOwnProperty(networkName)) {
+                                                networks[networkName] = "";
+                                              }
+                                            }
+                                          } catch (error){
+                                            logger.error(error);
+                                          }
+                                          return networks;
+                                        }
+                                        
+                                        function UpdateContexts(thingName) {
+                                          try {
+                                            //remove thing from the current networks
+                                            var networkList =  Resources["EntityServices"].GetEntityList({
+                                              type: "Network",
+                                              nameMask: "",
+                                              tags: undefined,
+                                              maxItems: 9999
+                                            });
+                                            //remove the thing from the network which doesn't belong to the networks/contexts defined in the general inforamtion tab
+                                            var networksForImport = getImportNetworks(context);
+                                            for (var i = 0; i < networkList.rows.length; i++) {
+                                              var row = networkList[i];
+                                              var networkName = row[constants.name];
+                                              var networEntity = Networks[networkName];
+                                              if (networEntity.IsInNetwork({name: thingName})) {
+                                                if (networksForImport.hasOwnProperty(networkName)) {
+                                                  delete networksForImport[networkName];
+                                                } else {
+                                                  networEntity.RemoveFromNetwork({name: thingName});
+                                                }
+                                              }
+                                            }
+                                            // add the thing to the new networks in the root
+                                            for (var key in networksForImport) {
+                                              Networks[key].AddConnection({
+                                                  from: undefined,
+                                                  to: thingName,
+                                                  connectionType: "CONTAINS"
+                                              });
+                                            }
+                                          } catch (error){
+                                            logger.error(error);
+                                          }
+                                        }
+                                        
+                                        function isEmpty(str) {
+                                            return (str === null || str === undefined || /^\s*$/.test(str));
+                                        }
+                                        
+                                        function setVisibilityPermissions(thingName, visibility){
+                                          var jsonVisibility = {
+                                               Visibility:[]
+                                            };
+                                          if (!isEmpty(visibility)){
+                                            var visibilityList = visibility.split(";");
+                                            for (var i=0; i < visibilityList.length; i++) {
+                                              var orgs = visibilityList[i].split("/");
+                                              var orgObj = {
+                                                  type: orgs[0],
+                                                  name: orgs[1],
+                                                  isPermitted: true
+                                              };
+                                              jsonVisibility.Visibility.push(orgObj);
+                                            }
+                                          }
+                                          Things[thingName].SetVisibilityPermissionsAsJSON({permissions:JSON.stringify(jsonVisibility)});
+                                        }
+                                        
+                                        function setRunTimePermissions(thingName, propertyRead, propertyWrite, serviceExecute, eventExecute, eventSubscribe, isNewThing){
+                                          var thing = Things[thingName];
+                                          var jsonPermissions =  thing.GetRunTimePermissionsAsJSON();
+                                          var runtimePermissions = jsonPermissions.permissions; //JSON Array
+                                          var index = -1;
+                                          for (var i = 0; i < runtimePermissions.length; i++) {
+                                            if (runtimePermissions[i].resourceName === "*") {
+                                              index = i;
+                                              break;
+                                            }
+                                          }
+                                          var currentPropertyReadArray = null;
+                                          var currentPropertyWriteArray = null;
+                                          var currentServiceExecuteArray = null;
+                                          var currentEventExecuteArray = null;
+                                          var currentEventSubscribeArray = null;
+                                          if (index !== -1) {
+                                            currentPropertyReadArray = runtimePermissions[index]["PropertyRead"];
+                                            currentPropertyWriteArray = runtimePermissions[index]["PropertyWrite"];
+                                            currentServiceExecuteArray = runtimePermissions[index]["ServiceInvoke"];
+                                            currentEventExecuteArray = runtimePermissions[index]["EventInvoke"];
+                                            currentEventSubscribeArray = runtimePermissions[index]["EventSubscribe"]; 
+                                          }
+                                          var runtimePermissionForGlobal = {
+                                            "resourceName": "*",
+                                            "PropertyRead": getRuntimePermissionFromImportValue(propertyRead, currentPropertyReadArray, isNewThing),
+                                            "PropertyWrite": getRuntimePermissionFromImportValue(propertyWrite, currentPropertyWriteArray, isNewThing),
+                                            "ServiceInvoke": getRuntimePermissionFromImportValue(serviceExecute, currentServiceExecuteArray, isNewThing),
+                                            "EventInvoke": getRuntimePermissionFromImportValue(eventExecute, currentEventExecuteArray, isNewThing),
+                                            "EventSubscribe": getRuntimePermissionFromImportValue(eventSubscribe, currentEventSubscribeArray, isNewThing),
+                                          };
+                                          
+                                          var newRuntimePermissions = [];
+                                          newRuntimePermissions.push(runtimePermissionForGlobal);
+                                          jsonPermissions.permissions = newRuntimePermissions;  
+                                          thing.SetRunTimePermissionsAsJSON({permissions: JSON.stringify(jsonPermissions)});
+                                        }
+                                        
+                                        function getRuntimePermissionFromImportValue(importValue, currentPermissionArray, isNewThing) {
+                                          var permissionArray = isNewThing? currentPermissionArray : [];
+                                          if (!isEmpty(importValue)) {
+                                            var importList = importValue.split(";");
+                                            for (var i=0; i < importList.length; i++) {
+                                              var valueList = importList[i].split("/");
+                                              if (valueList.length === 3) {
+                                                var permission = {
+                                                   "type": valueList[0],
+                                                   "name": valueList[1],
+                                                   "isPermitted": valueList[2]
+                                                };
+                                                permissionArray.push(permission);
+                                              }
+                                            }
+                                          }
+                                          return permissionArray;
+                                        }
+                                        
+                                        function isAdmin(userName) {
+                                          return Resources["PTC.Factory.CommonUtilities"].IsAdmin({userName: userName});
+                                        }
+                                        
+                                        var constants = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetImportExportConstants();
+                                        
+                                        var generalEquipmentDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.equipmentGeneralInformationDataShape
+                                        })["array"];
+                                        
+                                        // Declare headers from Data Shape
+                                        var nameHeader = generalEquipmentDataShapeFields[0];
+                                        var typeHeader = generalEquipmentDataShapeFields[1];
+                                        var contextHeader = generalEquipmentDataShapeFields[2];
+                                        var displayNameHeader = generalEquipmentDataShapeFields[3];
+                                        var descriptionHeader = generalEquipmentDataShapeFields[4];
+                                        var tagsHeader = generalEquipmentDataShapeFields[5];
+                                        var projectHeader = generalEquipmentDataShapeFields[6];
+                                        var identifierHeader = generalEquipmentDataShapeFields[7];
+                                        var homeMashupHeader = generalEquipmentDataShapeFields[8];
+                                        var valueStreamHeader = generalEquipmentDataShapeFields[9];
+                                        var publishedHeader = generalEquipmentDataShapeFields[11];
+                                        var implementedShapesHeader = generalEquipmentDataShapeFields[12];
+                                        var visibilityHeader = generalEquipmentDataShapeFields[13];
+                                        var propertyReadHeader = generalEquipmentDataShapeFields[14];
+                                        var propertyWriteHeader = generalEquipmentDataShapeFields[15];
+                                        var serviceExecuteHeader = generalEquipmentDataShapeFields[16];
+                                        var eventExecuteHeader = generalEquipmentDataShapeFields[17];
+                                        var eventSubscribeHeader = generalEquipmentDataShapeFields[18];
+                                        
+                                        // Create variables for data from InfoTable
+                                        var name = equipmentInformation[nameHeader];
+                                        var type = getNullSafeString(equipmentInformation[typeHeader]);
+                                        var context = getNullSafeString(equipmentInformation[contextHeader]);
+                                        var displayName = getNullSafeString(equipmentInformation[displayNameHeader]);
+                                        var description = getNullSafeString(equipmentInformation[descriptionHeader]);
+                                        var tags = getNullSafeString(equipmentInformation[tagsHeader]);
+                                        var project = getNullSafeString(equipmentInformation[projectHeader]);
+                                        var identifier = getNullSafeString(equipmentInformation[identifierHeader]);
+                                        var homeMashup = getNullSafeString(equipmentInformation[homeMashupHeader]);
+                                        var valueStream = getNullSafeString(equipmentInformation[valueStreamHeader]);
+                                        var published = getBooleanValue(equipmentInformation[publishedHeader], false);
+                                        var implementedShapes = getNullSafeString(equipmentInformation[implementedShapesHeader]);
+                                        var visibility = getNullSafeString(equipmentInformation[visibilityHeader]);
+                                        var propertyRead = getNullSafeString(equipmentInformation[propertyReadHeader]);
+                                        var propertyWrite = getNullSafeString(equipmentInformation[propertyWriteHeader]);
+                                        var serviceExecute = getNullSafeString(equipmentInformation[serviceExecuteHeader]);
+                                        var eventExecute = getNullSafeString(equipmentInformation[eventExecuteHeader]);
+                                        var eventSubscribe = getNullSafeString(equipmentInformation[eventSubscribeHeader]);
+                                        
+                                        var baseThingTemplate = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetTemplateByEquipmentType({equipmentType:type});
+                                        
+                                        var descriptionMetadata = equipmentMetadata[descriptionHeader];
+                                        
+                                        var thingExists = Resources["PTC.Factory.CommonUtilities"].DoesThingExists({
+                                          thingName: name
+                                        });
+                                        
+                                        implementedShapes = parseImplementedShapes(implementedShapes);
+                                        
+                                        var currentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        
+                                        var correctTags = parseTags(tags);
+                                          
+                                        if (thingExists) {
+                                          var tagsEqual;
+                                        
+                                          // Compare tags from Thing with parsed
+                                          if (correctTags !== undefined) {
+                                            // Get tags from things and split it by semi colons
+                                            var tagFromThing = Things[name].GetTags().toString().split(';');
+                                        
+                                            // Change object array into string array containing tags from file
+                                            var tagArrayFromObject = extractTagsFromObjects(correctTags);
+                                        
+                                            // Get OOTB tags for equipment type
+                                            var defaultTags = getDefaultTagsForType(type);
+                                        
+                                            // Compare array tags from Thing and from file
+                                            tagsEqual = compareTagArrays(tagFromThing, tagArrayFromObject, defaultTags);
+                                          }
+                                        
+                                          var params = {
+                                            name: name,
+                                            type: type,
+                                        	context: context,
+                                            displayName: displayName,
+                                            description: description,
+                                            descriptionMetadata: descriptionMetadata,
+                                            correctTags: correctTags,
+                                            tagsEqual: tagsEqual,
+                                            project: project,
+                                            identifier: identifier,
+                                            homeMashup: homeMashup,
+                                            valueStream: valueStream,
+                                            published: published,
+                                            implementedShapes: implementedShapes,
+                                            visibility: visibility,
+                                            propertyRead: propertyRead,
+                                            propertyWrite: propertyWrite,
+                                            serviceExecute: serviceExecute,
+                                            eventExecute: eventExecute,
+                                            eventSubscribe: eventSubscribe
+                                          };
+                                          updateThing(params);
+                                        } else { 
+                                            var equipmentObject = {
+                                              name: name,
+                                              description: description,
+                                              type: type,
+                                              context: context,
+                                              useDefaultPrefixForEquipmentThingName: false
+                                            };
+                                           Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].ImportEquipment(equipmentObject);
+                                        
+                                          var thing = Things[name];
+                                        
+                                          if (thing != null) {
+                                            if (displayName.length > 0) {
+                                              thing.displayName = displayName;
+                                            }
+                                        
+                                            if (correctTags !== undefined) {
+                                              thing.AddTags({
+                                                tags: correctTags
+                                              });
+                                            }
+                                        
+                                            if (project.length > 0 && Projects[project] != null) {
+                                              thing.SetProjectName({
+                                                projectName: project
+                                              });
+                                            }
+                                        
+                                            if (identifier.length > 0) {
+                                              thing.SetIdentifier({
+                                                identifier: identifier
+                                              });
+                                            }
+                                        
+                                            if (homeMashup.length > 0 && Mashups[homeMashup] != null) {
+                                              thing.SetHomeMashup({
+                                                name: homeMashup
+                                              });
+                                            }
+                                        
+                                            if (valueStream.length > 0 && Things[valueStream] != null) {
+                                              thing.SetValueStream({
+                                                name: valueStream
+                                              });
+                                            }
+                                        
+                                            if (published != null && thing.GetPublished() !== published) {
+                                              thing.SetPublished({
+                                                publish: published
+                                              });
+                                            }
+                                        
+                                            addImplementedShapes(name, implementedShapes);
+                                        
+                                            setVisibilityPermissions(name, visibility);
+                                            setRunTimePermissions(name, propertyRead, propertyWrite, serviceExecute, eventExecute, eventSubscribe, true);
+                                          }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ImportGeneralInformation">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var constants = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetImportExportConstants();
+                                        
+                                        var importExportDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.importExportDataShape
+                                        })["array"];
+                                        
+                                        // Define constants for headers
+                                        var generalInformationHeader = importExportDataShapeFields[2];
+                                        var equipmentMetadataHeader = importExportDataShapeFields[4];
+                                        
+                                        var equipmentInformationInfoTable = parsedInfoTable[generalInformationHeader];
+                                        var equipmentMetadata = parsedInfoTable[equipmentMetadataHeader][generalInformationHeader];
+                                        
+                                        for (var i = 0; i < equipmentInformationInfoTable.rows.length; i++) {
+                                          var row = equipmentInformationInfoTable.getRow(i);
+                                        
+                                          var rowInfoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName: "rowInfoTable",
+                                            dataShapeName: constants.equipmentGeneralInformationDataShape
+                                          });
+                                        
+                                          rowInfoTable.AddRow(row);
+                                        
+                                          me.ImportEquipmentInformation({
+                                            equipmentInformation: rowInfoTable,
+                                            equipmentMetadata: equipmentMetadata
+                                          });
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ImportLocallyBoundProperty">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /**
+                                         * Checks if property already exists on given Thing
+                                         *
+                                         * @param thingName Name of the thing that has property
+                                         * @param propertyName Name of the property that needs to be checked
+                                         */
+                                        function checkIfPropertyExists(thingName, propertyName) {
+                                          var propertyExists = false;
+                                          if (propertyName && propertyName.length > 0) {
+                                              propertyName = propertyName.replace(/-/mg, hyphen);
+                                              propertyExists = (Things[thingName][propertyName] != null);
+                                          }
+                                          return propertyExists;
+                                        }
+                                        
+                                        function hasRemoteBinding(thingName, propertyName) {
+                                            var hasBinding = false;
+                                            try {
+                                                var rows = Things[thingName].GetRemotePropertyBinding({
+                                                    propertyName: propertyName
+                                                });
+                                                if (rows && rows.getRowCount() > 0) {
+                                                    hasBinding = true;
+                                                }
+                                            } catch (err) {
+                                                logger.info('Import Processor: [Properties Tab] : Could not get Remote Property Binding for thing [' + thingName + '] property [' + propertyName + '].');
+                                            }
+                                            return hasBinding;
+                                        }
+                                        
+                                        function hasLocalBinding(thingName, propertyName) {
+                                          var hasBinding = false;
+                                          try {
+                                              var rows = Things[thingName].GetLocalPropertyBinding({
+                                                  propertyName: propertyName
+                                              });
+                                              if (rows && rows.getRowCount() > 0) {
+                                                  hasBinding = true;
+                                              }
+                                          } catch (err) {
+                                              logger.info('Import Processor: [Properties Tab] : Could not get Local Property Binding for thing [' + thingName + '] property [' + propertyName + '].');
+                                          }
+                                          return hasBinding;
+                                        }
+                                        
+                                        /**
+                                         * Check what connection type is represented by given thing
+                                         *
+                                         * @param thing Name of the server thing
+                                         * @returns String with connection type
+                                         */
+                                        function getConnectionType(thing) {
+                                          var connectionType = null;
+                                        
+                                          try {
+                                              connectionType = Things['PTC.Factory.LaunchPointConfigurationThing'].GetRemoteConnectionSettingRowByThingName({
+                                                  thingName : thing
+                                              }).ConnectionType;
+                                          } catch (err) {
+                                              logger.warn('Import Processor: [Properties Tab] : Could not find remote connection type for [' + thing + ']. ' + err);
+                                          }
+                                          return connectionType;
+                                        }
+                                        
+                                        /**
+                                         * Checks if Binding information on property Thing is different than in file
+                                         *
+                                         * @param thingName Name of the Thing which contains property
+                                         * @param name Name of the property
+                                         * @param thing Name of the server thing
+                                         * @param property Name of the property (or tag) for local binding
+                                         */
+                                        function isBindingDifferent(equipmentName, name, thing, property) {
+                                          var currentBindingInfo = Things[equipmentName].GetLocalPropertyBinding({
+                                            propertyName: name
+                                          });
+                                        
+                                          return currentBindingInfo.sourceThingName !==  thing || currentBindingInfo.sourceName !== property;
+                                        }
+                                        
+                                        function addOrUpdateRemoteConnectionProperty(params, operation) {
+                                          // Replace '-' to hyphen with correct char code
+                                          var kepTag = params.property.replace(/-/mg, hyphen);
+                                        
+                                          // Replace '--' to '.'
+                                          var tagSource = kepTag;
+                                          if (kepTag.indexOf(doubleHyphen !== -1)) {
+                                            tagSource = kepTag.split(doubleHyphen).join(dot);
+                                          }
+                                        
+                                          var tagName = kepTag;
+                                          if (kepTag.indexOf(hyphen !== -1)) {
+                                            // Trim kepTag to obtain tagName (without hierarchy prefix)
+                                            tagName = kepTag.substring(kepTag.lastIndexOf(hyphen) + 1).trim();
+                                          }
+                                        
+                                          var path = tagSource;
+                                          var lastPathOfThingName = tagSource.lastIndexOf(dot + tagName);
+                                          if (lastPathOfThingName >= 0) {
+                                            path = path.substring(0, lastPathOfThingName);
+                                          }
+                                        
+                                          // Replace '_' into spaces
+                                          path = path.split('_').join(' ');
+                                        
+                                          var findTagParams = {
+                                            filter: tagName /* STRING */ ,
+                                            path: path /* STRING */ ,
+                                            subscribedTags: undefined /* INFOTABLE */ ,
+                                            typeFilter: undefined /* STRING */ ,
+                                            serverName: params.thing /* STRING */ ,
+                                            sourceFilter: undefined /* STRING */ ,
+                                            connectionType: params.connectionType /* STRING */ ,
+                                            sortQuery: {'sort':[]} /* QUERY */
+                                          };
+                                        
+                                          // Retrieve tag from Kepserver and set it's type
+                                          var findTag = Things["PTC.Factory.Administration.TagConfigurationUtils"].GetServerTags(findTagParams);
+                                        
+                                          var tagBaseType = 'STRING';
+                                          var tagIsSubscribed = false;
+                                          var tagIsReadOnly = true;
+                                          var tagDescription = "";
+                                          var tagSourceType;
+                                          if (findTag.length > 0 && findTag[0].tagName === tagName) {
+                                            var tag = findTag[0];
+                                            tagBaseType = tag.BaseType;
+                                            tagIsSubscribed = tag.isSubscribed;
+                                            tagIsReadOnly = tag.ReadOnly;
+                                            tagDescription = tag.Description;
+                                            tagSourceType = tag.SourceType;
+                                            tagSource = tag.Source;
+                                          }
+                                        
+                                          kepTag = kepTag.split(' ').join('_');
+                                        
+                                          var tagInfo = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName: "tagInfo" /* STRING */ ,
+                                            dataShapeName: "PTC.SCA.SCO.ServerTagDataShape" /* DATASHAPENAME */
+                                          });
+                                        
+                                          var tagInfoRow = {
+                                            BaseType: tagBaseType,
+                                            Description: tagDescription,
+                                            Name: kepTag,
+                                            Source: tagSource,
+                                            SourceType: tagSourceType,
+                                            tagName: tagName,
+                                            ReadOnly: tagIsReadOnly,
+                                            isSubscribed: tagIsSubscribed
+                                          };
+                                          tagInfo.AddRow(tagInfoRow);
+                                        
+                                          try {
+                                            if (params.connectionType === constants.kepServerEX) {
+                                              var providerName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionResourceProviderName({connectionType: params.connectionType});
+                                              Things[providerName].BindServerTags({
+                                                         needsUpdate: false /* BOOLEAN */,
+                                                         needsRefreshData: true /* BOOLEAN */,
+                                                         serverName: params.thing /* STRING */,
+                                                         tags: tagInfo /* INFOTABLE */
+                                                });
+                                              addOrUpdateProperty(params);
+                                            } else {
+                                              Things["PTC.SCA.SCO.ManageResourceUtils"].SaveExtraPropertiesWithUnits({
+                                                originalName: params.originalName /* STRING */ ,
+                                                actionType: operation /* STRING */ ,
+                                                statusTagInfo: tagInfo /* INFOTABLE */ ,
+                                                currentPropertyType: 'Bound' /* STRING */ ,
+                                                boundThingName: params.thing /* STRING */ ,
+                                                propertyName: params.name /* STRING */ ,
+                                                dataType: params.baseType /* STRING */ ,
+                                                thingName: params.equipmentName /* STRING */ ,
+                                                value: undefined /* STRING */ ,
+                                                connectionType: params.connectionType /* STRING */
+                                              });
+                                           }
+                                          } catch (ex) {
+                                            logger.error('Import Processor: [Properties Tab] : Could not save extra property [' + params.name + '] on Thing ['+ params.equipmentName +']. ' + ex);
+                                          }
+                                        }
+                                        
+                                        function addOrUpdateProperty(params) {
+                                          var equipmentThing = Things[params.equipmentName];
+                                          var propertyToAddOrUpdate = params.name;
+                                        
+                                          // if property doesn't exist then it must be created
+                                          var isNewProperty = false;
+                                          if (equipmentThing[propertyToAddOrUpdate] == null) {
+                                              isNewProperty = true;
+                                              equipmentThing.AddPropertyDefinition({
+                                                defaultValue: undefined /* STRING */,
+                                                remoteBindingAspects: undefined /* JSON */,
+                                                description: undefined /* STRING */,
+                                                readOnly: false /* BOOLEAN */,
+                                                remote: false /* BOOLEAN */,
+                                                type: params.baseType.toUpperCase() /* BASETYPENAME */,
+                                                remotePropertyName: undefined /* STRING */,
+                                                timeout: undefined /* INTEGER */,
+                                                pushType: undefined /* STRING */,
+                                                dataChangeThreshold: undefined /* NUMBER */,
+                                                logged: true /* BOOLEAN */,
+                                                name: propertyToAddOrUpdate /* STRING */,
+                                                pushThreshold: undefined /* NUMBER */,
+                                                dataChangeType: undefined /* STRING */,
+                                                category: undefined /* STRING */,
+                                                persistent: true /* BOOLEAN */,
+                                                dataShape: undefined /* DATASHAPENAME */
+                                              });
+                                          }
+                                        
+                                          if (equipmentThing[propertyToAddOrUpdate] != null) {
+                                              var doesSourceThingPropertyExists = checkIfPropertyExists(thing, property);
+                                              if (doesSourceThingPropertyExists && isBindingDifferent(params.equipmentName, params.name, params.thing, params.property)) {
+                                        
+                                                  // If local property binding must be updated, remove actual binding first
+                                                  if (!isNewProperty && hasLocalBinding(params.equipmentName, propertyToAddOrUpdate)) {
+                                                     try{
+                                                        equipmentThing.RemoveLocalPropertyBinding({
+                                                           propertyName: propertyToAddOrUpdate /* STRING */
+                                                        });
+                                                     } catch (error) {
+                                                        logger.error(error);
+                                                     }
+                                                  }
+                                                  
+                                                  equipmentThing.SetLocalPropertyBinding({
+                                                      propertyName: propertyToAddOrUpdate /* STRING */,
+                                                      aspects: undefined /* JSON */,
+                                                      sourceThingName: params.thing /* STRING */,
+                                                      sourcePropertyName: params.property /* STRING */
+                                                  });
+                                              }
+                                          } else {
+                                              logger.error('Import Processor: [Properties Tab] : Could not set local binding for [' + params.equipmentName + '] property [' + propertyToAddOrUpdate + '].');
+                                          }
+                                        }
+                                        
+                                        
+                                        var constants = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetImportExportConstants();
+                                        var hyphen = String.fromCharCode(45);
+                                        var doubleHyphen = hyphen + hyphen;
+                                        var dot = String.fromCharCode(46);
+                                        
+                                        var propertiesDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.equipmentPropertiesDataShape
+                                        })["array"];
+                                        
+                                        // Define constants for headers
+                                        var equipmentNameHeader = propertiesDataShapeFields[0];
+                                        var nameHeader = propertiesDataShapeFields[1];
+                                        var baseTypeHeader = propertiesDataShapeFields[5];
+                                        var thingHeader = propertiesDataShapeFields[8];
+                                        var propertyHeader = propertiesDataShapeFields[9];
+                                        
+                                        var equipmentName = equipmentProperty[equipmentNameHeader];
+                                        var name = equipmentProperty[nameHeader];
+                                        var baseType = equipmentProperty[baseTypeHeader];
+                                        var thing = equipmentProperty[thingHeader];
+                                        var property = equipmentProperty[propertyHeader];
+                                        
+                                        var connectionType = getConnectionType(thing);
+                                        
+                                        baseType = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].ConvertBaseTypeToFriendlyName({
+                                          baseType: baseType
+                                        });
+                                        
+                                        
+                                        var hasConnectionTypeForSourceThing = (connectionType !== null);
+                                        
+                                        // set a default connection type
+                                        if (!hasConnectionTypeForSourceThing) {
+                                            connectionType = constants.niTestStand;
+                                        }
+                                        
+                                        var params = {
+                                            equipmentName: equipmentName,
+                                            originalName: name,
+                                            name: name,
+                                            baseType: baseType,
+                                            thing: thing,
+                                            connectionType: connectionType,
+                                            property: property,
+                                        };
+                                        
+                                        if (hasConnectionTypeForSourceThing) {
+                                            var operation = checkIfPropertyExists(equipmentName, name) ? 'EDIT' : 'ADD';
+                                            if(operation === 'ADD'){
+                                                params.originalName = '';
+                                            }
+                                        
+                                            var doesPropertyExist = checkIfPropertyExists(params.thing, params.property);
+                                            var useLocalBinding = doesPropertyExist && hasRemoteBinding(params.thing, params.property);
+                                            if (useLocalBinding) {
+                                               addOrUpdateProperty(params);
+                                            } else {
+                                               addOrUpdateRemoteConnectionProperty(params, operation);
+                                            }
+                                        } else {
+                                            addOrUpdateProperty(params);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ImportNoneBoundProperty">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function getBooleanValue(value) {
+                                          return Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetBooleanValue({
+                                            defaultValue: false /* BOOLEAN */ ,
+                                            value: value /* STRING */ ,
+                                            invalidValue: null /* STRING */
+                                          });
+                                        }
+                                        
+                                        function isIsoDate(myDate) {
+                                            var dateRegex = /^\d{4}-[0-1]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)$/;
+                                            return myDate.match(dateRegex);
+                                        }
+                                        
+                                        function getDateTimeNumber(value) {
+                                          if (value == null || value === '') {
+                                              return 0;
+                                          }
+                                          var returnValue = value;
+                                          try {
+                                              if (!(value instanceof Date) && typeof(value) == 'string' && isIsoDate(value)) {
+                                                returnValue = parseDateISO(returnValue);
+                                              }
+                                              returnValue = returnValue.getTime();
+                                              // ignore milliseconds
+                                              returnValue = returnValue - (returnValue % 1000);
+                                          } catch (ex) {
+                                              logger.error("Import process : ImportNoneBoundProperty :: Could not parse datetime value : " + value + " : " + ex);
+                                          }
+                                          return returnValue;
+                                        }
+                                        
+                                        function validateAndParseValue(baseType, value) {
+                                          baseType = baseType.toUpperCase();
+                                          var empty = '';
+                                        
+                                          if (baseType === 'NUMBER') {
+                                            var defaultNumberValue = '0';
+                                            if (value == undefined || value == empty) {
+                                              value = defaultNumberValue;
+                                            } else {
+                                              value = isNaN(parseInt(value)) ? defaultNumberValue : Number(value);
+                                            }
+                                          } else if (baseType === 'DATETIME') {
+                                            var today = new Date();
+                                            if (value == undefined || value == empty) {
+                                              value = toIsoString(today);
+                                            } else {
+                                              //format YYYY-MM-DDTHH:mm:ss.sssZ
+                                              if (typeof(value) == 'string' && isIsoDate(value)) {
+                                                value = parseDateISO(value);
+                                              } else {
+                                                logger.warn('Import Process : ImportNoneBoundProperty : DateTime Property [' + value + '] is not ISO format.');
+                                                value = today;
+                                              }
+                                            }
+                                          } else if (baseType === 'BOOLEAN') {
+                                            value = getBooleanValue(value);
+                                          } else if (baseType === 'STRING') {
+                                            var defaultStringValue = "";
+                                            if (value == undefined || value === empty) {
+                                              value = defaultStringValue;
+                                            }
+                                          } else if (baseType === 'JSON') {
+                                            var defaultJsonValue = {};
+                                            if (value == undefined || value == empty) {
+                                              value = defaultJsonValue;
+                                            } else {
+                                              value = JSON.parse(value);
+                                            }
+                                          } else if (baseType === 'INTEGER' || baseType === 'LONG') {
+                                            var defaultIntValue = '0';
+                                            if (value == undefined || value == empty) {
+                                              value = defaultIntValue;
+                                            } else {
+                                              value = isNaN(parseInt(value)) ? defaultIntValue : parseInt(value);
+                                            }
+                                          }
+                                          return value;
+                                        }
+                                        
+                                        function toIsoString(date) {
+                                          return Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].ToISOString({
+                                            date: date
+                                          });
+                                        }
+                                        
+                                        /**
+                                         * Checks if property already exists on given Thing
+                                         *
+                                         * @param thingName Name of the thing that has property
+                                         * @param propertyName Name of the property that needs to be checked
+                                         */
+                                        function checkIfPropertyExists(thingName, propertyName) {
+                                          var propertyExists = (Things[thingName][propertyName] != null);
+                                        
+                                          return propertyExists;
+                                        }
+                                        
+                                        function compareJSON(obj1, obj2) {
+                                          return Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].CompareJSONObjects({
+                                            json1: obj1,
+                                            json2: obj2
+                                          });
+                                        }
+                                        
+                                        function createInfoTableForUpdatingValue(name, baseType, value) {
+                                          var updateInfoTable = Resources["InfoTableFunctions"].CreateInfoTable({
+                                            infoTableName: "updateInfoTable"
+                                          });
+                                        
+                                          var newField = {
+                                            name: 'name',
+                                            baseType: 'STRING'
+                                          };
+                                          updateInfoTable.AddField(newField);
+                                        
+                                          var newField = {
+                                            name: 'value',
+                                            baseType: baseType
+                                          };
+                                          updateInfoTable.AddField(newField);
+                                        
+                                          var newObject = {
+                                            name: name,
+                                            value: value
+                                          };
+                                          updateInfoTable.AddRow(newObject);
+                                        
+                                          return updateInfoTable;
+                                        }
+                                        
+                                        function addOrUpdateProperty(params, operation) {
+                                          if (params.baseType === 'DateTime' && (params.value instanceof Date)) {
+                                            var datetimeFormat =  Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({token: 'PTC.SCA.SCO.ConfigurationAndSetup.DateTimeFormatResults'});
+                                            params.value  = dateFormat(params.value, datetimeFormat);
+                                          }
+                                        
+                                          if (params.baseType !== 'JSON') {
+                                            params.value = params.value + "";
+                                          } else if (params.baseType === 'String' && (params.value == undefined || params.value === "")) {
+                                            params.value = " ";
+                                          }
+                                        
+                                          try {
+                                              Things["PTC.SCA.SCO.ManageResourceUtils"].SaveExtraPropertiesWithUnits({
+                                                originalName: params.originalName /* STRING */ ,
+                                                actionType: operation /* STRING */ ,
+                                                statusTagInfo: undefined /* INFOTABLE */ ,
+                                                currentPropertyType: 'Static' /* STRING */ ,
+                                                boundThingName: undefined /* STRING */ ,
+                                                propertyName: params.name /* STRING */ ,
+                                                dataType: params.baseType /* STRING */ ,
+                                                thingName: params.equipmentName /* STRING */ ,
+                                                value: params.value /* STRING */ ,
+                                                connectionType: undefined /* STRING */
+                                              });
+                                          } catch (ex) {
+                                              logger.error("Import Process: SaveExtraProperties : for equipment [" +
+                                                 params.equipmentName + "] property [" + params.name +
+                                                 "] on action ["+ operation + "]: " + ex);
+                                          }
+                                        }
+                                        
+                                        function isPropertyInherited(propertyName, templateName) {
+                                          // result: BOOLEAN
+                                          var isInherited = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].isPropertyInheritedForTemplate({
+                                            propertyName: propertyName /* STRING */ ,
+                                            templateName: templateName /* STRING */
+                                          });
+                                          return isInherited;
+                                        }
+                                        /**
+                                         * Updates property information if it's different
+                                         */
+                                        function updateProperty(params) {
+                                          var thing = Things[params.equipmentName];
+                                          var properties = thing.GetPropertyValues();
+                                        
+                                          // Get the template name
+                                          var template = thing.GetThingTemplate();
+                                          var templateName = template[0].name;
+                                        
+                                          var supportedInheritedProperties = isPropertyInherited(params.name,templateName);
+                                        
+                                          if (!supportedInheritedProperties) {
+                                            // Check if value is different
+                                            if (params.baseType === 'JSON' && !compareJSON(JSON.parse(properties[params.name]), params.value)) {
+                                              addOrUpdateProperty(params, 'EDIT');
+                                            } else if ((params.baseType === 'DateTime' && (getDateTimeNumber(properties[params.name]) !== getDateTimeNumber(params.value)))) {
+                                              addOrUpdateProperty(params, 'EDIT');
+                                            } else if (params.baseType !== 'JSON' && params.baseType !== 'DateTime' && properties[params.name] != params.value) {
+                                              addOrUpdateProperty(params, 'EDIT');
+                                            }
+                                        
+                                            var isLogged = thing.GetEffectivePropertyLogging({
+                                              propertyName: params.name
+                                            });
+                                        
+                                            if (isLogged !== params.logged) {
+                                              thing.SetPropertyLogging({
+                                                propertyName: params.name,
+                                                enabled: params.logged
+                                              });
+                                            }
+                                          } else if ((params.baseType === 'JSON' && !compareJSON(JSON.parse(properties[params.name]), params.value)) ||
+                                            (params.baseType === 'DateTime' && (toIsoString(properties[params.name]) !== params.value)) ||
+                                            (params.baseType !== 'JSON' && params.baseType !== 'DateTime' && properties[params.name] != params.value)) {
+                                            if (params.baseType === 'Number') {
+                                              params.value = Number(params.value);
+                                            } else if (params.baseType === 'Integer' || params.baseType === 'Long') {
+                                              params.value = parseInt(params.value);
+                                            }
+                                            var updateInfoTable = createInfoTableForUpdatingValue(params.name, params.baseType.toUpperCase(), params.value);
+                                            try {
+                                              thing.UpdatePropertyValues({
+                                                values: updateInfoTable
+                                              });
+                                            } catch (error) {
+                                              logger.warn("Import Validation Process: [Properties Tab] [Equipment Name: " + params.equipmentName + "][Name: " + params.name + "] Invalid reason: " + error);
+                                            }
+                                          }
+                                        }
+                                        /**
+                                         * Creates new property with None Bound
+                                         */
+                                        function createNewProperty(params) {
+                                          params.originalName = "";
+                                          addOrUpdateProperty(params, 'ADD');
+                                        
+                                          Things[params.equipmentName].SetPropertyLogging({
+                                            propertyName: params.name,
+                                            enabled: params.logged
+                                          });
+                                        }
+                                        
+                                        
+                                        var constants = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetImportExportConstants();
+                                        var propertiesDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.equipmentPropertiesDataShape
+                                        })["array"];
+                                        
+                                        // Define constants for headers
+                                        var equipmentNameHeader = propertiesDataShapeFields[0];
+                                        var nameHeader = propertiesDataShapeFields[1];
+                                        var valueHeader = propertiesDataShapeFields[4];
+                                        var baseTypeHeader = propertiesDataShapeFields[5];
+                                        var loggedHeader = propertiesDataShapeFields[6];
+                                        
+                                        var equipmentName = equipmentProperty[equipmentNameHeader];
+                                        var name = equipmentProperty[nameHeader];
+                                        var value = equipmentProperty[valueHeader];
+                                        var baseType = equipmentProperty[baseTypeHeader];
+                                        var logged = getBooleanValue(equipmentProperty[loggedHeader]);
+                                        
+                                        var excludedProperties = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetExcludedThingShapeProperties()["array"];
+                                        excludedProperties = (excludedProperties) ? excludedProperties : [];
+                                        
+                                        // if the property is not excluded then proceed
+                                        if (excludedProperties.indexOf(name) === -1) {
+                                            baseType = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].ConvertBaseTypeToFriendlyName({
+                                              baseType: baseType
+                                            });
+                                        
+                                            value = validateAndParseValue(baseType, value);
+                                        
+                                            var params = {
+                                              equipmentName: equipmentName,
+                                              originalName: name,
+                                              name: name,
+                                              value: value,
+                                              baseType: baseType,
+                                              logged: logged
+                                            };
+                                        
+                                        
+                                            if (checkIfPropertyExists(equipmentName, name)) {
+                                              updateProperty(params);
+                                            } else {
+                                              createNewProperty(params);
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ImportProperties">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function equalsIgnoreCase(value1, value2) {
+                                          if (value1 == null && value2 == null) {
+                                            return true;
+                                          }
+                                          if (value1 == null || value2 == null) {
+                                            return false;
+                                          }
+                                          return value1.toUpperCase() === value2.toUpperCase();
+                                        }
+                                        
+                                        var constants = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetImportExportConstants();
+                                        
+                                        var importExportDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.importExportDataShape
+                                        })["array"];
+                                        var propertiesDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.equipmentPropertiesDataShape
+                                        })["array"];
+                                        
+                                        // Define constatns for headers
+                                        var propertiesHeader = importExportDataShapeFields[3];
+                                        
+                                        var equipmentNameHeader = propertiesDataShapeFields[0];
+                                        var bindingHeader = propertiesDataShapeFields[2];
+                                        
+                                        var propertiesInfoTable = parsedInfoTable.getRow(0)[propertiesHeader];
+                                        
+                                        for (var i = 0; i < propertiesInfoTable.rows.length; i++) {
+                                          var row = propertiesInfoTable.getRow(i);
+                                        
+                                          var equipmentName = row[equipmentNameHeader];
+                                          var binding = row[bindingHeader];
+                                        
+                                          if (Things[equipmentName]) {
+                                            var propertyRowInfoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                              infoTableName: "rowInfoTable",
+                                              dataShapeName: constants.equipmentPropertiesDataShape
+                                            });
+                                            propertyRowInfoTable.AddRow(row);
+                                        
+                                            if (equalsIgnoreCase(binding, constants.noneBound)) {
+                                              me.ImportNoneBoundProperty({
+                                                equipmentProperty: propertyRowInfoTable
+                                              });
+                                            } else if (equalsIgnoreCase(binding, constants.locallyBound)) {
+                                              me.ImportLocallyBoundProperty({
+                                                equipmentProperty: propertyRowInfoTable
+                                              });
+                                            } else if (equalsIgnoreCase(binding, constants.remotelyBound)) {
+                                              me.ImportRemotelyBoundProperty({
+                                                equipmentProperty: propertyRowInfoTable
+                                              });
+                                            }
+                                          }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ImportRemotelyBoundProperty">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function isEmpty(str) {
+                                            return (str === null || str === undefined || /^\s*$/.test(str));
+                                        }
+                                        
+                                        function camelize (value) {
+                                            value = getNullSafeString(value).toLowerCase();
+                                            return value
+                                                .replace(/\s(.)/g, function($1) { return $1.toUpperCase(); })
+                                                .replace(/\s/g, "")
+                                                .replace(/^(.)/, function($1) { return $1.toLowerCase(); });
+                                        }
+                                        
+                                        function getNullSafeString(value) {
+                                          return (value === null || value === undefined) ? "" : value;
+                                        }
+                                        
+                                        function getBooleanValue(value) {
+                                          return Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetBooleanValue({
+                                            defaultValue: true /* BOOLEAN */ ,
+                                            value: value /* STRING */ ,
+                                            invalidValue: null /* STRING */
+                                          });
+                                        }
+                                        
+                                        function toIsoString(date) {
+                                          return Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].ToISOString({
+                                            date: date
+                                          });
+                                        }
+                                        
+                                        function validateAndParseValue(baseType, value) {
+                                          baseType = baseType.toUpperCase();
+                                          var empty = '';
+                                        
+                                          if (baseType === 'NUMBER') {
+                                            var defaultNumberValue = '0';
+                                            if (value == undefined || value == empty) {
+                                              value = defaultNumberValue;
+                                            } else {
+                                              value = isNaN(parseInt(value)) ? defaultNumberValue : Number(value);
+                                            }
+                                          } else if (baseType === 'DATETIME') {
+                                            var today = new Date();
+                                            if (value == undefined || value == empty) {
+                                              value = toIsoString(today);
+                                            } else {
+                                              //format YYYY-MM-DDTHH:mm:ss.sssZ
+                                              var dateRegex = /^\d{4}-[0-1]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)$/;
+                                              if (!value.match(dateRegex)) {
+                                                value = today;
+                                              } else {
+                                                var datetimeFormat =  Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({token: 'PTC.SCA.SCO.ConfigurationAndSetup.DateTimeFormatResults'});
+                                                value = dateFormat(value, datetimeFormat);
+                                              }
+                                            }
+                                          } else if (baseType === 'BOOLEAN') {
+                                            value = getBooleanValue(value);
+                                          } else if (baseType === 'STRING') {
+                                            var defaultStringValue = "";
+                                            if (value == undefined || value === empty) {
+                                              value = defaultStringValue;
+                                            }
+                                          } else if (baseType === 'JSON') {
+                                            var defaultJsonValue = {};
+                                            if (value == undefined || value == empty) {
+                                              value = defaultJsonValue;
+                                            } else {
+                                              value = JSON.parse(value);
+                                            }
+                                          } else if (baseType === 'INTEGER' || baseType === 'LONG') {
+                                            var defaultIntValue = '0';
+                                            if (value == undefined || value == empty) {
+                                              value = defaultIntValue;
+                                            } else {
+                                              value = isNaN(parseInt(value)) ? defaultIntValue : parseInt(value);
+                                            }
+                                          }
+                                          return value;
+                                        }
+                                        
+                                        function isPushTypeAllowed(pushType) {
+                                          var allowedTypes = constants.allowedPushTypes;
+                                          return allowedTypes.indexOf(pushType) > -1;
+                                        }
+                                        
+                                        function isTimeoutAllowed(timeoutOption) {
+                                          var allowedTimeoutOptions = constants.allowedTimeoutOptions;
+                                          return allowedTimeoutOptions.indexOf(timeoutOption) > -1;
+                                        }
+                                        
+                                        function isWhenDisconnectedAllowed(whenDisconnected) {
+                                          var allowedTypes = constants.allowedWhenDisconnectedTypes;
+                                          return allowedTypes.indexOf(whenDisconnected) > -1;
+                                        }
+                                        
+                                        function getNullSafeNumber(value) {
+                                          return Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetNullSafeNumber({
+                                            value: value /* BOOLEAN */
+                                          });
+                                        }
+                                        
+                                        /**
+                                         * Checks if property already exists on given Thing
+                                         *
+                                         * @param equipmentName Name of the thing that has property
+                                         * @param propertyName Name of the property that needs to be checked
+                                         */
+                                        function checkIfPropertyExists(thingName, propertyName) {
+                                          var propertyExists = (Things[thingName][propertyName] != null);
+                                        
+                                          return propertyExists;
+                                        }
+                                        
+                                        function isRemotePropertyNameDifferent(remotePropertyName, remotePropertyBindingInfo) {
+                                          return remotePropertyName != null && remotePropertyName.length > 0 && (remotePropertyName !== remotePropertyBindingInfo.sourceName);
+                                        }
+                                        
+                                        function isCacheIntervalDifferent(cacheInterval, equipmentName, propertyName) {
+                                          var cacheTime = Things[equipmentName].GetMetadataAsJSON().propertyDefinitions[propertyName].aspects.cacheTime;
+                                          return cacheInterval != undefined && (cacheInterval !== Number(cacheTime));
+                                        }
+                                        
+                                        function isPushTypeDifferent(pushType, remotePropertyBindingInfo) {
+                                          return pushType.length > 0 && (pushType !== remotePropertyBindingInfo.pushType);
+                                        }
+                                        
+                                        function isPushThresholdDifferent(pushThreshold, remotePropertyBindingInfo) {
+                                          return pushThreshold != undefined && (pushThreshold !== Number(remotePropertyBindingInfo.pushThreshold));
+                                        }
+                                        
+                                        function isTimeoutDifferent(timeout, timeoutInterval, remotePropertyBindingInfo) {
+                                          var currentTimeoutInterval = Number(remotePropertyBindingInfo.timeout);
+                                          var currentTimeout = currentTimeoutInterval !== 0 ? constants.customTimeout : constants.useSystemDefault;
+                                          return timeout !== currentTimeout || (timeout== constants.customTimeout && currentTimeoutInterval !== timeoutInterval) ;
+                                        }
+                                        
+                                        function isIndustrialDataTypeDifferent(industrialDataType, remotePropertyBindingInfo) {
+                                          return industrialDataType.length > 0 && (industrialDataType !== remotePropertyBindingInfo.aspects.industrialDataType);
+                                        }
+                                        
+                                        function isTagAddressDifferent(tagAddress, remotePropertyBindingInfo) {
+                                          return tagAddress.length > 0 && (tagAddress !== remotePropertyBindingInfo.aspects.tagAddress);
+                                        }
+                                        
+                                        function isScanRateDifferent(scanRate, remotePropertyBindingInfo) {
+                                          return scanRate != undefined && (scanRate !== remotePropertyBindingInfo.aspects.scanRate);
+                                        }
+                                        
+                                        function isTagTypeDifferent(tagType, remotePropertyBindingInfo) {
+                                          return tagType.length > 0 && (tagType !== remotePropertyBindingInfo.aspects.tagType);
+                                        }
+                                        
+                                        function isSourceDifferent(source, remotePropertyBindingInfo) {
+                                          return source.length > 0 && (source !== remotePropertyBindingInfo.aspects.source);
+                                        }
+                                        
+                                        function isDataShapeDifferent(dataShape, remotePropertyBindingInfo) {
+                                          return dataShape.length > 0 && (dataShape !== remotePropertyBindingInfo.aspects.dataShape);
+                                        }
+                                        
+                                        /**
+                                         * Updates value or logged for property if it's different
+                                         */
+                                        function updateProperty(params) {
+                                          var equipmentThing = Things[params.equipmentName];
+                                          var isLogged = equipmentThing.GetEffectivePropertyLogging({
+                                            propertyName: params.name
+                                          });
+                                        
+                                          if (isLogged !== params.logged) {
+                                            equipmentThing.SetPropertyLogging({
+                                              propertyName: params.name,
+                                              enabled: params.logged
+                                            });
+                                          }
+                                        
+                                          var remotePropertyBindingInfo = equipmentThing.GetRemotePropertyBinding({
+                                            propertyName: params.name
+                                          });
+                                        
+                                          if (isRemotePropertyNameDifferent(params.remotePropertyName, remotePropertyBindingInfo) ||
+                                            isCacheIntervalDifferent(params.cacheInterval, params.equipmentName, params.name) ||
+                                            isPushTypeDifferent(params.pushType, remotePropertyBindingInfo) ||
+                                            isPushThresholdDifferent(params.pushThreshold, remotePropertyBindingInfo) ||
+                                            isTimeoutDifferent(params.timeout, params.timeoutInterval, remotePropertyBindingInfo) ||
+                                            isIndustrialDataTypeDifferent(industrialDataType, remotePropertyBindingInfo) ||
+                                            isTagAddressDifferent(tagAddress, remotePropertyBindingInfo) ||
+                                            isScanRateDifferent(scanRate, remotePropertyBindingInfo) ||
+                                            isTagTypeDifferent(tagType, remotePropertyBindingInfo) ||
+                                            isSourceDifferent(source, remotePropertyBindingInfo) ||
+                                            isDataShapeDifferent(dataShape, remotePropertyBindingInfo)) {
+                                        
+                                            equipmentThing.RemoveRemotePropertyBinding({
+                                              propertyName: params.name /* STRING */
+                                            });
+                                        
+                                            var aspects = {
+                                                startType: params.startType
+                                            };
+                                        
+                                            if (!isEmpty(params.tagAddress)) {
+                                                aspects.industrialDataType = params.industrialDataType;
+                                                aspects.tagAddress = params.tagAddress;
+                                                aspects.scanRate = params.scanRate;
+                                                aspects.tagType = params.tagType;
+                                                aspects.dataShape = params.dataShape;
+                                                aspects.sourceName = "";
+                                                aspects.source = "";
+                                            }
+                                        
+                                            equipmentThing.SetRemotePropertyBinding({
+                                                propertyName: params.name /* STRING */ ,
+                                                pushThreshold: params.pushThreshold /* NUMBER */ ,
+                                                aspects: aspects /* JSON */ ,
+                                                foldType: params.whenDisconnected /* STRING */ ,
+                                                sourcePropertyName: params.remotePropertyName /* STRING */ ,
+                                                timeout: params.timeout == constants.customTimeout ? params.timeoutInterval  : undefined  /* INTEGER */ ,
+                                                startType: params.startType /* STRING */ ,
+                                                pushType: params.pushType /* STRING */ ,
+                                                cacheTime: params.cacheInterval /* INTEGER */
+                                            });
+                                        
+                                            equipmentThing.RestartThing();
+                                          }
+                                        }
+                                        
+                                        /**
+                                         * Creates new property with Remote Bound
+                                         */
+                                        function createNewProperty(params) {
+                                            var equipmentThing = Things[params.equipmentName];
+                                            var remoteBindingAspects = {
+                                                startType: params.startType,
+                                            };
+                                        
+                                            if (!isEmpty(params.tagAddress)) {
+                                                remoteBindingAspects.industrialDataType = params.industrialDataType;
+                                                remoteBindingAspects.tagAddress = params.tagAddress;
+                                                remoteBindingAspects.scanRate = params.scanRate;
+                                                remoteBindingAspects.tagType = params.tagType;
+                                                remoteBindingAspects.source = params.source;
+                                                remoteBindingAspects.sourceName = "";
+                                                remoteBindingAspects.dataShape = params.dataShape;
+                                            }
+                                        
+                                            equipmentThing.AddPropertyDefinition({
+                                                name: params.name,
+                                                remotePropertyName: params.remotePropertyName,
+                                                type: params.baseType.toUpperCase(),
+                                                remote:true,
+                                                pushType: params.pushType,
+                                                readOnly: params.readOnly,
+                                                dataChangeType: params.dataChangeType,
+                                                remoteBindingAspects: remoteBindingAspects
+                                            });
+                                        
+                                            try {
+                                              equipmentThing.SetRemotePropertyBinding({
+                                                  propertyName: params.name,
+                                                  cacheTime: params.cacheInterval
+                                              });
+                                        
+                                              var isLogged = equipmentThing.GetEffectivePropertyLogging({
+                                                propertyName: params.name
+                                              });
+                                        
+                                              if (isLogged !== params.logged) {
+                                                equipmentThing.SetPropertyLogging({
+                                                  propertyName: params.name,
+                                                  enabled: params.logged
+                                                });
+                                              }
+                                        
+                                              if (params.whenDisconnected.length === 0) {
+                                                  params.whenDisconnected = 'NONE';
+                                              }
+                                            } catch (err) {
+                                                logger.error("Import Process failed : Equipment [" + params.equipmentName + "] : Property [" + params.name + "] : " + err);
+                                            }
+                                        
+                                        
+                                            equipmentThing.RestartThing();
+                                        }
+                                        
+                                        /**
+                                         * Checks if Units that is on property Thing is different than in file
+                                         *
+                                         * @param thingName Name of the Thing
+                                         * @param name Name of the property that is on Thing
+                                         * @param units Units value from file
+                                         */
+                                        function isUnitsDifferent(thingName, name, units) {
+                                          var thingMetadata = Things[thingName].GetMetadataAsJSON();
+                                          return units != null && thingMetadata.propertyDefinitions[name].aspects.units !== units;
+                                        }
+                                        
+                                        function unitsIsSupportedForBaseType(baseType) {
+                                          var unitsSupportedBaseTypes = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetNumberPropertyBaseTypes()["array"];
+                                        
+                                          return unitsSupportedBaseTypes.indexOf(baseType.toUpperCase()) > -1;
+                                        }
+                                        
+                                        var constants = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetImportExportConstants();
+                                        
+                                        var propertiesDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.equipmentPropertiesDataShape
+                                        })["array"];
+                                        
+                                        // Define constants for headers
+                                        var equipmentNameHeader = propertiesDataShapeFields[0];
+                                        var nameHeader = propertiesDataShapeFields[1];
+                                        var baseTypeHeader = propertiesDataShapeFields[5];
+                                        var loggedHeader = propertiesDataShapeFields[6];
+                                        var remotePropertyNameHeader = propertiesDataShapeFields[10];
+                                        var cacheIntervalHeader = propertiesDataShapeFields[11];
+                                        var startTypeHeader = propertiesDataShapeFields[12];
+                                        var pushTypeHeader = propertiesDataShapeFields[13];
+                                        var pushThresholdHeader = propertiesDataShapeFields[14];
+                                        var readOnlyHeader = propertiesDataShapeFields[21];
+                                        var dataChangeTypeHeader = propertiesDataShapeFields[23];
+                                        var timeoutHeader = propertiesDataShapeFields[24];
+                                        var timeoutIntervalHeader = propertiesDataShapeFields[25];
+                                        var unitsHeader = propertiesDataShapeFields[16];
+                                        var whenDisconnectedHeader = propertiesDataShapeFields[15];
+                                        var industrialDataTypeHeader = propertiesDataShapeFields[26];
+                                        var tagAddressHeader = propertiesDataShapeFields[27];
+                                        var scanRateHeader = propertiesDataShapeFields[28];
+                                        var tagTypeHeader = propertiesDataShapeFields[29];
+                                        var sourceHeader = propertiesDataShapeFields[30];
+                                        var dataShapeHeader = propertiesDataShapeFields[31];
+                                        
+                                        var equipmentName = equipmentProperty[equipmentNameHeader];
+                                        var name = equipmentProperty[nameHeader];
+                                        var baseType = equipmentProperty[baseTypeHeader].toUpperCase();
+                                        var logged = getBooleanValue(equipmentProperty[loggedHeader]);
+                                        var remotePropertyName = getNullSafeString(equipmentProperty[remotePropertyNameHeader]);
+                                        var cacheInterval = getNullSafeNumber(equipmentProperty[cacheIntervalHeader]);
+                                        var startType = camelize(equipmentProperty[startTypeHeader]);
+                                        var pushType = getNullSafeString(equipmentProperty[pushTypeHeader]).toUpperCase();
+                                        var pushThreshold = getNullSafeNumber(equipmentProperty[pushThresholdHeader]);
+                                        var readOnly = getBooleanValue(equipmentProperty[readOnlyHeader]);
+                                        var dataChangeType = getNullSafeString(equipmentProperty[dataChangeTypeHeader]).toUpperCase();
+                                        var timeout = getNullSafeString(equipmentProperty[timeoutHeader]);
+                                        var timeoutInterval = getNullSafeNumber(equipmentProperty[timeoutIntervalHeader]);
+                                        var units = equipmentProperty[unitsHeader];
+                                        var whenDisconnected = getNullSafeString(equipmentProperty[whenDisconnectedHeader]).toUpperCase();
+                                        var industrialDataType = getNullSafeString(equipmentProperty[industrialDataTypeHeader]);
+                                        var tagAddress = getNullSafeString(equipmentProperty[tagAddressHeader]);
+                                        var scanRate = getNullSafeNumber(equipmentProperty[scanRateHeader]);
+                                        var tagType = getNullSafeString(equipmentProperty[tagTypeHeader]);
+                                        var source = getNullSafeString(equipmentProperty[sourceHeader]);
+                                        var dataShape = getNullSafeString(equipmentProperty[dataShapeHeader]);
+                                        
+                                        var value;
+                                        
+                                        baseType = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].ConvertBaseTypeToFriendlyName({
+                                          baseType: baseType
+                                        });
+                                        
+                                        value = validateAndParseValue(baseType, value);
+                                        
+                                        if (pushType.length === 0 || pushType.length > 0 && !isPushTypeAllowed(pushType)) {
+                                          pushType = 'VALUE';
+                                        }
+                                        
+                                        if (timeout.length === 0 ||!isTimeoutAllowed(timeout)) {
+                                          timeout = constants.useSystemDefault;
+                                          timeoutInterval = null;
+                                        }
+                                        
+                                        if (timeout === constants.useSystemDefault) {
+                                          timeoutInterval = null;
+                                        }
+                                        
+                                        //ignore units for non-numeric props
+                                        if(!unitsIsSupportedForBaseType(baseType)) {
+                                          units = null;
+                                        }
+                                        
+                                        if (whenDisconnected.length === 0 || whenDisconnected.length > 0 && !isWhenDisconnectedAllowed(whenDisconnected)) {
+                                          whenDisconnected = 'NONE';
+                                        }
+                                        
+                                        // thingworx stores cacheInterval in milliseconds but import excel sheet expects as seconds.
+                                        if (isEmpty(cacheInterval)) {
+                                          cacheInterval = 1;
+                                        } else {
+                                          cacheInterval = cacheInterval*1000;
+                                        }
+                                        
+                                        // handling ems vs remotely bound properties
+                                        if (!isEmpty(tagAddress)) {
+                                            // if tagAddress has a value, then it is likely a kepware remote property, therefore the 'remotePropertyName' should be null
+                                            remotePropertyName = null;
+                                        }
+                                        
+                                        var params = {
+                                          equipmentName: equipmentName,
+                                          originalName: name,
+                                          name: name,
+                                          baseType: baseType,
+                                          logged: logged,
+                                          remotePropertyName: remotePropertyName,
+                                          cacheInterval: cacheInterval,
+                                          startType: startType,
+                                          pushType: pushType,
+                                          pushThreshold: pushThreshold,
+                                          readOnly: readOnly,
+                                          dataChangeType: dataChangeType,
+                                          timeout: timeout,
+                                          timeoutInterval: timeoutInterval,
+                                          units: units,
+                                          value: value,
+                                          whenDisconnected: whenDisconnected,
+                                          industrialDataType: industrialDataType,
+                                          tagAddress: tagAddress,
+                                          scanRate: scanRate,
+                                          tagType: tagType,
+                                          source: source,
+                                          dataShape: dataShape
+                                        };
+                                        
+                                        if (checkIfPropertyExists(equipmentName, name)) {
+                                          updateProperty(params);
+                                        } else {
+                                          createNewProperty(params);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ImportThing">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function getNullSafeString(value) {
+                                          return (value === null || value === undefined) ? "" : value;
+                                        }
+                                        
+                                        var constants = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetImportExportConstants();
+                                        
+                                        var generalEquipmentDataShapeFields = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.equipmentGeneralInformationDataShape
+                                        })["array"];
+                                        
+                                        // Declare headers from Data Shape
+                                        var nameHeader = generalEquipmentDataShapeFields[0];
+                                        var typeHeader = generalEquipmentDataShapeFields[1];
+                                        var descriptionHeader = generalEquipmentDataShapeFields[4];
+                                        
+                                        // Create variables for data from InfoTable
+                                        var name = equipmentInformation[nameHeader];
+                                        var type = getNullSafeString(equipmentInformation[typeHeader]);
+                                        var description = equipmentInformation[descriptionHeader];
+                                        
+                                        if (type.length === 0) {
+                                          logger.warn("ImportThing process: Skipping. Invalid equipment type detected on equipment [" + name + "].");
+                                        } else {
+                                            var baseThingTemplate = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetTemplateByEquipmentType({equipmentType:type});
+                                        
+                                            if (baseThingTemplate.length === 0) {
+                                              logger.warn("ImportThing process: Skipping. Invalid equipment baseThingTemplate detected on equipment [" + name + "]");
+                                            } else {
+                                                var equipmentObject = {
+                                                  name: name,
+                                                  description: description,
+                                                  useDefaultPrefixForEquipmentThingName: false,
+                                                  type: type + "|" + baseThingTemplate
+                                                };
+                                                Things["PTC.SCA.SCO.ManageResourceUtils"].CreateEquipment(equipmentObject);
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ImportTypes">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.ConfiguratioAndSetup.ImportTypes"
+                                        };
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        var language = Resources["CurrentSessionInfo"].GetCurrentUserLanguage();
+                                        
+                                        var hierarchyToken = Resources["RuntimeLocalizationFunctions"].GetEffectiveTokenForLanguage(
+                                        {language: language, token: "PTC.SCA.SCO.ConfigurationAndSetup.StructureOnly"});
+                                        
+                                        var allToken = Resources["RuntimeLocalizationFunctions"].GetEffectiveTokenForLanguage(
+                                        {language: language, token: "PTC.SCA.SCO.ConfigurationAndSetup.StructureAndEquipment"});
+                                        
+                                        result.AddRow({ name: allToken, type: "ALL"});
+                                        result.AddRow({ name: hierarchyToken, type: "HIERARCHY"});
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="PostImport">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code></code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="PreImport">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = parsedInfoTable;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility></Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

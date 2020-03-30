@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="ThingTemplate for UI provider. {PTC.SCA.SCO.CommonUIProviderThingTemplate}"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.807+05:30"
+         name="PTC.SCA.SCO.CommonUIProviderThingTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:ThingTemplate"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieve all enabled and have instance/connected types defined in EquipmentTypeSetting configuration table and/or RemoteConnectionSettings table and/or Device type and/or Template type, then return those meet filter setting. Note: to set filterType, use type name separated by comma or semicolumn."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetAllEnabledTypes">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.DisplayAssetsList"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="STRING"
+                             description="A string can be empty or contains 1 or more type IDs separated by comma. Defines a while list of type this service can return. If is empty all types found by service will be returned"
+                             name="filterType"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.isRequired="false"
+                             baseType="BOOLEAN"
+                             description="A boolean. Indicate whether or not Devices should be included in returned infotable"
+                             name="includeDevices"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.isRequired="false"
+                             baseType="BOOLEAN"
+                             description="A boolean indicating whether or not equipment types should be included in returned infotable"
+                             name="includeEquipmentTypes"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.isRequired="false"
+                             baseType="BOOLEAN"
+                             description="A boolean indicating whether or not remote connection types should be included in returned infotable"
+                             name="includeRemoteConnections"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             baseType="BOOLEAN"
+                             description="A boolean indicate whether or not returned type should include type &quot;Template&quot;"
+                             name="includeTemplates"
+                             ordinal="4"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetFileListing">
+                        <ResultType
+                         aspect.dataShape="FileSystemFile"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             baseType="BOOLEAN"
+                             description="Ascending or descending sort (ascending = true)"
+                             name="defaultAscending"
+                             ordinal="6"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="Case sensitive sort (isCaseSensitive = false)"
+                             name="defaultIsCaseSensitive"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Column on which to sort (default field name = Name)"
+                             name="defaultSortColumn"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Name mask"
+                             name="nameMask"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Path"
+                             name="path"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="QUERY"
+                             description="Query for sorting"
+                             name="sortQuery"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Name of the Asset that should have the list of files"
+                             name="thingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="For non numerical properties, query it's history to get the count of modifications done to this property. And this, for a given time interval."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetPropertyHistoryCountForTrend">
+                        <ResultType
+                         aspect.dataShape="NumberValueStream"
+                         baseType="STRING"
+                         description="Historical property count in CSV (String) format."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="DATETIME"
+                             description="The end date at which to stop extracting the property count. Defaults to current date."
+                             name="endDate"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="The name of the entity which contains the property to be queried."
+                             name="entityName"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="Whether or not the time interval was user specified (true) or not (false)."
+                             name="isCustom"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Label to be displayed in the dygraph for the chosen property."
+                             name="propertyLabel"
+                             ordinal="6"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="The property to query for history count."
+                             name="propertyName"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="DATETIME"
+                             description="The start date at which to begin extracting the property count."
+                             name="startDate"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetAllEnabledTypes">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*
+                                            Helper functions
+                                        */
+                                        
+                                        var typeSort = {
+                                         "sorts": [{
+                                           "fieldName": "displayName",
+                                           "isCaseSensitive": false
+                                         }]
+                                        };
+                                        
+                                        function addRawTypes(types) {
+                                            var params = {
+                                                t: types,
+                                                query: typeSort
+                                            };
+                                            var sortedTypes = Resources["InfoTableFunctions"].Query(params);
+                                            var length = sortedTypes.rows.length;
+                                        
+                                            for (var i=0; i < length; i++) {
+                                                var row = sortedTypes.rows[i];
+                                                rawTypeList.AddRow(row);
+                                            }
+                                        }
+                                        
+                                        /*
+                                            Check: is there any instance of a given resource provider name - thing template name pair?
+                                        */
+                                        function hasInstanceOfGivenType(resourceProviderName, resourceThingTemplateName, isRemoteConnection) {
+                                            var connectedServers = Resources["PTC.Factory.CommonTagPickerUtilities"].GetThingListFromSource({
+                                                isRemoteConnection: isRemoteConnection,
+                                                templateName: resourceThingTemplateName,
+                                                providerName: resourceProviderName
+                                            });
+                                            return (connectedServers) && connectedServers.getRowCount() > 0;
+                                        }
+                                        /*
+                                            Given localization token of an equipment type:
+                                                1. if token is null return equipmentTypeName as localized content
+                                                2. if can not find localiztion content (get '???') then return this '???' and log an warning
+                                                3. otherwise return localization content
+                                        */
+                                        function processLocalizationToken(localizationToken, equipmentTypeName) {
+                                            var localizedContent;
+                                            if (localizationToken) {
+                                                localizedContent = Resources["PTC.Resource.Factory.MessageFormatUtilities"].GetLocalizedMessageOneParam({
+                                                    label: localizationToken
+                                                });
+                                                if (localizedContent === '???') {
+                                                    // if return '???' that means this token do not have localized content. leave a warning in log
+                                                    logger.warn("processLocalizationToken: localization token for type [" + oneEquipmentType.EquipmentType + "] do not have localized content");
+                                                }
+                                            } else {
+                                                // Token is not defined, use equipment type name as display name
+                                                logger.warn("processLocalizationToken: token of type [" + equipmentTypeName + "] is not defined, use type name as display name");
+                                                localizedContent = equipmentTypeName;
+                                            }
+                                            return localizedContent;
+                                        }
+                                        
+                                        /*
+                                            Start by an empty list of raw types
+                                        */
+                                            var rawTypeList = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                    dataShapeName: "PTC.Factory.DisplayAssetsList"
+                                                });
+                                            var oneRawType;
+                                            var i;
+                                        /*
+                                            Add type "Device" to raw type list if needed
+                                        */
+                                            if (includeDevices) {
+                                                oneRawType = new Object();
+                                                oneRawType.templateName = "";
+                                                oneRawType.displayName = Resources["PTC.Resource.Factory.MessageFormatUtilities"].GetLocalizedMessageOneParam({
+                                                    label: "PTC.Factory.DeviceAssetName"
+                                                });
+                                                oneRawType.value = "PTC.Factory.DeviceResourceProvider";
+                                                oneRawType.browserType = "property";
+                                                oneRawType.resourceType = "Device";
+                                        
+                                                rawTypeList.AddRow(oneRawType);
+                                            }
+                                        
+                                            var effectiveLaunchPointConfigurationThingName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                        /*
+                                            Add equipment types in LaunchPointConfigurationThing.EquipmentTypeSettings to raw type list
+                                        */
+                                            if (includeEquipmentTypes) {
+                                                var allEquipmentTypes = Things[effectiveLaunchPointConfigurationThingName].GetConfigurationTable({
+                                                        tableName: 'EquipmentTypeSettings'
+                                                    });
+                                        
+                                        		var equipment = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                    dataShapeName: "PTC.Factory.DisplayAssetsList"
+                                                });
+                                                // Copy these equipment types into raw type list
+                                                for (i = 0; i < allEquipmentTypes.getRowCount(); i++) {
+                                                    var oneEquipmentType = allEquipmentTypes.getRow(i);
+                                        
+                                                    oneRawType = new Object();
+                                                    oneRawType.templateName = oneEquipmentType.ThingTemplate;
+                                                    oneRawType.displayName = processLocalizationToken(oneEquipmentType.LocalizationToken, oneEquipmentType.EquipmentType);
+                                                    oneRawType.value = oneEquipmentType.ResourceProvider;
+                                                    oneRawType.browserType = "property";
+                                                    oneRawType.resourceType = oneEquipmentType.EquipmentType;
+                                        
+                                        			equipment.AddRow(oneRawType);
+                                                }
+                                        
+                                                addRawTypes(equipment);
+                                            }
+                                        /*
+                                            Add enabled connection types in LaunchPointConfigurationThing.RemoteConnectionSettings to raw type list if needed
+                                        */
+                                            if (includeRemoteConnections) {
+                                                // Get effective launch point configuration thing name. this entity will be shared
+                                                // Get all connection types from configuration table RemoteConnectionSettings
+                                                var allConnectionTypes = Things[effectiveLaunchPointConfigurationThingName].GetConfigurationTable({
+                                                    tableName: 'RemoteConnectionSettings'
+                                                });
+                                        		var connections = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                    dataShapeName: "PTC.Factory.DisplayAssetsList"
+                                                });
+                                        
+                                                // Copy these connection types into raw type list
+                                                for (i = 0; i < allConnectionTypes.getRowCount(); i++) {
+                                                    var oneConnectionType = allConnectionTypes.getRow(i);
+                                        
+                                                    if (oneConnectionType.EnabledInTagPicker) {
+                                                        oneRawType = new Object();
+                                                        oneRawType.templateName = "";
+                                                        oneRawType.displayName = oneConnectionType.ConnectionType;	// NOTE: for remote connections, display name is not localized -- there is no localization token
+                                                        oneRawType.value = oneConnectionType.ResourceProviderName;
+                                                        oneRawType.browserType = "remoteConnection";
+                                                        oneRawType.resourceType = oneConnectionType.ConnectionType;
+                                        
+                                                        connections.AddRow(oneRawType);
+                                                    }
+                                                }
+                                        
+                                                addRawTypes(connections);
+                                            }
+                                        
+                                        /*
+                                            Add type "Template" to raw type list if needed
+                                        */
+                                            if (includeTemplates) {
+                                                oneRawType = new Object();
+                                                oneRawType.templateName = "";
+                                                oneRawType.displayName = Resources["PTC.Resource.Factory.MessageFormatUtilities"].GetLocalizedMessageOneParam({
+                                                    label: "PTC.SCA.SCO.Template"
+                                                });
+                                                oneRawType.value = "PTC.SCA.SCO.EquipmentTemplateResourceProvider";
+                                                oneRawType.browserType = "property";
+                                                oneRawType.resourceType = "Template";
+                                        
+                                                rawTypeList.AddRow(oneRawType);
+                                            }
+                                        /*
+                                            Filter raw type list by filterType
+                                        */
+                                            // Filtering, if a filter pattern is given
+                                            if (filterType && filterType.replace(/\s/g, '').length > 0) {
+                                                // Process filterType to get filterPattern: replace separator in filterType: space, ',', ';' with '|'
+                                                var filterPattern = filterType
+                                                    .trim()
+                                                    .replace(/(\s*,\s*|\s*;\s*)/g, '|');
+                                                /*
+                                                    for case equipment type's localization token is undefined, we give type name as '???' so
+                                                    filter pattern might contain '?' and we need to escape it
+                                                */
+                                                filterPattern = filterPattern.replace(/\?/g, '\\?');
+                                                rawTypeList= Resources["InfoTableFunctions"].RegexFilter({
+                                                    inclusive: true,
+                                                    fieldName: "displayName",
+                                                    t:  rawTypeList,
+                                                    pattern: filterPattern
+                                                });
+                                            }
+                                        /*
+                                            Final round of filtering: only keep type that has instance things
+                                        */
+                                            var resultTypeList = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                    dataShapeName: "PTC.Factory.DisplayAssetsList"
+                                                });
+                                            for (i = 0; i < rawTypeList.getRowCount(); i++) {
+                                                oneRawType = rawTypeList.getRow(i);
+                                        
+                                                if (hasInstanceOfGivenType(oneRawType.value, oneRawType.templateName, (oneRawType.browserType == 'remoteConnection'? true: false))) {
+                                                    resultTypeList.AddRow(oneRawType);
+                                                }
+                                            }
+                                        /*
+                                            Return process result
+                                        */
+                                            var result = resultTypeList;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetFileListing">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            path: this.path /* STRING */,
+                                            nameMask: this.nameMask /* STRING */
+                                        };
+                                        
+                                        // result: INFOTABLE dataShape: FileSystemFile
+                                        var listingTable = Things[this.thingName].GetFileListing(params);
+                                        
+                                        
+                                        var params = {
+                                            myInfoTable: listingTable /* INFOTABLE */,
+                                            defaultIsCaseSensitive: this.defaultIsCaseSensitive /* BOOLEAN */,
+                                            defaultAscending: this.defaultAscending /* BOOLEAN */,
+                                            sortQuery: this.sortQuery /* QUERY */,
+                                            defaultSortColumn: this.defaultSortColumn /* STRING */
+                                        };
+                                        
+                                        // result: INFOTABLE
+                                        var result = Resources["PTC.Factory.CommonUtilities"].SortGridRows(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetPropertyHistoryCountForTrend">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // ******************************
+                                        // **** Function definitions ****
+                                        // ******************************
+                                        
+                                        // Function to make sure that it works for other property types as well
+                                        function getOriginalPropertyHistory(entity, propType) {
+                                            var data = null;
+                                            if (propType !== null) {
+                                                var queryParams = {
+                                                    oldestFirst: true /* BOOLEAN */,
+                                                    maxItems: Number.MAX_VALUE /* NUMBER */,
+                                                    propertyName: propertyName /* STRING */,
+                                                    endDate: new Date() /* DATETIME */,
+                                                    query: undefined /* QUERY */,
+                                                    startDate: new Date(0) /* DATETIME */
+                                                };
+                                                switch(propType) {
+                                                    case "INTEGER":
+                                                        // data: INFOTABLE dataShape: "IntegerValueStream"
+                                                        data =  entity.QueryIntegerPropertyHistory(queryParams);
+                                                        break;
+                                                    case "STRING":
+                                                        // data: INFOTABLE dataShape: "StringValueStream"
+                                                        data =  entity.QueryStringPropertyHistory(queryParams);
+                                                        break;
+                                                    case "JSON":
+                                                        // data: INFOTABLE dataShape: "StringValueStream"
+                                                        data =  entity.QueryStringPropertyHistory(queryParams);
+                                                        break;
+                                                    case "NUMBER":
+                                                        // data: INFOTABLE dataShape: "NumberValueStream"
+                                                        data =  entity.QueryNumberPropertyHistory(queryParams);
+                                                        break;
+                                                    default:
+                                                        logger.error("Cannot query property history of type: " + propType);
+                                                }
+                                            }
+                                            return data;
+                                        }
+                                        
+                                        // Function to add 'fake' datapoints (when necessary) to the extremities of the graph to improve readability.
+                                        function doResultCorrectionForDygraph(fullResultTable, filteredResultTable, startDate, endDate) {
+                                            var correctedResultTable = filteredResultTable;
+                                            var numberOfResultsInFullTable = fullResultTable.rows.length;
+                                            var numberOfResultsInFilteredTable = filteredResultTable.rows.length;
+                                            if (numberOfResultsInFilteredTable > 0) {
+                                                var firstResult = filteredResultTable.rows[0];
+                                                var lastResult = filteredResultTable.rows[numberOfResultsInFilteredTable - 1];
+                                                var resultExistsBeforeInterval = firstResult.value > 1;
+                                                var resultExistsAfterInterval = lastResult.value < numberOfResultsInFullTable - 1;
+                                        
+                                                correctedResultTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                    infoTableName : "InfoTable",
+                                                    dataShapeName : "NumberValueStream"
+                                                });
+                                        
+                                                // Add a 'fake' datapoint at the beginning of the graph
+                                                if (resultExistsBeforeInterval) {
+                                                    correctedResultTable.AddRow({
+                                                        timestamp : startDate,
+                                                        value : fullResultTable.rows[firstResult.value - 1].value
+                                                    });
+                                                } else {
+                                                    correctedResultTable.AddRow({
+                                                        timestamp : startDate,
+                                                        value : 0
+                                                    });
+                                                }
+                                        
+                                                // Add the actual data between both 'fake' datapoints
+                                                correctedResultTable.addRowsFrom(filteredResultTable, false);
+                                        
+                                                // Add a 'fake' datapoint at the end of the graph
+                                                if (resultExistsAfterInterval) {
+                                                    correctedResultTable.AddRow({
+                                                        timestamp : endDate,
+                                                        value : fullResultTable.rows[lastResult.value + 1].value
+                                                    });
+                                                } else {
+                                                    correctedResultTable.AddRow({
+                                                        timestamp : endDate,
+                                                        value : lastResult.value
+                                                    });
+                                                }
+                                            } else {
+                                                // If there are not results, add a point with the value of 0 (initial data point)
+                                                correctedResultTable.AddRow({
+                                                    timestamp : startDate,
+                                                    value : 0
+                                                });
+                                            }
+                                            return correctedResultTable;
+                                        }
+                                        
+                                        // **********************************
+                                        // **** Function definitions end ****
+                                        // **********************************
+                                        
+                                        // ***************************************
+                                        // **** Service main body starts here ****
+                                        // ***************************************
+                                        
+                                        var entity = Things[entityName];
+                                        // propDef: INFOTABLE dataShape: "PropertyDefinition"
+                                        var propDef =  entity.GetPropertyDefinition({
+                                            name: propertyName /* STRING */
+                                        });
+                                        var propType = propDef.rows[0].baseType;
+                                        var originalData = getOriginalPropertyHistory(entity, propType);
+                                        var tableLength = originalData.rows.length;
+                                        for (var x=0; x < tableLength; x++) {
+                                            var row = originalData.rows[x];
+                                            if (originalData.hasField("value")) {
+                                                // Replace the value with the number of times the property was modified since its creation.
+                                                row.value = x+1;
+                                            }
+                                        }
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(NumberValueStream)
+                                        var fullResultTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "NumberValueStream"
+                                        });
+                                        fullResultTable.addRowsFrom(originalData, false);
+                                        
+                                        // If is a custom date range, use endDate parameter. If not, use current time as endDate.
+                                        var maxValue = isCustom ? endDate : new Date();
+                                        
+                                        var filterParams = {
+                                            inclusive: true /* BOOLEAN */,
+                                            minValue: startDate.getTime() /* STRING */,
+                                            fieldName: "timestamp" /* STRING */,
+                                            t: fullResultTable /* INFOTABLE */,
+                                            maxValue: maxValue.getTime() /* STRING */
+                                        };
+                                        
+                                        // filteredResultTable: INFOTABLE
+                                        var filteredResultTable = Resources["InfoTableFunctions"].BetweenFilter(filterParams);
+                                        
+                                        // Add a 'fake' datapoint to each extremity of the graph to make it easier to read
+                                        var correctedResultTable = doResultCorrectionForDygraph(fullResultTable, filteredResultTable, startDate, endDate);
+                                        
+                                        // result: STRING
+                                        var result =  Things["PTC.Factory.TrendManagementUtils"].ConvertGenericInfoTableToCSVDygraph({
+                                            propertyLabel: propertyLabel /* STRING */,
+                                            table: correctedResultTable /* INFOTABLE */
+                                        });
+                                        
+                                        // *************************************
+                                        // **** Service main body ends here ****
+                                        // *************************************
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility></Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

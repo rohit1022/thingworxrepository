@@ -1,0 +1,1758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="ThingTemplate for resource manager utils. {PTC.SCA.SCO.ManageResourceUtilsThingTemplate}"
+         documentationContent=""
+         effectiveThingPackage="PTC.SCA.SCO.ManageResourceUtilsPackage"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.055+05:30"
+         name="PTC.SCA.SCO.ManageResourceUtilsThingTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Resource;PTC:ThingTemplate"
+         thingPackage="PTC.SCA.SCO.ManageResourceUtilsPackage"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Calls PTC.SCA.SCO.KPIManagerThingShape.ClearEquipmentHistory service"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ClearEquipmentHistory">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ClearDataHistory"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.PhysicalAssetDataShape"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="equipment"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="This service will create an InfoTable that will be fed to the PTC.Factory.CommonTagPicker.KepServer. This InfoTable should be used as an input for the SelectedRows in the Advance Tree Grid."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CreateSelectedServerStructureNodeRow">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ServerStructureDataShape"
+                         baseType="INFOTABLE"
+                         description="InfoTable containing 1 row. Used as input for SelectedRows of Advance Tree Grid widget."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Connection type defined in the launch point configuration."
+                             name="connectionType"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="String of the full tag name e.g.: Server:FullPath.TagName"
+                             name="tagName"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CreateSelectedTagRow">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ServerTagDataShape"
+                         baseType="INFOTABLE"
+                         description="This service is used for creating a tag row that will be fed into the PTC.Factory.CommonTagPicker.KepServer mashup in order to pre-select a tag."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Connection type defined in the launch point configuration."
+                             name="connectionType"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.PropertyDetailsDataShape"
+                             baseType="INFOTABLE"
+                             description="InfoTable input that should contain 1 row of the tag that you wish to be pre-selected."
+                             name="selectedTagProperty"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="This will create a source filter depending on the states of the additional properties (ADD, EDIT, REMOVE). In ADD state, this service will generate a filter that filters out used tags. In the EDIT state, it will create the same filter as the ADD state with the exception of the tag that you are currently editing."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GenerateSourceFilterByState">
+                        <ResultType
+                         baseType="STRING"
+                         description="string filter of all the tag name with a &quot;;&quot; as delimiter."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="current state of the additional properties (ADD, EDIT, REMOVE)."
+                             name="currentState"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.PropertyDetailsDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="infotable containing all the properties that are attached to this Thing."
+                             name="extraProperties"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="name of the equipment"
+                             name="serverName"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Name of the tag that you are attempting to exclude. Expected format is &quot;serverName:fullPath.tagName"
+                             name="tagNameToExclude"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="***DEPRECATED-J*** This service will be deleted in a future release. Returns the Availability HTML for the resource."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetAvailabilityHTML">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="INTEGER"
+                             description="Integer representing the performance of the resource"
+                             name="availability"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="JSON"
+                             description="Javascript object which contains the performance of the resource"
+                             name="availabilityObject"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get the default nested Mashup name from the equipment configuration menu, which will be the linkDestination of the default menu entry."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetDefaultNestedMashupFromMenu">
+                        <ResultType
+                         baseType="MASHUPNAME"
+                         description="Default nested Mashup name from the equipment configuration menu, which will be the linkDestination of the default menu entry."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Configuration menu name"
+                             name="menuName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Mashup parameter nestedMahup, which will be null the first time PTC.SCA.SCO.ConfigurationAndSetup.ManageEquipmentDetailMashup is loaded."
+                             name="nestedMashup"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get the equipment configuration Menu name for the given Thing name"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentConfigurationMenuName">
+                        <ResultType
+                         baseType="STRING"
+                         description="Equipment configuration menu name"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Equipment Thing name"
+                             name="thingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="***DEPRECATED-J*** This service will be deleted in a future release. Get value of KPI properties"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetKPIParameterValues">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.KPIsDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="id"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="***DEPRECATED-J*** This service will be deleted in a future release. Returns the Performance HTML for the resource."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetPerformanceHTML">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="Boolean to determine if the asset is customized"
+                             name="isCustomized"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="INTEGER"
+                             description="Integer representing the performance of the resource"
+                             name="performance"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="JSON"
+                             description="Javascript object which contains the performance of the resource"
+                             name="performanceObject"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="***DEPRECATED-J*** This service will be deleted in a future release. Returns the Quality HTML for the resource."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetQualityHTML">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="Boolean to determined if the asset is customized"
+                             name="isCustomized"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="INTEGER"
+                             description="Integer representing the quality of the resource"
+                             name="quality"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="JSON"
+                             description="Javascript object which contains the quality of the resource"
+                             name="qualityObject"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Return the rows that have RowSelected boolean set to true."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetSelectedRows">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.EquipmentListDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.EquipmentListDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Rows given with the PTC.SCA.SCO.EquipmentListDataShape with RowSelected property"
+                             name="Rows"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetStatusHTML">
+                        <ResultType
+                         baseType="STRING"
+                         description="Return the Status HTML for the resource"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="INTEGER"
+                             description="Integer which represents the state of the status"
+                             name="statusIndex"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="***DEPRECATED-J*** This service will be deleted in a future release. Returns if the Performance is configured for a resource."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="IsPerformanceConfigured">
+                        <ResultType
+                         baseType="BOOLEAN"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="JSON"
+                             description="Javascript object which contains the configuration of the resource"
+                             name="row"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="***DEPRECATED-J*** This service will be deleted in a future release. Returns if the Quality is configured for a resource."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="IsQualityConfigured">
+                        <ResultType
+                         baseType="BOOLEAN"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="JSON"
+                             description="Javascript object which contains the resource"
+                             name="row"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="***DEPRECATED-J*** This service will be deleted in a future release. Returns if the Resource is configured."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="IsResourceConfigured">
+                        <ResultType
+                         baseType="BOOLEAN"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="JSON"
+                             description="Javascript object which contains the resource"
+                             name="row"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="This is a service used to toggle between two InfoTable base on the current state (ADD, EDIT, REMOVE) of the Additional Properties. If it is in EDIT state it will take 'editingTable' else it will use the 'lastSelectedTable'."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="SelectEditOrRememberLastTable">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                         baseType="INFOTABLE"
+                         description="Depending on the state it will return a different InfoTable. If it is EDIT state, then it will return 'editingTable' else return 'lastSelectedTable'."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="State of the Additional Properties (ADD, EDIT, REMOVE)."
+                             name="currentState"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="InfoTable containing the Server Node that you wish to pre-select in the PTC.Factory.CommonTagPicker.KepServer Mashup in EDIT state."
+                             name="editingTable"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="InfoTable containing the Server Node that you wish to pre-select in the PTC.Factory.CommonTagPicker.KepServer Mashup in ADD or REMOVE state."
+                             name="lastSelectedTable"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="This service is used to control most of the UX behavior for the Additional Properties base on its PropertyType (Bound or Static) and its current state (ADD, EDIT, REMOVE)."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="SetAdditionalPropertiesMashupController">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.ManufacturingElementPropertyDetailsDatashape"
+                         baseType="INFOTABLE"
+                         description="Single row InfoTable where each field represent an element inside the Additional Properties that should be controlled."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Current property type of the property inside the Additional Properties (Bound | Static)."
+                             name="CurrentPropertyType"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Current state of the Additional Properties (ADD, EDIT, REMOVE)."
+                             name="CurrentState"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="Any row selected in the advanced grid displaying the additional properties."
+                             name="IsAnyRowSelectedInGrid"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="boolean input to deterimine if we should preserve selection in the session. In the case of EDIT state, it shouldn't remember the selection."
+                             name="isEquipmentSelectionPreserved"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="Boolean indicating if there are multiple properties selected in the advance grid displaying the list of properties."
+                             name="IsMultiRowSelectedInGrid"
+                             ordinal="4"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="This service is to Update the network info with the fields respective to it"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="UpdateNetworkInfo">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.EquipmentStatusTreeDataShape"
+                         baseType="INFOTABLE"
+                         description="Returns the InfoTable of the context name"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.Factory.EquipmentStatusTreeDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Infotable containing tree structure with updated info of each equipment in the network."
+                             name="Network"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ClearEquipmentHistory">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var kpiManager = Things[Things["PTC.Factory.LaunchPointConfigurationThing"].GetKPIManagerThingName()];
+                                        result = kpiManager.ClearEquipmentHistory({equipment: equipment});
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="CreateSelectedServerStructureNodeRow">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var tagArray = tagName.split(":");
+                                        var serverName = tagArray[0];
+                                        var pathWithTagName = tagArray[1];
+                                        var pathDelimiter = "."; // default path delimiter
+                                        
+                                        var params = {
+                                            connectionType: this.connectionType /* STRING */
+                                        };
+                                        // Remote connection resource provider THINGNAME
+                                        var resourceProviderName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionResourceProviderName(params);
+                                        
+                                        if (resourceProviderName) {
+                                            var thing = Things[resourceProviderName];
+                                            if (thing) {
+                                                var params = {
+                                                    propertyName: "pathDelimiter" /* STRING */
+                                                };
+                                                var thingPathDelimiter = thing.GetStringPropertyValue(params);
+                                                if (thingPathDelimiter) {
+                                                    pathDelimiter = thingPathDelimiter;
+                                                }
+                                            }
+                                        }
+                                        
+                                        var pathArray = pathWithTagName.split(pathDelimiter);
+                                        var fullPath = serverName; //default selection to root node
+                                        var parent = "";
+                                        
+                                        if (pathArray && pathArray.length > 1) {
+                                        
+                                            // remove the tag name and keep the full path
+                                            var tagName = pathArray[pathArray.length-1];
+                                            fullPath = pathWithTagName.replace(new RegExp("\\"+pathDelimiter+tagName+"$"),"");
+                                            var child = pathArray[pathArray.length-2];
+                                            parent = fullPath.replace(new RegExp("\\"+pathDelimiter+child+"$"),"");
+                                        }
+                                        
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.ServerStructureDataShape"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.ServerStructureDataShape)
+                                        var table = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        var row = new Object();
+                                        row.FullPath = fullPath;
+                                        row.Parent = parent;
+                                        table.AddRow(row);
+                                        
+                                        var params = {
+                                        	infoTableName : "InfoTable",
+                                        	dataShapeName : "PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.LastEquipmentSelectionDataShape)
+                                        var outputTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        // PTC.SCA.SCO.LastEquipmentSelectionDataShape entry object
+                                        var newRow = new Object();
+                                        newRow.LastSelectedServerNode = table; // INFOTABLE
+                                        newRow.EquipmentName = serverName; // STRING
+                                        newRow.EquipmentType = this.connectionType; // STRING - isPrimaryKey = true
+                                        
+                                        outputTable.AddRow(newRow);
+                                        
+                                        result = outputTable;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="CreateSelectedTagRow">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        result = null;
+                                        
+                                        var fullTagName = (selectedTagProperty && selectedTagProperty.getRowCount() > 0)?selectedTagProperty.getRow(0).tagName:null;
+                                        
+                                        if(fullTagName) {
+                                            var pathDelimiter = "."; // default path delimiter
+                                        
+                                            var params = {
+                                                connectionType: this.connectionType /* STRING */
+                                            };
+                                            // Remote connection resource provider THINGNAME
+                                            var resourceProviderName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionResourceProviderName(params);
+                                        
+                                            if (resourceProviderName) {
+                                                var thing = Things[resourceProviderName];
+                                        
+                                                if (thing) {
+                                                    var params = {
+                                                        propertyName: "pathDelimiter" /* STRING */
+                                                    };
+                                                    var thingPathDelimiter = thing.GetStringPropertyValue(params);
+                                                    if (thingPathDelimiter) {
+                                                        pathDelimiter = thingPathDelimiter;
+                                                    }
+                                                }
+                                            }
+                                        
+                                            var pathArray = fullTagName.split(":");
+                                            var fullPathWithTagName = pathArray[1].split(pathDelimiter);
+                                            var tagName = fullPathWithTagName[fullPathWithTagName.length-1];
+                                        
+                                            var params = {
+                                                infoTableName : "InfoTable",
+                                                dataShapeName : "PTC.SCA.SCO.ServerTagDataShape"
+                                            };
+                                        
+                                            // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.ServerTagDataShape)
+                                            var it = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                            // PTC.SCA.SCO.ServerTagDataShape entry object
+                                            var row = new Object();
+                                            row.tagName = tagName; // STRING
+                                            it.AddRow(row);
+                                            result = it;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GenerateSourceFilterByState">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        result = null;
+                                        
+                                        if(this.serverName && this.extraProperties && this.extraProperties.getRow(0) != null && this.extraProperties.getRow(0) != "") {
+                                            var tableLength = extraProperties.rows.length;
+                                            var sourceFilterBuilder = "";
+                                            var prefix = "";
+                                        
+                                            for (var x = 0; x < tableLength; x++) {
+                                                var row = extraProperties.rows[x];
+                                                var sourceValue = (row)?row.tagName:null;
+                                                if(sourceValue && sourceValue.lastIndexOf(this.serverName, 0) === 0) {
+                                                    if(this.currentState == "EDIT" && sourceValue == this.tagNameToExclude) {
+                                                        continue;
+                                                    }
+                                        
+                                                    sourceFilterBuilder += prefix;
+                                                    prefix = ";";
+                                                    var effectiveSourceValue = sourceValue.replace(this.serverName + ":", "");
+                                        
+                                                    var remotePath;
+                                                    try {
+                                                        remotePath = Things[this.serverName].GetStringPropertyValue({
+                                                            propertyName: "remoteServerPath" /* STRING */
+                                                        });
+                                                    } catch (err) {
+                                                        remotePath = "";
+                                                    }
+                                        
+                                                    // testing in case we are facing an aggregated path
+                                                    if(remotePath && remotePath.length > 0) {
+                                                        var pathDelimiter = "."; /* default path delimiter */
+                                        
+                                                        var params = {
+                                                            connectionType: row.connectionType /* STRING */
+                                                        };
+                                                        // Remote connection resource provider THINGNAME
+                                                        var resourceProviderName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionResourceProviderName(params);
+                                        
+                                                        if (resourceProviderName) {
+                                                            var thing = Things[resourceProviderName];
+                                                            if (thing) {
+                                                                var thingPathDelimiter = thing.GetStringPropertyValue({
+                                                                    propertyName: "pathDelimiter" /* STRING */
+                                                                });
+                                        
+                                                                if (thingPathDelimiter) {
+                                                                    pathDelimiter = thingPathDelimiter;
+                                                                }
+                                                            }
+                                                        }
+                                                        effectiveSourceValue = remotePath + pathDelimiter + effectiveSourceValue;
+                                                    }
+                                                    sourceFilterBuilder += effectiveSourceValue;
+                                                }
+                                            }
+                                            result = sourceFilterBuilder;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetAvailabilityHTML">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var availabilityMin = availabilityObject.availability_MinThreshold;
+                                        var availabilityMax = availabilityObject.availability_MaxThreshold;
+                                        
+                                        // result: BOOLEAN
+                                        var isResourceConfigured =  me.IsResourceConfigured({
+                                        	row: availabilityObject /* JSON */
+                                        });
+                                        
+                                        if (!isResourceConfigured) {
+                                        	availability = -1;
+                                        }
+                                        var result =  Things["PTC.Factory.IconTooltipURLUtils"].GetCircleWithTextHTMLString({
+                                        	MinLimit: String(availabilityMin) /* STRING */,
+                                        	Value: String(availability) /* STRING */,
+                                        	MaxLimit: String(availabilityMax) /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetDefaultNestedMashupFromMenu">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (nestedMashup) {
+                                            result = nestedMashup;
+                                        } else {
+                                            var menuItems =  Menus[menuName].GetEffectiveMenu();
+                                            var menuLength = menuItems.rows.length;
+                                            // Menu entries start from the second
+                                            for (var x=1; x < menuLength; x++) {
+                                                var row = menuItems.rows[x];
+                                                if (x == 1) {
+                                                    result = row.linkDestination;
+                                                }
+                                                if (row.isDefault) {
+                                                    result = row.linkDestination;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentConfigurationMenuName">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // dataShape: "PTC.SCA.SCO.EquipmentTypeSettingsDataShape"
+                                        var equipmentSettingRow =  Things["PTC.Factory.LaunchPointConfigurationThing"].GetEquipmentTypeSettingRowByThingTemplate({
+                                        	thingTemplate: Things[thingName].thingTemplate /* STRING */
+                                        });
+                                        result = equipmentSettingRow.ConfigurationMenu;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetKPIParameterValues">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var equipment = Things[id];
+                                        
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.Factory.KPIsDataShape"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.Factory.KPIsDataShape)
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        if(equipment!=null){
+                                            var newEntry = new Object();
+                                            newEntry.goodCountExpressionValue = getValueAndUnit(id,"goodCount",equipment.EXP_E_goodCount,"PTC.Factory.NotConfiguredStatus","PTC.SCA.SCO.KPIValueAndUnitSingle","PTC.SCA.SCO.KPIValueAndUnitMultiple");
+                                            newEntry.totalCountExpressionValue = getValueAndUnit(id,"totalCount",equipment.EXP_E_totalCount,"PTC.Factory.NotConfiguredStatus","PTC.SCA.SCO.KPIValueAndUnitSingle","PTC.SCA.SCO.KPIValueAndUnitMultiple");
+                                            newEntry.idealRunRateExpressionValue = getValueAndUnit(id,"idealRunRate",equipment.EXP_E_idealRunRate,"PTC.Factory.NotConfiguredStatus","PTC.SCA.SCO.KPIValueAndUnitPerMinuteSingle","PTC.SCA.SCO.KPIValueAndUnitPerMinuteMultiple");
+                                            result.AddRow(newEntry);
+                                        }
+                                        
+                                        
+                                        function localizeLabel(token) {
+                                            return Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({
+                                                token:token}
+                                                                      );
+                                        }
+                                        
+                                        function getValueAndUnit(id,propertyName,expression,notConfiguredToken,singleValueDisplayToken,multipleValueDisplayToken){
+                                        
+                                            var valueAndUnitString = "";
+                                        
+                                            if(expression==null || expression.length == 0){
+                                                valueAndUnitString = localizeLabel(notConfiguredToken);
+                                            }
+                                            else{
+                                                var params = {
+                                                    propertyName: propertyName /* STRING */,
+                                                    id: id /* STRING */
+                                                };
+                                        
+                                                // result: NUMBER
+                                                var value = Things["PTC.Factory.StatusExpressionUtils"].GetKPIParameterValue(params);
+                                        
+                                                if(value == null){
+                                                    valueAndUnitString = localizeLabel("PTC.SCA.SCO.InvalidExpression");
+                                                }
+                                                else if(value>=-1 && value<=1 && value!=0){
+                                                    var params = {
+                                                        label: singleValueDisplayToken /* TEXT */,
+                                                        value: value /* STRING */
+                                                    };
+                                        
+                                                    // result: STRING
+                                                    valueAndUnitString = Resources["PTC.Resource.Factory.MessageFormatUtilities"].GetLocalizedMessageOneParam(params);
+                                                }
+                                                else{
+                                                    var params = {
+                                                        label: multipleValueDisplayToken /* TEXT */,
+                                                        value: value /* STRING */
+                                                    };
+                                        
+                                                    // result: STRING
+                                                    valueAndUnitString = Resources["PTC.Resource.Factory.MessageFormatUtilities"].GetLocalizedMessageOneParam(params);
+                                                }
+                                            }
+                                        
+                                            return valueAndUnitString;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetPerformanceHTML">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var performanceMin = performanceObject.performance_MinThreshold;
+                                        var performanceMax = performanceObject.performance_MaxThreshold;
+                                        
+                                        // result: BOOLEAN
+                                        var isPerformanceConfigured =  me.IsPerformanceConfigured({
+                                        	row: performanceObject /* JSON */
+                                        });
+                                        
+                                        // result: BOOLEAN
+                                        var isResourceConfigured =  me.IsResourceConfigured({
+                                        	row: performanceObject /* JSON */
+                                        });
+                                        
+                                        if ((!isPerformanceConfigured || !isResourceConfigured) && !isCustomized) {
+                                        	performance = -1;
+                                        }
+                                        var result =  Things["PTC.Factory.IconTooltipURLUtils"].GetCircleWithTextHTMLString({
+                                        	MinLimit: String(performanceMin) /* STRING */,
+                                        	Value: String(performance) /* STRING */,
+                                        	MaxLimit: String(performanceMax) /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetQualityHTML">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var qualityMin = qualityObject.quality_MinThreshold;
+                                        var qualityMax = qualityObject.quality_MaxThreshold;
+                                        
+                                        // result: BOOLEAN
+                                        var isQualityConfigured =  me.IsQualityConfigured({
+                                        	row: qualityObject /* JSON */
+                                        });
+                                        // result: BOOLEAN
+                                        var isResourceConfigured =  me.IsResourceConfigured({
+                                        	row: qualityObject /* JSON */
+                                        });
+                                           if ((!isQualityConfigured || !isResourceConfigured) && !isCustomized) {
+                                        	quality = -1;
+                                        }
+                                        
+                                        var result = Things["PTC.Factory.IconTooltipURLUtils"].GetCircleWithTextHTMLString({
+                                            MinLimit: String(qualityMin) /* STRING */,
+                                            Value: String(quality) /* STRING */,
+                                            MaxLimit: String(qualityMax) /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetSelectedRows">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({dataShapeName:"PTC.SCA.SCO.EquipmentListDataShape"});
+                                        if (Rows) {
+                                            var tableLength = Rows.rows.length;
+                                            for (var x=0; x < tableLength; x++) {
+                                                var row = Rows.rows[x];
+                                                if (row.RowSelected) {
+                                                    result.AddRow(row);
+                                                }
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetStatusHTML">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = Things["PTC.SCA.SCO.UIProvider"].GetStatusIconHTML({
+                                            statusIndex: statusIndex /* INTEGER */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="IsPerformanceConfigured">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var isRunRateConfigured = row.EXP_E_idealRunRate;
+                                        var isTotalCountConfigured = row.EXP_E_totalCount;
+                                        var isTagConfigured = row.EXP_E_performanceTag;
+                                        var result = isTotalCountConfigured && isRunRateConfigured || isTagConfigured;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="IsQualityConfigured">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var isGoodCountConfigured = row.EXP_E_goodCount;
+                                        var isTotalCountConfigured = row.EXP_E_totalCount;
+                                        var isTagConfigured = row.EXP_E_qualityTag;
+                                        var result = isGoodCountConfigured && isTotalCountConfigured || isTagConfigured;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="IsResourceConfigured">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // 0 means not configured
+                                           var result = row.statusIndex != null && row.statusIndex > 0;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="SelectEditOrRememberLastTable">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (currentState == "EDIT") {
+                                            result = editingTable;
+                                        }
+                                        else {
+                                            result = lastSelectedTable;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="SetAdditionalPropertiesMashupController">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        CurrentState = (CurrentState && CurrentState.length > 0) ? CurrentState: "DEFAULT";
+                                        
+                                        // PTC.Factory.ManufacturingElementPropertyDetailsDatashape entry object
+                                        var newEntry = new Object();
+                                        
+                                        switch (CurrentState) {
+                                            case "ADD":
+                                                newEntry.txtStaticPropertyTypeDisable_Visible = false; // BOOLEAN
+                                                newEntry.dropdownStaticPropertyType_Visible = true; // BOOLEAN
+                                                newEntry.setToSingleSelect = false; // BOOLEAN
+                                                newEntry.btnEdit_Visible = false; // BOOLEAN
+                                                newEntry.btnRemove_Visible = false; // BOOLEAN
+                                                newEntry.radioProperty_Visible = true; // BOOLEAN
+                                                newEntry.btnAdd_Visible = true; // BOOLEAN
+                                                newEntry.isEquipmentSelectionPreserved = this.isEquipmentSelectionPreserved; // BOOLEAN
+                                                newEntry.shouldDisablePreserveSelection = !this.isEquipmentSelectionPreserved; // BOOLEAN
+                                                break;
+                                            case "EDIT":
+                                                newEntry.txtStaticPropertyTypeDisable_Visible = true; // BOOLEAN
+                                                newEntry.dropdownStaticPropertyType_Visible = false; // BOOLEAN
+                                                newEntry.setToSingleSelect = true; // BOOLEAN
+                                                newEntry.btnEdit_Visible = true; // BOOLEAN
+                                                newEntry.btnRemove_Visible = false; // BOOLEAN
+                                                newEntry.radioProperty_Visible = false; // BOOLEAN
+                                                newEntry.btnAdd_Visible = false; // BOOLEAN
+                                                newEntry.isEquipmentSelectionPreserved = true; // BOOLEAN
+                                                newEntry.shouldDisablePreserveSelection = true; // BOOLEAN
+                                                break;
+                                            case "REMOVE":
+                                                newEntry.txtStaticPropertyTypeDisable_Visible = false; // BOOLEAN
+                                                newEntry.dropdownStaticPropertyType_Visible = false; // BOOLEAN
+                                                newEntry.setToSingleSelect = false; // BOOLEAN
+                                                newEntry.btnEdit_Visible = false; // BOOLEAN
+                                                newEntry.btnRemove_Visible = true; // BOOLEAN
+                                                newEntry.radioProperty_Visible = true; // BOOLEAN
+                                                newEntry.btnAdd_Visible = false; // BOOLEAN
+                                                newEntry.isEquipmentSelectionPreserved = this.isEquipmentSelectionPreserved; // BOOLEAN
+                                                newEntry.shouldDisablePreserveSelection = true; // BOOLEAN
+                                                break;
+                                            default:
+                                                var rowSelected = (IsAnyRowSelectedInGrid)?IsAnyRowSelectedInGrid:false;
+                                                var multiRowSelected = (IsMultiRowSelectedInGrid)?IsMultiRowSelectedInGrid:false;
+                                        
+                                                newEntry.txtStaticPropertyTypeDisable_Visible = false; // BOOLEAN
+                                                newEntry.dropdownStaticPropertyType_Visible = true; // BOOLEAN
+                                                newEntry.setToSingleSelect = false; // BOOLEAN
+                                                newEntry.btnEdit_Visible = rowSelected && !multiRowSelected; // BOOLEAN
+                                                newEntry.btnRemove_Visible = rowSelected; // BOOLEAN
+                                                newEntry.radioProperty_Visible = true; // BOOLEAN
+                                                newEntry.btnAdd_Visible = true; // BOOLEAN
+                                                newEntry.isEquipmentSelectionPreserved = this.isEquipmentSelectionPreserved; // BOOLEAN
+                                                newEntry.shouldDisablePreserveSelection = true; // BOOLEAN
+                                                break;
+                                        }
+                                        
+                                        var params = {
+                                            infoTableName: "InfoTable",
+                                            dataShapeName: "PTC.Factory.ManufacturingElementPropertyDetailsDatashape"
+                                        };
+                                        
+                                        var table = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        table.AddRow(newEntry);
+                                        
+                                        var result = table;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="UpdateNetworkInfo">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // result: INFOTABLE dataShape: ""
+                                        var statuses =  Things["PTC.Factory.StatusExpressionResourceProvider"].Get({
+                                            query: undefined /* QUERY */,
+                                            extraParams: undefined /* JSON */,
+                                            dataShapeName: "PTC.Factory.PlantStatusTreeDataShape" /* DATASHAPENAME */,
+                                            dataShape: undefined /* INFOTABLE */
+                                        });
+                                        
+                                        var infoTableIndex = function(infoTable, fieldName) {
+                                            var tableLength = infoTable.rows.length;
+                                        
+                                            var params = {
+                                                infoTableName: "infoTableIndex", /* STRING */
+                                                dataShapeName: "PTC.Factory.StringJSONKeyValuePair" /* STRING */
+                                            };
+                                        
+                                            // result: INFOTABLE
+                                            var tableIndex = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                            for (var x=0; x < tableLength; x++) {
+                                                var row = infoTable.getRow(x);
+                                        
+                                                //create infotable of key value and add row
+                                                var newRow = new Object();
+                                                if(row) {
+                                                    newRow.key = row[fieldName];
+                                                    newRow.value = row;
+                                                    tableIndex.AddRow(newRow);
+                                                }
+                                            }
+                                            return tableIndex;
+                                        };
+                                        
+                                        var thingBaseProperties = function(nodeId) {
+                                            var filter =
+                                                {	filters: {
+                                                        type: "LIKE",
+                                                        fieldName: "Id",
+                                                        value: nodeId
+                                                }};
+                                            var result = Things["PTC.Factory.StatusExpressionResourceProvider"].Get({
+                                                query: filter /* QUERY */,
+                                                extraParams: undefined /* JSON */,
+                                                dataShapeName: "PTC.Factory.PlantStatusTreeDataShape" /* DATASHAPENAME */,
+                                                dataShape: undefined /* INFOTABLE */
+                                            });
+                                            return result.getRow(0);
+                                        };
+                                        
+                                        var findValues = function(tableRowIndex, nodeId) {
+                                            //find the value to return the key value pair for the key = nodeId and value will be the object
+                                            var tableLength = tableRowIndex.rows.length;
+                                            for (var x=0;x < tableLength;x++) {
+                                                var row = tableRowIndex.rows[x];
+                                                if (row.key === nodeId) {
+                                                    return row.value;
+                                                }
+                                            }
+                                        };
+                                        
+                                        var infoTableRowIndex = null;
+                                        if (statuses !== null && statuses.rows.length > 0) {
+                                            infoTableRowIndex = infoTableIndex(statuses, "Id");
+                                        }
+                                        
+                                        var tableLength = Network.rows.length;
+                                        for (var i=0; i < tableLength; i++) {
+                                            var row = Network.rows[i];
+                                            var nodeId = row.Id;
+                                        
+                                            var url = Things["PTC.SCA.SCO.UIProvider"].GetURLForEquipmentAndConfiguration({
+                                                nodeId: nodeId /* STRING */
+                                            });
+                                        
+                                            if (row.displayName === null || row.displayName === undefined) {
+                                                row.displayName = Things[nodeId].displayName;
+                                                if (row.displayName === null || row.displayName === undefined || row.displayName === "") {
+                                                  row.displayName = Things[nodeId].name;
+                                                }
+                                            }
+                                        
+                                            var params = {
+                                                linkURL: url /* STRING */ ,
+                                                tooltip: row.displayName /* STRING */ ,
+                                                linkText: row.displayName /* STRING */
+                                            };
+                                        
+                                            // result: STRING
+                                            row.displayNameHTML = Resources["PTC.Factory.CommonUtilities"].GetTextHtmlLink(params);
+                                        
+                                            if (!row.description) {
+                                                var description = Things[nodeId].description;
+                                                row.description = description;
+                                            }
+                                        
+                                            var nodeThingBaseProperties = null;
+                                            if (statuses === null || statuses.rows.length === 0) {
+                                                nodeThingBaseProperties = thingBaseProperties(nodeId);
+                                            } else {
+                                                nodeThingBaseProperties = findValues(infoTableRowIndex, nodeId);
+                                            }
+                                        
+                                            //Side note: there used to be a vc.putAll in the java which adds the nodeThingBaseProperties to the valuecollection
+                                            //This may only happen when the statuses is null
+                                            //vc.putAll(nodeThingBaseProperties);
+                                            //row = nodeThingBaseProperties;
+                                        
+                                            if (  Resources["PTC.Factory.CommonUtilities"].IsThingEnabledAndRunning({thingName: nodeId }) )
+                                            {
+                                                var isKpiShapeImplemented =  Things[nodeId].ImplementsShape({
+                                                    thingShapeName: "PTC.SCA.SCO.KPIElementThingShape" /* THINGSHAPENAME */
+                                                });
+                                        
+                                                var isStatusShapeImplemented =  Things[nodeId].ImplementsShape({
+                                                    thingShapeName: "PTC.SCA.SCO.StatusThingShape" /* THINGSHAPENAME */
+                                                });
+                                        
+                                                if (isKpiShapeImplemented) {
+                                                    var manager = Things[nodeId].GetKPIManager();
+                                                    row.DefinedKPIs =  Things[manager].GetNumberOfKPIsConfigured({
+                                                        ownerName: nodeId /* THINGNAME */
+                                                    });
+                                                }
+                                        
+                                                if (isStatusShapeImplemented) {
+                                                        row.DefinedStatus = Things[nodeId].IsConfigured() ? "PTC.SCA.SCO.CheckMarkIcon" : "";
+                                                        row.HasDefinedStatus = row.statusIndex > 0 ? true : false;
+                                                }
+                                        
+                                                //logic to retrieve all the alerts on the thing itself
+                                        
+                                                var alertCount =  Resources["PTC.Factory.AlertMonitorUtilities"].GetAlertCount({
+                                                    thingName: nodeId /* STRING */
+                                                });
+                                        
+                                                row.DefinedAlerts = parseInt(alertCount);
+                                            }
+                                        }
+                                        var result = Network;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:ManageElements"
+                     type="OrganizationalUnit"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:PlantStatus"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

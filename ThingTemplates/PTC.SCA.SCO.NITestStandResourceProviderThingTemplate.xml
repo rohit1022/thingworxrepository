@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isSystemObject="false"
+         baseThingTemplate="GenericThing"
+         description="Thing template for NITestStand Resource Provider"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:47.793+05:30"
+         name="PTC.SCA.SCO.NITestStandResourceProviderThingTemplate"
+         projectName="PTC.SCA.SCO.NITestStand"
+         tags="PTC:sca-sco-niteststand;PTC:sca-sco"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions></ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="CalculateIsConnectionHealthy">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*
+                                        * For NITestStand servers, isConnectionHealthy is true when its Utilization is "True", and false when 
+                                        * Utilization is "False" or has no value
+                                        */
+                                        var serverThing = Things[serverName];
+                                        if (!serverThing) {
+                                            throw "server thing [" + serverName + "] does not exist.";
+                                        }
+                                        
+                                        serverThing.isConnectionHealthy = (serverThing.Utilization == "True");
+                                        result = serverThing.isConnectionHealthy;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetServerTags">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // this.filter not used because it is not needed
+                                        // this.subscribedTags not used because there is no remote binding
+                                        // this.path not used becaused we are only dealing with root
+                                                                                
+                                        var params = {
+                                           	infoTableName: "GetServerTags" /* STRING */,
+                                           	dataShapeName: "PTC.SCA.SCO.ServerTagDataShape" /* DATASHAPENAME */
+                                        };
+                                                                                
+                                        // result: INFOTABLE
+                                        var table = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                                                                
+                                        var thing = Things[this.serverName];
+                                                                                
+                                        if (thing != null ) {
+                                                                                
+                                            // Get all properties
+                                            var params = {
+                                                category: undefined /* STRING */,
+                                                type: undefined /* BASETYPENAME */,
+                                                dataShape: undefined /* DATASHAPENAME */
+                                            };
+                                                                                
+                                            // result: INFOTABLE dataShape: PropertyDefinition
+                                            var properties = thing.GetPropertyDefinitions(params);
+                                            var tableLength = properties.rows.length;
+                                            var filter = {
+                                                name: "name",
+                                                description: "description",
+                                                tags: "tags",
+                                                thingTemplate: "thingTemplate",
+                                            };
+                                                                                
+                                            for (var x = 0; x < tableLength; x++) {
+                                                var property = properties.rows[x];
+                                        
+                                                if (!filter[property.name]) {
+                                                    // PTC.SCA.SCO.ServerTagDataShape entry object
+                                                    var newEntry = new Object();
+                                                    newEntry.isSubscribed = false; // BOOLEAN
+                                                    newEntry.isReadOnly = property.isReadOnly; // STRING
+                                                    newEntry.BaseType = property.baseType; // STRING
+                                                    newEntry.SourceType = property.baseType; // STRING datatype from NI TestStand
+                                                    newEntry.tagName = property.name; // STRING
+                                                    newEntry.Source = property.name; // STRING path to NI TestStand api probably
+                                                    newEntry.Name = property.name; // STRING
+                                                                                
+                                                    table.AddRow(newEntry);
+                                                }
+                                            }
+                                        }
+                                        
+                                        var result = table;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetServerTreeStructure">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.ServerStructureDataShape"
+                                        };
+                                                                                
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.ServerStructureDataShape)
+                                        var table = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                                                                
+                                        // NOTE: NI TestStand currently has a flat object model and does not have a tree structure. It will only display a root node. TBD next release.
+                                        // PTC.SCA.SCO.ServerStructureDataShape entry object
+                                        var row = new Object();
+                                        row.HasChildren = false; // BOOLEAN
+                                        row.DisplayName = this.serverName; // STRING
+                                        row.FullPath = this.serverName; // STRING - isPrimaryKey = true
+                                        row.Name = this.serverName; // STRING
+                                                                                
+                                        table.AddRow(row);
+                                                                                
+                                        var result = table;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.RemoteConnectionResourceProviderThingShape"
+                 type="ThingShape"></ImplementedShape>
+            </ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         className=""
+         description="ThingShape with services for handling UI interactions with ThingView widget {PTC.SCA.SCO.ThingViewUtilsThingShape}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.056+05:30"
+         name="PTC.SCA.SCO.ThingViewUtilsThingShape"
+         projectName=""
+         tags="PTC:OA">
+            <PropertyDefinitions></PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Finds the rows in materials list table corresponding to the selected parts and materials in the ThingView widget."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ConvertSelectedPartsToSelectedRows">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.MaterialsListEntry"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.OccurrencePathListEntry"
+                         baseType="INFOTABLE"
+                         description="The table showing mapping between WorkDefinitionMaterialSpecificationUID and corresponding path ids stored in database"
+                         name="PartsToPathsMapping"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.MaterialsListEntry"
+                         baseType="INFOTABLE"
+                         description="The list of all selected parts in ThingView widget"
+                         name="SelectedParts"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Finds the parts and materials in ThingView widget corresponding to the selected rows in materials list table."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ConvertSelectedRowsToSelectedParts">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.MaterialsListEntry"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.OccurrencePathListEntry"
+                         baseType="INFOTABLE"
+                         description="The table showing mapping between WorkDefinitionMaterialSpecificationUID and corresponding path ids stored in database"
+                         name="PartsToPathsMapping"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.MaterialsListEntry"
+                         baseType="INFOTABLE"
+                         description="The list of all selected rows in the materials list table."
+                         name="SelectedRows"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Given a WorkDefinitionUID, return a list of parts and materials associated with that step."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetMaterialsList">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.MaterialsListEntry"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="WorkDefinitionUID"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Given a WorkDefinitionUID, returns a mapping of parts and materials to their corresponding occurrence paths.  Supports cross-highlighting."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetOccurrencePathsList">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.OccurrencePathListEntry"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="WorkDefinitionUID"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ConvertSelectedPartsToSelectedRows">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var tableParams = {
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : "PTC.SCA.SCO.MaterialsListEntry"
+                                    };
+                                    
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(tableParams);
+                                    
+                                    
+                                    if (SelectedParts != null && SelectedParts.length != 0){
+                                        let filterConditions=[];
+                                    
+                                        for(let i = 0; i < SelectedParts.length; i++){
+                                            var idPath = SelectedParts.rows[i].idPath;
+                                            // strip extra context information if it exists
+                                    		var filteredPathMatch = idPath.match(/(.*:\d+)(?!.*:\d)(.*)/);
+                                    
+                                            var filteredPath;
+                                            if(filteredPathMatch){
+                                                filteredPath = filteredPathMatch[1];
+                                            	filterQuery = {"type":"LIKE","fieldName":"OccurrencePath","value":filteredPath + "%"};
+                                            }
+                                            else {
+                                                filterQuery = {"type":"LIKE","fieldName":"OccurrencePath","value":idPath + "%"};
+                                            }
+                                    
+                                            filterConditions.push(filterQuery);
+                                        }
+                                        var queryToInfoTable={"filters":{"type":"Or","filters":filterConditions}};
+                                        var params={
+                                            t:PartsToPathsMapping,
+                                            query:queryToInfoTable
+                                        };
+                                    
+                                        var queryResult=Resources["InfoTableFunctions"].Query(params);
+                                    
+                                        for(let i = 0; i < queryResult.length; i++) {
+                                            let newEntry = new Object();
+                                            newEntry.WorkDefinitionMaterialSpecificationUID = queryResult[i].WorkDefinitionMaterialSpecificationUID;
+                                            result.AddRow(newEntry);
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ConvertSelectedRowsToSelectedParts">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var tableParams = {
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : "PTC.SCA.SCO.MaterialsListEntry"
+                                    };
+                                    
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(tableParams);
+                                    
+                                    if (SelectedRows != null && SelectedRows.length != 0){
+                                            let filterConditions=[];
+                                    
+                                            for(let i = 0; i<SelectedRows.length; i++){
+                                                let filterQuery={"type":"EQ","fieldName":"WorkDefinitionMaterialSpecificationUID","value":SelectedRows[i].WorkDefinitionMaterialSpecificationUID};
+                                                filterConditions.push(filterQuery);
+                                            }
+                                            var queryToInfoTable={"filters":{"type":"Or","filters":filterConditions}};
+                                            var params={
+                                                t:PartsToPathsMapping,
+                                                query:queryToInfoTable
+                                             };
+                                            var queryResult=Resources["InfoTableFunctions"].Query(params);
+                                    
+                                            for(let i = 0; i < queryResult.length; i++) {
+                                                let newEntry = new Object();
+                                                newEntry.idPath = queryResult[i].OccurrencePath;
+                                                result.AddRow(newEntry);
+                                            }
+                                        }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetMaterialsList">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var productionOrderManagerName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetProductionOrderManagerThingName();
+                                    
+                                    var materialsList = Things[productionOrderManagerName].GetWorkDefinitionMaterialDefinitions({
+                                    	WorkDefinitionUID: WorkDefinitionUID
+                                    });
+                                    
+                                    var params = {
+                                    	infoTableName: "InfoTable",
+                                    	dataShapeName: "PTC.SCA.SCO.MaterialsListEntry"
+                                    };
+                                    
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    var tableLength = materialsList.rows.length;
+                                    for (var x = 0; x < tableLength; x++) {
+                                    	var row = materialsList.rows[x];
+                                    	var newEntry = new Object();
+                                    	if (row["MaterialDefinitionUID"] && row["MaterialDefinitionUID"] !== undefined) {
+                                    		newEntry.MaterialName = row["PTC_SCA_SCO_MaterialDefinition_Name"];
+                                    		newEntry.MaterialID = row["PTC_SCA_SCO_MaterialDefinition_ID"];
+                                    	}
+                                    	newEntry.Quantity = row["Quantity"];
+                                    	newEntry.WorkDefinitionMaterialSpecificationUID = row["UID"];
+                                    	result.AddRow(newEntry);
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetOccurrencePathsList">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var filter =
+                                    {
+                                      "select": [
+                                        {
+                                          "dataShapeName": "PTC.SCA.SCO.WorkDefinitionMaterialSpecification",
+                                          "fieldName": "OccurrencePath"
+                                        },
+                                        {
+                                          "dataShapeName": "PTC.SCA.SCO.WorkDefinitionMaterialSpecificationInstance",
+                                          "fieldName": "OccurrencePath"
+                                        },
+                                        {
+                                          "dataShapeName": "PTC.SCA.SCO.WorkDefinitionMaterialSpecification",
+                                          "fieldName": "UID"
+                                        }
+                                      ],
+                                      "joins": [
+                                        {
+                                          "type": "FULL",
+                                          "sourceDataShapeName": "PTC.SCA.SCO.WorkDefinitionMaterialSpecification",
+                                          "sourceFieldName": "UID",
+                                          "targetDataShapeName": "PTC.SCA.SCO.WorkDefinitionMaterialSpecificationInstance",
+                                          "targetFieldName": "WorkDefinitionMaterialSpecificationUID"
+                                        }
+                                      ]
+                                    };
+                                    
+                                    var params =
+                                    {
+                                      "dataShapeName": "PTC.SCA.SCO.WorkDefinitionMaterialSpecification",
+                                      "WorkDefinitionUID" : WorkDefinitionUID,
+                                      "Filter": filter
+                                    };
+                                    
+                                    var productionOrderManagerName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetProductionOrderManagerThingName();
+                                    
+                                    var occurrencePaths = Things[productionOrderManagerName].GetWorkDefinitionRelatedObjects(params);
+                                    
+                                    params =
+                                    {
+                                      "infoTableName": "InfoTable",
+                                      "dataShapeName": "PTC.SCA.SCO.OccurrencePathListEntry"
+                                    };
+                                    
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    var tableLength = occurrencePaths.rows.length;
+                                    for (var x = 0; x < tableLength; x++) {
+                                            var row = occurrencePaths.rows[x];
+                                            var newEntry = new Object();
+                                    
+                                            if (row["PTC_SCA_SCO_WorkDefinitionMaterialSpecificationInstance_OccurrencePath"] !== undefined) {
+                                                newEntry.OccurrencePath = row["PTC_SCA_SCO_WorkDefinitionMaterialSpecificationInstance_OccurrencePath"];
+                                                newEntry.WorkDefinitionMaterialSpecificationUID = row["UID"];
+                                                result.AddRow(newEntry);
+                                            } else if (row["OccurrencePath"] !== undefined){
+                                               newEntry.OccurrencePath = row["OccurrencePath"];
+                                               newEntry.WorkDefinitionMaterialSpecificationUID = row["UID"];
+                                               result.AddRow(newEntry);
+                                            }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Things>
+        <Thing
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         description="Services to upgrade equipment things"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         enabled="true"
+         homeMashup=""
+         identifier=""
+         lastModifiedDate="2020-03-19T18:17:39.539+05:30"
+         name="PTC.SCA.SCO.EquipmentUpgrade"
+         projectName="PTC.SCA.SCO.UpgradeUtility"
+         published="false"
+         tags="PTC:sca-sco-upgradeutility;PTC:factory-mv"
+         thingTemplate="GenericThing"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="RemoveDeprecatedShapes">
+                        <ResultType
+                         baseType="NOTHING"
+                         description="Remove shapes PTC.ISA95.SiteThingShape and PTC.ISA95.ProductionLineThingShape from equipment things"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="RemoveDeprecatedShapes">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // Remove shape PTC.ISA95.SiteThingShape
+                                        var params = {
+                                            thingShape: "PTC.ISA95.SiteThingShape" /* THINGSHAPENAME */,
+                                            maxItems: undefined /* NUMBER */,
+                                            nameMask: undefined /* STRING */,
+                                            query: undefined /* QUERY */,
+                                            tags: undefined /* TAGS */
+                                        };
+                                        
+                                        // result: INFOTABLE dataShape: RootEntityList
+                                        var result = Resources["SearchFunctions"].SearchThingsByShape(params);
+                                        
+                                        var tableLength = result.rows.length;
+                                        
+                                        for (var x = 0; x < tableLength; x++) {
+                                            var row = result.rows[x];
+                                            var params = {
+                                                name: row.name /* THINGNAME */,
+                                                thingShapeName: "PTC.ISA95.SiteThingShape" /* THINGSHAPENAME */
+                                            };
+                                        
+                                            // no return
+                                            Resources["EntityServices"].RemoveShapeFromThing(params);
+                                        }
+                                        
+                                        
+                                        params = {
+                                            thingShape: "PTC.ISA95.ProductionLineThingShape" /* THINGSHAPENAME */,
+                                            maxItems: undefined /* NUMBER */,
+                                            nameMask: undefined /* STRING */,
+                                            query: undefined /* QUERY */,
+                                            tags: undefined /* TAGS */
+                                        };
+                                        
+                                        // result: INFOTABLE dataShape: RootEntityList
+                                        result = Resources["SearchFunctions"].SearchThingsByShape(params);
+                                        
+                                        var tableLength = result.rows.length;
+                                        
+                                        for (var x = 0; x < tableLength; x++) {
+                                            var row = result.rows[x];
+                                            var params = {
+                                                name: row.name /* THINGNAME */,
+                                                thingShapeName: "PTC.ISA95.ProductionLineThingShape" /* THINGSHAPENAME */
+                                            };
+                                        
+                                            // no return
+                                            Resources["EntityServices"].RemoveShapeFromThing(params);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ImplementedShapes></ImplementedShapes>
+            <ThingProperties></ThingProperties>
+        </Thing>
+    </Things>
+</Entities>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b937"
+ build="b222"
  majorVersion="8"
- minorVersion="3"
- modelPersistenceProviderPackage="H2PersistenceProviderPackage"
- revision="3"
- schemaVersion="1030"
- universal="">
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
     <ThingShapes>
         <ThingShape
          aspect.isSystemObject="true"
@@ -15,7 +15,7 @@
          description="Value Stream shape"
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2018-12-03T14:53:13.644+05:30"
+         lastModifiedDate="2020-03-03T01:03:56.535+05:30"
          name="ValueStream"
          projectName=""
          tags="">
@@ -795,6 +795,21 @@
                          name="id"
                          ordinal="0"></FieldDefinition>
                     </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category="Maintenance"
+                 description="Purge all entries for a given entity"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="true"
+                 name="purgeAll">
+                    <ResultType
+                     baseType="NOTHING"
+                     description="result"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
                 </ServiceDefinition>
                 <ServiceDefinition
                  category="Maintenance"
@@ -1743,6 +1758,12 @@
                  description="Retrieve a specific Vec4 stream entry given a stream entry ID"
                  handlerName="Reflection"
                  name="GetVec4StreamEntry">
+                    <ConfigurationTables></ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description="Purge all entries for a given entity"
+                 handlerName="Reflection"
+                 name="purgeAll">
                     <ConfigurationTables></ConfigurationTables>
                 </ServiceImplementation>
                 <ServiceImplementation

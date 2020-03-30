@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isSystemObject="false"
+         baseThingTemplate="RemoteThing"
+         description="NI TestStand Thing must implement this ThingTemplate. Its base Thing Template is Remote Thing."
+         documentationContent=""
+         effectiveThingPackage="RemoteThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:47.800+05:30"
+         name="PTC.SCA.SCO.NITestStandThingTemplate"
+         projectName="PTC.SCA.SCO.NITestStand"
+         tags="PTC:sca-sco-niteststand;PTC:sca-sco;PTC:sca-common;PTC:NITestStand;PTC:ThingTemplate"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 description="Reporting Settings"
+                 isMultiRow="false"
+                 name="ReportingConfiguration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="NotReporting"
+                             aspect.isPrimaryKey="true"
+                             aspect.isReadOnly="false"
+                             aspect.thingTemplate="ReportingStrategy"
+                             baseType="THINGNAME"
+                             description="Strategy to determine health"
+                             name="reportingStrategy"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <reportingStrategy>
+                            <![CDATA[
+                            AlwaysOnReporting
+                            ]]>
+                            </reportingStrategy>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations>
+                <AlertDefinitions
+                 name="TestName"></AlertDefinitions>
+                <AlertDefinitions
+                 name="TestResult"></AlertDefinitions>
+                <AlertDefinitions
+                 name="Utilization"></AlertDefinitions>
+            </AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions>
+                    <PropertyDefinition
+                     aspect.cacheTime="0.0"
+                     aspect.dataChangeType="ALWAYS"
+                     aspect.isLogged="true"
+                     aspect.isPersistent="true"
+                     aspect.isReadOnly="false"
+                     baseType="STRING"
+                     category=""
+                     description="This is the test name defined from NI TestStand."
+                     isLocalOnly="false"
+                     name="TestName"
+                     ordinal="1"></PropertyDefinition>
+                    <PropertyDefinition
+                     aspect.cacheTime="0.0"
+                     aspect.dataChangeType="ALWAYS"
+                     aspect.isLogged="true"
+                     aspect.isPersistent="true"
+                     aspect.isReadOnly="false"
+                     baseType="STRING"
+                     category=""
+                     description="This is the test result associated to a test name defined from NI TestStand."
+                     isLocalOnly="false"
+                     name="TestResult"
+                     ordinal="2"></PropertyDefinition>
+                    <PropertyDefinition
+                     aspect.cacheTime="0.0"
+                     aspect.dataChangeType="ALWAYS"
+                     aspect.isLogged="true"
+                     aspect.isPersistent="true"
+                     aspect.isReadOnly="false"
+                     baseType="JSON"
+                     category=""
+                     description="A JSON object for storing the results sent from NI TestStand"
+                     isLocalOnly="false"
+                     name="TestStandJSONResult"
+                     ordinal="4"></PropertyDefinition>
+                    <PropertyDefinition
+                     aspect.cacheTime="0.0"
+                     aspect.dataChangeType="ALWAYS"
+                     aspect.isLogged="true"
+                     aspect.isPersistent="true"
+                     aspect.isReadOnly="false"
+                     baseType="STRING"
+                     category=""
+                     description="The Utilization property should show whether or not the test is ongoing. The information comes from NI TestStand."
+                     isLocalOnly="false"
+                     name="Utilization"
+                     ordinal="3"></PropertyDefinition>
+                </PropertyDefinitions>
+                <ServiceDefinitions></ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations></ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.RemoteConnectionThingShape"
+                 type="ThingShape"></ImplementedShape>
+            </ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read>
+                    <Principal
+                     isPermitted="true"
+                     name="Controls Engineer"
+                     type="Group"></Principal>
+                </Read>
+                <Update>
+                    <Principal
+                     isPermitted="true"
+                     name="Controls Engineer"
+                     type="Group"></Principal>
+                </Update>
+                <Delete>
+                    <Principal
+                     isPermitted="true"
+                     name="Controls Engineer"
+                     type="Group"></Principal>
+                </Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

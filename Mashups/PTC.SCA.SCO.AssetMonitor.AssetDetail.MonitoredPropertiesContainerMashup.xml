@@ -1,0 +1,1576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Monitored Properties Container: provides the layout for the monitored properties section {PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesContainerMashup}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:32.928+05:30"
+         name="PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesContainerMashup"
+         projectName="PTC.SCA.SCO.Asset Monitor"
+         rows="0.0"
+         tags="PTC:sca-sco-assetmonitor;PTC:sca-common;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:AssetPerformance"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="THINGNAME"
+                 description=""
+                 name="assetName"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController</Thing>
+            </Things>
+            <ThingShapes>
+                <ThingShape>PTC.SCA.SCO.AnomalyThingShape</ThingShape>
+            </ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "DynamicThingShapes_PTC.SCA.SCO.AnomalyThingShape" : {
+                  "DataName" : "DynamicThingShapes_PTC.SCA.SCO.AnomalyThingShape",
+                  "EntityName" : "PTC.SCA.SCO.AnomalyThingShape",
+                  "EntityType" : "DynamicThingShapes",
+                  "Id" : "e4962cf5-ed3f-4bd7-ae77-3ab48e555938",
+                  "Services" : [ ]
+                },
+                "Resources_CurrentSessionInfo" : {
+                  "DataName" : "Resources_CurrentSessionInfo",
+                  "EntityName" : "CurrentSessionInfo",
+                  "EntityType" : "Resources",
+                  "Id" : "2196e0a2-f3f2-4011-82b5-709832bd75c0",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "5b76ec01-8a87-4b6d-b0ea-b047a9a6cfb9",
+                    "Name" : "SetGlobalSessionNumberValue",
+                    "Parameters" : {
+                      "name" : "AssetDetailSensorPageNumber"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "SetGlobalSessionNumberValue"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "33140f9d-bffa-462f-8b0c-5db7aec1d976",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController" : {
+                  "DataName" : "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController",
+                  "EntityName" : "PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController",
+                  "EntityType" : "Things",
+                  "Id" : "55dc1e98-ff1a-44dd-83fe-870357d5ff70",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "49747b1c-0d09-4705-9a4c-309347cf54b0",
+                    "Name" : "GetSensorList",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetSensorList"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "56d82219-d6e7-440a-8968-602f43f20143",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "assetName",
+                  "SourcePropertyBaseType" : "THINGNAME",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "THINGNAME",
+                  "TargetPropertyType" : "Entity"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EntityName",
+                "TargetSection" : "DynamicThingShapes_PTC.SCA.SCO.AnomalyThingShape"
+              }, {
+                "Id" : "57259750-1cd3-41ee-9333-246c23bbf607",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "CurrentPage",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "CurrentPage",
+                  "TargetPropertyBaseType" : "INTEGER"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetSensorList",
+                "SourceSection" : "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController",
+                "TargetArea" : "UI",
+                "TargetId" : "paging-130",
+                "TargetSection" : ""
+              }, {
+                "Id" : "590d2b1c-4b2e-493b-a54a-97031c6160bd",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "PageSize",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "TargetProperty" : "pageSize",
+                  "TargetPropertyBaseType" : "INTEGER",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "paging-130",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetSensorList",
+                "TargetSection" : "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController"
+              }, {
+                "Id" : "e9fc58c3-3daf-465a-a0b8-59b06fbd9df5",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "SensorCount",
+                  "SourcePropertyBaseType" : "LONG",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "TotalItems",
+                  "TargetPropertyBaseType" : "INTEGER"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetSensorList",
+                "SourceSection" : "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController",
+                "TargetArea" : "UI",
+                "TargetId" : "paging-130",
+                "TargetSection" : ""
+              }, {
+                "Id" : "df78788a-b5e2-407e-a352-0b5f819b7e8c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "SensorCountPageMessage",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "ItemsLabel",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetSensorList",
+                "SourceSection" : "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController",
+                "TargetArea" : "UI",
+                "TargetId" : "paging-130",
+                "TargetSection" : ""
+              }, {
+                "Id" : "d844a016-f18d-47a6-b8e8-2256a709a1f9",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "assetName",
+                  "SourcePropertyBaseType" : "THINGNAME",
+                  "TargetProperty" : "assetName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetSensorList",
+                "TargetSection" : "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController"
+              }, {
+                "Id" : "a28370d1-cf84-475e-8966-67d7c2167ac3",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "NUMBER",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "eventsrouter-131",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "SetGlobalSessionNumberValue",
+                "TargetSection" : "Resources_CurrentSessionInfo"
+              }, {
+                "Id" : "f1f85718-b3cf-4289-b64b-96a195e92a03",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "CurrentPage",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "Input1",
+                  "TargetPropertyBaseType" : "INTEGER"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetSensorList",
+                "SourceSection" : "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-131",
+                "TargetSection" : ""
+              }, {
+                "Id" : "262f0cf1-868c-4a22-91df-318160718387",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "PageNumber",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "TargetProperty" : "Input2",
+                  "TargetPropertyBaseType" : "INTEGER"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "paging-130",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-131",
+                "TargetSection" : ""
+              }, {
+                "Id" : "6f8cbefc-9291-4ed5-9536-c54f458c1efe",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "sensors",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "sensorList",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetSensorList",
+                "SourceSection" : "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController",
+                "TargetArea" : "UI",
+                "TargetId" : "mashupcontainer-12",
+                "TargetSection" : ""
+              }, {
+                "Id" : "41541bc7-f319-4a2f-b8c5-0017923798c7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "AssetDetailSensorPageNumber",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "TargetProperty" : "pageNumber",
+                  "TargetPropertyBaseType" : "INTEGER",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetGlobalSessionValues",
+                "SourceSection" : "Resources_CurrentSessionInfo",
+                "TargetArea" : "Data",
+                "TargetId" : "GetSensorList",
+                "TargetSection" : "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController"
+              }, {
+                "Id" : "30149f77-8566-4a1b-b529-6b7df345ae40",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "AssetDetailSensorPageNumber",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "pageNumber",
+                  "TargetPropertyBaseType" : "NUMBER"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetGlobalSessionValues",
+                "SourceSection" : "Resources_CurrentSessionInfo",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-154",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : { },
+              "Events" : [ {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-71",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-62",
+                "EventTriggerSection" : "",
+                "Id" : "8e12b1d1-f43f-45a3-a905-fd7d069f678a"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_CurrentSessionInfo",
+                "EventHandlerService" : "SetGlobalSessionNumberValue",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "GetData",
+                "EventTriggerId" : "paging-130",
+                "EventTriggerSection" : "",
+                "Id" : "3b98ab1e-7d57-418a-9d16-225a9e7e91b3"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_CurrentSessionInfo",
+                "EventHandlerService" : "GetGlobalSessionValues",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "SetGlobalSessionNumberValue",
+                "EventTriggerSection" : "Resources_CurrentSessionInfo",
+                "Id" : "ab6e3f5d-31aa-47be-84f2-974ddd551c76"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_CurrentSessionInfo",
+                "EventHandlerService" : "GetGlobalSessionValues",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "6b177c3c-320c-4f8b-ba28-4c553321f302"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-132",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetGlobalSessionValues",
+                "EventTriggerSection" : "Resources_CurrentSessionInfo",
+                "Id" : "8a117d99-e826-467a-8344-ba19c27e0525"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController",
+                "EventHandlerService" : "GetSensorList",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-132",
+                "EventTriggerSection" : "",
+                "Id" : "5db62058-d661-4966-b5bf-c0b5f9d81b56"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-144",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetGlobalSessionValues",
+                "EventTriggerSection" : "Resources_CurrentSessionInfo",
+                "Id" : "376de32b-9a41-44d9-b58e-70dfe0bd82cc"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController",
+                "EventHandlerService" : "GetSensorList",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-144",
+                "EventTriggerSection" : "",
+                "Id" : "6975365e-914f-42c5-94fa-16e4994ac170"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesController",
+                "EventHandlerService" : "GetSensorList",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-154",
+                "EventTriggerSection" : "",
+                "Id" : "7251f634-2823-4352-998c-8f313e7f18f7"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-154",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetGlobalSessionValues",
+                "EventTriggerSection" : "Resources_CurrentSessionInfo",
+                "Id" : "45621fef-ee9b-43e3-9583-3c08cc91cadb"
+              } ],
+              "RunTimePermissions" : { },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : false,
+                  "Style" : "DefaultMashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "THINGNAME",
+                    "Description" : "",
+                    "ParameterName" : "assetName"
+                  } ],
+                  "id_index" : 154,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Columns" : 1,
+                    "DisplayName" : "layout-140",
+                    "Footer" : false,
+                    "FooterHeight" : 0,
+                    "Header" : false,
+                    "HeaderHeight" : 0,
+                    "Id" : "layout-140",
+                    "IncludeSpacingInFixedAreas" : false,
+                    "IsPrintLayout" : false,
+                    "Left" : 195,
+                    "LeftSidebar" : false,
+                    "LeftSidebarWidth" : 0,
+                    "Orientation" : "horizontal",
+                    "PctColumn1" : 100,
+                    "PctColumn2" : 0,
+                    "PctColumn3" : 1,
+                    "PctColumn4" : 1,
+                    "PctColumn5" : 1,
+                    "PctColumn6" : 1,
+                    "PctColumn7" : 1,
+                    "PctColumn8" : 1,
+                    "PctRow1" : 50,
+                    "PctRow2" : 50,
+                    "PctRow3" : 0,
+                    "PctRow4" : 0,
+                    "PctRow5" : 0,
+                    "PctRow6" : 0,
+                    "PctRow7" : 0,
+                    "PctRow8" : 0,
+                    "PrintMarginLeftRight" : 0.5,
+                    "PrintMarginTopBottom" : 0.5,
+                    "PrintWidth" : 650,
+                    "ResponsiveLayout" : true,
+                    "RightSidebar" : true,
+                    "RightSidebarWidth" : 20,
+                    "Rows" : 0,
+                    "ShowDataLoading" : true,
+                    "Spacing" : 0,
+                    "Top" : 75,
+                    "Type" : "layout",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Layout"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Column 1",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-141",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "PTC.SCA.SCO.ShadedPanel",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "Columns" : 0,
+                        "DisplayName" : "layout-72",
+                        "Footer" : false,
+                        "FooterHeight" : 0,
+                        "Header" : true,
+                        "HeaderHeight" : 5,
+                        "Id" : "layout-72",
+                        "IncludeSpacingInFixedAreas" : false,
+                        "IsPrintLayout" : false,
+                        "Left" : 295,
+                        "LeftSidebar" : false,
+                        "LeftSidebarWidth" : 0,
+                        "Orientation" : "vertical",
+                        "PctColumn1" : 50,
+                        "PctColumn2" : 50,
+                        "PctColumn3" : 1,
+                        "PctColumn4" : 1,
+                        "PctColumn5" : 1,
+                        "PctColumn6" : 1,
+                        "PctColumn7" : 1,
+                        "PctColumn8" : 1,
+                        "PctRow1" : 100,
+                        "PctRow2" : 100,
+                        "PctRow3" : 0,
+                        "PctRow4" : 0,
+                        "PctRow5" : 0,
+                        "PctRow6" : 0,
+                        "PctRow7" : 0,
+                        "PctRow8" : 0,
+                        "PrintMarginLeftRight" : 0.5,
+                        "PrintMarginTopBottom" : 0.5,
+                        "PrintWidth" : 650,
+                        "ResponsiveLayout" : true,
+                        "RightSidebar" : false,
+                        "RightSidebarWidth" : 0,
+                        "Rows" : 1,
+                        "ShowDataLoading" : true,
+                        "Spacing" : 0,
+                        "Top" : 85,
+                        "Type" : "layout",
+                        "Visible" : true,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Layout"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Header",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-73",
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "DefaultContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Row",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-74",
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "DefaultContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container"
+                        },
+                        "Widgets" : [ {
+                          "Properties" : {
+                            "Area" : "UI",
+                            "Columns" : 0,
+                            "DisplayName" : "Sensor History Layout",
+                            "Footer" : false,
+                            "FooterHeight" : 0,
+                            "Header" : true,
+                            "HeaderCustomClass" : "",
+                            "HeaderHeight" : 80,
+                            "Id" : "layout-6",
+                            "IncludeSpacingInFixedAreas" : false,
+                            "IsPrintLayout" : false,
+                            "Left" : 210,
+                            "LeftSidebar" : false,
+                            "LeftSidebarWidth" : 0,
+                            "Orientation" : "vertical",
+                            "PctColumn1" : 50,
+                            "PctColumn2" : 50,
+                            "PctColumn3" : 1,
+                            "PctColumn4" : 1,
+                            "PctColumn5" : 1,
+                            "PctColumn6" : 1,
+                            "PctColumn7" : 1,
+                            "PctColumn8" : 1,
+                            "PctRow1" : 100,
+                            "PctRow2" : 0,
+                            "PctRow3" : 0,
+                            "PctRow4" : 0,
+                            "PctRow5" : 0,
+                            "PctRow6" : 0,
+                            "PctRow7" : 0,
+                            "PctRow8" : 0,
+                            "PrintMarginLeftRight" : 0.5,
+                            "PrintMarginTopBottom" : 0.5,
+                            "PrintWidth" : 650,
+                            "ResponsiveLayout" : true,
+                            "RightSidebar" : false,
+                            "RightSidebarWidth" : 0,
+                            "Rows" : 1,
+                            "ShowDataLoading" : false,
+                            "Spacing" : 0,
+                            "Top" : 200,
+                            "Type" : "layout",
+                            "Visible" : true,
+                            "Z-index" : 10,
+                            "__TypeDisplayName" : "Layout"
+                          },
+                          "Widgets" : [ {
+                            "Properties" : {
+                              "AnimateExpandCollapse" : true,
+                              "Area" : "UI",
+                              "BGImageRepeat" : "no-repeat",
+                              "BGImageSize" : "auto",
+                              "DisplayName" : "Header",
+                              "ExpandCollapseTabLocation" : "outside",
+                              "Expanded" : true,
+                              "Id" : "container-7",
+                              "MinHeight" : 0,
+                              "MinWidth" : 0,
+                              "Overlay" : false,
+                              "OverlayIsTransparent" : false,
+                              "ResponsiveLayout" : true,
+                              "ShowDataLoading" : false,
+                              "ShowExpandCollapseTab" : false,
+                              "Style" : {
+                                "backgroundColor" : "",
+                                "displayString" : "",
+                                "fontEmphasisBold" : false,
+                                "fontEmphasisItalic" : false,
+                                "fontEmphasisUnderline" : false,
+                                "foregroundColor" : "",
+                                "image" : "",
+                                "lineColor" : "",
+                                "lineStyle" : "solid",
+                                "lineThickness" : 1,
+                                "secondaryBackgroundColor" : "",
+                                "textSize" : "normal"
+                              },
+                              "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                              "TabExpandStyle" : "DefaultTabExpandStyle",
+                              "TabHeight" : 36,
+                              "TabLocation" : "center",
+                              "TabOffset" : 0,
+                              "TabWidth" : 36,
+                              "Type" : "container",
+                              "Visible" : true,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Container"
+                            },
+                            "Widgets" : [ {
+                              "Properties" : {
+                                "Area" : "UI",
+                                "Columns" : 1,
+                                "DisplayName" : "layout-122",
+                                "Footer" : false,
+                                "FooterHeight" : 0,
+                                "Header" : false,
+                                "HeaderHeight" : 0,
+                                "Id" : "layout-122",
+                                "IncludeSpacingInFixedAreas" : false,
+                                "IsPrintLayout" : false,
+                                "Left" : 175,
+                                "LeftSidebar" : true,
+                                "LeftSidebarWidth" : 375,
+                                "Orientation" : "horizontal",
+                                "PctColumn1" : 100,
+                                "PctColumn2" : 0,
+                                "PctColumn3" : 1,
+                                "PctColumn4" : 1,
+                                "PctColumn5" : 1,
+                                "PctColumn6" : 1,
+                                "PctColumn7" : 1,
+                                "PctColumn8" : 1,
+                                "PctRow1" : 50,
+                                "PctRow2" : 50,
+                                "PctRow3" : 0,
+                                "PctRow4" : 0,
+                                "PctRow5" : 0,
+                                "PctRow6" : 0,
+                                "PctRow7" : 0,
+                                "PctRow8" : 0,
+                                "PrintMarginLeftRight" : 0.5,
+                                "PrintMarginTopBottom" : 0.5,
+                                "PrintWidth" : 650,
+                                "ResponsiveLayout" : true,
+                                "RightSidebar" : true,
+                                "RightSidebarWidth" : 5,
+                                "Rows" : 0,
+                                "ShowDataLoading" : true,
+                                "Spacing" : 2,
+                                "Top" : 25,
+                                "Type" : "layout",
+                                "Visible" : true,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Layout"
+                              },
+                              "Widgets" : [ {
+                                "Properties" : {
+                                  "AnimateExpandCollapse" : true,
+                                  "Area" : "UI",
+                                  "BGImageRepeat" : "no-repeat",
+                                  "BGImageSize" : "auto",
+                                  "DisplayName" : "Left Sidebar",
+                                  "ExpandCollapseTabLocation" : "outside",
+                                  "Expanded" : true,
+                                  "Id" : "container-123",
+                                  "MinHeight" : 0,
+                                  "MinWidth" : 0,
+                                  "Overlay" : false,
+                                  "OverlayIsTransparent" : false,
+                                  "ResponsiveLayout" : true,
+                                  "ShowDataLoading" : true,
+                                  "ShowExpandCollapseTab" : false,
+                                  "Style" : "DefaultContainerStyle",
+                                  "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                                  "TabExpandStyle" : "DefaultTabExpandStyle",
+                                  "TabHeight" : 36,
+                                  "TabLocation" : "center",
+                                  "TabOffset" : 0,
+                                  "TabWidth" : 36,
+                                  "Type" : "container",
+                                  "Visible" : true,
+                                  "Z-index" : 10,
+                                  "__TypeDisplayName" : "Container"
+                                },
+                                "Widgets" : [ {
+                                  "Properties" : {
+                                    "Area" : "UI",
+                                    "Columns" : 0,
+                                    "DisplayName" : "layout-149",
+                                    "Footer" : false,
+                                    "FooterHeight" : 0,
+                                    "Header" : false,
+                                    "HeaderHeight" : 0,
+                                    "Id" : "layout-149",
+                                    "IncludeSpacingInFixedAreas" : false,
+                                    "IsPrintLayout" : false,
+                                    "Left" : 35,
+                                    "LeftSidebar" : false,
+                                    "LeftSidebarWidth" : 0,
+                                    "Orientation" : "vertical",
+                                    "PctColumn1" : 50,
+                                    "PctColumn2" : 50,
+                                    "PctColumn3" : 1,
+                                    "PctColumn4" : 1,
+                                    "PctColumn5" : 1,
+                                    "PctColumn6" : 1,
+                                    "PctColumn7" : 1,
+                                    "PctColumn8" : 1,
+                                    "PctRow1" : 100,
+                                    "PctRow2" : 100,
+                                    "PctRow3" : 0,
+                                    "PctRow4" : 0,
+                                    "PctRow5" : 0,
+                                    "PctRow6" : 0,
+                                    "PctRow7" : 0,
+                                    "PctRow8" : 0,
+                                    "PrintMarginLeftRight" : 0.5,
+                                    "PrintMarginTopBottom" : 0.5,
+                                    "PrintWidth" : 650,
+                                    "ResponsiveLayout" : true,
+                                    "RightSidebar" : false,
+                                    "RightSidebarWidth" : 0,
+                                    "Rows" : 1,
+                                    "ShowDataLoading" : true,
+                                    "Spacing" : 2,
+                                    "Top" : 20,
+                                    "Type" : "layout",
+                                    "Visible" : true,
+                                    "Z-index" : 10,
+                                    "__TypeDisplayName" : "Layout"
+                                  },
+                                  "Widgets" : [ {
+                                    "Properties" : {
+                                      "AnimateExpandCollapse" : true,
+                                      "Area" : "UI",
+                                      "BGImageRepeat" : "no-repeat",
+                                      "BGImageSize" : "auto",
+                                      "DisplayName" : "Row 2",
+                                      "ExpandCollapseTabLocation" : "outside",
+                                      "Expanded" : true,
+                                      "Id" : "container-151",
+                                      "MinHeight" : 0,
+                                      "MinWidth" : 0,
+                                      "Overlay" : false,
+                                      "OverlayIsTransparent" : false,
+                                      "ResponsiveLayout" : true,
+                                      "ShowDataLoading" : true,
+                                      "ShowExpandCollapseTab" : false,
+                                      "Style" : "DefaultContainerStyle",
+                                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                                      "TabHeight" : 36,
+                                      "TabLocation" : "center",
+                                      "TabOffset" : 0,
+                                      "TabWidth" : 36,
+                                      "Type" : "container",
+                                      "Visible" : true,
+                                      "Z-index" : 10,
+                                      "__TypeDisplayName" : "Container"
+                                    },
+                                    "Widgets" : [ {
+                                      "Properties" : {
+                                        "Area" : "UI",
+                                        "Description" : "",
+                                        "DisplayName" : "sensorCountPanel",
+                                        "Height" : 200,
+                                        "HideScrollbars" : false,
+                                        "HorizontalAnchor" : "left",
+                                        "Id" : "panel-126",
+                                        "Left" : 70,
+                                        "ResponsiveLayout" : true,
+                                        "ShowDataLoading" : true,
+                                        "Style" : "DefaultContainerStyle",
+                                        "Top" : 20,
+                                        "Type" : "panel",
+                                        "VerticalAnchor" : "top",
+                                        "Visible" : true,
+                                        "Width" : 300,
+                                        "Z-index" : 10,
+                                        "__TypeDisplayName" : "Panel"
+                                      },
+                                      "Widgets" : [ {
+                                        "Properties" : {
+                                          "Area" : "UI",
+                                          "CurrentPage" : 0,
+                                          "CurrentPageStyle" : "PTC.SCA.SCO.Common.PagingWidget.CurrentPage",
+                                          "Description" : "",
+                                          "DisplayName" : "sensorPaging",
+                                          "Height" : 24,
+                                          "HoverStyle" : "PTC.SCA.SCO.Common.PagingWidget.LinkHover",
+                                          "Id" : "paging-130",
+                                          "ItemsLabel" : "",
+                                          "LabelStyle" : "PTC.Factory.NormalText",
+                                          "Left" : 10,
+                                          "LinkStyle" : "PTC.SCA.SCO.Common.PagingWidget.Link",
+                                          "PageNumber" : 0,
+                                          "PageSize" : 10,
+                                          "ResponsiveLayout" : false,
+                                          "ShowDataLoading" : true,
+                                          "Top" : 50,
+                                          "TotalItems" : 0,
+                                          "Type" : "paging",
+                                          "VerticalAlignment" : "middle",
+                                          "Visible" : true,
+                                          "Width" : 315,
+                                          "Z-index" : 10,
+                                          "__TypeDisplayName" : "Paging"
+                                        },
+                                        "Widgets" : [ ]
+                                      }, {
+                                        "Properties" : {
+                                          "Area" : "UI",
+                                          "DataType" : "INTEGER",
+                                          "DisplayName" : "setSensorPageSizeRouter",
+                                          "Id" : "eventsrouter-131",
+                                          "LabelAlignment" : "left",
+                                          "Left" : 5,
+                                          "NumberOfInputs" : 2,
+                                          "ResponsiveLayout" : false,
+                                          "ShowDataLoading" : true,
+                                          "Top" : 135,
+                                          "Type" : "eventsrouter",
+                                          "Visible" : true,
+                                          "Z-index" : 10,
+                                          "__TypeDisplayName" : "Events Router"
+                                        },
+                                        "Widgets" : [ ]
+                                      }, {
+                                        "Properties" : {
+                                          "Alignment" : "left",
+                                          "Area" : "UI",
+                                          "BackgroundFill" : "content",
+                                          "Description" : "",
+                                          "DisplayName" : "monitoredPropertiesHeaderTitle",
+                                          "Height" : 25,
+                                          "Id" : "valuedisplay-153",
+                                          "ImageScaling" : "Width",
+                                          "Label" : "",
+                                          "LabelAlignment" : "left",
+                                          "Left" : 10,
+                                          "Overflow" : "hidden",
+                                          "ResponsiveLayout" : false,
+                                          "ShowDataLoading" : true,
+                                          "TextIfNoValue" : "[[PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredProperties.SectionTitle]]",
+                                          "TextIfNoValueOffset" : 0,
+                                          "TextIfNoValueStyle" : "PTC.SCA.SCO.14pxLabelTextBold",
+                                          "TextWrap" : true,
+                                          "ToolTipField" : "",
+                                          "ToolTipStyle" : "DefaultTooltipStyle",
+                                          "Top" : 15,
+                                          "Type" : "valuedisplay",
+                                          "ValueDisplayLabelStyle" : "DefaultWidgetLabelStyle",
+                                          "ValueDisplayStyle" : "DefaultValueDisplayStyle",
+                                          "VerticalAlignment" : "middle",
+                                          "Visible" : true,
+                                          "Width" : 315,
+                                          "Z-index" : 10,
+                                          "__TypeDisplayName" : "Value Display",
+                                          "__supportsLabel" : true,
+                                          "__supportsTooltip" : true
+                                        },
+                                        "Widgets" : [ ]
+                                      }, {
+                                        "Properties" : {
+                                          "Area" : "UI",
+                                          "AutoEvaluate" : false,
+                                          "Description" : "canCallGetSensorList",
+                                          "DisplayName" : "canCallGetSensorList",
+                                          "Expression" : "pageNumber!=undefined",
+                                          "Height" : 18,
+                                          "Id" : "validator-154",
+                                          "Left" : 25,
+                                          "Output" : false,
+                                          "ResponsiveLayout" : false,
+                                          "ShowDataLoading" : true,
+                                          "Top" : 125,
+                                          "Type" : "validator",
+                                          "Visible" : true,
+                                          "Width" : 65,
+                                          "Z-index" : 10,
+                                          "__TypeDisplayName" : "Validator",
+                                          "_currentParameterDefs" : [ {
+                                            "BaseType" : "NUMBER",
+                                            "Description" : "",
+                                            "ParameterName" : "pageNumber"
+                                          } ]
+                                        },
+                                        "Widgets" : [ ]
+                                      } ]
+                                    } ]
+                                  } ]
+                                } ]
+                              }, {
+                                "Properties" : {
+                                  "AnimateExpandCollapse" : true,
+                                  "Area" : "UI",
+                                  "BGImageRepeat" : "no-repeat",
+                                  "BGImageSize" : "auto",
+                                  "DisplayName" : "Column 1",
+                                  "ExpandCollapseTabLocation" : "outside",
+                                  "Expanded" : true,
+                                  "Id" : "container-124",
+                                  "MinHeight" : 0,
+                                  "MinWidth" : 0,
+                                  "Overlay" : false,
+                                  "OverlayIsTransparent" : false,
+                                  "ResponsiveLayout" : true,
+                                  "ShowDataLoading" : true,
+                                  "ShowExpandCollapseTab" : false,
+                                  "Style" : "DefaultContainerStyle",
+                                  "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                                  "TabExpandStyle" : "DefaultTabExpandStyle",
+                                  "TabHeight" : 36,
+                                  "TabLocation" : "center",
+                                  "TabOffset" : 0,
+                                  "TabWidth" : 36,
+                                  "Type" : "container",
+                                  "Visible" : true,
+                                  "Z-index" : 10,
+                                  "__TypeDisplayName" : "Container"
+                                },
+                                "Widgets" : [ ]
+                              }, {
+                                "Properties" : {
+                                  "AnimateExpandCollapse" : true,
+                                  "Area" : "UI",
+                                  "BGImageRepeat" : "no-repeat",
+                                  "BGImageSize" : "auto",
+                                  "DisplayName" : "Right Sidebar",
+                                  "ExpandCollapseTabLocation" : "outside",
+                                  "Expanded" : true,
+                                  "Id" : "container-125",
+                                  "MinHeight" : 0,
+                                  "MinWidth" : 0,
+                                  "Overlay" : false,
+                                  "OverlayIsTransparent" : false,
+                                  "ResponsiveLayout" : true,
+                                  "ShowDataLoading" : true,
+                                  "ShowExpandCollapseTab" : false,
+                                  "Style" : "DefaultContainerStyle",
+                                  "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                                  "TabExpandStyle" : "DefaultTabExpandStyle",
+                                  "TabHeight" : 36,
+                                  "TabLocation" : "center",
+                                  "TabOffset" : 0,
+                                  "TabWidth" : 36,
+                                  "Type" : "container",
+                                  "Visible" : true,
+                                  "Z-index" : 10,
+                                  "__TypeDisplayName" : "Container"
+                                },
+                                "Widgets" : [ ]
+                              } ]
+                            } ]
+                          }, {
+                            "Properties" : {
+                              "AnimateExpandCollapse" : true,
+                              "Area" : "UI",
+                              "BGImageRepeat" : "no-repeat",
+                              "BGImageSize" : "auto",
+                              "DisplayName" : "Row",
+                              "ExpandCollapseTabLocation" : "outside",
+                              "Expanded" : true,
+                              "Id" : "container-8",
+                              "MinHeight" : 0,
+                              "MinWidth" : 0,
+                              "Overlay" : false,
+                              "OverlayIsTransparent" : false,
+                              "ResponsiveLayout" : true,
+                              "ShowDataLoading" : false,
+                              "ShowExpandCollapseTab" : false,
+                              "Style" : "DefaultContainerStyle",
+                              "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                              "TabExpandStyle" : "DefaultTabExpandStyle",
+                              "TabHeight" : 36,
+                              "TabLocation" : "center",
+                              "TabOffset" : 0,
+                              "TabWidth" : 36,
+                              "Type" : "container",
+                              "Visible" : true,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Container"
+                            },
+                            "Widgets" : [ {
+                              "Properties" : {
+                                "Area" : "UI",
+                                "DisplayName" : "sensorListMashupContainer",
+                                "Height" : 300,
+                                "Id" : "mashupcontainer-12",
+                                "Left" : 0,
+                                "MashupParameters" : [ {
+                                  "BaseType" : "INFOTABLE",
+                                  "Description" : "",
+                                  "ParameterName" : "sensorList",
+                                  "ParmDef" : {
+                                    "aspects" : {
+                                      "dataShape" : "PTC.SCA.SCO.AssetMonitor.AssetDetail.SensorListDataShape",
+                                      "ordinal" : "0"
+                                    },
+                                    "baseType" : "INFOTABLE",
+                                    "description" : "",
+                                    "name" : "sensorList",
+                                    "ordinal" : 0
+                                  }
+                                } ],
+                                "Name" : "PTC.SCA.SCO.AssetMonitor.AssetDetail.MonitoredPropertiesWithChart",
+                                "ResponsiveLayout" : true,
+                                "ShowDataLoading" : false,
+                                "TabSequenceGroup" : 0,
+                                "Top" : 0,
+                                "Type" : "mashupcontainer",
+                                "Visible" : true,
+                                "Width" : 400,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Contained Mashup"
+                              },
+                              "Widgets" : [ ]
+                            } ]
+                          } ]
+                        } ]
+                      } ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Right Sidebar",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-142",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "PTC.SCA.SCO.NoStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container"
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            iVBORw0KGgoAAAANSUhEUgAAAyMAAAJFCAYAAADOCSg2AABVMUlEQVR42u3d65Nc1Z2v+flfeDEv
+            CN7MvJ3hzRmal9OhOXEaETEx46AnToPb3aZ9DnIbN25LvkKD7MbGBtrd2OALsi1fZNMIu43BxjaW
+            ESB0QSBVWiqVBKWSCnFRqUTZa+q3zaqztLV3Vpbqlrnr8yi+kZW5L7n32lmq9eRaa6//KQEAAADA
+            OvA/KQIAAAAAZAQAAAAAGQEAAAAAMgIAAACAjAAAAAAAGQEAAADQbRl58+23RUREREREVjRkRERE
+            REREyIiIiIiIiJARMiIiIiIiImRERERERETIiIiIiIiICBkREREREREyIiIiIiIiQkZERERERISM
+            iIiIiIiIkBERERERESEjIiIiIiJCRsiIiIiIiIiQERERERERISNkREREREREyIiIiIiIiJARERER
+            ERERMiIiIiIiImRERERERESEjIiIiIiICBkREREREREhIyIiIiIiQkZERERERISMLFNGjp84kf78
+            v9yQrrr6mvTXf/ehNDk1tbDsyad/Ub0e+do3v3XFBxr7jH3/b//puvTi/v1rVkD5feP84jzLZXE+
+            +dxW4hxXK5/47J3VscW18KEXERERkc7KSF0WckV4pWSklILYd5MkrLWM5Er+sFT647jK6xDHtdYS
+            JyIiIiKypjLyf/6Xv6gqvVk68uv/91/+fyveapD3PUwykluB1rN1ZL1akERERERE1lVGPnzHx6qK
+            cO6qlSvnucWgLim5xSRX9MuKdIhNXh77KaXgpQMHL9k+rzPofnNFvexCVkpFLIt1ymVLbRnJ+84i
+            Fsvajq9svSjPO15r6u6W3yMfZz6nm//2g1Xq3cbqLSNt5112OyMzIiIiIjJSMhKV3rKLUO5G9d0f
+            /HChYlxvaShbOF49evSSb/VzZTteO35ionW7Ujj67bepFaMuOnndvJ98DIOOGanvP4tZv+OLn+vC
+            1iQ29WP9xa9+fdmxNbWMlDLStq9dj/37ZQIkIiIiIjJSMpIr79u/8MWF18ruS3l5WenNleXfPvfc
+            okLRVplfyn7rY1nK1oAf7959yX6W0k2rTL3LVr/jy+LW1HqRWzYGOdZBZGSxfbW1AomIiIiIDL2M
+            5Mpw7jpUfrM/bDLS1BWpvp9hkZFBjnVQGWnrgpW3rbfyiIiIiIiMhIyUlfRcgS8r1m3dlRbrilWX
+            kfp+lrLf8hhL6YjuZG2Ss1wZ6Xd8sazsplUXirZjbZKRJtEqn7ftq+m8hvE2xSIiIiJCRvrKSL2S
+            XK+YLzbQfBAZqQ/EHmQAe10o6mM+6sebuzBFK89yZaTfebd1Gyv323SsbTJSDsBvallp2ld9ULux
+            IyIiIiIyEjIiy4+5QERERESEjJARMiIiIiIiQkbIiIiIiIgIGRERERERESEjIiIiIiJCRkRERERE
+            RMiIiIiIiIiQERERERERETIiIiIiIiJkREREREREhIyIiIiIiAgZERERERERMkJGRERERESEjIiI
+            iIiICBkREREREREhIyIiIiIiQkZERERERETIiIiIiIiIkBEREREREREyIiIiIiIiZERERERERGRF
+            ZeTpX/4yfevRR6/oQGK72L7c15/92Z9VWco+9+3fn/6v//yf0z/dffdAxxfrxXu8733vS8dPnLjs
+            mPIxNC1f7Zw+cyZt3batOqfl7uuJn/40/ctXvjLQuk/+/Ofpd889N9C6vVOn03/68FfTVe/75yr3
+            //i3A233+J7D1fpbvvLEwmuxbewr9rmUc4t9NW33+tk30u0P/TT94FcH0tlzb/qFFxEREemijESl
+            +cN///dLFodIVPCjoh/bZhmJ/YUkxLJI7HtQEahLTb/ji5/7He8Pdu1aEIHliNZSc9+XvrQiArJU
+            GRmfL+Nvfetb6Wtf+9rAMvK7w8fTL14aq34OsRhUJrKMROLn5chI23YhI//PP+2s3uN/+ev70xd/
+            +Jt0YvKMX3wRERERLSPtEhEV8aiQ9xOMsuUkt1os1ppSHl8ISrzHB/7mb6r1Q1bitTYZyceURSnW
+            j5w4eXJBdMr3jXX/7aGHqteipabcTzyP13PrTRxXtIDE63ffc88l+yrFJLfi5P2VktV0/GvRMjKI
+            FLTJyP/6gQfS+7/wo4Vtyu1LkcjCErIT24QAxbrx+vbvPrOwTl7WJCM5//NffiFt+Zcn0ktjE+nc
+            W/4DEBERESEjS5SRemtJLMsV+yZxaTq+2DZEpKzo17crZSS3omQByOuWrStlt6rYXz6meB6vh7jk
+            Fp9y/7GvUiZKAck/14/9oa9+9bJyWo9uWqWILLWbVshDtKqEMIRolDJStrLk1w8dO1WtG4nn+b0G
+            aRmpJ6Tkow/9NL12Ztp/BCIiIiJdlpGyxaJNFJYiI/XlUTmPSn5U5geVkbIrWNuxl2NGsljUt6t3
+            qcrvX76et9l/8OBCl7SyPOrv3SQj5bGULSH59bZzXgsZCXEou1stRUaiJSMSP//5x791iXSU8pDX
+            zd27YnnIxlJlRMuIiIiIiJaRvjJStnzUK/8r1TJSbw1ZrGWkHH9SHk+/lpFSrppaRtqOa7GWkSsZ
+            Z7JaMlJKxVIHnZfbZaFpahmpD5b/T1u+Wm1btow0HYMxIyIiIiJk5IoGni/WmlIuL7s4LUVGysHz
+            TXffGkRGynEb5bGGHPy/7+27bcxIOdalPK58bm1jRvKypvEnay0juXtWzlLHjGSBWBCN97av36Xr
+            Qw88XolF3qZsjcktK01jRtxNS0RERGSDyIgM3lKx1lmKjIiIiIiIkBEysmYycuDQoeqWvvW8ce6c
+            6ykiIiIiZERERERERMiIiIiIiIgIGRERERERETIiIiIiIiJCRkREREREhIyIiIiIiIiQERERERER
+            ISMiIiIiIkJGyIiIiIiIiJAREREREREhI2RERERERETIiIiIiIiIkBEREREREREyIiIiIiIiZERE
+            RERERISMiIiIiIgIGRERERERESEjIiIiIiLSBRkBAAAAgKVCRgAAAACQEQAAAABkhIwAAAAAICMA
+            gCvjiSeeSC+++GLj6x/60Ieq5OUzMzPp3nvvrV7btm1beuONNxQgAICMAACWRohECEUpG5mQjqef
+            fnphvYcffrh6LdYLScmykn8GAICMAACWTFvLSCktWUZ27NiRjh07dtnriyX44x//qLABAGQEADC4
+            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
+            +ZP01OSv0nNn96XDxeR5f5z/BzLSGRlZT/SpB4DVxQzsZATLZ2buQjr93uR5+6rJ8/ak3a/9PH23
+            mDzvMy/fm27f/5n0ty/E5HkfSX//0qfSJ9+bPO9fe9+s5sKIyfN+cfrZ9IvxX6d9kwfSazOT6Z25
+            dxQwGSEjZAQAuomWETKCy4nJ816rJs/rpeen988Lwv+YPC/E4fPzAvHJQ5+bF4pPpr+eF4u/rSbP
+            +0wlHCEeMXnedxcmz9tTCUo1ed6FM5W4LIZ5RsgIGSEjAEBGQEY6QHRZiq5LE+dfS4cXJs/7VdXF
+            6ZvHv19Nnre9mjzvnqorVHSJ+rsXP5buOHBnNe/Fl6rJ876Tvj/x71VXqjx53rFq8rzpqsvVSkNG
+            yAgZAQCQEZCRYazc/XEuTV98Ix0/P5EOvvlK+u2Z59N/vP7LavK8r1eT532tGrQdg7dj8ry/em5L
+            +u8vbk0frybP+3J6YOzh9I1i8rwYDP7ym69Wg8PfGJLJ88gIGSEjAIANgQoPGVlvLvxhtrpdbNw2
+            9qVzh9Kvz/wu/eS1p9LOE49Vt5e978i/pc++/IX0D/s/W91+Nm5D++F9n0ifOLg9fe6VB9NXet9I
+            j47/oLpt7dOnf532Tr+UXnlrLJ2aeb26ve0oQkbICBmZ53CvJyLSNxh9tIyQkZXm/NxMev3C6XT0
+            7d+nF984kH459dv0+GtPpu+c2JX+rfetdO+rX0mfPvTP6SMvfTr9zfO3V4mf47VYFut8Z3xXtU1s
+            G/uIfcU+z89tjBsukBEyQkYAACPPzMxM32QZiYkPZfQTMrIa+33jwrl04u2T6eVzr6bfnXkh/fz1
+            Z9KPJp5I3zz2vfTg0UfS9sP3p20H7klb9m1L79/74fTB5/8hffSlz6TPHLo3feHVf00P9R5N3x3/
+            Udp96sn0zOS8XJydl4s35+Xi/On0zsXzrl1Dzpw5U81wrSxGP7Ozs2liYqKT50ZGAAB9mZqaSrt2
+            7WrM3r17L/nWTkY/Y2Nji65z4uSJdHj81fT8sRfTL8d+k3Yf+Vn63is/To8c+na6/8DX0vaXvpw+
+            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
+            N634uW0bMrLx+MY3vqEQyAiGUEZ+/OMfk5ErlZF+ApCFop+MtFVcm2QkC06u0NZFaDktMRuZtnK7
+            74EHq+vQr1xjnX4tI7kLV7+Wkfw+AIYPMkJGQEZARoZaRvq1jAwqI1HRLVs8YvkgMhLkb9VzlyGV
+            2qXTNiYkS8JqjhnRmgWQEZARkBEyQkZWdcxIXT7a7pRVCsWgMhLr5UpzPOLKqN8tq5SRfI373Qmr
+            7SYGWS7brl19GwBkBGQEZISMkJEl3U2rXunMIpLvphWJb7/z8vI2suU36uWtYAeVkbyPqDir1C5f
+            SMo5QOpystLzjNQ/MwDICMgIyAgZISMrMs9IORg9C0h+PSQji0a5XQhLSEo/GckV3rIi2zRHBgCA
+            jICMkBGQkQ0iI3Vy1566lKwGBq4DAAAAZGTNqXcBAwAAAEBGVp3c9ctYEQAAAICMAAAAAAAZAYCN
+            TMzGvm3btktmXS9nYr/99turmdvbtilncM/LHn744ctmby/3GdvGekGs2/Y+AAAysiIycrjXExFZ
+            NFh7Dh8+vCABTzzxxCViEcSyHTt2XCYju3btumxfsX0pNSWx31ie14uU+47lISYAADKy4jICABh+
+            mmQkS0QIyF133VUJRJOglKKSW0bKbWL9LD15nccee2zh/WL9eC23mAAAyAgZAYANQl0wQhKilaOp
+            tSLWjW5V9S5XdRkpISMAADICALiMaPlo6lqVpaRtWV6eu1+REQAAGQEADExdJuq0yUUpMoPISLle
+            fs9ynEi/rl8AADJCRgCgg+S7WeXk1ol8t6x8l6ty/EfuwtU0WL1tzEh5N61ym/z+9e5eAAAyQkYA
+            AAAAkBEAAAAAZISMAAAAACAjAAAAAMgIAAAAAJARAAAAAGQEAAAAAMgIAAAAADICAAAAgIyQEQAA
+            AAAjKCMiIiIiIiJLDRkREREREREyIiIiIiIiZISMiIiIiIgIGRERERERETIiIiIiIiJCRkRERERE
+            hIyIiIiIiIiQERERERERISMiIiIiIiJkREREREREyIiIiIiIiJARMiIiIiIiImRERERERETICBkR
+            EREREREyIiIiIiIiZOTyvDs3JyLSiZy/cEFERETWKCsiIwAAAACwVMgIAAAAADICAAAAgIyQEQAA
+            AABkBAAAAAAZISMAAAAAyAgAYDg4d+5cYy5evLjw8/nz59dsvdnZ2XVfb2Zmxnojst6FCxfWfb3y
+            Z+sN93rlNV3p9crP7EZZj4wAAJbFO++8k06ePElGOlI5P3v2LBnpiIzEtYyQjNGXkenp6fTWW2+R
+            ETICAGiSkTNnziiIjnDs2DGF0BFCRKICi9Hn3Xffrb706SJkBACwbBmJb7hARkBGQEbICABgzWVE
+            ywgZARkBGSEjAAAyAjICMkJGyAi69h/adNq0+cZ01dXXLOTOe7Zfsvymm29JR44eXdJ+Yx/P7tmj
+            gIER/yMZARkBGQEZGVoZ2bFz5yUV2Xg+KkRl+drrrr+soh3nsFEq0iEbt962pXosRSJeOz8zc8X7
+            JSPA6KNlhIyAjICMjISMZAGJymtUYtejEhrvfcfWbUv6Bj+O833/9a8uq3hvdBlZCZkgIwAZARkB
+            GQEZWVMZaXo+7DISleZ6xZmM/I+yKZeXXbrKFqVYN7eMZbGLbR97fPfC+rnrV71bWP6sxL7i+kVi
+            eaxXtrrd98CDlxxn7G8UW+OAUZORCMgIyAjIyMjJSFPlMl6LSmyuROYKf173oUceuWxZW8Wz3P+f
+            /8UN6f0fvHVhna2f+vRl4xxiH/VKa65wx3qxfq7oljJSVojzeeT9lZXtWD+vW1bUc2tR03mNmow0
+            iWa97MryzuXVNu6k3Hf+bOTyiceyvON98/NSHq9EQgEMLiNaRsgIyAjIyMjISFnprFcu4/mmGzYv
+            VBqb1i1FI1dw2yqe9f3XK6X14+pX4c7rlz83SUO5z7KyXT/+vK/6MbUdx7DKSJxHuTy3gNRbkZpa
+            JuqtTeXzUvCyuGW5zN3l6vvNx3Hy5KlL5G5YJQ/okozMzc1JBxIyohy6kfi9jDmAlMXoJ2Yqn5iY
+            6OS5rdsA9nprR65c5sptU+W+vm6uvD79zDOtFc/6NvWKf7m8lI42GSm3L2Wk3q0or19WrusV+rJV
+            oX6nqqYB88MmI+XYn7YB7vk82saGtMlIKX11uSyvZ337Uka0hABrKyPxrZ2MfsbGxpRDRxJiOT4+
+            riw6kBCRXq/XyXNbt25amZWSkbaK52IyEsQ4g3ieH/vJSH4eFd7oLpYr4mX3onL9QWVk2FpCFpOR
+            LCLlGI+mc8jXrt6dajEZKbvLla1lTZ+X8sYC9W5aTXIJYOVlxAzs3UE3re6gm1Z30E1rDWVksW5a
+            5bJ6N62miucgMhIV2hCR3GVqMRnJlea4w1ZufSnHQ5THMoiM5Ir9MA+wbmq9aeoeVR9QXheFpgHs
+            TTJSjhuKso31m2Qkb9M0gL0+DqdJhgCsXMsIyAjICMjIyMtIrqS3demKymVUThcbAF6O06jvP1eK
+            63duahtP0CQj9bEoZYV4qTLSVNlf7vwdG5Wm6w2AjICMkBGQkQ0uI8Nc0RyFblIYjKa7oQFY/T+S
+            ZmAnIyAjICNk5AopB0tjtKjfBtp1BNYeLSNkBGQEZISMXNEv6Z+6RukSBQBkBGSEjICMkBEAwAjK
+            iBnYyQjICMgIGQEArIuMaBkhIyAjICNkBABARkBGQEbICBkBAJARkBGQEZARMgIAWFUZiRnY4w+l
+            jH7GxsaUQ0cSYjk+Pq4sOpCJiYnU6/U6eW5kBACwbBmJlpG5uTnpQKICqxy6kfi9jC8KlMXoZ3Z2
+            thKSLp4bGQEArIiMoBvoptUddNPqDrppkREAQJ8/kmZgJyMgIyAjZAQAsOZoGSEjICMgI2QEAEBG
+            QEZARsgIGQEAbCwZMQM7GQEZARkhIwCAdZERLSNkBGQEZISMAADICMgIyAgZISMAADICMgIyAjJC
+            RgAAqyojMbEayAjICMjIUMvI+ZmZdOttW9JVV19T5c57tg9VYcTxPLtnz2XHfMfWbenI0aON2+zY
+            ubMKAGxkGckzPcvop9frKYeO5NSpU2lyclJZdCDT09Pp+PHjnTy3NZORqMxfe931l1T29+3f31rJ
+            X2vpCOK1uiDF8YWMhJSQkT+Vx6YbNjdetyi/TZtvTGfPTrd8QzNdLS/LvhTU+Hysx+cBABkRMkJG
+            hIx0XEbaBGBYWkByZTkqxmVlejHZ2CgykqXhpptvqR7r0pCXt8lIlHksi3XKso/Xc/nF67G8TfwA
+            DCdmYO8Wuml1B920uvX/rG5ay5CRpkp+Pzkon8fPDz3ySPWteVRa68/rXb/K7R57fHdVAS67hMVj
+            Xrep4lu+d9lFK17L25Xf4GcZqXfnqj8vtx/lCndbt7U4v/seeLDvda6Xb/1zsViXOADDiQHsZARk
+            BGRkqGVksa5Oi8lIWXkvn9crr2XlNn8THz9H4hv9vF6/Vpqyq1bbcZfrDCIj9e5fo9ya0iQMudyP
+            jI0tSUaayneYWtAAkBEyAjICMtIBGVluy0jbsjwGIbc4lK0WS9ln27GW0lBvgclCNIiMxPLyGIdx
+            8P5yZCSX52LXmYwA3ZURM7CTEZARkJGhlZFckW+rZC5HRtoqv1cqI3n5k089XT3GvuvHX1aiB5WR
+            rowrqZ9neW5kBNi4MqJlhIyAjICMDK2MBFHBrN8tKcZ05Mp6bimo33Gpn1RkSWiq6C9HRqq7Qt2w
+            uRoDkY+p7OYV71dvGcn7zT+Xd51a7C5ToyojTS1Ti90Vy5gRgIyAjICMgIysuYzkCnpUVHOltfxG
+            PVdq63dc6icV9W3L7lP9tsuDydsGkjfdgrbsahUV5nrLSP386nedqnfVGtVv//sJQ10umqSv6bq4
+            mxZARkBGQEZARlZdRjD6rLSM1EW0C61HwEaUETOwkxGQEZARMgIAWBcZ0TJCRkBGQEbICABg3WRk
+            bm5OOpCQEeXQjcTvZbRaKovRz+zsbJqYmOjkuZERAMCyv7G7ePFi9a2djH7GxsaUQ0cSYjk+Pq4s
+            OpAQkV6v18lzIyMAgBVpGUE30E2rO+im1a0vfXTTukIZWWxbERGQEZARkBGQkVWRkZOTkyIifYPR
+            lxEzsJMRkBGQkaGUEQBA92VEywgZARkBGSEjAAAyAjICMkJGyAgAgIyAjICMgIyQEQDAqsqIGdjJ
+            CMgIyAgZAQCsi4xoGSEjICMgI2QEAEBGQEZARsgIGQEAbJw/khGQEZARkBEyAgBYU3LLSPyhlNHP
+            2NiYcuhIQizHx8eVRQcyMTGRer1eJ8+NjAAAVkRG5ubmpAOJCqxy6Ebi9zJuLqEsRj+zs7OVkHTx
+            3MgIAGDZMmIG9u6gm1Z30E2rO+imtQIycuc929Oze/Zc8tqOnTur9P9Fmk433XxLOnL0qE8iAAyp
+            jBjATkZARkBGOikjJednZtIdW7cREwAgIyAjICNkhIyQEQAgI2SEjICMgIyMuIzE8sce3502bb4x
+            XXX1NdXzP/0iTadbb9syfwFOVY+xLC+PZXn9a6+7nqQAwDrJiBnYyQjICMjIyMtIiEUIRjlOJMtI
+            PNZbRpbasgIAWB0Z0TJCRkBGQEZGXkbK5fl5PxmJ5dEqUt8vAICMgIyQETJCRshIo3islIyU6+qm
+            BQDr90fSDOxkBGQEZGSoZSTEInfDCkIcNt2weUEgliMjbbIDAFh9tIyQEZARkJGhl5EsDHkAer17
+            1SAyUu4jlpf7i3VCVgAA6yMjMYhdRj+9Xk85dCSnTp1Kk5OTyqIDmZ6eTsePH+/kuZmBHQCwbBnJ
+            d9QSMiJkRMgIGQEArHnLCLqBblrdQTet7qCbFhkBAJARMgIyAjJCRgAAZARkBGSEjJARMgIAZMQM
+            7GQEZARkZFhlZLFtRUQw+jKiZYSMgIyAjAyljJycnBQR6RuQEZARkBGQkVWREQBA9/9ImoGdjICM
+            gIyQEQDAmqNlhIyAjICMkBEAABkBGQEZISNkBACwsWQkMjc3Jx1IyIhy6EbiS4K4052yGP3Mzs6m
+            iYmJTp4bGQEALFtGotIT39rJ6GdsbEw5dCQhluPj48qiAwkR6fV6nTw3MgIAWBEZQTfQTas76KbV
+            HXTTIiMAADJCRkBGQEbICABg2GTEDOxkBGQEZISMAADWRUa0jJARkBGQETICACAjICMgI2SEjKBb
+            nJ+ZSbfetiVddfU1VXbs3Lmw7MjRo+na666vXo91Yt2SWLd8/c57ti/sJ6dpu377GOR968T6m27Y
+            XD3WiWOKtG2X3ycey+0HPYam945zKsvg2T17Go8rLy/fe6nnDqz2H0kzsJMRkBGQkaGWkah4lRXY
+            lSQqZnds3XZJhezs2emqkhaPS/vFvbLtBiEqm20V3mEnynjf/v2XiEmcT5TTTTffslBJjvPL1zlX
+            mOPa1K9PvcLdVBHvt49+79smUrF+PJZCEO8bFfp+MvLkU08vfB5i29hPPB/kGPq9d7/zztvGOdfl
+            aSnnDqwFWkbICMgIyEjnZaStYrYeMtL0fl2XkTaBqJ9TU9n0K69By7K+3iDvu5TP0KDXpvx8LOUY
+            mt77vgcebDyWcpvYf/2zeCXnDpARkBEyAjJCRshIJ2SkvBb169pUfv3KK7bt1zrQto9B3nc1ZKQ8
+            jrZjOHny1GXvU3/vere3/N7lerG/TZtvvKxr3JWcO7DaMhIBGQEZARkZKRlpq2yVr0cXnQMHDzZW
+            3AaVkbz8oUceaeyfX/bdj2+ry2++6/31y7765X7Kvv35PMoKZ2wT798FGYnzy+exHBlZSiV6GGSk
+            7J7W7xgGkZGm/ca++nXNit+JeG8ygmGUES0jZARkBGRk5GSkrWLatO5yWkayQJRjGXK//6jcRSUv
+            V+RinfJ5U2W1/n5l3//yOMtxCLnCOcoyUlaa267rUmQkV6zL9bLo1a/BoDISIlCKaymdy5GRtgHo
+            g0pBv/ceVIby+5ERDKuMxB9KGf2MjY0ph44kxHJ8fFxZdCATExOp1+t18tzWXUbKVonc+pBbJAat
+            SA7aMlIuzwJR7yZUblfvSpPvWlTur75OztPPPHNZf/9R7qbVVv7LGTOy2JiJftd4LceM9JOp5YwZ
+            uVIZMWYEwyojc3Nz0oFEBVY5dCPxexkTkiqL0c/s7GwlJF08t3WVkbK7T1NlLZZlQelXmWv6ZnhQ
+            Ganf0aj+DXteVu6jLiNt3WrqxzTKMlJvxSjPc7E7O63EmJ76Pq7kjlJXKiNt0tR2DE3vM0g3rTiG
+            Qe6g5W5aGEYZMQN7d9BNqzvoptUddNNaJRmp3wa2aQ6IvN2gfe7LfZfdqsp917tplfM05G5aY73f
+            X1LhK+e5aOqm1VSRLc9v1Ltp1efEKMfulGNrms5vqXfYGrR1YrH3XQkZaWv5ypLadAyDyEjbeKly
+            vbbxSVdy7sBatIyAjICMgIwMtYzUJ7nbf/DQQmWrnIehXLcuCm2Vr3rlrtwu9pnnemiauK4cfF4O
+            YC+Po5znoqyg5m+zywprHu9QH4jflQHsAEBGyAjICMjISMnIeqJPPQCs7h9JM7CTEZARkBEyQkYA
+            YM3RMkJGQEZARsgIGQEAMgIyAjJCRsgIAGBjyYgZ2MkIyAjIyFDKyGLbiohg9GVEywgZARkBGRlK
+            GTk5OSki0jcgIyAjICMgI6siIwCAjSEjMfGhjH56vZ5y6EhOnTqVJicnlUUHMj09nY4fP97JcyMj
+            AIBly4jKAhkRMiJkhIwAANatZQTdQDet7qCbVnfQTYuMAADICBkBGQEZISMAgGH7I2kGdjICMgIy
+            QkYAAGuOlhEyAjICMkJGAABkBGQEZISMkBEAwMaSETOwkxGQEZARMgIAWBcZ0TJCRkBGQEbICACA
+            jICMgIyQETICACAjGD1ee+01hUBGMIQy0tXfTTKCJfHsnj3pqquvWcimzTfO/2c3vbD8znu2X7I8
+            1r/0P8bpapu27ev7b9oHgOFiZmamqvRcvHhxKBJ/tNdjPen29fV5cX19XlYnayojR44eTdded31r
+            RXSpxP7u2LotnZ//Q7hj586qIozVI8r41tu2VOWdeezx3dV1yCJSXoNYL9aP7UoRKeUitt10w+aF
+            fcSych95m7wPAMMpIydOnEinTp1K58+frx4j8Ucm/3zu3Lk0NTVV/Rzf7g26XrS6LHW9+OO+Huut
+            9HmU67355pvp9OnTG3K9119/Pb09X9douh6jvN6g51uuF60cg643OTk5kuuV5Xcl68VjPO/aem3l
+            12+9KK8ot2Ffb81kJItIWRGNn5cjJKWM1L+9JyYrS1tZl2VeF5UsE/F6PMY1aZKK8no1XbtyHwAA
+            AOgOayIj+Rvypu42UTm90m+9ycjasdh1alse1yau0YGDB6vH3ALSdh3brl28prsWAAAAGVmyjPT7
+            Zjt/o77/4KFLxKKsoNbHGeRKb72bVqQccxAtMV+8//5LKrexzU033+Jb9iVSl4E8NiTKOMq0nyzE
+            sp/+7MnWz0D5+SAjAAAAZGRFZaSfAGSh6CcjbRXXJhnJgpMrtHURWk5LzEamrdzue+DB6jr0K9dY
+            p1/LSO7C1a9lJL8PAAAAyMiKtYwMKiNR0S1bPGL5IDIS5G/Vc5chldql0zYmJEvCao4Z0ZoFAABA
+            RlZ1zEhdPtrulFUKxaAyEuvlSnM84sqo3y2rlJF8jfvdCavtJgZZLtuuXX0bAAAAkJEl3U2rXunM
+            IpLvphWJb7/z8vI2suU36uWtYAeVkbyPqDir1C5fSMo5QOpystLzjNQ/MwAAACAjKzLPSDkYPQtI
+            fj0kI4tGuV0IS0hKPxnJFd6yIts0RwYAAACADSIjdXLXnrqUrAYGrgMAAABkZM2pdwEDAAAAQEZW
+            ndz1y1gRAAAAgIwAAAAAwNrIyGLbi4j4YgMAADKyKjJycnJSRGTRAAAAMrLiMgIAAAAAZAQAAAAA
+            GQEAAABARsgIAAAAADICAAAAgIyQEQAAAABkBAAAAAAZISMAAAAAyAgAAAAAMgIAAAAAZAQAAAAA
+            GQEAAAAAMgIAAACAjAAAAAAgI2QEAN59910RERFZo6yIjIiIiIiIiCw1ZERERERERMiIiIiIiIiQ
+            ETIiIiIiIiJkREREREREyIiIiIiIiAgZERERERERMiIiIiIiIkJGRERERESEjIiIiIiIiJARERER
+            EREhIyIiIiIiQkbIiIiIiIiIkBERERERESEjZERERERERMiIiIiIiIiQkcsDAF3h3XffFRERkTUK
+            GQEAAACwLpARAAAAAGQEAAAAABkhIwAAAADICAAAAAAyQkYAAAAAkBEAwPpz/vz5NDExkU6dOpXO
+            nDmT3njjjernyMWLFxd+jvXyz6u93uzs7LqvNzMz07n1zp49m6anpzu33oULF9Z9vfLnYV8v1hl0
+            vdhn19Yrr+lKr1d+ZruyXvzf0m89MgIAWBbvvPNOOn36dCUKMvqZmppSDh26llERVBajn6jAd/V3
+            k4wAAJYtIxF0g2PHjimEjhDfRr/11lsKogPE5IAnT57s5LmREQDAsmUkuvmAjICMgIyQEQAAGQEZ
+            ARkhI2QEWAo7du6skjk/M5NuvW1Luurqa6rcec92hQSQEZARkBEyQkaWLiNRycyVykhZ6Rx2nt2z
+            J1173fXpyNGjl51TLMPKy0iUdZR5Wb779u+/7BqsBLHPO7Zuq+QHwJXJyLlz5xQEGQEZARkZbhnJ
+            Fc38jfd6VOTjvaPiuZRKbRzn+/7rX1XHXFZYycjqyUi0gqxV2ZIRYPkyomWEjICMgIyMjIw0PR92
+            GYnKcb2CvNFkpGzduu+BBys5O3t2eqGM8rJ6K1KUW15WCl1su2nzjdXr8Rj7jPeI18t9N9G0z/q1
+            LZ9n4XjokUcuOcbcApP3RS4BMkJGyAgZARnZQDKSK4mRqJBGBbStglivUNYrj2UFtezuk/f/539x
+            Q3r/B29dWGfrpz6dbrr5lssqznVJyjIS68X6uZJcykhZUc/nkff32OO7FyrdsX5et6y018dHDFul
+            OI6nPK84h/y8vqwspyxx5XWP5/l8c1lnMSk/E20tFf322U9Gorzz++Vtys+IlhHgyv9IRkBGQEZA
+            RkZCRqLimSWgPjYgnm+6YfNChbJp3VI0ykpv3kdTJbRpWdNxNX0jn2WkXoltaxmpdzeqS1a9Qlw/
+            pkFaBtaaukyWx9hUDnFeTz/zTPVYnkfebqz3+4Vzr79Hv/OP9dv2efLkqUVbRvL7lc/JCLA8tIyQ
+            EZARkJGRkJFyAHu9tSNXBHPLQVNFuKnSmCu9ZatC+R71beoV/3J5KR1tMlJuX1bCyy5H5Z2fSkmq
+            V7LzfuvbNnV1Wm/qXdSWKyPPPf/CZdcyX+d+Y4rICDC8MhKD2GX00+v1lENHcurUqTQ5OaksOpDp
+            6el0/PjxTp7bunXTyqyUjLSNA1lMRoIYqxDP82M/GcnPo/Ib3cXi57L1pr7+oDIybC0hTWVQjvdY
+            qW5adZnL177pDmbR3S2et+0zl3fZcpZb2cgIsLoyku+oJWREyIiQkZGWkcW6aZXL+lV6lyIjUfEN
+            Eal3G2qTkVzpjTts5daXcixJeSyDyEh9/MSwUo7JqQ9gL1u++o2FKYWmHBtUDmAvr105dqh+N7bF
+            9hnXJJYtJiPl/gxgB668ZQTdQDet7qCbVnfQTWsNZSRX0tu6dEWlMSqZi1V6y3EaTd2Byq5U+Vv5
+            topok4zUx6KUFfWlykh5DE0V7GFEawIAMkJGQEZARkZGRoa5AjwK3aSGjaa7jgEgIyAjICMgI2Rk
+            iZRjDtBe9mWXKeUFoJQRM7CTEZARkBEysuRf0j91jRr2LlEAMOwyomWEjICMgIx0XkYAAGQEZARk
+            hIyQETICAFj4I2kGdjICMgIyQkYAAGuOlhEyAjICMkJGAABkBGQEZISMkBEAwMaSkcjc3Jx0ICEj
+            yqEbiS8J4k53ymL0Mzs7myYmJjp5bmQEALBsGYlKT3xrJ6OfsbEx5dCRhFiOj48riw4kRKTX63Xy
+            3MgIAGBFZATdQDet7qCbVnfQTYuMAADICBkBGQEZISMAgGGTETOwkxGQEZARMgIAWBcZ0TJCRkBG
+            QEbICACAjICMgIyQETICANg4fyTNwE5GQEZARsgIAGDN0TJCRkBGQEbICACAjICMgIyQETICANhY
+            MhIBGQEZARkZahk5PzOTbr1tS7rq6muq3HnP9qEqjDieZ/fsueyY79i6LR05erRxmx07d1YBgI0s
+            I1pGyAjICMjIUMtIVOavve76Syr7+/bvb63kr7V0BPFaXZDi+EJGQko2uoxE+Swmkm3r5Osfr4eQ
+            tpUngNGVkfhDKaOfsbEx5dCRhFiOj48riw5kYmIi9Xq9Tp7bmslImwCsB23HcvbsdFVRjsdBZWOj
+            yEjIxE0331KVTW7hqpdh2zrxPF7P4hnlrzUJ6J6MzM3NSQcSFVjl0I3E72VMSKosRj+zs7OVkHTx
+            3NZERpoq+f3koHwePz/0yCPVt+pRga0/r3f9Krd77PHdadPmGy/5lj4e87pN39CX71120Sq/8Y/3
+            zhXrLCP17lz15+X2o9gyUJeuplaktnXq6y7W2gRg9GTEDOzdQTet7qCbVnfQTWuZMrJY5XMxGSkr
+            7+XzeoW/lJ5YL0Qkfm76Zr6tlaasOLcdd7nOIDJSr4yPYmtKvcyayqZtna8/+ugl57uYnAIYPRkx
+            ZoSMgIyAjAytjCy3ZaRtWewvt3zUWy2Wss+2Yy2lod4Ck4VoEBmJ5eUxDuPgfTICgIyAjJARkJFO
+            ykjbGIOVkJG2Su2Vykhe/uRTT1ePTWMkyor4oDIy6mMkyAiAfn8kzcBORkBGQEaGVkaCqKSWYy2C
+            GNORK+u5pSC3dgwiI1kSmir6y5GRWLbphs3pvgceXDimsptXvF+9ZSTvN/8c68Y+cjet3GVsVDFm
+            BEAbWkbICMgIyMjQy0iuhObbu0ZyxbXsbhWPZStEP6mob1t2n+q3XR5M3jaQvC5EuaKd3yMq0vWW
+            kfr5hbzE/kuBKbtpDcudxZZy7ZrulFWKhbtpAWQEZARkBGRkaGUEo00pVKWAla0cTeuUAjiK42UA
+            LC4jZmAnIyAjICNkBACwLjKiZYSMgIyAjJARAAAZARkBGSEjZAQAsLFkJCY+lNFPr9dTDh3JqVOn
+            0uTkpLLoQKanp9Px48c7eW5kBACwbBlRWSAjQkaEjJARAMC6tYygG+im1R100+oOumktQ0ZOzhu5
+            iEi/gIyAjICMgIysiowstq2ICEb/j6QZ2MkIyAjIyFDKCACg22gZISMgIyAjZAQAQEZARkBGyAgZ
+            AQBsLBkxAzsZARkBGSEjAIB1kREtI2QEZARkhIwAAMgIyAjICBkhIwAAMgIyAjICMkJGAACrKiMx
+            i+7c3Jx0ICEjyqEbiS8J/G52I7Ozs2liYqKT50ZGAADLlpGo9MS3djL6GRsbUw4dSYjl+Pi4suhA
+            QkR6vV4nz42MAABWREbQDXTT6g66aXUH3bRWQEbuvGd7enbPnkte27FzZ5X+v0jT6aabb0lHjh71
+            SQSAIf0jaQZ2MgIyAjLSSRkpOT8zk+7Yuo2YAMAQoWWEjICMgIyQEQAAGQEZARkhI2TkSmQklj/2
+            +O60afON6aqrr6me/+kXaTrdetuW+QtwqnqMZXl5LMvrX3vd9SQFANZJRszATkZARkBGRl5GQixC
+            MMpxIllG4rHeMrLUlhUAwOrIiJYRMgIyAjIy8jJSLs/P+8lILI9Wkfp+AQBkBGSEjJARMkJGGsVj
+            pWSkXFc3LQAgIyAjICNkhIw0EmKRu2EFIQ6bbti8IBDLkZE22QEArI2MxCzPICMgIyAjQysjWRjy
+            APR696pBZKTcRywv9xfrhKwAANZeRrSMkBGQEZCRoZcRAEB3ZST+UMroZ2xsTDl0JCGW4+PjyqID
+            mZiYSL1er5PnRkYAAMv+xu7ixYtpbm5OOpCowCqHbiS+JIgulMpi9DM7O1sJSRfPjYwAAFakZQTd
+            QDet7qCbVre+9NFNi4wAAMgIGQEZARkhIwCAYZIRM7CTEZARkBEyAgBYFxnRMkJGQEZARoZSRk5O
+            ToqI9A3ICMgIyAjIyKrIyGLbioiAjICMgIyAjKyKjAAAui8jZmAnIyAjICNkBACwLjKiZYSMgIyA
+            jJARAAAZARkBGSEjZAQAsHH+SMYM7NFVS0Y/vV5POXQkp06dSpOTk8qiA5menk7Hjx/v5LmREQDA
+            ssgtIyoMZETIiJARMgIAWBcZQTfQTas76KbVHXTTIiMAgD4yYgZ2MgIyAjJCRgAA6yIjWkbICMgI
+            yAgZAQCQEZARkBEyQkbQLc7PzKRbb9uSrrr6mio7du5cWHbk6NF07XXXV6/HOrFuSaxbfz1ey/u6
+            857tfd87lud1n92zp/H1xfaRj3PTDZurx0zsL+9j0+Yb5//jnm7dvuk8Fjv3+nuUx1mWQf3cFtt2
+            kPcFyAjICBkhI2SEjBQVr7ICu5JExeyOrdsuqZBFpTIqaf0ql82/uFe23SBExXKQSvMwEmW8b//+
+            S8QkzifK6aabb1mo4Mf55eucK8xxbcrrE9vlin+5r7bPTS6z2F+8V2wXefKppy8Rk7bPV36P2DYe
+            Sxl57PHdlxxXU8W+7Tz6nXu5bT7m+rnG+m3n3W/bQd4XWGsZMQM7GQEZARnptIxEZSwqgmVFcr1k
+            pOn9ui4jdXJFun5OTWVTf63+WWgrl6Zr3laBH+Tz1e8zNMh1rS8f5Nz7net9DzzYeiz9th3kfYG1
+            lhEtI2QEZARkhIyQkTWhvBb169pUfvXyqn+T39Yi0bSvts/RYq0Mg8jIYtdnManKx3vy5KmF96kf
+            V97H2enpS7q95fctj7Ft268/+uiiZQ6QEZARkBEyQkYWkZGoPEV3nfo4hPL16B5z4ODBxorboDKS
+            lz/0yCON/fPLvvvxbXXeruyvH8cR+yn76pf7Kccv5PMox1nENvH+XZCRsuvUlchIXT5iX8uRkTaZ
+            WYqM1Ls+rbaMlMeaPyexLzKCUf0jGQEZARkBGRkpGWmreDatu5yWkSwQ5ViG3Be/HL+Qj7NpIHP5
+            rXnTN/250livTJbfeMfxjLKMlJXmtus6iIzU5S0kLXdZyqIX12Cs9/tFZaQs47oA1qWz7TNU/wws
+            V0bK/QwiI/XP12LbkhEMG7llZG5uTjqQkBHl0I3E72WM51IWo5/Z2dk0MTHRyXNbdxkpWyVy60Nu
+            kRikIrmUlpF6ZTj2H+9fvk+5Xb1im799L/dXXyfn6Weeqd6jrCCOcjetfhX5pY4ZGfSzsdiYkUG6
+            Zi22v6Vck5UeM7KYjBgzglGTkfjWTkY/Y2NjyqEjCbEcHx9XFh1IiEiv1+vkua2rjJTdfdoqnllQ
+            FutiU/9meFAZqVdoy6425Z2Pyn3UZaTpuJqOaZRlJItbU9kPckeptspy2UrV9rlpuptW/BytKcsR
+            qnheF8alyEjbuZfv0+9uWvXWnHh9kG3dTQvDKCNmYO8Ouml1B920uoNuWqskI/XbwNbngCi36ycj
+            Td2Hyu479X3Xu2mV4w1yN63oIlRW+Mo5Jpq6aTVJRnl+o95Nqz4nRjl2p20ujLZKfL07Vj8ZqI+7
+            ydejfM96y9WgMlIfs1R/j8XOo+3c6+9Tll3TuKj6OKPFth2kzIH1aBkBGQEZARkZahmpVxz3Hzy0
+            UCkt54Ao162LQlvlq165K7eLfeZ5JpoqnOX4hXIAe3kc5RwTZQU5f5tddtXKFez6QPyuDGAHADJC
+            RkBGQEZGSkbWE33qAYCMgIyQEZARMkJGAKCDMmIGdjICMgIyQkbICACsi4xoGSEjICMgI2QEAEBG
+            QEZARsgIGQEAbJw/kmZgJyMgIyAjQykjJycnRUT6BqONlhEyAjICMjK0MrLYtiIiICMgIyAjICOr
+            IiMAgO7LSCT+UMroZ2xsTDl0JCGW4+PjyqIDmZiYSL1er5PnRkYAAMuWkWgZmZubkw4kKrDKoRuJ
+            38u47bayGP3Mzs5WQtLFcyMjAIAVkRF0A920uoNuWt1BNy0yAgAgI2QEZARkhIwAAIZNRszATkZA
+            RkBGyAgAYF1kRMsIGQEZARkhIwAAMgIyAjJCRsgIAGDj/JE0AzsZARkBGSEjAIA1R8sIGQEZARkh
+            IwAAMgIyAjJCRsgIusuze/akq66+ZiGbNt84/5/d9MLyO+/ZfsnyWP/S/xinq23atq/vv2kfAIZP
+            RiLoBm/7u96pa+l6dkdGunot11RGjhw9mq697vrWiuhSif3dsXVbOj8zk3bs3FlVhLF6RBnfetuW
+            qrwzjz2+u7oOWUTKaxDrxfqxXSkipVzEtptu2Lywj1hW7iNvk/cBYPiYmf9df+2116rb+54/f756
+            jFy8eHHh53oGXS/fNngp68Uf7fVYb6XPo1zvzTff3NDrRSWs6XqM8nqDnm+5XrRydH29svyudL3y
+            eVfW61d+beuV5TXM662ZjGQRKSui8fNyhKSUkZJ6hRbLp62syzKvi0qWiXg9HuOaNElFeb2arl25
+            DwDDyVIlg4yQETJCRsgIGVkzGcnfkDd1t4nK6ZV+601G1rZVpN91alse1yau0YGDB6vH3ALSdh3b
+            rl28prsWAABAt1gTGen3zXb+Rn3/wUOXiEVZQa2PM8iV3no3rUg55iBaYr54//2XVG5jm5tuvsW3
+            7EukLgN5bEiUcZRpP1mIZT/92ZOtn4Hy80FGAAAAyMiKykg/AchC0U9G2iquTTKSBSdXaOsitJyW
+            mI1MW7nd98CD1XXoV66xTr+WkdyFq1/LSH4fAAAAkJEVaxkZVEaiolu2eMTyQWQkyN+q5y5DKrVL
+            p21MSJaE1RwzojULAACAjKzqmJG6fLTdKasUikFlJNbLleZ4xJVRv1tWKSP5Gve7E1bbTQyyXLZd
+            u/o2AAAAICNLuptWvdKZRSTfTSsS337n5eVtZMtv1MtbwQ4qI3kfUXFWqV2+kJRzgNTlZKXnGal/
+            ZgAAAEBGVmSekXIwehaQ/HpIRhaNcrsQlpCUfjKSK7xlRbZpjgwAAAAAG0RG6uSuPXUpWQ0MXAcA
+            AADIyJpT7wIGAAAAgIysOrnrl7EiAAAAABkBAAAAADICAAAAoMMycnJyUkRk0QAAADKy4jKy2PYi
+            IlpZAQAgI6siIwAAAABARgAAAACQEQAAAABkhIwAAAAAICMAAAAAyAgZAQAAAEBGAAAAAJARMgIA
+            AACAjAAAAAAgIwAAAABARgAAAACQEQAAAAAgIwAAAABGREYAAAAAgIwAAAAAICMAAAAAQEYAAAAA
+            kBEAAAAAICMAAAAAyAgAAAAAkBEAAAAA6ysj586dSyIiIiIiImsdMiIiIiIiIusjI0899VQSERER
+            ERFZ65ARERERERFZl/z/bOxtjHTZ/cUAAAAASUVORK5CYII=
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="PTC.Resource.ThingBasedResourceProviderTemplate"
+         description="Equipment template resource provider template. {PTC.SCA.SCO.EquipmentTemplateResourceProviderTemplate}"
+         documentationContent="&lt;p&gt;&lt;br&gt;&lt;/p&gt;"
+         effectiveThingPackage="PTC.SCA.SCO.EquipmentTemplateResourceProviderPackage"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.990+05:30"
+         name="PTC.SCA.SCO.EquipmentTemplateResourceProviderTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:ThingTemplate"
+         thingPackage="PTC.SCA.SCO.EquipmentTemplateResourceProviderPackage"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 description="Resource Attribute Mapping Configuration"
+                 isMultiRow="true"
+                 name="Attribute Mapping Configuration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="STRING"
+                             baseType="BASETYPENAME"
+                             description="The base type of the attribute (must be the same for normalized and originalattributes"
+                             name="BaseType"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="true"
+                             baseType="STRING"
+                             description="The normalized attribute name of the resource"
+                             name="Normalized"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="The original name of the attribute used in the business service for the resource"
+                             name="Original"
+                             ordinal="2"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows></Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Resource Provider Configuration"
+                 isMultiRow="false"
+                 name="Resource Provider Configuration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             baseType="THINGNAME"
+                             description="The Thing name of the connector to a business service for the resource"
+                             name="Connector"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="MASHUPNAME"
+                             description="The name of the mashup to create a new asset"
+                             name="CreateMashup"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="MASHUPNAME"
+                             description="The name of the mashup to show the details of the resource"
+                             name="DetailMashup"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <Connector></Connector>
+                            <CreateMashup></CreateMashup>
+                            <DetailMashup></DetailMashup>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Thing Resource Provider Configuration"
+                 isMultiRow="false"
+                 name="Thing Resource Provider Configuration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             baseType="THINGTEMPLATENAME"
+                             description="ThingTemplate used by this provider when creating new Things when the resource data does not specify the ThingTemplate to use"
+                             name="DefaultResourceTemplate"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="THINGSHAPENAME"
+                             description="ThingShape that denotes Things to be treated as resources by this provider"
+                             name="ResourceThingShape"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <DefaultResourceTemplate></DefaultResourceTemplate>
+                            <ResourceThingShape></ResourceThingShape>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Returns a list of equipment templates."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetInstanceList">
+                        <ResultType
+                         aspect.dataShape="PTC.Resource.ListItem"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="PTC"
+                     description="Returns the properties list of the provided template"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetTemplatePropertyList">
+                        <ResultType
+                         aspect.dataShape="PTC.Resource.ListItem"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Template name"
+                             name="templateName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="STRING"
+                             description="Use to filtering list of properties to be displayed per type, ex of usage : NUMBER;DATE"
+                             name="typeFilter"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetInstanceList">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function extractTemplateName(key) {
+                                            pipeIndex = key.indexOf('|');
+                                        
+                                            if (pipeIndex != -1) {
+                                              return key.substring(pipeIndex + 1);
+                                            }
+                                        
+                                            return key;
+                                        }
+                                        
+                                        function isEditable(templateName) {
+                                            var param = {
+                                                templateName: templateName
+                                            };
+                                        
+                                            return Resources["PTC.SCA.SCO.TemplateUtilities"].IsTemplateEditable(param);
+                                        }
+                                        
+                                        var equipmentList =  Things["PTC.SCA.SCO.UIProvider"].GetEquipmentTemplates({
+                                            EditableOnly: true
+                                        });
+                                        
+                                        var params = {
+                                            infoTableName : "TemplatesInfoTable",
+                                            dataShapeName : "PTC.Resource.ListItem"
+                                        };
+                                        
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        var equipments = equipmentList.rows;
+                                        
+                                        for (var x=0; x < equipments.length; x++) {
+                                            var equipment = equipments[x];
+                                            var equipmentName = extractTemplateName(equipment.InternalKey);
+                                        
+                                            if (isEditable(equipmentName)) {
+                                                var newEntry = new Object();
+                                                newEntry.label = equipment.Label;
+                                                newEntry.value = equipmentName;
+                                        
+                                                result.AddRow(newEntry);
+                                            }
+                                        }
+                                        
+                                        var sort = new Object();
+                                        sort.name = "label";
+                                        sort.ascending = true;
+                                        result.Sort(sort);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetTemplatePropertyList">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var propertyTypes = typeFilter ? typeFilter.toUpperCase().split(";") : null;
+                                        
+                                        function filterType(definition) {
+                                            if (!propertyTypes) {
+                                                return true;
+                                            }
+                                        
+                                            return propertyTypes.indexOf(definition.baseType) != -1;
+                                        }
+                                        
+                                        var definitionsList =  Resources["PTC.SCA.SCO.TemplateUtilities"].GetEffectivePropertyDefinitions({
+                                            templateName: templateName
+                                        });
+                                        
+                                        var params = {
+                                            infoTableName : "TemplatePropertiesInfoTable",
+                                            dataShapeName : "PropertyDefinition"
+                                        };
+                                        
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        var definitions = definitionsList.rows;
+                                        
+                                        for (var x=0; x < definitions.length; x++) {
+                                            var row = definitions[x];
+                                        
+                                            if (filterType(row)) {
+                                                result.AddRow(definitions[x]);
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility></Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

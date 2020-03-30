@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Redirects to the console or to the KEP server 'First Connection' page {PTC.Factory.LoginRedirect}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.708+05:30"
+         name="PTC.Factory.LoginRedirect"
+         projectName="PTC.SCA.SCO.Common"
+         rows="0.0"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.SCA.SCO.ProductRelationshipAdministrators"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions></ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.Common.MetricsUtils</Thing>
+                <Thing>PTC.Factory.KepServerMonitorUtils</Thing>
+                <Thing>PTC.SCA.SCO.Common.LicenseManager</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Resources_PTC.Factory.CommonUtilities" : {
+                  "DataName" : "Resources_PTC.Factory.CommonUtilities",
+                  "EntityName" : "PTC.Factory.CommonUtilities",
+                  "EntityType" : "Resources",
+                  "Id" : "a3747cda-02f6-4c91-a755-ef656ddc0ab1",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "9ba71090-3d90-4373-8a79-7d4dfc2169e0",
+                    "Name" : "IsCurrentUserInGroups",
+                    "Parameters" : {
+                      "groupNames" : "Administrators, Control Engineer"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "IsCurrentUserInGroups"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Subsystems_LicensingSubsystem" : {
+                  "DataName" : "Subsystems_LicensingSubsystem",
+                  "EntityName" : "LicensingSubsystem",
+                  "EntityType" : "Subsystems",
+                  "Id" : "595a74a1-9e0c-4ed8-84a9-3657db0ced0f",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "4018ba65-2fe5-4b8a-a150-b8f3949d1780",
+                    "Name" : "GetDaysRemainingInLicense",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetDaysRemainingInLicense"
+                  } ]
+                },
+                "Things_PTC.Factory.KepServerMonitorUtils" : {
+                  "DataName" : "Things_PTC.Factory.KepServerMonitorUtils",
+                  "EntityName" : "PTC.Factory.KepServerMonitorUtils",
+                  "EntityType" : "Things",
+                  "Id" : "8a100c88-907a-4199-8af4-74c9fb5c9258",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "4bf09472-95af-4e29-8248-0195b9e39a5c",
+                    "Name" : "AreThereAnyKepServers",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "AreThereAnyKepServers"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "96321850-5efe-494a-a819-f95d6cc3ed10",
+                    "Name" : "IsEnabled",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "IsEnabled"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.Common.LicenseManager" : {
+                  "DataName" : "Things_PTC.SCA.SCO.Common.LicenseManager",
+                  "EntityName" : "PTC.SCA.SCO.Common.LicenseManager",
+                  "EntityType" : "Things",
+                  "Id" : "c7c05856-c4cb-465e-8794-d393cf51e735",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "6e810981-3ccf-4f99-9120-785d8eeed7c8",
+                    "Name" : "InitializeLicenseSeats",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "InitializeLicenseSeats"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.Common.MetricsUtils" : {
+                  "DataName" : "Things_PTC.SCA.SCO.Common.MetricsUtils",
+                  "EntityName" : "PTC.SCA.SCO.Common.MetricsUtils",
+                  "EntityType" : "Things",
+                  "Id" : "4e8430dc-b9c4-4847-b82a-d48426c804d6",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "0bdba68d-e934-4c14-9bd4-2ad189bfa1d7",
+                    "Name" : "RegisterLogin",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "RegisterLogin"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "72cb4bf8-21bb-4b55-9c84-316049b73e17",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "AreThereAnyKepServers",
+                "SourceSection" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-2",
+                "TargetSection" : ""
+              }, {
+                "Id" : "a8e25421-3e84-49bb-94c5-56ece2020c85",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "IsCurrentUserInGroups",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-5",
+                "TargetSection" : ""
+              }, {
+                "Id" : "97f64972-9b8e-4d5e-b7b9-1a61f06041e9",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "NUMBER",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetDaysRemainingInLicense",
+                "SourceSection" : "Subsystems_LicensingSubsystem",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-6",
+                "TargetSection" : ""
+              }, {
+                "Id" : "62f67ae7-ccda-4d9e-a304-677d3250d645",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "enabled",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "IsEnabled",
+                "SourceSection" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-7",
+                "TargetSection" : ""
+              }, {
+                "Id" : "345786da-8a21-4443-997c-18d7eabb3282",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "NUMBER",
+                  "TargetProperty" : "userAgent",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-8",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "RegisterLogin",
+                "TargetSection" : "Things_PTC.SCA.SCO.Common.MetricsUtils"
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "link-3",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-2",
+                "EventTriggerSection" : "",
+                "Id" : "323a0a3d-5cde-4678-9884-5c4ecebf62cf"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "link-4",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-2",
+                "EventTriggerSection" : "",
+                "Id" : "60bdb935-491e-4210-8e81-570c20915700"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "EventHandlerService" : "AreThereAnyKepServers",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "ea5bac31-b6a7-428e-ad49-85673c042b40"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-2",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "AreThereAnyKepServers",
+                "EventTriggerSection" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "Id" : "a5b23b5c-f639-4952-a755-75176e0b9214"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "IsCurrentUserInGroups",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "883cb20a-1212-40a0-b665-e42510fa0c55"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-5",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "IsCurrentUserInGroups",
+                "EventTriggerSection" : "Resources_PTC.Factory.CommonUtilities",
+                "Id" : "33b7923c-dc63-4a66-90de-6ecee4d083c9"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "EventHandlerService" : "AreThereAnyKepServers",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-5",
+                "EventTriggerSection" : "",
+                "Id" : "c3f4befe-e324-41a0-9a71-b99187a49a9e"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "link-3",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-5",
+                "EventTriggerSection" : "",
+                "Id" : "07625709-41f2-41f8-a8c0-1919e1754b88"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "link-3",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-6",
+                "EventTriggerSection" : "",
+                "Id" : "4c696af8-96b9-4809-863e-712156cb487b"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Subsystems_LicensingSubsystem",
+                "EventHandlerService" : "GetDaysRemainingInLicense",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "e1a23c23-d289-40c9-bf97-e61939810d02"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-6",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetDaysRemainingInLicense",
+                "EventTriggerSection" : "Subsystems_LicensingSubsystem",
+                "Id" : "b0e5db7c-30bb-48e1-a986-aac556b51ab1"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "EventHandlerService" : "IsEnabled",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "6d98499a-cc6b-4af7-868d-c6a20e5b8453"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-7",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "IsEnabled",
+                "EventTriggerSection" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "Id" : "c5a5f67b-aa2f-45c0-8ab7-492119e740de"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "link-3",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-7",
+                "EventTriggerSection" : "",
+                "Id" : "638e5606-0a22-4b8b-8fc8-c027c1fc69b4"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.MetricsUtils",
+                "EventHandlerService" : "RegisterLogin",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "44846f5a-496d-489d-8716-00832df07228"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-8",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "c5c37479-b261-4a09-8ea5-64eb4e2f28cb"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.LicenseManager",
+                "EventHandlerService" : "InitializeLicenseSeats",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "3c9d670c-54aa-42a1-9ee7-7cc1faef5705"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "Description" : "Mashup called after login Form.",
+                  "DisplayName" : "Login redirect mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "id_index" : 8,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Description" : "",
+                    "DisplayName" : "panel-1",
+                    "Height" : 200,
+                    "HideScrollbars" : true,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "panel-1",
+                    "Left" : 140,
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "Style" : "DefaultAdvancedDataFilterBodyStyle",
+                    "Top" : 165,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 300,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "Description" : "",
+                      "DisplayName" : "Are there any servers?",
+                      "Expression" : "value",
+                      "Height" : 28,
+                      "Id" : "validator-2",
+                      "Left" : 5,
+                      "Output" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 155,
+                      "Type" : "validator",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Validator",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "BOOLEAN",
+                        "Description" : "",
+                        "ParameterName" : "value"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "Description" : "",
+                      "DisplayName" : "Console",
+                      "Height" : 20,
+                      "Id" : "link-3",
+                      "Left" : 250,
+                      "LinkDisplay" : "textOnly",
+                      "LinkHoverStyle" : "DefaultLinkHoverStyle",
+                      "LinkStyle" : "DefaultLinkStyle",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "SourceURL" : "index.html#master=PTC.FactoryConsole.Master&mashup=PTC.FactoryConsole",
+                      "TabSequence" : 0,
+                      "TargetWindow" : "replace",
+                      "Text" : "Console",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 5,
+                      "Type" : "link",
+                      "Visible" : false,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Link",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "Description" : "",
+                      "DisplayName" : "Tutorial",
+                      "Height" : 20,
+                      "Id" : "link-4",
+                      "Left" : 255,
+                      "LinkDisplay" : "textOnly",
+                      "LinkHoverStyle" : "DefaultLinkHoverStyle",
+                      "LinkStyle" : "DefaultLinkStyle",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "SourceURL" : "index.html#mashup=PTC.Factory.FirstTimeKepserverConfiguration",
+                      "TabSequence" : 0,
+                      "TargetWindow" : "replace",
+                      "Text" : "Tutorial",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 55,
+                      "Type" : "link",
+                      "Visible" : false,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Link",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "Description" : "",
+                      "DisplayName" : "Can users create servers?",
+                      "Expression" : "value",
+                      "Height" : 28,
+                      "Id" : "validator-5",
+                      "Left" : 5,
+                      "Output" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 5,
+                      "Type" : "validator",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Validator",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "BOOLEAN",
+                        "Description" : "",
+                        "ParameterName" : "value"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "Description" : "",
+                      "DisplayName" : "IsLicenseExpired?",
+                      "Expression" : "value <= 0 || !value",
+                      "Height" : 28,
+                      "Id" : "validator-6",
+                      "Left" : 5,
+                      "Output" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 80,
+                      "Type" : "validator",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Validator",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "NUMBER",
+                        "Description" : "",
+                        "ParameterName" : "value"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "Description" : "",
+                      "DisplayName" : "isKEPServerUtilsEnabled",
+                      "Expression" : "value",
+                      "Height" : 28,
+                      "Id" : "validator-7",
+                      "Left" : 5,
+                      "Output" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 117.5,
+                      "Type" : "validator",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Validator",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "BOOLEAN",
+                        "Description" : "",
+                        "ParameterName" : "value"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : true,
+                      "DataChangeType" : "VALUE",
+                      "DisplayName" : "UserAgentExpression",
+                      "Expression" : "navigator.userAgent",
+                      "FireOnFirstValue" : false,
+                      "Height" : 28,
+                      "Id" : "expression-8",
+                      "Left" : 5,
+                      "OutputBaseType" : "NUMBER",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 42.5,
+                      "Type" : "expression",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Expression"
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            iVBORw0KGgoAAAANSUhEUgAAARcAAABdCAYAAACPZyJqAAAA80lEQVR42u3UMQEAAAzCMPybBhPb
+            l0jo0RTgQSQAzAUwF8BcAMwFMBfAXADMBTAXwFwAzAUwF8BcAMwFMBfAXADMBTAXwFwAzAUwF8Bc
+            AMwFMBfAXADMBTAXwFwAzAUwF8BcAMwFMBfAXADMBTAXwFwAzAUwF8BcAMwFMBfAXADMBTAXwFwA
+            zAUwF8BcAMwFMBfAXADMBTAXwFwAzAUwF8BcAMwFMBfAXADMBTAXwFwAzAUwF8BcAMwFMBfAXADM
+            BTAXwFwAzAUwF8BcAMwFMBfAXADMBTAXwFwAzAUwF8BcAMwFMBfAXABzATAXwFwAcwE4Nmrq7jIW
+            iw0AAAAAAElFTkSuQmCC
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

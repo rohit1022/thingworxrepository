@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="PTC.Resource.ThingBasedResourceProviderTemplate"
+         description="Equipment resource provider template  {PTC.SCA.SCO.EquipmentResourceProviderTemplate}"
+         documentationContent=""
+         effectiveThingPackage="PTC.SCA.SCO.EquipmentResourceProviderPackage"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.033+05:30"
+         name="PTC.SCA.SCO.EquipmentResourceProviderTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Equipment;PTC:ThingTemplate"
+         thingPackage="PTC.SCA.SCO.EquipmentResourceProviderPackage"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read>
+                    <Principal
+                     isPermitted="true"
+                     name="FactoryUsers"
+                     type="Group"></Principal>
+                </Read>
+                <Update>
+                    <Principal
+                     isPermitted="true"
+                     name="FactoryUsers"
+                     type="Group"></Principal>
+                </Update>
+                <Delete>
+                    <Principal
+                     isPermitted="true"
+                     name="FactoryUsers"
+                     type="Group"></Principal>
+                </Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 description="Resource Attribute Mapping Configuration"
+                 isMultiRow="true"
+                 name="Attribute Mapping Configuration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="STRING"
+                             baseType="BASETYPENAME"
+                             description="The base type of the attribute (must be the same for normalized and originalattributes"
+                             name="BaseType"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="true"
+                             baseType="STRING"
+                             description="The normalized attribute name of the resource"
+                             name="Normalized"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="The original name of the attribute used in the business service for the resource"
+                             name="Original"
+                             ordinal="2"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows></Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Resource Provider Configuration"
+                 isMultiRow="false"
+                 name="Resource Provider Configuration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             baseType="THINGNAME"
+                             description="The Thing name of the connector to a business service for the resource"
+                             name="Connector"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="MASHUPNAME"
+                             description="The name of the mashup to create a new asset"
+                             name="CreateMashup"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="MASHUPNAME"
+                             description="The name of the mashup to show the details of the resource"
+                             name="DetailMashup"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <Connector></Connector>
+                            <CreateMashup></CreateMashup>
+                            <DetailMashup></DetailMashup>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Thing Resource Provider Configuration"
+                 isMultiRow="false"
+                 name="Thing Resource Provider Configuration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             baseType="THINGTEMPLATENAME"
+                             description="ThingTemplate used by this provider when creating new Things when the resource data does not specify the ThingTemplate to use"
+                             name="DefaultResourceTemplate"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="THINGSHAPENAME"
+                             description="ThingShape that denotes Things to be treated as resources by this provider"
+                             name="ResourceThingShape"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <DefaultResourceTemplate></DefaultResourceTemplate>
+                            <ResourceThingShape></ResourceThingShape>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Create equipment instance"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CreateEquipmentInstance">
+                        <ResultType
+                         baseType="STRING"
+                         description="Name of the created equipment instance."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Equipment instance description"
+                             name="description"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Equipment instance display name"
+                             name="displayName"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Equipment name"
+                             name="equipmentName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="THINGTEMPLATENAME"
+                             description="Equipment ThingTemplate name"
+                             name="thingTemplateName"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Find and return infomation of all thing instances which are based on thing template that is given as parameter."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetInstanceList">
+                        <ResultType
+                         aspect.dataShape="PTC.Resource.ListItem"
+                         baseType="INFOTABLE"
+                         description="An infotable contains info of all found thing instances."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="This service will only return infomation of things that is based on thing template of this name"
+                             name="thingTemplateName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Set the equipment entity name when creation. By default, the name of the equipment thing is set to &lt;equipmentType&gt;_&lt;equipmentName&gt;."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="SetEquipmentEntityName">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Equipment name."
+                             name="equipmentName"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="STRING"
+                             description="Equipment type."
+                             name="equipmentType"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Update equipment information"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="UpdateEquipment">
+                        <ResultType
+                         baseType="NOTHING"
+                         description="Update the properties of an equipment"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="description of the asset name"
+                             name="description"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Equipment instance display name"
+                             name="displayName"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="IMAGE"
+                             description="image of the asset"
+                             name="image"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="INTEGER"
+                             description="the period for the kpi"
+                             name="kpiPeriod"
+                             ordinal="8"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="modelNumber"
+                             ordinal="10"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Physical asset name"
+                             name="physicalAssetThingName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="physicalLocation"
+                             ordinal="9"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="serialNumber"
+                             ordinal="11"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Server thing name"
+                             name="serverThingName"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="duration of the shift"
+                             name="shiftDuration"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="start time of the shift"
+                             name="shiftStartTime"
+                             ordinal="6"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.ServerTagDataShape"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="status"
+                             ordinal="12"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="CreateEquipmentInstance">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // Create Thing
+                                        Resources["EntityServices"].CreateThing({
+                                        	name: equipmentName /* STRING */,
+                                        	description: this.description /* STRING */,
+                                        	thingTemplateName: this.thingTemplateName /* THINGTEMPLATENAME */,
+                                        	tags: "PTC:factory-mv;PTC:FactoryEquipmentInstance" /* TAGS */
+                                        });
+                                        
+                                        // Set Thing properties
+                                        var equipmentCreated = Things[equipmentName];
+                                        equipmentCreated.EnableThing();
+                                        equipmentCreated.RestartThing();
+                                        equipmentCreated.displayName = this.displayName;
+                                        //This is to solve the issue that Asset have assetImage and Line/Site and others have AssetImage as property
+                                        if (equipmentCreated.assetImage) {
+                                            equipmentCreated.assetImage = MediaEntities["PTC.Factory.DefaultPhysicalAssetIcon"].GetImage();
+                                        } else {
+                                            equipmentCreated.AssetImage = MediaEntities["PTC.Factory.DefaultPhysicalAssetIcon"].GetImage();
+                                        }
+                                        
+                                        // Set runtime permissions property read and property write to true for the current user, which is equivalent to Write permission in context
+                                        var currentUser =  Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        equipmentCreated.AddRunTimePermission({
+                                        	allow: true /* BOOLEAN */,
+                                        	principal: currentUser /* STRING */,
+                                        	resource: "*" /* STRING */,
+                                        	type: "PropertyRead" /* STRING */,
+                                        	principalType: "User" /* STRING */
+                                        });
+                                        equipmentCreated.AddRunTimePermission({
+                                        	allow: true /* BOOLEAN */,
+                                        	principal: currentUser /* STRING */,
+                                        	resource: "*" /* STRING */,
+                                        	type: "PropertyWrite" /* STRING */,
+                                        	principalType: "User" /* STRING */
+                                        });
+                                        equipmentCreated.AddRunTimePermission({
+                                        	allow: true /* BOOLEAN */,
+                                        	principal: currentUser /* STRING */,
+                                        	resource: "*" /* STRING */,
+                                        	type: "ServiceInvoke" /* STRING */,
+                                        	principalType: "User" /* STRING */
+                                        });
+                                        
+                                        // Initialize default status configuration
+                                        if (equipmentCreated.ImplementsShape({
+                                                thingShapeName: "PTC.SCA.SCO.StatusThingShape" /* THINGSHAPENAME */
+                                            })) {
+                                            equipmentCreated.GetStatusExpressions();
+                                            // Add an initial history entry to 0 for the status property
+                                            equipmentCreated.status = 0;
+                                        	equipmentCreated.actualStatusDisplayName = getActualStatusDisplayName();
+                                        
+                                            // Add a first entry in the StatusValue table
+                                            var statusManagerThingName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetStatusManagerThingName();
+                                            Things[statusManagerThingName].CreateStateValueForThing({"thingName":equipmentName});
+                                        }
+                                        
+                                        // Create ValueStream and assign to Thing
+                                        var valueStreamName = "ValueStream_" + equipmentName;
+                                        if (!Things[valueStreamName]) {
+                                            Resources["EntityServices"].CreateThing({
+                                        	    name: valueStreamName /* STRING */,
+                                        	    description: "ValueStream for " + equipmentName /* STRING */,
+                                        	    thingTemplateName: "PTC.ISA95.EquipmentValueStreamTemplate" /* THINGTEMPLATENAME */,
+                                        	    tags: "PTC:factory-mv;PTC:FactoryEquipmentInstance" /* TAGS */
+                                            });
+                                            Things[valueStreamName].EnableThing();
+                                            Things[valueStreamName].RestartThing();
+                                        
+                                        } else {
+                                            logger.warn("ValueStream already exists, setting the value stream to the existing: " + valueStreamName);
+                                        }
+                                        equipmentCreated.SetValueStream({
+                                        	name: valueStreamName /* THINGNAME */
+                                        });
+                                        
+                                        // Return the name of the equipment instance created
+                                        result = equipmentName;
+                                        
+                                        function getActualStatusDisplayName() {
+                                            var definitions = equipmentCreated.GetStatusDefinitions();
+                                            var currentStatusDefinition = definitions.Find({'id': equipmentCreated.status});
+                                            return getEnglishLocalization(currentStatusDefinition);
+                                        }
+                                        
+                                        function getEnglishLocalization(statusDefinition) {
+                                            var localizedValue = Resources["RuntimeLocalizationFunctions"].GetEffectiveTokenForLanguage({
+                                                    'language': 'en' /* STRING */,
+                                                    'token': statusDefinition.localizationToken /* STRING */
+                                            });
+                                            return localizeOrDefault (localizedValue, statusDefinition.name);
+                                        }
+                                        
+                                        function localizeOrDefault (localizedValue, defaultString) {
+                                            // default to internal name if no localization was found
+                                            if (localizedValue === '???') {
+                                                localizedValue = defaultString;
+                                            }
+                                            return localizedValue;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetInstanceList">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*
+                                            Prepare infotable that will be returned. Make sure even for case that no instance is found or there is an error
+                                            an empty infotable will still be returned
+                                        */
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                infoTableName : "InfoTable",
+                                                dataShapeName : "PTC.Resource.ListItem"
+                                            });
+                                        if (thingTemplateName && thingTemplateName.replace(/\s/g, '').length) {
+                                            /*
+                                                Find all instances which are based on given thing template
+                                                Note: here we just want thing instance which is DIRECTLY based on given thing template,
+                                                we do not want things that is based on child thing templates.
+                                                That's why we need a 'templateFilterQuery'
+                                            */
+                                            var templateFilterQuery =
+                                                {filters: {
+                                                    type: "EQ",
+                                                    fieldName: "thingTemplate",
+                                                    value: thingTemplateName
+                                                }};
+                                            var foundInstanceList = Resources["SearchFunctions"]
+                                                .SearchThingsByTemplate({
+                                                    maxItems : Number.MAX_VALUE,
+                                                    query: templateFilterQuery,
+                                                    thingTemplate: thingTemplateName
+                                                });
+                                            if (foundInstanceList && foundInstanceList.getRowCount() > 0) {
+                                                for (var i = 0; i < foundInstanceList.getRowCount(); i++) {
+                                                    // Try to retrieve 'displayName' for 'label' first. if displayName is not defined, retrieve 'name' instead
+                                                    var displayName;
+                                                    var currentRow = foundInstanceList.getRow(i);
+                                                    if (currentRow.displayName && currentRow.displayName.length > 0) {
+                                                        displayName = currentRow.displayName;
+                                                    } else {
+                                                        displayName = currentRow.name;
+                                                    }
+                                                    result.AddRow({
+                                                        label: displayName,
+                                                        value: currentRow.name
+                                                    });
+                                                }
+                                            } else {
+                                                // Log an info message and return empty infotable
+                                                logger.info("GetInstanceList: can not find any instance per given thing template name [" + thingTemplateName + "]");
+                                            }
+                                        } else {
+                                            // Error! thingTemplateName must not be null or empty string
+                                            throw "GetInstanceList: given thing template name must not be null or empty string";
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="SetEquipmentEntityName">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        result = equipmentType + '_' + equipmentName;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="UpdateEquipment">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (Things[physicalAssetThingName]) {
+                                            Things[physicalAssetThingName].displayName = displayName;
+                                            Things[physicalAssetThingName].SetDescription({
+                                        	    description: description /* STRING */
+                                            });
+                                            Things[physicalAssetThingName].AssetImage = image;
+                                        
+                                            //Old Model service still work and check if the thing is implementing PTC.Factory.ShiftThingShape
+                                            var isOldShiftShape = Things[physicalAssetThingName].ImplementsShape({
+                                                thingShapeName: "PTC.Factory.ShiftThingShape" /* THINGSHAPENAME */
+                                            });
+                                        
+                                            if ( isOldShiftShape ){
+                                                Things[physicalAssetThingName].shiftDuration = shiftDuration ? shiftDuration : Things[physicalAssetThingName].shiftDuration;
+                                                Things[physicalAssetThingName].shiftStartTime = shiftStartTime ? shiftStartTime : Things[physicalAssetThingName].shiftStartTime;
+                                                Things[physicalAssetThingName].kpisCalculationPeriod = kpiPeriod ? kpiPeriod : Things[physicalAssetThingName].kpisCalculationPeriod;
+                                            }
+                                        
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read>
+                    <Principal
+                     isPermitted="true"
+                     name="FactoryUsers"
+                     type="Group"></Principal>
+                </Read>
+                <Update>
+                    <Principal
+                     isPermitted="true"
+                     name="FactoryUsers"
+                     type="Group"></Principal>
+                </Update>
+                <Delete>
+                    <Principal
+                     isPermitted="true"
+                     name="FactoryUsers"
+                     type="Group"></Principal>
+                </Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

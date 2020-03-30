@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Displays Devices Status Chart {PTC.Factory.DeviceStatusWidget}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:41.123+05:30"
+         name="PTC.Factory.DeviceStatusWidget"
+         projectName="PTC.SCA.SCO.KEPServerEX Monitor"
+         rows="0.0"
+         tags="PTC:sca-sco-kepserverexmonitor;PTC:sca-mfg;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:KEPServerMonitoring"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description="The name of the opcda thing"
+                 name="opcdaThingName"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.Factory.DeviceUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC_Factory_DeviceUtils" : {
+                  "DataName" : "Things_PTC_Factory_DeviceUtils",
+                  "EntityName" : "PTC.Factory.DeviceUtils",
+                  "EntityType" : "Things",
+                  "Id" : "eedf3d0e-0e09-4cce-88dc-850dfb57c60f",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "e1a0f1c1-720c-42f0-89b0-43ea2ee246ea",
+                    "Name" : "GetDevicesSummaryForChart",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetDevicesSummaryForChart"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "7b29c7c4-67b5-428b-81d4-bd7344725b2e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "opcdaThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "opcdaThingName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetDevicesSummary",
+                "TargetSection" : "Things_PTC_Factory_DeviceUtils"
+              }, {
+                "Id" : "a4273af5-5c15-4f11-abb7-85b6702c763f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "opcdaThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "opcdaThingName",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetDevicesSummaryForChart",
+                "TargetSection" : "Things_PTC_Factory_DeviceUtils"
+              }, {
+                "Id" : "13b81b90-3656-401d-927f-4719bfc17335",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "NumberOfDevices",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "YAxisMaximum",
+                  "TargetPropertyBaseType" : "NUMBER"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetDevicesSummaryForChart",
+                "SourceSection" : "Things_PTC_Factory_DeviceUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "LabelChart-7",
+                "TargetSection" : ""
+              }, {
+                "Id" : "b07d839f-056d-4961-835f-f714eb02f52a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "NumberOfDevicesInError",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "DataSource3",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetDevicesSummaryForChart",
+                "SourceSection" : "Things_PTC_Factory_DeviceUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "LabelChart-7",
+                "TargetSection" : ""
+              }, {
+                "Id" : "8a7e2cf0-3255-4d37-9c99-4947c7205566",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "NumberOfDevicesNotInError",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "DataSource1",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetDevicesSummaryForChart",
+                "SourceSection" : "Things_PTC_Factory_DeviceUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "LabelChart-7",
+                "TargetSection" : ""
+              }, {
+                "Id" : "6cb483c9-8fdc-4df5-a884-cc4762a668c9",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "NumberOfDevicesInError24h",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "DataSource2",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetDevicesSummaryForChart",
+                "SourceSection" : "Things_PTC_Factory_DeviceUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "LabelChart-7",
+                "TargetSection" : ""
+              }, {
+                "Id" : "870d917e-099d-4008-8dd0-4299179b84cf",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "NumberOfDevicesDisabled",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "DataSource4",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetDevicesSummaryForChart",
+                "SourceSection" : "Things_PTC_Factory_DeviceUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "LabelChart-7",
+                "TargetSection" : ""
+              }, {
+                "Id" : "c2b84678-9ffa-4df9-8874-e1bb78668ed7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "NumberOfDevicesUnavailable",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "DataSource5",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetDevicesSummaryForChart",
+                "SourceSection" : "Things_PTC_Factory_DeviceUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "LabelChart-7",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : { },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC_Factory_DeviceUtils",
+                "EventHandlerService" : "GetDevicesSummaryForChart",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "opcdaThingNameChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "e1365ee4-303b-4b77-927c-03ec9404e0cc"
+              } ],
+              "RunTimePermissions" : { },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "DefaultValue" : "OPCDAThing",
+                    "Description" : "The name of the opcda thing",
+                    "ParameterName" : "opcdaThingName"
+                  } ],
+                  "id_index" : 23,
+                  "opcdaThingName" : "OPCDAThing",
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "Panel-2",
+                    "Height" : 200,
+                    "HideScrollbars" : true,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "Panel-2",
+                    "Left" : 175,
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.TileBody",
+                    "Top" : 290,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 300,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AllowSelection" : false,
+                      "AllowYAxisZoom" : false,
+                      "Area" : "UI",
+                      "AxisAutoscale1" : true,
+                      "AxisAutoscale10" : true,
+                      "AxisAutoscale11" : true,
+                      "AxisAutoscale12" : true,
+                      "AxisAutoscale13" : true,
+                      "AxisAutoscale14" : true,
+                      "AxisAutoscale15" : true,
+                      "AxisAutoscale16" : true,
+                      "AxisAutoscale17" : true,
+                      "AxisAutoscale18" : true,
+                      "AxisAutoscale19" : true,
+                      "AxisAutoscale2" : true,
+                      "AxisAutoscale20" : true,
+                      "AxisAutoscale21" : true,
+                      "AxisAutoscale22" : true,
+                      "AxisAutoscale23" : true,
+                      "AxisAutoscale24" : true,
+                      "AxisAutoscale3" : true,
+                      "AxisAutoscale4" : true,
+                      "AxisAutoscale5" : true,
+                      "AxisAutoscale6" : true,
+                      "AxisAutoscale7" : true,
+                      "AxisAutoscale8" : true,
+                      "AxisAutoscale9" : true,
+                      "AxisFormat1" : "0000.0",
+                      "AxisFormat10" : "0000.0",
+                      "AxisFormat11" : "0000.0",
+                      "AxisFormat12" : "0000.0",
+                      "AxisFormat13" : "0000.0",
+                      "AxisFormat14" : "0000.0",
+                      "AxisFormat15" : "0000.0",
+                      "AxisFormat16" : "0000.0",
+                      "AxisFormat17" : "0000.0",
+                      "AxisFormat18" : "0000.0",
+                      "AxisFormat19" : "0000.0",
+                      "AxisFormat2" : "0000.0",
+                      "AxisFormat20" : "0000.0",
+                      "AxisFormat21" : "0000.0",
+                      "AxisFormat22" : "0000.0",
+                      "AxisFormat23" : "0000.0",
+                      "AxisFormat24" : "0000.0",
+                      "AxisFormat3" : "0000.0",
+                      "AxisFormat4" : "0000.0",
+                      "AxisFormat5" : "0000.0",
+                      "AxisFormat6" : "0000.0",
+                      "AxisFormat7" : "0000.0",
+                      "AxisFormat8" : "0000.0",
+                      "AxisFormat9" : "0000.0",
+                      "AxisMaximum1" : 100,
+                      "AxisMaximum10" : 100,
+                      "AxisMaximum11" : 100,
+                      "AxisMaximum12" : 100,
+                      "AxisMaximum13" : 100,
+                      "AxisMaximum14" : 100,
+                      "AxisMaximum15" : 100,
+                      "AxisMaximum16" : 100,
+                      "AxisMaximum17" : 100,
+                      "AxisMaximum18" : 100,
+                      "AxisMaximum19" : 100,
+                      "AxisMaximum2" : 100,
+                      "AxisMaximum20" : 100,
+                      "AxisMaximum21" : 100,
+                      "AxisMaximum22" : 100,
+                      "AxisMaximum23" : 100,
+                      "AxisMaximum24" : 100,
+                      "AxisMaximum3" : 100,
+                      "AxisMaximum4" : 100,
+                      "AxisMaximum5" : 100,
+                      "AxisMaximum6" : 100,
+                      "AxisMaximum7" : 100,
+                      "AxisMaximum8" : 100,
+                      "AxisMaximum9" : 100,
+                      "AxisMinimum1" : 0,
+                      "AxisMinimum10" : 0,
+                      "AxisMinimum11" : 0,
+                      "AxisMinimum12" : 0,
+                      "AxisMinimum13" : 0,
+                      "AxisMinimum14" : 0,
+                      "AxisMinimum15" : 0,
+                      "AxisMinimum16" : 0,
+                      "AxisMinimum17" : 0,
+                      "AxisMinimum18" : 0,
+                      "AxisMinimum19" : 0,
+                      "AxisMinimum2" : 0,
+                      "AxisMinimum20" : 0,
+                      "AxisMinimum21" : 0,
+                      "AxisMinimum22" : 0,
+                      "AxisMinimum23" : 0,
+                      "AxisMinimum24" : 0,
+                      "AxisMinimum3" : 0,
+                      "AxisMinimum4" : 0,
+                      "AxisMinimum5" : 0,
+                      "AxisMinimum6" : 0,
+                      "AxisMinimum7" : 0,
+                      "AxisMinimum8" : 0,
+                      "AxisMinimum9" : 0,
+                      "AxisZeroscale1" : false,
+                      "AxisZeroscale10" : false,
+                      "AxisZeroscale11" : false,
+                      "AxisZeroscale12" : false,
+                      "AxisZeroscale13" : false,
+                      "AxisZeroscale14" : false,
+                      "AxisZeroscale15" : false,
+                      "AxisZeroscale16" : false,
+                      "AxisZeroscale17" : false,
+                      "AxisZeroscale18" : false,
+                      "AxisZeroscale19" : false,
+                      "AxisZeroscale2" : false,
+                      "AxisZeroscale20" : false,
+                      "AxisZeroscale21" : false,
+                      "AxisZeroscale22" : false,
+                      "AxisZeroscale23" : false,
+                      "AxisZeroscale24" : false,
+                      "AxisZeroscale3" : false,
+                      "AxisZeroscale4" : false,
+                      "AxisZeroscale5" : false,
+                      "AxisZeroscale6" : false,
+                      "AxisZeroscale7" : false,
+                      "AxisZeroscale8" : false,
+                      "AxisZeroscale9" : false,
+                      "ChartAreaStyle" : "DefaultChartAreaStyle",
+                      "ChartIndicatorStyle" : "DefaultChartIndicatorStyle",
+                      "ChartLegendStyle" : "PTC.Factory.Generic.DefaultLabel",
+                      "ChartOrientation" : "vertical",
+                      "ChartStyle" : "DefaultChartStyle",
+                      "ChartTitle" : "",
+                      "ChartTitleStyle" : "DefaultChartTitleStyle",
+                      "ChartType" : "bar",
+                      "DataField1" : "Value",
+                      "DataField2" : "Value",
+                      "DataField3" : "Value",
+                      "DataField4" : "Value",
+                      "DataField5" : "Value",
+                      "DataLabel1" : "[[PTC.Factory.Good]]",
+                      "DataLabel2" : "[[PTC.Factory.InError24h]]",
+                      "DataLabel3" : "[[PTC.Factory.InError]]",
+                      "DataLabel4" : "[[PTC.Factory.Disabled]]",
+                      "DataLabel5" : "[[PTC.Factory.UnavailableStatus]]",
+                      "DisplayName" : "LabelChart-7",
+                      "EnableHover" : true,
+                      "GridStyle" : "PTC.Factory.Generic.TableRowNonSelected",
+                      "Height" : 213,
+                      "Id" : "LabelChart-7",
+                      "Left" : 10,
+                      "LegendLocation" : "bottom",
+                      "LegendOrientation" : "vertical",
+                      "LegendWidth" : 0,
+                      "MarkerSize" : 4,
+                      "MarkerType" : "circle",
+                      "NumberOfSeries" : 5,
+                      "ResponsiveLayout" : false,
+                      "SecondaryYAxisAutoscale" : false,
+                      "SecondaryYAxisFormat" : "0000.0",
+                      "SecondaryYAxisMaximum" : 100,
+                      "SecondaryYAxisMinimum" : 0,
+                      "SecondaryYAxisTitle" : "",
+                      "SecondaryYAxisZeroscale" : false,
+                      "SelectedItemStyle" : "DefaultChartSelectionStyle",
+                      "SeriesDataStyle10_StateParameters" : [ ],
+                      "SeriesDataStyle11_StateParameters" : [ ],
+                      "SeriesDataStyle12_StateParameters" : [ ],
+                      "SeriesDataStyle13_StateParameters" : [ ],
+                      "SeriesDataStyle14_StateParameters" : [ ],
+                      "SeriesDataStyle15_StateParameters" : [ ],
+                      "SeriesDataStyle16_StateParameters" : [ ],
+                      "SeriesDataStyle17_StateParameters" : [ ],
+                      "SeriesDataStyle18_StateParameters" : [ ],
+                      "SeriesDataStyle19_StateParameters" : [ ],
+                      "SeriesDataStyle1_StateParameters" : [ ],
+                      "SeriesDataStyle20_StateParameters" : [ ],
+                      "SeriesDataStyle21_StateParameters" : [ ],
+                      "SeriesDataStyle22_StateParameters" : [ ],
+                      "SeriesDataStyle23_StateParameters" : [ ],
+                      "SeriesDataStyle24_StateParameters" : [ ],
+                      "SeriesDataStyle2_StateParameters" : [ ],
+                      "SeriesDataStyle3_StateParameters" : [ ],
+                      "SeriesDataStyle4_StateParameters" : [ ],
+                      "SeriesDataStyle5_StateParameters" : [ ],
+                      "SeriesDataStyle6_StateParameters" : [ ],
+                      "SeriesDataStyle7_StateParameters" : [ ],
+                      "SeriesDataStyle8_StateParameters" : [ ],
+                      "SeriesDataStyle9_StateParameters" : [ ],
+                      "SeriesMarkerType1" : "chart",
+                      "SeriesMarkerType10" : "chart",
+                      "SeriesMarkerType11" : "chart",
+                      "SeriesMarkerType12" : "chart",
+                      "SeriesMarkerType13" : "chart",
+                      "SeriesMarkerType14" : "chart",
+                      "SeriesMarkerType15" : "chart",
+                      "SeriesMarkerType16" : "chart",
+                      "SeriesMarkerType17" : "chart",
+                      "SeriesMarkerType18" : "chart",
+                      "SeriesMarkerType19" : "chart",
+                      "SeriesMarkerType2" : "chart",
+                      "SeriesMarkerType20" : "chart",
+                      "SeriesMarkerType21" : "chart",
+                      "SeriesMarkerType22" : "chart",
+                      "SeriesMarkerType23" : "chart",
+                      "SeriesMarkerType24" : "chart",
+                      "SeriesMarkerType3" : "chart",
+                      "SeriesMarkerType4" : "chart",
+                      "SeriesMarkerType5" : "chart",
+                      "SeriesMarkerType6" : "chart",
+                      "SeriesMarkerType7" : "chart",
+                      "SeriesMarkerType8" : "chart",
+                      "SeriesMarkerType9" : "chart",
+                      "SeriesStyle1" : "PTC.Factory.Generic.GreenTagColor",
+                      "SeriesStyle10" : "DefaultChartStyle10",
+                      "SeriesStyle11" : "DefaultChartStyle11",
+                      "SeriesStyle12" : "DefaultChartStyle12",
+                      "SeriesStyle13" : "DefaultChartStyle13",
+                      "SeriesStyle14" : "DefaultChartStyle14",
+                      "SeriesStyle15" : "DefaultChartStyle15",
+                      "SeriesStyle16" : "DefaultChartStyle16",
+                      "SeriesStyle17" : "DefaultChartStyle17",
+                      "SeriesStyle18" : "DefaultChartStyle18",
+                      "SeriesStyle19" : "DefaultChartStyle19",
+                      "SeriesStyle2" : "PTC.Factory.Generic.OrangeTagColor",
+                      "SeriesStyle20" : "DefaultChartStyle20",
+                      "SeriesStyle21" : "DefaultChartStyle21",
+                      "SeriesStyle22" : "DefaultChartStyle22",
+                      "SeriesStyle23" : "DefaultChartStyle23",
+                      "SeriesStyle24" : "DefaultChartStyle24",
+                      "SeriesStyle3" : "PTC.Factory.Generic.RedTagColor",
+                      "SeriesStyle4" : "PTC.Factory.Generic.GreyTagColor",
+                      "SeriesStyle5" : "PTC.Factory.Generic.UnavailableTagColor",
+                      "SeriesStyle6" : "DefaultChartStyle6",
+                      "SeriesStyle7" : "DefaultChartStyle7",
+                      "SeriesStyle8" : "DefaultChartStyle8",
+                      "SeriesStyle9" : "DefaultChartStyle9",
+                      "SeriesType1" : "chart",
+                      "SeriesType10" : "chart",
+                      "SeriesType11" : "chart",
+                      "SeriesType12" : "chart",
+                      "SeriesType13" : "chart",
+                      "SeriesType14" : "chart",
+                      "SeriesType15" : "chart",
+                      "SeriesType16" : "chart",
+                      "SeriesType17" : "chart",
+                      "SeriesType18" : "chart",
+                      "SeriesType19" : "chart",
+                      "SeriesType2" : "chart",
+                      "SeriesType20" : "chart",
+                      "SeriesType21" : "chart",
+                      "SeriesType22" : "chart",
+                      "SeriesType23" : "chart",
+                      "SeriesType24" : "chart",
+                      "SeriesType3" : "chart",
+                      "SeriesType4" : "chart",
+                      "SeriesType5" : "chart",
+                      "SeriesType6" : "chart",
+                      "SeriesType7" : "chart",
+                      "SeriesType8" : "chart",
+                      "SeriesType9" : "chart",
+                      "ShowDataLoading" : true,
+                      "ShowLegend" : true,
+                      "ShowXAxis" : true,
+                      "ShowXAxisGrid" : false,
+                      "ShowXAxisLabels" : false,
+                      "ShowXAxisTicks" : false,
+                      "ShowYAxis" : true,
+                      "ShowYAxisGrid" : true,
+                      "ShowYAxisLabels" : true,
+                      "ShowYAxisSmartLabels" : false,
+                      "ShowYAxisTicks" : true,
+                      "SingleDataSource" : false,
+                      "Smoothing" : false,
+                      "StackSeries" : false,
+                      "Top" : 15,
+                      "Type" : "labelchart",
+                      "UseSecondaryAxis1" : false,
+                      "UseSecondaryAxis10" : false,
+                      "UseSecondaryAxis11" : false,
+                      "UseSecondaryAxis12" : false,
+                      "UseSecondaryAxis13" : false,
+                      "UseSecondaryAxis14" : false,
+                      "UseSecondaryAxis15" : false,
+                      "UseSecondaryAxis16" : false,
+                      "UseSecondaryAxis17" : false,
+                      "UseSecondaryAxis18" : false,
+                      "UseSecondaryAxis19" : false,
+                      "UseSecondaryAxis2" : false,
+                      "UseSecondaryAxis20" : false,
+                      "UseSecondaryAxis21" : false,
+                      "UseSecondaryAxis22" : false,
+                      "UseSecondaryAxis23" : false,
+                      "UseSecondaryAxis24" : false,
+                      "UseSecondaryAxis3" : false,
+                      "UseSecondaryAxis4" : false,
+                      "UseSecondaryAxis5" : false,
+                      "UseSecondaryAxis6" : false,
+                      "UseSecondaryAxis7" : false,
+                      "UseSecondaryAxis8" : false,
+                      "UseSecondaryAxis9" : false,
+                      "Visible" : true,
+                      "Width" : 300,
+                      "XAxisField1" : "Value",
+                      "XAxisField2" : "Value",
+                      "XAxisField3" : "Value",
+                      "XAxisField4" : "Value",
+                      "XAxisField5" : "Value",
+                      "XAxisFormat" : "0000.0",
+                      "XAxisLabelRotation" : 0,
+                      "XAxisLabelType" : "STRING",
+                      "XAxisStyle" : "DefaultChartAxisStyle",
+                      "XAxisTitle" : "",
+                      "YAxisAutoscale" : true,
+                      "YAxisFormat" : "0",
+                      "YAxisIntervals" : 10,
+                      "YAxisLabels" : 1,
+                      "YAxisMaximum" : 100,
+                      "YAxisMinimum" : 0,
+                      "YAxisMinorTicks" : 0,
+                      "YAxisMode" : "single",
+                      "YAxisStyle" : "PTC.Factory.Generic.TableRowNonSelected",
+                      "YAxisTitle" : "",
+                      "YAxisZeroscale" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Label Chart"
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            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
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

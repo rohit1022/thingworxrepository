@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Things>
+        <Thing
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         description="Service for storing last import result and status."
+         documentationContent=""
+         effectiveThingPackage="DataTableThing"
+         enabled="true"
+         homeMashup="DataTableEditor"
+         identifier=""
+         lastModifiedDate="2020-03-19T18:16:23.692+05:30"
+         name="PTC.SCA.SCO.Common.ImportProcessHistoryDataTable"
+         projectName="PTC.SCA.SCO.Common"
+         published="false"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Utils;PTC:Thing"
+         thingTemplate="DataTable"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 description="Data Thing Configuration"
+                 isMultiRow="false"
+                 name="DataThingSettings"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Persistence Provider Name"
+                             name="persistenceProvider"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <persistenceProvider>
+                            <![CDATA[
+                            ThingworxPersistenceProvider
+                            ]]>
+                            </persistenceProvider>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Data Shape Configuration"
+                 isMultiRow="false"
+                 name="Settings"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.friendlyName="Data Shape"
+                             baseType="DATASHAPENAME"
+                             description="Data shape"
+                             name="dataShape"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <accumulatedDataShape>
+                                <json>
+                                <![CDATA[
+                                {"fieldDefinitions":{"FileName":{"name":"FileName","aspects":{},"description":"","baseType":"STRING","ordinal":0},"user":{"name":"user","aspects":{"isPrimaryKey":true},"description":"","baseType":"USERNAME","ordinal":7},"IsFinished":{"name":"IsFinished","aspects":{"isPrimaryKey":false},"description":"","baseType":"BOOLEAN","ordinal":1},"IsSuccessful":{"name":"IsSuccessful","aspects":{"isPrimaryKey":false},"description":"","baseType":"BOOLEAN","ordinal":2},"Result":{"name":"Result","aspects":{"isPrimaryKey":false,"dataShape":"PTC.SCA.SCO.Common.ImportExport.ReportDataShape"},"description":"","baseType":"INFOTABLE","ordinal":3},"status":{"name":"status","aspects":{},"description":"","baseType":"STRING","ordinal":4},"tags":{"name":"tags","aspects":{"tagType":"ModelTags"},"description":"","baseType":"TAGS","ordinal":5},"timestamp":{"name":"timestamp","aspects":{},"description":"","baseType":"DATETIME","ordinal":6}}}
+                                ]]>
+                                </json>
+                            </accumulatedDataShape>
+                            <dataShape>
+                            <![CDATA[
+                            PTC.SCA.SCO.Common.ImportProcessHistoryDataShape
+                            ]]>
+                            </dataShape>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Index Settings"
+                 isMultiRow="true"
+                 name="Indexes"
+                 ordinal="1">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.friendlyName="Index Field Names"
+                             baseType="STRING"
+                             description="Index fields"
+                             name="fieldNames"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Index Name"
+                             baseType="STRING"
+                             description="Index name"
+                             name="name"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows></Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="FinishProcess">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="BOOLEAN"
+                             description=""
+                             name="IsSuccessful"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.Common.ReportDataShape"
+                             aspect.isRequired="false"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="Result"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="USERNAME"
+                             description=""
+                             name="user"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetLatestProcessSummary">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportProcessHistoryDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="PostUploadProcess">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description=""
+                             name="fileName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="StartProcess">
+                        <ResultType
+                         baseType="USERNAME"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             aspect.tagType="DataTags"
+                             baseType="TAGS"
+                             description=""
+                             name="Type"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="FinishProcess">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // if input param Result is empty, JavaScript treats it as "undefined"
+                                                                                // we cannot set values.Result = undefined
+                                                                                // so in this case we set it as empty InfoTable
+                                                                                var emptyResult = Resources["InfoTableFunctions"].CreateInfoTable({ });
+                                        
+                                                                                var processRecord = me.GetDataTableEntryByKey({ key: user });
+                                                                               
+                                                                                var language = Resources["CurrentSessionInfo"].GetCurrentUserLanguage();
+                                                                                
+                                                                                var validationResultToken = Resources["RuntimeLocalizationFunctions"].GetEffectiveTokenForLanguage({
+                                                                                    language: language, token: "PTC.SCA.SCO.ConfigurationAndSetup.ValidationResults"});
+                                                                                var importResultToken = Resources["RuntimeLocalizationFunctions"].GetEffectiveTokenForLanguage({
+                                                                                    language: language, token: "PTC.SCA.SCO.ConfigurationAndSetup.ImportResults"});
+                                                                                var successfullImportToken = Resources["RuntimeLocalizationFunctions"].GetEffectiveTokenForLanguage({
+                                                                                    language: language, token: "PTC.SCA.SCO.ConfigurationAndSetup.ImportSuccess"});
+                                                                                
+                                                                                var nowTime = new Date();
+                                        
+                                                                                var values = me.CreateValues();
+                                                                                values.user = user;
+                                                                                values.IsFinished = true;
+                                                                                values.IsSuccessful = IsSuccessful;
+                                                                                values.FileName = processRecord.FileName;
+                                                                                values.Result = (Result) ? Result : emptyResult;
+                                                                                
+                                                                                tagString = processRecord.tags;
+                                                                                if(tagString == 'PTC.SCA.SCO.Common.ImportProcessType:validate'){
+                                                                                    values.status = validationResultToken + " ";
+                                                                                }else if(tagString == 'PTC.SCA.SCO.Common.ImportProcessType:import'){
+                                                                                    if(IsSuccessful==true){
+                                                                                        values.status = successfullImportToken + " ";
+                                                                                    }else{
+                                                                                        values.status = importResultToken + " ";
+                                                                                    }
+                                                                                }
+                                                                                
+                                                                                var params = {
+                                                                                	values: values,
+                                                                                	tags: processRecord.tags
+                                                                                };
+                                                                                
+                                                                                me.UpdateDataTableEntry(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetLatestProcessSummary">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // result: INFOTABLE dataShape: ""
+                                        var result =  me.QueryDataTableEntries({
+                                        	maxItems: 1 /* NUMBER */,
+                                        	values: undefined /* INFOTABLE */,
+                                        	query: undefined /* QUERY */,
+                                        	source: Resources["CurrentSessionInfo"].GetCurrentUser() /* STRING */,
+                                        	tags: undefined /* TAGS */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="PostUploadProcess">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        //delete previously uploaded files by the current user
+                                        Resources["PTC.Factory.CommonUtilities"].PurgeEquipmentImportFiles();
+                                        
+                                        //rename uploaded file
+                                        var renamedFileName = Resources["PTC.Factory.CommonUtilities"].AppendTimeStampToEquipmentImportFile({"fileName":fileName});
+                                        
+                                        //add entry to data table
+                                        var values = me.CreateValues();
+                                        values.user = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        values.IsFinished = false;
+                                        values.IsSuccessful = false;
+                                        values.Result = null;
+                                        values.FileName= renamedFileName;
+                                        me.AddDataTableEntry({
+                                            sourceType: "User",
+                                            values: values,
+                                            source: Resources["CurrentSessionInfo"].GetCurrentUser(),
+                                            tags: [{"vocabulary":"PTC.SCA.SCO.Common.ImportProcessType","vocabularyTerm":"upload"}]
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="StartProcess">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var user = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        var lastFileEntry = me.GetDataTableEntryByKey({ key: user });
+                                        var values =  me.CreateValues();
+                                        values.IsFinished = false;
+                                        values.IsSuccessful = false;
+                                        values.user = lastFileEntry.user;
+                                        values.FileName = lastFileEntry.FileName;
+                                        var params = {
+                                                values: values,
+                                                tags: Type
+                                            };
+                                        me.UpdateDataTableEntry(params);
+                                        var result = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ImplementedShapes></ImplementedShapes>
+            <ThingProperties></ThingProperties>
+        </Thing>
+    </Things>
+</Entities>

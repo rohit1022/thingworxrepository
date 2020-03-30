@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="false"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Displays generic confirmation dialog {PTC.Factory.GenericConfirmation}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.639+05:30"
+         name="PTC.Factory.GenericConfirmation"
+         projectName="PTC.SCA.SCO.Common"
+         rows="0.0"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="1"
+                 baseType="STRING"
+                 description=""
+                 name="message"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="2"
+                 baseType="BOOLEAN"
+                 description=""
+                 name="okClicked"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description=""
+                 name="title"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things></Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : ".mashup-popup {\n    z-index:15002;   \n}\n\ndiv.widget-content.widget-htmltextarea.widget-htmltextarea-readonly {\n    color: #464646 !important;\n    font-size: 14px;\n    font-weight: normal;\n    font-style: normal;\n    text-decoration: none;\n}",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "2f7320ac-a0e2-4753-ab04-6a79e66f182c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "title",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "ANYSCALAR",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ValueDisplay-4",
+                "TargetSection" : ""
+              }, {
+                "Id" : "964a745e-25ba-4987-9356-9ea65d075674",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "okClicked",
+                  "TargetPropertyBaseType" : ""
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "Validator-52",
+                "SourceSection" : "",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "01e6d00f-c013-4667-aa11-75aab318d780",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "message",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "htmltextarea-63",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : { },
+              "Events" : [ {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-22",
+                "EventTriggerSection" : "",
+                "Id" : "b06d0691-9c88-4524-80d1-7daaf874fd44"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-52",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-21",
+                "EventTriggerSection" : "",
+                "Id" : "2e9fe15c-6bd5-4e48-bcee-913f66186dbd"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-52",
+                "EventTriggerSection" : "",
+                "Id" : "0a5b0c0e-1bca-4c78-96f2-657b3fe1377d"
+              } ],
+              "RunTimePermissions" : { },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 260,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : false,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "PTC.SCA.SCO.Core.MashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 360,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "DefaultValue" : "",
+                    "Description" : "",
+                    "ParameterName" : "title"
+                  }, {
+                    "BaseType" : "STRING",
+                    "DefaultValue" : "",
+                    "Description" : "",
+                    "ParameterName" : "message"
+                  }, {
+                    "BaseType" : "BOOLEAN",
+                    "DefaultValue" : false,
+                    "Description" : "",
+                    "ParameterName" : "okClicked"
+                  } ],
+                  "id_index" : 63,
+                  "message" : "",
+                  "okClicked" : false,
+                  "supportsAutoResize" : true,
+                  "title" : ""
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "Panel-3",
+                    "Height" : 40,
+                    "HideScrollbars" : false,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "Panel-3",
+                    "Left" : 0,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                    "Top" : 0,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 360,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "ValueDisplay-4",
+                      "Height" : 19,
+                      "Id" : "ValueDisplay-4",
+                      "ImageScaling" : "width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "Left" : 20,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "",
+                      "TextIfNoValueOffset" : 10,
+                      "TextIfNoValueStyle" : "PTC.SCA.SCO.Core.PopupHeaderStyle",
+                      "TextWrap" : true,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 10,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.SCA.SCO.Core.PopupHeaderStyle",
+                      "ValueDisplayStyle" : "PTC.SCA.SCO.Core.PopupHeaderStyle",
+                      "ValueFormat" : {
+                        "renderer" : "DEFAULT"
+                      },
+                      "ValueFormat_StateParameters" : [ ],
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 330,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "Panel-47",
+                    "Height" : 220,
+                    "HideScrollbars" : false,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "Panel-47",
+                    "Left" : 0,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupDialogBoxBody",
+                    "Top" : 40,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 360,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AlternateText" : "",
+                      "Area" : "UI",
+                      "BorderStyle" : "DefaultImageBorderStyle",
+                      "DisplayName" : "Image-41",
+                      "Height" : 40,
+                      "Id" : "Image-41",
+                      "Left" : 20,
+                      "PreventCaching" : false,
+                      "ResponsiveLayout" : false,
+                      "Scaling" : "width",
+                      "ShowDataLoading" : true,
+                      "SourceURL" : "PTC.SCA.SCO.Core.StatusWarning",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 20,
+                      "Type" : "image",
+                      "Visible" : true,
+                      "Width" : 40,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Image",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                      "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                      "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                      "ContextId" : "",
+                      "DefaultConfirmationButton" : "button1",
+                      "Disabled" : false,
+                      "DisabledStyle" : "PTC.SCA.SCO.Core.Accent1ButtonDisabledStyle",
+                      "DisplayName" : "Button-OK",
+                      "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                      "Height" : 32,
+                      "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                      "IconAlignment" : "left",
+                      "Id" : "Button-21",
+                      "Label" : "[[PTC.SCA.SCO.Core.OK]]",
+                      "Left" : 124,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.ConfirmationPopupOkOrYes",
+                      "TabSequence" : 0,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 172,
+                      "Type" : "button",
+                      "Visible" : true,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                      "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                      "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                      "ContextId" : "",
+                      "DefaultConfirmationButton" : "button1",
+                      "Disabled" : false,
+                      "DisabledStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNo",
+                      "DisplayName" : "Button-Cancel",
+                      "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                      "Height" : 32,
+                      "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                      "IconAlignment" : "left",
+                      "Id" : "Button-22",
+                      "Label" : "[[PTC.SCA.SCO.Core.Cancel]]",
+                      "Left" : 241.79998779296875,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNo",
+                      "TabSequence" : 0,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 172,
+                      "Type" : "button",
+                      "Visible" : true,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "DisplayName" : "Action-Clicked",
+                      "Expression" : "true",
+                      "Height" : 28,
+                      "Id" : "Validator-52",
+                      "Left" : 50,
+                      "Output" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 130,
+                      "Type" : "validator",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Validator",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "BOOLEAN",
+                        "Description" : "",
+                        "ParameterName" : "test"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "txtHtmlText",
+                      "Height" : 145,
+                      "Id" : "htmltextarea-63",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LabelStyle" : "PTC.Factory.Generic.ConfirmationPopupBody",
+                      "Left" : 70,
+                      "ReadOnly" : true,
+                      "ResponsiveLayout" : false,
+                      "ShowBorder" : false,
+                      "ShowDataLoading" : false,
+                      "Text" : "",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 20,
+                      "Type" : "htmltextarea",
+                      "Visible" : true,
+                      "Width" : 272,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Html TextArea",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            iVBORw0KGgoAAAANSUhEUgAAAS0AAADZCAYAAAB1l2ZVAAAJKklEQVR42u3d62+Wdx3Hcf4X/xVA
+            nGMnp2GeFlQ8PTHz8MDEbZLJNDExUR/4SOOYk4kox42zQhmlQMOiAwptXYdASzjZcpIW7t/X63dd
+            LfRIr7u0s5TXK/kklZ4W7+Sd333dV9tFf9/bEnmLFy82M5v3W9Sy72DkLVmyxMxs3m/Rey2HIm/p
+            0qVmZvN+iw4eaIs8/2eYmWiZmYmWmYmWaJmZaJmZiZaZiZZomZlomZmJlpmZaJmZaJmZiZaZmWiZ
+            mWiZmYmWmZlomZlomZmJlpmZaJmZaJmZiZaZmWiZmWiZmYmWmZlomZlomZmJlpmZaJmZaJmZiZaZ
+            2YOj1dnZaWY27zcmWgDznWgBogUgWgCiBYgWgGgBiBYgWgCiBSBagGgBiBaAaAGiBSBaAPMiWndv
+            R7r0QaSOtyK1vhqNnSujsWl5NP76yWqbn4rGrq9EOrQ60qm3I10+EdEY8mgBH2O0UiPidn+kf22N
+            dPBHZZQa76yIxpZni2A9WcRq2f1obVxW/Vt+X/6YXV8t4vZKpJ53I4auF18reeRAtOYwWkPXIp3b
+            X5ycflwGqLH56bGRmm45YluKz9n9tUhtr0XqbS2+5g2PHojWbJ+uihPR9XORTr8djX3fmXiianrL
+            qqeR+78bqXNDxI1epy4QrVkM1kBPpBO/r65ZzThUU2x38ZSx482Ia2eEC0RrFlw/XwTrjWhs/2IT
+            p6jiJLbp0/VPYztfjHTyzerEBYjWjA1dL54S/qm62F735LS5eNq399vR2PONsa8kTrd8kb7zz9UF
+            ekC0mn9a2Ih0rqW6htXMtaodX4r00Y5IH24bPp01ce1r30uRzh/0NBFEawYGB6pXCcuL7jWjk18Z
+            bH05onGnvB+r8d4Pq3u16n5+cTLLryo6bYFoNX/Q+nBrdVtDMyelvd8qTkqtI1+hOqnlp4nNnNTy
+            7RA92z2iIFpNaAxWN46W92HVDM62z0Z6/5dj77vK93Ud+0XxvuebOK09U95d7855EK36p6zLHwxf
+            fK9/ykotP4i4cLR4WlmEqmdHufx29LVF2v+95m5AzaetKx0eVRCtmtHqeKv6sZu6oXn38+V9XGWk
+            rp+vXj0slt8ur40d/13xMc18vRXlq5aAaNWLVusr1c8L1joZfaq8YB+X/lF98kDPvfflt0sXj1Vf
+            c2PNk9vWZyO1rfaogmjV09i1sv6rhtu/EKl7Y8SdW1NHa+hmpK4NxQnqhZqvIj5ZPkUERKtetPJt
+            CnVORfmU1f7ziKun73/yZNHKrnZEOvqz8nPqfN3G1uc8qiBaNaNV99rTOysind1X3Zc1XbQaQ5H+
+            /bdobPtc7dsfANGa1Wilf/4m4vrZsZ88VbSya2civf/r2q8iAqJV8+nh09M/Pdzx5UgXj028n+ru
+            YBWrvPz2uPelC+3ldbDpnx5+xqMKolUzWvlO+GkuxKeTb0TcujTxk29eiNT6crn89gS3LkY6/tsa
+            F+JXeVRBtOrJv9N9ylseNj0RKd/8+Z/Oye9af9DTw7KIxWnr6qnq5tWNT0xxy8NzkQ7/xKMKolUz
+            Wvk3lE51M2jxtK288fPOzck/+b9Xy5NUXn57UkM3InX8oYzT5DeXvlD9RlNAtGpF68rJ8j6pCde1
+            Ni+PtP+l8ile+QcuZvwN7hZPHfsilb+6efkkP8azqjiNnfaogmjVlG9PyH8SbMsz434o+vlIR34a
+            cfn4rCwdWVOe3Cb8wHTx9DQadz2qIFpNHIZ6tlenrYf6AxYz+IMXe74e6cxujyiIVpPyr1pue625
+            X5n8sNv8VKTDa6a+XgaI1tRHrVT+XcL8Z74+tmi1fD9S3+H8zT2iIFozOW3dKP/YRPUbTOc4WPlp
+            Yf7B6yGnLBCth3Gjt/zzXo0dL85dsHaujHTqj5PfjAqIVrNPE2PgTBWu8sL8HJywTq0b/hlGTwtB
+            tGYrXPnE1bmhusZVXpxf9nCvEuZff5OvYeWnhOUJS7BAtGZbvsbVe6h6VXH3quo+ro3Lmvv97/lz
+            8unqyJpIF454pRBEq3Nuv1M+deXbIfIfZD30avWUMf/IT/6RnPyDzqN/yV9+O5/K8vvyby3Nd7q3
+            ra7uwypj5XQFojXX0RqtcSfSlVORTq+vTl/FCaq6w31ZdarKfzpszzfLe69S11+Gf8jane7A/yta
+            AKIFiBaAaAGIFiBaAKIFIFqAaAGIFoBoAaIFIFoAogWIFoBoAYgWIFoAogUgWoBo+X8DEC0A0QJE
+            S7QA0QIQLUC0RAsQLQDRAkRLtADRAhAtANECRAtAtABECxAtANECEC1AtABEC0C0ANECEC0A0QJE
+            C0C0AEQLEC0A0QIQLUC0AEQLQLQA0QIQLQDRAkQLQLQARAsQLQDRAhAtQLQARAtAtADRAhAtANEC
+            RAtAtABECxAtANECEC1AtABEC0C0ANECEC0A0QJEC0C0AEQLEC0A0QIQLUC0AEQLQLQA0QIQLQDR
+            AkSL+eUTK39ls7SHsXbtWpvFiZZomWiJFqIlWqIlWoiWaJloiZaJlmghWqIlWqKFaImWiZZomWiJ
+            FqIlWqIlWiygaK3vHf1feCXWj7xv3dno7jgw/HEnort4b/cB0ZrxuvtH/RcMRt/Rufg+7dE32B9d
+            osVCjVYO1sC9MFWhGrh5Nl4fE60D0XrzdrSuc9Ka6dr7BotO9UX7nH8v0WIhRysHqvfEhH9/veN2
+            daIajtb63vkXrEcrWl3RH5OHpIzZyNmrr/3eiWywry9GzmX93cMff7Qv7n10f1f5b139409uosUC
+            j1b36FPWJNEaiHEnMdGaWbSGI/PAjxk5iZVPI4fDk0NV/vsk4Svj1j7ue4gWTloTn0KKVvPRmuqp
+            4ZjrXMOxGR+j/Lk5XuPCN/qUNnxUK76HaPG4XdM6cCVi0mta8+si/KN2Tat8GjfhtDX6BDbqJDVZ
+            tKY9abmmxWPz6mEVpHtGgjXFq4fz6cT1qL162NUf4149zIG5/78HBx8UrXGnsgnXtEauiYkWj8Et
+            D+7TMtFCtERLtERLtEy0RAvREi0TLURLtERLtETLREu0EC3RMtFCtERLtERLtEy0RAvREi0TLURL
+            tERLtIAFSbQA0QIQLQDRAkQLQLQARAsQLQDRAhAtYAFEy8xsvu9etMzMHoX9D01iKhaKvqmHAAAA
+            AElFTkSuQmCC
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

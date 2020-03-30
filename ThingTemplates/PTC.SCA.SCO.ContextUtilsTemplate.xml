@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="Context utilities template  {PTC.SCA.SCO.ContextUtilsTemplate}"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.017+05:30"
+         name="PTC.SCA.SCO.ContextUtilsTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Equipment;PTC:ThingTemplate;PTC:Context"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Filter the context list in context picker based on the localized context name. This service works with the default search box in advanced grid."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="FilterContextListInContextPicker">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ContextPickerListDataShape"
+                         baseType="INFOTABLE"
+                         description="Filtered context list"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.ContextPickerListDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Full context list shown in the context picker."
+                             name="contextList"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="QUERY"
+                             description="Filter query."
+                             name="filterQuery"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get children of a certain equipment. The current user must have the passed permission on those children"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetChildEquipment">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.EquipmentListDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description=""
+                             name="elementID"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="QUERY"
+                             description="Filter query."
+                             name="filterQuery"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Context permission type, which can be Read or Write."
+                             name="permissionType"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Selected context name."
+                             name="selectedContext"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="QUERY"
+                             description="Sort query."
+                             name="sortQuery"
+                             ordinal="5"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get the context list shown in context picker considering current user's permission."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetContextListInContextPicker">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ContextPickerListDataShape"
+                         baseType="INFOTABLE"
+                         description="A list of contexts shown in context picker with description and localized name. "
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Context permission type, which can be Read or Write."
+                             name="permissionType"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Wrapper service which calls GetCurrentUserPermissionOnThing on the PTC.SCA.SCO.ContextManager Thing."
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetCurrentUserPermissionOnThing">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="THINGNAME"
+                             description="The equipment (Thing name) for which we want to retrieve the current user’s permission."
+                             name="equipmentName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get the default selected context row in the context picker based on the preservedContextSelection session variable. If there is no valid preserved selection for the current screen, selection the first row by default."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetDefaultContextSelection">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.DefaultContextPickerSelectionDataShape"
+                         baseType="INFOTABLE"
+                         description="Default selected row in context picker."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.ContextPickerListDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Context list in the context picker"
+                             name="contextList"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.PreservedContextDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Preserved context selection saved as the session variable."
+                             name="preservedContextSelection"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Current screen type, which can be &quot;View&quot; or &quot;Edit&quot;."
+                             name="screenType"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Returns the network structure of the context passed. The structure will depend on the permissions of the calling user."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentNetwork">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.EquipmentStatusTreeDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Name of the context"
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="QUERY"
+                             description=""
+                             name="filterQuery"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description=""
+                             name="includeStructureInFilter"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Context permission type, which can be Read or Write."
+                             name="permissionType"
+                             ordinal="4"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Returns the network structure of the context passed. The returned structure is tailored for the KPI page.The structure will depend on the permissions of the calling user."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentNetworkForKPIs">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.EquipmentStatusTreeDataShape"
+                         baseType="INFOTABLE"
+                         description="Info table fitted with the PTC.Factory.EquipmentStatusTreeDataShape datashape."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Name of the context."
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="QUERY"
+                             description="Query to filter the resulting tree structure output."
+                             name="filterQuery"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="Flag to determine whether or not to show hierarchical relationships after filtering the tree."
+                             name="includeStructureInFilter"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Context permission type, which can be Read or Write."
+                             name="permissionType"
+                             ordinal="4"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Gets the equipment structure of a given context. Used mostly for filtering equipment views."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentStructureForContext">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.SimpleEquipmentStructureTree"
+                         baseType="INFOTABLE"
+                         description="Simplified tree structure representation used mainly in tree structure filters."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="The name of the context for which to get the equipment structure. If no context is passed, or if the user has no permissions on the equipment within the context, this service will return an empty infotable."
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="INTEGER"
+                             description="Max level hierarchy level."
+                             name="maxLevel"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="permission type needed by the user on the entities"
+                             name="permissionType"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get the default selected context row in the context picker based on the preservedContextSelection session variable. If there is no valid preserved selection for the current screen, selection the first row by default."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetPreservedContextName">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ContextPickerListDataShape"
+                         baseType="STRING"
+                         description="Preserved context name."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.PreservedContextDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Preserved context selection saved as the session variable."
+                             name="preservedContextSelection"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Current screen type, which can be &quot;View&quot; or &quot;Edit&quot;."
+                             name="screenType"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Preserve the current selected context name in the InfoTable with the corresponding screen type and context name."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="PreserveSelectedContext">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.PreservedContextDataShape"
+                         baseType="INFOTABLE"
+                         description="Preserved context selection InfoTable saved as a session variable."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.PreservedContextDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Preserved context selection in the context picker."
+                             name="preservedContextSelection"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Screen type containing the context picker, which can be &quot;View&quot; or &quot;Edit&quot;."
+                             name="screenType"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Selected context name."
+                             name="selectedContext"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="FilterContextListInContextPicker">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (filterQuery && filterQuery.filters && filterQuery.filters.filters) {
+                                            // Apply filter only on LocalizedContextName field
+                                            currentFilters = filterQuery.filters.filters;
+                                            for (i = 0; i < currentFilters.length; i++) {
+                                                if (currentFilters[i].fieldName !== "LocalizedContextName") {
+                                                    delete currentFilters[i];
+                                                }
+                                            }
+                                            result = Resources["InfoTableFunctions"].Query({
+                                                t: contextList /* INFOTABLE */,
+                                                query: filterQuery /* QUERY */
+                                            });
+                                        } else {
+                                            result = contextList;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetChildEquipment">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // TODO: THIS MUST BE REMOVED ONCE FACTORY-19664 IS COMPLETE
+                                            if (!selectedContext) {
+                                                selectedContext = "DefaultContext";
+                                            }
+                                        
+                                            var contextManager = Things["PTC.SCA.SCO.ContextManager"];
+                                            result = contextManager.GetChildEquipment({
+                                               elementID: elementID,
+                                               contextName: selectedContext,
+                                               permissionType: permissionType
+                                            });
+                                        
+                                        
+                                            if(sortQuery != null) {
+                                                result = Resources["InfoTableFunctions"].Query({
+                                                    t: result /* INFOTABLE */,
+                                                    query: sortQuery /* QUERY */
+                                                });
+                                            }
+                                        
+                                            if(filterQuery != null) {
+                                                result = Resources["InfoTableFunctions"].Query({
+                                                    t: result /* INFOTABLE */,
+                                                    query: filterQuery /* QUERY */
+                                                });
+                                            }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetContextListInContextPicker">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (permissionType !== "Read" && permissionType !== "Write") {
+                                                var invalidPermissionTypeErrorMessage = "Invalid permission type: " + permissionType + " which is neither Read nor Write.";
+                                                logger.error(invalidPermissionTypeErrorMessage);
+                                                throw invalidPermissionTypeErrorMessage;
+                                            }
+                                        
+                                            var currentUser =  Resources["CurrentSessionInfo"].GetCurrentUser();
+                                            var isAdmin = Resources["PTC.Factory.CommonUtilities"].IsAdmin({
+                                                userName: currentUser /* STRING */
+                                            });
+                                        
+                                            // contexts: INFOTABLE dataShape: "PTC.SCA.SCO.EquipmentContextSettingsDataShape"
+                                            var contexts = Things["PTC.SCA.SCO.ContextManager"].GetContextsByUserAndPermission({
+                                                permissionType: permissionType /* STRING */,
+                                                userName: currentUser /* USERNAME */
+                                            });
+                                        
+                                            if (permissionType === "Read" && isAdmin === false) {
+                                                // Retrieve the contexts with either "Read" or "Write" permission. If the user has "Write" permission for a context, it implies that he has "Read" permission.
+                                                var writeOnlyContexts = Things["PTC.SCA.SCO.ContextManager"].GetContextsByUserAndPermission({
+                                                    permissionType: "Write" /* STRING */,
+                                                    userName: currentUser /* USERNAME */
+                                                });
+                                                // result: INFOTABLE dataShape: ""
+                                                contexts =  Resources["InfoTableFunctions"].Union({
+                                                    t1: writeOnlyContexts /* INFOTABLE */,
+                                                    t2: contexts /* INFOTABLE */
+                                                });
+                                            }
+                                        
+                                            // result: INFOTABLE
+                                            result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                infoTableName: "ContextPickerList" /* STRING */,
+                                                dataShapeName: "PTC.SCA.SCO.ContextPickerListDataShape" /* DATASHAPENAME */
+                                            });
+                                        
+                                            for (var i = 0; i < contexts.rows.length; i++) {
+                                                var row = contexts.rows[i];
+                                                var newRow = new Object();
+                                                var contextName = row.ContextName;
+                                                newRow.ContextName = contextName;
+                                                newRow.Description = row.Description;
+                                                var localizedContextName = Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({
+                                                    token: row.LocalizationToken /* STRING */
+                                                });
+                                                if (localizedContextName === "???") {
+                                                    localizedContextName = contextName;
+                                                }
+                                                newRow.LocalizedContextName = localizedContextName;
+                                                result.AddRow(newRow);
+                                            }
+                                        
+                                            var sortQuery = {sorts: [{fieldName: "LocalizedContextName", isAscending: true}]};
+                                            result = Resources["InfoTableFunctions"].Query({
+                                                t: result /* INFOTABLE */,
+                                                query: sortQuery /* QUERY */
+                                            });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetCurrentUserPermissionOnThing">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result =  Things["PTC.SCA.SCO.ContextManager"].GetCurrentUserPermissionOnThing({
+                                            equipmentName: equipmentName
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetDefaultContextSelection">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var defaultContextName = "";
+                                            if (preservedContextSelection && preservedContextSelection.rows) {
+                                                for (var i = 0; i < preservedContextSelection.rows.length; i++) {
+                                                    var preservedContextRow = preservedContextSelection.rows[i];
+                                                    if (preservedContextRow.ScreenType && preservedContextRow.ScreenType === screenType) {
+                                                        defaultContextName = preservedContextRow.ContextName;
+                                                    }
+                                                }
+                                            }
+                                        
+                                            result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                infoTableName: "DefaultContextPickerSelection" /* STRING */,
+                                                dataShapeName: "PTC.SCA.SCO.DefaultContextPickerSelectionDataShape" /* DATASHAPENAME */
+                                            });
+                                        
+                                            var resultRow = new Object();
+                                        
+                                            var foundSelectedContext = false;
+                                            if (defaultContextName !== "") {
+                                                for (var j = 0; j < contextList.rows.length; j++) {
+                                                    var contextRow = contextList.rows[j];
+                                                    if (contextRow.ContextName === defaultContextName) {
+                                                        resultRow.ContextName = defaultContextName;
+                                                        resultRow.RowIndex = j + 1;	// Row index in advanced grid starts from 1 instead of 0
+                                                        resultRow.LocalizedContextName = contextRow.LocalizedContextName;
+                                                        foundSelectedContext = true;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        
+                                            if (!foundSelectedContext) {
+                                                if (contextList.rows.length > 0) {
+                                                    resultRow.ContextName = contextList.rows[0].ContextName;
+                                                    resultRow.RowIndex = 1;	// Row index in advanced grid starts from 1 instead of 0
+                                                    resultRow.LocalizedContextName = contextList.rows[0].LocalizedContextName;
+                                                } else {
+                                                    logger.warn("No context is available for the current user considering the context permission.");
+                                                    resultRow.ContextName = "";
+                                                    resultRow.RowIndex = 0;
+                                                    resultRow.LocalizedContextName = Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({
+                                                                token: "PTC.SCA.SCO.Context.NoContextsAvailable" /* STRING */
+                                                    });
+                                                }
+                                            }
+                                        
+                                            result.AddRow(resultRow);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentNetwork">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (contextName) {
+                                            var user = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                            var contextManager = Things["PTC.SCA.SCO.ContextManager"];
+                                            var network = contextManager.GetEquipmentHierarchy({
+                                               contextName: contextName,
+                                               userName: user,
+                                               dataShape: "PTC.Factory.EquipmentStatusTreeDataShape",
+                                               permissionType: permissionType,
+                                            });
+                                        
+                                            var updatedNetworkInfo = Things["PTC.SCA.SCO.ManageResourceUtils"].UpdateNetworkInfo({
+                                                Network: network
+                                            });
+                                        
+                                            result = Things["PTC.SCA.SCO.UIProvider"].FilterTree({
+                                                network: updatedNetworkInfo,
+                                                filterQuery: filterQuery,
+                                                includeStructureInFilter: includeStructureInFilter
+                                            });
+                                        } else {
+                                            result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                        	    dataShapeName: "PTC.Factory.EquipmentStatusTreeDataShape" /* DATASHAPENAME */
+                                            });
+                                        }
+                                        
+                                        var query = {
+                                            "sorts": [{"fieldName": "displayName","ascending": true,"isCaseSensitive": false}]
+                                        };
+                                        var params = {
+                                            t: result /* INFOTABLE */,
+                                            query: query /* QUERY */
+                                        };
+                                        // result: INFOTABLE
+                                        var result = Resources["InfoTableFunctions"].Query(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentNetworkForKPIs">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (contextName) {
+                                            var user = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                            var contextManager = Things["PTC.SCA.SCO.ContextManager"];
+                                            var network = contextManager.GetEquipmentHierarchy({
+                                               contextName: contextName,
+                                               userName: user,
+                                               dataShape: "PTC.Factory.PlantStatusTreeDataShape",
+                                               permissionType: permissionType
+                                            });
+                                        
+                                            var updatedNetworkInfo = Things["PTC.Factory.PlantStatusUtils"].PopulateProductionKPIsTreeGrid({
+                                                Network: network
+                                            });
+                                        
+                                            result = Things["PTC.SCA.SCO.UIProvider"].FilterTree({
+                                                network: updatedNetworkInfo,
+                                                filterQuery: filterQuery,
+                                                includeStructureInFilter: includeStructureInFilter
+                                            });
+                                        } else {
+                                            result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                        	    dataShapeName: "PTC.Factory.EquipmentStatusTreeDataShape" /* DATASHAPENAME */
+                                            });
+                                        }
+                                        
+                                        var query = {
+                                            "sorts": [{"fieldName": "displayName","ascending": true,"isCaseSensitive": false}]
+                                        };
+                                        var params = {
+                                            t: result /* INFOTABLE */,
+                                            query: query /* QUERY */
+                                        };
+                                        // result: INFOTABLE
+                                        var result = Resources["InfoTableFunctions"].Query(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentStructureForContext">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (contextName) {
+                                            // Decide whether to include assets based on "DisplayAssetsInStructureTree" boolean in the launch point configuration table
+                                            var launchPointConfigurationName =  Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                        
+                                            var user = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        
+                                            var table =  Things[launchPointConfigurationName].GetConfigurationTable({
+                                                tableName: "EquipmentStructureConfigurationSettings" /* STRING */
+                                            });
+                                        
+                                            var includeAsset = table.DisplayAssetsInStructureTree;
+                                        
+                                            result =  Things["PTC.SCA.SCO.ContextManager"].GetEquipmentStructureForContext({
+                                                contextName: contextName /* STRING */,
+                                                maxLevel: maxLevel /* INTEGER */,
+                                                permissionType: permissionType/* INTEGER */,
+                                                includeAsset: includeAsset /* BOOLEAN */,
+                                            });
+                                        } else {
+                                            result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                dataShapeName: "PTC.SCA.SCO.SimpleEquipmentStructureTree" /* DATASHAPENAME */
+                                            });
+                                        }
+                                        
+                                        var query = {
+                                            "sorts": [{"fieldName": "displayName","ascending": true,"isCaseSensitive": false}]
+                                        };
+                                        var params = {
+                                            t: result /* INFOTABLE */,
+                                            query: query /* QUERY */
+                                        };
+                                        // result: INFOTABLE
+                                        var result = Resources["InfoTableFunctions"].Query(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetPreservedContextName">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = "";
+                                        if (preservedContextSelection && preservedContextSelection.rows) {
+                                            for (var i = 0; i < preservedContextSelection.rows.length; i++) {
+                                                var row = preservedContextSelection.rows[i];
+                                                if (row.ScreenType && row.ScreenType === screenType) {
+                                                    result = row.ContextName;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="PreserveSelectedContext">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        result = preservedContextSelection;
+                                        if (!result) {
+                                            result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            	infoTableName: "PreservedContextSelection" /* STRING */,
+                                            	dataShapeName: "PTC.SCA.SCO.PreservedContextDataShape" /* DATASHAPENAME */
+                                            });
+                                        }
+                                        
+                                        var preservedContextFound = false;
+                                        
+                                        for (var i = 0; i < result.rows.length; i++) {
+                                            var row = result.rows[i];
+                                            if (row.ScreenType === screenType) {
+                                                row.ContextName = selectedContext;
+                                                preservedContextFound = true;
+                                                break;
+                                            }
+                                        }
+                                        
+                                        if (!preservedContextFound) {
+                                            var newRow = new Object();
+                                            newRow.ScreenType = screenType;
+                                            newRow.ContextName = selectedContext;
+                                            result.AddRow(newRow);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

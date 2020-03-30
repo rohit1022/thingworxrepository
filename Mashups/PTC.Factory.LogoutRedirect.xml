@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Logouts and redirects to the login page {PTC.Factory.LogoutRedirect}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.705+05:30"
+         name="PTC.Factory.LogoutRedirect"
+         projectName="PTC.SCA.SCO.Common"
+         rows="0.0"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions></ParameterDefinitions>
+            <Things>
+                <Thing>PTC.Factory.LaunchPointConfigurationThing</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.Factory.LaunchPointConfigurationThing" : {
+                  "DataName" : "Things_PTC.Factory.LaunchPointConfigurationThing",
+                  "EntityName" : "PTC.Factory.LaunchPointConfigurationThing",
+                  "EntityType" : "Things",
+                  "Id" : "3b83973f-3014-4f69-8556-b96d25b4b320",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "4262fae4-9dc9-424f-8802-67eaa91872ca",
+                    "Name" : "GetLaunchPointEntityName",
+                    "Parameters" : {
+                      "launchPointDescription" : "LoginWelcome"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetLaunchPointEntityName"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "d7ed6283-e8d9-444f-9f5f-3af94abe4f1a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "RedirectURL",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLaunchPointEntityName",
+                "SourceSection" : "Things_PTC.Factory.LaunchPointConfigurationThing",
+                "TargetArea" : "UI",
+                "TargetId" : "logoutMfgButton-10",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : { },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.LaunchPointConfigurationThing",
+                "EventHandlerService" : "GetLaunchPointEntityName",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "94ec8023-c44b-4d6a-a21c-91dd89f746c2"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "logoutMfgButton-10",
+                "EventHandlerService" : "Logout",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetLaunchPointEntityName",
+                "EventTriggerSection" : "Things_PTC.Factory.LaunchPointConfigurationThing",
+                "Id" : "c52b8878-f2df-4d27-8c7c-5953975fb1d2"
+              } ],
+              "RunTimePermissions" : { },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "PTC.Factory.LogoutRedirect",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "id_index" : 11,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "logoutPanel",
+                    "Height" : 200,
+                    "HideScrollbars" : false,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "panel-2",
+                    "Left" : 220,
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "Style" : "DefaultPanelStyle",
+                    "Top" : 40,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 300,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "ActiveStyle" : "DefaultButtonActiveStyle",
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "Yes",
+                      "ConfirmationButton2Label" : "No",
+                      "ConfirmationPrompt" : "Do Action?",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "Confirm Action",
+                      "DefaultConfirmationButton" : "button1",
+                      "Disabled" : false,
+                      "DisabledStyle" : "DefaultButtonDisabledStyle",
+                      "DisplayName" : "btnLogout",
+                      "FocusStyle" : "DefaultButtonFocusStyle",
+                      "Height" : 30,
+                      "HoverStyle" : "DefaultButtonHoverStyle",
+                      "IconAlignment" : "left",
+                      "Id" : "logoutMfgButton-10",
+                      "Label" : "Logout",
+                      "Left" : 355,
+                      "RedirectURL" : "",
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : true,
+                      "ShowDataLoading" : true,
+                      "Style" : "DefaultButtonStyle",
+                      "TabSequence" : 0,
+                      "Top" : 110,
+                      "Type" : "logoutMfgButton",
+                      "Visible" : false,
+                      "Width" : 75,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Logout Mfg Button"
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            iVBORw0KGgoAAAANSUhEUgAAARcAAABdCAYAAACPZyJqAAAA80lEQVR42u3UMQEAAAzCMPybBhPb
+            l0jo0RTgQSQAzAUwF8BcAMwFMBfAXADMBTAXwFwAzAUwF8BcAMwFMBfAXADMBTAXwFwAzAUwF8Bc
+            AMwFMBfAXADMBTAXwFwAzAUwF8BcAMwFMBfAXADMBTAXwFwAzAUwF8BcAMwFMBfAXADMBTAXwFwA
+            zAUwF8BcAMwFMBfAXADMBTAXwFwAzAUwF8BcAMwFMBfAXADMBTAXwFwAzAUwF8BcAMwFMBfAXADM
+            BTAXwFwAzAUwF8BcAMwFMBfAXADMBTAXwFwAzAUwF8BcAMwFMBfAXABzATAXwFwAcwE4Nmrq7jIW
+            iw0AAAAAAElFTkSuQmCC
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

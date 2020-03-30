@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Mashup containing a list of bad or unknown quality tags of a KEPServer."
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:41.299+05:30"
+         name="PTC.SCA.Mfg.KepServerMonitor.BadQualityTagListMashup"
+         projectName="PTC.SCA.SCO.KEPServerEX Monitor"
+         rows="0.0"
+         tags="PTC:sca-sco-kepserverexmonitor;PTC:sca-mfg;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description="Server name"
+                 name="serverName"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.Factory.KepServerMonitorUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.Factory.KepServerMonitorUtils" : {
+                  "DataName" : "Things_PTC.Factory.KepServerMonitorUtils",
+                  "EntityName" : "PTC.Factory.KepServerMonitorUtils",
+                  "EntityType" : "Things",
+                  "Id" : "018f9c61-f5c2-4248-bc8f-0327cccb6177",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "75d4be48-b841-4c2b-86a8-b4f56d185274",
+                    "Name" : "GetBoundItemsOfBadQuality",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetBoundItemsOfBadQuality"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "882db553-1127-4041-9a77-c521f1445451",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "serverName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "serverName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetBoundItemsOfBadQuality",
+                "TargetSection" : "Things_PTC.Factory.KepServerMonitorUtils"
+              }, {
+                "Id" : "e20ce8b1-1efb-405e-ad86-c8c86fbd72a7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetBoundItemsOfBadQuality",
+                "SourceSection" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "gridadvanced-21",
+                "TargetSection" : ""
+              }, {
+                "Id" : "fa5e97fc-411a-48ab-8d0b-b7f2e09bc867",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "QueryFilter",
+                  "SourcePropertyBaseType" : "QUERY",
+                  "TargetProperty" : "sortQuery",
+                  "TargetPropertyBaseType" : "QUERY",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "gridadvanced-21",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetBoundItemsOfBadQuality",
+                "TargetSection" : "Things_PTC.Factory.KepServerMonitorUtils"
+              }, {
+                "Id" : "93f39cf6-6f9c-43c7-8d64-9793b66b5c3b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetBoundItemsOfBadQuality",
+                "SourceSection" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "advDatafilter-12",
+                "TargetSection" : ""
+              }, {
+                "Id" : "f95ac33e-7920-4852-9a9e-e3f33403a1f4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Query",
+                  "SourcePropertyBaseType" : "QUERY",
+                  "TargetProperty" : "filterQuery",
+                  "TargetPropertyBaseType" : "QUERY",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "advDatafilter-12",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetBoundItemsOfBadQuality",
+                "TargetSection" : "Things_PTC.Factory.KepServerMonitorUtils"
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "EventHandlerService" : "GetBoundItemsOfBadQuality",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "serverNameChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "33266504-7ded-4519-b5a3-a4c68cf85784"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "EventHandlerService" : "GetBoundItemsOfBadQuality",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Filter",
+                "EventTriggerId" : "gridadvanced-21",
+                "EventTriggerSection" : "",
+                "Id" : "2b47bf1c-e034-41e4-86ed-79c4a21bf98b"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "EventHandlerService" : "GetBoundItemsOfBadQuality",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "advDatafilter-12",
+                "EventTriggerSection" : "",
+                "Id" : "4725b5f6-4c84-4821-a977-0c9f3a6b9870"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.KepServerMonitorUtils",
+                "EventHandlerService" : "GetBoundItemsOfBadQuality",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "RefreshRequested",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "aa835d88-3184-46d3-9ae5-091bee80570d"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "PTC.NoStyle",
+                  "StyleTheme" : "Base Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "Description" : "Server name",
+                    "ParameterName" : "serverName"
+                  } ],
+                  "id_index" : 21,
+                  "serverName" : "",
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Columns" : 0,
+                    "DisplayName" : "layout-Main",
+                    "Footer" : false,
+                    "FooterHeight" : 0,
+                    "Header" : true,
+                    "HeaderHeight" : 50,
+                    "Id" : "layout-6",
+                    "IncludeSpacingInFixedAreas" : false,
+                    "IsPrintLayout" : false,
+                    "Left" : 450,
+                    "LeftSidebar" : false,
+                    "LeftSidebarWidth" : 0,
+                    "Orientation" : "vertical",
+                    "PctColumn1" : 50,
+                    "PctColumn2" : 50,
+                    "PctColumn3" : 1,
+                    "PctColumn4" : 1,
+                    "PctColumn5" : 1,
+                    "PctColumn6" : 1,
+                    "PctColumn7" : 1,
+                    "PctColumn8" : 1,
+                    "PctRow1" : 100,
+                    "PctRow2" : 50,
+                    "PctRow3" : 0,
+                    "PctRow4" : 0,
+                    "PctRow5" : 0,
+                    "PctRow6" : 0,
+                    "PctRow7" : 0,
+                    "PctRow8" : 0,
+                    "PrintMarginLeftRight" : 0.5,
+                    "PrintMarginTopBottom" : 0.5,
+                    "PrintWidth" : 650,
+                    "ResponsiveLayout" : true,
+                    "RightSidebar" : false,
+                    "RightSidebarWidth" : 0,
+                    "Rows" : 1,
+                    "ShowDataLoading" : true,
+                    "Spacing" : 0,
+                    "Top" : 190,
+                    "Type" : "layout",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Layout"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Header",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-9",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "PTC.Core.ShapeStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "Columns" : 1,
+                        "DisplayName" : "layout-Header",
+                        "Footer" : false,
+                        "FooterHeight" : 0,
+                        "Header" : false,
+                        "HeaderHeight" : 0,
+                        "Id" : "layout-15",
+                        "IncludeSpacingInFixedAreas" : false,
+                        "IsPrintLayout" : false,
+                        "Left" : 165,
+                        "LeftSidebar" : true,
+                        "LeftSidebarWidth" : 300,
+                        "Orientation" : "horizontal",
+                        "PctColumn1" : 100,
+                        "PctColumn2" : 0,
+                        "PctColumn3" : 1,
+                        "PctColumn4" : 1,
+                        "PctColumn5" : 1,
+                        "PctColumn6" : 1,
+                        "PctColumn7" : 1,
+                        "PctColumn8" : 1,
+                        "PctRow1" : 50,
+                        "PctRow2" : 50,
+                        "PctRow3" : 0,
+                        "PctRow4" : 0,
+                        "PctRow5" : 0,
+                        "PctRow6" : 0,
+                        "PctRow7" : 0,
+                        "PctRow8" : 0,
+                        "PrintMarginLeftRight" : 0.5,
+                        "PrintMarginTopBottom" : 0.5,
+                        "PrintWidth" : 650,
+                        "ResponsiveLayout" : true,
+                        "RightSidebar" : true,
+                        "RightSidebarWidth" : 290,
+                        "Rows" : 0,
+                        "ShowDataLoading" : true,
+                        "Spacing" : 0,
+                        "Top" : 15,
+                        "Type" : "layout",
+                        "Visible" : true,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Layout"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Left Sidebar",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-16",
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "DefaultContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container"
+                        },
+                        "Widgets" : [ {
+                          "Properties" : {
+                            "Area" : "UI",
+                            "DisplayName" : "panel-ListHeader",
+                            "Height" : 200,
+                            "HideScrollbars" : false,
+                            "HorizontalAnchor" : "left",
+                            "Id" : "panel-19",
+                            "Left" : 80,
+                            "ResponsiveLayout" : true,
+                            "ShowDataLoading" : true,
+                            "Style" : "PTC.NoStyle",
+                            "Top" : 15,
+                            "Type" : "panel",
+                            "VerticalAnchor" : "top",
+                            "Visible" : true,
+                            "Width" : 300,
+                            "Z-index" : 10,
+                            "__TypeDisplayName" : "Panel"
+                          },
+                          "Widgets" : [ {
+                            "Properties" : {
+                              "Alignment" : "left",
+                              "AllowEllipsis" : false,
+                              "Area" : "UI",
+                              "Description" : "List header",
+                              "DisplayName" : "label-ListHeader",
+                              "Height" : 22,
+                              "Id" : "label-11",
+                              "Left" : 0,
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : true,
+                              "Style" : "PTC.Factory.Generic.DefaultLabel",
+                              "Text" : "[[PTC.SCA.Mfg.KepServerMonitor.BadOrUnknownQualityTagsHeader]]",
+                              "ToolTipField" : "",
+                              "ToolTipStyle" : "DefaultTooltipStyle",
+                              "Top" : 20,
+                              "Type" : "label",
+                              "Visible" : true,
+                              "Width" : 295,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Label",
+                              "__supportsTooltip" : true
+                            },
+                            "Widgets" : [ ]
+                          } ]
+                        } ]
+                      }, {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Column 1",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-17",
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "DefaultContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Right Sidebar",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-18",
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "DefaultContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container",
+                          "userCannotRemove" : true
+                        },
+                        "Widgets" : [ {
+                          "Properties" : {
+                            "Area" : "UI",
+                            "DisplayName" : "panel-AdvancedFilter",
+                            "Height" : 200,
+                            "HideScrollbars" : false,
+                            "HorizontalAnchor" : "left",
+                            "Id" : "panel-20",
+                            "Left" : 80,
+                            "ResponsiveLayout" : true,
+                            "ShowDataLoading" : true,
+                            "Style" : "PTC.NoStyle",
+                            "Top" : 15,
+                            "Type" : "panel",
+                            "VerticalAnchor" : "top",
+                            "Visible" : true,
+                            "Width" : 300,
+                            "Z-index" : 10,
+                            "__TypeDisplayName" : "Panel"
+                          },
+                          "Widgets" : [ {
+                            "Properties" : {
+                              "AddButtonStyle" : "PTC.16px.TitleSmall.DarkGray",
+                              "Area" : "UI",
+                              "BarStyle" : "PTC.16px.TitleSmall.DarkGray",
+                              "ColumnFormat" : "{\"name\":{\"name\":\"name\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":5,\"Title\":\"[[name]]\",\"__showThisField\":true},\"tagAddress\":{\"name\":\"tagAddress\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":2,\"Title\":\"[[PTC.SCA.Mfg.KepServerMonitor.Source]]\",\"__showThisField\":true},\"industrialDataType\":{\"name\":\"industrialDataType\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":1,\"Title\":\"[[PTC.SCA.Mfg.KepServerMonitor.SourceDataType]]\",\"__showThisField\":true},\"quality\":{\"name\":\"quality\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":9,\"Title\":\"[[PTC.SCA.Mfg.KepServerMonitor.Quality]]\",\"__showThisField\":true},\"propertyName\":{\"name\":\"propertyName\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":3,\"Title\":\"propertyName\",\"__showThisField\":false},\"scanRate\":{\"name\":\"scanRate\",\"aspects\":{},\"description\":\"\",\"baseType\":\"INTEGER\",\"ordinal\":4,\"Title\":\"scanRate\",\"__showThisField\":false},\"thingName\":{\"name\":\"thingName\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":6,\"Title\":\"thingName\",\"__showThisField\":false},\"source\":{\"name\":\"source\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":7,\"Title\":\"source\",\"__showThisField\":false},\"baseType\":{\"name\":\"baseType\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":8,\"Title\":\"baseType\",\"__showThisField\":false}}",
+                              "DateFormat" : "",
+                              "DateFormatToken" : "",
+                              "DisplayName" : "advDatafilter-listFitler",
+                              "FocusStyle" : "PTC.NoFocusStyle",
+                              "HasActiveFilters" : false,
+                              "Height" : 22,
+                              "Horizontal" : false,
+                              "Id" : "advDatafilter-12",
+                              "Left" : 0,
+                              "LiveFiltering" : false,
+                              "ResponsiveLayout" : false,
+                              "ShowAdvancedOptions" : false,
+                              "ShowDataLoading" : true,
+                              "TabSequence" : 0,
+                              "Top" : 20,
+                              "Type" : "advDatafilter",
+                              "Visible" : true,
+                              "Width" : 285,
+                              "Z-index" : 9000,
+                              "__TypeDisplayName" : "Advanced Data Filter"
+                            },
+                            "Widgets" : [ ]
+                          } ]
+                        } ]
+                      } ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Row 1",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-7",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container",
+                      "userCannotRemove" : true
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "AutoScroll" : true,
+                        "CellBorderStyle" : "DefaultGridAdvancedCellBorderStyle",
+                        "CellValidationErrorStyle" : "DefaultGridAdvancedCellValidationErrorStyle",
+                        "CellValidationErrorTooltipStyle" : "DefaultGridAdvancedCellValidationErrorTooltipStyle",
+                        "ColumnFormat" : {
+                          "formatInfo" : [ {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "EditorOptions" : {
+                              "Type" : "string",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                            },
+                            "FieldName" : "name",
+                            "FormatOptions" : {
+                              "FormatString" : "full",
+                              "formatInfo" : {
+                                "FieldName" : "",
+                                "StateDefinition" : "",
+                                "StateDefinitionType" : "fixed",
+                                "StateFormats" : [ {
+                                  "state" : "",
+                                  "stateName" : "fixed"
+                                } ]
+                              },
+                              "renderer" : "STRING",
+                              "roundingEnabled" : true
+                            },
+                            "Title" : "[[name]]",
+                            "Width" : "200px",
+                            "headerTextAlignment" : "left",
+                            "hidden" : false,
+                            "inLayout" : true
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "EditorOptions" : {
+                              "Type" : "string",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                            },
+                            "FieldName" : "tagAddress",
+                            "FormatOptions" : {
+                              "FormatString" : "full",
+                              "formatInfo" : {
+                                "FieldName" : "",
+                                "StateDefinition" : "",
+                                "StateDefinitionType" : "fixed",
+                                "StateFormats" : [ {
+                                  "state" : "",
+                                  "stateName" : "fixed"
+                                } ]
+                              },
+                              "renderer" : "STRING",
+                              "roundingEnabled" : true
+                            },
+                            "Title" : "[[PTC.SCA.Mfg.KepServerMonitor.Source]]",
+                            "Width" : "auto",
+                            "headerTextAlignment" : "left",
+                            "hidden" : false,
+                            "inLayout" : true
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "EditorOptions" : {
+                              "Type" : "string",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                            },
+                            "FieldName" : "industrialDataType",
+                            "FormatOptions" : {
+                              "FormatString" : "full",
+                              "formatInfo" : {
+                                "FieldName" : "",
+                                "StateDefinition" : "",
+                                "StateDefinitionType" : "fixed",
+                                "StateFormats" : [ {
+                                  "state" : "",
+                                  "stateName" : "fixed"
+                                } ]
+                              },
+                              "renderer" : "STRING",
+                              "roundingEnabled" : true
+                            },
+                            "Title" : "[[PTC.SCA.Mfg.KepServerMonitor.SourceDataType]]",
+                            "Width" : "150px",
+                            "headerTextAlignment" : "left",
+                            "hidden" : false,
+                            "inLayout" : true
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "EditorOptions" : {
+                              "Type" : "string",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                            },
+                            "FieldName" : "quality",
+                            "FormatOptions" : {
+                              "FormatString" : "full",
+                              "formatInfo" : {
+                                "FieldName" : "",
+                                "StateDefinition" : "",
+                                "StateDefinitionType" : "fixed",
+                                "StateFormats" : [ {
+                                  "state" : "",
+                                  "stateName" : "fixed"
+                                } ]
+                              },
+                              "renderer" : "STRING",
+                              "roundingEnabled" : true
+                            },
+                            "Title" : "[[PTC.SCA.Mfg.KepServerMonitor.Quality]]",
+                            "Width" : "150px",
+                            "headerTextAlignment" : "left",
+                            "hidden" : false,
+                            "inLayout" : true
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "EditorOptions" : {
+                              "Type" : "string",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                            },
+                            "FieldName" : "propertyName",
+                            "FormatOptions" : {
+                              "FormatString" : "full",
+                              "renderer" : "STRING"
+                            },
+                            "Title" : "propertyName",
+                            "ValidationExpression" : "",
+                            "ValidationMessage" : "",
+                            "Width" : "auto",
+                            "hidden" : true,
+                            "inLayout" : false
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "EditorOptions" : {
+                              "Type" : "number",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "ValidNumber", "Custom" ]
+                            },
+                            "FieldName" : "scanRate",
+                            "FormatOptions" : {
+                              "FormatString" : "0",
+                              "renderer" : "INTEGER"
+                            },
+                            "Title" : "scanRate",
+                            "ValidationExpression" : "",
+                            "ValidationMessage" : "",
+                            "Width" : "auto",
+                            "hidden" : true,
+                            "inLayout" : false
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "EditorOptions" : {
+                              "Type" : "string",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                            },
+                            "FieldName" : "thingName",
+                            "FormatOptions" : {
+                              "FormatString" : "full",
+                              "renderer" : "STRING"
+                            },
+                            "Title" : "thingName",
+                            "ValidationExpression" : "",
+                            "ValidationMessage" : "",
+                            "Width" : "auto",
+                            "hidden" : true,
+                            "inLayout" : false
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "EditorOptions" : {
+                              "Type" : "string",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                            },
+                            "FieldName" : "source",
+                            "FormatOptions" : {
+                              "FormatString" : "full",
+                              "renderer" : "STRING"
+                            },
+                            "Title" : "source",
+                            "ValidationExpression" : "",
+                            "ValidationMessage" : "",
+                            "Width" : "auto",
+                            "hidden" : true,
+                            "inLayout" : false
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "EditorOptions" : {
+                              "Type" : "string",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                            },
+                            "FieldName" : "baseType",
+                            "FormatOptions" : {
+                              "FormatString" : "full",
+                              "renderer" : "STRING"
+                            },
+                            "Title" : "baseType",
+                            "ValidationExpression" : "",
+                            "ValidationMessage" : "",
+                            "Width" : "auto",
+                            "hidden" : true,
+                            "inLayout" : false
+                          } ]
+                        },
+                        "Configuration" : "",
+                        "ConfigurationId" : 10,
+                        "CookiePersistence" : true,
+                        "DataOverflow" : "tooltip",
+                        "DataServiceBindingDef" : {
+                          "entityName" : "PTC.Factory.KepServerMonitorUtils",
+                          "entityType" : "Things",
+                          "target" : "GetBoundItemsOfBadQuality"
+                        },
+                        "DefaultSelectedRows" : "",
+                        "Description" : "Advanced grid for bad or known quality tags",
+                        "DisplayName" : "gridadvanced-BadOrUnknownQualityTags",
+                        "EditButtonsLocation" : "top-right",
+                        "EnableAddDeleteButtons" : false,
+                        "EnableContextMenu" : true,
+                        "EnableEditButtons" : false,
+                        "EnableFilterEventOnConfigChange" : true,
+                        "EnableFooter" : false,
+                        "EnableGridReset" : false,
+                        "EnableGridSearch" : false,
+                        "EnableSorting" : true,
+                        "FocusStyle" : "DefaultContainerStyle",
+                        "GridResetButtonLocation" : "top-right",
+                        "GridSearchLocation" : "top-left",
+                        "HeaderOverflow" : "wrapped",
+                        "Height" : 200,
+                        "IDFieldName" : "",
+                        "Id" : "gridadvanced-21",
+                        "IsEditable" : false,
+                        "Left" : 200,
+                        "MaxHeaderHeight" : 100,
+                        "MinRowHeight" : 30,
+                        "ResponsiveLayout" : true,
+                        "RowAlternateBackgroundStyle" : "PTC.Factory.Generic.TableRowNonSelected",
+                        "RowBackgroundStyle" : "PTC.Factory.Generic.TableRowNonSelected",
+                        "RowBorderStyle" : "DefaultGridAdvancedRowBorderStyle",
+                        "RowFormat_StateParameters" : [ ],
+                        "RowHoverStyle" : "PTC.Factory.Generic.TableRowHover",
+                        "RowSelectedStyle" : "PTC.Factory.Generic.TableRowSelected",
+                        "RowSelection" : "list",
+                        "SelectedRows" : "",
+                        "ShowDataLoading" : true,
+                        "SortAscendingStyle" : "PTC.SCA.SCO.SortAscendingStyle",
+                        "SortDescendingStyle" : "PTC.SCA.SCO.SortDescendingStyle",
+                        "TableFooterStyle" : "DefaultGridAdvancedFooterStyle",
+                        "TableHeaderStyle" : "PTC.Factory.Generic.TableColumnHeader",
+                        "TableWrapperStyle" : "PTC.Core.GridBackgroundStyle",
+                        "ToolbarStyle" : "PTC.NoStyle",
+                        "TooltipStyle" : "DefaultTooltipStyle",
+                        "Top" : 55,
+                        "Type" : "gridadvanced",
+                        "Visible" : true,
+                        "Width" : 400,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Grid Advanced"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            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
+            xYvb0SoOQNm7f//AQSqO7ItT8+Jt4nGiB12XZJAaa5CSJEmSJM2PyoED9SlW3VP2NDePmLp/48b2
+            wJL418FP1nVJBimDlCRJkiRpUvE4VXGaVRwxU46AMkidXmd3xEgUjzF2sq5LMkgZpCRJkiRJk4rh
+            KU7JW3fPPe0RNQYpzfR1SQYpg5QkSZIkSZIMUpIkSZIkSTJISZIkSZIkySBlkJIkSZIkSZJBSpIk
+            SZIkSQYpg5QkSZIkSZIMUpIkSZIkSTJIGaQkSZIkSZJkkJIkSZIkSZJBSpIkSZIkSQYpg5QkSZIk
+            SZJOh0Hq4MGDkiRJkiRJmselD1IHDhyQJEmSJEnSPC59kAIAAABgfjNIAQAAAJDKIAUAAABAKoMU
+            AAAAAKkMUgAAAACkMkgBAAAAkMogBQAAAEAqgxQAAAAAqQxSAAAAAKQySAEAAACQyiAFAAAAQCqD
+            FAAAAACpDFIAAAAApDJIAQAAAJDKIAUAAABAKoMUAAAAAKkMUgAAAACkMkgBAAAAkMogBQAAAEAq
+            gxQAAAAAqQxSAAAAAKQySAEAAACQyiAFAAAAQCqDFAAAAACpDFIAAAAApDJIAQAAAJDKIAUAAABA
+            KoMUAAAAAKkMUgAAAACkMkgBAAAAkMogBQAAAEAqgxQAAAAAqQxSAAAAAKQySAEAAACQyiAFAAAA
+            QCqDFAAAAACpDFIAAAAApDJIAQAAAJDKIAUAAABAKoMUAAAAAKkMUgAAAACkMkgBAAAAkMogBQAA
+            AEAqgxQAAAAAqQxSAAAAAKQySAEAAACQyiAFAAAAQCqDFAAAAACpDFIAAAAApDJIAQAAAJDKIAUA
+            AABAKoMUAAAAAKkMUgAAAACkMkgBAAAAkMogBQAAAEAqgxQAAAAAqQxSAAAAAKQySAEAAACQyiAF
+            AAAAQCqDFAAAAACpDFIAAAAApDJIAQAAAJDKIAUAAABAKoMUAAAAAKkMUgAAAACkMkgBAAAAkMog
+            BQAAAEAqgxQAAAAAqQxSAAAAAKQySAEAAACQyiAFAAAAQCqDFAAAAACpDFIAAAAApDJIAQAAAJDK
+            IAUAAABAKoMUAAAAAKkMUgAAAACkMkgBAAAAkMogBQAAAEAqgxQAAAAAqQxSAAAAAKQySAEAAACQ
+            yiAFAAAAQCqDFAAAAACpDFIAAAAApDJIAQAAAJDKIAUAAABAKoMUAAAAAKkMUgAAAACkMkgBAAAA
+            kMogBQAAAEAqgxQAAAAAqQxSAAAAAKQySAEAAACQyiAFAAAAQCqDFAAAAACpDFIAAAAApDJIAQAA
+            AJDKIAUAAABAKoMUAAAAAKkMUgAAAACkMkgBAAAAkMogBQAAAEAqgxQAAAAAqQxSAAAAAKQySAEA
+            AACQyiAFAAAAQCqDFAAAAACpDFIAAAAApDJIAQAAAJDKIAUAAABAKoMUAAAAAKkMUgAAAACkMkgB
+            AAAAkMogBQAAAEAqgxQAAAAAqQxSAAAAAKQySAEAAACQyiAFAAAAQCqDFAAAAACpDFIAAAAApDJI
+            AQAAAJDKIAUAAABAKoMUAAAAAKkMUgAAAACkMkgBAAAAkMogBQAAAEAqgxQAAAAAqQxSAAAAAKQy
+            SAEAAACQyiAFAAAAQCqDFAAAAACpDFIAAAAApDJIAQAAAJDKIAUAAABAKoMUAAAAAKkMUgAAAACk
+            MkgBAAAAkMogBQAAAEAqgxQAAAAAqQxSAAAAAKQySAEAAACQyiAFAAAAQCqDFAAAAACpDFIAAAAA
+            pDJIAQAAAJDKIAUAAABAKoMUAAAAAKkMUgAAAACkMkgBAAAAkMogBQAAAEAqgxQAAAAAqQxSAAAA
+            AKQySAEAAACQyiAFAAAAQCqDFAAAAACpDFIAAAAApDJIAQAAAJDKIAUAAABAKoMUAAAAAKkMUgAA
+            AACkMkgBAAAAkMogBQAAAEAqgxQAAAAAqQxSAAAAAKQySAEAAACQyiAFAAAAQCqDFAAAAACpDFIA
+            AAAApDJIAQAAAJDKIAUAAABAKoMUAAAAAKkMUgAAAACkMkgBAAAAkMogBQAAAEAqgxQAAAAAqQxS
+            AAAAAKQySAEAAACQyiAFAAAAQCqDFAAAAACpDFIAAAAApDJIAQAAAJDKIAUAAABAKoMUAAAAAKkM
+            UgAAAACkMkgBAAAAkMogBQAAAEAqgxQAAAAAqQxSAAAAAKQySAEAAACQyiAFAAAAQCqDFAAAAACp
+            DFIAAAAApDJIAQAAAJDKIAUAAABAKoMUAAAAAKkMUgAAAACkMkgBAAAAkMogBQAAAEAqgxQAAAAA
+            qQxSAAAAAKQySAEAAACQyiAFAAAAQCqDFAAAAACpDFIAAAAApDJIAQAAAJDKIAUAAABAKoMUAAAA
+            AKkMUgAAAACkMkgBAAAAkMogBQAAAECqKQcpAAAAAJhtBikAAAAAUhmkAAAAAEhlkAIAAAAg1f8D
+            6uCwqr4oVI0AAAAASUVORK5CYII=
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

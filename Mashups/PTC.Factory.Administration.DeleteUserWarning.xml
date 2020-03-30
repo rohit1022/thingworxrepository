@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="false"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Deleting user warning dialog {PTC.Factory.Administration.DeleteUserWarning}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:40.000+05:30"
+         name="PTC.Factory.Administration.DeleteUserWarning"
+         projectName="PTC.SCA.SCO.User Management"
+         rows="0.0"
+         tags="PTC:sca-sco-usermanagement;PTC:sca-common;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:Administration&amp;Configuration"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.dataShape="PTC.Resource.Factory.ThingworxUserDataShape"
+                 aspect.ordinal="0"
+                 baseType="INFOTABLE"
+                 description=""
+                 name="userInfo"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.Resource.Factory.ThingWorxUserConfigurationUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "Data" : {
+                "Resources_PTC_Resource_Factory_MessageFormatUtilities" : {
+                  "DataName" : "Resources_PTC_Resource_Factory_MessageFormatUtilities",
+                  "EntityName" : "PTC.Resource.Factory.MessageFormatUtilities",
+                  "EntityType" : "Resources",
+                  "Id" : "4ff45845-2b02-4f2f-8fb6-ac2b0fc0ef3f",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "518c48ca-2f8a-492e-b1af-3418008f0fdc",
+                    "Name" : "GetLocalizedMessageTwoParam",
+                    "Parameters" : {
+                      "label" : "PTC.Factory.Administration.DeleteUserLabel"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetLocalizedMessageTwoParam"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "8f191932-832e-495a-aa90-7a8fa1335720",
+                    "Name" : "ApplyCSSStyle",
+                    "Parameters" : {
+                      "cssClass" : "factory_black_14"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "ApplyCSSStyle"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC_Resource_Factory_ThingWorxUserConfigurationUtils" : {
+                  "DataName" : "Things_PTC_Resource_Factory_ThingWorxUserConfigurationUtils",
+                  "EntityName" : "PTC.Resource.Factory.ThingWorxUserConfigurationUtils",
+                  "EntityType" : "Things",
+                  "Id" : "1bd4b839-39ef-4ad8-8b81-d116f3f9d23f",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "10931fab-9c1f-407e-872d-83205469ae7b",
+                    "Name" : "DeleteThingworxUser",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "ShowErrorMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "DeleteThingworxUser"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "eb548969-42fa-4ee4-9a9a-fe270133c08a",
+                    "Name" : "CheckDeleteUser",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "CheckDeleteUser"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "6d37632e-9966-4500-8d7f-b8f4c85098dd",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "userInfo",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "userInfo",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "DeleteThingworxUser",
+                "TargetSection" : "Things_PTC_Resource_Factory_ThingWorxUserConfigurationUtils"
+              }, {
+                "Id" : "0c9df624-3a4f-4e49-847c-27f6861729dc",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "userInfo",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "lastName",
+                  "TargetProperty" : "value1",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetLocalizedMessageTwoParam",
+                "TargetSection" : "Resources_PTC_Resource_Factory_MessageFormatUtilities"
+              }, {
+                "Id" : "032e3285-44f0-4dc9-9b2f-ad4343cc4367",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "userInfo",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "firstName",
+                  "TargetProperty" : "value2",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetLocalizedMessageTwoParam",
+                "TargetSection" : "Resources_PTC_Resource_Factory_MessageFormatUtilities"
+              }, {
+                "Id" : "23a0f00f-0a4d-410b-957a-034331fc0076",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "userInfo",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "userInfo",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CheckDeleteUser",
+                "TargetSection" : "Things_PTC_Resource_Factory_ThingWorxUserConfigurationUtils"
+              }, {
+                "Id" : "42cca54a-92e9-4df8-8c0f-95e0121d6c8e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "message",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "CheckDeleteUser",
+                "SourceSection" : "Things_PTC_Resource_Factory_ThingWorxUserConfigurationUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-48",
+                "TargetSection" : ""
+              }, {
+                "Id" : "204e7d98-c3b1-4938-80ea-607116becb40",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "Message",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "CheckDeleteUser",
+                "SourceSection" : "Things_PTC_Resource_Factory_ThingWorxUserConfigurationUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "statusmessage-49",
+                "TargetSection" : ""
+              }, {
+                "Id" : "4ebec643-e1d4-49ef-8f62-921c335f9eba",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLocalizedMessageTwoParam",
+                "SourceSection" : "Resources_PTC_Resource_Factory_MessageFormatUtilities",
+                "TargetArea" : "Data",
+                "TargetId" : "ApplyCSSStyle",
+                "TargetSection" : "Resources_PTC_Resource_Factory_MessageFormatUtilities"
+              }, {
+                "Id" : "38d49cb6-f6bd-45cc-9f71-cc830bc748da",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "ApplyCSSStyle",
+                "SourceSection" : "Resources_PTC_Resource_Factory_MessageFormatUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "htmltextarea-54",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : { },
+              "Events" : [ {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-22",
+                "EventTriggerSection" : "",
+                "Id" : "b06d0691-9c88-4524-80d1-7daaf874fd44"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "DeleteThingworxUser",
+                "EventTriggerSection" : "Things_PTC_Resource_Factory_ThingWorxUserConfigurationUtils",
+                "Id" : "446cdaff-d169-407e-be7a-03772d1ec44f"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC_Resource_Factory_MessageFormatUtilities",
+                "EventHandlerService" : "GetLocalizedMessageTwoParam",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "fb0f7b36-6cd6-4936-bd6b-743a9ce2edbb"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC_Resource_Factory_ThingWorxUserConfigurationUtils",
+                "EventHandlerService" : "CheckDeleteUser",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-21",
+                "EventTriggerSection" : "",
+                "Id" : "4e5d48ad-4b5b-4029-9c3e-ec81efee7b7b"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-48",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "CheckDeleteUser",
+                "EventTriggerSection" : "Things_PTC_Resource_Factory_ThingWorxUserConfigurationUtils",
+                "Id" : "94d0fa99-298d-48f4-bb2f-3a8881ac7030"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC_Resource_Factory_ThingWorxUserConfigurationUtils",
+                "EventHandlerService" : "DeleteThingworxUser",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-48",
+                "EventTriggerSection" : "",
+                "Id" : "494c1302-d7b4-473b-915a-1835ad42f7a2"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-49",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-48",
+                "EventTriggerSection" : "",
+                "Id" : "a79d84c9-1cf1-433b-a525-14b89ace5885"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC_Resource_Factory_MessageFormatUtilities",
+                "EventHandlerService" : "ApplyCSSStyle",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetLocalizedMessageTwoParam",
+                "EventTriggerSection" : "Resources_PTC_Resource_Factory_MessageFormatUtilities",
+                "Id" : "d95fa894-167a-4e78-9ca8-951f61040f45"
+              } ],
+              "RunTimePermissions" : { },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 260,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : false,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "PTC.SCA.SCO.Core.MashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 360,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "Aspects" : {
+                      "dataShape" : "PTC.Resource.Factory.ThingworxUserDataShape"
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "",
+                    "ParameterName" : "userInfo"
+                  } ],
+                  "id_index" : 54,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "Panel-3",
+                    "Height" : 40,
+                    "HideScrollbars" : false,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "Panel-3",
+                    "Left" : 0,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                    "Top" : 0,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 360,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "ValueDisplay-4",
+                      "Height" : 14,
+                      "Id" : "ValueDisplay-4",
+                      "ImageScaling" : "width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "Left" : 12,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.Administration.DELETE_USER.TITLE]]",
+                      "TextIfNoValueOffset" : 10,
+                      "TextIfNoValueStyle" : "PTC.SCA.SCO.Core.PopupHeaderStyle",
+                      "TextWrap" : true,
+                      "ToolTipField" : "",
+                      "Top" : 11,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 180,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "Panel-47",
+                    "Height" : 220,
+                    "HideScrollbars" : false,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "Panel-47",
+                    "Left" : 0,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupDialogBoxBody",
+                    "Top" : 40,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 360,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AlternateText" : "",
+                      "Area" : "UI",
+                      "BorderStyle" : "DefaultImageBorderStyle",
+                      "DisplayName" : "Image-41",
+                      "Height" : 40,
+                      "Id" : "Image-41",
+                      "Left" : 20,
+                      "PreventCaching" : false,
+                      "ResponsiveLayout" : false,
+                      "Scaling" : "width",
+                      "ShowDataLoading" : true,
+                      "SourceURL" : "PTC.SCA.SCO.Core.StatusWarning",
+                      "ToolTipField" : "",
+                      "Top" : 20,
+                      "Type" : "image",
+                      "Visible" : true,
+                      "Width" : 40,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Image"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                      "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                      "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                      "ContextId" : "",
+                      "DefaultConfirmationButton" : "button1",
+                      "Disabled" : false,
+                      "DisabledStyle" : "PTC.Factory.Generic.DisableButton",
+                      "DisplayName" : "Button-Delete",
+                      "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                      "Height" : 32,
+                      "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                      "IconAlignment" : "left",
+                      "Id" : "Button-21",
+                      "Label" : "[[PTC.SCA.SCO.Core.OK]]",
+                      "Left" : 120.90908813476562,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.ConfirmationPopupOkOrYes",
+                      "TabSequence" : 0,
+                      "ToolTipField" : "",
+                      "Top" : 168.90623474121094,
+                      "Type" : "button",
+                      "Visible" : true,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                      "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                      "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                      "ContextId" : "",
+                      "DefaultConfirmationButton" : "button1",
+                      "Disabled" : false,
+                      "DisabledStyle" : "PTC.Factory.Generic.DisableButton",
+                      "DisplayName" : "Button-cancel",
+                      "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                      "Height" : 32,
+                      "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                      "IconAlignment" : "left",
+                      "Id" : "Button-22",
+                      "Label" : "[[PTC.SCA.SCO.Core.Cancel]]",
+                      "Left" : 240.79998779296875,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNo",
+                      "TabSequence" : 0,
+                      "ToolTipField" : "",
+                      "Top" : 168,
+                      "Type" : "button",
+                      "Visible" : true,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "Description" : "",
+                      "DisplayName" : "Validator-CheckDeleteUser",
+                      "Expression" : "message == null || message == ''",
+                      "Height" : 28,
+                      "Id" : "validator-48",
+                      "Left" : 10.909088134765625,
+                      "Output" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 170.90908813476562,
+                      "Type" : "validator",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Validator",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "STRING",
+                        "Description" : "",
+                        "ParameterName" : "message"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "statusmessage-49",
+                      "Height" : 28,
+                      "Id" : "statusmessage-49",
+                      "Left" : 10,
+                      "MessageType" : "warning",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 130,
+                      "Type" : "statusmessage",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Status Message"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-Delete",
+                      "Height" : 80,
+                      "Id" : "valuedisplay-52",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "Left" : 70,
+                      "Overflow" : "visible",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.ConfirmationPopupBody",
+                      "TextWrap" : true,
+                      "ToolTipField" : "",
+                      "Top" : 20,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.ConfirmationPopupBody",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.ConfirmationPopupBody",
+                      "ValueFormat" : {
+                        "FormatString" : "full",
+                        "renderer" : "STRING"
+                      },
+                      "ValueFormat_StateParameters" : [ ],
+                      "VerticalAlignment" : "top",
+                      "Visible" : false,
+                      "Width" : 250,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "htmltextarea-54",
+                      "EscapeHTMLText" : true,
+                      "Height" : 80,
+                      "Id" : "htmltextarea-54",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LabelStyle" : "DefaultWidgetLabelStyle",
+                      "Left" : 70,
+                      "ReadOnly" : true,
+                      "ResponsiveLayout" : false,
+                      "ShowBorder" : false,
+                      "ShowDataLoading" : true,
+                      "Text" : "",
+                      "ToolTipField" : "",
+                      "Top" : 20,
+                      "Type" : "htmltextarea",
+                      "Visible" : true,
+                      "Width" : 250,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Html TextArea",
+                      "__supportsLabel" : true
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            iVBORw0KGgoAAAANSUhEUgAAATAAAADbCAYAAADqD80GAAATaUlEQVR42u2da4wU5ZrH+5v3eEm8
+            JEYTs4kf9buJfjEZ55zldo5nN1zmCgx3GM/xqNHIOZKzskbNqrMke4jRLOJR1mUXRuAAwlnxAiIi
+            o4s6wCA4oNNEBQeHYZmBrmfreauru6q6urt6pm8Fv1/yh75Vd3VdfvO8b71VnViyZIksXrzYZNGi
+            RZksXLgwkwULFpjMnz/fZN68eZnMnTs3kzlz5ph0dHT4Mnv2bJNZs2ZlMnPmzJy0t7dn0tbWlklr
+            a6svLS0tBdPc3JyTpqamopkxY0bZM336dHIJpxLblKbQdhy2/bvJt88E9zHv/qfx7psa737r3a/d
+            fV0T9IDrB43rDHXI0qVL5ciRI/Lhhx/KXXfdJZdddplcffXV8vDDD4tlWbJnzx6577775LbbbpOX
+            XnpJzp07Jzt27JBbbrlFEq683njjDdmwYQMhhFQ1q1evluHhYSOn66+/3gjsiiuukIaGBtm/f7+R
+            2L59++TVV1818jp16pQ8+eSTct111zkC04pLX0wIIdXOmjVrjJgef/xxufLKKzO54YYbTBXb19cn
+            yoULF+T06dOyfPlyufnmm43oEBghpKbR5qBWYI888ohpOnpz5513yvbt200VpnzzzTcyefJkIy8j
+            MLfPiwVJCKlFNm3aJOfPn5dly5bJNddck5HXHXfcYZqNo6OjMjIyIj/99JORmDYn7733Xrn88ssd
+            gWlHPQuSEFKLaB+YCur111+X22+/3cjr2muvNZ38+rg2G7u6uuTBBx+UgwcPmmqsu7tbbrzxRkm4
+            RxpZkISQWuSFF16Q48ePy+HDh+X+++/PCGzq1Kny7rvvylNPPWVkddVVVxmJbdy4UZ577jnTR4bA
+            CCE1jfbDb9u2Tc6ePSuvvPKK6aBXid10001y9913Z+5rn5c2MbVf7NZbb3WakO44LxYkIaQWmTRp
+            krz44oumeahHI5944omcznxXYMEk3EGqLEhCSC3S2NhoBsivWrVKBgYGTB+XjgnT/jAdFxYUmDYl
+            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
+            AABJRU5ErkJggg==
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="ThingTemplate for status expression utils. {PTC.Factory.StatusExpressionUtilsThingTemplate}"
+         documentationContent=""
+         effectiveThingPackage="PTC.Factory.StatusExpressionUtilsPackage"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.049+05:30"
+         name="PTC.Factory.StatusExpressionUtilsThingTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:ThingTemplate"
+         thingPackage="PTC.Factory.StatusExpressionUtilsPackage"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Calculates the the first status that is returning true."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CalculateStatus">
+                        <ResultType
+                         baseType="INTEGER"
+                         description="Status id"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             aspect.thingShape="PTC.SCA.SCO.StatusThingShape"
+                             baseType="THINGNAME"
+                             description="Name of the thing. Required to have PTC.SCA.SCO.StatusThingShape implemented on that Thing."
+                             name="thingId"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Validates the default status expression configuration by thing template. Validates only equipment of type 'Asset' or 'Line'."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ValidateDefaultStatusExpressionsByTemplate">
+                        <ResultType
+                         baseType="STRING"
+                         description="returns &quot;Validation Successful&quot; if the default expression configuration is valid."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="THINGTEMPLATENAME"
+                             description="thing template name"
+                             name="templateName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Validates the status expression configuration by thing name. Validates only equipment that implements the 'PTC.SCA.SCO.StatusThingShape' ThingShape. Called internally by 'ValidateDefaultStatusExpressionsByTemplate'."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ValidateStatusExpressionsByThingName">
+                        <ResultType
+                         baseType="STRING"
+                         description="returns &quot;Validation Successful&quot; if the expression configuration is valid."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Name of thing on which to test the status expressions."
+                             name="thingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="CalculateStatus">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        result =  isCustomizedStatusEvaluation()?calculateCustomizedStatus():calculateStatus();
+                                        
+                                        /** START HELPER FUNCTIONS **/
+                                        function isCustomizedStatusEvaluation () {
+                                            return me.IsStatusServiceOverridden({
+                                                serviceName: "CustomizedStatusEvaluation" /* STRING */
+                                            });
+                                        }
+                                        
+                                        function calculateCustomizedStatus() {
+                                            var status;
+                                        
+                                            try {
+                                                status = Things["PTC.Factory.StatusExpressionResourceProvider"].CustomizedStatusEvaluation({
+                                                    "item": Things["PTC.Factory.StatusExpressionResourceProvider"].GetById({id: thingId}) /* INFOTABLE */,
+                                                    "thingId": thingId /* THINGNAME */
+                                                });
+                                            } catch (err) {
+                                                logger.error('ERROR: Using "CalculateStatus" service to evaluate status because "CustomizedStatusEvaluation" service is failing: ' + err);
+                                                status = calculateStatus();
+                                            }
+                                        
+                                            return status;
+                                        }
+                                        
+                                        function calculateStatus() {
+                                            var statuses = Things[thingId].GetStatusExpressions();
+                                            statuses.Sort({name:"orderOfExecution", ascending:true});
+                                            var cachedFunctionResult = {};
+                                        
+                                            for(var i = 0; i < statuses.length; i++) {
+                                                try{
+                                                    // get all values that are in between double quotes
+                                                    var functionNameList = String(statuses[i].expression).match(/(".*?[^\\]")/g);
+                                        
+                                                    // evaluate and cache all the results from function names such as "HAS_ALERTS", "IS_DATA_OK", etc...
+                                                    for (var j = 0; functionNameList && j < functionNameList.length; j++) {
+                                                        var functionName = functionNameList[j];
+                                                        if(me.IsExpressionValid({expression:functionName})) {
+                                                            if(cachedFunctionResult[functionName] === undefined) {
+                                                                // evaluate individual expression
+                                                                cachedFunctionResult[functionName] = me.EvaluateExpression({
+                                                                    "thingId": thingId /* THINGNAME */,
+                                                                    "expression": functionName /* STRING */
+                                                                });
+                                                            }
+                                                            var escapedFunctionName = escapeRegExChars(functionName);
+                                                            statuses[i].expression = statuses[i].expression.replace(new RegExp(escapedFunctionName, "g"),
+                                                                            cachedFunctionResult[functionName]);
+                                                        }
+                                                    }
+                                        
+                                                    if(me.EvaluateExpression({"thingId":thingId, "expression":statuses[i].expression})) {
+                                                        return statuses[i].id;
+                                                    }
+                                                }
+                                                catch(err){
+                                                    logger.error(err.message);
+                                                }
+                                            }
+                                            return 5;
+                                        }
+                                        
+                                        //Escapes RegEx characters found in str
+                                        function escapeRegExChars(str) {
+                                            return str.replace(/[.+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+                                        }
+                                        /** END HELPER FUNCTIONS **/
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ValidateDefaultStatusExpressionsByTemplate">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var testThingId = "testThing" + Math.random().toString().substring(2, 7);
+                                        try {
+                                            //create a test thing
+                                            Resources["EntityServices"].CreateThing({
+                                                name : testThingId /* STRING */,
+                                                thingTemplateName : templateName /* THINGTEMPLATENAME */
+                                            });
+                                            Things[testThingId].EnableThing();
+                                            Things[testThingId].RestartThing();
+                                        
+                                            result = me.ValidateStatusExpressionsByThingName({thingName: testThingId /* THINGNAME */});
+                                        } finally {
+                                            // delete the test thing
+                                            var physicalAssetInfo = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({dataShapeName:"PTC.SCA.SCO.PhysicalAssetDataShape"});
+                                            physicalAssetInfo.AddRow({Id:testThingId});
+                                            Things["PTC.Factory.PlantStatusUtils"].DeletePhysicalAsset({physicalAssetInfo:physicalAssetInfo});
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ValidateStatusExpressionsByThingName">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        result = validate(Things[thingName]);
+                                        
+                                        function getLocalizedMessage(token) {
+                                            return Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({ token : token });
+                                        }
+                                        
+                                        function validate (thing) {
+                                            if (!thing) {
+                                                return "Thing [" + thingName + "] does not exist.";
+                                            }
+                                        
+                                            // retrieve status expressions
+                                            var message = "";
+                                            var statusExpressions;
+                                            try {
+                                                statusExpressions = thing.GetStatusExpressions();
+                                            } catch (err) {
+                                                logger.error(err.message);
+                                                message = "There is an error when calling 'GetStatusExpressions()' for [" + thing.thingTemplate + "]. Please check the Script Log for details.";
+                                            }
+                                        
+                                            if (isEmpty(message)) {
+                                                message = validateStatusExpressions(statusExpressions);
+                                            }
+                                        
+                                            if (isEmpty(message)) {
+                                                message = validateStatusExpressionOrder(statusExpressions);
+                                            }
+                                        
+                                            if (isEmpty(message)) {
+                                                message = getLocalizedMessage("PTC.SCA.SCO.Status.ValidationSuccessful");
+                                            }
+                                        
+                                            return message;
+                                        }
+                                        
+                                        function validateStatusExpressions(statusExpressions) {
+                                            if (statusExpressions && statusExpressions.getRowCount() > 0) {
+                                                var statusSize = statusExpressions.getRowCount();
+                                                var EXPECTED_SIZE = 9;
+                                                if (statusSize > EXPECTED_SIZE) {
+                                                    return "An invalid number of status expressions have been detected, detected [" + statusSize +"] while expecting [" + EXPECTED_SIZE + "] or less";
+                                                }
+                                                var isUnavailable = false;
+                                                var listOfStatusIds = {};
+                                                for (var i = 0; i < statusSize; i++) {
+                                                    var expressionRow = statusExpressions.getRow(i);
+                                                    var statusId = expressionRow.id;
+                                                    var expression = expressionRow.expression;
+                                                    var hasExpression = expression.length > 0;
+                                        
+                                                    if(isEmpty(listOfStatusIds[statusId])) {
+                                                        listOfStatusIds[statusId] = statusId;
+                                                    } else {
+                                                        return "Duplicate status id [" + statusId + "] detected on status name ["+ expressionRow.name + "]";
+                                                    }
+                                        
+                                                    switch (statusId) {
+                                                        case "5":
+                                                            isUnavailable = true;
+                                                            if (hasExpression === false) {
+                                                                return "The status expression is not configured for the 'Unavailable' status.";
+                                                            }
+                                                            break;
+                                                        default:
+                                                            var errorMessage = me.ValidateExpression({ expression : expression });
+                                                            if (errorMessage != getLocalizedMessage("PTC.Factory.Status.Error.ExpressionIsValid")) {
+                                                                return errorMessage;
+                                                            }
+                                                    }
+                                                } //for loop
+                                        
+                                                if (isUnavailable === false) {
+                                                    return  "The status expression entry is missing for the 'Unavailable' status.";
+                                                }
+                                        
+                                            } else {
+                                                return "No status expressions are configured.";
+                                            }
+                                        
+                                            return "";
+                                        }
+                                        
+                                        function validateStatusExpressionOrder(statusExpressions) {
+                                            var errorStr = "";
+                                        
+                                            if (statusExpressions && statusExpressions.getRowCount() > 0) {
+                                                var orderOfUnavailable = null;
+                                                var orderMinimum = null;
+                                                var orderMaximum = null;
+                                                var orderArray = [];
+                                                for (var i = 0; i < statusExpressions.length; i++) {
+                                                    var expressionRow = statusExpressions.getRow(i);
+                                                    var statusId = expressionRow.id;
+                                                    var order = expressionRow.orderOfExecution;
+                                        
+                                                    //check the order value
+                                                    if (order == 'undefined' || order === null) {
+                                                        errorStr = "The order of a status cannot be empty.";
+                                                        break;
+                                                    }
+                                        
+                                                    //check the last status
+                                                    if (statusId === "5") {
+                                                        orderOfUnavailable = order;
+                                                    }
+                                                    //keep the minimum and maximum values
+                                                    if (orderMinimum === null || orderMinimum > order) {
+                                                        orderMinimum = order;
+                                                    }
+                                                    if (orderMaximum === null || orderMaximum < order) {
+                                                        orderMaximum = order;
+                                                    }
+                                                    //check the duplicated orders
+                                                    if (orderArray.indexOf(order) >= 0) {
+                                                        errorStr = "The order value of [" + order + "] has duplicated values.";
+                                                        break;
+                                                    } else {
+                                                        orderArray.push(order);
+                                                    }
+                                                }
+                                                if (isEmpty(errorStr)) {
+                                                    if (orderOfUnavailable === null) {
+                                                        errorStr = "The status expression is not configured for the Unavailable status.";
+                                                    } else if (orderOfUnavailable !== orderMaximum) {
+                                                        errorStr = "The Unavailable status must be last in the order.";
+                                                    }
+                                                }
+                                            } else {
+                                                errorStr = "No status expressions are configured.";
+                                            }
+                                            return errorStr;
+                                        }
+                                        
+                                        function isEmpty(value) {
+                                            return value === null || value === undefined || value === '';
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility></Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Used by PTC.SCA.SCO.ControlsAdvisor.GenericDetailPageMashup {PTC.SCA.SCO.ControlsAdvisor.GenericDetailPageMashup}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:41.203+05:30"
+         name="PTC.SCA.SCO.ControlsAdvisor.GenericDetailPageMashup"
+         projectName="PTC.SCA.SCO.KEPServerEX Monitor"
+         rows="0.0"
+         tags="PTC:sca-sco-kepserverexmonitor;PTC:sca-mfg;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:KEPServerMonitoring"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="1"
+                 baseType="STRING"
+                 description="Default Value of Radio Button"
+                 name="DefaultRadio"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="2"
+                 baseType="STRING"
+                 description="Server description"
+                 name="DescriptionValue"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="3"
+                 baseType="BOOLEAN"
+                 description="hasAlerts"
+                 name="hasAlerts"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description="Server Name"
+                 name="ServerName"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.ControlsAdvisorUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.ControlsAdvisorUtils" : {
+                  "DataName" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                  "EntityName" : "PTC.SCA.SCO.ControlsAdvisorUtils",
+                  "EntityType" : "Things",
+                  "Id" : "a199f54f-ab8e-47b1-b8f4-3cd249a44f23",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "32ee145d-602b-4a07-91a2-454a6816e7a5",
+                    "Name" : "GetServerProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetServerProperties"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "ac638ead-cfe8-48a6-8717-24af40bde53b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "ServerName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "serverName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetServerProperties",
+                "TargetSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils"
+              }, {
+                "Id" : "3cdcdaa6-c8fc-405d-84a5-69244e149050",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "ServerName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "entityName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetClientCountHistory",
+                "TargetSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils"
+              }, {
+                "Id" : "4295d3a8-5b5e-40a4-818c-91892067d61a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "ServerName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "entityName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetTagCountHistory",
+                "TargetSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils"
+              }, {
+                "Id" : "98cc4cd9-fe18-4fb9-8d8a-60cb064651e4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "ServerName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "serverName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetCurrentServerTime",
+                "TargetSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils"
+              }, {
+                "Id" : "791b5acd-ea77-462b-805a-95bd272bb938",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Description",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "DescriptionValue",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetServerProperties",
+                "SourceSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "2c12a160-c867-4c6f-81aa-1514965347f9",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "ServerName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "serverName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetCurrentUTCTime",
+                "TargetSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils"
+              }, {
+                "Id" : "97e523bf-2b25-4780-b509-a59b27579d7b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "hasAlert",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "hasAlerts",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetServerProperties",
+                "SourceSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "449b1d99-d36e-4810-9884-6c5065089dfe",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "ServerName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "parameter_2",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetView",
+                "TargetSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils"
+              }, {
+                "Id" : "79de5b3d-cd00-4286-80b0-9473af094873",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Description",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "ANYSCALAR"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetServerProperties",
+                "SourceSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "ValueDisplay-54",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : { },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                "EventHandlerService" : "GetServerProperties",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "6291d0ae-2b7e-4f4b-8e6d-682bd1e4a9b9"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                "EventHandlerService" : "GetServerProperties",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Refresh",
+                "EventTriggerId" : "AutoRefresh-62",
+                "EventTriggerSection" : "",
+                "Id" : "5bea7271-92ee-4b46-8e08-6fa261b1130a"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                "EventHandlerService" : "GetServerProperties",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "RefreshRequested",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "1171acfd-e871-4d75-83eb-077cae9d5174"
+              } ],
+              "RunTimePermissions" : { },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DefaultRadio" : "hour",
+                  "Description" : "",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ServerName" : "",
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "DefaultValue" : "",
+                    "Description" : "Server Name",
+                    "ParameterName" : "ServerName"
+                  }, {
+                    "BaseType" : "STRING",
+                    "DefaultValue" : "hour",
+                    "Description" : "Default Value of Radio Button",
+                    "ParameterName" : "DefaultRadio"
+                  }, {
+                    "BaseType" : "STRING",
+                    "Description" : "Server description",
+                    "ParameterName" : "DescriptionValue"
+                  }, {
+                    "BaseType" : "BOOLEAN",
+                    "Description" : "hasAlerts",
+                    "ParameterName" : "hasAlerts"
+                  } ],
+                  "id_index" : 169,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "Panel-84",
+                    "Height" : 200,
+                    "HideScrollbars" : false,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "Panel-84",
+                    "Left" : 435,
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.FooterBackground",
+                    "Top" : 435,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 300,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "Panel-12",
+                      "Height" : 70,
+                      "HideScrollbars" : false,
+                      "HorizontalAnchor" : "Center",
+                      "Id" : "Panel-12",
+                      "Left" : 20,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Core.ShapeStyle",
+                      "Top" : 0,
+                      "Type" : "panel",
+                      "VerticalAnchor" : "Middle",
+                      "Visible" : true,
+                      "Width" : 1170,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Panel"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Alignment" : "left",
+                        "Area" : "UI",
+                        "BackgroundFill" : "content",
+                        "Description" : "",
+                        "DisplayName" : "ValueDisplay-54",
+                        "Height" : 45,
+                        "Id" : "ValueDisplay-54",
+                        "ImageScaling" : "width",
+                        "Label" : "",
+                        "LabelAlignment" : "left",
+                        "Left" : 107,
+                        "Overflow" : "hidden",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "TextIfNoValue" : "",
+                        "TextIfNoValueOffset" : 0,
+                        "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                        "TextWrap" : true,
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 20,
+                        "Type" : "valuedisplay",
+                        "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                        "ValueDisplayStyle" : "PTC.Factory.InfoTile.text.16px",
+                        "ValueFormat" : {
+                          "FormatString" : "full",
+                          "renderer" : "STRING"
+                        },
+                        "ValueFormat_StateParameters" : [ ],
+                        "VerticalAlignment" : "top",
+                        "Visible" : true,
+                        "Width" : 882,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Value Display",
+                        "__supportsLabel" : true,
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "ActiveStyle" : "DefaultButtonActiveStyle",
+                        "Area" : "UI",
+                        "AutoRefresh" : true,
+                        "AutoRefreshTabSequence" : 0,
+                        "Description" : "",
+                        "DisplayName" : "AutoRefresh-62",
+                        "FocusStyle" : "DefaultButtonFocusStyle",
+                        "Height" : 28,
+                        "HoverStyle" : "DefaultButtonHoverStyle",
+                        "IconAlignment" : "left",
+                        "Id" : "AutoRefresh-62",
+                        "Label" : "[[PTC.Factory.Refresh Now]]",
+                        "Left" : 839,
+                        "RefreshInterval" : 20,
+                        "RefreshNowTabSequence" : 0,
+                        "RefreshToggleLabel" : "On",
+                        "RefreshToggleLabelOff" : "Off",
+                        "RefreshToggleSliderStyle" : "DefaultAutoRefreshToggleSliderStyle",
+                        "RefreshToggleStyle" : "DefaultAutoRefreshToggleStyle",
+                        "RefreshToggleStyleOff" : "DefaultAutoRefreshToggleOffStyle",
+                        "ResponsiveLayout" : false,
+                        "ShowControls" : true,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultButtonStyle",
+                        "Top" : 5,
+                        "Type" : "autorefresh",
+                        "Visible" : false,
+                        "Width" : 180,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Auto Refresh"
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Alignment" : "left",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "DisplayName" : "label-128",
+                        "Height" : 22,
+                        "Id" : "label-128",
+                        "Left" : 2,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "PTC.Factory.Generic.DefaultLabel",
+                        "Text" : "[[PTC.Factory.Description]]",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 20,
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 105,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label",
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "panel-136",
+                        "Height" : 1,
+                        "HideScrollbars" : false,
+                        "HorizontalAnchor" : "left",
+                        "Id" : "panel-136",
+                        "Left" : 0,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "PTC.Factory.Widget_Bar_Grey",
+                        "Top" : 63,
+                        "Type" : "panel",
+                        "VerticalAnchor" : "top",
+                        "Visible" : true,
+                        "Width" : 1111,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Panel"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "AllowEllipsis" : false,
+                      "Area" : "UI",
+                      "DisplayName" : "generic-information",
+                      "Height" : 22,
+                      "Id" : "label-169",
+                      "Left" : 35,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.DefaultLabel",
+                      "Text" : "[[PTC.SCA.SCO.ControlsAdvisor.PageDetailDescription]]",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 85,
+                      "Type" : "label",
+                      "Visible" : true,
+                      "Width" : 825,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Label",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview></preview>
+        </Mashup>
+    </Mashups>
+</Entities>

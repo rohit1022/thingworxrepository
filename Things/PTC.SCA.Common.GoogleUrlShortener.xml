@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Things>
+        <Thing
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         description="Google Url shortener Thing to make URL short. {PTC.SCA.Common.GoogleUrlShortener}"
+         documentationContent=""
+         effectiveThingPackage="PTC.SCA.Common.GoogleUrlShortenerPackage"
+         enabled="true"
+         homeMashup=""
+         identifier=""
+         lastModifiedDate="2020-03-19T18:16:23.672+05:30"
+         name="PTC.SCA.Common.GoogleUrlShortener"
+         projectName="PTC.SCA.SCO.Common"
+         published="false"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Thing"
+         thingTemplate="PTC.SCA.Common.GoogleUrlShortenerTemplate"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe></EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:Administration&amp;Configuration"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 description="Configuration for Google Url Shortener"
+                 isMultiRow="false"
+                 name="Configuration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             baseType="PASSWORD"
+                             description="Google API key"
+                             name="apiKey"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <apiKey></apiKey>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions></ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetShortUrl">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        //Get API key
+                                        var params = {
+                                        	tableName: "Configuration"
+                                        };
+                                        var apiKey = me.GetConfigurationTable(params).getFirstRow().get("apiKey").getStringValue();
+                                        
+                                        //Google Api link
+                                        var goggleApiUrl = 'https://www.googleapis.com/urlshortener/v1/url?key=' + apiKey;
+                                        
+                                        //Post JSON
+                                        var params = {
+                                            content:  {"longUrl": url},
+                                        	url: goggleApiUrl
+                                        };
+                                        logger.info(params["content"]["longUrl"]);
+                                        var result = Resources["ContentLoaderFunctions"].PostJSON(params);
+                                        result = result["id"];
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="IsConfigured">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        //Get API key
+                                        var params = {
+                                        	tableName: "Configuration"
+                                        };
+                                        var apiKey = me.GetConfigurationTable(params).getFirstRow().get("apiKey").getStringValue();
+                                        var result = true;
+                                        if( apiKey == null || apiKey == "" || apiKey =="null")	{
+                                        	result = false;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ImplementedShapes></ImplementedShapes>
+            <ThingProperties></ThingProperties>
+        </Thing>
+    </Things>
+</Entities>

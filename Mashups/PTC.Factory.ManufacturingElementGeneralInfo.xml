@@ -1,0 +1,2034 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Creates/edits an asset {PTC.Factory.ManufacturingElementGeneralInfo}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:17:00.219+05:30"
+         name="PTC.Factory.ManufacturingElementGeneralInfo"
+         projectName="PTC.SCA.SCO.Production KPI"
+         rows="0.0"
+         tags="PTC:sca-sco-productionkpi;PTC:sca-mfg;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:AssetPerformance"
+                     type="OrganizationalUnit"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:PlantStatus"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="1"
+                 baseType="STRING"
+                 description=""
+                 name="displayId"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description=""
+                 name="fromURL"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.Factory.PlantStatusUtils</Thing>
+                <Thing>PTC.Factory.PhysicalAssetIconFileRepository</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Resources_PTC.Factory.CommonUtilities" : {
+                  "DataName" : "Resources_PTC.Factory.CommonUtilities",
+                  "EntityName" : "PTC.Factory.CommonUtilities",
+                  "EntityType" : "Resources",
+                  "Id" : "f560aa90-1583-474e-a9ea-d49d4419adfd",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "7510b8b9-d6fd-4f91-b346-9ac2fcbec1cd",
+                    "Name" : "SelectNonNullString",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "SelectNonNullString"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "c414f5f1-e5ac-45b1-8f3f-08f2b1cdd059",
+                    "Name" : "GetDefaultImageIfNull",
+                    "Parameters" : {
+                      "defaultImageName" : "PTC.Factory.DefaultPhysicalAssetIcon"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetDefaultImageIfNull"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.Factory.PhysicalAssetIconFileRepository" : {
+                  "DataName" : "Things_PTC.Factory.PhysicalAssetIconFileRepository",
+                  "EntityName" : "PTC.Factory.PhysicalAssetIconFileRepository",
+                  "EntityType" : "Things",
+                  "Id" : "ca5e94bb-dc97-4446-a99f-eafcb12b18aa",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "da9bae28-ed3f-494a-bc0c-43080d79506b",
+                    "Name" : "LoadImage",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "LoadImage"
+                  } ]
+                },
+                "Things_PTC.Factory.PlantStatusUtils" : {
+                  "DataName" : "Things_PTC.Factory.PlantStatusUtils",
+                  "EntityName" : "PTC.Factory.PlantStatusUtils",
+                  "EntityType" : "Things",
+                  "Id" : "349877f5-1737-40a2-87c1-3ebd66d397b5",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "69523d6a-8b66-41f9-b32c-ea7e0e3501cc",
+                    "Name" : "UpdateElement",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "UpdateElement"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "9449e6a6-ad63-4446-99d7-bbace2ddbc0b",
+                    "Name" : "GetElementInfo",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetElementInfo"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "c38bf84c-fb25-407c-8303-a22cf1758547",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FullPath",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "str1",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "fileupload-125",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "SelectNonNullString",
+                "TargetSection" : "Resources_PTC.Factory.CommonUtilities"
+              }, {
+                "Id" : "d771f2e6-c522-40bd-8643-5d421eb96b67",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "physicalAssetIconPath",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "str2",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetElementInfo",
+                "SourceSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "TargetArea" : "Data",
+                "TargetId" : "SelectNonNullString",
+                "TargetSection" : "Resources_PTC.Factory.CommonUtilities"
+              }, {
+                "Id" : "d4fc6b7a-45ce-43d7-823e-890eee1cc3fe",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "path",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "SelectNonNullString",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "Data",
+                "TargetId" : "LoadImage",
+                "TargetSection" : "Things_PTC.Factory.PhysicalAssetIconFileRepository"
+              }, {
+                "Id" : "3bc59c40-015d-4680-8090-e6915c7317f8",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FullPath",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "iconPath",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "fileupload-125",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateElement",
+                "TargetSection" : "Things_PTC.Factory.PlantStatusUtils"
+              }, {
+                "Id" : "aee0a00d-a645-4e5b-9870-74054a596717",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Content",
+                  "SourcePropertyBaseType" : "IMAGE",
+                  "TargetProperty" : "image",
+                  "TargetPropertyBaseType" : "IMAGE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "LoadImage",
+                "SourceSection" : "Things_PTC.Factory.PhysicalAssetIconFileRepository",
+                "TargetArea" : "Data",
+                "TargetId" : "GetDefaultImageIfNull",
+                "TargetSection" : "Resources_PTC.Factory.CommonUtilities"
+              }, {
+                "Id" : "4bbf6f13-322a-410a-8d7f-665de660e591",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "IMAGE",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "ANYSCALAR",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetDefaultImageIfNull",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "valuedisplay-126",
+                "TargetSection" : ""
+              }, {
+                "Id" : "8722950b-2d75-4fa3-858f-8ee23bd654f2",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "path",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "SelectNonNullString",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-138",
+                "TargetSection" : ""
+              }, {
+                "Id" : "7ad43e6f-65a7-4a60-8c85-87a8c25b69dc",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "AssetImage",
+                  "SourcePropertyBaseType" : "IMAGE",
+                  "TargetProperty" : "defaultImage",
+                  "TargetPropertyBaseType" : "IMAGE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetElementInfo",
+                "SourceSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "TargetArea" : "Data",
+                "TargetId" : "GetDefaultImageIfNull",
+                "TargetSection" : "Resources_PTC.Factory.CommonUtilities"
+              }, {
+                "Id" : "0271c4bb-2217-4276-97de-f7c963660d7f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "IMAGE",
+                  "TargetProperty" : "image",
+                  "TargetPropertyBaseType" : "IMAGE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetDefaultImageIfNull",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateElement",
+                "TargetSection" : "Things_PTC.Factory.PlantStatusUtils"
+              }, {
+                "Id" : "ce842f70-6b4e-4925-9a77-7dbfd651b833",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FileName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "fileupload-125",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-148",
+                "TargetSection" : ""
+              }, {
+                "Id" : "9c4b03ab-3724-46bc-b123-4cefe4ae8a6a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "displayName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetElementInfo",
+                "SourceSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "textbox-174",
+                "TargetSection" : ""
+              }, {
+                "Id" : "0b20de32-bff2-475b-a0dc-5bb46e5724fc",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "textbox-174",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-142",
+                "TargetSection" : ""
+              }, {
+                "Id" : "6dc8b62b-7d83-4348-92ee-47959a073e4b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "displayName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "textbox-174",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateElement",
+                "TargetSection" : "Things_PTC.Factory.PlantStatusUtils"
+              }, {
+                "Id" : "483f8010-355d-4cb8-88e9-fb93601bf8cd",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "description",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetElementInfo",
+                "SourceSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "textbox-175",
+                "TargetSection" : ""
+              }, {
+                "Id" : "e9314a1a-2d18-4812-9262-d3d6f04d7a7d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "description",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "textbox-175",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateElement",
+                "TargetSection" : "Things_PTC.Factory.PlantStatusUtils"
+              }, {
+                "Id" : "f7778db5-602a-469e-83d4-bb436f566953",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "modelNumber",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetElementInfo",
+                "SourceSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "textbox-227",
+                "TargetSection" : ""
+              }, {
+                "Id" : "e0ce8d92-827e-4e08-b0e1-446e05098292",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "physicalLocation",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetElementInfo",
+                "SourceSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "textbox-231",
+                "TargetSection" : ""
+              }, {
+                "Id" : "02af0bdc-de44-4a79-9271-4993e38d105f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "serialNumber",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetElementInfo",
+                "SourceSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "textbox-229",
+                "TargetSection" : ""
+              }, {
+                "Id" : "bfb85e65-ffd8-43a2-95a2-dc49d530a8dc",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "modelNumber",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "textbox-227",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateElement",
+                "TargetSection" : "Things_PTC.Factory.PlantStatusUtils"
+              }, {
+                "Id" : "ffcbcaea-044b-439b-b43d-5472df1dc059",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "serialNumber",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "textbox-229",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateElement",
+                "TargetSection" : "Things_PTC.Factory.PlantStatusUtils"
+              }, {
+                "Id" : "565fc152-9591-4226-8556-94e034ffa181",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "physicalLocation",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "textbox-231",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateElement",
+                "TargetSection" : "Things_PTC.Factory.PlantStatusUtils"
+              }, {
+                "Id" : "d1392004-7718-4c36-8d04-3452b3bf04f1",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "typeDisplayString",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetElementInfo",
+                "SourceSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "label-259",
+                "TargetSection" : ""
+              }, {
+                "Id" : "5aea92a8-8bf4-4612-909a-99c5cfeefab7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "relatedSiteID",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "relatedSiteID",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetElementInfo",
+                "SourceSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateElement",
+                "TargetSection" : "Things_PTC.Factory.PlantStatusUtils"
+              }, {
+                "Id" : "91dc7745-6cf0-43de-8551-ae1e1ee2e46d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "displayId",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "displayId",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetElementInfo",
+                "TargetSection" : "Things_PTC.Factory.PlantStatusUtils"
+              }, {
+                "Id" : "0b114e05-d29b-4723-9da3-d12cf9cbe771",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "displayId",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "physicalAssetThingName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateElement",
+                "TargetSection" : "Things_PTC.Factory.PlantStatusUtils"
+              }, {
+                "Id" : "5fa4ed6a-9762-4696-b54a-1f69b706858c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "displayId",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Path",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "fileupload-125",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "ContainedMashup-58",
+                "EventHandlerService" : "Refresh",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "PopupClosed",
+                "EventTriggerId" : "Navigation-83",
+                "EventTriggerSection" : "",
+                "Id" : "b5f3682e-21d3-40fb-84dc-bbf53922a99c"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-85",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "PopupClosed",
+                "EventTriggerId" : "Navigation-84",
+                "EventTriggerSection" : "",
+                "Id" : "9f871e83-7c2f-4802-94e5-90cd409fc172"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Navigation-83",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-96",
+                "EventTriggerSection" : "",
+                "Id" : "aed4b00d-300c-4427-9696-917674118b3b"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Navigation-84",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-97",
+                "EventTriggerSection" : "",
+                "Id" : "9fa32189-da6b-4d93-84c8-6f2208581bb0"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Navigation-99",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-98",
+                "EventTriggerSection" : "",
+                "Id" : "d6a545e7-5359-4ca3-8c23-9d5df6a3e997"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Navigation-102",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-100",
+                "EventTriggerSection" : "",
+                "Id" : "bbdf2398-cd84-4d0b-870c-948477d4b857"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "ContainedMashup-58",
+                "EventHandlerService" : "Refresh",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "PopupClosed",
+                "EventTriggerId" : "Navigation-99",
+                "EventTriggerSection" : "",
+                "Id" : "2f57a706-eae7-4af3-86d9-c54cd29e7b57"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Navigation-104",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "ButtonTooltip-108",
+                "EventTriggerSection" : "",
+                "Id" : "5cc070f7-4419-48d1-89ef-8a7ec16aa61d"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.PlantStatusUtils",
+                "EventHandlerService" : "GetElementInfo",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "5de42024-f084-4e66-a679-fb11182cd240"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "SelectNonNullString",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetElementInfo",
+                "EventTriggerSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "Id" : "2c14e230-90ff-474f-b42a-609bfa08d8c7"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "SelectNonNullString",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "UploadComplete",
+                "EventTriggerId" : "fileupload-125",
+                "EventTriggerSection" : "",
+                "Id" : "74f99f95-e74d-4193-90e0-a0a41c168007"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.PhysicalAssetIconFileRepository",
+                "EventHandlerService" : "LoadImage",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "SelectNonNullString",
+                "EventTriggerSection" : "Resources_PTC.Factory.CommonUtilities",
+                "Id" : "ae195915-5265-43dd-8f0c-d4fd01ea019f"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "GetDefaultImageIfNull",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "LoadImage",
+                "EventTriggerSection" : "Things_PTC.Factory.PhysicalAssetIconFileRepository",
+                "Id" : "813467ec-6746-4bb5-816a-bcb476829569"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "GetDefaultImageIfNull",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-138",
+                "EventTriggerSection" : "",
+                "Id" : "503a5c04-f89c-49c5-a3e3-df67408a0669"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-138",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "SelectNonNullString",
+                "EventTriggerSection" : "Resources_PTC.Factory.CommonUtilities",
+                "Id" : "931cb020-7d78-4d76-84d5-3cbe753c2f70"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "GetDefaultImageIfNull",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetElementInfo",
+                "EventTriggerSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "Id" : "8bce2e58-d4ca-4063-a376-47c158232bae"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-142",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-127",
+                "EventTriggerSection" : "",
+                "Id" : "af37c391-9fad-4699-b15d-04f6971a3f47"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-141",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-142",
+                "EventTriggerSection" : "",
+                "Id" : "dc968634-c5ec-4d8e-8317-a6be4e4db14b"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.PlantStatusUtils",
+                "EventHandlerService" : "GetElementInfo",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "UpdateElement",
+                "EventTriggerSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "Id" : "53f31030-e482-4a67-bd3e-f823bdb87735"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-148",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "UploadComplete",
+                "EventTriggerId" : "fileupload-125",
+                "EventTriggerSection" : "",
+                "Id" : "d588bd4f-0ed8-4743-b444-22470b97f772"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-154",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "a7325e99-e7df-4a40-b520-f66f3253d902"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-142",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-187",
+                "EventTriggerSection" : "",
+                "Id" : "b1660ea8-fae5-426d-8b62-da52146e0d66"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-232",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "UpdateElement",
+                "EventTriggerSection" : "Things_PTC.Factory.PlantStatusUtils",
+                "Id" : "baa90919-3ea9-4401-9782-66a19658f75f"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.PlantStatusUtils",
+                "EventHandlerService" : "UpdateElement",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-142",
+                "EventTriggerSection" : "",
+                "Id" : "9c4bf7ff-719e-42fd-99d4-e293e2b0e6b6"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "Description" : "",
+                  "DisplayName" : "Physical Asset Details",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "Master" : "",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "PTC.SCA.SCO.Core.MashupStyle",
+                  "StyleTheme" : "Base Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseMasterTheme" : false,
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "fromURL"
+                  }, {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "displayId"
+                  } ],
+                  "id_index" : 260,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Columns" : 0,
+                    "Description" : "",
+                    "DisplayName" : "layout-160",
+                    "Footer" : false,
+                    "FooterHeight" : 0,
+                    "Header" : false,
+                    "HeaderHeight" : 0,
+                    "Id" : "layout-160",
+                    "IncludeSpacingInFixedAreas" : false,
+                    "IsPrintLayout" : false,
+                    "LastContainer" : false,
+                    "Left" : 145,
+                    "LeftSidebar" : false,
+                    "LeftSidebarWidth" : 0,
+                    "Orientation" : "vertical",
+                    "PctColumn1" : 50,
+                    "PctColumn2" : 50,
+                    "PctColumn3" : 1,
+                    "PctColumn4" : 1,
+                    "PctColumn5" : 1,
+                    "PctColumn6" : 1,
+                    "PctColumn7" : 1,
+                    "PctColumn8" : 1,
+                    "PctRow1" : 100,
+                    "PctRow2" : 50,
+                    "PctRow3" : 52,
+                    "PctRow4" : 52,
+                    "PctRow5" : 0,
+                    "PctRow6" : 0,
+                    "PctRow7" : 0,
+                    "PctRow8" : 0,
+                    "PrintMarginLeftRight" : 0.5,
+                    "PrintMarginTopBottom" : 0.5,
+                    "PrintWidth" : 650,
+                    "ResponsiveLayout" : true,
+                    "RightSidebar" : false,
+                    "RightSidebarWidth" : 0,
+                    "Rows" : 1,
+                    "ShowDataLoading" : true,
+                    "Spacing" : 0,
+                    "Top" : 75,
+                    "Type" : "layout",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Layout"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "contain",
+                      "DisplayName" : "Row",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-188",
+                      "LastContainer" : false,
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "PTC.SCA.SCO.NoStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container",
+                      "userCannotRemove" : true
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "CenterCustomClass" : "",
+                        "Columns" : 1,
+                        "DisplayName" : "layout-222",
+                        "Footer" : false,
+                        "FooterHeight" : 0,
+                        "Header" : false,
+                        "HeaderHeight" : 0,
+                        "Id" : "layout-222",
+                        "IncludeSpacingInFixedAreas" : false,
+                        "IsPrintLayout" : false,
+                        "LastContainer" : false,
+                        "Left" : 200,
+                        "LeftSidebar" : true,
+                        "LeftSidebarWidth" : 20,
+                        "Orientation" : "horizontal",
+                        "PctColumn1" : 100,
+                        "PctColumn2" : 0,
+                        "PctColumn3" : 1,
+                        "PctColumn4" : 1,
+                        "PctColumn5" : 1,
+                        "PctColumn6" : 1,
+                        "PctColumn7" : 1,
+                        "PctColumn8" : 1,
+                        "PctRow1" : 50,
+                        "PctRow2" : 50,
+                        "PctRow3" : 0,
+                        "PctRow4" : 0,
+                        "PctRow5" : 0,
+                        "PctRow6" : 0,
+                        "PctRow7" : 0,
+                        "PctRow8" : 0,
+                        "PrintMarginLeftRight" : 0.5,
+                        "PrintMarginTopBottom" : 0.5,
+                        "PrintWidth" : 650,
+                        "ResponsiveLayout" : true,
+                        "RightSidebar" : true,
+                        "RightSidebarCustomClass" : "",
+                        "RightSidebarWidth" : 20,
+                        "Rows" : 0,
+                        "ShowDataLoading" : true,
+                        "Spacing" : 0,
+                        "Top" : 145,
+                        "Type" : "layout",
+                        "Visible" : true,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Layout"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Left Sidebar",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-223",
+                          "LastContainer" : false,
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "DefaultContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container",
+                          "userCannotRemove" : true
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Column 1",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-224",
+                          "LastContainer" : false,
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "DefaultContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container",
+                          "userCannotRemove" : true
+                        },
+                        "Widgets" : [ {
+                          "Properties" : {
+                            "Area" : "UI",
+                            "DisplayName" : "panel-114",
+                            "Height" : 200,
+                            "HideScrollbars" : false,
+                            "HorizontalAnchor" : "left",
+                            "Id" : "panel-114",
+                            "LastContainer" : false,
+                            "Left" : 385,
+                            "ResponsiveLayout" : true,
+                            "ShowDataLoading" : true,
+                            "Style" : "PTC.Factory.Generic.ConfirmationPopupBody",
+                            "Top" : 65,
+                            "Type" : "panel",
+                            "VerticalAnchor" : "top",
+                            "Visible" : true,
+                            "Width" : 300,
+                            "Z-index" : 10,
+                            "__TypeDisplayName" : "Panel"
+                          },
+                          "Widgets" : [ {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "AutoEvaluate" : false,
+                              "Description" : "",
+                              "DisplayName" : "Is image null?",
+                              "Expression" : "path == \"\"",
+                              "Height" : 18,
+                              "Id" : "validator-138",
+                              "LastContainer" : false,
+                              "Left" : 714,
+                              "Output" : false,
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : true,
+                              "Top" : 171,
+                              "Type" : "validator",
+                              "Visible" : true,
+                              "Width" : 172,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Validator",
+                              "_currentParameterDefs" : [ {
+                                "BaseType" : "STRING",
+                                "Description" : "",
+                                "ParameterName" : "path",
+                                "isBindingTarget" : true,
+                                "name" : "path"
+                              } ]
+                            },
+                            "Widgets" : [ ]
+                          }, {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "AutoEvaluate" : false,
+                              "DisplayName" : "Has ok been clicked?",
+                              "Expression" : "value",
+                              "Height" : 18,
+                              "Id" : "validator-140",
+                              "LastContainer" : false,
+                              "Left" : 99,
+                              "Output" : false,
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : true,
+                              "Top" : 497,
+                              "Type" : "validator",
+                              "Visible" : true,
+                              "Width" : 167,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Validator",
+                              "_currentParameterDefs" : [ {
+                                "BaseType" : "BOOLEAN",
+                                "Description" : "",
+                                "ParameterName" : "value",
+                                "isBindingTarget" : true,
+                                "name" : "value"
+                              } ]
+                            },
+                            "Widgets" : [ ]
+                          }, {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "DisplayName" : "Physical Asset Name is empty",
+                              "Height" : 18,
+                              "Id" : "statusmessage-141",
+                              "LastContainer" : false,
+                              "Left" : 74,
+                              "Message" : "[[PTC.Factory.Error.PhysicalAssetNameEmpty]]",
+                              "MessageType" : "info",
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : true,
+                              "Top" : 524,
+                              "Type" : "statusmessage",
+                              "Visible" : true,
+                              "Width" : 197,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Status Message"
+                            },
+                            "Widgets" : [ ]
+                          }, {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "AutoEvaluate" : false,
+                              "Description" : "",
+                              "DisplayName" : "Is name not empty?",
+                              "Expression" : "value!=null&&value!=\"\"",
+                              "Height" : 18,
+                              "Id" : "validator-142",
+                              "LastContainer" : false,
+                              "Left" : 109,
+                              "Output" : false,
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : true,
+                              "Top" : 428,
+                              "Type" : "validator",
+                              "Visible" : true,
+                              "Width" : 162,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Validator",
+                              "_currentParameterDefs" : [ {
+                                "BaseType" : "STRING",
+                                "Description" : "",
+                                "ParameterName" : "value",
+                                "isBindingTarget" : true,
+                                "name" : "value"
+                              } ]
+                            },
+                            "Widgets" : [ ]
+                          }, {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "AutoEvaluate" : false,
+                              "DisplayName" : "is path not null?",
+                              "Expression" : "value!=null&&value!=\"\"",
+                              "Height" : 18,
+                              "Id" : "validator-148",
+                              "LastContainer" : false,
+                              "Left" : 99,
+                              "Output" : false,
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : true,
+                              "Top" : 457,
+                              "Type" : "validator",
+                              "Visible" : true,
+                              "Width" : 172,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Validator",
+                              "_currentParameterDefs" : [ {
+                                "BaseType" : "STRING",
+                                "Description" : "",
+                                "ParameterName" : "value",
+                                "isBindingTarget" : true,
+                                "name" : "value"
+                              } ]
+                            },
+                            "Widgets" : [ ]
+                          }, {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "AutoEvaluate" : false,
+                              "DataChangeType" : "VALUE",
+                              "Description" : "",
+                              "DisplayName" : "expression-154",
+                              "Expression" : "1",
+                              "FireOnFirstValue" : false,
+                              "Height" : 18,
+                              "Id" : "expression-154",
+                              "LastContainer" : false,
+                              "Left" : 460,
+                              "OutputBaseType" : "NUMBER",
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : true,
+                              "Top" : 175,
+                              "Type" : "expression",
+                              "Visible" : false,
+                              "Width" : 175,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Expression"
+                            },
+                            "Widgets" : [ ]
+                          }, {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "Description" : "",
+                              "DisplayName" : "fieldset-171",
+                              "FieldsetLabelStyle" : "DefaultBlogHeaderStyle",
+                              "FieldsetStyle" : "PTC.Factory.ConfigHeaderPanelStyle",
+                              "Height" : 584,
+                              "Id" : "fieldset-171",
+                              "LastContainer" : false,
+                              "Left" : 3,
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : true,
+                              "Title" : "",
+                              "Top" : 20,
+                              "Type" : "fieldset",
+                              "UseTheme" : false,
+                              "Visible" : true,
+                              "Width" : 909,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Fieldset"
+                            },
+                            "Widgets" : [ {
+                              "Properties" : {
+                                "Alignment" : "left",
+                                "AllowEllipsis" : false,
+                                "Area" : "UI",
+                                "DisplayName" : "label-172",
+                                "Height" : 15,
+                                "Id" : "label-172",
+                                "LastContainer" : false,
+                                "Left" : 340,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.SCA.SCO.12pxLabelTextBold",
+                                "Text" : "[[PTC.Factory.Name]]",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 15,
+                                "Type" : "label",
+                                "Visible" : true,
+                                "Width" : 80,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Label",
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Alignment" : "left",
+                                "AllowEllipsis" : false,
+                                "Area" : "UI",
+                                "DisplayName" : "label-173",
+                                "Height" : 15,
+                                "Id" : "label-173",
+                                "LastContainer" : false,
+                                "Left" : 340,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.SCA.SCO.12pxLabelTextBold",
+                                "Text" : "[[PTC.Factory.Description]]",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 83,
+                                "Type" : "label",
+                                "Visible" : true,
+                                "Width" : 145,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Label",
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Area" : "UI",
+                                "CursorPosition" : 0,
+                                "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
+                                "DisplayName" : "nameTextBox",
+                                "Height" : 25,
+                                "Id" : "textbox-174",
+                                "InnerShadow" : false,
+                                "Label" : "",
+                                "LabelAlignment" : "left",
+                                "LastContainer" : false,
+                                "Left" : 340,
+                                "MaskInputCharacters" : false,
+                                "PlaceholderText" : "",
+                                "ReadOnly" : true,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.Factory.Generic.DialogBoxTextInputFieldDisabled",
+                                "TabSequence" : 0,
+                                "Text" : "",
+                                "TextAlign" : "left",
+                                "TextboxLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 38,
+                                "Type" : "textbox",
+                                "Visible" : true,
+                                "Width" : 549,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "TextBox",
+                                "__supportsLabel" : true,
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Area" : "UI",
+                                "CursorPosition" : 0,
+                                "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
+                                "DisplayName" : "descriptionTextBox",
+                                "Height" : 25,
+                                "Id" : "textbox-175",
+                                "InnerShadow" : false,
+                                "Label" : "",
+                                "LabelAlignment" : "left",
+                                "LastContainer" : false,
+                                "Left" : 340,
+                                "MaskInputCharacters" : false,
+                                "PlaceholderText" : "",
+                                "ReadOnly" : false,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.Factory.Generic.DialogBoxTextInputField",
+                                "TabSequence" : 0,
+                                "Text" : "",
+                                "TextAlign" : "left",
+                                "TextboxLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 106,
+                                "Type" : "textbox",
+                                "Visible" : true,
+                                "Width" : 549,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "TextBox",
+                                "__supportsLabel" : true,
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Alignment" : "left",
+                                "AllowEllipsis" : false,
+                                "Area" : "UI",
+                                "DisplayName" : "label-226",
+                                "Height" : 15,
+                                "Id" : "label-226",
+                                "LastContainer" : false,
+                                "Left" : 340,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.SCA.SCO.12pxLabelTextBold",
+                                "Text" : "[[PTC.SCA.SCO.ModelNumber]]",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 151,
+                                "Type" : "label",
+                                "Visible" : true,
+                                "Width" : 145,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Label",
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Area" : "UI",
+                                "CursorPosition" : 0,
+                                "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
+                                "DisplayName" : "modelNumberTextBox",
+                                "Height" : 25,
+                                "Id" : "textbox-227",
+                                "InnerShadow" : false,
+                                "Label" : "",
+                                "LabelAlignment" : "left",
+                                "LastContainer" : false,
+                                "Left" : 340,
+                                "MaskInputCharacters" : false,
+                                "PlaceholderText" : "",
+                                "ReadOnly" : false,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.Factory.Generic.DialogBoxTextInputField",
+                                "TabSequence" : 0,
+                                "Text" : "",
+                                "TextAlign" : "left",
+                                "TextboxLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 174,
+                                "Type" : "textbox",
+                                "Visible" : true,
+                                "Width" : 549,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "TextBox",
+                                "__supportsLabel" : true,
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Alignment" : "left",
+                                "AllowEllipsis" : false,
+                                "Area" : "UI",
+                                "DisplayName" : "label-228",
+                                "Height" : 15,
+                                "Id" : "label-228",
+                                "LastContainer" : false,
+                                "Left" : 340,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.SCA.SCO.12pxLabelTextBold",
+                                "Text" : "[[PTC.SCA.SCO.SerialNumber]]",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 219,
+                                "Type" : "label",
+                                "Visible" : true,
+                                "Width" : 145,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Label",
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Area" : "UI",
+                                "CursorPosition" : 0,
+                                "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
+                                "DisplayName" : "serialNumberTextBox",
+                                "Height" : 25,
+                                "Id" : "textbox-229",
+                                "InnerShadow" : false,
+                                "Label" : "",
+                                "LabelAlignment" : "left",
+                                "LastContainer" : false,
+                                "Left" : 340,
+                                "MaskInputCharacters" : false,
+                                "PlaceholderText" : "",
+                                "ReadOnly" : false,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.Factory.Generic.DialogBoxTextInputField",
+                                "TabSequence" : 0,
+                                "Text" : "",
+                                "TextAlign" : "left",
+                                "TextboxLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 242,
+                                "Type" : "textbox",
+                                "Visible" : true,
+                                "Width" : 549,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "TextBox",
+                                "__supportsLabel" : true,
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Alignment" : "left",
+                                "AllowEllipsis" : false,
+                                "Area" : "UI",
+                                "DisplayName" : "label-230",
+                                "Height" : 15,
+                                "Id" : "label-230",
+                                "LastContainer" : false,
+                                "Left" : 340,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.SCA.SCO.12pxLabelTextBold",
+                                "Text" : "[[PTC.Factory.Location]]",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 287,
+                                "Type" : "label",
+                                "Visible" : true,
+                                "Width" : 145,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Label",
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Area" : "UI",
+                                "CursorPosition" : 0,
+                                "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
+                                "DisplayName" : "locationTextBox",
+                                "Height" : 25,
+                                "Id" : "textbox-231",
+                                "InnerShadow" : false,
+                                "Label" : "",
+                                "LabelAlignment" : "left",
+                                "LastContainer" : false,
+                                "Left" : 340,
+                                "MaskInputCharacters" : false,
+                                "PlaceholderText" : "",
+                                "ReadOnly" : false,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.Factory.Generic.DialogBoxTextInputField",
+                                "TabSequence" : 0,
+                                "Text" : "",
+                                "TextAlign" : "left",
+                                "TextboxLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 310,
+                                "Type" : "textbox",
+                                "Visible" : true,
+                                "Width" : 549,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "TextBox",
+                                "__supportsLabel" : true,
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "AllowedFileTypes" : ".png,.jpg,.pjpeg,.jpeg,.jfif,.pjp,.gif,.ico,.bmp,.PNG,.JPG,.PJPEG,.JPEG,.JFIF,.PJP,.GIF,.ICO,.BMP",
+                                "Area" : "UI",
+                                "DisplayName" : "fileNameFileUpload",
+                                "DisplayPathTextBox" : false,
+                                "DisplayRepositorySelector" : false,
+                                "FileName" : "",
+                                "FocusStyle" : "DefaultButtonFocusStyle",
+                                "FullPath" : "",
+                                "Height" : 40,
+                                "Id" : "fileupload-125",
+                                "LastContainer" : false,
+                                "Left" : 20,
+                                "Path" : "/",
+                                "RepositoryName" : "PTC.Factory.PhysicalAssetIconFileRepository",
+                                "RepositoryStyle" : "DefaultRepositoryStyle",
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "DefaultFileUploadStyle",
+                                "TabSequence" : 0,
+                                "Top" : 20,
+                                "Type" : "fileupload",
+                                "UseTheme" : false,
+                                "Visible" : true,
+                                "Width" : 302,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "File Upload"
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Area" : "UI",
+                                "DisplayName" : "panel-185",
+                                "Height" : 333,
+                                "HideScrollbars" : true,
+                                "HorizontalAnchor" : "left",
+                                "Id" : "panel-185",
+                                "LastContainer" : false,
+                                "Left" : 20,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "DefaultPanelStyle",
+                                "Top" : 60,
+                                "Type" : "panel",
+                                "VerticalAnchor" : "top",
+                                "Visible" : true,
+                                "Width" : 302,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Panel"
+                              },
+                              "Widgets" : [ {
+                                "Properties" : {
+                                  "Alignment" : "center",
+                                  "Area" : "UI",
+                                  "BackgroundFill" : "content",
+                                  "CustomClass" : "prod-asset-image scaling-image-valuedisplay",
+                                  "DisplayName" : "Image Display",
+                                  "Height" : 334,
+                                  "Id" : "valuedisplay-126",
+                                  "ImageScaling" : "none",
+                                  "Label" : "",
+                                  "LabelAlignment" : "left",
+                                  "LastContainer" : false,
+                                  "Left" : 0,
+                                  "Overflow" : "hidden",
+                                  "ResponsiveLayout" : false,
+                                  "ShowDataLoading" : true,
+                                  "TextIfNoValue" : "[[PTC.SCA.SCO.Core.Image]]",
+                                  "TextIfNoValueOffset" : 0,
+                                  "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultLabel",
+                                  "TextWrap" : true,
+                                  "ToolTipField" : " ",
+                                  "ToolTipStyle" : "DefaultTooltipStyle",
+                                  "Top" : 0,
+                                  "Type" : "valuedisplay",
+                                  "UseTheme" : false,
+                                  "ValueDisplayLabelStyle" : "DefaultWidgetLabelStyle",
+                                  "ValueDisplayStyle" : "DefaultLabelStyle",
+                                  "ValueFormat" : {
+                                    "FormatString" : "image",
+                                    "formatText" : "View",
+                                    "renderer" : "IMAGE"
+                                  },
+                                  "ValueFormat_StateParameters" : [ ],
+                                  "VerticalAlignment" : "middle",
+                                  "Visible" : true,
+                                  "Width" : 305,
+                                  "Z-index" : 10,
+                                  "__TypeDisplayName" : "Value Display",
+                                  "__supportsLabel" : true,
+                                  "__supportsTooltip" : true
+                                },
+                                "Widgets" : [ ]
+                              } ]
+                            }, {
+                              "Properties" : {
+                                "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                                "Area" : "UI",
+                                "CancelConfirmationButton" : "button2",
+                                "ConfirmationButton1Label" : "Yes",
+                                "ConfirmationButton2Label" : "No",
+                                "ConfirmationPrompt" : "Do Action?",
+                                "ConfirmationRequired" : false,
+                                "ConfirmationTitle" : "Confirm Action",
+                                "ContextId" : "",
+                                "DefaultConfirmationButton" : "button1",
+                                "Disabled" : false,
+                                "DisabledStyle" : "PTC.Factory.Generic.DisableButton",
+                                "DisplayName" : "UpdateBytton_new",
+                                "FocusStyle" : "PTC.SCA.SCO.NoStyle",
+                                "Height" : 32,
+                                "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                                "IconAlignment" : "left",
+                                "Id" : "button-187",
+                                "Label" : "[[PTC.Factory.Save]]",
+                                "LastContainer" : false,
+                                "Left" : 789,
+                                "ResponsiveLayout" : false,
+                                "RoundedCorners" : false,
+                                "ShowDataLoading" : true,
+                                "SingleClickSelectOnTablets" : true,
+                                "Style" : "PTC.Factory.Generic.TileHeadingButtonBorder",
+                                "TabSequence" : 0,
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 532,
+                                "Type" : "button",
+                                "Visible" : true,
+                                "Width" : 100,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Button",
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Area" : "UI",
+                                "DisplayName" : "panel-252",
+                                "Height" : 1,
+                                "HideScrollbars" : false,
+                                "HorizontalAnchor" : "left",
+                                "Id" : "panel-252",
+                                "LastContainer" : false,
+                                "Left" : 20,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.SCA.SCO.1px.BorderStyle",
+                                "Top" : 409,
+                                "Type" : "panel",
+                                "VerticalAnchor" : "top",
+                                "Visible" : true,
+                                "Width" : 302,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Panel"
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Area" : "UI",
+                                "DisplayName" : "panel-254",
+                                "Height" : 1,
+                                "HideScrollbars" : false,
+                                "HorizontalAnchor" : "left",
+                                "Id" : "panel-254",
+                                "LastContainer" : false,
+                                "Left" : 20,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.SCA.SCO.1px.BorderStyle",
+                                "Top" : 474,
+                                "Type" : "panel",
+                                "VerticalAnchor" : "top",
+                                "Visible" : true,
+                                "Width" : 302,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Panel"
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Alignment" : "left",
+                                "AllowEllipsis" : false,
+                                "Area" : "UI",
+                                "DisplayName" : "label-258",
+                                "Height" : 12,
+                                "Id" : "label-258",
+                                "LastContainer" : false,
+                                "Left" : 20,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.SCA.SCO.12px.EquipmentType.LabelText",
+                                "Text" : "[[PTC.SCA.SCO.EquipmentType]]",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 420,
+                                "Type" : "label",
+                                "Visible" : true,
+                                "Width" : 302,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Label",
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            }, {
+                              "Properties" : {
+                                "Alignment" : "left",
+                                "AllowEllipsis" : true,
+                                "Area" : "UI",
+                                "DisplayName" : "label-259",
+                                "Height" : 22,
+                                "Id" : "label-259",
+                                "LastContainer" : false,
+                                "Left" : 20,
+                                "ResponsiveLayout" : false,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.SCA.SCO.18pxLabelTextBold",
+                                "Text" : "[[PTC.Factory.PhysicalAssetAssetName]]",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 446,
+                                "Type" : "label",
+                                "Visible" : true,
+                                "Width" : 302,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Label",
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            } ]
+                          }, {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "Description" : "",
+                              "DisplayName" : "General Information Successfully Saved",
+                              "Height" : 28,
+                              "Id" : "statusmessage-232",
+                              "LastContainer" : false,
+                              "Left" : 0,
+                              "Message" : "[[PTC.SCA.SCO.GeneralInformationSuccessfullySaved]]",
+                              "MessageType" : "info",
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : true,
+                              "Top" : 570,
+                              "Type" : "statusmessage",
+                              "Visible" : true,
+                              "Width" : 200,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Status Message"
+                            },
+                            "Widgets" : [ ]
+                          } ]
+                        } ]
+                      }, {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Right Sidebar",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-225",
+                          "LastContainer" : false,
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "DefaultContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container",
+                          "userCannotRemove" : true
+                        },
+                        "Widgets" : [ ]
+                      } ]
+                    } ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            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
+            AAAAAElFTkSuQmCC
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

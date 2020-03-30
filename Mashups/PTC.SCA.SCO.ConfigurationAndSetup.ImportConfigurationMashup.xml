@@ -1,0 +1,3826 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="false"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Mashup responsible for excel file import process."
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.832+05:30"
+         name="PTC.SCA.SCO.ConfigurationAndSetup.ImportConfigurationMashup"
+         projectName="PTC.SCA.SCO.Common"
+         rows="0.0"
+         tags="PTC:sca-sco-common;PTC:factory-mv">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions></ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.Common.ImportProcessor</Thing>
+                <Thing>PTC.SCA.SCO.Common.ImportValidator</Thing>
+                <Thing>PTC.SCA.SCO.Common.ParseExcelProcessor</Thing>
+                <Thing>PTC.SCA.SCO.Common.ImportProcessHistoryDataTable</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "/*FACTORY-16721*/\n div[id*='gridadvanced-56-grid-advanced'] .objbox table {\n width: inherit !important;\n}\n\n div[id*='gridadvanced-57-grid-advanced'] .objbox table {\n width: inherit !important;\n}",
+              "Data" : {
+                "Resources_CurrentSessionInfo" : {
+                  "DataName" : "Resources_CurrentSessionInfo",
+                  "EntityName" : "CurrentSessionInfo",
+                  "EntityType" : "Resources",
+                  "Id" : "2eb89f74-72a6-4094-911d-32f59cf0e570",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "3affd3fd-e6e0-4e18-945a-5f8e799fa67c",
+                    "Name" : "GetCurrentUser",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUser"
+                  } ]
+                },
+                "Resources_PTC.Factory.CommonUtilities" : {
+                  "DataName" : "Resources_PTC.Factory.CommonUtilities",
+                  "EntityName" : "PTC.Factory.CommonUtilities",
+                  "EntityType" : "Resources",
+                  "Id" : "f0960661-2ab0-4d75-96b3-73807bc5a4ae",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "1be2b54d-1a41-413b-9d93-64e6087b16c7",
+                    "Name" : "SetFalse",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "SetFalse"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "25b09a45-c1ec-4823-8015-f093aa18878c",
+                    "Name" : "SetTrue",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "SetTrue"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "f2b8b270-377d-4c1a-95ee-caee7ba4774f",
+                    "Name" : "IsAdmin",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "IsAdmin"
+                  } ]
+                },
+                "Resources_PTC.Resource.Factory.MessageFormatUtilities" : {
+                  "DataName" : "Resources_PTC.Resource.Factory.MessageFormatUtilities",
+                  "EntityName" : "PTC.Resource.Factory.MessageFormatUtilities",
+                  "EntityType" : "Resources",
+                  "Id" : "718324ca-3899-4a5d-9165-ef8910809978",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "0b3b8d22-9367-4aa6-9767-66ea36a98960",
+                    "Name" : "GetLocalizedMessageOneParam",
+                    "Parameters" : {
+                      "label" : "PTC.SCA.SCO.ConfigurationAndSetup.Import.DownloadExcelTemplate",
+                      "value" : "/Thingworx/FileRepositories/PTC.SCA.SCO.EquipmentImportRepository/template/EquipmentImportTemplate.xlsx"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetLocalizedMessageOneParam"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable" : {
+                  "DataName" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                  "EntityName" : "PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                  "EntityType" : "Things",
+                  "Id" : "b0ddce8e-71b1-4e92-b146-e4fdc239d35b",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "80a15356-4508-43fc-92e7-4d9179fdfab8",
+                    "Name" : "StartProcess",
+                    "Parameters" : {
+                      "Type" : [ {
+                        "_magicPickerId" : "256724c8-f568-486a-a9e0-87a2df6a585f",
+                        "vocabulary" : "PTC.SCA.SCO.Common.ImportProcessType",
+                        "vocabularyTerm" : "validate"
+                      } ]
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "StartProcess"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "d6d7d431-866f-45ab-91be-900a1ba48acb",
+                    "Name" : "StartProcess1",
+                    "Parameters" : {
+                      "Type" : [ {
+                        "_magicPickerId" : "b25caba5-c1fc-4746-b59f-f6e4877849a5",
+                        "vocabulary" : "PTC.SCA.SCO.Common.ImportProcessType",
+                        "vocabularyTerm" : "import"
+                      } ]
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "StartProcess"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "8f2033ac-59ab-49cb-b8b1-150f1fa799fb",
+                    "Name" : "GetLatestProcessSummary",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetLatestProcessSummary"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "73769805-fdda-47f3-ac05-a93785fd6d3d",
+                    "Name" : "PostUploadProcess",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "PostUploadProcess"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.Common.ImportProcessor" : {
+                  "DataName" : "Things_PTC.SCA.SCO.Common.ImportProcessor",
+                  "EntityName" : "PTC.SCA.SCO.Common.ImportProcessor",
+                  "EntityType" : "Things",
+                  "Id" : "4d344982-523e-41d5-90bf-9635ff2b7c41",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "966e9a4a-94f8-4fb0-b14e-592f00d53c3f",
+                    "Name" : "ImportTypes",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "ImportTypes"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.Common.ImportProcessor1" : {
+                  "DataName" : "Things_PTC.SCA.SCO.Common.ImportProcessor1",
+                  "EntityName" : "PTC.SCA.SCO.Common.ImportProcessor",
+                  "EntityType" : "Things",
+                  "Id" : "ff13b5b9-a129-4026-89e8-9200e68e3de0",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "a7663081-fcde-4bb7-bce0-979de59bc76c",
+                    "Name" : "Import",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "CustomErrorMessage" : "[server-message]",
+                      "ShowErrorMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "Import"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.Common.ImportValidator1" : {
+                  "DataName" : "Things_PTC.SCA.SCO.Common.ImportValidator1",
+                  "EntityName" : "PTC.SCA.SCO.Common.ImportValidator",
+                  "EntityType" : "Things",
+                  "Id" : "9ff4f2c2-8135-4f59-838b-1eb940181253",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "405a2f91-73e9-4582-92ad-83b7fc668633",
+                    "Name" : "ValidateImportFile",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "CustomErrorMessage" : "[server-message]",
+                      "ShowErrorMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "ValidateImportFile"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.Common.ParseExcelProcessor" : {
+                  "DataName" : "Things_PTC.SCA.SCO.Common.ParseExcelProcessor",
+                  "EntityName" : "PTC.SCA.SCO.Common.ParseExcelProcessor",
+                  "EntityType" : "Things",
+                  "Id" : "cb4b45b4-a6ec-48c4-95a2-d841f0952ebd",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "c396c3f0-99e5-4490-871c-488d066e31bd",
+                    "Name" : "ParseImportFile",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "ParseImportFile"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "3bf114ca-0dd1-46ff-8348-a8eb25055289",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FileName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "filename",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "fileupload-3",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-22",
+                "TargetSection" : ""
+              }, {
+                "Id" : "1786087d-aae8-43b7-a57d-7dad930c3b19",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FileName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "filename",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "fileupload-3",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-24",
+                "TargetSection" : ""
+              }, {
+                "Id" : "b8f9d9df-c8ff-4dee-a714-30f3d14258a5",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FileName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "filename",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "fileupload-3",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-27",
+                "TargetSection" : ""
+              }, {
+                "Id" : "6b143d68-21b8-40b4-b946-640e2f9f8fe9",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FileName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "filename",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "fileupload-3",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-28",
+                "TargetSection" : ""
+              }, {
+                "Id" : "022810ab-93dc-4eaf-a441-b623f477c18b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-41",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "label-32",
+                "TargetSection" : ""
+              }, {
+                "Id" : "d046704c-cfee-412d-8829-54db81e5efc4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-45",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "label-31",
+                "TargetSection" : ""
+              }, {
+                "Id" : "744092ec-cd63-446d-82c7-15316f4df7cd",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-44",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "label-7",
+                "TargetSection" : ""
+              }, {
+                "Id" : "f62641e8-a904-4682-ba89-190cb0aa354b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "ValidationButtonState",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-24",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-48",
+                "TargetSection" : ""
+              }, {
+                "Id" : "64fb7481-6e47-4c33-81cd-4a848c0efb83",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-46",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "image-49",
+                "TargetSection" : ""
+              }, {
+                "Id" : "c8d6a888-8692-4222-b32e-4588ea00a780",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-53",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "image-50",
+                "TargetSection" : ""
+              }, {
+                "Id" : "f90386cb-aff0-4359-9557-c42f492b31be",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tags",
+                  "SourcePropertyBaseType" : "TAGS",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "tag",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-44",
+                "TargetSection" : ""
+              }, {
+                "Id" : "570344de-e1cf-4402-bef3-a26f7cd05b47",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsFinished",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isFinished",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-44",
+                "TargetSection" : ""
+              }, {
+                "Id" : "85431fd8-f571-4215-8180-eebbdb7d3b15",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsSuccessful",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isSuccessful",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-44",
+                "TargetSection" : ""
+              }, {
+                "Id" : "ff4f0a92-b195-4b63-b54b-b40219382535",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tags",
+                  "SourcePropertyBaseType" : "TAGS",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "tag",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-46",
+                "TargetSection" : ""
+              }, {
+                "Id" : "a687be87-9005-4827-8b73-2f37a7e852f5",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsFinished",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isFinished",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-46",
+                "TargetSection" : ""
+              }, {
+                "Id" : "93488b71-6887-43b8-bce2-83b957eeaf1b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsSuccessful",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isSuccessful",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-46",
+                "TargetSection" : ""
+              }, {
+                "Id" : "08483e78-d49e-40ac-ba65-8c9731ddd7ac",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tags",
+                  "SourcePropertyBaseType" : "TAGS",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "tag",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-47",
+                "TargetSection" : ""
+              }, {
+                "Id" : "d530f877-d6ff-4ff8-b4d9-d0e66873104c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsFinished",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isFinished",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-47",
+                "TargetSection" : ""
+              }, {
+                "Id" : "7e39d435-f8fe-4358-9c08-21e1cec46e4c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsSuccessful",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isSuccessful",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-47",
+                "TargetSection" : ""
+              }, {
+                "Id" : "7d109d19-3197-4e61-93ec-ab341e2d551b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tags",
+                  "SourcePropertyBaseType" : "TAGS",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "tag",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-41",
+                "TargetSection" : ""
+              }, {
+                "Id" : "cefe8dbd-5f68-45c7-b98c-87013c27b6bf",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsFinished",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "finished",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-41",
+                "TargetSection" : ""
+              }, {
+                "Id" : "a0e3c5ad-6abe-4063-b548-0c2200e79e00",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tags",
+                  "SourcePropertyBaseType" : "TAGS",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "tag",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-45",
+                "TargetSection" : ""
+              }, {
+                "Id" : "6d8802ed-7f4c-488f-88e9-e2a5e949e34b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsFinished",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "finished",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-45",
+                "TargetSection" : ""
+              }, {
+                "Id" : "f3868f7f-66c9-4779-b182-c6ec5b0de501",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tags",
+                  "SourcePropertyBaseType" : "TAGS",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "tag",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-53",
+                "TargetSection" : ""
+              }, {
+                "Id" : "cf6e9501-b268-4e3e-af28-a04e7d248e74",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsFinished",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "finished",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-53",
+                "TargetSection" : ""
+              }, {
+                "Id" : "faf7d549-2fcb-497b-a2b1-432d55db386d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tags",
+                  "SourcePropertyBaseType" : "TAGS",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "tag",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-58",
+                "TargetSection" : ""
+              }, {
+                "Id" : "e4ef4e67-fa06-4d18-9dda-ec18ad4e0c0a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsSuccessful",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isSuccessful",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-58",
+                "TargetSection" : ""
+              }, {
+                "Id" : "2545bf06-cede-4eb0-9d1b-d2d36cc33f36",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsFinished",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isFinished",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-58",
+                "TargetSection" : ""
+              }, {
+                "Id" : "104d784d-b620-461e-ae56-f603a3fae1cd",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-58",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "gridadvanced-56",
+                "TargetSection" : ""
+              }, {
+                "Id" : "fce009d1-d9fe-49b3-b48f-ee095e1780fd",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-47",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "gridadvanced-57",
+                "TargetSection" : ""
+              }, {
+                "Id" : "999e0818-4d8e-48d4-a3d1-a3f6ad12142a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Disabled",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "eventsrouter-76",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "button-1",
+                "TargetSection" : ""
+              }, {
+                "Id" : "8eb2d35a-a41b-4f7c-903c-86809bc4cdf8",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Input1",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "SetFalse",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-76",
+                "TargetSection" : ""
+              }, {
+                "Id" : "9587026e-62c0-44ad-a281-6b2c68f7ca71",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Input2",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "SetTrue",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-76",
+                "TargetSection" : ""
+              }, {
+                "Id" : "31715afb-1935-4e1e-8661-e65920b0630f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Input1",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-48",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-77",
+                "TargetSection" : ""
+              }, {
+                "Id" : "e707e81e-9ba3-43b2-8b24-94737b4dd87d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Input2",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "SetFalse",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-77",
+                "TargetSection" : ""
+              }, {
+                "Id" : "cafb4e4f-0c42-4e0c-96bc-4a736c90684e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Input3",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "SetTrue",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-77",
+                "TargetSection" : ""
+              }, {
+                "Id" : "a6fe7697-08b7-40ed-87bc-203f9385e0e7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Disabled",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "eventsrouter-77",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "button-5",
+                "TargetSection" : ""
+              }, {
+                "Id" : "582f5585-70b0-445b-a50b-87000deaafb5",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Input3",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-48",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-76",
+                "TargetSection" : ""
+              }, {
+                "Id" : "51298c5b-5fd7-4de6-bb5c-cd3e9099c69f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "status",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "status",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-79",
+                "TargetSection" : ""
+              }, {
+                "Id" : "7588b550-3aed-4086-9dc0-59d0bab17e3a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-79",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "label-7",
+                "TargetSection" : ""
+              }, {
+                "Id" : "ec9aac6b-12f9-41fe-9aa4-d82f1caa14ad",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "timestamp",
+                  "SourcePropertyBaseType" : "DATETIME",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "datetime",
+                  "TargetPropertyBaseType" : "DATETIME",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-79",
+                "TargetSection" : ""
+              }, {
+                "Id" : "bd7daed4-8286-423a-863a-67d601c56b82",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-46",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "label-8",
+                "TargetSection" : ""
+              }, {
+                "Id" : "a75d1189-efcc-4926-8bdb-8cf5095c4476",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-79",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "label-8",
+                "TargetSection" : ""
+              }, {
+                "Id" : "3b72ade4-c722-4740-b17f-bfb89190fbaa",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsFinished",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "finished",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-84",
+                "TargetSection" : ""
+              }, {
+                "Id" : "794d8c91-9d18-4b17-b465-00606ec6888f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Input4",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-84",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-76",
+                "TargetSection" : ""
+              }, {
+                "Id" : "ed235ec2-5af1-4abd-9afe-e8a49907a115",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Input4",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-84",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-77",
+                "TargetSection" : ""
+              }, {
+                "Id" : "0ecf626c-99f2-4899-9063-61ba8d93ef2b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "ImportTypes",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessor",
+                "TargetArea" : "UI",
+                "TargetId" : "dhxlist-85",
+                "TargetSection" : ""
+              }, {
+                "Id" : "00abbb47-8665-4b48-9dfb-14065222471f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "uploadComplete",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-24",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-22",
+                "TargetSection" : ""
+              }, {
+                "Id" : "ae6ff61a-45c0-4d74-940f-dae6c1da0aa4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "uploadComplete",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-24",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-28",
+                "TargetSection" : ""
+              }, {
+                "Id" : "0fe4d6c9-58aa-43e7-8a58-dfd4553c0bad",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FileName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "fileName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "fileupload-3",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "ParseImportFile",
+                "TargetSection" : "Things_PTC.SCA.SCO.Common.ParseExcelProcessor"
+              }, {
+                "Id" : "f020ed6d-193f-4470-ae53-3b999ad51830",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "parsedInfoTable",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "ParseImportFile",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ParseExcelProcessor",
+                "TargetArea" : "Data",
+                "TargetId" : "Import",
+                "TargetSection" : "Things_PTC.SCA.SCO.Common.ImportProcessor1"
+              }, {
+                "Id" : "b9b6adca-ff5a-4d66-9431-1742ffb5b3e6",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "parsedInfoTable",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "ParseImportFile",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ParseExcelProcessor",
+                "TargetArea" : "Data",
+                "TargetId" : "ValidateImportFile",
+                "TargetSection" : "Things_PTC.SCA.SCO.Common.ImportValidator1"
+              }, {
+                "Id" : "fbaa9369-aee4-4624-b3ff-2156c4b9d050",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "parsedSuccessfully",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "parsingSuccessfull",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "ParseImportFile",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ParseExcelProcessor",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-66",
+                "TargetSection" : ""
+              }, {
+                "Id" : "2352e64d-700c-42af-91e7-e41158ba55a8",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "type",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "importOperation",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "SelectedRows",
+                "SourceId" : "ImportTypes",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessor",
+                "TargetArea" : "Data",
+                "TargetId" : "Import",
+                "TargetSection" : "Things_PTC.SCA.SCO.Common.ImportProcessor1"
+              }, {
+                "Id" : "ceede886-de06-445f-97d6-ea0bde276054",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "type",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "importOperation",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "SelectedRows",
+                "SourceId" : "ImportTypes",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessor",
+                "TargetArea" : "Data",
+                "TargetId" : "ValidateImportFile",
+                "TargetSection" : "Things_PTC.SCA.SCO.Common.ImportValidator1"
+              }, {
+                "Id" : "7b02ba7f-bccc-40a3-b203-71be306fc595",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "USERNAME",
+                  "TargetProperty" : "user",
+                  "TargetPropertyBaseType" : "USERNAME",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "StartProcess",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "Data",
+                "TargetId" : "FinishProcess",
+                "TargetSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable"
+              }, {
+                "Id" : "2cc19048-ab47-41ca-a1ea-dda40743aa51",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "USERNAME",
+                  "TargetProperty" : "user",
+                  "TargetPropertyBaseType" : "USERNAME",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "StartProcess1",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "Data",
+                "TargetId" : "FinishProcess1",
+                "TargetSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable"
+              }, {
+                "Id" : "b1bd3dd3-82d9-435a-8887-a8ddb9d362d1",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "gridadvanced-57",
+                "TargetSection" : ""
+              }, {
+                "Id" : "309a94f0-36db-4d55-aabf-2e272c219c80",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "gridadvanced-56",
+                "TargetSection" : ""
+              }, {
+                "Id" : "17958b28-18f0-41a5-80fb-985278528f2e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLocalizedMessageOneParam",
+                "SourceSection" : "Resources_PTC.Resource.Factory.MessageFormatUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "htmltextarea-89",
+                "TargetSection" : ""
+              }, {
+                "Id" : "1c732dcb-75a7-4060-ae21-1eeca1ce7f0a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FileName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "fileName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "fileupload-3",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "PostUploadProcess",
+                "TargetSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable"
+              }, {
+                "Id" : "379a37ba-c0b5-4439-b32e-cbeae4813b38",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FileName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "filename",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "fileupload-3",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-90",
+                "TargetSection" : ""
+              }, {
+                "Id" : "f02f9bf4-cac1-44d7-8589-ef1abbbcd65f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FileName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "filename",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "fileupload-3",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-84",
+                "TargetSection" : ""
+              }, {
+                "Id" : "d5567075-6eca-4046-ab97-a147c56aefb1",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "importProcessInfo",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-45",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-92",
+                "TargetSection" : ""
+              }, {
+                "Id" : "dbb35640-9e0a-4a3e-8799-a0fc559a7e84",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "validationProcessInfo",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-41",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-92",
+                "TargetSection" : ""
+              }, {
+                "Id" : "9f7022dd-9fa0-4366-97a4-1ba5499b0325",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "AutoRefresh",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-92",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "autorefresh-91",
+                "TargetSection" : ""
+              }, {
+                "Id" : "d2d0245c-693f-45e8-aaf1-3a174a689345",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-93",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "link-93",
+                "TargetSection" : ""
+              }, {
+                "Id" : "55294789-8134-4948-af32-69bd56e266e0",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tags",
+                  "SourcePropertyBaseType" : "TAGS",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "tag",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-93",
+                "TargetSection" : ""
+              }, {
+                "Id" : "7fbd1b12-b1df-42a0-8adc-d9a6950b5582",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsSuccessful",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isSuccessful",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-93",
+                "TargetSection" : ""
+              }, {
+                "Id" : "b6ee2a05-a5bd-4f18-aec4-65e0c4f9816b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsFinished",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isFinished",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-93",
+                "TargetSection" : ""
+              }, {
+                "Id" : "39d93e2c-3dbc-4e37-a662-a2b7d0a99f7a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tags",
+                  "SourcePropertyBaseType" : "TAGS",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "tag",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-94",
+                "TargetSection" : ""
+              }, {
+                "Id" : "4c005da2-d999-4a99-8cc0-769afacb1c17",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsFinished",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isFinished",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-94",
+                "TargetSection" : ""
+              }, {
+                "Id" : "d9837a3a-1e1e-4206-a618-e29fa7748f7f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IsSuccessful",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isSuccessful",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLatestProcessSummary",
+                "SourceSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-94",
+                "TargetSection" : ""
+              }, {
+                "Id" : "fe4d56c5-9c0f-46f4-bf06-d1dd74aea1ad",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-94",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "link-94",
+                "TargetSection" : ""
+              }, {
+                "Id" : "687fd5fc-0758-4f19-b489-474e2dd2bad3",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isAdminUser",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "IsAdmin",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-93",
+                "TargetSection" : ""
+              }, {
+                "Id" : "9ce3ccf9-f57d-4083-9b78-bb19efe207ee",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "isAdminUser",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "IsAdmin",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-94",
+                "TargetSection" : ""
+              }, {
+                "Id" : "941b306c-f18f-4514-9ce3-cc9f34f8437a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "userName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetCurrentUser",
+                "SourceSection" : "Resources_CurrentSessionInfo",
+                "TargetArea" : "Data",
+                "TargetId" : "IsAdmin",
+                "TargetSection" : "Resources_PTC.Factory.CommonUtilities"
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-2",
+                "EventTriggerSection" : "",
+                "Id" : "1a6e5112-cae6-4620-b983-bd4ed9d9b9f0"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-19",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "UploadFailed",
+                "EventTriggerId" : "fileupload-3",
+                "EventTriggerSection" : "",
+                "Id" : "ff290893-acae-47b8-8186-313a0e52d755"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-27",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "UploadFailed",
+                "EventTriggerId" : "fileupload-3",
+                "EventTriggerSection" : "",
+                "Id" : "1c050c08-0c71-4be1-889b-e23acaf91999"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-28",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-1",
+                "EventTriggerSection" : "",
+                "Id" : "d8dc30f4-b49e-4525-a00d-1b39e92f420b"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "EventHandlerService" : "GetLatestProcessSummary",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "005819b7-f57d-48de-8f4f-b4627429d5f9"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-44",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetLatestProcessSummary",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "Id" : "5d9b2961-6f16-4caa-b7d1-8c2c8c4f5a97"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-46",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetLatestProcessSummary",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "Id" : "892dfbc5-9b18-4150-8d4a-0836a01ecd9b"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-47",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetLatestProcessSummary",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "Id" : "43b341fa-3fa3-447e-b2be-b374befca9d9"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "EventHandlerService" : "GetLatestProcessSummary",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "StartProcess1",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "Id" : "0a273cdb-db33-4bdd-b9ad-9f4a0d834931"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "EventHandlerService" : "GetLatestProcessSummary",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "StartProcess",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "Id" : "6b7afa0b-41e3-46b0-b05a-e790e1dfdb6e"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-58",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetLatestProcessSummary",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "Id" : "deb1c740-0bd4-4282-b40b-839633210d48"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-19",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-27",
+                "EventTriggerSection" : "",
+                "Id" : "8339220c-cb5c-4213-8e54-edc09e5648af"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-19",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-22",
+                "EventTriggerSection" : "",
+                "Id" : "afbaaf26-bd86-43e3-bd17-00ec7830f1d1"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-19",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-28",
+                "EventTriggerSection" : "",
+                "Id" : "8c4e73e9-f469-4d75-8008-041466fa07b7"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-64",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-66",
+                "EventTriggerSection" : "",
+                "Id" : "584dd5c4-f9ae-43f5-8b49-2ec7e6bd6356"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-24",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-66",
+                "EventTriggerSection" : "",
+                "Id" : "74dab879-0a56-4f05-9f0b-f2385a45cb38"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "SetTrue",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "c25b8f43-a905-4a1b-a5e9-14d06247b302"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "SetTrue",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "StartProcess1",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "Id" : "d44eb5c0-c0a0-4021-809c-d154579267ac"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "SetTrue",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "StartProcess",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "Id" : "80f3d74b-34b3-4ee0-b079-2b1bb9a2bebc"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-22",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-5",
+                "EventTriggerSection" : "",
+                "Id" : "b4a05c90-cc69-461c-b781-618352108f61"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-84",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "expression-47",
+                "EventTriggerSection" : "",
+                "Id" : "077a2396-f756-4d93-b47c-b4a08487e5b0"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-84",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "expression-58",
+                "EventTriggerSection" : "",
+                "Id" : "1f050138-7aa8-414d-8a98-c57a89a22bc0"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-84",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "expression-46",
+                "EventTriggerSection" : "",
+                "Id" : "6818b94d-28f8-402a-a3bf-693d33060876"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ImportProcessor",
+                "EventHandlerService" : "ImportTypes",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "aafa6e0b-593a-4bcb-8c63-6d170b5d0850"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "EventHandlerService" : "StartProcess1",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-28",
+                "EventTriggerSection" : "",
+                "Id" : "47c74331-9eeb-4240-ab32-cef3d9905206"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "EventHandlerService" : "StartProcess",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-22",
+                "EventTriggerSection" : "",
+                "Id" : "a0a1da37-ade2-4f95-8366-ecdbe54e082b"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-66",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "ParseImportFile",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ParseExcelProcessor",
+                "Id" : "79f65ed1-eabf-4c23-8fb7-baa1f652ebce"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ImportValidator1",
+                "EventHandlerService" : "ValidateImportFile",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "StartProcess",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "Id" : "0b2a97fd-1657-41f3-86d2-281670353df3"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ImportProcessor1",
+                "EventHandlerService" : "Import",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "StartProcess1",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "Id" : "38221522-5954-4e27-878a-3d8d12405256"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-84",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "Import",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessor1",
+                "Id" : "36b0b29d-360b-4969-9882-68de835c659d"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-84",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "ValidateImportFile",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportValidator1",
+                "Id" : "c73f07fb-00e1-4880-9af9-0b9e23118b4a"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "EventHandlerService" : "GetLatestProcessSummary",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "ValidateImportFile",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportValidator1",
+                "Id" : "c8ef63d9-550f-48e5-8564-a61aabd02c4b"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "EventHandlerService" : "GetLatestProcessSummary",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "Import",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessor1",
+                "Id" : "d299b438-354e-4311-a7b1-7684f5cd9688"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Resource.Factory.MessageFormatUtilities",
+                "EventHandlerService" : "GetLocalizedMessageOneParam",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "e32272da-c5d5-48a2-9828-2ce16a414df0"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ParseExcelProcessor",
+                "EventHandlerService" : "ParseImportFile",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "PostUploadProcess",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "Id" : "e94af0d3-f497-4e7c-b2e3-a85239d94e48"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-27",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "PostUploadProcess",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "Id" : "538ea80d-8931-48ca-8de0-a8c9099dc7c2"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "EventHandlerService" : "PostUploadProcess",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-90",
+                "EventTriggerSection" : "",
+                "Id" : "0bd53eb6-852d-4bdf-acc4-06c7c8d064a7"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-90",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "UploadComplete",
+                "EventTriggerId" : "fileupload-3",
+                "EventTriggerSection" : "",
+                "Id" : "fb258792-fbd6-4f71-9d5f-42837d05525f"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-19",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-90",
+                "EventTriggerSection" : "",
+                "Id" : "9872c139-0406-42f9-b64d-6a202cc2825a"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "SetTrue",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-90",
+                "EventTriggerSection" : "",
+                "Id" : "353a37d7-52ae-4e57-88be-eda50c239d2f"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                "EventHandlerService" : "GetLatestProcessSummary",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Refresh",
+                "EventTriggerId" : "autorefresh-91",
+                "EventTriggerSection" : "",
+                "Id" : "bdf670da-57af-4930-bf99-f8f71263ae97"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "SetTrue",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-27",
+                "EventTriggerSection" : "",
+                "Id" : "8f204921-9830-4c54-8a42-9bb62456d6d3"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "SetTrue",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-66",
+                "EventTriggerSection" : "",
+                "Id" : "0ebf6843-48ef-4243-9e8f-330154315170"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "SetTrue",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-22",
+                "EventTriggerSection" : "",
+                "Id" : "46701f3f-53e4-4caf-9981-bd9edbc41bf3"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "SetTrue",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-28",
+                "EventTriggerSection" : "",
+                "Id" : "b95cf443-96c1-4cda-af2e-da877369aa7f"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "SetFalse",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-66",
+                "EventTriggerSection" : "",
+                "Id" : "8f525b56-90dd-4c6d-910d-a007f0e1144b"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-92",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "expression-41",
+                "EventTriggerSection" : "",
+                "Id" : "13bc311d-3ebc-4c5a-a2c9-e248e39446af"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-92",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "expression-45",
+                "EventTriggerSection" : "",
+                "Id" : "08493413-7145-402b-a998-4ae32f88f027"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_CurrentSessionInfo",
+                "EventHandlerService" : "GetCurrentUser",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "5ce1b193-a7da-4053-8a6d-f432901c8aea"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "IsAdmin",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetCurrentUser",
+                "EventTriggerSection" : "Resources_CurrentSessionInfo",
+                "Id" : "5fd6948c-9877-4baa-8896-5f9751c727d0"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 425,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : false,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "StyleTheme" : "Base Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 695,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "id_index" : 92,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                    "Area" : "UI",
+                    "CancelConfirmationButton" : "button2",
+                    "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                    "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                    "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                    "ConfirmationRequired" : false,
+                    "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                    "ContextId" : "",
+                    "DefaultConfirmationButton" : "button1",
+                    "Disabled" : true,
+                    "DisabledStyle" : "PTC.Factory.Generic.DisableButton",
+                    "DisplayName" : "button-Import",
+                    "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                    "Height" : 32,
+                    "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                    "IconAlignment" : "left",
+                    "Id" : "button-1",
+                    "Label" : "[[PTC.SCA.SCO.ConfigurationAndSetup.Import]]",
+                    "Left" : 450,
+                    "ResponsiveLayout" : false,
+                    "RoundedCorners" : false,
+                    "ShowDataLoading" : true,
+                    "SingleClickSelectOnTablets" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupOkOrYes",
+                    "TabSequence" : 5,
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 370,
+                    "Type" : "button",
+                    "Visible" : true,
+                    "Width" : 100,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Button",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                    "Area" : "UI",
+                    "CancelConfirmationButton" : "button2",
+                    "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                    "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                    "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                    "ConfirmationRequired" : false,
+                    "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                    "ContextId" : "",
+                    "DefaultConfirmationButton" : "button1",
+                    "Disabled" : false,
+                    "DisabledStyle" : "PTC.Factory.Generic.DisableButton",
+                    "DisplayName" : "button-Close",
+                    "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                    "Height" : 32,
+                    "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                    "IconAlignment" : "left",
+                    "Id" : "button-2",
+                    "Label" : "[[close]]",
+                    "Left" : 575,
+                    "ResponsiveLayout" : false,
+                    "RoundedCorners" : false,
+                    "ShowDataLoading" : true,
+                    "SingleClickSelectOnTablets" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNo",
+                    "TabSequence" : 7,
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 370,
+                    "Type" : "button",
+                    "Visible" : true,
+                    "Width" : 100,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Button",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "AllowedFileTypes" : "",
+                    "Area" : "UI",
+                    "DisplayName" : "fileupload-ExcelFileUpload",
+                    "DisplayPathTextBox" : false,
+                    "DisplayRepositorySelector" : false,
+                    "FileName" : "",
+                    "FocusStyle" : "PTC.SCA.SCO.Common.ImportFileUploadStyle",
+                    "FullPath" : "",
+                    "Height" : 40,
+                    "Id" : "fileupload-3",
+                    "Left" : 20,
+                    "MultiFilesSelect" : false,
+                    "Path" : "/",
+                    "RepositoryName" : "PTC.SCA.SCO.EquipmentImportRepository",
+                    "RepositoryStyle" : "PTC.SCA.SCO.Common.ImportFileUploadStyle",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.SCA.SCO.Common.ImportFileUploadStyle",
+                    "TabSequence" : 0,
+                    "Top" : 65,
+                    "Type" : "fileupload",
+                    "Visible" : true,
+                    "Width" : 302,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "File Upload"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "ActiveStyle" : "PTC.SCA.SCO.Common.ValidationButtonHoverStyle",
+                    "Area" : "UI",
+                    "CancelConfirmationButton" : "button2",
+                    "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                    "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                    "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                    "ConfirmationRequired" : false,
+                    "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                    "ContextId" : "",
+                    "DefaultConfirmationButton" : "button1",
+                    "Disabled" : true,
+                    "DisabledStyle" : "PTC.SCA.SCO.Common.ValidationButtonDisableStyle",
+                    "DisplayName" : "button-Validate",
+                    "FocusStyle" : "PTC.SCA.SCO.Common.ValidationButtonHoverStyle",
+                    "Height" : 23,
+                    "HoverStyle" : "PTC.SCA.SCO.Common.ValidationButtonHoverStyle",
+                    "IconAlignment" : "left",
+                    "Id" : "button-5",
+                    "Label" : "[[PTC.SCA.SCO.ConfigurationAndSetup.ValidateFile]]",
+                    "Left" : 335,
+                    "ResponsiveLayout" : false,
+                    "RoundedCorners" : false,
+                    "ShowDataLoading" : true,
+                    "SingleClickSelectOnTablets" : true,
+                    "Style" : "PTC.SCA.SCO.Common.ValidationButtonStyle",
+                    "TabSequence" : 5,
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 73.49609375,
+                    "Type" : "button",
+                    "Visible" : true,
+                    "Width" : 98,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Button",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Alignment" : "left",
+                    "AllowEllipsis" : false,
+                    "Area" : "UI",
+                    "CustomClass" : "",
+                    "Description" : "",
+                    "DisplayName" : "label-ResultsTitle",
+                    "Height" : 22,
+                    "Id" : "label-7",
+                    "Left" : 20,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.SCA.SCO.Common.ImportLabelStyle11px",
+                    "Text" : "",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 125,
+                    "Type" : "label",
+                    "Visible" : false,
+                    "Width" : 536,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Label",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Alignment" : "left",
+                    "AllowEllipsis" : false,
+                    "Area" : "UI",
+                    "CustomClass" : "",
+                    "Description" : "",
+                    "DisplayName" : "label-SuccessfullImport",
+                    "Height" : 22,
+                    "Id" : "label-8",
+                    "Left" : 50,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.SCA.SCO.Common.ImportLabelStyleNoBoldFont",
+                    "Text" : "",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 140,
+                    "Type" : "label",
+                    "Visible" : false,
+                    "Width" : 616,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Label",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Description" : "",
+                    "DisplayName" : "statusmessage-IncorrectFile",
+                    "Height" : 18,
+                    "Id" : "statusmessage-19",
+                    "Left" : 455,
+                    "Message" : "[[PTC.SCA.SCO.ConfigurationAndSetup.IncorrectFile]]",
+                    "MessageType" : "warning",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 70,
+                    "Type" : "statusmessage",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Status Message"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "Description" : "",
+                    "DisplayName" : "validator-validateFilename",
+                    "Expression" : "filename != '' && /^(xls|xlsx)$/i.test(filename.split('.').pop()) && uploadComplete == true ",
+                    "Height" : 18,
+                    "Id" : "validator-22",
+                    "Left" : 185,
+                    "Output" : false,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 95,
+                    "Type" : "validator",
+                    "Visible" : true,
+                    "Width" : 170,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Validator",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "filename"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "uploadComplete"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "",
+                    "DisplayName" : "expression-uploadCompleteCheck",
+                    "Expression" : "if(filename != '' && /^(xls|xlsx)$/i.test(filename.split('.').pop())){true}",
+                    "FireOnFirstValue" : false,
+                    "Height" : 33,
+                    "Id" : "expression-24",
+                    "Left" : 380,
+                    "Output" : false,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 100,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 120,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "filename"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "Description" : "",
+                    "DisplayName" : "validator-upload",
+                    "Expression" : "filename != '' && /^(xls|xlsx)$/i.test(filename.split('.').pop())",
+                    "Height" : 28,
+                    "Id" : "validator-27",
+                    "Left" : 295,
+                    "Output" : false,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 20,
+                    "Type" : "validator",
+                    "Visible" : true,
+                    "Width" : 170,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Validator",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "filename"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "Description" : "",
+                    "DisplayName" : "validator-importFilename",
+                    "Expression" : "filename != '' &&  /^(xls|xlsx)$/i.test(filename.split('.').pop()) && uploadComplete == true",
+                    "Height" : 18,
+                    "Id" : "validator-28",
+                    "Left" : 185,
+                    "Output" : false,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 110,
+                    "Type" : "validator",
+                    "Visible" : true,
+                    "Width" : 170,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Validator",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "filename"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "uploadComplete"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Alignment" : "left",
+                    "AllowEllipsis" : true,
+                    "Area" : "UI",
+                    "CustomClass" : "",
+                    "Description" : "",
+                    "DisplayName" : "label-ImportProcessInfo",
+                    "Height" : 32,
+                    "Id" : "label-31",
+                    "Left" : 50,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.SCA.SCO.Common.ImportLabelStyleNoBoldFont",
+                    "Text" : "[[PTC.SCA.SCO.ConfigurationAndSetup.ImportProcessInfo]]",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 135,
+                    "Type" : "label",
+                    "Visible" : false,
+                    "Width" : 605,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Label",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Alignment" : "left",
+                    "AllowEllipsis" : true,
+                    "Area" : "UI",
+                    "CustomClass" : "",
+                    "Description" : "",
+                    "DisplayName" : "label-ValidationProcessInfo",
+                    "Height" : 32,
+                    "Id" : "label-32",
+                    "Left" : 50,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.SCA.SCO.Common.ImportLabelStyleNoBoldFont",
+                    "Text" : "[[PTC.SCA.SCO.ConfigurationAndSetup.ValidationProcessInfo]]",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 135,
+                    "Type" : "label",
+                    "Visible" : false,
+                    "Width" : 610,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Label",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : true,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "",
+                    "DisplayName" : "expression-ValidationProcessInfoVisibility",
+                    "Expression" : "!finished && tag.indexOf(\"validate\")!==-1",
+                    "FireOnFirstValue" : false,
+                    "Height" : 13,
+                    "Id" : "expression-41",
+                    "Left" : 490,
+                    "Output" : false,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "finished"
+                    }, {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "tag"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "",
+                    "DisplayName" : "expression-ImportResultVisibility",
+                    "Expression" : "(tag.indexOf(\"import\")!==-1 && isFinished && !isSuccessful) || (tag.indexOf(\"validate\")!==-1 && isFinished)",
+                    "FireOnFirstValue" : false,
+                    "Height" : 18,
+                    "Id" : "expression-44",
+                    "Left" : 215,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 320,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "tag"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "isFinished"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "isSuccessful"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : true,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "",
+                    "DisplayName" : "expression-ImportProcessInfoVisibility",
+                    "Expression" : "!finished && tag.indexOf(\"import\")!==-1",
+                    "FireOnFirstValue" : false,
+                    "Height" : 13,
+                    "Id" : "expression-45",
+                    "Left" : 490,
+                    "Output" : false,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 15,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "finished"
+                    }, {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "tag"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "",
+                    "DisplayName" : "expression-SuccessImportVisibility",
+                    "Expression" : "tag.indexOf(\"import\")!==-1 && isFinished && isSuccessful;",
+                    "FireOnFirstValue" : false,
+                    "Height" : 18,
+                    "Id" : "expression-46",
+                    "Left" : 415,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 315,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "tag"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "isFinished"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "isSuccessful"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "",
+                    "DisplayName" : "expression-GridResultVisibility",
+                    "Expression" : "(tag.indexOf(\"import\")!==-1 && isFinished && !isSuccessful)",
+                    "FireOnFirstValue" : false,
+                    "Height" : 18,
+                    "Id" : "expression-47",
+                    "Left" : 415,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 330,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "tag"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "isFinished"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "isSuccessful"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : true,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "",
+                    "DisplayName" : "expression-ValidateButtonDisable",
+                    "Expression" : "!ValidationButtonState ",
+                    "FireOnFirstValue" : false,
+                    "Height" : 13,
+                    "Id" : "expression-48",
+                    "Left" : 295,
+                    "Output" : false,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "ValidationButtonState"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "buttonStateAtProcess"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "AlternateText" : "",
+                    "Area" : "UI",
+                    "BorderStyle" : "DefaultImageBorderStyle",
+                    "DisplayName" : "image-CheckmarkImportSuccess",
+                    "Height" : 22,
+                    "Id" : "image-49",
+                    "Left" : 20,
+                    "PreventCaching" : false,
+                    "ResponsiveLayout" : false,
+                    "Scaling" : "width",
+                    "ShowDataLoading" : true,
+                    "SourceURL" : "PTC.SCA.SCO.Common.ConfigurationAndSetup.Checkmark",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 140,
+                    "Type" : "image",
+                    "Visible" : true,
+                    "Width" : 22,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Image",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "AlternateText" : "",
+                    "Area" : "UI",
+                    "BorderStyle" : "DefaultImageBorderStyle",
+                    "DisplayName" : "image-WarningProcess",
+                    "Height" : 22,
+                    "Id" : "image-50",
+                    "Left" : 20,
+                    "PreventCaching" : false,
+                    "ResponsiveLayout" : false,
+                    "Scaling" : "width",
+                    "ShowDataLoading" : true,
+                    "SourceURL" : "PTC.SCA.SCO.Common.ConfigurationAndSetup.Warning",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 140,
+                    "Type" : "image",
+                    "Visible" : true,
+                    "Width" : 22,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Image",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : true,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "",
+                    "DisplayName" : "expression-WarningIconVisibility",
+                    "Expression" : "!finished && (tag.indexOf(\"import\")!==-1 || tag.indexOf(\"validate\")!==-1)",
+                    "FireOnFirstValue" : false,
+                    "Height" : 13,
+                    "Id" : "expression-53",
+                    "Left" : 490,
+                    "Output" : false,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 30,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "finished"
+                    }, {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "tag"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoScroll" : true,
+                    "CellBorderStyle" : "DefaultGridAdvancedCellBorderStyle",
+                    "CellValidationErrorStyle" : "DefaultGridAdvancedCellValidationErrorStyle",
+                    "CellValidationErrorTooltipStyle" : "DefaultGridAdvancedCellValidationErrorTooltipStyle",
+                    "ColumnFormat" : {
+                      "formatInfo" : [ {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "workSheet",
+                        "FormatOptions" : {
+                          "FormatString" : "full",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "STRING",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.Worksheet]]",
+                        "Width" : "155px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "total",
+                        "FormatOptions" : {
+                          "FormatString" : "0",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "INTEGER",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.Total]]",
+                        "Width" : "35px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "valid",
+                        "FormatOptions" : {
+                          "FormatString" : "0",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "INTEGER",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.Valid]]",
+                        "Width" : "35px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "invalid",
+                        "FormatOptions" : {
+                          "FormatString" : "0",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "INTEGER",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.InvalidToBeSkipped]]",
+                        "Width" : "auto",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "exists",
+                        "FormatOptions" : {
+                          "FormatString" : "0",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "INTEGER",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.AlreadyExist]]",
+                        "Width" : "auto",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "creates",
+                        "FormatOptions" : {
+                          "FormatString" : "0",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "INTEGER",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.ToBeCreated]]",
+                        "Width" : "auto",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "updates",
+                        "FormatOptions" : {
+                          "FormatString" : "0",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "INTEGER",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.ToBeUpdated]]",
+                        "Width" : "auto",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      } ]
+                    },
+                    "Configuration" : "",
+                    "ConfigurationId" : 27,
+                    "CookiePersistence" : true,
+                    "DataOverflow" : "wrapped",
+                    "DataServiceBindingDef" : {
+                      "entityName" : "PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                      "entityType" : "Things",
+                      "target" : "GetLatestProcessSummary"
+                    },
+                    "DefaultSelectedRows" : "",
+                    "Description" : "",
+                    "DisplayName" : "gridadvanced-ValidationResultGrid",
+                    "EditButtonsLocation" : "top-right",
+                    "EnableAddDeleteButtons" : false,
+                    "EnableContextMenu" : false,
+                    "EnableEditButtons" : false,
+                    "EnableFilterEventOnConfigChange" : true,
+                    "EnableFooter" : false,
+                    "EnableGridReset" : false,
+                    "EnableGridSearch" : false,
+                    "EnableSorting" : false,
+                    "FocusStyle" : "DefaultContainerStyle",
+                    "GridResetButtonLocation" : "top-right",
+                    "GridSearchLocation" : "top-left",
+                    "HeaderOverflow" : "wrapped",
+                    "Height" : 140,
+                    "IDFieldName" : "id",
+                    "Id" : "gridadvanced-56",
+                    "IsEditable" : false,
+                    "Left" : 20,
+                    "MaxHeaderHeight" : 40,
+                    "MinRowHeight" : 26,
+                    "ResponsiveLayout" : false,
+                    "RowAlternateBackgroundStyle" : "PTC.Factory.Generic.TableRowNonSelected",
+                    "RowBackgroundStyle" : "PTC.Factory.Generic.TableRowNonSelected",
+                    "RowBorderStyle" : "DefaultGridAdvancedRowBorderStyle",
+                    "RowFormat_StateParameters" : [ ],
+                    "RowHoverStyle" : "PTC.Factory.Generic.TableRowHover",
+                    "RowSelectedStyle" : "PTC.Factory.Generic.TableRowSelected",
+                    "RowSelection" : "single",
+                    "SelectedRows" : "",
+                    "ShowDataLoading" : false,
+                    "SortAscendingStyle" : "PTC.SCA.SCO.SortAscendingStyle",
+                    "SortDescendingStyle" : "PTC.SCA.SCO.SortDescendingStyle",
+                    "TableFooterStyle" : "DefaultGridAdvancedFooterStyle",
+                    "TableHeaderStyle" : "PTC.Factory.Generic.TableColumnHeader",
+                    "TableWrapperStyle" : "PTC.SCA.SCO.Core.GridBackgroundStyle",
+                    "ToolbarStyle" : "PTC.SCA.SCO.NoStyle",
+                    "TooltipStyle" : "DefaultTooltipStyle",
+                    "Top" : 145,
+                    "Type" : "gridadvanced",
+                    "Visible" : true,
+                    "Width" : 655,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Grid Advanced"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoScroll" : true,
+                    "CellBorderStyle" : "DefaultGridAdvancedCellBorderStyle",
+                    "CellValidationErrorStyle" : "DefaultGridAdvancedCellValidationErrorStyle",
+                    "CellValidationErrorTooltipStyle" : "DefaultGridAdvancedCellValidationErrorTooltipStyle",
+                    "ColumnFormat" : {
+                      "formatInfo" : [ {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "workSheet",
+                        "FormatOptions" : {
+                          "FormatString" : "full",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "STRING",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.Worksheet]]",
+                        "Width" : "155px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "total",
+                        "FormatOptions" : {
+                          "FormatString" : "0",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "INTEGER",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.Total]]",
+                        "Width" : "35px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "valid",
+                        "FormatOptions" : {
+                          "FormatString" : "0",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "INTEGER",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.Valid]]",
+                        "Width" : "35px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "invalid",
+                        "FormatOptions" : {
+                          "FormatString" : "0",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "INTEGER",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.Invalid]]",
+                        "Width" : "auto",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "exists",
+                        "FormatOptions" : {
+                          "FormatString" : "0",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "INTEGER",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.AlreadyExist]]",
+                        "Width" : "auto",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "creates",
+                        "FormatOptions" : {
+                          "FormatString" : "0",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "INTEGER",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.Created]]",
+                        "Width" : "auto",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "FieldName" : "updates",
+                        "FormatOptions" : {
+                          "FormatString" : "0",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "INTEGER",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.SCA.SCO.ConfigurationAndSetup.Updated]]",
+                        "Width" : "auto",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      } ]
+                    },
+                    "Configuration" : "",
+                    "ConfigurationId" : 35,
+                    "CookiePersistence" : true,
+                    "DataOverflow" : "wrapped",
+                    "DataServiceBindingDef" : {
+                      "entityName" : "PTC.SCA.SCO.Common.ImportProcessHistoryDataTable",
+                      "entityType" : "Things",
+                      "target" : "GetLatestProcessSummary"
+                    },
+                    "DefaultSelectedRows" : "",
+                    "Description" : "",
+                    "DisplayName" : "gridadvanced-ImportResultGrid",
+                    "EditButtonsLocation" : "top-right",
+                    "EnableAddDeleteButtons" : false,
+                    "EnableContextMenu" : false,
+                    "EnableEditButtons" : false,
+                    "EnableFilterEventOnConfigChange" : true,
+                    "EnableFooter" : false,
+                    "EnableGridReset" : false,
+                    "EnableGridSearch" : false,
+                    "EnableSorting" : false,
+                    "FocusStyle" : "PTC.SCA.SCO.NoStyle",
+                    "GridResetButtonLocation" : "top-right",
+                    "GridSearchLocation" : "top-left",
+                    "HeaderOverflow" : "wrapped",
+                    "Height" : 120,
+                    "IDFieldName" : "id",
+                    "Id" : "gridadvanced-57",
+                    "IsEditable" : false,
+                    "Left" : 20,
+                    "MaxHeaderHeight" : 40,
+                    "MinRowHeight" : 26,
+                    "ResponsiveLayout" : false,
+                    "RowAlternateBackgroundStyle" : "PTC.Factory.Generic.TableRowNonSelected",
+                    "RowBackgroundStyle" : "PTC.Factory.Generic.TableRowNonSelected",
+                    "RowBorderStyle" : "DefaultGridAdvancedRowBorderStyle",
+                    "RowFormat_StateParameters" : [ ],
+                    "RowHoverStyle" : "PTC.Factory.Generic.TableRowHover",
+                    "RowSelectedStyle" : "PTC.Factory.Generic.TableRowSelected",
+                    "RowSelection" : "single",
+                    "SelectedRows" : "",
+                    "ShowDataLoading" : false,
+                    "SortAscendingStyle" : "PTC.SCA.SCO.SortAscendingStyle",
+                    "SortDescendingStyle" : "PTC.SCA.SCO.SortDescendingStyle",
+                    "TableFooterStyle" : "DefaultGridAdvancedFooterStyle",
+                    "TableHeaderStyle" : "PTC.Factory.Generic.TableColumnHeader",
+                    "TableWrapperStyle" : "PTC.SCA.SCO.Core.GridBackgroundStyle",
+                    "ToolbarStyle" : "PTC.SCA.SCO.NoStyle",
+                    "TooltipStyle" : "DefaultTooltipStyle",
+                    "Top" : 145,
+                    "Type" : "gridadvanced",
+                    "Visible" : true,
+                    "Width" : 655,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Grid Advanced"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "",
+                    "DisplayName" : "expression-ValidationResultGridVisibility",
+                    "Expression" : "(tag.indexOf(\"validate\")!==-1 && isFinished);",
+                    "FireOnFirstValue" : false,
+                    "Height" : 18,
+                    "Id" : "expression-58",
+                    "Left" : 415,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 345,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "tag"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "isFinished"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "isSuccessful"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Description" : "",
+                    "DisplayName" : "statusmessage-FIleINcorrectMessage",
+                    "Height" : 18,
+                    "Id" : "statusmessage-64",
+                    "Left" : 460,
+                    "Message" : "[[PTC.SCA.SCO.ConfigurationAndSetup.IncorrectExcelFileDefinition]]",
+                    "MessageType" : "warning",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 50,
+                    "Type" : "statusmessage",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Status Message"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "Description" : "",
+                    "DisplayName" : "validator-ParsingSuccessMessage",
+                    "Expression" : "parsingSuccessfull",
+                    "Height" : 18,
+                    "Id" : "validator-66",
+                    "Left" : 10,
+                    "Output" : false,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 405,
+                    "Type" : "validator",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Validator",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "parsingSuccessfull"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DataShape" : "",
+                    "DataType" : "BOOLEAN",
+                    "DisplayName" : "eventsrouter-ImportButtonVisibility",
+                    "Id" : "eventsrouter-76",
+                    "Left" : 215,
+                    "NumberOfInputs" : 5,
+                    "Output" : false,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 365,
+                    "Type" : "eventsrouter",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Events Router"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DataShape" : "",
+                    "DataType" : "BOOLEAN",
+                    "DisplayName" : "eventsrouter-ValidateButtonVisibility",
+                    "Id" : "eventsrouter-77",
+                    "Left" : 215,
+                    "NumberOfInputs" : 5,
+                    "Output" : false,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 385,
+                    "Type" : "eventsrouter",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Events Router"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : true,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "",
+                    "DisplayName" : "expression-StatusPlusDataString",
+                    "Expression" : "status + datetime.getFullYear()+\"-\"+ (datetime.getMonth()+1 < 10 ? \"0\"+(datetime.getMonth()+1) : datetime.getMonth()+1)+\"-\"+ (datetime.getDate()<10 ? \"0\"+datetime.getDate() : datetime.getDate())+\" \"+ (datetime.getHours() < 10 ? \"0\"+datetime.getHours() : datetime.getHours())+\":\"+ (datetime.getMinutes() < 10 ? \"0\"+datetime.getMinutes() : datetime.getMinutes())+\":\"+ (datetime.getSeconds() < 10 ? \"0\"+datetime.getSeconds() : datetime.getSeconds())",
+                    "FireOnFirstValue" : false,
+                    "Height" : 18,
+                    "Id" : "expression-79",
+                    "Left" : 215,
+                    "OutputBaseType" : "STRING",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 405,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "status"
+                    }, {
+                      "BaseType" : "DATETIME",
+                      "Description" : "",
+                      "ParameterName" : "datetime"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "",
+                    "DisplayName" : "expression-ButtonsVisibility",
+                    "Expression" : "!(finished && filename.trim().length>0 && /^(xls|xlsx)$/i.test(filename.split('.').pop()))",
+                    "FireOnFirstValue" : true,
+                    "Height" : 18,
+                    "Id" : "expression-84",
+                    "Left" : 10,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 385,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "finished"
+                    }, {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "filename"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Alignment" : "left",
+                    "Area" : "UI",
+                    "AutoSelectFirstRow" : true,
+                    "ClearIfNoSelection" : false,
+                    "ComboDropdownButtonStyle" : "DefaultComboDropdownButtonStyle",
+                    "ComboEnableCheckbox" : false,
+                    "ComboItemHighlightedStyle" : "DefaultComboItemHighlightedStyle",
+                    "ComboTextboxStyle" : "DefaultComboTextboxStyle",
+                    "Description" : "",
+                    "DisableSelectedStyle" : false,
+                    "DisplayField" : "name",
+                    "DisplayName" : "dhxlist-TypesOfImport",
+                    "DropdownButtonStyle" : "PTC.SCA.SCO.Common.ImportListButtonStyle",
+                    "DropdownSelectedStyle" : "PTC.SCA.SCO.Common.ImportListSelected",
+                    "DropdownStyle" : "PTC.SCA.SCO.Common.ImportListBackgroundStyle",
+                    "EnableKeyboardSelections" : true,
+                    "EnableToolTips" : true,
+                    "Height" : 25,
+                    "HeightOfDropdownView" : 170,
+                    "Id" : "dhxlist-85",
+                    "Label" : "",
+                    "LabelAlignment" : "left",
+                    "Left" : 20,
+                    "ListBackgroundStyle" : "PTC.SCA.SCO.Common.ImportListBackgroundStyle",
+                    "ListFocusStyle" : "DefaultFocusStyle",
+                    "ListItemAlternateStyle" : "PTC.SCA.SCO.Common.ImportListBackgroundStyle",
+                    "ListItemHoverStyle" : "PTC.Factory.Generic.DialogBoxDropDownHover",
+                    "ListItemSelectedStyle" : "PTC.SCA.SCO.Common.ImportListSelected",
+                    "ListItemStyle" : "PTC.SCA.SCO.Common.ImportListBackgroundStyle",
+                    "ListLabelStyle" : "PTC.SCA.SCO.Common.ImportListBackgroundStyle",
+                    "MultiSelect" : false,
+                    "NumberOfItemsInDropdownView" : 2,
+                    "NumberOfItemsPerPage" : 500,
+                    "ResponsiveLayout" : false,
+                    "RowHeight" : 25,
+                    "ShowDataLoading" : true,
+                    "SingleClickSelectOnTablets" : false,
+                    "TabSequence" : -1,
+                    "TextIfNoSelection" : "",
+                    "TextIfNoSelectionType" : "editable",
+                    "TextVerticalAlignment" : 28,
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 20,
+                    "Type" : "dhxlist",
+                    "ValueField" : "type",
+                    "View" : "dropdown",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "WidthOfDropdownView" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "List",
+                    "__supportsLabel" : true,
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "ImportToExcelHTMLTextArea",
+                    "EscapeHTMLText" : false,
+                    "Height" : 22,
+                    "Id" : "htmltextarea-89",
+                    "Label" : "",
+                    "LabelAlignment" : "left",
+                    "LabelStyle" : "DefaultWidgetLabelStyle",
+                    "Left" : 20,
+                    "ReadOnly" : true,
+                    "ResponsiveLayout" : false,
+                    "ShowBorder" : false,
+                    "ShowDataLoading" : true,
+                    "ShowToolbar" : true,
+                    "Text" : "",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 325,
+                    "Type" : "htmltextarea",
+                    "Visible" : true,
+                    "Width" : 655,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Html TextArea",
+                    "__supportsLabel" : true,
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "Description" : "",
+                    "DisplayName" : "validator-ValidateImportFileName",
+                    "Expression" : "filename != '' && filename.trim().length>0 && /^(xls|xlsx)$/i.test(filename.split('.').pop())",
+                    "Height" : 18,
+                    "Id" : "validator-90",
+                    "Left" : 10,
+                    "Output" : false,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 10,
+                    "Type" : "validator",
+                    "Visible" : true,
+                    "Width" : 170,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Validator",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "filename"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "uploadComplete"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "ActiveStyle" : "DefaultButtonActiveStyle",
+                    "Area" : "UI",
+                    "AutoRefresh" : false,
+                    "AutoRefreshTabSequence" : 0,
+                    "DisplayName" : "autorefresh-ValidationProcessing",
+                    "FocusStyle" : "DefaultButtonFocusStyle",
+                    "Height" : 18,
+                    "HoverStyle" : "DefaultButtonHoverStyle",
+                    "IconAlignment" : "left",
+                    "Id" : "autorefresh-91",
+                    "Label" : "Refresh Now",
+                    "Left" : 515,
+                    "RefreshInterval" : 5,
+                    "RefreshNowTabSequence" : 0,
+                    "RefreshToggleLabel" : "On",
+                    "RefreshToggleLabelOff" : "Off",
+                    "RefreshToggleSliderStyle" : "DefaultAutoRefreshToggleSliderStyle",
+                    "RefreshToggleStyle" : "DefaultAutoRefreshToggleStyle",
+                    "RefreshToggleStyleOff" : "DefaultAutoRefreshToggleOffStyle",
+                    "ResponsiveLayout" : false,
+                    "ShowControls" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "DefaultButtonStyle",
+                    "Top" : 85,
+                    "Type" : "autorefresh",
+                    "Visible" : false,
+                    "Width" : 160,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Auto Refresh"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "ALWAYS",
+                    "DisplayName" : "expression-ProcessingInfo",
+                    "Expression" : "(validationProcessInfo || importProcessInfo)",
+                    "FireOnFirstValue" : false,
+                    "Height" : 18,
+                    "Id" : "expression-92",
+                    "Left" : 490,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : false,
+                    "Top" : 40,
+                    "Type" : "expression",
+                    "Visible" : false,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "validationProcessInfo"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "Description" : "",
+                      "ParameterName" : "importProcessInfo"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Alignment" : "left",
+                    "Area" : "UI",
+                    "CustomClass" : "",
+                    "Description" : "",
+                    "DisplayName" : "view_logs_validation",
+                    "Height" : 20,
+                    "Id" : "link-93",
+                    "Left" : 240,
+                    "LinkDisplay" : "textOnly",
+                    "LinkHoverStyle" : "PTC.SCA.SCO.Common.ImportTextLinkHoverStyleDefinition",
+                    "LinkStyle" : "PTC.SCA.SCO.Common.ImportTextLinkStyleDefinition",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "SourceURL" : "/Thingworx/Composer/index.html#/modeler/monitoring/ScriptLog",
+                    "TabSequence" : 0,
+                    "TargetWindow" : "new",
+                    "Text" : "[[PTC.SCA.SCO.ViewLogs]]",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 282,
+                    "Type" : "link",
+                    "Visible" : true,
+                    "Width" : 150,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Link",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Alignment" : "left",
+                    "Area" : "UI",
+                    "CustomClass" : "",
+                    "Description" : "",
+                    "DisplayName" : "view_logs_import",
+                    "Height" : 20,
+                    "Id" : "link-94",
+                    "Left" : 240,
+                    "LinkDisplay" : "textOnly",
+                    "LinkHoverStyle" : "PTC.SCA.SCO.Common.ImportTextLinkHoverStyleDefinition",
+                    "LinkStyle" : "PTC.SCA.SCO.Common.ImportTextLinkStyleDefinition",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "SourceURL" : "/Thingworx/Composer/index.html#/modeler/monitoring/ScriptLog",
+                    "TabSequence" : 0,
+                    "TargetWindow" : "new",
+                    "Text" : "[[PTC.SCA.SCO.ViewLogs]]",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 262,
+                    "Type" : "link",
+                    "Visible" : true,
+                    "Width" : 150,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Link",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : true,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "validation result for the visibility of 'view logs'",
+                    "DisplayName" : "expression-ValidationResultViewLogsVisibility",
+                    "Expression" : "(tag.indexOf(\"validate\")!==-1 && isFinished && !isSuccessful && isAdminUser)",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-93",
+                    "OutputBaseType" : "BOOLEAN",
+                    "ShowDataLoading" : true,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "tag",
+                      "bindingDirection" : "",
+                      "bindingStatus" : false,
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "tag"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "DefaultValue" : false,
+                      "Description" : "",
+                      "ParameterName" : "isFinished",
+                      "bindingDirection" : "",
+                      "bindingStatus" : false,
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "isFinished"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "DefaultValue" : false,
+                      "Description" : "",
+                      "ParameterName" : "isSuccessful",
+                      "bindingDirection" : "",
+                      "bindingStatus" : false,
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "isSuccessful"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "DefaultValue" : "false",
+                      "Description" : "",
+                      "ParameterName" : "isAdminUser",
+                      "bindingDirection" : "",
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "isAdminUser"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : true,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "Import result for the visibility of 'view logs'",
+                    "DisplayName" : "expression-ImportResultViewLogsVisibility",
+                    "Expression" : "(tag.indexOf(\"import\")!==-1 && isFinished && !isSuccessful && isAdminUser)",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-94",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "tag",
+                      "bindingDirection" : "",
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "tag"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "DefaultValue" : false,
+                      "Description" : "",
+                      "ParameterName" : "isFinished",
+                      "bindingDirection" : "",
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "isFinished"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "DefaultValue" : false,
+                      "Description" : "",
+                      "ParameterName" : "isSuccessful",
+                      "bindingDirection" : "",
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "isSuccessful"
+                    }, {
+                      "BaseType" : "BOOLEAN",
+                      "DefaultValue" : "false",
+                      "Description" : "",
+                      "ParameterName" : "isAdminUser",
+                      "bindingDirection" : "",
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "isAdminUser"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            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
+            GAIAEEMAAGIIAEAMAQCIIQAAMQQAIIYAAMQQAIAYAgAQQwAAYggAQAwBAIghAAAxBAAghgAAxBAA
+            gBgCABBDAABiCABADAEAiCEAADEEACCGAADEEACAGAIAEEMAAGIIABBDAABiCABADAEAiCEAADEE
+            ACCGAADEEACAGAIAEEMAAGIIAEAMAQCIIQAAMQQAIIYAAMQQAIAYAgAQQwAAYggAQAwBAIghAAAx
+            BAAghgAAxBAAgBgCABBDAABiCABADAEAiCEAADEEACCGAADEEACAGAIAEEMAAGIIAEAMAQCIIQAA
+            MQQAIIYAAMQQAIAYAgAQQwAAYggAQAwBAIghAAAxBAAghgAAxBAAgBgCABBDAABiCABADAEAYshL
+            AACIIQAAMQQAIIYAAMQQAIAYAgAQQwAAYggAQAwBAIghAAAxBAAghgAAxBAAgBgCABBDAABiCABA
+            DAEAiCEAADEEACCGAADEEACAGAIAEEMAAGIIAEAMAQCIIQAAMQQAIIYAAMQQAIAYAgAQQwAAYggA
+            QAwBAIghAAAxBAAghgAAxBAAgBgCABBDAABiCABADAEAiCEAADEEACCGAADEEACAGAIAEEMAAGII
+            AEAMAQCIIQAAMQQAIIYAADEEACCGAADEEACAGAIAEEMAAGIIAEAMAQCIIQAAMQQAIIYAAMQQAIAY
+            AgAQQwAAYggAQAwBAIghAAAxBAAghgAAxBAAgBgCABBDAABiCABADAEAiCEAADEEACCGAADEEACA
+            GAIAEEMAAGIIAEAMAQCIIQAAMQQAIIYAAMQQAIAYAgAQQwAAYggAQAwBAIghAAAxBAAghgAAFiKG
+            9oXhjfs6320cCkNDq8PoS2fCSzAVRtcMh31z9ToMxefeHKu3TZ3a1jae5tdw//ApH/Ps3spe70b+
+            ek9tO5bt760ex9Lo/Vj+2hxbhO+vznObS6f+XOfnuADEUM8Yyr5eMxqmzpiXYI5jaOPcfeTUxdDU
+            ttVheP/CxNDcxNmAH8wLFUMvzYTVG98UQwBi6GQjIIZFMTOSBEb2ITtUmjlqfai+NBpWt2dSig/a
+            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
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="ThingTemplate for import/export util. {PTC.Factory.Administration.ImportExportUtilsTemplate}"
+         documentationContent=""
+         effectiveThingPackage="PTC.Factory.Administration.ImportExportUtilsPackage"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:39.846+05:30"
+         name="PTC.Factory.Administration.ImportExportUtilsTemplate"
+         projectName="PTC.SCA.SCO.User Management"
+         tags="PTC:sca-sco-usermanagement;PTC:sca-common;PTC:Administration;PTC:ThingTemplate"
+         thingPackage="PTC.Factory.Administration.ImportExportUtilsPackage"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 description="Tags Of entities and data to export"
+                 isMultiRow="false"
+                 name="TagsToExport"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.Factory.ExportTagConfiguration"
+                             baseType="INFOTABLE"
+                             description="Tags to be exported"
+                             name="TagList"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <TagList>
+                                <infoTable>
+                                    <DataShape>
+                                        <FieldDefinitions></FieldDefinitions>
+                                    </DataShape>
+                                    <Rows></Rows>
+                                </infoTable>
+                            </TagList>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Reset the TagsToExport configuration table to the default values."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ResetTagList">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ResetTagList">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function addRow(infotable, tagName, includeData){
+                                           infotable.AddRow({
+                                            TagName: tagName,
+                                            IncludeData: includeData
+                                            });
+                                        }
+                                        
+                                        me.DeleteAllConfigurationTableRows({
+                                            persistent: true /* BOOLEAN */,
+                                           	tableName: "TagsToExport" /* STRING */
+                                        });
+                                        
+                                        var tagsConfigTable =  me.GetConfigurationTable({
+                                            tableName: "TagsToExport" /* STRING */
+                                        });
+                                        
+                                        var params = {
+                                            infoTableName : "TagList",
+                                            dataShapeName : "PTC.Factory.ExportTagConfiguration"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.Factory.ExportTagConfiguration)
+                                        var tagListInfoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        addRow(tagListInfoTable, "PTC:FactoryAppKey", false);
+                                        addRow(tagListInfoTable, "PTC:FactoryKEPServerExInstance", false);
+                                        addRow(tagListInfoTable, "PTC:FactoryDeviceInstance", true);
+                                        addRow(tagListInfoTable, "PTC:FactoryPhysicalAssetInstance", true);
+                                        addRow(tagListInfoTable, "PTC:FactoryTrendInstance", true);
+                                        addRow(tagListInfoTable, "PTC:FactoryConnectionInstance", true);
+                                        addRow(tagListInfoTable, "PTC:FactoryEquipmentInstance", true);
+                                        addRow(tagListInfoTable, "PTC:FactoryPlantNetwork", false);
+                                        
+                                        var configTableEntry = new Object();
+                                        configTableEntry.TagList = tagListInfoTable; // INFOTABLE
+                                        tagsConfigTable.AddRow(configTableEntry);
+                                        
+                                        me.SetConfigurationTable({
+                                        	tableName: 'TagsToExport' /* STRING */,
+                                        	configurationTable: tagsConfigTable /* INFOTABLE */,
+                                        	persistent: true /* BOOLEAN */
+                                        });
+                                        
+                                        
+                                        // Add tags for NI TestStand connections
+                                        var listOfNITestStand = Things['PTC.SCA.SCO.NITestStandResourceProvider'].GetServerList();
+                                        
+                                        var tableLength = listOfNITestStand.rows.length;
+                                        for (var x=0; x < tableLength; x++) {
+                                            var row = listOfNITestStand.rows[x];
+                                            Things[row.Name].AddTags(
+                                                {"tags":[{"vocabulary":"PTC","vocabularyTerm":"factory-mv","type":"ModelTagVocabulary"},
+                                                {"vocabulary":"PTC","vocabularyTerm":"FactoryConnectionInstance","type":"ModelTagVocabulary"}]
+                                            });
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility></Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

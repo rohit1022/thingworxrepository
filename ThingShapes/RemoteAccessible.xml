@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isExtension="true"
+         className=""
+         description="Used to provide properties and services to Things which are accessible by Remote Sessions."
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:15:04.561+05:30"
+         name="RemoteAccessible"
+         projectName=""
+         tags="Applications:RemoteAccess">
+            <PropertyDefinitions>
+                <PropertyDefinition
+                 aspect.dataChangeType="VALUE"
+                 aspect.isPersistent="true"
+                 aspect.thingShape="RemoteAccessProvider"
+                 baseType="THINGNAME"
+                 category=""
+                 description="The RemoteAccessProvider for this Thing."
+                 isLocalOnly="false"
+                 name="providerName"
+                 ordinal="0"></PropertyDefinition>
+                <PropertyDefinition
+                 aspect.dataChangeType="VALUE"
+                 aspect.dataShape="RemoteServerConfiguration"
+                 aspect.isPersistent="true"
+                 baseType="INFOTABLE"
+                 category=""
+                 description="The remote server-side configuration properties of endpoints on this Thing."
+                 isLocalOnly="false"
+                 name="remoteServerConfiguration"
+                 ordinal="2"></PropertyDefinition>
+            </PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 category=""
+                 description=""
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="AssignEndpoints">
+                    <ResultType
+                     aspect.dataShape="RemoteEndpoint"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="RemoteEndpoint"
+                         aspect.isDataTableEntry="true"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="endpoints"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="End the session with the given ID."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="EndSession">
+                    <ResultType
+                     baseType="NOTHING"
+                     description="result"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="GUID"
+                         description="the ID of the session to end"
+                         name="sessionId"
+                         ordinal="0"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="Get the endpoints available on this device."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetRemoteAccessibleEndpoints">
+                    <ResultType
+                     aspect.dataShape="RemoteEndpoint"
+                     baseType="INFOTABLE"
+                     description="Endpoints available on the device"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Gets the server configuration for the given endpoint for this Thing"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetRemoteServerConfiguration">
+                    <ResultType
+                     baseType="JSON"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="endpointName"
+                         ordinal="0"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="Get the session with the given ID for this Thing."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetSession">
+                    <ResultType
+                     aspect.dataShape="RemoteSession"
+                     baseType="INFOTABLE"
+                     description="a remote session with the given session ID"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="GUID"
+                         description="the ID of the session to get"
+                         name="sessionId"
+                         ordinal="0"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="Get all Remote Sessions for this Thing."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetSessions">
+                    <ResultType
+                     aspect.dataShape="RemoteSession"
+                     baseType="INFOTABLE"
+                     description="the remote sessions for this Thing"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="A service called when the session for this Thing is updated."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="HandleSessionUpdated">
+                    <ResultType
+                     baseType="NOTHING"
+                     description="result"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="RemoteSessionEvent"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="the event containing the session that has been updated"
+                         name="sessionEvent"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Updates the ThingShape InfoTable property row using the endpointName as the key and sets the serverConfiguration"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ProcessRemoteServerUpdate">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="endpointName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="JSON"
+                         description=""
+                         name="serverConfiguration"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="Tell the platform to prepare a remote session for this Thing."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="StartSession">
+                    <ResultType
+                     baseType="GUID"
+                     description="the ID of the session to be created"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="RemoteSessionParameters"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="parameters for the session to be started"
+                         name="parameters"
+                         ordinal="0"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions>
+                <EventDefinition
+                 aspect.auditCategoryKey="audit.AuditCategory.RemoteAccess"
+                 aspect.auditMessageKey="audit.rae.SessionCompleted"
+                 category=""
+                 dataShape="RemoteSession"
+                 description="An event fired when a session for this Thing is completed."
+                 name="SessionCompleted"></EventDefinition>
+                <EventDefinition
+                 aspect.auditCategoryKey="audit.AuditCategory.RemoteAccess"
+                 aspect.auditMessageKey="audit.rae.SessionCreated"
+                 category=""
+                 dataShape="RemoteSession"
+                 description="An event fired when a session for this Thing is created."
+                 name="SessionCreated"></EventDefinition>
+                <EventDefinition
+                 category=""
+                 dataShape="RemoteSessionEvent"
+                 description="An event fired when a session for this Thing is updated."
+                 name="SessionUpdated"></EventDefinition>
+            </EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="AssignEndpoints">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    /*
+                                     * Set the endpoint property from the endpoint parameter
+                                     * 1 - Replace the parameter's datashape with that of the RemoteEndpoint to prevent extraneous and/or missing fields
+                                     */
+                                    var params = {
+                                       infoTableName : "InfoTable",
+                                       dataShapeName : "RemoteEndpoint",
+                                    };
+                                    var remoteEndpointInfoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    // Replace endpoint parameter's Datashape with RemoteEndpoint datashape
+                                    endpoints.setDataShape(remoteEndpointInfoTable.dataShape);
+                                    me.endpoints = endpoints;
+                                    
+                                    result = endpoints;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="EndSession">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    Things[me.providerName].EndSession({
+                                         agentDevice: me.name,
+                                         sessionId: sessionId,
+                                     });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetRemoteAccessibleEndpoints">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = undefined;
+                                    
+                                    // No provider set, no endpoints to return
+                                    if (me.providerName === null || me.providerName === undefined || me.providerName == "") {
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "RemoteEndpoint"
+                                        });
+                                    } else { // Delegate to provider
+                                        result = Things[me.providerName].GetRemoteAccessibleEndpoints({
+                                            agentDevice: me.name
+                                        });
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetRemoteServerConfiguration">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    if (endpointName === null) {
+                                        throw "endpointName is required";
+                                    }
+                                    
+                                    result = {};
+                                    if (me.remoteServerConfiguration !== null) {
+                                        var row = me.remoteServerConfiguration.Find({endpointName: endpointName});
+                                        if (row !== null) {
+                                            result = row.serverConfiguration;
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetSession">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things[me.providerName].GetSession({
+                                        sessionId: sessionId,
+                                        agentDevice: me.name,
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetSessions">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things[me.providerName].GetSessions({
+                                        agentDevice: me.name,
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="HandleSessionUpdated">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    if (me.IsDerivedFromTemplate({thingTemplateName: "RemoteThingWithTunnels"}) ||
+                                        me.IsDerivedFromTemplate({thingTemplateName: "RemoteThingWithTunnelsAndFileTransfer"})) {
+                                    
+                                        var json = JSON.parse(sessionEvent.fieldsChanged);
+                                        var isStatusChange = json.fieldsChanged.indexOf("status") > -1;
+                                        if(sessionEvent.session.status == "TERMINATED" && isStatusChange) {
+                                            var updatedSessionId = sessionEvent.session.rows[0].sessionId;
+                                            Subsystems["TunnelSubsystem"].CancelTunnel({
+                                                reason: "EndSession invoked on ThingworxInternalRemoteAccessProvider",
+                                                tid: updatedSessionId
+                                            });
+                                        }
+                                        
+                                        if(sessionEvent.session.status == "CLOSE_REQUESTED" && isStatusChange) {
+                                            me.EndSession({
+                                                sessionId: sessionEvent.session.sessionId 
+                                            });
+                                        }
+                                    }
+                                    else {
+                                        logger.error("This method must be overridden by implementing Things.");
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ProcessRemoteServerUpdate">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    if (endpointName === null) {
+                                        throw "endpointName is required";
+                                    }
+                                    if (serverConfiguration === null) {
+                                        throw "serverConfiguration is required";
+                                    }
+                                    var tempServerConfigTable = me.remoteServerConfiguration;
+                                    if (tempServerConfigTable === null) {
+                                        tempServerConfigTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(
+                                            { dataShapeName : "RemoteServerConfiguration"} );
+                                    }
+                                    // RemoteServerConfiguration entry object
+                                    var newEntry = new Object();
+                                    newEntry.endpointName = endpointName;
+                                    newEntry.serverConfiguration = serverConfiguration;
+                                    tempServerConfigTable.Delete({ endpointName: endpointName });  // remove the existing entry for this endpoint
+                                    tempServerConfigTable.AddRow(newEntry);
+                                    
+                                    me.remoteServerConfiguration = tempServerConfigTable;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="StartSession">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    result = Things[me.providerName].StartSession({
+                                        agentDevice: me.name,
+                                        remoteSessionParameters: parameters,
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions>
+                <Subscription
+                 description=""
+                 enabled="true"
+                 eventName="SessionUpdated"
+                 name="Event.SessionUpdated"
+                 source=""
+                 sourceProperty=""
+                 sourceType="Thing">
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="Event.SessionUpdated">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var remoteSessionEvent= Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName: "InfoTable",
+                                            dataShapeName: "RemoteSessionEvent"
+                                        });
+                                        // add event parameters to InfoTable
+                                        remoteSessionEvent.AddRow(eventData.getRow(0));
+                                        
+                                        
+                                        var params = {
+                                            sessionEvent: remoteSessionEvent /* INFOTABLE */
+                                        };
+                                        
+                                        me.HandleSessionUpdated(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </Subscription>
+            </Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

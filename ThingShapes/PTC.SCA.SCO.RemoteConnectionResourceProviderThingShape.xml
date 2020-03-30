@@ -1,0 +1,1358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="Implement this ThingShape within a ThingTemplate to create a new connector resource provider. It contains the basic unimplemented services required to define a new resource provider for its corresponding connection type."
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.175+05:30"
+         name="PTC.SCA.SCO.RemoteConnectionResourceProviderThingShape"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-sco;PTC:ThingShape">
+            <PropertyDefinitions>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.defaultValue="."
+                 aspect.isLogged="false"
+                 aspect.isPersistent="true"
+                 aspect.isReadOnly="false"
+                 baseType="STRING"
+                 category=""
+                 description="Delimiter in the full path of the server node for the corresponding type of remote connection. Default value is period (.)."
+                 isLocalOnly="false"
+                 name="pathDelimiter"
+                 ordinal="1"></PropertyDefinition>
+            </PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Bind tags defined in a remote server into properties on the remote server thing. New property will be created if a tag has never been bound. No implementation if no remote bindings are needed."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="BindServerTags">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="BOOLEAN"
+                         description="If true, another check will be done to verify if tags are already subscribed from remote thing. Otherwise, it will directly use information passed from the selected tags."
+                         name="needsRefreshData"
+                         ordinal="4"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="BOOLEAN"
+                         description="If true, the remote thing will be restarted and notify the property changes."
+                         name="needsUpdate"
+                         ordinal="3"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Server name"
+                         name="serverName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.ServerTagDataShape"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="Selected server tags"
+                         name="tags"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="calculate value for property isConnectionHealthy, update this property with calculated value and return calculated value"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CalculateIsConnectionHealthy">
+                    <ResultType
+                     baseType="BOOLEAN"
+                     description="Value for property isConnectionHealthy"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="THINGNAME"
+                         description="Thing name of an existing server"
+                         name="serverName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Calculate the status for a given server thing name."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CalculateServerStatus">
+                    <ResultType
+                     baseType="NOTHING"
+                     description="triggers an event to update the status of a thing."
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="THINGNAME"
+                         description="Thing name of the server we want to calculate status"
+                         name="thingName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="Things"
+                 description="Creating new server thing"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateServerThing">
+                    <ResultType
+                     aspect.dataShape="PTC.Factory.GenericInfoDataShapeForDialogBox"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description="Description of the new server thing."
+                         name="description"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="false"
+                         baseType="INFOTABLE"
+                         description="An infotable to store all extra parameters needed by this service. There is no bound datashape for this infotable, you can use an infotable with dynamically genereated datashape."
+                         name="extraParams"
+                         ordinal="5"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Thing name of the new server."
+                         name="serverName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.tagType="ModelTags"
+                         baseType="TAGS"
+                         description="Tags for the new server thing."
+                         name="tags"
+                         ordinal="4"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="THINGTEMPLATENAME"
+                         description="Thing template name of the new Thing."
+                         name="thingTemplate"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="Things"
+                 description="Deleting new server thing"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="DeleteServerThing">
+                    <ResultType
+                     baseType="BOOLEAN"
+                     description="Returns true if the service was successful."
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="INFOTABLE"
+                         description="An infotable to store all extra parameters needed by this service. There is no bound datashape for this infotable, you can use an infotable with dynamically genereated datashape."
+                         name="extraParams"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Thing name of an existing server thing."
+                         name="serverName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="Things"
+                 description="Editing existing server thing."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="EditServerThing">
+                    <ResultType
+                     baseType="BOOLEAN"
+                     description="Returns true if the service was successful."
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description="New description of the server thing."
+                         name="description"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="INFOTABLE"
+                         description="An infotable to store all extra parameters needed by this service. There is no bound datashape for this infotable, you can use an infotable with dynamically genereated datashape."
+                         name="extraParams"
+                         ordinal="4"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Thing name of an existing server."
+                         name="serverName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.tagType="ModelTags"
+                         baseType="TAGS"
+                         description="New Tags for the server thing."
+                         name="tags"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Retrieves the connected servers."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetConnectedServers">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.EquipmentTypeNameDataShape"
+                     baseType="INFOTABLE"
+                     description="Retrieved infotable of the servers"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Retrieve the list of servers with connection information associated with the ResourceProvider"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetServerList">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.RemoteConnectionServerListDataShape"
+                     baseType="INFOTABLE"
+                     description="Returns an InfoTable of the remote servers with connection information."
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="QUERY"
+                         description="Filter query to filter it from"
+                         name="filterQuery"
+                         ordinal="0"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="QUERY"
+                         description="Sort query to sort it from"
+                         name="sortQuery"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Browse tags for given path and type filter."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetServerTags">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.ServerTagDataShape"
+                     baseType="INFOTABLE"
+                     description="Retrieved tags from specified server"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description="Filter will be applied on returned tags"
+                         name="filter"
+                         ordinal="4"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Path to the node which we want to retrieve tags"
+                         name="path"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Server name on which we want to retrieve tags"
+                         name="serverName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.ServerTagDataShape"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="Subscribed tags of this server. might be null"
+                         name="subscribedTags"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Retrieve next level of tree structure for a given node of the connected server."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetServerTreeStructure">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.ServerStructureDataShape"
+                     baseType="INFOTABLE"
+                     description="Retrieved tree structure from a specified server."
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Path to the node which we want to retrieve tree structure"
+                         name="path"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Server name on which we want to get tree structure"
+                         name="serverName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Check for given remote thing, is the connection between it and remote server established or not"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="IsConnected">
+                    <ResultType
+                     baseType="BOOLEAN"
+                     description="true: connection is established, false, connection is not established"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="THINGNAME"
+                         description="Name of remote connection thing"
+                         name="thingName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Removes the binding between the server tag and the target thing. Also removes the property itself from the target thing."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="RemovePropertyBinding">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Name of the property to be removed."
+                         name="propertyName"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Name of the thing that contains the bound property."
+                         name="thingName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="BindServerTags">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    /* No implementation if no remote bindings are needed. */
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CalculateIsConnectionHealthy">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    /*
+                                     * Default implementation: just retrieve current value of isConnectionHealthy and return it
+                                     */
+                                    try {
+                                    	var result = Things[serverName].isConnectionHealthy;
+                                    } catch (err) {
+                                    	logger.error(err.message);
+                                    	throw "While trying to retrieve value of property isConnectionHealthy error happens with message as: " + err.message + ". Maybe you forgot to implement thing shape PTC.SCA.SCO.RemoteConnectionThingShape?";
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CalculateServerStatus">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    /*
+                                    * Default implementation: Calculate status of a given server (by parameter thingName) and then update "status" property
+                                    */
+                                    var serverStatusValue = 1; /* by default, server is considered as NOT CONNECTED*/
+                                    
+                                    // Get kepserver thing
+                                    var serverThing = Things[this.thingName];
+                                    
+                                    // Only process connected Server
+                                    var params = {
+                                    	thingName: this.thingName
+                                    };
+                                    
+                                    // result: BOOLEAN
+                                    if (me.IsConnected(params)) {
+                                    	params = {
+                                    		serverName: this.thingName
+                                    	};
+                                    	if (me.CalculateIsConnectionHealthy(params)) {
+                                    		serverStatusValue = 0; // isConnectionHealthy is true, connection is OK
+                                    	} else {
+                                    		serverStatusValue = 2; // is connectionHealthy is false, connection is in WARNING
+                                    	}
+                                    } else {
+                                    	logger.debug("CalculateServerStatus: for server " + this.thingName + ", it is not connected, its serverStatus is 1 (not connected)" );
+                                    }
+                                    logger.debug("CalculateServerStatus: for server " + this.thingName + ", calculated serverStatus value is: "  + serverStatusValue);
+                                    // Update serverStatus ONLY IF new value is different from the old value
+                                    if (serverStatusValue != serverThing.serverStatus) {
+                                    	logger.debug("CalculateServerStatus: for server " + this.thingName + ", value of serverStatus is changed from: " + serverThing.serverStatus + " to: " + serverStatusValue);
+                                    	serverThing.serverStatus = serverStatusValue;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateServerThing">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var nameValidity = function(name) {
+                                        return Resources["PTC.Factory.CommonUtilities"].ValidateThingNameAndReturnMessage({
+                                    		thingName: name /* STRING */
+                                    	});
+                                    };
+                                    
+                                    var createInfoTableParams = {
+                                    	infoTableName: "InfoTable",
+                                    	dataShapeName: "PTC.Factory.GenericInfoDataShapeForDialogBox"
+                                    };
+                                    
+                                    var msgFormatUtils = Resources["PTC.Resource.Factory.MessageFormatUtilities"];
+                                    var localizationFunctions = Resources["RuntimeLocalizationFunctions"];
+                                    var appKeyName = serverName + "Key";
+                                    var username = extraParams.getRow(0).username;
+                                    var expirationDate = extraParams.getRow(0).expirationDate;
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(createInfoTableParams);
+                                    var newEntry = new Object();
+                                    
+                                    // Check the server thing name validity, if not valid, throw exception
+                                    var serverNameValidity = nameValidity(serverName);
+                                    
+                                    if (!serverNameValidity.status) {
+                                    	newEntry.executionResultMessage = serverNameValidity.executionResultMessage; // STRING -- Message to show when operation fails.
+                                    	newEntry.outputResultParam = null; /* STRING -- Usually used for the application key (app key) string. Cannot be null or empty. If app key is not required, put any random string so it doesn't fail. */
+                                    } else if (ApplicationKeys[appKeyName]) {
+                                    	logger.error("Application key " + appKeyName + " already exists in the system.");
+                                    	newEntry.executionResultMessage = msgFormatUtils.GetLocalizedMessageOneParam({label: "PTC.Factory.AppKeyAlreadyExist", value: appKeyName});
+                                    	newEntry.outputResultParam = null;
+                                    } else if (!username) {
+                                        logger.error("Empty application key username");
+                                    	newEntry.executionResultMessage = localizationFunctions.GetEffectiveToken({token: "PTC.SCA.SCO.InvalidAppKeyUsername"});
+                                    	newEntry.outputResultParam = null;
+                                    } else if (!expirationDate || expirationDate < new Date()) {
+                                        logger.error("Invalid application expiration date");
+                                    	newEntry.executionResultMessage = localizationFunctions.GetEffectiveToken({token: "PTC.SCA.SCO.InvalidAppKeyDate"});
+                                    	newEntry.outputResultParam = null;
+                                    } else {
+                                    	/*
+                                    	 * Does the given ThingTemplate implement ThingShape PTC.SCA.SCO.RemoteConnectionThingShape? If not, throw an error and end this service
+                                    	 */
+                                    	params = {
+                                    		infoTableName: "InfoTable",
+                                    		dataShapeName: "GenericStringList"
+                                    	};
+                                    	var thingShapes = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    	var row = new Object();
+                                    	row.item = "PTC.SCA.SCO.RemoteConnectionThingShape";
+                                    
+                                    	thingShapes.AddRow(row);
+                                    
+                                    	var params = {
+                                    		thingShapes: thingShapes,
+                                    		thingTemplateName: this.thingTemplate
+                                    	};
+                                    	if (!Resources["PTC.Factory.CommonUtilities"].IsImplementingAllShapes(params)) {
+                                    		throw "Create Server Thing failed: thing template [" + this.thingTemplate + "] did not implement required thing shape [PTC.SCA.SCO.RemoteConnectionThingShape]. Please fix this by implement thing shape [PTC.SCA.SCO.RemoteConnectionThingShape] on thing template [" + this.thingTemplate + "]";
+                                    	}
+                                    
+                                    	/*
+                                    	 * Create Value Stream for this server
+                                    	 */
+                                    	var nameOfValueStreamForServer = 'ValueStream_' + serverName;
+                                        var valueStreamValidity = nameValidity(nameOfValueStreamForServer);
+                                    	// check: is there a value stream already exist for given value stream name? if so throw error message and stop creation of this server
+                                    	if(!valueStreamValidity.status) {
+                                    		newEntry.executionResultMessage = valueStreamValidity.executionResultMessage; // STRING -- Message to show when operation fails.
+                                    	    newEntry.outputResultParam = null; /* STRING -- Usually used for the application key (app key) string. Cannot be null or empty. If app key is not required, put any random string so it doesn't fail. */
+                                    	} else if (Things[nameOfValueStreamForServer]) {
+                                    		// if this value stream exists, put error message in returned infotable and quit this service call
+                                    		params = {
+                                    			label: "PTC.SCA.SCO.ControlsAdvisor.ValueStreamExists" /* TEXT */,
+                                    			value: serverName /* STRING */
+                                    		};
+                                    		newEntry.executionResultMessage = msgFormatUtils.GetLocalizedMessageOneParam(params); // STRING -- Message to show when operation fails.
+                                    		newEntry.outputResultParam = null; /* STRING -- Usually used for the application key (app key) string. */
+                                    	} else {
+                                    		// Create value stream thing
+                                    		params = {
+                                    			name: nameOfValueStreamForServer /* STRING */,
+                                    			thingTemplateName: "ValueStream" /* THINGTEMPLATENAME */,
+                                    			tags: "PTC:factory-mv;PTC:FactoryConnectionInstance" /* TAGS */
+                                    		};
+                                    		Resources["EntityServices"].CreateThing(params);
+                                    		/*
+                                    		* Enable and restart this value stream thing
+                                    		*/
+                                    		Things[nameOfValueStreamForServer].EnableThing();
+                                    		Things[nameOfValueStreamForServer].RestartThing();
+                                    
+                                    		var createThingParams = {
+                                    			name: serverName /* STRING */,
+                                    			description: description /* STRING */,
+                                    			thingTemplateName: thingTemplate /* THINGTEMPLATENAME */,
+                                    			tags: tags /* TAGS */
+                                    		};
+                                    
+                                    		Resources["EntityServices"].CreateThing(createThingParams);
+                                    		Resources["EntityServices"].CreateApplicationKey({
+                                    			clientName: undefined /* STRING */,
+                                    			name: appKeyName /* STRING */,
+                                    			description: undefined /* STRING */,
+                                    			whitelist: undefined /* STRING */,
+                                    			user: username /* USERNAME */,
+                                    			tags: "PTC:factory-mv;PTC:FactoryAppKey" /* TAGS */,
+                                    			expirationDate: expirationDate /* DATETIME */
+                                    		});
+                                    
+                                    		Things[serverName].EnableThing();
+                                    		Things[serverName].RestartThing();
+                                    
+                                            // Add default tags
+                                            Things[serverName].AddTags({
+                                                tags: "PTC:factory-mv;PTC:FactoryConnectionInstance" /* TAGS */
+                                            });
+                                    
+                                    		/*
+                                    		 * Assign created value stream to server thing
+                                    		 */
+                                    		params = {
+                                    			name: nameOfValueStreamForServer /* THINGNAME */
+                                    		};
+                                    		Things[serverName].SetValueStream(params);
+                                    
+                                    		// Insert your own custom data here.
+                                    		// Entry object for PTC.Factory.GenericInfoDataShapeForDialogBox data shape.
+                                    		newEntry.executionResultMessage = ""; // STRING -- Message to show when operation fails.
+                                    		newEntry.inputParam = undefined; // INFOTABLE
+                                    		newEntry.dialogBoxMessage = undefined; // STRING -- Message usually shown in the status dialog that appears from the top of the page of the Controls Advisor.
+                                    		newEntry.outputParam = undefined; // INFOTABLE
+                                    		newEntry.serviceToCall = undefined; // STRING
+                                    		newEntry.title = undefined; // STRING
+                                    		newEntry.thingExecutingService = undefined; // THINGNAME
+                                    		newEntry.outputResultParam = appKeyName; /* STRING -- Usually used for the application key (app key) name. Cannot be null or empty. If app key is not required, put any random string so it doesn't fail. */
+                                    		newEntry.status = undefined; // BOOLEAN
+                                    	}
+                                    }
+                                    
+                                    result.AddRow(newEntry);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="DeleteServerThing">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    // No try-catch in this service to support rollback if an exception is thrown.
+                                    
+                                    // result: INFOTABLE dataShape: "IncomingLocalPropertyBinding"
+                                    var bindings =  Things[serverName].GetIncomingLocalPropertyBindings();
+                                    if (bindings !== null) {
+                                        var thingsToRestart = [];
+                                    	for (var x = 0; x < bindings.rows.length; x++ ) {
+                                            var row = bindings.rows[x];
+                                        	Things[row.incomingThingName].RemoveLocalPropertyBinding({
+                                    			propertyName: row.incomingPropertyName
+                                    		});
+                                            thingsToRestart.push(row.incomingThingName);
+                                        }
+                                        for (var thing=0;thing < thingsToRestart.length;thing++){
+                                         	Things[thingsToRestart[thing]].RestartThing();
+                                        }
+                                    }
+                                    
+                                    var valueStreamName = Things[serverName].GetValueStream();
+                                    
+                                    Resources["EntityServices"].DeleteThing({
+                                        name: serverName /* THINGNAME */
+                                    });
+                                    
+                                    if (valueStreamName) {
+                                        Resources["EntityServices"].DeleteThing({
+                                            name: valueStreamName /* THINGNAME */
+                                        });
+                                    }
+                                    
+                                    var appKeyName = serverName + "Key";
+                                    if (ApplicationKeys[appKeyName]) {
+                                        Resources["EntityServices"].DeleteApplicationKey({
+                                            name: appKeyName /* APPLICATIONKEYNAME */
+                                        });
+                                    }
+                                    result = true;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="EditServerThing">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    /*
+                                    * following code snippet only update property "description" of connection thing
+                                    */
+                                    try {
+                                        Things[this.serverName].SetDescription({description: this.description});
+                                        result = true;
+                                    }
+                                    catch (err) {
+                                        logger.error(err.message);
+                                        result = false;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetConnectedServers">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : "PTC.Factory.OPCDAServerNames"
+                                    };
+                                    var infoTableWithName = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    params = {
+                                        columnName: "ResourceProviderName",
+                                        value: me.name
+                                    };
+                                    
+                                    // result: INFOTABLE dataShape: PTC.SCA.SCO.RemoteConnectionSettingsTableDataShape
+                                    var result = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionTableRowByStringProperty(params);
+                                    
+                                    var thingTemplateName;
+                                    if (result) {
+                                        thingTemplateName = result.getRow(0).RemoteConnectionThingTemplateName;
+                                    }
+                                    
+                                    // The following query is used to retrieve the Things whose direct ThingTemplate is the specified ThingTemplate
+                                    var templateFilterQuery = {filters: {type: "EQ", fieldName: "thingTemplate", value: thingTemplateName}};
+                                    var paramsForThingTemplate = {
+                                        maxItems : Number.MAX_VALUE,
+                                        nameMask : undefined,
+                                        query : templateFilterQuery,
+                                        thingTemplate : thingTemplateName,
+                                        tags : undefined
+                                    };
+                                    var thingsWithTemplate = Resources["SearchFunctions"].SearchThingsByTemplate(paramsForThingTemplate);
+                                    
+                                    for (var x = 0; x < thingsWithTemplate.rows.length; x++) {
+                                        var row = thingsWithTemplate.rows[x];
+                                        var name = row.name;
+                                        var isThingEnabled = Things[name].IsEnabled();
+                                        if (name !== "" && name !== null && row.isConnected && isThingEnabled) {
+                                            var serverName = row.ServerName;
+                                            var rowObject = new Object();
+                                            rowObject.Name = name;
+                                            if (serverName === null || serverName === undefined || serverName === "") {
+                                                serverName = name;
+                                            }
+                                            rowObject.ServerName = serverName;
+                                            infoTableWithName.AddRow(rowObject);
+                                        }
+                                    }
+                                    result = infoTableWithName;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetServerList">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    function URLParameter(key, value) {
+                                    	this.key = key;
+                                    	this.value = value;
+                                    }
+                                    
+                                    /*
+                                     * Get value for property CurrentServerTime
+                                     */
+                                    function getCurrentServerTime(serverDefinition, serverName) {
+                                    	var serverThing = Things[serverName];
+                                    	var currentServerTime;
+                                    	if (serverDefinition.ResourceProviderName == "PTC.Factory.KepServerResourceProvider") {
+                                    		// If it is of type KepServerEX, get its CurrentServerTime
+                                    		currentServerTime = serverThing.CurrentServerTime;
+                                    	} else if (serverDefinition.ResourceProviderName == "PTC.SCA.SCO.NITestStandResourceProvider") {
+                                    		// If it is of type NITestStand then
+                                    		if (serverThing.isConnected) {
+                                    			// If it is connected, get time that lasted connection established
+                                    			currentServerTime = serverThing.lastConnection;
+                                    		} else {
+                                    			// If it is NOT connected, return "blank"
+                                    			currentServerTime = null;
+                                    		}
+                                    	} else {
+                                    		// otherwise get currentServerTime. notice the "c" is a lower case one!
+                                    		currentServerTime = serverThing.currentServerTime;
+                                    	}
+                                    	// Get time in localized format
+                                    	var params = {
+                                    		label: "dateTimeFormat_Default",
+                                    	};
+                                    	var  timeFormatToken = Resources["PTC.Resource.Factory.MessageFormatUtilities"].GetLocalizedMessageOneParam(params);
+                                    	return dateFormat(currentServerTime, timeFormatToken);
+                                    }
+                                    
+                                    /*
+                                     * Function that create HTML link to icon that point to alert page of this server
+                                     */
+                                    function createAlertLink(thingName, hasActiveAlert) {
+                                    
+                                    	var params = {
+                                    		infoTableName: "InfoTable",
+                                    		dataShapeName: "PTC.Factory.StringKeyValuePair"
+                                    	};
+                                    	var parametersToAlertLink = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    	parametersToAlertLink.AddRow(new URLParameter("master", "PTC.Factory.AlertMonitoring.Master"));
+                                    	parametersToAlertLink.AddRow(new URLParameter("mashup", "PTC.Factory.AlertManager.AlertMonitor"));
+                                    	parametersToAlertLink.AddRow(new URLParameter("source", thingName));
+                                    	parametersToAlertLink.AddRow(new URLParameter("numAdditionalBack", 1)); // Used by BackButton. this number indicate how many extra level should browser go back when back button is clicked
+                                    
+                                    	var activeIconName = hasActiveAlert ? "PTC.Factory.Bell_Alert_Red" : "PTC.Factory.Bell_Alert_Grey";
+                                    	var activeTooltipName = hasActiveAlert ? "PTC.Factory.ActiveAlerts" : "PTC.Factory.NoActiveAlerts";
+                                    	params = {
+                                    		iconName: activeIconName,
+                                    		tooltip: activeTooltipName,
+                                    		params: parametersToAlertLink
+                                    	};
+                                    	return Resources["PTC.Factory.CommonUtilities"].GetIconHtmlLink(params);
+                                    }
+                                    /*
+                                     * Function that check: is there any activated alert against given connection?
+                                     */
+                                    function hasActivatedAlert(thingName) {
+                                    
+                                    	/*
+                                    	 * Retrieve all activated alert of a given connection
+                                    	 */
+                                    	var params = {
+                                    		query: '{"filters":{"fieldName":"source","type":"EQ","value":"' + thingName + '"}}',
+                                    		onlyUnacknowledged: false,
+                                    		onlyAcknowledged: false
+                                    	};
+                                    	var allActivatedAlerts = Resources["PTC.Alert.AlertMonitorUtilities"].QueryAlertSummary(params);
+                                    
+                                    	return (allActivatedAlerts.getRowCount() > 0);
+                                    }
+                                    /*
+                                     * Function to create HTML string of icon that point to detail page of this connection
+                                     */
+                                    function createIconLinkForDetailPage(thingName, detailMashupName) {
+                                    	var params = {
+                                    		infoTableName: "InfoTable",
+                                    		dataShapeName: "PTC.Factory.StringKeyValuePair"
+                                    	};
+                                    
+                                    	// CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.Factory.StringKeyValuePair)
+                                    	var table = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    	// PTC.Factory.StringKeyValuePair entry object
+                                    	table.AddRow(new URLParameter("master", "PTC.Factory.KEPServerEX.DetailPageMaster"));
+                                    	table.AddRow(new URLParameter("mashup", detailMashupName));
+                                    	table.AddRow(new URLParameter("ServerName", thingName));
+                                    	table.AddRow(new URLParameter("numAdditionalBack", "1")); // Used by BackButton. this number indicate how many extra level should browser go back when back button is clicked
+                                    
+                                    	params = {
+                                    		iconName: "PTC.Factory.ViewIcon" /* STRING */,
+                                    		tooltip: "PTC.Factory.DETAILS.ToolTip" /* STRING */,
+                                    		params: table /* INFOTABLE */
+                                    	};
+                                    
+                                    	return Resources["PTC.Factory.CommonUtilities"].GetIconHtmlLink(params);
+                                    }
+                                    
+                                    /*
+                                     * Function that create HTML string for icon of serverStatus of this connection
+                                     */
+                                    function createStatusHTMLString(serverStatus) {
+                                    	var params = {
+                                    		Context: 'com.ptc.sca.sco.common.KepServerResourceProvider' /* we just reuse status icons and tooltips for KepServerEX type of connection */,
+                                    		Value: serverStatus /* STRING */,
+                                    		FieldName: 'serverStatus' /* STRING */
+                                    	};
+                                    	var statusIcon = Things["PTC.Factory.IconTooltipURLUtils"].GetHTMLString(params);
+                                    	return statusIcon.getRow(0).HTMLString;
+                                    }
+                                    
+                                    // Structure that contains property settings for 1 server (1 line in the Controls Advisor table)
+                                    function ServerInfo(serverName, remoteSettingConfiguration) {
+                                    	var serverThing = Things[serverName];
+                                    	this.Description = serverThing.GetDescription(); // STRING - Description of the server - Example value: "This is a description for MyServer"
+                                    	this.hasAlert = hasActivatedAlert(serverName); // BOOLEAN - Boolean property representing if it has an alert - Example value: "true"
+                                    	this.AlertIcon = createAlertLink(serverName, this.hasAlert); // STRING - Icon for Alert - Example value: "<span ><img>...</img></span>"
+                                    	this.DetailsPageLink = createIconLinkForDetailPage(serverName, remoteSettingConfiguration.ServerDetailMashupName); // STRING - HTML link for the details page - Example value: "<span ><a>...</a></span>"
+                                    	this.Name = serverName; // STRING - (Primary key) The name of the server - Example value: "MyServer"
+                                    	this.isCustomRemoteOPCServer = false; // BOOLEAN - Boolean property representing if it is a custom Remote OPC server - Example value: "false"
+                                    	this.isRemoteServer = false; // BOOLEAN - Boolean property representing if it is a remote server from the aggregate - Example value: "false"
+                                    	this.connectionType = remoteSettingConfiguration.ConnectionType; // STRING - String property representing the connection type - Example value: "KEPServerEX"
+                                    	this.CurrentServerTime = getCurrentServerTime(remoteSettingConfiguration, serverName); // STRING - Displayed current server time - Example value: "2018-06-04 16:24:07"
+                                    	this.serverStatus = serverThing.serverStatus; // INTEGER - An integer that indicates the server's status - Example value: "0"
+                                    	this.serverStatusHTMLString = createStatusHTMLString(this.serverStatus); // STRING - HTML String for the server status - Example value: "<span ><a>...</a></span>"
+                                    
+                                    	this.NumberOfDevices = undefined; // INTEGER - Integer representing the number of devices - Example value: "21"
+                                    	this.ClientCount = undefined; // INTEGER - Count of the client - Example value: "14"
+                                    	this.aggregateThing = undefined; // THINGNAME - The aggregators name - Example value: "MyAggregator"
+                                    	this.displayDevicesStatus = undefined; // STRING - HTML String for the status of the server's devices - Example value: "<span ><a>...</a></span>"
+                                    	this.TagCount = undefined; // INTEGER - Integer representing the number of Tag count - Example value: "106"
+                                    	this.devicesStatus = undefined; // INTEGER - Integer which represents the device status - Example value: "1"
+                                    }
+                                    
+                                    // Get LaunchPointConfigurationTable row
+                                    var params = {
+                                    	value: me.name /* STRING */,
+                                    	columnName: "ResourceProviderName" /* STRING */
+                                    };
+                                    
+                                    // INFOTABLE dataShape: PTC.SCA.SCO.RemoteConnectionSettingsTableDataShape
+                                    var remoteSettingsConfigTable = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionTableRowByStringProperty(params);
+                                    
+                                    // The following query is used to retrieve the Things whose direct ThingTemplate is the specified ThingTemplate
+                                    var templateFilterQuery = {filters: {type: "EQ", fieldName: "thingTemplate", value: remoteSettingsConfigTable.RemoteConnectionThingTemplateName}};
+                                    
+                                    params = {
+                                    	thingTemplates: {
+                                    		"items": [remoteSettingsConfigTable.RemoteConnectionThingTemplateName]
+                                    	} /* JSON */,
+                                    	thingShapes: {
+                                    		"items": ["PTC.SCA.SCO.RemoteConnectionThingShape"]
+                                    	} /* JSON */,
+                                    	query : templateFilterQuery
+                                    };
+                                    
+                                    // result: INFOTABLE dataShape: SearchResults
+                                    var thingList = Resources["SearchFunctions"].SearchThings(params).thingResults;
+                                    
+                                    // Prepare the parameters for "CreateInfoTableFromDataShape"
+                                    params = {
+                                    	infoTableName: "InfoTable",
+                                    	dataShapeName: "PTC.SCA.SCO.RemoteConnectionServerListDataShape"
+                                    };
+                                    
+                                    // Create the InfoTable using the "PTC.SCA.SCO.RemoteConnectionServerListDataShape"
+                                    result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    // For each thing found, create a server info row using it's name as the only parameter
+                                    for (var x = 0; x < thingList.rows.length; x++) {
+                                    	var row = thingList.rows[x];
+                                    	result.AddRow(new ServerInfo(row.name, remoteSettingsConfigTable));
+                                    }
+                                    
+                                    var filterParams = {
+                                    	t: result /* INFOTABLE */,
+                                    	query: filterQuery /* QUERY */
+                                    };
+                                    
+                                    result = Resources["InfoTableFunctions"].Query(filterParams);
+                                    
+                                    if (sortQuery && sortQuery.sorts.length == 1) {
+                                    	sortQuery.sorts[0].isCaseSensitive = false;
+                                    }
+                                    
+                                    var sortParams = {
+                                    	t: result /* INFOTABLE */,
+                                    	query: sortQuery /* QUERY */
+                                    };
+                                    
+                                    result = Resources["InfoTableFunctions"].Query(sortParams);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetServerTags">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    // this.filter not used because it is not needed
+                                    // this.subscribedTags not used because there is no remote binding
+                                    // this.path not used becaused we are only dealing with root
+                                    
+                                    var params = {
+                                    	infoTableName: "GetServerTags" /* STRING */,
+                                    	dataShapeName: "PTC.SCA.SCO.ServerTagDataShape" /* DATASHAPENAME */
+                                    };
+                                    
+                                    // result: INFOTABLE
+                                    var table = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    var thing = Things[this.serverName];
+                                    
+                                    if (thing) {
+                                    
+                                    	// Get all properties
+                                        params = {
+                                            category: undefined /* STRING */,
+                                            type: undefined /* BASETYPENAME */,
+                                            dataShape: undefined /* DATASHAPENAME */
+                                        };
+                                    
+                                        // result: INFOTABLE dataShape: PropertyDefinition
+                                        var properties = thing.GetPropertyDefinitions(params);
+                                        var filter = {
+                                          name: "name",
+                                          description: "description",
+                                          tags: "tags",
+                                          thingTemplate: "thingTemplate",
+                                        };
+                                        for (var x = 0; x < properties.rows.length; x++) {
+                                            var property = properties.rows[x];
+                                            if (!filter[property.name]) {
+                                                // PTC.SCA.SCO.ServerTagDataShape entry object
+                                                var newEntry = new Object();
+                                                newEntry.isSubscribed = false; // BOOLEAN
+                                                newEntry.isReadOnly = property.isReadOnly; // STRING
+                                                newEntry.BaseType = property.baseType; // STRING
+                                                newEntry.SourceType = property.baseType; // STRING
+                                                newEntry.tagName = property.name; // STRING
+                                                newEntry.Source = property.name; // STRING
+                                                newEntry.Name = property.name; // STRING
+                                    
+                                                table.AddRow(newEntry);
+                                            }
+                                        }
+                                    }
+                                    
+                                    var result = table;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetServerTreeStructure">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : "PTC.SCA.SCO.ServerStructureDataShape"
+                                    };
+                                    
+                                    // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.ServerStructureDataShape)
+                                    var table = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    // PTC.SCA.SCO.ServerStructureDataShape entry object
+                                    var row = new Object();
+                                    row.HasChildren = false; // BOOLEAN
+                                    row.DisplayName = this.serverName; // STRING
+                                    row.FullPath = this.serverName;// STRING - isPrimaryKey = true
+                                    row.Name = this.serverName; // STRING
+                                    
+                                    table.AddRow(row);
+                                    
+                                    var result = table;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="IsConnected">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    /*
+                                    * Default implementation: try to read and return value of property "isConnected". if this property does not exist, leave an error message in log and return false (not connected)
+                                    */
+                                    
+                                    var serverThing = Things[thingName];
+                                    
+                                    try {
+                                        result = serverThing.isConnected;
+                                    }
+                                    catch (err) {
+                                        logger.error("IsConnected: failed to read property isConnected, error message is: " + err.message);
+                                        result = false;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="RemovePropertyBinding">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                        propertyName: propertyName /* STRING */
+                                    };
+                                    
+                                    var thing = Things[thingName];
+                                    thing.RemoveLocalPropertyBinding(params);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

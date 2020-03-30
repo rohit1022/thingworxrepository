@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b937"
+ build="b222"
  majorVersion="8"
- minorVersion="3"
- modelPersistenceProviderPackage="H2PersistenceProviderPackage"
- revision="3"
- schemaVersion="1030"
- universal="">
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
     <Subsystems>
         <Subsystem
          aspect.isCreatable="false"
@@ -18,8 +18,8 @@
          documentationContent=""
          enabled="true"
          friendlyName="User Management"
-         homeMashup="MonitoringUserManagementSubsystem"
-         lastModifiedDate="2018-12-03T14:53:15.479+05:30"
+         homeMashup=""
+         lastModifiedDate="2020-03-03T01:03:58.468+05:30"
          name="UserManagementSubsystem"
          projectName=""
          tags="">
@@ -95,6 +95,27 @@
                             <name>
                             <![CDATA[
                             GlobalSessionProperties
+                            ]]>
+                            </name>
+                        </Row>
+                        <Row>
+                            <name>
+                            <![CDATA[
+                            PTC.ConvergeConsoleHelper.Shape
+                            ]]>
+                            </name>
+                        </Row>
+                        <Row>
+                            <name>
+                            <![CDATA[
+                            PTC.Asset.Session
+                            ]]>
+                            </name>
+                        </Row>
+                        <Row>
+                            <name>
+                            <![CDATA[
+                            PTC.Factory.Session
                             ]]>
                             </name>
                         </Row>
@@ -208,7 +229,7 @@
                              aspect.defaultValue="5"
                              aspect.friendlyName="Maximum Login Attempts"
                              baseType="INTEGER"
-                             description="Number of times the user can attempt to log in before their accout is locked"
+                             description="Number of times the user can attempt to log in before their account is locked"
                              name="loginAttemptsMax"
                              ordinal="0"></FieldDefinition>
                             <FieldDefinition
@@ -234,6 +255,63 @@
                             <loginLockedMinutes>15</loginLockedMinutes>
                         </Row>
                     </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Configurable password settings"
+                 isMultiRow="false"
+                 name="PasswordSettings"
+                 ordinal="6">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.friendlyName="Password Blacklist Case Sensitive"
+                             baseType="BOOLEAN"
+                             description="Enabling will only flag password as invalid if string matches exact case of blacklist value"
+                             name="blackListCaseSensitive"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.friendlyName="Password Blacklist Partial Match"
+                             baseType="BOOLEAN"
+                             description="Enabling will check if any password includes a value match from the blacklist"
+                             name="blackListPartialMatch"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="14"
+                             aspect.friendlyName="Minimum Password Length"
+                             aspect.maximumValue="128"
+                             aspect.minimumValue="10"
+                             baseType="INTEGER"
+                             description="The configurable minimum password length, with the absolute minimum being 10 characters"
+                             name="passwordConfigurableMinLength"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <blackListCaseSensitive>false</blackListCaseSensitive>
+                            <blackListPartialMatch>false</blackListPartialMatch>
+                            <passwordConfigurableMinLength>14</passwordConfigurableMinLength>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Additional blacklist values to use when validating a potential user password"
+                 isMultiRow="true"
+                 name="CustomPasswordBlackList"
+                 ordinal="7">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.friendlyName="Value"
+                             baseType="STRING"
+                             description="Blacklist value"
+                             name="value"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows></Rows>
                 </ConfigurationTable>
             </ConfigurationTables>
         </Subsystem>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b937"
+ build="b222"
  majorVersion="8"
- minorVersion="3"
- modelPersistenceProviderPackage="H2PersistenceProviderPackage"
- revision="3"
- schemaVersion="1030"
- universal="">
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
     <ThingTemplates>
         <ThingTemplate
          aspect.isSystemObject="true"
@@ -15,7 +15,7 @@
          documentationContent=""
          effectiveThingPackage="RemoteThingWithTunnelsAndFileTransfer"
          homeMashup=""
-         lastModifiedDate="2018-12-03T14:53:14.416+05:30"
+         lastModifiedDate="2020-03-03T01:03:57.219+05:30"
          name="RemoteThingWithTunnelsAndFileTransfer"
          projectName=""
          tags=""
@@ -55,6 +55,34 @@
             </VisibilityPermissions>
             <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
             <ConfigurationTables>
+                <ConfigurationTable
+                 description="Reporting Settings"
+                 isMultiRow="false"
+                 name="ReportingConfiguration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="NotReporting"
+                             aspect.isPrimaryKey="true"
+                             aspect.isReadOnly="false"
+                             aspect.thingTemplate="ReportingStrategy"
+                             baseType="THINGNAME"
+                             description="Strategy to determine health"
+                             name="reportingStrategy"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <reportingStrategy>
+                            <![CDATA[
+                            AlwaysOnReporting
+                            ]]>
+                            </reportingStrategy>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
                 <ConfigurationTable
                  description="General Settings"
                  isMultiRow="false"

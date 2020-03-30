@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="Equipment structure manager template {PTC.SCA.SCO.EquipmentStructureManager}"
+         documentationContent=""
+         effectiveThingPackage="PTC.SCA.SCO.EquipmentStructureManagerPackage"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.997+05:30"
+         name="PTC.SCA.SCO.EquipmentStructureManagerTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-common;PTC:Equipment;PTC:ThingTemplate;PTC:Structure"
+         thingPackage="PTC.SCA.SCO.EquipmentStructureManagerPackage"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves the default network entity name used for structure filtering."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetDefaultStructureEquipmentNetwork">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves the list of equipment for a specific node from a defined network."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentList">
+                        <ResultType
+                         aspect.dataShape="EntityList"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="networkName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="THINGNAME"
+                             description=""
+                             name="node"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             baseType="BOOLEAN"
+                             description=""
+                             name="showOnlyAssets"
+                             ordinal="4"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves the tree view of an equipment structure (works with the tree widget)."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentStructure">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.SimpleEquipmentStructureTree"
+                         baseType="INFOTABLE"
+                         description="InfoTable used in the tree widget."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.EntityPermissionsDataShape"
+                             baseType="INFOTABLE"
+                             description="Infotable containing permissions information for each entity in the structure. If left empty, we assume that the current user has permissions on all entities."
+                             name="entityPermissionsTable"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="If true assets will be listed in the tree, if no, asset node and asset leaf will be removed from the structure (default is false)."
+                             name="includeAsset"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="INTEGER"
+                             description="Max level hierarchy level."
+                             name="maxLevel"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Name of the network, optional, if none passed default network will be retrieved see service GetDefaultStructureEquipmentNetwork."
+                             name="networkName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves a tree view of an equipment structure with a count of active alerts for each item in the tree."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentStructureWithActiveAlertCount">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.EquipmentStructureTree"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Context name selected."
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="Define if asset need to be return as part of the tree structure"
+                             name="includeAsset"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="INTEGER"
+                             description="Maximum number of levels displayed in the tree structure."
+                             name="maxLevel"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description=""
+                             name="rollupAlerts"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves the tree view of an equipment structure in JSON format."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetJSONStructureTree">
+                        <ResultType
+                         baseType="JSON"
+                         description="JSON representation of the structure tree"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="INTEGER"
+                             description=""
+                             name="maxLevel"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description=""
+                             name="networkName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetDefaultStructureEquipmentNetwork">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // result: INFOTABLE dataShape: "PTC.SCA.SCO.EquipmentContextSettingsDataShape"
+                                        var result =  Things["PTC.Factory.LaunchPointConfigurationThing"].GetNetworkNameByContextName({
+                                        	contextName: "DefaultContext" /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentList">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if ( Networks[networkName] &&  Things[node] ){                          
+                                        	// result: INFOTABLE dataShape: "NetworkConnection"
+                                        	var subnetwork =  Networks[networkName].GetSubNetworkConnections({
+                                        		maxDepth: undefined /* NUMBER */,
+                                        		start: node /* STRING */
+                                        	});
+                                        
+                                        	var ASSET_THINGSHAPE = "PTC.ISA95.GeneralPhysicalAssetThingShape";
+                                        	var params = {
+                                        		infoTableName : "InfoTable",
+                                        		dataShapeName : "EntityList"
+                                        	};
+                                        
+                                        	// CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(EntityList)
+                                        	var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        	var tableLength = subnetwork.rows.length;
+                                        	var x = 0;
+                                        	for ( x=0; x < tableLength; x++) {
+                                        		var row = subnetwork.rows[x];
+                                        		
+                                        		var thingNameTo = row.to;
+                                        		if ( showOnlyAssets ){
+                                        			var isAsset =  Things[thingNameTo].ImplementsShape({
+                                        				thingShapeName: ASSET_THINGSHAPE /* THINGSHAPENAME */
+                                        			});
+                                        
+                                        			if ( isAsset ){
+                                        				// EntityList entry object
+                                        				var newEntry = new Object();
+                                        				newEntry.name = thingNameTo; // STRING [Primary Key]
+                                        				result.AddRow(newEntry);
+                                        			}
+                                        		}else{
+                                        			var newEntry = new Object();
+                                        			newEntry.name = thingNameTo; // STRING [Primary Key]
+                                        			result.AddRow(newEntry);
+                                        		}
+                                        	}
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentStructure">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var customLogger = logger.getLoggerContext().getLogger(logger.getName() + ".ptc.sca.sco.EquipmentStructureManager");
+                                        customLogger.trace("GetEquipmentStructure");
+                                        var user = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        
+                                        function isEnabledAndRunning(thingName){
+                                            return Resources["PTC.Factory.CommonUtilities"].IsThingEnabledAndRunning({thingName: thingName})
+                                        }
+                                        function isNullOrBlank(str) {
+                                        	return (!str || 0 === str.trim().length );
+                                        }
+                                        
+                                        function checkPermissions(thingName) {
+                                            if (!entityPermissionsTable) {
+                                                return true;
+                                            }
+                                            var entityPermissionRow = entityPermissionsTable.Find({Entity:thingName});
+                                            return entityPermissionRow !== null || isAdmin(user);
+                                        }
+                                        
+                                        function isAdmin(userName) {
+                                            return Resources["PTC.Factory.CommonUtilities"].IsAdmin({userName: userName});
+                                        }
+                                        
+                                        var ASSET_THINGSHAPE = "PTC.Factory.PhysicalAssetThingShape";
+                                        
+                                        if ( !networkName ){
+                                        	networkName =  me.GetDefaultStructureEquipmentNetwork();
+                                        }
+                                        
+                                        var jsonTree =  me.GetJSONStructureTree({
+                                        	maxLevel: maxLevel /* INTEGER */,
+                                        	networkName: networkName /* STRING */
+                                        });
+                                        
+                                        var params = {
+                                        	infoTableName : "InfoTable",
+                                        	dataShapeName : "PTC.SCA.SCO.SimpleEquipmentStructureTree"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.SimpleEquipmentStructureTree)
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        function addEntryIfEligible(currentNode,currentPath){
+                                            customLogger.trace("			addEntryIfEligible:"+ currentNode.to);
+                                        	var newEntry = new Object();
+                                        	var thingName = currentNode.to;
+                                        	if ( Things[thingName] && isEnabledAndRunning(thingName)){
+                                                var hasPermission = checkPermissions(thingName);
+                                        		var isAsset =  Things[thingName].ImplementsShape({
+                                        			thingShapeName: ASSET_THINGSHAPE /* THINGSHAPENAME */
+                                        		});
+                                        		var path = thingName;
+                                        		if ( currentPath ){
+                                        			path = currentPath +"/"+thingName;
+                                        		}
+                                        		newEntry.path = path; // STRING [Primary Key]
+                                        		newEntry.isAsset = isAsset; // STRING
+                                        		if (hasPermission === true) {
+                                        		    newEntry.displayName = Things[thingName].displayName; // STRING
+                                        		}
+                                        		if ( isNullOrBlank(newEntry.displayName)){
+                                        			newEntry.displayName = thingName;
+                                        		}
+                                                newEntry.from = hasPermission ? currentPath : undefined; // STRING
+                                        		newEntry.to = thingName; // STRING
+                                        		newEntry.hasChildren = false; //BOOLEAN
+                                        		newEntry.networkName = networkName;
+                                        		var includeNode =  (isAsset && (includeAsset === true)) || !isAsset;
+                                                customLogger.trace("			addEntryIfEligible includeNode:"+includeNode+" isAsset:"+ isAsset);
+                                        		if (currentNode.hasChildren && includeNode){
+                                        			for (var k  = 0 ; k<currentNode.children.length;k++){
+                                                        path = hasPermission ? path : null;
+                                                        var newChild = addEntryIfEligible(currentNode.children[k],path);
+                                        				if ( newChild && (typeof newEntry !== 'undefined')){
+                                         					newEntry.hasChildren = true;
+                                        				}
+                                                    }
+                                        		}else{
+                                        			newEntry.hasChildren = false;
+                                        		}
+                                                customLogger.trace("			addEntryIfEligible includeNode:"+includeNode+" hasPermission:"+ hasPermission);
+                                                if (includeNode && hasPermission){
+                                                    customLogger.trace("			addEntryIfEligible addingRow:"+ JSON.stringify(newEntry));
+                                        			result.AddRow(newEntry);
+                                        		}
+                                        	}else{
+                                                customLogger.warn("GetEquipmentStructure ThingName["+thingName+"] does not exist or is not enabled");
+                                        	}
+                                        }
+                                        if ( jsonTree.array ){
+                                        	var tableLength = jsonTree.array.length;
+                                            customLogger.trace("			addEntryIfEligible jsonTree.length:"+ tableLength);
+                                        	for ( var x=0; x < tableLength; x++) {
+                                        		// PTC.SCA.SCO.SimpleEquipmentStructureTree entry object
+                                        		var node = jsonTree.array[x];
+                                        		addEntryIfEligible(node);
+                                        	}
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentStructureWithActiveAlertCount">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var customLogger = logger.getLoggerContext().getLogger(logger.getName()+".com.ptc.sca.sco.EquipmentStructureManagerTemplate.GetEquipmentStructureWithActiveAlertCount");
+                                        
+                                        var showAsset = includeAsset;
+                                        if (rollupAlerts){
+                                        	showAsset = true;
+                                        }
+                                        
+                                        //Retrieve current Structure for given network
+                                        var tempRes =  Things["PTC.SCA.SCO.ContextManager"].GetEquipmentStructureForContext({
+                                        	maxLevel: maxLevel /* INTEGER */,
+                                        	contextName: contextName /* STRING */,
+                                        	includeAsset: showAsset /* BOOLEAN */,
+                                        	permissionType: "Read"
+                                        });
+                                        
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.EquipmentStructureTree"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.EquipmentStructureTree)
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        // Upon receiving all assets, rollup will be applied only if this check is enabled in the mashup.
+                                        //If rollup not enable just display number of alerts per things
+                                        var tableLength = tempRes.rows.length;
+                                        var objectCount = {};
+                                        var children = {};
+                                        customLogger.debug("Structure:"+result.toJSON());
+                                        for (var x=0; x < tableLength; x++) {
+                                            var row = tempRes.rows[x];
+                                           	customLogger.debug("row:"+row.toJSON());
+                                        
+                                            var from = row.from;
+                                            //If same then no parents
+                                            //Update map with alert count
+                                            appendCountIfAbsent(objectCount,row.to);
+                                            var childInfo = row.to;
+                                            //Update map with list of children for a given node
+                                            children = appendArrayToMapKey(children,getLastElementFromPath(row.from),row);
+                                            if ( customLogger.isDebugEnabled()){
+                                                customLogger.debug("maps:"+JSON.stringify(objectCount));
+                                            }
+                                        
+                                            result.AddRow(row);
+                                        }
+                                        //Update alert count in InfoTable result
+                                        updateCount(result,objectCount,children,rollupAlerts);
+                                        if (!includeAsset){
+                                        	result = filterAsset(result,children);
+                                        }
+                                        
+                                        function filterAsset(currentInfoTable,children){
+                                        
+                                            //Need to remove asset nodes
+                                            var resultLength = currentInfoTable.rows.length;
+                                            var outputRes = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                            for (var x=0; x < resultLength; x++) {
+                                                var row = currentInfoTable.rows[x];
+                                                if ( !row.isAsset && !isParentAnAsset(row,children) ){
+                                                	outputRes.AddRow(row);
+                                                }
+                                            }
+                                            return outputRes;
+                                        }
+                                        
+                                        function isParentAnAsset(row,children){
+                                            var isParentAsset = false;
+                                            if ( !isNullOrBlank(row.from) ){
+                                                var parentRow = children[row.from];
+                                                if (typeof parentRow !== 'undefined'){
+                                                    if ( !isParentAsset.isAsset ){
+                                            			isParentAsset = isParentAnAsset(children[row.from],children);
+                                                	}else{
+                                                    	isParentAsset = true;
+                                                    }
+                                                }
+                                            }
+                                            return isParentAsset;
+                                        }
+                                        function updateCount(infoTableRes,maps, children,doRollup){
+                                            var tableLength = infoTableRes.rows.length;
+                                            for (var x=0; x < tableLength; x++) {
+                                            	var row = infoTableRes.rows[x];
+                                                var count = maps[row.to];
+                                                //If doRollup do recursive call to get alert count on child's node
+                                                if ( doRollup ){
+                                                	count = getRollupCount(row.to,count,maps,children,{});
+                                                }
+                                                row.numberOfAlerts = count;
+                                                var displayCount = count === 0 ? row.displayName : row.displayName + " ("+String(count)+")";
+                                                row.displayNode = displayCount;
+                                            }
+                                        }
+                                        
+                                        /*Retrieve rollup count for a given thing name, currentCountMap is there to avoid counting multiple time alert if the same
+                                         * thing has multiple occurrences on the tree
+                                         */
+                                        function getRollupCount(thingName,currentCount,maps,children,currentCountMap){
+                                        	var directChild = children[thingName];
+                                            if (typeof directChild !== 'undefined'){
+                                            	var arrayLength = directChild.length;
+                                                for (var i = 0; i < arrayLength; i++) {
+                                                    var childName = directChild[i].to;
+                                                    if ( !currentCountMap.hasOwnProperty(childName)){
+                                                    	currentCount = currentCount + maps[childName];
+                                                        currentCountMap[childName] = currentCount;
+                                                    }
+                                                    currentCount = getRollupCount(childName,currentCount,maps,children,currentCountMap);
+                                                }
+                                            }
+                                            return currentCount;
+                                        }
+                                        
+                                        //Retrieve last element thing name from a given path like /Site/Line1/Asset2 => return Asset2
+                                        function getLastElementFromPath(fromValue)
+                                        {
+                                            customLogger.debug("getLastElementFromPath :"+ fromValue);
+                                            if ( fromValue ){
+                                            	var elements = fromValue.split("/");
+                                            	return elements[elements.length-1];
+                                            }else{
+                                            	return "";
+                                            }
+                                        }
+                                        
+                                        //Append to hashmap if not already defined
+                                        function appendCountIfAbsent(currentMap,key){
+                                        	if ( !currentMap.hasOwnProperty(key)){
+                                        		currentMap[key] = getCount(key);
+                                            }
+                                        }
+                                        
+                                        /*
+                                        
+                                        */
+                                        function appendArrayToMapKey(currentMap,key,objectToAdd){
+                                        	if ( currentMap.hasOwnProperty(key)){
+                                        		var currentVal = currentMap[key];
+                                                currentVal.push(objectToAdd);
+                                                customLogger.trace("appendArrayToMapKey["+key+ "]:"+ currentVal.join());
+                                                currentMap[key] = currentVal;
+                                            }else{
+                                                var objects = [];
+                                                objects.push(objectToAdd);
+                                                customLogger.debug("appendArrayToMapKey new key ["+key+ "]:"+ objects.join());
+                                                currentMap[key] = objects;
+                                            }
+                                            return currentMap;
+                                        }
+                                        
+                                        //Retrieve the number of active alerts for a given thing
+                                        function getCount(thingName){
+                                         	var alerts = Things[thingName].GetAlertSummary({
+                                                maxItems: Number.MAX_SAFE_INTEGER /* NUMBER */
+                                            });
+                                            var rowCount = alerts.getRowCount();
+                                            return rowCount;
+                                        }
+                                        
+                                        function isNullOrBlank(str) {
+                                        	return (!str || 0 === str.trim().length );
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetJSONStructureTree">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        logger.trace("GetJSONStructureTree");
+                                        
+                                        var nodes = [];
+                                        var treeNodes = [];
+                                        var nodeMap = {};
+                                        
+                                        function filterRootNode(a) {
+                                        	return !a.from;
+                                        }
+                                        
+                                        function addChildren(parentNode,allNodes,currentLevel){
+                                        	var newNode = {};
+                                        	if ( !currentLevel ){
+                                        		currentLevel = 0;
+                                        	}
+                                        	var thingToName = parentNode.to;
+                                        	//Retrieve all children
+                                        	newNode.from = parentNode.from;
+                                        	newNode.to = parentNode.to;
+                                        	newNode.hasChildren = false;
+                                        	var nodesFound = nodeMap[thingToName];
+                                        	if ( nodesFound && nodesFound.length > 0 ){
+                                        		var childNodes = [];
+                                        
+                                        		currentLevel++;
+                                        		logger.trace("nodesFound currentLevel:"+currentLevel+ " maxLevel:"+maxLevel);
+                                        		if ( (maxLevel && currentLevel <= maxLevel) || !maxLevel ) {
+                                        			newNode.hasChildren = true;
+                                        			for (var o = 0;o<nodesFound.length;o++){
+                                        				childNodes[o] = addChildren(nodesFound[o],allNodes,currentLevel);
+                                        			}
+                                        		}
+                                        		newNode.children = childNodes;
+                                        	}else{
+                                        		newNode.children = [];
+                                        	}
+                                        	return newNode;
+                                        
+                                        }
+                                        
+                                        if (  !Networks[networkName] ){
+                                        	logger.error("PTC.SCA.SCO.EquipmentStructureManagerTemplate.GetJSONStructureTree network not found:"+networkName);
+                                        	treeNodes =  "";
+                                        }
+                                        else{ 
+                                        	// result: INFOTABLE dataShape: "NetworkConnection"
+                                        	var networkInfotable =  Networks[networkName].GetNetworkConnections({
+                                        		maxDepth: maxLevel /* NUMBER */
+                                        	});
+                                        
+                                        
+                                        	var tableLength = networkInfotable.rows.length;
+                                        	var x = 0;
+                                        	for ( x=0; x < tableLength; x++) {
+                                        		var row = networkInfotable.rows[x];
+                                        		var thingNameTo = row.to;
+                                        		var thingNameFrom = row.from;
+                                        		//Test has child
+                                        		var node = {from: thingNameFrom, to: thingNameTo, hasChildren : false,connectionType : row.connectionType};
+                                        		if ( !nodeMap[thingNameFrom] ){
+                                        			logger.trace("nodeMap zero adding map:"+thingNameTo);
+                                        			nodeMap[thingNameFrom] = [node];
+                                        		}else{
+                                        			var current = nodeMap[thingNameFrom];
+                                        			logger.trace("nodeMap thingNameFrom:"+thingNameFrom+" Current:"+current);
+                                        			current.splice(0,0,node);
+                                        			node[thingNameFrom] = current;
+                                        		}
+                                        		nodes.splice(0,0,node);
+                                        	}
+                                        	var nodeFiltered = nodes.filter(filterRootNode );
+                                        	for ( var i=0; i < nodeFiltered.length; i++) {
+                                        		var rootNode = addChildren(nodeFiltered[i],nodes);
+                                        		treeNodes.splice(0,0,rootNode);
+                                        	}
+                                        }
+                                        var result = JSON.stringify(treeNodes);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

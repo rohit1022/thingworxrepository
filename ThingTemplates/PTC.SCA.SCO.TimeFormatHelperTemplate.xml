@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="Thing template for the TimeFormat helper. {PTC.SCA.SCO.TimeFormatHelperTemplate}"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.993+05:30"
+         name="PTC.SCA.SCO.TimeFormatHelperTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Takes a duration in MS and formats it to the format provided in the implementation of this service.​ Can be changed through customization.​"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="FormatDuration">
+                        <ResultType
+                         baseType="STRING"
+                         description="The formatted duration."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="NUMBER"
+                             description="The duration (in MS) to format."
+                             name="duration"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="Whether or not to display milliseconds when the duration is under a minute."
+                             name="includeMS"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="FormatDuration">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*
+                                        * Convert a time in millisecond into string like xx day(s) xx hr(s) xx min(s) xx sec(s) xx ms
+                                        */
+                                        
+                                        // Array for plural tokens
+                                        var pluralTokens = ["PTC.SCA.SCO.AssetMonitor.DurationFormat.DAYS", "PTC.SCA.SCO.AssetMonitor.DurationFormat.HOURS", "PTC.SCA.SCO.AssetMonitor.DurationFormat.MINUTES", "PTC.SCA.SCO.AssetMonitor.DurationFormat.SECONDS", "PTC.SCA.SCO.ms"];
+                                        // Array for singular tokens
+                                        var singularTokens = ["PTC.SCA.SCO.AssetMonitor.DurationFormat.DAY", "PTC.SCA.SCO.AssetMonitor.DurationFormat.HOUR", "PTC.SCA.SCO.AssetMonitor.DurationFormat.MINUTE", "PTC.SCA.SCO.AssetMonitor.DurationFormat.SECOND", "PTC.SCA.SCO.ms"];
+                                        // retrieve current set language of MFG appCodeName
+                                        var currentLanguage = Resources["CurrentSessionInfo"].GetCurrentUserLanguage();
+                                        
+                                        // Function to localize token strings
+                                        function localizeToken(tokenName) {
+                                            var params = {
+                                                language: currentLanguage /* STRING */,
+                                                token: tokenName /* STRING */
+                                            };
+                                            return Resources["RuntimeLocalizationFunctions"].GetEffectiveTokenForLanguage(params);
+                                        }
+                                        
+                                        // make sure duration is not negative
+                                        if (duration < 0) {
+                                            throw "EXCEPTION: Duration cannot be a negative value!"
+                                        }
+                                        
+                                        // get remaining milliseconds
+                                        var milliseconds = duration % 1000;
+                                        
+                                        // calculate days
+                                        var days = Math.floor(duration / (24*60*60*1000));
+                                        var remainder = (duration % (24*60*60*1000));
+                                        
+                                        // calculate hours
+                                        var hours = Math.floor(remainder / (60*60*1000));
+                                        remainder = (remainder % (60*60*1000))
+                                        
+                                        // calculate minutes 
+                                        var minutes = Math.floor(remainder / (60*1000));
+                                        remainder = (remainder % (60*1000))
+                                        
+                                        // calculate seconds
+                                        var seconds = Math.floor(remainder / 1000);
+                                        var timeParts = [days, hours, minutes, seconds, milliseconds];
+                                        
+                                        // retrieve current set language of MFG appCodeName
+                                        var currentLanguage = Resources["CurrentSessionInfo"].GetCurrentUserLanguage();
+                                        
+                                        // determine inclusion or exclusion of milliseconds
+                                        var allowedLength = timeParts.length;
+                                        if (!includeMS) {
+                                            allowedLength--;
+                                        }
+                                        
+                                        // build returned format string
+                                        var i = 0;
+                                        while (timeParts[i] === 0) {
+                                            i++;
+                                        }
+                                        
+                                        var formattedDuration = "";
+                                        var localizedToken = ""
+                                        
+                                        if (duration < 1000) {
+                                            localizedToken = localizeToken(pluralTokens[allowedLength-1]);
+                                            // in the rare case that duration is 0, or that the duration is less than a second but we don't want to show milliseconds,
+                                            // force show "0 sec"
+                                            if (duration === 0 || !includeMS) {
+                                                formattedDuration = "0 " + localizedToken;
+                                            } else {
+                                                formattedDuration = timeParts[4] + " " + localizedToken;
+                                            }
+                                        } else {
+                                            var counter = 0;
+                                            for (; i < allowedLength && counter < 2; i++, counter++) {
+                                                if (timeParts[i] > 0) {
+                                                    formattedDuration += timeParts[i] + " ";
+                                        
+                                                    var tokenName;
+                                                    if (timeParts[i] > 1) {
+                                                        tokenName = pluralTokens[i];
+                                                    } else {
+                                                        tokenName = singularTokens[i];
+                                                    }
+                                                    localizedToken = localizeToken(tokenName);
+                                                    formattedDuration += localizedToken + " ";
+                                                }
+                                            }
+                                        }
+                                        result = formattedDuration.trim();
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

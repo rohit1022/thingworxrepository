@@ -1,0 +1,1373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="ThingTemplate for ControlsAdvisorUtils thing. {​PTC.​SCA.​SCO.​ControlsAdvisorUtilsThingTemplate}"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.769+05:30"
+         name="PTC.SCA.SCO.ControlsAdvisorUtilsThingTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:factory-mv;PTC:ThingTemplate"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Calculate status for a selected server thing."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CalculateStatus">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="THINGNAME"
+                             description="Thing name of the server we want to calculate status"
+                             name="thingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CreateServerThing">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.GenericInfoDataShapeForDialogBox"
+                         baseType="INFOTABLE"
+                         description="Creating a new server thing."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Description of the new server thing."
+                             name="description"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="DATETIME"
+                             description="Expiration date for the application key created for the connection"
+                             name="expiration"
+                             ordinal="8"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="Whether the new connection type is a legacy and non-Kepware OPC server."
+                             name="isLegacy"
+                             ordinal="6"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="THINGNAME"
+                             description="Resource provider name of the corresponding remote connection type."
+                             name="resourceProviderName"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Thing name of the new server."
+                             name="serverName"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.tagType="ModelTags"
+                             baseType="TAGS"
+                             description="Tags for the new server Thing."
+                             name="tags"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="THINGTEMPLATENAME"
+                             description="Thing template of the new Thing."
+                             name="thingTemplate"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="USERNAME"
+                             description="User name reference for the application key created for the connection"
+                             name="user"
+                             ordinal="7"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Delete an existing server thing."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="DeleteServerThing">
+                        <ResultType
+                         baseType="BOOLEAN"
+                         description="Returns true if the service was successful."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="INFOTABLE"
+                             description="An infotable to store all input parameters needed for the service."
+                             name="inputParams"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Edit an existing server thing."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="EditServerThing">
+                        <ResultType
+                         baseType="BOOLEAN"
+                         description="Returns true if the service was successful."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="New description for the server being edited."
+                             name="description"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="INFOTABLE"
+                             description="An infotable to store all extra parameters needed by this service."
+                             name="extraParams"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Thing name of the server being edited."
+                             name="serverName"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.tagType="ModelTags"
+                             baseType="TAGS"
+                             description="New tags for the server being edited."
+                             name="tags"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get the connection information mashup name for a given connection type."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetConnectionInfoMashupName">
+                        <ResultType
+                         baseType="MASHUPNAME"
+                         description="The name of the mashup used for the footer."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Thing name of the server used to retrieve the connection information mashup name"
+                             name="serverName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieve connection types from LaunchPointConfigurationThing and return an InfoTable for population of dropdown list widget"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetConnectionTypes">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ControlsAdvisor.ConnectionTypeDropdownListDataShape"
+                         baseType="INFOTABLE"
+                         description="An InfoTable containing ConnectionTypeDisplayName  for connection/server types dropdown list, as well as isLegacy, RemoteConnectionThingTemplateName, and ResourceProviderName."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get the footer mashup given the provided server name."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetFooterMashupName">
+                        <ResultType
+                         baseType="MASHUPNAME"
+                         description="The name of the mashup used for the footer."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Thing name of the server of which we want to retrieve the footer mashup name."
+                             name="serverName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get utilization token"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetNITestStandCurrentUtilization">
+                        <ResultType
+                         baseType="STRING"
+                         description="Current utilization token"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Name of the connection"
+                             name="connectionThingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Returns Infotable that is parsed from the JSON result of the NITestStand test"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetNITestStandLastSequenceResult">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ControlsAdvisor.NITestStandJsonResultDataShape"
+                         baseType="INFOTABLE"
+                         description="Infotable parsed from the NITestStand test JSON"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Name of the connection"
+                             name="connectionThingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get the last 6 test runs for a given NI TestStand connection."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetNITestStandTestHistory">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ControlsAdvisor.NITestStandJsonResultDataShape"
+                         baseType="INFOTABLE"
+                         description="An infotable containing the last 6 test runs of the given NI TestStand connection."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Name of the connection"
+                             name="connectionThingName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="QUERY"
+                             description="Query for filtering the infotable output."
+                             name="filterQuery"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="NUMBER"
+                             description="The maximum number of results returned by this service."
+                             name="maxResults"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="QUERY"
+                             description="Query for sorting the infotable output."
+                             name="sortQuery"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="The name of the mashup used for the server details."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetServerDetailMashupName">
+                        <ResultType
+                         baseType="MASHUPNAME"
+                         description="The name of the mashup used for the server detail."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Thing name of the server of which we want to retrieve the server detail mashup name."
+                             name="serverName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieve the list of servers with connection information associated with the ResourceProvider"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetServerList">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.RemoteConnectionServerListDataShape"
+                         baseType="INFOTABLE"
+                         description="Remote Connected Servers"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="QUERY"
+                             description="Query to filter on"
+                             name="filterQuery"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="QUERY"
+                             description="Query to sort on"
+                             name="sortQuery"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieve property values of a given server"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetServerProperties">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.RemoteConnectionServerListDataShape"
+                         baseType="INFOTABLE"
+                         description="An infotable contains returned property values"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Name of the server we want to return property values"
+                             name="serverName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Check is given connection connected to remote server or not"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="IsConnected">
+                        <ResultType
+                         baseType="BOOLEAN"
+                         description="True: connected; false: not connected"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="THINGNAME"
+                             description="Name of the connection thing"
+                             name="thingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="CalculateStatus">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // get provider name from server thing name
+                                        var params = {
+                                            serverName: this.thingName /* STRING */
+                                        };
+                                        var providerName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionResourceProviderFromServerName(params);
+                                        
+                                        // get provider thing
+                                        var resourceProvider = Things[providerName];
+                                        
+                                        params = {
+                                            thingName: this.thingName /* THINGNAME */
+                                        };
+                                        // no return
+                                        resourceProvider.CalculateServerStatus(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="CreateServerThing">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // create extraParams InfoTable
+                                        var myLogger = logger.getLoggerContext().getLogger(logger.getName()+".ptc.sca.sco.ControlsAdvisorUtils");
+                                        var params = {
+                                            infoTableName: "extraParamsInfoTable" /* STRING */
+                                        };
+                                        var extraParams = Resources["InfoTableFunctions"].CreateInfoTable(params);
+                                        
+                                        /*
+                                        * DataShape of this infotable is dynamically created: it does not refer
+                                        * to any existing dataShape
+                                        */
+                                        // Add field definition for column "serverType". All server types other than "Aggregate Server" are consider as "Remote Server"
+                                        var newFieldType = new Object();
+                                        newFieldType.name = "serverType";
+                                        newFieldType.baseType = 'STRING';
+                                        extraParams.AddField(newFieldType);
+                                        
+                                        var newFieldUser = new Object();
+                                        newFieldUser.name = "username";
+                                        newFieldUser.baseType = 'STRING';
+                                        extraParams.AddField(newFieldUser);
+                                        
+                                        var newFieldDate = new Object();
+                                        newFieldDate.name = "expirationDate";
+                                        newFieldDate.baseType = 'DATETIME';
+                                        extraParams.AddField(newFieldDate);
+                                        myLogger.debug("user: "+user+" date: "+expiration);
+                                        var newRow = {
+                                            serverType: (isLegacy ? "AgregateServers" : "RemoteServers"),
+                                            expirationDate: expiration,
+                                            username: user
+                                        };
+                                        extraParams.AddRow(newRow);
+                                        
+                                        var createServerThingParams = {
+                                            serverName: serverName /* STRING */,
+                                            description: description /* STRING */,
+                                            extraParams: extraParams /* INFOTABLE */,
+                                            thingTemplate: thingTemplate /* THINGTEMPLATENAME */,
+                                            tags: undefined /* TAGS */
+                                        };
+                                        
+                                        // result: INFOTABLE dataShape: PTC.Factory.GenericInfoDataShapeForDialogBox
+                                        result = Things[resourceProviderName].CreateServerThing(createServerThingParams);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="DeleteServerThing">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // get provider name from server thing name
+                                        var serverName = "";
+                                        if (inputParams !== null && inputParams.getRowCount() > 0) {
+                                            serverName = inputParams.getRow(0).Name;
+                                        }
+                                        var params = {
+                                            serverName: serverName /* STRING */
+                                        };
+                                        
+                                        var providerName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionResourceProviderFromServerName(params);
+                                        
+                                        // get provider thing
+                                        var resourceProvider = Things[providerName];
+                                        
+                                        params = {
+                                            serverName: this.serverName /* STRING */,
+                                            extraParams: this.extraParams /* INFOTABLE */
+                                        };
+                                        
+                                        resourceProvider.DeleteServerThing(params);
+                                        result = true;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="EditServerThing">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // get provider name from server thing name
+                                        var params = {
+                                          serverName: this.serverName /* STRING */
+                                        };
+                                        var providerName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionResourceProviderFromServerName(params);
+                                        
+                                        // get provider thing
+                                        var resourceProvider = Things[providerName];
+                                        
+                                        params = {
+                                            serverName: this.serverName /* STRING */,
+                                            description: this.description /* STRING */,
+                                            tags: this.tags /* TAG */,
+                                            extraParams: this.extraParams /* INFOTABLE */
+                                        };
+                                        
+                                        var result = resourceProvider.EditServerThing(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetConnectionInfoMashupName">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            thingName: this.serverName /* STRING */
+                                        };
+                                        
+                                        // INFOTABLE dataShape: PTC.SCA.SCO.RemoteConnectionSettingsTableDataShape
+                                        var infoTable = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionSettingRowByThingName(params);
+                                        var row = infoTable.getRow(0);
+                                        
+                                        result = (row) ? row.ConnectionInfoMashupName : "";
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetConnectionTypes">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*
+                                        * Read all enabled remote connection types defined in the effective LaunchPointConfiguratonThing and return them
+                                        * in an Infotable for population of create server dropdown list.
+                                        */
+                                        
+                                        // Retrieve all connection types with other information defined in effective LaunchPointConfigurationThing
+                                        // Infotable using dataShape: PTC.SCA.SCO.RemoteConnectionSettingsTableDataShape
+                                        params = {
+                                            value: true /* STRING */,
+                                            columnName: "EnabledInControlsAdvisor" /* STRING */
+                                        };
+                                        
+                                        // result: INFOTABLE dataShape: PTC.SCA.SCO.RemoteConnectionSettingsTableDataShape
+                                        var enabledRemoteConnectionSettingRows = Things["PTC.Factory.LaunchPointConfigurationThing"].GetAllRemoteConnectionTableRowsByStringProperty(params);
+                                        
+                                        var params = {
+                                            infoTableName : "CreateServersDropdownListInfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.ControlsAdvisor.ConnectionTypeDropdownListDataShape"
+                                        };
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        for (var x = 0; x < enabledRemoteConnectionSettingRows.rows.length; x++) {
+                                            var row = enabledRemoteConnectionSettingRows.rows[x];
+                                            var newResultRow = new Object();
+                                            newResultRow.ConnectionTypeDisplayName = row.ConnectionType;
+                                            newResultRow.RemoteConnectionThingTemplateName = row.RemoteConnectionThingTemplateName;
+                                            newResultRow.ResourceProviderName = row.ResourceProviderName;
+                                            newResultRow.IsLegacy = false;
+                                            result.AddRow(newResultRow);
+                                        }
+                                        
+                                        /*
+                                        * Add an extra line for legacy and non-kepware opc servers. this kind of server is a sub-type of KEPServerEX type server
+                                        */
+                                        var legacyResultRow = new Object();
+                                        
+                                        params = {
+                                            label: "PTC.SCA.SCO.AggregateServers" /* TEXT. Localization token name */,
+                                            value: undefined /* STRING. Here we do not use this param */
+                                        };
+                                        legacyResultRow.ConnectionTypeDisplayName = Resources["PTC.Resource.Factory.MessageFormatUtilities"].GetLocalizedMessageOneParam(params);
+                                        legacyResultRow.RemoteConnectionThingTemplateName = "PTC.Factory.KepServerThingTemplate";
+                                        legacyResultRow.ResourceProviderName = "PTC.Factory.KepServerResourceProvider";
+                                        legacyResultRow.IsLegacy = true;
+                                        
+                                        result.AddRow(legacyResultRow);
+                                        
+                                        //Sort alphabetically
+                                        var sort = new Object();
+                                        sort.name = "ConnectionTypeDisplayName";
+                                        sort.ascending = true;
+                                        result.Sort(sort);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetFooterMashupName">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            thingName: this.serverName /* STRING */
+                                        };
+                                        
+                                        // INFOTABLE dataShape: PTC.SCA.SCO.RemoteConnectionSettingsTableDataShape
+                                        var infoTable = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionSettingRowByThingName(params);
+                                        var row = infoTable.getRow(0);
+                                        
+                                        result = (row) ? row["FooterMashupName"] : "PTC.SCA.SCO.ControlsAdvisor.GenericFooterMashup";
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetNITestStandCurrentUtilization">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var utilization = Things[connectionThingName].Utilization;
+                                        var isConnected = Things[connectionThingName].isConnected;
+                                        var result = "";
+                                        if (utilization == "True" && isConnected) {
+                                          tknString = "PTC.SCA.SCO.ControlsAdvisor.NITestStandRunning";
+                                        } else if (utilization == "False" && isConnected) {
+                                            tknString = "PTC.SCA.SCO.ControlsAdvisor.NITestStandIdle";
+                                        } else {
+                                          result = "--";
+                                        }
+                                        
+                                        if (result != "--") {
+                                            var params = {
+                                            token: tknString /* STRING */
+                                          };
+                                        
+                                          // result: STRING
+                                          result = Resources["RuntimeLocalizationFunctions"].GetEffectiveToken(params);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetNITestStandLastSequenceResult">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.ControlsAdvisor.NITestStandJsonResultDataShape"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.ControlsAdvisor.NITestStandJsonResultDataShapa)
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        var row = Things[connectionThingName].TestStandJSONResult;
+                                        
+                                        if (JSON.stringify(row) === JSON.stringify({})) {
+                                            row.LastStep = "--";
+                                            row.Sequence = "--";
+                                            row.ErrorMessage = "--";
+                                            row.StationID = "--";
+                                            row.TestResult = "--";
+                                            row.LastStepResult = "--";
+                                            row.Duration = "--";
+                                        }
+                                        
+                                        
+                                        if (row && row.Duration != "--") {
+                                          // result: STRING
+                                          var duration =  Things["PTC.SCA.SCO.TimeFormatHelper"].FormatDuration({
+                                            duration: row.DurationInSec * 1000 /* NUMBER */,
+                                            includeMS: false /* BOOLEAN */
+                                          });
+                                          row.Duration = duration;
+                                        }
+                                        
+                                        result.AddRow(row);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetNITestStandTestHistory">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function getDuration(durationInSec) {
+                                            return Things["PTC.SCA.SCO.TimeFormatHelper"].FormatDuration({
+                                            duration: durationInSec * 1000 /* NUMBER */,
+                                            includeMS: false /* BOOLEAN */
+                                            });
+                                        }
+                                        
+                                        function getDateTimeFromMS(timeSinceEpocMS) {
+                                            return new Date(timeSinceEpocMS);
+                                        }
+                                        
+                                        function getReasonForFailure(errorMsg, code) {
+                                            return errorMsg + " (Error code " + code + ")";
+                                        }
+                                        
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.ControlsAdvisor.NITestStandJsonResultDataShapa)
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.ControlsAdvisor.NITestStandJsonResultDataShape"
+                                        };
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        // Check: is given connectionThingName of type NITestStand?
+                                        var launchPointConfigurationThing = Things[Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName()];
+                                        var givenRemoteConnectionInfo = launchPointConfigurationThing.GetRemoteConnectionSettingRowByThingName({
+                                            thingName: connectionThingName /* STRING */
+                                        });
+                                        
+                                        // Only do following process when given remote connection is of type 'NI TestStand'
+                                        if (givenRemoteConnectionInfo.rows[0].ConnectionType === 'NI TestStand') {
+                                        
+                                            // historyRows: INFOTABLE dataShape: "StringValueStream"
+                                            var historyRows =  Things[connectionThingName].QueryStringPropertyHistory({
+                                                oldestFirst: false /* BOOLEAN */,
+                                                maxItems: maxResults /* NUMBER */,
+                                                propertyName: "TestStandJSONResult" /* STRING */
+                                            });
+                                        
+                                            var tableLength = historyRows.rows.length;
+                                            for (var x=0; x < tableLength; x++) {
+                                                var historyEntry = historyRows.rows[x].get("value");
+                                                var historyEntryJSON = JSON.parse(historyEntry);
+                                                // Make sure tha the duration is present. If not, calculate it here.
+                                                if (!historyEntryJSON.Duration && historyEntryJSON.DurationInSec != undefined) {
+                                                    historyEntryJSON.Duration = getDuration(historyEntryJSON.DurationInSec);
+                                                }
+                                                // If there is an error message present, append the error code at the end of the message
+                                                if (historyEntryJSON.ErrorMessage) {
+                                                    historyEntryJSON.ErrorMessage = getReasonForFailure(historyEntryJSON.ErrorMessage, historyEntryJSON.ErrorCode);
+                                                }
+                                                // Do x1000 on StartTime and EndTime since TestStand gives them in seconds, but we need milliseconds
+                                                historyEntryJSON.StartDateTime = getDateTimeFromMS(historyEntryJSON.StartTime * 1000);
+                                                historyEntryJSON.EndDateTime = getDateTimeFromMS(historyEntryJSON.EndTime * 1000);
+                                                result.AddRow(historyEntryJSON);
+                                            }
+                                        
+                                            var filterParams = {
+                                                t: result /* INFOTABLE */,
+                                                query: filterQuery /* QUERY */
+                                            };
+                                        
+                                            result = Resources["InfoTableFunctions"].Query(filterParams);
+                                        
+                                            if (sortQuery && sortQuery.sorts.length == 1) {
+                                                sortQuery.sorts[0].isCaseSensitive = false;
+                                            }
+                                        
+                                            var sortParams = {
+                                                t: result /* INFOTABLE */,
+                                                query: sortQuery /* QUERY */
+                                            };
+                                        
+                                            result = Resources["InfoTableFunctions"].Query(sortParams);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetServerDetailMashupName">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            thingName: this.serverName /* STRING */
+                                        };
+                                        
+                                        // INFOTABLE dataShape: PTC.SCA.SCO.RemoteConnectionSettingsTableDataShape
+                                        var infoTable = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionSettingRowByThingName(params);
+                                        var row = infoTable.getRow(0);
+                                        
+                                        result = (row)?row["ServerDetailMashupName"]:"";
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetServerList">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            value: true /* STRING */,
+                                            columnName: "EnabledInControlsAdvisor" /* STRING */
+                                        };
+                                        
+                                        // result: INFOTABLE dataShape: PTC.SCA.SCO.RemoteConnectionSettingsTableDataShape
+                                        var table = Things["PTC.Factory.LaunchPointConfigurationThing"].GetAllRemoteConnectionTableRowsByStringProperty(params);
+                                        
+                                        var infotableParams = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.RemoteConnectionServerListDataShape"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING("PTC.SCA.SCO.RemoteConnectionServerListDataShape")
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(infotableParams);
+                                        
+                                        var getServerListParams = {
+                                            filterQuery: filterQuery,
+                                            sortQuery: undefined
+                                        };
+                                        
+                                        for (var x = 0; x < table.rows.length; x++) {
+                                            var row = table.rows[x];
+                                            var serverListTable = null;
+                                            try {
+                                                serverListTable = Things[row.ResourceProviderName].GetServerList(getServerListParams);
+                                            } catch(err) {
+                                                logger.error("Could not retrieve server list for resource provider [" + row.ResourceProviderName + "]: " + err);
+                                            }
+                                            if (serverListTable !== null && serverListTable.getRowCount() > 0) {
+                                                var unionParams = {
+                                                    t1: result /* INFOTABLE */,
+                                                    t2: serverListTable /* INFOTABLE */
+                                                };
+                                                result = Resources["InfoTableFunctions"].Union(unionParams);
+                                            }
+                                        }
+                                        
+                                        if (sortQuery && sortQuery.sorts.length == 1) {
+                                            sortQuery.sorts[0].isCaseSensitive = false;
+                                        
+                                            // If sorting is required on column "AlertIcon", then do sorting on column "hasAlert" instead
+                                            if (sortQuery.sorts[0].fieldName == "AlertIcon") {
+                                                sortQuery.sorts[0].fieldName = "hasAlert";
+                                            }
+                                        }
+                                        
+                                        var sortParams = {
+                                            t: result /* INFOTABLE */,
+                                            query: sortQuery /* QUERY */
+                                        };
+                                        
+                                        result = Resources["InfoTableFunctions"].Query(sortParams);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetServerProperties">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (serverName) {
+                                        // Based on given server name, retrieve associated resource provider name
+                                        var providerName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionResourceProviderFromServerName({
+                                            serverName: serverName /* STRING */
+                                        });
+                                        
+                                        var filterQuery =  {
+                                            "filters": {
+                                                "fieldName": "Name",
+                                                "type": "EQ",
+                                                "value": serverName
+                                            }
+                                        };
+                                        
+                                        var isKepServer = Things[serverName].ImplementsShape({
+                                            thingShapeName: "PTC.Factory.KepServerThingShape" /* THINGSHAPENAME */
+                                        });
+                                        
+                                        if (isKepServer && Things[serverName].isAggregate && providerName === "PTC.Factory.KepServerResourceProvider") {
+                                            // Get the aggregate server properties
+                                            result =  Things["PTC.Factory.KepServerResourceProvider"].GetConnectedServersAsPerCondition({
+                                                condition: true /* BOOLEAN */,
+                                                filterQuery: filterQuery /* QUERY */,
+                                                sortQuery: undefined /* QUERY */
+                                            });
+                                        } else {
+                                            result = Things[providerName].GetServerList({
+                                                filterQuery: filterQuery /* QUERY */,
+                                                sortQuery: undefined /* QUERY */
+                                            });
+                                        }
+                                        } else {
+                                        logger.error("Service GetServerProperty: parameter serverName can not be null or empty string");
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="IsConnected">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // Get provider name from given thing name
+                                        // Note: connection thing belongs to different connection type, each
+                                        // type has its own resource provider
+                                        var params = {
+                                            serverName: this.thingName
+                                        };
+                                        var providerName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionResourceProviderFromServerName(params);
+                                        
+                                        // get provider thing
+                                        var resourceProvider = Things[providerName];
+                                        
+                                        params = {
+                                            thingName: this.thingName
+                                        };
+                                        result = resourceProvider.IsConnected(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:ManageElements"
+                     type="OrganizationalUnit"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:PlantStatus"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

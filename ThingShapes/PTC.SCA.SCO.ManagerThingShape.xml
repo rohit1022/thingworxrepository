@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="The thing shape for Manager common services ThingShape {PTC.SCA.SCO.ManagerThingShape}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:16.031+05:30"
+         name="PTC.SCA.SCO.ManagerThingShape"
+         projectName=""
+         tags="PTC:OA">
+            <PropertyDefinitions></PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="AddEntitiesToBatchDelete">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.BatchDeleteDataShape"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.BatchDeleteDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="BatchDeleteTable"
+                         ordinal="3"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="DATASHAPENAME"
+                         description=""
+                         name="DataShapeName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="INFOTABLE"
+                         description=""
+                         name="Entities"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="PrimaryKeyName"
+                         ordinal="4"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateInfoTable">
+                    <ResultType
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.tagType="ModelTags"
+                         baseType="DATASHAPENAME"
+                         description=""
+                         name="dataShapeName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Get All links where filed name equal to the filed value."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="FindLinks">
+                    <ResultType
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="DATASHAPENAME"
+                         description=""
+                         name="DataShapeName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="FieldName"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="FieldValue"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="MergeInfoTables">
+                    <ResultType
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.tagType="ModelTags"
+                         baseType="DATASHAPENAME"
+                         description=""
+                         name="dataShapeName"
+                         ordinal="3"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.tagType="ModelTags"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="infoTable"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.tagType="ModelTags"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="infoTableAP"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="AddEntitiesToBatchDelete">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var batchDeleteTable = BatchDeleteTable;
+                                    if (batchDeleteTable === undefined || batchDeleteTable === null) {
+                                    	batchDeleteTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                    		infoTableName: "InfoTable",
+                                    		dataShapeName: "PTC.SCA.SCO.BatchDeleteDataShape"
+                                    	});
+                                    }
+                                    
+                                    var result = addEntitiesToBatchDelete(Entities, DataShapeName, batchDeleteTable, PrimaryKeyName);
+                                    
+                                    function addEntitiesToBatchDelete(entities, dataShapeName, batchDeleteTable, primaryKeyName) {
+                                    	if (entities && entities.rows) {
+                                    		var tableLength = entities.rows.length;
+                                    		for (var x = 0; x < tableLength; x++) {
+                                    			var entity = entities.rows[x];
+                                    			if (entity && entity[primaryKeyName]) {
+                                    				var row = {};
+                                    				row.dataShapeName = dataShapeName;
+                                    				row.UID = entity[primaryKeyName];
+                                    				batchDeleteTable.AddRow(row);
+                                    			}
+                                    		}
+                                    	}
+                                    	return batchDeleteTable;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateInfoTable">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var infoTable = createInfoTable(dataShapeName);
+                                    
+                                    var dataShapeNameAP = Things[me.GetDatabaseThingName()].GetDatashapeNameAp({dataShapeName : dataShapeName});
+                                    
+                                    var infoTableAP = createInfoTable(dataShapeNameAP);
+                                    
+                                    var result = mergeInfoTables(infoTable, infoTableAP);
+                                    
+                                    function createInfoTable(dataShapeName){
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : dataShapeName
+                                        };
+                                        return Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    }
+                                    
+                                    function mergeInfoTables(infoTableToMerge, infoTableToAdd){
+                                    	if(infoTableToAdd && infoTableToAdd.dataShape && infoTableToAdd.dataShape.fields){
+                                            var dataShapeFields = infoTableToAdd.dataShape.fields;
+                                            for (var fieldName in dataShapeFields) {
+                                                if(!infoTableToMerge.dataShape.fields[fieldName]){
+                                                    var newField = new Object();
+                                                    newField.name = dataShapeFields[fieldName].name;
+                                                    newField.baseType = dataShapeFields[fieldName].baseType.name();
+                                                    infoTableToMerge.AddField(newField);
+                                                }
+                                            }
+                                        }
+                                        return infoTableToMerge;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="FindLinks">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    //Get All links where filed name equal to the filed value
+                                    var filter = {
+                                    	"filters": {
+                                    		"dataShapeName": DataShapeName,
+                                    		"fieldName": FieldName,
+                                    		"type": "EQ",
+                                    		"value": FieldValue
+                                    	}
+                                    };
+                                    
+                                    var params = {
+                                    	filter: filter,
+                                    	dataShapeName: DataShapeName
+                                    };
+                                    
+                                    var result = Things[me.GetDatabaseThingName()].Query(params);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="MergeInfoTables">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var mergeInfotable = me.CreateInfoTable({
+                                    	dataShapeName: dataShapeName
+                                    });
+                                    
+                                    var tableLength = infoTable.rows.length;
+                                    var tableLengthAP = 0;
+                                    if(infoTableAP){
+                                        tableLengthAP = infoTableAP.rows.length;
+                                    }
+                                    for (var x=0; x < tableLength; x++) {
+                                        var row = infoTable.rows[x];
+                                        var newRow = {};
+                                        copyRow(newRow, row);
+                                        if(x < tableLengthAP){
+                                            var rowAP = infoTableAP.rows[x];
+                                            copyRow(newRow, rowAP);
+                                        }
+                                        mergeInfotable.AddRow(newRow);
+                                    }
+                                    
+                                    var result = mergeInfotable;
+                                    
+                                    function copyRow(row, rowToCopy){
+                                        if(row && rowToCopy){
+                                            for (var key in rowToCopy) {
+                                                if(!row.hasOwnProperty(key)){
+                                                    row[key] = rowToCopy[key];
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

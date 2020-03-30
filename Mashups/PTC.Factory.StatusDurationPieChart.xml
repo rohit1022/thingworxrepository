@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Plant status duration pie chart {PTC.Factory.StatusDurationPieChart}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:23.017+05:30"
+         name="PTC.Factory.StatusDurationPieChart"
+         projectName="PTC.SCA.SCO.Common"
+         rows="0.0"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="2"
+                 baseType="DATETIME"
+                 description=""
+                 name="endTime"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="3"
+                 baseType="BOOLEAN"
+                 description=""
+                 name="forceFullDuration"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="1"
+                 baseType="DATETIME"
+                 description=""
+                 name="startTime"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description=""
+                 name="thingId"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.Factory.StatusExpressionUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.Factory.StatusExpressionUtils" : {
+                  "DataName" : "Things_PTC.Factory.StatusExpressionUtils",
+                  "EntityName" : "PTC.Factory.StatusExpressionUtils",
+                  "EntityType" : "Things",
+                  "Id" : "bd796ec1-9ec7-4dc5-a4fa-fabbc58565a8",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "be1fb678-8115-42a6-88c9-04018befad04",
+                    "Name" : "GetStatusHistoryForPieChart",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetStatusHistoryForPieChart"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "f77b2880-aa0c-45b2-884b-8beb153ff5c0",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "thingId",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "thingName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetStatusHistoryForPieChart",
+                "TargetSection" : "Things_PTC.Factory.StatusExpressionUtils"
+              }, {
+                "Id" : "71149e4a-ba3d-4646-a48d-6b7a3ce6b437",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "startTime",
+                  "SourcePropertyBaseType" : "DATETIME",
+                  "TargetProperty" : "startDate",
+                  "TargetPropertyBaseType" : "DATETIME",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetStatusHistoryForPieChart",
+                "TargetSection" : "Things_PTC.Factory.StatusExpressionUtils"
+              }, {
+                "Id" : "f547b761-7422-40f5-a3da-d44db6672d52",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "endTime",
+                  "SourcePropertyBaseType" : "DATETIME",
+                  "TargetProperty" : "endDate",
+                  "TargetPropertyBaseType" : "DATETIME",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetStatusHistoryForPieChart",
+                "TargetSection" : "Things_PTC.Factory.StatusExpressionUtils"
+              }, {
+                "Id" : "b1b835c0-9524-4f39-a710-d808193973c0",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetStatusHistoryForPieChart",
+                "SourceSection" : "Things_PTC.Factory.StatusExpressionUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "piechart-1",
+                "TargetSection" : ""
+              }, {
+                "Id" : "4d68e146-40e8-40c3-89c2-9f16ba570bfa",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "forceFullDuration",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "forceFullDuration",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetStatusHistoryForPieChart",
+                "TargetSection" : "Things_PTC.Factory.StatusExpressionUtils"
+              } ],
+              "DesignTimePermissions" : { },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.StatusExpressionUtils",
+                "EventHandlerService" : "GetStatusHistoryForPieChart",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "thingIdChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "54525119-3d8b-49eb-86f1-a87f2141bf6c"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.StatusExpressionUtils",
+                "EventHandlerService" : "GetStatusHistoryForPieChart",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "RefreshRequested",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "fc1e0cb0-27ad-470f-886d-bd0168439585"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.StatusExpressionUtils",
+                "EventHandlerService" : "GetStatusHistoryForPieChart",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "startTimeChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "a5c0d98a-b68a-4272-884c-5ee097240d8f"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.StatusExpressionUtils",
+                "EventHandlerService" : "GetStatusHistoryForPieChart",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "endTimeChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "6a527376-acec-47f5-819b-3a0149d83558"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.StatusExpressionUtils",
+                "EventHandlerService" : "GetStatusHistoryForPieChart",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "1a9cc548-6237-4e2a-b5be-04d5de5cae49"
+              } ],
+              "RunTimePermissions" : { },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "DefaultValue" : "",
+                    "Description" : "",
+                    "ParameterName" : "thingId"
+                  }, {
+                    "BaseType" : "DATETIME",
+                    "DefaultValue" : "2017-02-01T05:00:00.000Z",
+                    "Description" : "",
+                    "ParameterName" : "startTime"
+                  }, {
+                    "BaseType" : "DATETIME",
+                    "DefaultValue" : "2017-02-11T05:00:00.000Z",
+                    "Description" : "",
+                    "ParameterName" : "endTime"
+                  }, {
+                    "BaseType" : "BOOLEAN",
+                    "Description" : "",
+                    "ParameterName" : "forceFullDuration"
+                  } ],
+                  "endTime" : "2017-02-11T05:00:00.000Z",
+                  "forceFullDuration" : false,
+                  "id_index" : 2,
+                  "startTime" : "2017-02-01T05:00:00.000Z",
+                  "supportsAutoResize" : true,
+                  "thingId" : ""
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "ContainerClass" : "factory_info_tile",
+                    "DisplayName" : "panel-2",
+                    "Height" : 200,
+                    "HideScrollbars" : true,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "panel-2",
+                    "Left" : 260,
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.FooterBoxBorder",
+                    "Top" : 130,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 300,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AllowSelection" : true,
+                      "Area" : "UI",
+                      "ChartAreaStyle" : "PTC.SCA.SCO.NoStyle",
+                      "ChartIndicatorStyle" : "DefaultChartIndicatorStyle",
+                      "ChartLegendStyle" : "DefaultChartLegendStyle",
+                      "ChartOrientation" : "vertical",
+                      "ChartStyle" : "DefaultChartStyle",
+                      "ChartTitle" : "",
+                      "ChartTitleStyle" : "DefaultChartTitleStyle",
+                      "ColorFormat" : {
+                        "FieldName" : "color",
+                        "StateDefinition" : "PTC.Factory.StatusColorStateDefinition",
+                        "StateDefinitionType" : "string",
+                        "StateFormats" : [ {
+                          "comparator" : "==",
+                          "state" : "PTC.Factory.Status.Running",
+                          "stateName" : "",
+                          "value" : "Running"
+                        }, {
+                          "comparator" : "==",
+                          "state" : "PTC.Factory.Status.Warning",
+                          "stateName" : "",
+                          "value" : "Warning"
+                        }, {
+                          "comparator" : "==",
+                          "state" : "PTC.Factory.Status.PlannedDowntime",
+                          "stateName" : "",
+                          "value" : "PlannedDowntime"
+                        }, {
+                          "comparator" : "==",
+                          "state" : "PTC.Factory.Status.UnplannedDowntime",
+                          "stateName" : "",
+                          "value" : "UnplannedDowntime"
+                        }, {
+                          "state" : "PTC.Factory.Status.UnavailableDark",
+                          "stateName" : ""
+                        } ]
+                      },
+                      "ColorFormat_StateParameters" : [ ],
+                      "CombineSelectedItemStyle" : false,
+                      "DisplayName" : "piechart-1",
+                      "EnableHover" : true,
+                      "Height" : 168,
+                      "Id" : "piechart-1",
+                      "LabelField" : "label",
+                      "LabelFormat" : "",
+                      "LabelType" : "STRING",
+                      "Left" : 11,
+                      "LegendLocation" : "right",
+                      "LegendOrientation" : "vertical",
+                      "LegendWidth" : 0,
+                      "ResponsiveLayout" : false,
+                      "SelectedItemStyle" : "DefaultChartSelectionStyle",
+                      "ShowDataLoading" : true,
+                      "ShowLegend" : false,
+                      "SingleDataSource" : true,
+                      "Top" : 6,
+                      "Type" : "piechart",
+                      "ValueField" : "value",
+                      "ValueFormat" : "0000.0%",
+                      "Visible" : true,
+                      "Width" : 168,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Pie Chart"
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            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
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

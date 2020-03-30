@@ -1,0 +1,1000 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description=""
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.926+05:30"
+         name="PTC.SCA.SCO.Common.ExportProcessorTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="true"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ExecuteExportEquipment">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ExportEquipment">
+                        <ResultType
+                         baseType="HYPERLINK"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get general information to export"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentGeneralInformation">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.EquipmentGeneralInformationDataShape"
+                         baseType="INFOTABLE"
+                         description="general information"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.ordinal="0"
+                             baseType="JSON"
+                             description="Equipments to export in Json format"
+                             name="equipmentNetwork"
+                             ordinal="0"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get equipment relationships to export"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentHierarchy">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.EquipmentHierarchyDataShape"
+                         baseType="INFOTABLE"
+                         description="Equipment relationships"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.ordinal="0"
+                             baseType="JSON"
+                             description="Equipments to export in Json format"
+                             name="equipmentNetwork"
+                             ordinal="0"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="***DEPRECATED-J*** This service will be deleted in the future release"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentNetworkObject">
+                        <ResultType
+                         baseType="JSON"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.Factory.EquipmentStatusTreeDataShape"
+                             aspect.ordinal="0"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="equipmentNetwork"
+                             ordinal="0"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get equipment properties to export"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentProperties">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.Common.ImportExport.EquipmentPropertiesDataShape"
+                         baseType="INFOTABLE"
+                         description="euqipment properties"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.ordinal="0"
+                             baseType="JSON"
+                             description="Equipments to export in Json format"
+                             name="equipmentNetwork"
+                             ordinal="0"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get all equipments for export in Json format"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentsToExport">
+                        <ResultType
+                         baseType="JSON"
+                         description="all equipments objects in Json format"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ExecuteExportEquipment">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var user = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        me.exportFileLink = '';
+                                        me.isExportProcessInProgress = true; // BOOLEAN
+                                        me.isExportProcessFinished = false; // BOOLEAN
+                                        me.user = user;
+                                        
+                                        // result: HYPERLINK
+                                        try{
+                                            me.exportFileLink = me.ExportEquipment();
+                                        } catch (err) {
+                                            logger.error("ExecuteExportEquipment : ExportEquipment() gets exception error: " + err);
+                                        }
+                                        
+                                        me.isExportProcessInProgress=false;
+                                        me.isExportProcessFinished=true;
+                                        me.user = user;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ExportEquipment">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var utilsName = "PTC.SCA.SCO.Common.ImportExportEquipmentUtils";
+                                        var constants = Things[utilsName].GetImportExportConstants();
+                                        
+                                        var equipmentNetwork = me.GetEquipmentsToExport();
+                                        var params = {
+                                             equipmentNetwork: equipmentNetwork
+                                        };
+                                        
+                                        var generalInformationTab;
+                                        var equipmentHierarchyTab;
+                                        var equipmentPropertiesTab;
+                                        
+                                        try {
+                                        generalInformationTab = me.GetEquipmentGeneralInformation(params);
+                                        equipmentHierarchyTab = me.GetEquipmentHierarchy(params);
+                                        equipmentPropertiesTab = me.GetEquipmentProperties(params);
+                                        } catch (ex) {
+                                            logger.error(ex);
+                                        }
+                                        
+                                        params = {
+                                          infoTableName: "InfoTable",
+                                          dataShapeName: constants.importExportDataShape
+                                        };
+                                        
+                                        var it = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        var row = {};
+                                        row[constants.generalInformation] = generalInformationTab;
+                                        row[constants.equipmentHierarchy] = equipmentHierarchyTab;
+                                        row[constants.properties] = equipmentPropertiesTab;
+                                        
+                                        it.AddRow(row);
+                                        
+                                        var exportEquipmentParams = {
+                                          infoTable: it /* INFOTABLE */
+                                        };
+                                        
+                                        var result = Resources["PTC.Factory.CommonUtilities"].ExportEquipment(exportEquipmentParams);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentGeneralInformation">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function getEquipmentImplementedShapes(thingName) {
+                                            var implementedShapesInfoTable = Things[thingName].GetLocallyImplementedShapes();
+                                            var implementedShapes = [];
+                                            for (var i = 0; i < implementedShapesInfoTable.length; i++) {
+                                                implementedShapes.push(implementedShapesInfoTable[i][constants.name]);
+                                            }
+                                            return implementedShapes.join(";");
+                                        }
+                                        
+                                        function getEquipmentType(thingName) {
+                                            var equipmentType = "";
+                                            var thing = Things[thingName];
+                                            if (thing) {
+                                                try { 
+                                                    var thingTemplate = thing.thingTemplate;
+                                                    var equipmentTypeSettingsRow = Things[constants.launchPointName].GetEquipmentTypeSettingRowByThingTemplate({
+                                                        thingTemplate: thingTemplate /* STRING */
+                                                    });
+                                                    var numEquipmentSettingRow = equipmentTypeSettingsRow.getRowCount();
+                                                    if(numEquipmentSettingRow > 0) {
+                                                        if(numEquipmentSettingRow > 1) {
+                                                            logger.warn("ImportExportUtils : GetEquipmentGeneralInformation(): multiple Equipment Type detected for Equipment [" + thingName + "] Thing Template [" + thingTemplate + "].");
+                                                        }
+                                                        equipmentType = equipmentTypeSettingsRow.getRow(0).EquipmentType;
+                                                    } else {
+                                                        logger.error("ImportExportUtils : GetEquipmentGeneralInformation(): could not find equipment type for Equipment [" + thingName + "] ThingTemplate [" + thingTemplate + "].");
+                                                    }
+                                                } catch (err) {
+                                                    logger.error("ImportExportUtils : GetEquipmentGeneralInformation(): could not get equipment type for equipment [" + thingName + "].");
+                                                }
+                                            } else {
+                                                logger.error("ImportExportUtils : GetEquipmentGeneralInformation(): could not find equipment name [" + thingName + "].");
+                                            }
+                                            return equipmentType;
+                                        }
+                                        
+                                        function getEquipmentVisibilityPermissions(thingName) {
+                                            var visibilityPermissionsInfoTable = Things[thingName].GetVisibilityPermissions();
+                                            var visibilityPermissions = [];
+                                            for (var i = 0; i < visibilityPermissionsInfoTable.length; i++) {
+                                                visibilityPermissions.push(visibilityPermissionsInfoTable[i][constants.type] + '/' + visibilityPermissionsInfoTable[i][constants.name]);
+                                            }
+                                            return visibilityPermissions.join(";");
+                                        }
+                                        
+                                        function getRunTimePermissions(thingName) {
+                                            var permissionMap = {};
+                                            var permissionsInfoTable = Things[thingName].GetRunTimePermissions();
+                                            for (var i = 0; i < permissionsInfoTable.length; i++) {
+                                               //we only export permissions in the thing level
+                                               if (permissionsInfoTable[i][constants.resourceName] == '*') {
+                                                  var permissionName = permissionsInfoTable[i][constants.permissionName];
+                                                  var newEntry = permissionsInfoTable[i][constants.type] + '/' + permissionsInfoTable[i][constants.name] + '/' + permissionsInfoTable[i][constants.isPermitted];
+                                                  if(!permissionMap.hasOwnProperty(permissionName)){
+                                                      permissionMap[permissionName] = newEntry;
+                                                  } else {
+                                                      permissionMap[permissionName] = permissionMap[permissionName] + ';' + newEntry;
+                                                  }
+                                               }
+                                            }
+                                            return permissionMap;
+                                        }
+                                        
+                                        function addGeneralInformationRows(contextName, equipmentObjects) {
+                                            var equipmentNetworkKeys = Object.keys(equipmentObjects);   
+                                            for (var i = 0; i < equipmentNetworkKeys.length; i++) {
+                                                var key = equipmentNetworkKeys[i];
+                                                var displayName = equipmentObjects[key].displayName;
+                                                if (equipmentMap.hasOwnProperty(key)){
+                                                    var newContextName = equipmentMap[key] + "," + contextName;
+                                                    var findRow = it.Find({name: key});
+                                                    if (findRow !== null) {
+                                                        findRow[constants.context] = newContextName;
+                                                        equipmentMap[key] = newContextName;
+                                                    }
+                                                } else {
+                                                    equipmentMap[key] = contextName;
+                                                    addRow(contextName, key, displayName);
+                                                }
+                                            }
+                                        }   
+                                        
+                                        function addRow(contextName, equipmentName, equipmentDisplayName) {
+                                            var row = {};
+                                            row[constants.name] = equipmentName;
+                                            row[constants.equipmentType] = getEquipmentType(equipmentName);
+                                            row[constants.context] = contextName;
+                                            row[constants.displayName] = equipmentDisplayName;
+                                            row[constants.description] = Things[equipmentName].GetDescription();
+                                            row[constants.tags] = Things[equipmentName].GetTags();
+                                            row[constants.project] = Things[equipmentName].GetProjectName();
+                                            row[constants.identifier] = Things[equipmentName].GetIdentifier();
+                                            row[constants.homeMashup] = Things[equipmentName].GetHomeMashup();
+                                            row[constants.valueStream] = Things[equipmentName].GetValueStream();
+                                            row[constants.active] = Things[equipmentName].IsEnabled();
+                                            row[constants.published] = Things[equipmentName].GetPublished();
+                                            row[constants.implementedShapes] = getEquipmentImplementedShapes(equipmentName);
+                                            row[constants.visibility] = getEquipmentVisibilityPermissions(equipmentName);
+                                            var runtimePermissionsMap = getRunTimePermissions(equipmentName);
+                                            row[constants.propertyRead] = runtimePermissionsMap.hasOwnProperty("PropertyRead")?runtimePermissionsMap["PropertyRead"]:'';
+                                            row[constants.propertyWrite] = runtimePermissionsMap.hasOwnProperty("PropertyWrite")?runtimePermissionsMap["PropertyWrite"]:'';
+                                            row[constants.serviceExecute] = runtimePermissionsMap.hasOwnProperty("ServiceInvoke")?runtimePermissionsMap["ServiceInvoke"]:'';
+                                            row[constants.eventExecute] = runtimePermissionsMap.hasOwnProperty("EventInvoke")?runtimePermissionsMap["EventInvoke"]:'';
+                                            row[constants.eventSubscribe] = runtimePermissionsMap.hasOwnProperty("EventSubscribe")?runtimePermissionsMap["EventSubscribe"]:'';
+                                            it.AddRow(row);
+                                        }
+                                        
+                                        var constants = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetImportExportConstants();
+                                        var params = {
+                                            infoTableName: "InfoTable",
+                                            dataShapeName: constants.equipmentGeneralInformationDataShape
+                                        };
+                                        var it = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        equipmentNetwork = JSON.parse(equipmentNetwork);
+                                        var equipmentContextKeys = Object.keys(equipmentNetwork);
+                                        
+                                        var equipmentMap = new Object();
+                                        for (var i = 0; i < equipmentContextKeys.length; i++) {
+                                            var contextName = equipmentContextKeys[i];
+                                            var equipmentNetworkByContext = equipmentNetwork[contextName];
+                                            addGeneralInformationRows(contextName, equipmentNetworkByContext);
+                                        }
+                                        var result = it;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentHierarchy">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var utilsName = "PTC.SCA.SCO.Common.ImportExportEquipmentUtils";
+                                        var constants = Things[utilsName].GetImportExportConstants();
+                                        
+                                        function getParent(parentString) {
+                                            var parentArray = [];
+                                            if (isEmpty(parentString)) {
+                                                return "";
+                                            } else if (parentString.indexOf(constants.parentSeparator) === -1) {
+                                                parentArray[0] = parentString;
+                                            } else {
+                                                parentArray = parentString.split(constants.parentSeparator);
+                                            }
+                                        	return parentArray;
+                                        }
+                                        
+                                        function isEmpty(str) {
+                                            return (str === null || str === undefined || str.length === 0);
+                                        }
+                                        
+                                        function addRelationshipRows(contextName, equipmentObjects){
+                                            var equipmentNetworkKeys = Object.keys(equipmentObjects);
+                                            for (var i = 0; i < equipmentNetworkKeys.length; i++) {
+                                                var key = equipmentNetworkKeys[i];
+                                                var row = {};
+                                                var equipment = equipmentObjects[key];
+                                                row[constants.name] = key;
+                                                row[constants.context] = contextName;
+                                                var parentArray = getParent(equipment.from);
+                                                if (parentArray.length > 1) {
+                                                    for (var j = 0; j < parentArray.length; j++) {
+                                                        row[constants.parent] = parentArray[j];
+                                                        it.AddRow(row);
+                                                    }
+                                                } else {
+                                                    row[constants.parent] = parentArray[0];
+                                                    it.AddRow(row);
+                                                }
+                                            }
+                                        }
+                                        
+                                        var params = {
+                                            infoTableName: "InfoTable",
+                                            dataShapeName: constants.equipmentHierarchyDataShape
+                                        };
+                                        
+                                        var it = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        equipmentNetwork = JSON.parse(equipmentNetwork);
+                                        var equipmentContextKeys = Object.keys(equipmentNetwork);
+                                        
+                                        for (var i = 0; i < equipmentContextKeys.length; i++) {
+                                            var contextName = equipmentContextKeys[i];
+                                            var equipmentNetworkByContext = equipmentNetwork[contextName];
+                                            addRelationshipRows(contextName, equipmentNetworkByContext);
+                                        }
+                                        var result = it;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentNetworkObject">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = {};
+                                        var constants = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetImportExportConstants();
+                                        var dataShapeFieldNames = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: "PTC.Factory.EquipmentStatusTreeDataShape"
+                                        })[constants.array];
+                                        for (var i = 0; i < equipmentNetwork.length; i++) {
+                                          var equipment = equipmentNetwork[i];
+                                          if (result[equipment.Id] != undefined) {
+                                            if(equipment.from != undefined){
+                                              var newparent = equipment.from.split(constants.parentSeparator).pop();
+                                              result[equipment.Id].from = result[equipment.Id].from + constants.parentSeparator + newparent;
+                                            }
+                                          } else {
+                                            result[equipment.Id] = {};
+                                            for (var j = 0; j < dataShapeFieldNames.length; j++) {
+                                              var dataShapeFieldName = dataShapeFieldNames[j];
+                                              if (dataShapeFieldName == "from" && equipment[dataShapeFieldName] != undefined) {
+                                                result[equipment.Id][dataShapeFieldName] = equipment[dataShapeFieldName].split(constants.parentSeparator).pop();
+                                              } else {
+                                                result[equipment.Id][dataShapeFieldName] = equipment[dataShapeFieldName];
+                                              }
+                                            }
+                                          }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentProperties">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var utilsName = "PTC.SCA.SCO.Common.ImportExportEquipmentUtils";
+                                        var constants = Things[utilsName].GetImportExportConstants();
+                                        var numberPropertyBaseTypes = Things[utilsName].GetNumberPropertyBaseTypes();
+                                        var excludedPropertyBaseTypes = Things[utilsName].GetExcludedPropertyBaseTypes();
+                                        
+                                        function getPropertyBindingType(thingName, property) {
+                                          logger.trace("property.name: " + property.name);
+                                        
+                                          var localPropertyBinding = Things[thingName].GetEffectiveLocalPropertyBinding({
+                                            propertyName: property.name
+                                          });
+                                          if (localPropertyBinding && localPropertyBinding[constants.rows].length > 0) {
+                                            return constants.locallyBound;
+                                          }
+                                        
+                                          try {
+                                            var remotePropertyBinding = Things[thingName].GetRemotePropertyBinding({
+                                              propertyName: property.name
+                                            });
+                                            if (remotePropertyBinding && remotePropertyBinding[constants.rows].length > 0) {
+                                              return constants.remotelyBound;
+                                            }
+                                          } catch (err) {
+                                            logger.trace("Property " + property.name + " is not remotely bound");
+                                          }
+                                        
+                                          return constants.noneBound;
+                                        }
+                                        
+                                        function setNumberTypeAttributes(resultObject, propertyName, thingMetadata) {
+                                          if (numberPropertyBaseTypes.array.indexOf(resultObject[propertyName][constants.baseType].toUpperCase()) !== -1) {
+                                            resultObject[propertyName][constants.units] = (thingMetadata.propertyDefinitions[propertyName].aspects.units || "") + "";
+                                            resultObject[propertyName][constants.minValue] = (thingMetadata.propertyDefinitions[propertyName].aspects.minimumValue == null ? "" : thingMetadata.propertyDefinitions[propertyName].aspects.minimumValue) + "";
+                                            resultObject[propertyName][constants.maxValue] = (thingMetadata.propertyDefinitions[propertyName].aspects.maximumValue == null ? "" : thingMetadata.propertyDefinitions[propertyName].aspects.maximumValue) + "";
+                                          }
+                                        }
+                                        
+                                        function setDefaultPropertyValue(resultObject, propertyName, thingMetadata) {
+                                          if (thingMetadata.propertyDefinitions[propertyName].aspects.defaultValue != null) {
+                                            resultObject[propertyName][constants.defaultValue] = thingMetadata.propertyDefinitions[propertyName].aspects.defaultValue + "";
+                                            if (resultObject[propertyName][constants.baseType] == "INFOTABLE" || resultObject[propertyName][constants.baseType] == "InfoTable") {
+                                                var paramsToJSON = {
+                                                    table: thingMetadata.propertyDefinitions[propertyName].aspects.defaultValue /* INFOTABLE */
+                                                };
+                                              resultObject[propertyName][constants.defaultValue] = JSON.stringify(Resources["InfoTableFunctions"].ToJSON(paramsToJSON));
+                                            }
+                                          } else {
+                                            resultObject[propertyName][constants.defaultValue] = "";
+                                          }
+                                          resultObject[propertyName][constants.hasDefaultValue] = false;
+                                          if (thingMetadata.propertyDefinitions[propertyName].aspects.defaultValue != null) {
+                                            resultObject[propertyName][constants.hasDefaultValue] = true;
+                                          }
+                                        }
+                                        
+                                        function setCommonAttributes(resultObject, propertyName, thingMetadata, thingName, thingPropertyValues) {
+                                          var toISOString = function () {
+                                            var tzo = -this.getTimezoneOffset(),
+                                              dif = tzo >= 0 ? '+' : '-',
+                                              pad = function (num) {
+                                                var norm = Math.floor(Math.abs(num));
+                                                return (norm < 10 ? '0' : '') + norm;
+                                              };
+                                            return this.getFullYear() +
+                                              '-' + pad(this.getMonth() + 1) +
+                                              '-' + pad(this.getDate()) +
+                                              'T' + pad(this.getHours()) +
+                                              ':' + pad(this.getMinutes()) +
+                                              ':' + pad(this.getSeconds()) +
+                                              '.' + this.getMilliseconds() +
+                                              dif + pad(tzo / 60) +
+                                              ':' + pad(tzo % 60);
+                                          };
+                                          resultObject[propertyName][constants.baseType] = getPropertyBaseType(resultObject[propertyName]);
+                                        
+                                          //dont't bother fetching values for excluded base types
+                                          if (excludedPropertyBaseTypes.array.indexOf(JSON.stringify(resultObject[propertyName][constants.baseType]).toUpperCase().replace(/['"]+/g, '')) > -1) {
+                                              return;
+                                          }
+                                        
+                                          resultObject[propertyName][constants.value] = "" + thingPropertyValues[propertyName];
+                                          if (resultObject[propertyName][constants.baseType] == "INFOTABLE" || resultObject[propertyName][constants.baseType] == "InfoTable") {
+                                              var paramsToJSONProp = {
+                                                  table: thingPropertyValues[propertyName] /* INFOTABLE */
+                                              };
+                                              resultObject[propertyName][constants.value] = JSON.stringify(Resources["InfoTableFunctions"].ToJSON(paramsToJSONProp));
+                                          }
+                                          if (resultObject[propertyName][constants.baseType].toUpperCase() == "DATETIME") {
+                                              var date = new Date(resultObject[propertyName][constants.value]);
+                                              resultObject[propertyName][constants.value] = toISOString.call(date);
+                                          }
+                                        
+                                          resultObject[propertyName][constants.logged] = (thingMetadata.propertyDefinitions[propertyName].aspects.isLogged === true) + "";
+                                          resultObject[propertyName][constants.persistent] = (thingMetadata.propertyDefinitions[propertyName].aspects.isPersistent === true) + "";
+                                          resultObject[propertyName][constants.readOnly] = thingMetadata.propertyDefinitions[propertyName].aspects.isReadOnly;
+                                          resultObject[propertyName][constants.category] = thingMetadata.propertyDefinitions[propertyName].category || "";
+                                          resultObject[propertyName][constants.dataChangeType] = thingMetadata.propertyDefinitions[propertyName].aspects.dataChangeType || "";
+                                          setDefaultPropertyValue(resultObject, propertyName, thingMetadata);
+                                        }
+                                        
+                                        function setBindings (resultObject, thingName, thingMetadata, property) {
+                                            resultObject[property.name][constants.binding] = getPropertyBindingType(thingName, property);
+                                            if (resultObject[property.name][constants.binding] === constants.locallyBound) {
+                                              var localPropertyBinding = Things[thingName].GetEffectiveLocalPropertyBinding({
+                                                propertyName: property.name
+                                              });
+                                              resultObject[property.name][constants.thing] = localPropertyBinding.sourceThingName;
+                                              resultObject[property.name][constants.property] = localPropertyBinding.sourceName;
+                                            } else if (resultObject[property.name][constants.binding] === constants.remotelyBound) {
+                                              var remotePropertyBinding = Things[thingName].GetRemotePropertyBinding({
+                                                propertyName: property.name
+                                              });
+                                              var cacheInterval = thingMetadata.propertyDefinitions[property.name].aspects.cacheTime;
+                                              resultObject[property.name][constants.cacheInterval] = cacheInterval === undefined ? '' : cacheInterval/1000;
+                                              var startType = remotePropertyBinding.aspects.startType;
+                                              resultObject[property.name][constants.startType] = startType === undefined ? constants.useDefaultValue : constants.readEdgeValue;
+                                              resultObject[property.name][constants.pushType] = remotePropertyBinding.pushType;
+                                              resultObject[property.name][constants.pushThreshold] = "" + remotePropertyBinding.pushThreshold;
+                                              resultObject[property.name][constants.timeout] = remotePropertyBinding.timeout === 0 ? constants.useSystemDefault : constants.customTimeout;
+                                              resultObject[property.name][constants.timeoutInterval] = remotePropertyBinding.timeout === 0 ? '' : remotePropertyBinding.timeout;
+                                        
+                                              var remotePropertyName = remotePropertyBinding.aspects.tagAddress;
+                                              resultObject[property.name][constants.remotePropertyName] = (remotePropertyName === undefined || remotePropertyName === "") ? remotePropertyBinding.sourceName : remotePropertyName;
+                                              var tagAddress = remotePropertyBinding.aspects.tagAddress;
+                                              resultObject[property.name][constants.tagAddress] = tagAddress === undefined ? '' : tagAddress;
+                                              var scanRate = remotePropertyBinding.aspects.scanRate;
+                                              resultObject[property.name][constants.scanRate] = scanRate === undefined ? '' : scanRate;
+                                              var tagType = remotePropertyBinding.aspects.tagType;
+                                              resultObject[property.name][constants.tagType] = tagType === undefined ? '' : tagType;
+                                              var source = remotePropertyBinding.aspects.source;
+                                              resultObject[property.name][constants.source] = source === undefined ? '' : source;
+                                              var dataShape = remotePropertyBinding.aspects.dataShape;
+                                              resultObject[property.name][constants.dataShape] = dataShape === undefined ? '' : dataShape;
+                                              var industrialDataType = remotePropertyBinding.aspects.industrialDataType;
+                                              resultObject[property.name][constants.industrialDataType] = industrialDataType === undefined ? '' : industrialDataType;
+                                            }
+                                        }
+                                        
+                                        function getEquipmentPropertiesObject(thingName, thingMetadata, thingPropertyValues) {
+                                          var resultObject = {};
+                                        
+                                          var propertyDefinitions = Things[thingName].GetPropertyDefinitions({})[constants.rows];
+                                        
+                                          for (var i = 0; i < propertyDefinitions.length; i++) {
+                                            var property = propertyDefinitions[i];
+                                            resultObject[property.name] = property;
+                                            resultObject[property.name][constants.baseType] = getPropertyBaseType(resultObject[property.name]);
+                                        
+                                            if (excludedPropertyBaseTypes.array.indexOf(JSON.stringify(resultObject[property.name][constants.baseType]).toUpperCase().replace(/['"]+/g, '')) > -1) {
+                                              delete resultObject[property.name];
+                                              continue;
+                                            }
+                                        
+                                            setCommonAttributes(resultObject, property.name, thingMetadata, thingName, thingPropertyValues);
+                                            setNumberTypeAttributes(resultObject, property.name, thingMetadata);
+                                            setBindings(resultObject, thingName, thingMetadata, property);
+                                          }
+                                        
+                                          return resultObject;
+                                        }
+                                        
+                                        function getPropertiesObject(thingName) {
+                                          var resultObject = {};
+                                        
+                                          var thingPropertyValues = Things[thingName].GetPropertyValues();
+                                          var thingMetadata = Things[thingName].GetMetadataAsJSON();
+                                          var assetPropertiesObject = getEquipmentPropertiesObject(thingName, thingMetadata, thingPropertyValues);
+                                        
+                                          return assetPropertiesObject;
+                                        }
+                                        
+                                        function getPropertyBaseType(property) {
+                                          if (property.propertyType) return property.type;
+                                          else return property.baseType;
+                                        }
+                                        
+                                        function addPropertiesRows(equipmentObjects) {
+                                            var equipmentNetworkKeys = Object.keys(equipmentObjects);   
+                                            for (var i = 0; i < equipmentNetworkKeys.length; i++) {
+                                                var key = equipmentNetworkKeys[i];
+                                                if (!equipmentMap.hasOwnProperty(key)){
+                                                    equipmentMap[key] = key;
+                                                    var propertiesObject = getPropertiesObject(key);
+                                                    addRow(key, propertiesObject);
+                                                }
+                                            }
+                                        }
+                                        
+                                        function addRow(thingName, propertiesObject) {
+                                            var propertiesObjectKeys = Object.keys(propertiesObject);
+                                            for (var i = 0; i < propertiesObjectKeys.length; i++) {
+                                                var row = {};
+                                                var propertyKey = propertiesObjectKeys[i];
+                                                var property = propertiesObject[propertyKey];
+                                                row[constants.thingName] = thingName;
+                                                row[constants.name] = propertyKey;
+                                                for (var k = 2; k < dataShapeFieldNames.length; k++) {
+                                                    row[dataShapeFieldNames[k]] = property[dataShapeFieldNames[k]] || "";
+                                                }
+                                                it.AddRow(row);
+                                            }
+                                        }
+                                        
+                                        var dataShapeFieldNames = Things["PTC.SCA.SCO.Common.ImportExportEquipmentUtils"].GetDataShapeFieldNames({
+                                          dataShapeName: constants.equipmentPropertiesDataShape
+                                        })[constants.array];
+                                        
+                                        var params = {
+                                          infoTableName: "InfoTable",
+                                          dataShapeName: constants.equipmentPropertiesDataShape
+                                        };
+                                        
+                                        var it = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        equipmentNetwork = JSON.parse(equipmentNetwork);
+                                        var equipmentContextKeys = Object.keys(equipmentNetwork);
+                                        
+                                        var equipmentMap = new Object();
+                                        try {
+                                            for (var i = 0; i < equipmentContextKeys.length; i++) {
+                                                var contextName = equipmentContextKeys[i];
+                                                var equipmentNetworkByContext = equipmentNetwork[contextName];
+                                                addPropertiesRows(equipmentNetworkByContext);
+                                            }
+                                        } catch (ex) {
+                                            logger.error("Export Process [GetEquipmentProperties]: " + ex);
+                                        }
+                                        var result = it;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentsToExport">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var utilsName = "PTC.SCA.SCO.Common.ImportExportEquipmentUtils";
+                                        var constants = Things[utilsName].GetImportExportConstants();
+                                        var validContexts =  Things["PTC.SCA.SCO.ContextUtils"].GetContextListInContextPicker({permissionType: "Read"});
+                                        
+                                        var equipmentObjects = new Object();
+                                        
+                                        if (validContexts && validContexts.length > 0) {
+                                          for (var i = 0; i < validContexts.length; i++) {
+                                            var equipmentNetwork =  Things[utilsName].GetEquipmentForExport({contextName: validContexts[i].ContextName});
+                                            if (equipmentNetwork && equipmentNetwork.length > 0) {
+                                               equipmentObjects[validContexts[i].ContextName] = getEquipmentExportObjects(equipmentNetwork);
+                                            }
+                                          }
+                                        }
+                                        result = JSON.stringify(equipmentObjects);
+                                        
+                                        function isEmpty(str) {
+                                            return (str === null || str === undefined || str === "");
+                                        }
+                                        
+                                        //TO DO: will review the following codes for optimization
+                                        function getEquipmentExportObjects(equipmentNetwork) {
+                                            var equipmentsJson = {};
+                                            var dataShapeFieldNames = Things[utilsName].GetDataShapeFieldNames({
+                                              dataShapeName: "PTC.Factory.EquipmentStatusTreeDataShape"
+                                            })[constants.array];
+                                            for (var i = 0; i < equipmentNetwork.length; i++) {
+                                              var equipment = equipmentNetwork[i];
+                                              if (!isEmpty(equipmentsJson[equipment.Id])) {
+                                                if(!isEmpty(equipment.from)){
+                                                  var newparent = equipment.from.split(constants.parentSeparator).pop();
+                                                  equipmentsJson[equipment.Id].from = equipmentsJson[equipment.Id].from + constants.parentSeparator + newparent;
+                                                }
+                                              } else {
+                                                equipmentsJson[equipment.Id] = {};
+                                                for (var j = 0; j < dataShapeFieldNames.length; j++) {
+                                                  var dataShapeFieldName = dataShapeFieldNames[j];
+                                                  if (dataShapeFieldName === "from" && equipment[dataShapeFieldName] !== undefined) {
+                                                    equipmentsJson[equipment.Id][dataShapeFieldName] = equipment[dataShapeFieldName].split(constants.parentSeparator).pop();
+                                                  } else {
+                                                    equipmentsJson[equipment.Id][dataShapeFieldName] = equipment[dataShapeFieldName];
+                                                  }
+                                                }
+                                              }
+                                            }
+                                            return equipmentsJson;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.Common.EquipmentExportProcessSummaryThingShape"
+                 type="ThingShape"></ImplementedShape>
+            </ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility></Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

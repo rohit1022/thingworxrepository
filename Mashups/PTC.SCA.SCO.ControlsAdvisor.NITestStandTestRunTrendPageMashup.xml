@@ -1,0 +1,1095 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Displays the tests run for the NI TestStand connection {PTC.SCA.SCO.ControlsAdvisor.NITestStandTestRunTrendPageMashup}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:41.294+05:30"
+         name="PTC.SCA.SCO.ControlsAdvisor.NITestStandTestRunTrendPageMashup"
+         projectName="PTC.SCA.SCO.KEPServerEX Monitor"
+         rows="0.0"
+         tags="PTC:sca-sco-kepserverexmonitor;PTC:sca-mfg;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:KEPServerMonitoring"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="1"
+                 baseType="STRING"
+                 description="The default radio selection for the time interval selection service."
+                 name="defaultRadioSelection"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description="The name of the NI TestStand"
+                 name="NITestStandThingName"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.CommonUIProvider</Thing>
+                <Thing>PTC.Factory.TrendManagementUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.Factory.TrendManagementUtils" : {
+                  "DataName" : "Things_PTC.Factory.TrendManagementUtils",
+                  "EntityName" : "PTC.Factory.TrendManagementUtils",
+                  "EntityType" : "Things",
+                  "Id" : "9d657586-e46c-4fb8-8c5a-3a675a440298",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "fd9a0d3e-ef8e-4057-b888-999791680f33",
+                    "Name" : "GetIntervalForSelection",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetIntervalForSelection"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.CommonUIProvider" : {
+                  "DataName" : "Things_PTC.SCA.SCO.CommonUIProvider",
+                  "EntityName" : "PTC.SCA.SCO.CommonUIProvider",
+                  "EntityType" : "Things",
+                  "Id" : "94adcfd3-455b-457d-9490-dd6157e6e055",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "6a26cb2d-2f13-4723-85ec-a6cf578125f2",
+                    "Name" : "GetPropertyHistoryCountForTrend",
+                    "Parameters" : {
+                      "isCustom" : false,
+                      "propertyLabel" : "Number of Test Sequences Run",
+                      "propertyName" : "TestStandJSONResult"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetPropertyHistoryCountForTrend"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "014c3c0e-570c-413b-9f15-aa93ad8d7ef4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "JSONData",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetPropertyHistoryCountForTrend",
+                "SourceSection" : "Things_PTC.SCA.SCO.CommonUIProvider",
+                "TargetArea" : "UI",
+                "TargetId" : "dygraphchartwidget-173",
+                "TargetSection" : ""
+              }, {
+                "Id" : "13523beb-36c4-4ccb-af39-e09389b19364",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "StartDate",
+                  "SourcePropertyBaseType" : "DATETIME",
+                  "TargetProperty" : "startDate",
+                  "TargetPropertyBaseType" : "DATETIME",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetIntervalForSelection",
+                "SourceSection" : "Things_PTC.Factory.TrendManagementUtils",
+                "TargetArea" : "Data",
+                "TargetId" : "GetPropertyHistoryCountForTrend",
+                "TargetSection" : "Things_PTC.SCA.SCO.CommonUIProvider"
+              }, {
+                "Id" : "bf7e6bf7-200e-4236-ad87-e4d7821c1a1c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "EndDate",
+                  "SourcePropertyBaseType" : "DATETIME",
+                  "TargetProperty" : "endDate",
+                  "TargetPropertyBaseType" : "DATETIME",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetIntervalForSelection",
+                "SourceSection" : "Things_PTC.Factory.TrendManagementUtils",
+                "TargetArea" : "Data",
+                "TargetId" : "GetPropertyHistoryCountForTrend",
+                "TargetSection" : "Things_PTC.SCA.SCO.CommonUIProvider"
+              }, {
+                "Id" : "924ae4e0-55e1-4fc3-934d-fc34e4280aae",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "NITestStandThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "entityName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetPropertyHistoryCountForTrend",
+                "TargetSection" : "Things_PTC.SCA.SCO.CommonUIProvider"
+              }, {
+                "Id" : "a5e0a034-a701-4ea5-b7fc-e5903160a468",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "endDate",
+                  "SourcePropertyBaseType" : "DATETIME",
+                  "TargetProperty" : "endDate",
+                  "TargetPropertyBaseType" : "DATETIME",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "navigation-25",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetIntervalForSelection",
+                "TargetSection" : "Things_PTC.Factory.TrendManagementUtils"
+              }, {
+                "Id" : "83e1e8ee-f58f-459e-a082-f437d0b0fd53",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "startDate",
+                  "SourcePropertyBaseType" : "DATETIME",
+                  "TargetProperty" : "startDate",
+                  "TargetPropertyBaseType" : "DATETIME",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "navigation-25",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetIntervalForSelection",
+                "TargetSection" : "Things_PTC.Factory.TrendManagementUtils"
+              }, {
+                "Id" : "39cc5362-b574-42c7-814f-a608dcc3cbaf",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "SelectedValue",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "radioSelection",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "radiobuttonlist-188",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-26",
+                "TargetSection" : ""
+              }, {
+                "Id" : "26e3bacf-8edb-4e39-8c8d-ad4665dcb773",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "buttonIndex",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "buttonIndex",
+                  "TargetPropertyBaseType" : "NUMBER",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "navigation-25",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-32",
+                "TargetSection" : ""
+              }, {
+                "Id" : "d464b9ac-6bc5-486c-b6c5-8e65478c24fc",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Input2",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-35",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-34",
+                "TargetSection" : ""
+              }, {
+                "Id" : "cd38e61e-812b-4da3-bae3-91cce1bcca00",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Input1",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-30",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-34",
+                "TargetSection" : ""
+              }, {
+                "Id" : "0a0ab1d5-5ca4-4257-9721-327a274f657d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "isCustom",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "validator-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetPropertyHistoryCountForTrend",
+                "TargetSection" : "Things_PTC.SCA.SCO.CommonUIProvider"
+              }, {
+                "Id" : "3d8a6c01-3e41-45b5-b4a7-b6a3ee2b31c4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "radioSelection",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "eventsrouter-34",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-36",
+                "TargetSection" : ""
+              }, {
+                "Id" : "b3e8493b-ab3f-4c55-aa8b-09b47748d285",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "SelectedValue",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "radioSelection",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "radiobuttonlist-188",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetIntervalForSelection",
+                "TargetSection" : "Things_PTC.Factory.TrendManagementUtils"
+              }, {
+                "Id" : "911ed04e-1eba-4a7c-82f8-05466bfbcd7b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "defaultRadioSelection",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "SelectedValue",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "radiobuttonlist-188",
+                "TargetSection" : ""
+              }, {
+                "Id" : "41613fc8-f9fa-4a7d-a2e0-dfa4cbec95f1",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "EndDate",
+                  "SourcePropertyBaseType" : "DATETIME",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "endDate",
+                  "TargetPropertyBaseType" : "DATETIME",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetIntervalForSelection",
+                "SourceSection" : "Things_PTC.Factory.TrendManagementUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "navigation-25",
+                "TargetSection" : ""
+              }, {
+                "Id" : "c2130b06-13b2-4089-9f65-cdb2f67b737a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "StartDate",
+                  "SourcePropertyBaseType" : "DATETIME",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "startDate",
+                  "TargetPropertyBaseType" : "DATETIME",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetIntervalForSelection",
+                "SourceSection" : "Things_PTC.Factory.TrendManagementUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "navigation-25",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-26",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "SelectionChanged",
+                "EventTriggerId" : "radiobuttonlist-188",
+                "EventTriggerSection" : "",
+                "Id" : "9e0d5e3f-17bb-47a8-98a5-eae715dd9336"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "navigation-25",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-26",
+                "EventTriggerSection" : "",
+                "Id" : "4f8a7b42-72be-4432-9b40-ba1dfe9d8fdd"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.CommonUIProvider",
+                "EventHandlerService" : "GetPropertyHistoryCountForTrend",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetIntervalForSelection",
+                "EventTriggerSection" : "Things_PTC.Factory.TrendManagementUtils",
+                "Id" : "a1fff8e0-3a17-458b-a343-d68c39031989"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-30",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-26",
+                "EventTriggerSection" : "",
+                "Id" : "7fc2126b-12b5-4508-982c-88e2d931f1b0"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-32",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "PopupClosed",
+                "EventTriggerId" : "navigation-25",
+                "EventTriggerSection" : "",
+                "Id" : "a0df6d42-a7de-492f-96a2-ba18988a8454"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-35",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-32",
+                "EventTriggerSection" : "",
+                "Id" : "cd8a1958-ae65-4301-9813-94ca21da56f1"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-36",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "eventsrouter-34",
+                "EventTriggerSection" : "",
+                "Id" : "5cf1ccf8-058e-45df-8113-4693bb554609"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.TrendManagementUtils",
+                "EventHandlerService" : "GetIntervalForSelection",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-36",
+                "EventTriggerSection" : "",
+                "Id" : "fe5591c5-edd8-42f9-b64d-1ee058821ead"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.TrendManagementUtils",
+                "EventHandlerService" : "GetIntervalForSelection",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-36",
+                "EventTriggerSection" : "",
+                "Id" : "11a571b7-f16b-4650-b0e2-4b0200ed018e"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.TrendManagementUtils",
+                "EventHandlerService" : "GetIntervalForSelection",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "68240cbd-45f4-4803-bfb6-663519f529d2"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.TrendManagementUtils",
+                "EventHandlerService" : "GetIntervalForSelection",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "DoubleClicked",
+                "EventTriggerId" : "dygraphchartwidget-173",
+                "EventTriggerSection" : "",
+                "Id" : "42d773c3-4d11-4ee6-b946-1240b8bd75f7"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.TrendManagementUtils",
+                "EventHandlerService" : "GetIntervalForSelection",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Zoomed",
+                "EventTriggerId" : "dygraphchartwidget-173",
+                "EventTriggerSection" : "",
+                "Id" : "543c4059-34c3-4939-a7e7-d9d1d6de5fc0"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.TrendManagementUtils",
+                "EventHandlerService" : "GetIntervalForSelection",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "RefreshRequested",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "9297e824-d41e-4d99-9bbd-c8ef76d2fcb9"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "dygraphchartwidget-173",
+                "EventHandlerService" : "resetZoom",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-26",
+                "EventTriggerSection" : "",
+                "Id" : "dae5c99e-e6ae-4ea1-8b02-76cf7730dfef"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "dygraphchartwidget-173",
+                "EventHandlerService" : "resetZoom",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "PopupClosed",
+                "EventTriggerId" : "navigation-25",
+                "EventTriggerSection" : "",
+                "Id" : "f9e3b9da-61e3-4776-aca7-f7495a3025b5"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "StyleTheme" : "Base Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "Description" : "The name of the NI TestStand",
+                    "ParameterName" : "NITestStandThingName"
+                  }, {
+                    "BaseType" : "STRING",
+                    "Description" : "The default radio selection for the time interval selection service.",
+                    "ParameterName" : "defaultRadioSelection"
+                  } ],
+                  "defaultRadioSelection" : "week",
+                  "id_index" : 38,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Description" : "",
+                    "DisplayName" : "Panel-2",
+                    "Height" : 200,
+                    "HideScrollbars" : true,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "Panel-2",
+                    "Left" : 175,
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.FooterBackground",
+                    "Top" : 290,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 300,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "ContainerClass" : "",
+                      "DisplayName" : "panel-172",
+                      "Height" : 241,
+                      "HideScrollbars" : false,
+                      "HorizontalAnchor" : "left",
+                      "Id" : "panel-172",
+                      "Left" : 0,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.TileBody",
+                      "Top" : 50,
+                      "Type" : "panel",
+                      "VerticalAnchor" : "top",
+                      "Visible" : true,
+                      "Width" : 454,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Panel"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "ChartTitle" : "",
+                        "ChartTitleStyle" : "DefaultChartTitleStyle",
+                        "ConnectSeparatedPoints" : true,
+                        "CustomBars" : false,
+                        "DisableVerticalZoom" : true,
+                        "DisplayName" : "dygraphchartwidget-173",
+                        "DisplayTagName" : false,
+                        "DrawAxisX" : true,
+                        "DrawAxisY" : true,
+                        "DrawAxisY2" : true,
+                        "DrawGridX" : false,
+                        "DrawGridY" : false,
+                        "DrawGridY2" : false,
+                        "DrawPoints" : false,
+                        "Duration" : 500,
+                        "EnableZoomSynchronizing" : false,
+                        "FillArea" : false,
+                        "FillAreaTrans" : 0.15,
+                        "Height" : 201,
+                        "HideSeries1InLegend" : false,
+                        "HideSeries2InLegend" : false,
+                        "HideSeries3InLegend" : false,
+                        "HideSeries4InLegend" : false,
+                        "HideSeries5InLegend" : false,
+                        "HideSeries6InLegend" : false,
+                        "HideSeries7InLegend" : false,
+                        "HideSeries8InLegend" : false,
+                        "HideX-Axis" : false,
+                        "HideX-Grid" : false,
+                        "HideY-Axis" : false,
+                        "HideY-AxisValues" : false,
+                        "HideY-Grid" : false,
+                        "Id" : "dygraphchartwidget-173",
+                        "Interpolation" : true,
+                        "Left" : 0,
+                        "LegendPosition" : "onmouseover",
+                        "NumberOfSeries" : 1,
+                        "ResponsiveLayout" : false,
+                        "SeriesSecondAxis1" : false,
+                        "SeriesSecondAxis2" : false,
+                        "SeriesSecondAxis3" : false,
+                        "SeriesSecondAxis4" : false,
+                        "SeriesSecondAxis5" : false,
+                        "SeriesSecondAxis6" : false,
+                        "SeriesSecondAxis7" : false,
+                        "SeriesSecondAxis8" : false,
+                        "SeriesVisibility1" : true,
+                        "SeriesVisibility2" : true,
+                        "SeriesVisibility3" : true,
+                        "SeriesVisibility4" : true,
+                        "SeriesVisibility5" : true,
+                        "SeriesVisibility6" : true,
+                        "SeriesVisibility7" : true,
+                        "SeriesVisibility8" : true,
+                        "ShowDataLoading" : true,
+                        "ShowInteractiveGuideline" : false,
+                        "ShowY-AxisLabels" : true,
+                        "SingleDataSource" : true,
+                        "StackedGraph" : false,
+                        "Stepped" : true,
+                        "Top" : 25,
+                        "Type" : "dygraphchartwidget",
+                        "UsePercentageFormat" : false,
+                        "Visible" : true,
+                        "Width" : 425,
+                        "XLabel" : "",
+                        "Y2Label" : "",
+                        "YLabel" : "",
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Dygraph Widget",
+                        "annotationsDivName" : "",
+                        "annotationsJSON" : "",
+                        "dateFormat" : "",
+                        "isZoomed" : false,
+                        "showDecimal" : false,
+                        "useAnnotation" : false,
+                        "useDateFormat" : false,
+                        "useValueRange" : false,
+                        "valueRangeMax" : 0,
+                        "valueRangeMin" : 0,
+                        "zoomMax" : 0,
+                        "zoomMin" : 0
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "panel-174",
+                        "Height" : 239,
+                        "HideScrollbars" : false,
+                        "HorizontalAnchor" : "left",
+                        "Id" : "panel-174",
+                        "Left" : 0,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "PTC.Factory.Widget_Bar_Grey",
+                        "Top" : 0,
+                        "Type" : "panel",
+                        "VerticalAnchor" : "top",
+                        "Visible" : true,
+                        "Width" : 15,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Panel"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "ButtonStates" : "PTC.Factory.TestResultHistoryPeriod",
+                      "ButtonTextOverflow" : "wrap",
+                      "Description" : "",
+                      "DisplayName" : "timeIntervalSelector",
+                      "Height" : 24,
+                      "Id" : "radiobuttonlist-188",
+                      "Left" : 234,
+                      "Orientation" : "horz",
+                      "RadioButtonDepressedStyle" : "PTC.Factory.Generic.DialogBoxOptionSelectorSelectedState",
+                      "RadioButtonStyle" : "PTC.Factory.Generic.DialogBoxOptionSelectorNormalState",
+                      "ReadOnly" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "State custom Label" : "[[PTC.Factory.Radio.custom]]",
+                      "State day Label" : "[[PTC.Factory.Period.LastWeek]]",
+                      "State hour Label" : "[[PTC.Factory.Radio.custom]]",
+                      "State shift Label" : "[[PTC.SCA.SCO.ControlsAdvisor.NITestStandLastShift]]",
+                      "State week Label" : "[[PTC.Factory.Period.LastWeek]]",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 5,
+                      "Type" : "radiobuttonlist",
+                      "Visible" : true,
+                      "Width" : 220,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button Bar",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "AllowEllipsis" : false,
+                      "Area" : "UI",
+                      "CustomClass" : "",
+                      "DisplayName" : "Trend: Number of Test Run",
+                      "Height" : 22,
+                      "Id" : "label-207",
+                      "Left" : 0,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.BoxTitle",
+                      "Text" : "[[PTC.SCA.SCO.ControlsAdvisor.NITestStandTestHistoryTrendName]]",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 5,
+                      "Type" : "label",
+                      "Visible" : true,
+                      "Width" : 290,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Label",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "ClickOutsideToClose" : false,
+                      "CustomClass" : "",
+                      "Description" : "Open popup so user can select custom date range.",
+                      "DisplayName" : "navigation-showCustomIntervalPopup",
+                      "FixedPopupHeight" : 0,
+                      "FixedPopupWidth" : 0,
+                      "Height" : 30,
+                      "Icon" : "",
+                      "IconAlignment" : "left",
+                      "Id" : "navigation-25",
+                      "Left" : 470,
+                      "MashupName" : "PTC.SCA.SCO.ControlsAdvisor.NITestStandTestRunTrendPageMashup.CustomDateSelector",
+                      "MashupParameters" : [ {
+                        "BaseType" : "DATETIME",
+                        "Description" : "The date at which to end the interval.",
+                        "ParameterName" : "endDate",
+                        "ParmDef" : {
+                          "aspects" : {
+                            "ordinal" : "1"
+                          },
+                          "baseType" : "DATETIME",
+                          "description" : "The date at which to end the interval.",
+                          "name" : "endDate",
+                          "ordinal" : 0
+                        }
+                      }, {
+                        "BaseType" : "INTEGER",
+                        "Description" : "OK = 1 : Cancel = 2",
+                        "ParameterName" : "buttonIndex",
+                        "ParmDef" : {
+                          "aspects" : {
+                            "ordinal" : "2"
+                          },
+                          "baseType" : "INTEGER",
+                          "description" : "OK = 1 : Cancel = 2",
+                          "name" : "buttonIndex",
+                          "ordinal" : 0
+                        }
+                      }, {
+                        "BaseType" : "DATETIME",
+                        "Description" : "The date at which to begin the interval.",
+                        "ParameterName" : "startDate",
+                        "ParmDef" : {
+                          "aspects" : {
+                            "ordinal" : "0"
+                          },
+                          "baseType" : "DATETIME",
+                          "description" : "The date at which to begin the interval.",
+                          "name" : "startDate",
+                          "ordinal" : 0
+                        }
+                      } ],
+                      "MessageToShow" : "Mashup must be selected",
+                      "ModalPopupOpacity" : 0.5,
+                      "NavigationActiveStyle" : "DefaultNavigationActiveStyle",
+                      "NavigationFocusStyle" : "DefaultNavigationFocusStyle",
+                      "NavigationHoverStyle" : "DefaultNavigationHoverStyle",
+                      "PopupScrolling" : "auto",
+                      "PopupTitle" : "",
+                      "PopupTitleStyle" : "DefaultPopupTitleStyle",
+                      "ReloadOnReplace" : false,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : true,
+                      "ShowCloseButton" : true,
+                      "ShowDataLoading" : true,
+                      "ShowMessageIfNoMashup" : false,
+                      "SingleClickSelectOnTablets" : true,
+                      "Style" : "DefaultNavigationStyle",
+                      "TabSequence" : 0,
+                      "TargetWindow" : "modal-popup",
+                      "Text" : "Mashup Link",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 80,
+                      "Transparent" : false,
+                      "Type" : "navigation",
+                      "UseTheme" : false,
+                      "Visible" : false,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Navigation",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "Description" : "If Custom radio is selected, launch the Custom Interval selector popup.",
+                      "DisplayName" : "validator-isCustom",
+                      "Expression" : "radioSelection === \"custom\"",
+                      "Height" : 28,
+                      "Id" : "validator-26",
+                      "Left" : 470,
+                      "Output" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 15,
+                      "Type" : "validator",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Validator",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "STRING",
+                        "Description" : "",
+                        "ParameterName" : "radioSelection"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "DataChangeType" : "ALWAYS",
+                      "Description" : "Force 'week' value.",
+                      "DisplayName" : "expression-week",
+                      "Expression" : "result = \"week\"",
+                      "FireOnFirstValue" : false,
+                      "Height" : 28,
+                      "Id" : "expression-30",
+                      "Left" : 470,
+                      "OutputBaseType" : "STRING",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 47.5,
+                      "Type" : "expression",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Expression"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "Description" : "Validates if the OK button was used to close the popup. If cancel was used, do nothing. ",
+                      "DisplayName" : "validator-isPopupClosedWithOK",
+                      "Expression" : "buttonIndex == 1",
+                      "Height" : 28,
+                      "Id" : "validator-32",
+                      "Left" : 470,
+                      "Output" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 114.5,
+                      "Type" : "validator",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Validator",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "NUMBER",
+                        "Description" : "",
+                        "ParameterName" : "buttonIndex"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DataShape" : "",
+                      "DataType" : "STRING",
+                      "Description" : "Determine the final value of the radio selection.",
+                      "DisplayName" : "eventsrouter-isCustom",
+                      "Height" : 19,
+                      "Id" : "eventsrouter-34",
+                      "Left" : 470,
+                      "NumberOfInputs" : 2,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 151,
+                      "Type" : "eventsrouter",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Events Router"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "DataChangeType" : "ALWAYS",
+                      "Description" : "Force 'custom' value.",
+                      "DisplayName" : "expression-custom",
+                      "Expression" : "result = \"custom\"",
+                      "FireOnFirstValue" : false,
+                      "Height" : 28,
+                      "Id" : "expression-35",
+                      "Left" : 470,
+                      "OutputBaseType" : "STRING",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 177,
+                      "Type" : "expression",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Expression"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "Description" : "Convert week/custom to boolean for trend service.",
+                      "DisplayName" : "validator-getIsCustomAsBoolean",
+                      "Expression" : "radioSelection == \"custom\"",
+                      "Height" : 28,
+                      "Id" : "validator-36",
+                      "Left" : 470,
+                      "Output" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 210,
+                      "Type" : "validator",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Validator",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "STRING",
+                        "Description" : "",
+                        "ParameterName" : "radioSelection"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            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
+            AARVUAFAUAUVAEEVVAAEVVABEFRBFVQABFVQARBUQQVAUAUVAEEVVEEFQFAFFQBBFVQABFVQARBU
+            QRVUAARVUAEQVEEFQFAFFQAEVVABEFRBBUBQBRUAQRVUABBUQQVAUAUVAEEVVAAEVVABQFAFFQBB
+            FVQABFVQARBUQRVUAARVUAEQVEEFQFAFFQBBFVRBBUBQBRUAQRVUAARVUAEQVEEVVAAEVVABEFRB
+            BUBQBRUAQRVUQQVAUAUVAEEVVAAEVVABQFAFFQBBFVQABFVQARBUQQUAQRVUAARVUAEQVEEFQFAF
+            FQAEVVABEFRBBUBQBRUAQRVUQQVAUAUVAEEVVAAEVVABEFRBFVQABFVQARBUQQVAUAUVAEEVVEEF
+            QFAFFQBBFVQABFVQAUBQBRUAQRVUAARVUAEQVEEFAEEVVAAEVVABEFRBBUBQBRUABFVQARBUQQVA
+            UAUVAEEVVAAQVEEFQFAFFQBBFVQABFVQBRUAQRVUAARVUAEQVEEFQFAFVVABEFRBBUBQBRUAQRVU
+            AARVUAUVAEEVVAAEVVABEFRBBQBBFVQABFVQARBUQQVAUAUVAARVUAEQ1Fna2NhIg8Gg2fLyctre
+            3hZUAAR1HNevX09LS0vNj+HChQtpZWUl7ezsCCoAgtpXBHR1dXXv7Tg6PXny5F5gBRUAQR0hjkLj
+            aDRO+ZYisBFaQQVAUAUVAEEVVAAEdSGCWr9PUAEQ1A710agXJQEgqBPo+20zjz/zG/+XACCoXcq/
+            2KEtpmHw7MdRjSNVMzM7vBNUAHCEKqgAIKgAIKgAIKiCCoCgCioACCoACCoACKqgAiCoggoAggoA
+            ggoAgiqoAAiqoAKAoAKAoAKAoAoqAIIqqAAgqAAgqAAgqIIKgKAKKgAIKgAIKgAIqqACIKiCCgCC
+            CgCCCgCCKqgAIKgAIKgAIKiCCoCgCioAzD6oZmZmtjldUM3MzKz/BNXMzExQzczMBNXMzExQzczM
+            TFDNzMwE1czMTFDNzMwE1czMzATVzMxsTvsvqko4KnRYjAUAAAAASUVORK5CYII=
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

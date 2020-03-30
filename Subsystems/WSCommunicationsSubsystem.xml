@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b937"
+ build="b222"
  majorVersion="8"
- minorVersion="3"
- modelPersistenceProviderPackage="H2PersistenceProviderPackage"
- revision="3"
- schemaVersion="1030"
- universal="">
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
     <Subsystems>
         <Subsystem
          aspect.isCreatable="false"
@@ -18,8 +18,8 @@
          documentationContent=""
          enabled="true"
          friendlyName="WS Communications"
-         homeMashup="MonitoringSubsystemDefaultHomeMashup"
-         lastModifiedDate="2018-12-03T14:53:15.463+05:30"
+         homeMashup=""
+         lastModifiedDate="2020-03-03T01:03:58.418+05:30"
          name="WSCommunicationsSubsystem"
          projectName=""
          tags="">
@@ -38,78 +38,29 @@
             <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
             <ConfigurationTables>
                 <ConfigurationTable
-                 description="Websocket Communication Settings"
+                 description="Bind protection configuration"
                  isMultiRow="false"
-                 name="CommonConfigTable"
+                 name="BindProtectionConfigTable"
                  ordinal="0">
                     <DataShape>
                         <FieldDefinitions>
                             <FieldDefinition
-                             aspect.defaultValue="15"
-                             aspect.friendlyName="Amount of time to wait for authentication message (secs)"
-                             baseType="INTEGER"
-                             description="time to wait for an auth message"
-                             name="authTimeout"
-                             ordinal="5"></FieldDefinition>
-                            <FieldDefinition
-                             aspect.defaultValue="45"
-                             aspect.friendlyName="Idle Ping Rate (secs)"
-                             baseType="INTEGER"
-                             description="rate (secs) that a client endpoint will ping if connection is idle"
-                             name="idlePingRate"
+                             aspect.defaultValue="FIRST_IN_WINS"
+                             aspect.friendlyName="Bind Protection Policy"
+                             aspect.selectOptions="FIRST_IN_WINS:First in wins|LAST_IN_WINS:Last in wins"
+                             baseType="STRING"
+                             description="Strategy used to resolve a new binding when it already exists on another endpoint"
+                             name="BindProtectionPolicy"
                              ordinal="1"></FieldDefinition>
-                            <FieldDefinition
-                             aspect.defaultValue="60"
-                             aspect.friendlyName="Idle Connection Timeout (sec)"
-                             baseType="INTEGER"
-                             description="idle timeout for a server connection (secs)"
-                             name="idleSessionTimeout"
-                             ordinal="0"></FieldDefinition>
-                            <FieldDefinition
-                             aspect.defaultValue="true"
-                             aspect.friendlyName="Ping after send"
-                             baseType="BOOLEAN"
-                             description="whether or not to send a ping after sending a message or tunnel traffic"
-                             name="pingAfterSend"
-                             ordinal="7"></FieldDefinition>
-                            <FieldDefinition
-                             aspect.defaultValue="30"
-                             aspect.friendlyName="Amount of time a request will wait for the response message before timing out (secs)"
-                             baseType="INTEGER"
-                             description="time to wait for a response message"
-                             name="requestTimeout"
-                             ordinal="6"></FieldDefinition>
                         </FieldDefinitions>
                     </DataShape>
                     <Rows>
                         <Row>
-                            <authTimeout>15</authTimeout>
-                            <idlePingRate>45</idlePingRate>
-                            <idleSessionTimeout>60</idleSessionTimeout>
-                            <pingAfterSend>true</pingAfterSend>
-                            <requestTimeout>30</requestTimeout>
-                        </Row>
-                    </Rows>
-                </ConfigurationTable>
-                <ConfigurationTable
-                 description="Asynchronous edge dispatching configuration"
-                 isMultiRow="false"
-                 name="EdgeDispatcherConfigTable"
-                 ordinal="0">
-                    <DataShape>
-                        <FieldDefinitions>
-                            <FieldDefinition
-                             aspect.defaultValue="10.0"
-                             aspect.friendlyName="Max Thread Count"
-                             baseType="NUMBER"
-                             description="Maximum number of threads allocated to asynchronous dispatching"
-                             name="maximumThreadPoolSize"
-                             ordinal="0"></FieldDefinition>
-                        </FieldDefinitions>
-                    </DataShape>
-                    <Rows>
-                        <Row>
-                            <maximumThreadPoolSize>10.0</maximumThreadPoolSize>
+                            <BindProtectionPolicy>
+                            <![CDATA[
+                            FIRST_IN_WINS
+                            ]]>
+                            </BindProtectionPolicy>
                         </Row>
                     </Rows>
                 </ConfigurationTable>
@@ -155,6 +106,82 @@
                         </FieldDefinitions>
                     </DataShape>
                     <Rows></Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Websocket Communication Settings"
+                 isMultiRow="false"
+                 name="CommonConfigTable"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="15"
+                             aspect.friendlyName="Amount of time to wait for authentication message (secs)"
+                             baseType="INTEGER"
+                             description="time to wait for an auth message"
+                             name="authTimeout"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="45"
+                             aspect.friendlyName="Idle Ping Rate (secs)"
+                             baseType="INTEGER"
+                             description="rate (secs) that a client endpoint will ping if connection is idle"
+                             name="idlePingRate"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="60"
+                             aspect.friendlyName="Idle Connection Timeout (sec)"
+                             baseType="INTEGER"
+                             description="idle timeout for a server connection (secs)"
+                             name="idleSessionTimeout"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.friendlyName="Ping after send"
+                             baseType="BOOLEAN"
+                             description="whether or not to send a ping after sending a message or tunnel traffic"
+                             name="pingAfterSend"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="30"
+                             aspect.friendlyName="Amount of time a request will wait for the response message before timing out (secs)"
+                             baseType="INTEGER"
+                             description="time to wait for a response message"
+                             name="requestTimeout"
+                             ordinal="6"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <authTimeout>15</authTimeout>
+                            <idlePingRate>45</idlePingRate>
+                            <idleSessionTimeout>60</idleSessionTimeout>
+                            <pingAfterSend>false</pingAfterSend>
+                            <requestTimeout>30</requestTimeout>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Asynchronous edge dispatching configuration"
+                 isMultiRow="false"
+                 name="EdgeDispatcherConfigTable"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="10.0"
+                             aspect.friendlyName="Max Thread Count"
+                             baseType="NUMBER"
+                             description="Maximum number of threads allocated to asynchronous dispatching"
+                             name="maximumThreadPoolSize"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <maximumThreadPoolSize>10.0</maximumThreadPoolSize>
+                        </Row>
+                    </Rows>
                 </ConfigurationTable>
             </ConfigurationTables>
         </Subsystem>

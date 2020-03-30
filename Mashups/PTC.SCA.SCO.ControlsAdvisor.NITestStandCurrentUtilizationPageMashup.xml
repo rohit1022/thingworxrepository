@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Displays Utilization status for the NI TestStand connection {PTC.SCA.SCO.ControlsAdvisor.NITestStandCurrentUtilizationPageMashup}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:41.290+05:30"
+         name="PTC.SCA.SCO.ControlsAdvisor.NITestStandCurrentUtilizationPageMashup"
+         projectName="PTC.SCA.SCO.KEPServerEX Monitor"
+         rows="0.0"
+         tags="PTC:sca-sco-kepserverexmonitor;PTC:sca-mfg;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:KEPServerMonitoring"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description="The name of the NI TestStand"
+                 name="NITestStandThingName"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.ControlsAdvisorUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates>
+                <ThingTemplate>PTC.SCA.SCO.NITestStandThingTemplate</ThingTemplate>
+            </ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "DynamicThingTemplates_PTC.SCA.SCO.NITestStandThingTemplate" : {
+                  "DataName" : "DynamicThingTemplates_PTC.SCA.SCO.NITestStandThingTemplate",
+                  "EntityName" : "PTC.SCA.SCO.NITestStandThingTemplate",
+                  "EntityType" : "DynamicThingTemplates",
+                  "Id" : "ecf3995c-1388-4a57-883b-c06bcd252fe1",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "14e5b325-e33f-4296-9374-bff5022ae096",
+                    "Name" : "GetStringPropertyValue",
+                    "Parameters" : {
+                      "propertyName" : "Utilization"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetStringPropertyValue"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.ControlsAdvisorUtils" : {
+                  "DataName" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                  "EntityName" : "PTC.SCA.SCO.ControlsAdvisorUtils",
+                  "EntityType" : "Things",
+                  "Id" : "b4f12f07-63b0-4dd6-96e7-518a16c20aff",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "0d6570df-5b6e-40f0-8e01-8c1854ae0fb5",
+                    "Name" : "GetNITestStandCurrentUtilization",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetNITestStandCurrentUtilization"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "c83f5e9c-9dba-4a36-9d57-73e1dd80722c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "NITestStandThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "connectionThingName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetNITestStandCurrentUtilization",
+                "TargetSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils"
+              }, {
+                "Id" : "074452a5-7861-4560-ab10-429b25858492",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetNITestStandCurrentUtilization",
+                "SourceSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "label-30",
+                "TargetSection" : ""
+              }, {
+                "Id" : "6a037d55-6ecd-4571-8adb-98e4de3010ab",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "NITestStandThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "THINGNAME",
+                  "TargetPropertyType" : "Entity"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EntityName",
+                "TargetSection" : "DynamicThingTemplates_PTC.SCA.SCO.NITestStandThingTemplate"
+              }, {
+                "Id" : "72c91538-7a38-4d47-acb9-d5e8ae471016",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "ANYSCALAR",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetStringPropertyValue",
+                "SourceSection" : "DynamicThingTemplates_PTC.SCA.SCO.NITestStandThingTemplate",
+                "TargetArea" : "UI",
+                "TargetId" : "statepanel-32",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "DynamicThingTemplates_PTC.SCA.SCO.NITestStandThingTemplate",
+                "EventHandlerService" : "GetStringPropertyValue",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "1cade9ba-5cce-4a68-9692-f63e12d8fadb"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "DynamicThingTemplates_PTC.SCA.SCO.NITestStandThingTemplate",
+                "EventHandlerService" : "GetStringPropertyValue",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "NITestStandThingNameChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "9cd95cb7-dd73-450d-bccf-7ac47b8615c6"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "DynamicThingTemplates_PTC.SCA.SCO.NITestStandThingTemplate",
+                "EventHandlerService" : "GetStringPropertyValue",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "RefreshRequested",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "92a36275-9cd9-4a1e-89b6-709631fd25b6"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                "EventHandlerService" : "GetNITestStandCurrentUtilization",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "f92c0e32-a521-4072-babf-5914618217b2"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                "EventHandlerService" : "GetNITestStandCurrentUtilization",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "RefreshRequested",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "0f9f6e9f-acf9-4c87-aa7d-b597c31f44ac"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                "EventHandlerService" : "GetNITestStandCurrentUtilization",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "NITestStandThingNameChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "852bd016-087c-4f3a-8ec9-d6bc05b3f50e"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "Description" : "The name of the NI TestStand",
+                    "ParameterName" : "NITestStandThingName"
+                  } ],
+                  "id_index" : 34,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Columns" : 1,
+                    "DisplayName" : "layout-24",
+                    "Footer" : false,
+                    "FooterHeight" : 0,
+                    "Header" : false,
+                    "HeaderHeight" : 0,
+                    "Id" : "layout-24",
+                    "IncludeSpacingInFixedAreas" : false,
+                    "IsPrintLayout" : false,
+                    "Left" : 245,
+                    "LeftSidebar" : true,
+                    "LeftSidebarCustomClass" : "",
+                    "LeftSidebarWidth" : 15,
+                    "Orientation" : "horizontal",
+                    "PctColumn1" : 100,
+                    "PctColumn2" : 0,
+                    "PctColumn3" : 1,
+                    "PctColumn4" : 1,
+                    "PctColumn5" : 1,
+                    "PctColumn6" : 1,
+                    "PctColumn7" : 1,
+                    "PctColumn8" : 1,
+                    "PctRow1" : 50,
+                    "PctRow2" : 50,
+                    "PctRow3" : 0,
+                    "PctRow4" : 0,
+                    "PctRow5" : 0,
+                    "PctRow6" : 0,
+                    "PctRow7" : 0,
+                    "PctRow8" : 0,
+                    "PrintMarginLeftRight" : 0.5,
+                    "PrintMarginTopBottom" : 0.5,
+                    "PrintWidth" : 650,
+                    "ResponsiveLayout" : true,
+                    "RightSidebar" : false,
+                    "RightSidebarWidth" : 0,
+                    "Rows" : 0,
+                    "ShowDataLoading" : true,
+                    "Spacing" : 0,
+                    "Top" : 260,
+                    "Type" : "layout",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Layout"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Left Sidebar",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-26",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "PTC.Factory.Widget_Bar_Grey",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "Description" : "",
+                        "DisplayName" : "statepanel-utilization",
+                        "Height" : 200,
+                        "HideScrollbars" : true,
+                        "HorizontalAnchor" : "left",
+                        "Id" : "statepanel-32",
+                        "Left" : 5,
+                        "PanelFormat" : {
+                          "FormatString" : "",
+                          "formatInfo" : {
+                            "FieldName" : "result",
+                            "StateDefinition" : "PTC.SCA.SCO.ControlsAdvisor.NITestStandCurrentUtiliationStateDefinition",
+                            "StateDefinitionType" : "string",
+                            "StateFormats" : [ {
+                              "comparator" : "==",
+                              "state" : "PTC.SCA.SCO.ControlsAdvisor.NITestStandCurrentUtilizationRunning",
+                              "stateName" : "RUNNING",
+                              "value" : "True"
+                            }, {
+                              "comparator" : "==",
+                              "state" : "PTC.SCA.SCO.ControlsAdvisor.NITestStandCurrentUtilizationIdle",
+                              "stateName" : "IDLE",
+                              "value" : "False"
+                            }, {
+                              "state" : "DefaultPanelStyle",
+                              "stateName" : ""
+                            } ]
+                          },
+                          "renderer" : "DEFAULT",
+                          "roundingEnabled" : true
+                        },
+                        "PanelFormat_StateParameters" : [ {
+                          "BaseType" : "STRING",
+                          "DefaultValue" : "True",
+                          "Description" : "RUNNING",
+                          "ParameterName" : "PanelFormat_RUNNING"
+                        }, {
+                          "BaseType" : "STRING",
+                          "DefaultValue" : "False",
+                          "Description" : "IDLE",
+                          "ParameterName" : "PanelFormat_IDLE"
+                        } ],
+                        "ResponsiveLayout" : true,
+                        "ShowBackgroundImage" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultPanelStyle",
+                        "Top" : 85,
+                        "Type" : "statepanel",
+                        "VerticalAnchor" : "top",
+                        "Visible" : true,
+                        "Width" : 300,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "State Panel"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Column 1",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-25",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "panel-main",
+                        "Height" : 200,
+                        "HideScrollbars" : true,
+                        "HorizontalAnchor" : "left",
+                        "Id" : "panel-29",
+                        "Left" : 315,
+                        "ResponsiveLayout" : true,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultPanelStyle",
+                        "Top" : 285,
+                        "Type" : "panel",
+                        "VerticalAnchor" : "top",
+                        "Visible" : true,
+                        "Width" : 300,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Panel"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "Alignment" : "center",
+                          "AllowEllipsis" : false,
+                          "Area" : "UI",
+                          "CustomClass" : "",
+                          "Description" : "",
+                          "DisplayName" : "label-utilization",
+                          "Height" : 35,
+                          "Id" : "label-30",
+                          "Left" : 0,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Style" : "PTC.SCA.SCO.ControlsAdvisor.NITestStandCurrentUtilizationText",
+                          "Text" : "",
+                          "ToolTipField" : "",
+                          "ToolTipStyle" : "DefaultTooltipStyle",
+                          "Top" : 75,
+                          "Type" : "label",
+                          "Visible" : true,
+                          "Width" : 280,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Label",
+                          "__supportsTooltip" : true
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "CustomClass" : "",
+                          "Description" : "",
+                          "DisplayName" : "divider-grey",
+                          "Height" : 2,
+                          "Id" : "divider-34",
+                          "Left" : 65,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Style" : "PTC.Factory.Widget_Bar_Grey",
+                          "Top" : 110,
+                          "Type" : "divider",
+                          "Visible" : true,
+                          "Width" : 150,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Divider"
+                        },
+                        "Widgets" : [ ]
+                      } ]
+                    } ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            iVBORw0KGgoAAAANSUhEUgAAAT4AAAEkCAYAAAC2dV3NAAAGN0lEQVR42u3bsWpTbRzH8dyLo0hv
+            wFHp2M26uenipJODDsVF70DBCqXo5KA34FAEV6FDnQqlXSSTdD/6BJ7y9O9zzkmakzS1nw/8eDVN
+            TpNAv+YkfUe/T08bM7PrtJEnwcyEz8xM+MzMhM/MTPjMzITPzEz4zMyEz8zsaobv5avXzY2bt86W
+            /n6VHvzOh4/V+/x1b695/ORp82s8br1d/npa+nO6TX5Ohn4ejo6Pm43N+2ffw8wuIXz5BzH+gL/d
+            fj/52io8sHQ/Hjx81PzY3587fOk66bq1Y8TwDbF0n9N9X5Xn0uzahy//oLeFYFUmfGY2WPim+aGs
+            XaeMTA7Ls+cvJqfI6e+1y/Lt8ql0epWZj5nD9unzl+b2nbvnvp6+f74sre20tS98Rycnk//m46Rj
+            pmOXYYzhK49Z3vf4dkC6fnl5Dmu8PF2/Ftd47DLM+f69ebd9Zd+GMFup8PW9/zVt+Mq4tV1WvpcW
+            j5FPt2OAyq8v6hXftOHrek7KtwXSbcuox+vWvkf8R6B8DzA/l/k+538IvEdodsnhi8eIl9Ve5aTj
+            TV6J/f1vLWzlMVYpfH2nw/G+doWv7Vh9z2/X6bqZ8C3xVLcrfPlVTDxVzKebiw5fefm84atFJ56O
+            58fVF762x1XeJ+EzW9CHG12nTUO94kvv97WFa4jwtb16jfGaJ3y17xGfnyFe8ZWxFj6zBfw6S3wP
+            Kf46S3zPKb+6mSV8tff4hg5fvp/l40jX37i3ee52Fw1f7Vi1x5r+Pu0rvmnf4xM+swX8AnPtVDTG
+            ofxUNX3COGv4un5Jui985SefXe9JxsdRBiiels7yqW6+PJ6q1z4tTn+OjyU/7mk/1Y0fFAmfmf9l
+            zcxM+MxM+MzMhM/MTPjMzITPzEz4zMyEz8xM+MzMhM/MTPjMzITPzEz4zMyEz8xM+MzMhM/MTPjM
+            TPjMzITPzOy6hu/n4eGF923vu5nZ0rYy4QNYBuEDhE/4AOETPkD4hA8QPuEDhE/4AOETPkD4hA8Q
+            PuEDhA9A+ACED0D4AIQPQPgAhA8QPuEDhE/4AOETPkD4hA8QPuEDhE/4AOETPkD4hA8QPgDhAxA+
+            AOEDED4A4QMQPkD4hA8QPuEDhE/4AOETPkD4hA8QPuEDhE/4AOETPkD4AIQPQPgAhA9A+ACED0D4
+            AOETPkD4hA8QPuEDhE/4AOETPkD4hA8QPuEDhE/4AOEDED4A4QMQPgDhAxA+AOEDhE/4AOETPkD4
+            hA8QPuEDhE/4AOETPkD4hA8QPuEDhA9A+ACED0D4AIQPQPgAhA8QPuEDhE/4AOETPkD4hA8QPuED
+            hE/4AOETPkD4hA8QPuEDhA9A+ACED0D4AIQPQPhYUePxuFlfX29Go1Hntra2/rnt7u5u7+3W1taa
+            g4MDTzTCh/AhfMKH8CF8wofwIXzCBwif8AHCJ3yA8AkfIHzCBwif8AHCByB8AMIHIHwAwgcgfADC
+            Bwif8AHCJ3yA8AnfMszzHJq1DeETPhM+4RM+QPiEDxA+4QOET/gA4RM+QPiEDxA+4QOET/gA4RM+
+            QPgAhA9A+ACED0D4AIQPQPgA4RM+QPiEDxA+4QOET/gA4RM+QPiEDxA+4QOET/gA4QMQPgDhAxA+
+            AOEDED4A4QOET/gA4RM+QPiEDxA+4QOET/gA4RM+QPiEDxA+4QOED0D4AIQPQPgAhA9A+ACEDxA+
+            4QOET/gA4RM+QPiEDxA+4QOET/gA4RM+QPiEDxA+AOEDED4A4QMQPgDhAxA+QPiEDxA+4QOET/gA
+            4RM+QPiEDxA+4QOET/gA4RM+QPgAhA9A+ACED0D4AIQPQPgA4RM+QPiEDxA+4QOET/gA4RM+QPiE
+            DxA+4QOET/gA4QMQPgDhAxA+AOEDED4A4QOET/gA4RM+QPiEDxA+4QOET/gA4RM+QPiEDxA+4QOE
+            T/gA4QMQPgDhAxA+AOEDED4A4QOET/gA4RM+QPiEDxA+4QOET/gA4RM+QPiEDxA+4QOED0D4AIQP
+            QPgAhA9A+ACEDxA+4QOET/gA4RM+QPiEDxA+4QOEb4bwmZkta4OFz8zsf5zwmZnwmZkJn5mZ8JmZ
+            CZ+ZmfCZmQmfmZnwmZkJn5mZ8JmZCZ+ZmfCZmV1sfwCWm5DoKYvVWAAAAABJRU5ErkJggg==
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

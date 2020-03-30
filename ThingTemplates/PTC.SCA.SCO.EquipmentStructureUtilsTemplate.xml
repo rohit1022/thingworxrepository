@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="Equipment structure utilities template  {PTC.SCA.SCO.EquipmentStructureUtilsTemplate}"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.975+05:30"
+         name="PTC.SCA.SCO.EquipmentStructureUtilsTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Equipment;PTC:ThingTemplate;PTC:Structure"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves the property information (binding, value, and so on) for a specified list of equipment."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentProperties">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.DetailsProperties"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="EntityList"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="entityList"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             baseType="BOOLEAN"
+                             description=""
+                             name="includeOOTBProperties"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             baseType="BOOLEAN"
+                             description=""
+                             name="showOnlyBoundedProperties"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves the property information (binding, value, and so on) for all equipment on a specified network and node."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentPropertiesFromStructure">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.DetailsProperties"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             baseType="BOOLEAN"
+                             description=""
+                             name="includeOOTBProperties"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="If no network passed, the service will search for the default network and use that as parameter"
+                             name="networkName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="THINGNAME"
+                             description=""
+                             name="node"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             baseType="BOOLEAN"
+                             description=""
+                             name="showOnlyAssets"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             baseType="BOOLEAN"
+                             description=""
+                             name="showOnlyBoundedProperties"
+                             ordinal="4"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves a tree view of an equipment structure."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentStructure">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.SimpleEquipmentStructureTree"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="INTEGER"
+                             description=""
+                             name="maxLevel"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="networkName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves a tree view of an equipment structure with a count of active alerts for each item in the tree."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentStructureWithActiveAlertCount">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.EquipmentStructureTree"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Context name selected."
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="String matching the name of the EquipmentStructureConfigurationSettings checkbox to be used with this service: DisplayAssetsInAlertMonitoringStructureTree."
+                             name="displayAssetConfigSettingName"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="BOOLEAN"
+                             description="If enabled, calculates active alert rollups for equipment with children."
+                             name="isRollupEnabled"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="INTEGER"
+                             description="Maximum number of levels displayed in the tree structure."
+                             name="maxLevel"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentProperties">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var tableLength = entityList.rows.length;
+                                        var x = 0;
+                                        var params = {
+                                        	infoTableName : "InfoTable",
+                                        	dataShapeName : "PTC.SCA.SCO.DetailsProperties"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.DetailsProperties)
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        
+                                        for ( x=0; x < tableLength; x++) {
+                                        	var row = entityList.rows[x];
+                                        	//Your code here
+                                        	var thingName = row.name.trim();
+                                        	// Result: INFOTABLE dataShape: "PTC.Factory.PhysicalAssetPropertyDataShape"
+                                        	var rows =  Things["PTC.SCA.SCO.ManageResourceUtils"].GetEquipmentProperties({
+                                        		thingName: thingName /* THINGNAME */,
+                                        		includeOOTBProperties : includeOOTBProperties /* BOOLEAN */,
+                                        		showOnlyBoundedProperties : showOnlyBoundedProperties /* BOOLEAN */,
+                                        		sortQuery: undefined /* QUERY */
+                                        	});
+                                        	for (var y=0; y < rows.rows.length; y++) {
+                                        		var currentRow = rows.rows[y];
+                                        		currentRow.thingName = thingName;
+                                        		result.AddRow(currentRow);
+                                        	}
+                                        	
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentPropertiesFromStructure">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if ( !networkName ){
+                                        	networkName = Things["PTC.SCA.SCO.EquipmentStructureManager"].GetDefaultStructureEquipmentNetwork();
+                                        }
+                                        
+                                        // result: INFOTABLE dataShape: "EntityList"
+                                        var entityList =  Things["PTC.SCA.SCO.EquipmentStructureManager"].GetEquipmentList({
+                                        	node: node /* THINGNAME */,
+                                        	networkName: networkName /* STRING */,
+                                        	showOnlyAssets : showOnlyAssets /* BOOLEAN */ 
+                                        });
+                                        
+                                        var result = me.GetEquipmentProperties({
+                                        	entityList: entityList /* INFOTABLE */,
+                                        	includeOOTBProperties : includeOOTBProperties /* BOOLEAN */,
+                                        	showOnlyBoundedProperties : showOnlyBoundedProperties /* BOOLEAN */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentStructure">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // result: STRING
+                                        var launchPointConfigurationName =  Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                        
+                                        // table: INFOTABLE dataShape: ""
+                                        var table =  Things[launchPointConfigurationName].GetConfigurationTable({
+                                        	tableName: "EquipmentStructureConfigurationSettings" /* STRING */
+                                        });
+                                        var includeAsset = table.DisplayAssetsInStructureTree;
+                                        
+                                        // result: INFOTABLE dataShape: "PTC.SCA.SCO.SimpleEquipmentStructureTree"
+                                        var result =  Things["PTC.SCA.SCO.EquipmentStructureManager"].GetEquipmentStructure({
+                                        	maxLevel: maxLevel /* INTEGER */,
+                                        	networkName: networkName /* STRING */,
+                                        	includeAsset: includeAsset /* BOOLEAN */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentStructureWithActiveAlertCount">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var customLogger = logger.getLoggerContext().getLogger(logger.getName()+".com.ptc.sca.sco.EquipmentStructureUtils.GetEquipmentStructureWithActiveAlertCount");
+                                        
+                                        if (contextName && contextName !== 'undefined') {
+                                            var launchPointConfigurationName =  Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                            var table =  Things[launchPointConfigurationName].GetConfigurationTable({
+                                                tableName: "EquipmentStructureConfigurationSettings" /* STRING */
+                                            });
+                                            var includeAsset = table[displayAssetConfigSettingName];
+                                            if (includeAsset === undefined){
+                                                customLogger.warn("EquipmentStructureUtils.GetEquipmentStructureWithAlertRollup - the displayAssetConfigParamName entered as a parameter does not exist: " + displayAssetConfigParamName);
+                                            }
+                                            customLogger.debug("EquipmentStructureUtils.GetEquipmentStructureWithAlertRollup - includeAsset: " + includeAsset + ",  isRollupEnabled: " + isRollupEnabled + ",  displayAssetConfigSettingName: " + displayAssetConfigSettingName + ",  maxLevel: " + maxLevel + ",  contextName: " + contextName);
+                                            // result: INFOTABLE dataShape: "PTC.SCA.SCO.SimpleEquipmentStructureTree"
+                                            result =  Things["PTC.SCA.SCO.EquipmentStructureManager"].GetEquipmentStructureWithActiveAlertCount({
+                                                maxLevel: maxLevel /* INTEGER */,
+                                                contextName: contextName /* STRING */,
+                                                includeAsset: includeAsset /* BOOLEAN */,
+                                                rollupAlerts: isRollupEnabled
+                                            });
+                                        } else {
+                                            result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                dataShapeName : "PTC.SCA.SCO.EquipmentStructureTree"
+                                            });
+                                        }
+                                        
+                                        var query = {
+                                            "sorts": [{"fieldName": "displayName","ascending": true,"isCaseSensitive": false}]
+                                        };
+                                        var params = {
+                                            t: result /* INFOTABLE */,
+                                            query: query /* QUERY */
+                                        };
+                                        // result: INFOTABLE
+                                        var result = Resources["InfoTableFunctions"].Query(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

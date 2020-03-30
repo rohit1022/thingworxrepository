@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="Thing shape for Simulation Only fake data, simulate 5 Devices {PTC.Factory.Test.TestOPCDAThingShape5Devices}"
+         documentationContent="&lt;p&gt;&amp;nbsp;&lt;/p&gt; "
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.116+05:30"
+         name="PTC.Factory.Test.TestOPCDAThingShape5Devices"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:ThingShape">
+            <PropertyDefinitions></PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Browse the groups of a heirarchical namespace"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="BrowseGroups">
+                    <ResultType
+                     aspect.dataShape="IndustrialGroups"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="filter"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="path"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Browse the items of a heirarchical namespace"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="BrowseItems">
+                    <ResultType
+                     aspect.dataShape="IndustrialItems"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="filter"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="path"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="BrowseGroups">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : "IndustrialGroups"
+                                    };
+                                    
+                                    // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(IndustrialGroups)
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    if(!path) {
+                                        // IndustrialGroups entry object
+                                        var newEntry1 = new Object();
+                                        newEntry1.Parent = undefined;
+                                        newEntry1.FullPath = "_System";
+                                        newEntry1.Name = "_System";
+                                    
+                                        var newEntry2 = new Object();
+                                        newEntry2.Parent = undefined;
+                                        newEntry2.FullPath = "Channel1";
+                                        newEntry2.Name = "Channel1";
+                                        
+                                        var newEntry3 = new Object();
+                                        newEntry3.Parent = undefined;
+                                        newEntry3.FullPath = "Channel2";
+                                        newEntry3.Name = "Channel2";
+                                        
+                                        var newEntry4 = new Object();
+                                        newEntry4.Parent = undefined;
+                                        newEntry4.FullPath = "Channel3";
+                                        newEntry4.Name = "Channel3";
+                                    
+                                        result.AddRow(newEntry1);
+                                        result.AddRow(newEntry2);
+                                        result.AddRow(newEntry3);
+                                        result.AddRow(newEntry4);
+                                    }
+                                    
+                                    if(path == "Channel1") {
+                                    	var newEntry6 = new Object();
+                                        newEntry6.Parent = "Channel1";
+                                        newEntry6.FullPath = "Channel1._Statistics";
+                                        newEntry6.Name = "_Statistics";
+                                        
+                                        var newEntry7 = new Object();
+                                        newEntry7.Parent = "Channel1";
+                                        newEntry7.FullPath = "Channel1._System";
+                                        newEntry7.Name = "_System";
+                                        
+                                        var newEntry8 = new Object();
+                                        newEntry8.Parent = "Channel1";
+                                        newEntry8.FullPath = "Channel1.Device1";
+                                        newEntry8.Name = "Device1";
+                                        
+                                        result.AddRow(newEntry6);
+                                        result.AddRow(newEntry7);
+                                        result.AddRow(newEntry8);
+                                    }
+                                    
+                                    if(path == "Channel1.Device1") {
+                                    	var newEntry9 = new Object();
+                                        newEntry9.Parent = "Channel1.Device1";
+                                        newEntry9.FullPath = "Channel1.Device1._System";
+                                        newEntry9.Name = "_System";
+                                        
+                                        result.AddRow(newEntry9);
+                                    }
+                                    
+                                    if(path == "Channel2") {
+                                    	var newEntry10 = new Object();
+                                        newEntry10.Parent = "Channel2";
+                                        newEntry10.FullPath = "Channel2.Device1";
+                                        newEntry10.Name = "Device1";
+                                        
+                                        var newEntry11 = new Object();
+                                        newEntry11.Parent = "Channel2";
+                                        newEntry11.FullPath = "Channel2.Device2";
+                                        newEntry11.Name = "Device2";
+                                        
+                                        var newEntry12 = new Object();
+                                        newEntry12.Parent = "Channel2";
+                                        newEntry12.FullPath = "Channel2.Device3";
+                                        newEntry12.Name = "Device3";
+                                        
+                                        result.AddRow(newEntry10);
+                                        result.AddRow(newEntry11);
+                                        result.AddRow(newEntry12);
+                                    }
+                                    
+                                    if(path == "Channel2.Device1") {
+                                    	var newEntry13 = new Object();
+                                        newEntry13.Parent = "Channel2.Device1";
+                                        newEntry13.FullPath = "Channel2.Device1._System";
+                                        newEntry13.Name = "_System";
+                                        
+                                        result.AddRow(newEntry13);
+                                    }
+                                    
+                                    if(path == "Channel2.Device2") {
+                                    	var newEntry14 = new Object();
+                                        newEntry14.Parent = "Channel2.Device2";
+                                        newEntry14.FullPath = "Channel2.Device2._System";
+                                        newEntry14.Name = "_System";
+                                        
+                                        result.AddRow(newEntry14);
+                                    }
+                                    
+                                    if(path == "Channel2.Device3") {
+                                    	var newEntry14 = new Object();
+                                        newEntry14.Parent = "Channel2.Device3";
+                                        newEntry14.FullPath = "Channel2.Device3._System";
+                                        newEntry14.Name = "_System";
+                                        
+                                        result.AddRow(newEntry14);
+                                    }
+                                    
+                                    if(path == "Channel3.Device1") {
+                                    	var newEntry15 = new Object();
+                                        newEntry15.Parent = "Channel3.Device1";
+                                        newEntry15.FullPath = "Channel3.Device1._System";
+                                        newEntry15.Name = "_System";
+                                        
+                                        result.AddRow(newEntry15);
+                                    }
+                                    
+                                    if(path == "Channel3") {
+                                    	var newEntry21 = new Object();
+                                        newEntry21.Parent = "Channel3";
+                                        newEntry21.FullPath = "Channel3.Device1";
+                                        newEntry21.Name = "Device1";
+                                        
+                                        result.AddRow(newEntry21);
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="BrowseItems">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : "IndustrialItems"
+                                    };
+                                    
+                                    // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(IndustrialItems)
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    if(path == "Channel1._Statistics") {
+                                        var newEntry1 = new Object();
+                                        newEntry1.ReadOnly = false;
+                                        newEntry1.Description = undefined;
+                                        newEntry1.BaseType = "INTEGER";
+                                        newEntry1.SourceType = "System.UInt32";
+                                        newEntry1.Source = "Channel1._Statistics._FailedReads";
+                                        newEntry1.Name = "_FailedReads";
+                                    
+                                        var newEntry2 = new Object();
+                                        newEntry2.ReadOnly = false;
+                                        newEntry2.Description = undefined;
+                                        newEntry2.BaseType = "INTEGER";
+                                        newEntry2.SourceType = "System.UInt32";
+                                        newEntry2.Source = "Channel1._Statistics._FailedWrites";
+                                        newEntry2.Name = "_FailedWrites";
+                                    
+                                        var newEntry3 = new Object();
+                                        newEntry3.ReadOnly = false;
+                                        newEntry3.Description = undefined;
+                                        newEntry3.BaseType = "INTEGER";
+                                        newEntry3.SourceType = "System.UInt32";
+                                        newEntry3.Source = "Channel1._Statistics._MaxPendingReads";
+                                        newEntry3.Name = "_MaxPendingReads";
+                                    
+                                        var newEntry4 = new Object();
+                                        newEntry4.ReadOnly = false;
+                                        newEntry4.Description = undefined;
+                                        newEntry4.BaseType = "INTEGER";
+                                        newEntry4.SourceType = "System.UInt32";
+                                        newEntry4.Source = "Channel1._Statistics._MaxPendingWrites";
+                                        newEntry4.Name = "_MaxPendingWrites";
+                                    
+                                        var newEntry5 = new Object();
+                                        newEntry5.ReadOnly = false;
+                                        newEntry5.Description = undefined;
+                                        newEntry5.BaseType = "INTEGER";
+                                        newEntry5.SourceType = "System.Int32";
+                                        newEntry5.Source = "Channel1._Statistics._NextReadPriority";
+                                        newEntry5.Name = "_NextReadPriority";
+                                    
+                                        var newEntry6 = new Object();
+                                        newEntry6.ReadOnly = false;
+                                        newEntry6.Description = undefined;
+                                        newEntry6.BaseType = "INTEGER";
+                                        newEntry6.SourceType = "System.UInt32";
+                                        newEntry6.Source = "Channel1._Statistics._PendingReads";
+                                        newEntry6.Name = "_PendingReads";
+                                    
+                                        var newEntry7 = new Object();
+                                        newEntry7.ReadOnly = false;
+                                        newEntry7.Description = undefined;
+                                        newEntry7.BaseType = "INTEGER";
+                                        newEntry7.SourceType = "System.UInt32";
+                                        newEntry7.Source = "Channel1._Statistics._PendingWrites";
+                                        newEntry7.Name = "_PendingWrites";
+                                    
+                                        var newEntry8 = new Object();
+                                        newEntry8.ReadOnly = false;
+                                        newEntry8.Description = undefined;
+                                        newEntry8.BaseType = "BOOLEAN";
+                                        newEntry8.SourceType = "System.Boolean";
+                                        newEntry8.Source = "Channel1._Statistics._Reset";
+                                        newEntry8.Name = "_Reset";
+                                    
+                                        var newEntry9 = new Object();
+                                        newEntry9.ReadOnly = false;
+                                        newEntry9.Description = undefined;
+                                        newEntry9.BaseType = "INTEGER";
+                                        newEntry9.SourceType = "System.UInt32";
+                                        newEntry9.Source = "Channel1._Statistics._RxBytes";
+                                        newEntry9.Name = "_RxBytes";
+                                    
+                                        var newEntry10 = new Object();
+                                        newEntry10.ReadOnly = false;
+                                        newEntry10.Description = undefined;
+                                        newEntry10.BaseType = "INTEGER";
+                                        newEntry10.SourceType = "System.UInt32";
+                                        newEntry10.Source = "Channel1._Statistics._SuccessfulReads";
+                                        newEntry10.Name = "_SuccessfulReads";
+                                    
+                                        var newEntry11 = new Object();
+                                        newEntry11.ReadOnly = false;
+                                        newEntry11.Description = undefined;
+                                        newEntry11.BaseType = "INTEGER";
+                                        newEntry11.SourceType = "System.UInt32";
+                                        newEntry11.Source = "Channel1._Statistics._SuccessfulWrites";
+                                        newEntry11.Name = "_SuccessfulWrites";
+                                    
+                                        var newEntry12 = new Object();
+                                        newEntry12.ReadOnly = false;
+                                        newEntry12.Description = undefined;
+                                        newEntry12.BaseType = "INTEGER";
+                                        newEntry12.SourceType = "System.UInt32";
+                                        newEntry12.Source = "Channel1._Statistics._TxBytes";
+                                        newEntry12.Name = "_TxBytes";
+                                    
+                                        result.AddRow(newEntry1);
+                                        result.AddRow(newEntry2);
+                                        result.AddRow(newEntry3);
+                                        result.AddRow(newEntry4);
+                                        result.AddRow(newEntry5);
+                                        result.AddRow(newEntry6);
+                                        result.AddRow(newEntry7);
+                                        result.AddRow(newEntry8);
+                                        result.AddRow(newEntry9);
+                                        result.AddRow(newEntry10);
+                                        result.AddRow(newEntry11);
+                                        result.AddRow(newEntry12);
+                                    }
+                                    
+                                    if(path == "Channel1._System") {
+                                        var newEntry13 = new Object();
+                                        newEntry13.ReadOnly = false;
+                                        newEntry13.Description = "0;1";
+                                        newEntry13.BaseType = "BOOLEAN";
+                                        newEntry13.SourceType = "System.Boolean";
+                                        newEntry13.Source = "Channel1._System._EnableDiagnostics";
+                                        newEntry13.Name = "_EnableDiagnostics";
+                                    
+                                        var newEntry14 = new Object();
+                                        newEntry14.ReadOnly = false;
+                                        newEntry14.Description = "Replaced with zero/Unmodified";
+                                        newEntry14.BaseType = "STRING";
+                                        newEntry14.SourceType = "System.String";
+                                        newEntry14.Source = "Channel1._System._FloatHandlingType";
+                                        newEntry14.Name = "_FloatHandlingType";
+                                    
+                                        var newEntry15 = new Object();
+                                        newEntry15.ReadOnly = false;
+                                        newEntry15.Description = "1-10";
+                                        newEntry15.BaseType = "INTEGER";
+                                        newEntry15.SourceType = "System.Int32";
+                                        newEntry15.Source = "Channel1._System._WriteOptimizationDutyCycle";
+                                        newEntry15.Name = "_WriteOptimizationDutyCycle";
+                                    
+                                        result.AddRow(newEntry13);
+                                        result.AddRow(newEntry14);
+                                        result.AddRow(newEntry15);
+                                    }
+                                    
+                                    if(path == "Channel1.Device1") {
+                                        var newEntry16 = new Object();
+                                        newEntry16.ReadOnly = false;
+                                        newEntry16.Description = "Ramping Read/Write tag used to verify client connection";
+                                        newEntry16.BaseType = "INTEGER";
+                                        newEntry16.SourceType = "System.UInt16";
+                                        newEntry16.Source = "Channel1.Device1.Tag1";
+                                        newEntry16.Name = "Tag1";
+                                    
+                                        var newEntry17 = new Object();
+                                        newEntry17.ReadOnly = false;
+                                        newEntry17.Description = "Constant Read/Write tag used to verify client connection";
+                                        newEntry17.BaseType = "INTEGER";
+                                        newEntry17.SourceType = "System.UInt16";
+                                        newEntry17.Source = "Channel1.Device1.Tag2";
+                                        newEntry17.Name = "Tag2";
+                                    
+                                        result.AddRow(newEntry16);
+                                        result.AddRow(newEntry17);
+                                    }
+                                    
+                                    if(path == "Channel1.Device1._System") {
+                                        var newEntry18 = new Object();
+                                        newEntry18.ReadOnly = false;
+                                        newEntry18.Description = undefined;
+                                        newEntry18.BaseType = "BOOLEAN";
+                                        newEntry18.SourceType = "System.Boolean";
+                                        newEntry18.Source = "Channel1.Device1._System._DemandPoll";
+                                        newEntry18.Name = "_DemandPoll";
+                                    
+                                        var newEntry19 = new Object();
+                                        newEntry19.ReadOnly = false;
+                                        newEntry19.Description = undefined;
+                                        newEntry19.BaseType = "STRING";
+                                        newEntry19.SourceType = "System.String";
+                                        newEntry19.Source = "Channel1.Device1._System._Description";
+                                        newEntry19.Name = "_Description";
+                                    
+                                        var newEntry20 = new Object();
+                                        newEntry20.ReadOnly = false;
+                                        newEntry20.Description = "Driver dependent device ID";
+                                        newEntry20.BaseType = "STRING";
+                                        newEntry20.SourceType = "System.String";
+                                        newEntry20.Source = "Channel1.Device1._System._DeviceId";
+                                        newEntry20.Name = "_DeviceId";
+                                    
+                                        var newEntry21 = new Object();
+                                        newEntry21.ReadOnly = false;
+                                        newEntry21.Description = undefined;
+                                        newEntry21.BaseType = "BOOLEAN";
+                                        newEntry21.SourceType = "System.Boolean";
+                                        newEntry21.Source = "Channel1.Device1._System._Enabled";
+                                        newEntry21.Name = "_Enabled";
+                                    
+                                        var newEntry22 = new Object();
+                                        newEntry22.ReadOnly = false;
+                                        newEntry22.Description = undefined;
+                                        newEntry22.BaseType = "BOOLEAN";
+                                        newEntry22.SourceType = "System.Boolean";
+                                        newEntry22.Source = "Channel1.Device1._System._Error";
+                                        newEntry22.Name = "_Error";
+                                    
+                                        var newEntry23 = new Object();
+                                        newEntry23.ReadOnly = false;
+                                        newEntry23.Description = undefined;
+                                        newEntry23.BaseType = "BOOLEAN";
+                                        newEntry23.SourceType = "System.Boolean";
+                                        newEntry23.Source = "Channel1.Device1._System._NoError";
+                                        newEntry23.Name = "_NoError";
+                                    
+                                        var newEntry24 = new Object();
+                                        newEntry24.ReadOnly = false;
+                                        newEntry24.Description = undefined;
+                                        newEntry24.BaseType = "STRING";
+                                        newEntry24.SourceType = "System.String";
+                                        newEntry24.Source = "Channel1.Device1._System._ScanMode";
+                                        newEntry24.Name = "_ScanMode";
+                                    
+                                        var newEntry25 = new Object();
+                                        newEntry25.ReadOnly = false;
+                                        newEntry25.Description = undefined;
+                                        newEntry25.BaseType = "INTEGER";
+                                        newEntry25.SourceType = "System.UInt32";
+                                        newEntry25.Source = "Channel1.Device1._System._ScanRateMs";
+                                        newEntry25.Name = "_ScanRateMs";
+                                    
+                                        var newEntry26 = new Object();
+                                        newEntry26.ReadOnly = false;
+                                        newEntry26.Description = undefined;
+                                        newEntry26.BaseType = "INTEGER";
+                                        newEntry26.SourceType = "System.UInt32";
+                                        newEntry26.Source = "Channel1.Device1._System._SecondsInError";
+                                        newEntry26.Name = "_SecondsInError";
+                                    
+                                        var newEntry27 = new Object();
+                                        newEntry27.ReadOnly = false;
+                                        newEntry27.Description = undefined;
+                                        newEntry27.BaseType = "BOOLEAN";
+                                        newEntry27.SourceType = "SSystem.Boolean";
+                                        newEntry27.Source = "Channel1.Device1._System._Simulated";
+                                        newEntry27.Name = "_Simulated";
+                                    
+                                        result.AddRow(newEntry18);
+                                        result.AddRow(newEntry19);
+                                        result.AddRow(newEntry20);
+                                        result.AddRow(newEntry21);
+                                        result.AddRow(newEntry22);
+                                        result.AddRow(newEntry23);
+                                        result.AddRow(newEntry24);
+                                        result.AddRow(newEntry25);
+                                        result.AddRow(newEntry26);
+                                        result.AddRow(newEntry27);
+                                    }
+                                    
+                                    if(path == "Channel2.Device1._System") {
+                                        var newEntry28 = new Object();
+                                        newEntry28.ReadOnly = false;
+                                        newEntry28.Description = undefined;
+                                        newEntry28.BaseType = "BOOLEAN";
+                                        newEntry28.SourceType = "System.Boolean";
+                                        newEntry28.Source = "Channel2.Device1._System._DemandPoll";
+                                        newEntry28.Name = "_DemandPoll";
+                                    
+                                        var newEntry29 = new Object();
+                                        newEntry29.ReadOnly = false;
+                                        newEntry29.Description = undefined;
+                                        newEntry29.BaseType = "STRING";
+                                        newEntry29.SourceType = "System.String";
+                                        newEntry29.Source = "Channel2.Device1._System._Description";
+                                        newEntry29.Name = "_Description";
+                                    
+                                        var newEntry30 = new Object();
+                                        newEntry30.ReadOnly = false;
+                                        newEntry30.Description = "Driver dependent device ID";
+                                        newEntry30.BaseType = "STRING";
+                                        newEntry30.SourceType = "System.String";
+                                        newEntry30.Source = "Channel2.Device1._System._DeviceId";
+                                        newEntry30.Name = "_DeviceId";
+                                    
+                                        var newEntry31 = new Object();
+                                        newEntry31.ReadOnly = false;
+                                        newEntry31.Description = undefined;
+                                        newEntry31.BaseType = "BOOLEAN";
+                                        newEntry31.SourceType = "System.Boolean";
+                                        newEntry31.Source = "Channel2.Device1._System._Enabled";
+                                        newEntry31.Name = "_Enabled";
+                                    
+                                        var newEntry32 = new Object();
+                                        newEntry32.ReadOnly = false;
+                                        newEntry32.Description = undefined;
+                                        newEntry32.BaseType = "BOOLEAN";
+                                        newEntry32.SourceType = "System.Boolean";
+                                        newEntry32.Source = "Channel2.Device1._System._Error";
+                                        newEntry32.Name = "_Error";
+                                    
+                                        var newEntry33 = new Object();
+                                        newEntry33.ReadOnly = false;
+                                        newEntry33.Description = undefined;
+                                        newEntry33.BaseType = "BOOLEAN";
+                                        newEntry33.SourceType = "System.Boolean";
+                                        newEntry33.Source = "Channel2.Device1._System._NoError";
+                                        newEntry33.Name = "_NoError";
+                                    
+                                        var newEntry34 = new Object();
+                                        newEntry34.ReadOnly = false;
+                                        newEntry34.Description = undefined;
+                                        newEntry34.BaseType = "STRING";
+                                        newEntry34.SourceType = "System.String";
+                                        newEntry34.Source = "Channel2.Device1._System._ScanMode";
+                                        newEntry34.Name = "_ScanMode";
+                                    
+                                        var newEntry35 = new Object();
+                                        newEntry35.ReadOnly = false;
+                                        newEntry35.Description = undefined;
+                                        newEntry35.BaseType = "INTEGER";
+                                        newEntry35.SourceType = "System.UInt32";
+                                        newEntry35.Source = "Channel2.Device1._System._ScanRateMs";
+                                        newEntry35.Name = "_ScanRateMs";
+                                    
+                                        var newEntry36 = new Object();
+                                        newEntry36.ReadOnly = false;
+                                        newEntry36.Description = undefined;
+                                        newEntry36.BaseType = "INTEGER";
+                                        newEntry36.SourceType = "System.UInt32";
+                                        newEntry36.Source = "Channel2.Device1._System._SecondsInError";
+                                        newEntry36.Name = "_SecondsInError";
+                                    
+                                        var newEntry37 = new Object();
+                                        newEntry37.ReadOnly = false;
+                                        newEntry37.Description = undefined;
+                                        newEntry37.BaseType = "BOOLEAN";
+                                        newEntry37.SourceType = "SSystem.Boolean";
+                                        newEntry37.Source = "Channel2.Device1._System._Simulated";
+                                        newEntry37.Name = "_Simulated";
+                                    
+                                        result.AddRow(newEntry28);
+                                        result.AddRow(newEntry29);
+                                        result.AddRow(newEntry30);
+                                        result.AddRow(newEntry31);
+                                        result.AddRow(newEntry32);
+                                        result.AddRow(newEntry33);
+                                        result.AddRow(newEntry34);
+                                        result.AddRow(newEntry35);
+                                        result.AddRow(newEntry36);
+                                        result.AddRow(newEntry37);
+                                    }
+                                    
+                                    if(path == "Channel2.Device2._System") {
+                                        var newEntry38 = new Object();
+                                        newEntry38.ReadOnly = false;
+                                        newEntry38.Description = undefined;
+                                        newEntry38.BaseType = "BOOLEAN";
+                                        newEntry38.SourceType = "System.Boolean";
+                                        newEntry38.Source = "Channel2.Device2._System._DemandPoll";
+                                        newEntry38.Name = "_DemandPoll";
+                                    
+                                        var newEntry39 = new Object();
+                                        newEntry39.ReadOnly = false;
+                                        newEntry39.Description = undefined;
+                                        newEntry39.BaseType = "STRING";
+                                        newEntry39.SourceType = "System.String";
+                                        newEntry39.Source = "Channel2.Device2._System._Description";
+                                        newEntry39.Name = "_Description";
+                                    
+                                        var newEntry40 = new Object();
+                                        newEntry40.ReadOnly = false;
+                                        newEntry40.Description = "Driver dependent device ID";
+                                        newEntry40.BaseType = "STRING";
+                                        newEntry40.SourceType = "System.String";
+                                        newEntry40.Source = "Channel2.Device2._System._DeviceId";
+                                        newEntry40.Name = "_DeviceId";
+                                    
+                                        var newEntry41 = new Object();
+                                        newEntry41.ReadOnly = false;
+                                        newEntry41.Description = undefined;
+                                        newEntry41.BaseType = "BOOLEAN";
+                                        newEntry41.SourceType = "System.Boolean";
+                                        newEntry41.Source = "Channel2.Device2._System._Enabled";
+                                        newEntry41.Name = "_Enabled";
+                                    
+                                        var newEntry42 = new Object();
+                                        newEntry42.ReadOnly = false;
+                                        newEntry42.Description = undefined;
+                                        newEntry42.BaseType = "BOOLEAN";
+                                        newEntry42.SourceType = "System.Boolean";
+                                        newEntry42.Source = "Channel2.Device2._System._Error";
+                                        newEntry42.Name = "_Error";
+                                    
+                                        var newEntry43 = new Object();
+                                        newEntry43.ReadOnly = false;
+                                        newEntry43.Description = undefined;
+                                        newEntry43.BaseType = "BOOLEAN";
+                                        newEntry43.SourceType = "System.Boolean";
+                                        newEntry43.Source = "Channel2.Device2._System._NoError";
+                                        newEntry43.Name = "_NoError";
+                                    
+                                        var newEntry44 = new Object();
+                                        newEntry44.ReadOnly = false;
+                                        newEntry44.Description = undefined;
+                                        newEntry44.BaseType = "STRING";
+                                        newEntry44.SourceType = "System.String";
+                                        newEntry44.Source = "Channel2.Device2._System._ScanMode";
+                                        newEntry44.Name = "_ScanMode";
+                                    
+                                        var newEntry45 = new Object();
+                                        newEntry45.ReadOnly = false;
+                                        newEntry45.Description = undefined;
+                                        newEntry45.BaseType = "INTEGER";
+                                        newEntry45.SourceType = "System.UInt32";
+                                        newEntry45.Source = "Channel2.Device2._System._ScanRateMs";
+                                        newEntry45.Name = "_ScanRateMs";
+                                    
+                                        var newEntry46 = new Object();
+                                        newEntry46.ReadOnly = false;
+                                        newEntry46.Description = undefined;
+                                        newEntry46.BaseType = "INTEGER";
+                                        newEntry46.SourceType = "System.UInt32";
+                                        newEntry46.Source = "Channel2.Device2._System._SecondsInError";
+                                        newEntry46.Name = "_SecondsInError";
+                                    
+                                        var newEntry47 = new Object();
+                                        newEntry47.ReadOnly = false;
+                                        newEntry47.Description = undefined;
+                                        newEntry47.BaseType = "BOOLEAN";
+                                        newEntry47.SourceType = "SSystem.Boolean";
+                                        newEntry47.Source = "Channel2.Device2._System._Simulated";
+                                        newEntry47.Name = "_Simulated";
+                                    
+                                        result.AddRow(newEntry38);
+                                        result.AddRow(newEntry39);
+                                        result.AddRow(newEntry40);
+                                        result.AddRow(newEntry41);
+                                        result.AddRow(newEntry42);
+                                        result.AddRow(newEntry43);
+                                        result.AddRow(newEntry44);
+                                        result.AddRow(newEntry45);
+                                        result.AddRow(newEntry46);
+                                        result.AddRow(newEntry47);
+                                    }
+                                    
+                                    if(path == "Channel2.Device3._System") {
+                                        var newEntry48 = new Object();
+                                        newEntry48.ReadOnly = false;
+                                        newEntry48.Description = undefined;
+                                        newEntry48.BaseType = "BOOLEAN";
+                                        newEntry48.SourceType = "System.Boolean";
+                                        newEntry48.Source = "Channel2.Device3._System._DemandPoll";
+                                        newEntry48.Name = "_DemandPoll";
+                                    
+                                        var newEntry49 = new Object();
+                                        newEntry49.ReadOnly = false;
+                                        newEntry49.Description = undefined;
+                                        newEntry49.BaseType = "STRING";
+                                        newEntry49.SourceType = "System.String";
+                                        newEntry49.Source = "Channel2.Device3._System._Description";
+                                        newEntry49.Name = "_Description";
+                                    
+                                        var newEntry50 = new Object();
+                                        newEntry50.ReadOnly = false;
+                                        newEntry50.Description = "Driver dependent device ID";
+                                        newEntry50.BaseType = "STRING";
+                                        newEntry50.SourceType = "System.String";
+                                        newEntry50.Source = "Channel2.Device3._System._DeviceId";
+                                        newEntry50.Name = "_DeviceId";
+                                    
+                                        var newEntry51 = new Object();
+                                        newEntry51.ReadOnly = false;
+                                        newEntry51.Description = undefined;
+                                        newEntry51.BaseType = "BOOLEAN";
+                                        newEntry51.SourceType = "System.Boolean";
+                                        newEntry51.Source = "Channel2.Device3._System._Enabled";
+                                        newEntry51.Name = "_Enabled";
+                                    
+                                        var newEntry52 = new Object();
+                                        newEntry52.ReadOnly = false;
+                                        newEntry52.Description = undefined;
+                                        newEntry52.BaseType = "BOOLEAN";
+                                        newEntry52.SourceType = "System.Boolean";
+                                        newEntry52.Source = "Channel2.Device3._System._Error";
+                                        newEntry52.Name = "_Error";
+                                    
+                                        var newEntry53 = new Object();
+                                        newEntry53.ReadOnly = false;
+                                        newEntry53.Description = undefined;
+                                        newEntry53.BaseType = "BOOLEAN";
+                                        newEntry53.SourceType = "System.Boolean";
+                                        newEntry53.Source = "Channel2.Device3._System._NoError";
+                                        newEntry53.Name = "_NoError";
+                                    
+                                        var newEntry54 = new Object();
+                                        newEntry54.ReadOnly = false;
+                                        newEntry54.Description = undefined;
+                                        newEntry54.BaseType = "STRING";
+                                        newEntry54.SourceType = "System.String";
+                                        newEntry54.Source = "Channel2.Device3._System._ScanMode";
+                                        newEntry54.Name = "_ScanMode";
+                                    
+                                        var newEntry55 = new Object();
+                                        newEntry55.ReadOnly = false;
+                                        newEntry55.Description = undefined;
+                                        newEntry55.BaseType = "INTEGER";
+                                        newEntry55.SourceType = "System.UInt32";
+                                        newEntry55.Source = "Channel2.Device3._System._ScanRateMs";
+                                        newEntry55.Name = "_ScanRateMs";
+                                    
+                                        var newEntry56 = new Object();
+                                        newEntry56.ReadOnly = false;
+                                        newEntry56.Description = undefined;
+                                        newEntry56.BaseType = "INTEGER";
+                                        newEntry56.SourceType = "System.UInt32";
+                                        newEntry56.Source = "Channel2.Device3._System._SecondsInError";
+                                        newEntry56.Name = "_SecondsInError";
+                                    
+                                        var newEntry57 = new Object();
+                                        newEntry57.ReadOnly = false;
+                                        newEntry57.Description = undefined;
+                                        newEntry57.BaseType = "BOOLEAN";
+                                        newEntry57.SourceType = "SSystem.Boolean";
+                                        newEntry57.Source = "Channel2.Device3._System._Simulated";
+                                        newEntry57.Name = "_Simulated";
+                                    
+                                        result.AddRow(newEntry48);
+                                        result.AddRow(newEntry49);
+                                        result.AddRow(newEntry50);
+                                        result.AddRow(newEntry51);
+                                        result.AddRow(newEntry52);
+                                        result.AddRow(newEntry53);
+                                        result.AddRow(newEntry54);
+                                        result.AddRow(newEntry55);
+                                        result.AddRow(newEntry56);
+                                        result.AddRow(newEntry57);
+                                    }
+                                    
+                                    if(path == "Channel2.Device1") {
+                                        var newEntry58 = new Object();
+                                        newEntry58.ReadOnly = false;
+                                        newEntry58.Description = "Ramping Read/Write tag used to verify client connection";
+                                        newEntry58.BaseType = "INTEGER";
+                                        newEntry58.SourceType = "System.UInt16";
+                                        newEntry58.Source = "Channel2.Device1.Tag1";
+                                        newEntry58.Name = "Tag1";
+                                    
+                                        var newEntry59 = new Object();
+                                        newEntry59.ReadOnly = false;
+                                        newEntry59.Description = "Constant Read/Write tag used to verify client connection";
+                                        newEntry59.BaseType = "INTEGER";
+                                        newEntry59.SourceType = "System.UInt16";
+                                        newEntry59.Source = "Channel2.Device1.Tag2";
+                                        newEntry59.Name = "Tag2";
+                                    
+                                        result.AddRow(newEntry58);
+                                        result.AddRow(newEntry59);
+                                    }
+                                    
+                                    if(path == "Channel2.Device2") {
+                                        var newEntry60 = new Object();
+                                        newEntry60.ReadOnly = false;
+                                        newEntry60.Description = "Ramping Read/Write tag used to verify client connection";
+                                        newEntry60.BaseType = "INTEGER";
+                                        newEntry60.SourceType = "System.UInt16";
+                                        newEntry60.Source = "Channel2.Device2.Tag1";
+                                        newEntry60.Name = "Tag1";
+                                    
+                                        var newEntry61 = new Object();
+                                        newEntry61.ReadOnly = false;
+                                        newEntry61.Description = "Constant Read/Write tag used to verify client connection";
+                                        newEntry61.BaseType = "INTEGER";
+                                        newEntry61.SourceType = "System.UInt16";
+                                        newEntry61.Source = "Channel2.Device2.Tag2";
+                                        newEntry61.Name = "Tag2";
+                                    
+                                        result.AddRow(newEntry60);
+                                        result.AddRow(newEntry61);
+                                    }
+                                    
+                                    if(path == "Channel2.Device3") {
+                                        var newEntry62 = new Object();
+                                        newEntry62.ReadOnly = false;
+                                        newEntry62.Description = "Ramping Read/Write tag used to verify client connection";
+                                        newEntry62.BaseType = "INTEGER";
+                                        newEntry62.SourceType = "System.UInt16";
+                                        newEntry62.Source = "Channel2.Device3.Tag1";
+                                        newEntry62.Name = "Tag1";
+                                    
+                                        var newEntry63 = new Object();
+                                        newEntry63.ReadOnly = false;
+                                        newEntry63.Description = "Constant Read/Write tag used to verify client connection";
+                                        newEntry63.BaseType = "INTEGER";
+                                        newEntry63.SourceType = "System.UInt16";
+                                        newEntry63.Source = "Channel2.Device3.Tag2";
+                                        newEntry63.Name = "Tag2";
+                                    
+                                        result.AddRow(newEntry62);
+                                        result.AddRow(newEntry63);
+                                    }
+                                    
+                                    if(path == "Channel3.Device1") {
+                                        var newEntry64 = new Object();
+                                        newEntry64.ReadOnly = false;
+                                        newEntry64.Description = "Ramping Read/Write tag used to verify client connection";
+                                        newEntry64.BaseType = "INTEGER";
+                                        newEntry64.SourceType = "System.UInt16";
+                                        newEntry64.Source = "Channel3.Device1.Tag1";
+                                        newEntry64.Name = "Tag1";
+                                    
+                                        var newEntry65 = new Object();
+                                        newEntry65.ReadOnly = false;
+                                        newEntry65.Description = "Constant Read/Write tag used to verify client connection";
+                                        newEntry65.BaseType = "INTEGER";
+                                        newEntry65.SourceType = "System.UInt16";
+                                        newEntry65.Source = "Channel3.Device1.Tag2";
+                                        newEntry65.Name = "Tag2";
+                                    
+                                        result.AddRow(newEntry64);
+                                        result.AddRow(newEntry65);
+                                    }
+                                    
+                                    if(path == "Channel3.Device1._System") {
+                                        var newEntry76 = new Object();
+                                        newEntry76.ReadOnly = false;
+                                        newEntry76.Description = undefined;
+                                        newEntry76.BaseType = "BOOLEAN";
+                                        newEntry76.SourceType = "System.Boolean";
+                                        newEntry76.Source = "Channel3.Device1._System._DemandPoll";
+                                        newEntry76.Name = "_DemandPoll";
+                                    
+                                        var newEntry77 = new Object();
+                                        newEntry77.ReadOnly = false;
+                                        newEntry77.Description = undefined;
+                                        newEntry77.BaseType = "STRING";
+                                        newEntry77.SourceType = "System.String";
+                                        newEntry77.Source = "Channel3.Device1._System._Description";
+                                        newEntry77.Name = "_Description";
+                                    
+                                        var newEntry78 = new Object();
+                                        newEntry78.ReadOnly = false;
+                                        newEntry78.Description = "Driver dependent device ID";
+                                        newEntry78.BaseType = "STRING";
+                                        newEntry78.SourceType = "System.String";
+                                        newEntry78.Source = "Channel3.Device1._System._DeviceId";
+                                        newEntry78.Name = "_DeviceId";
+                                    
+                                        var newEntry79 = new Object();
+                                        newEntry79.ReadOnly = false;
+                                        newEntry79.Description = undefined;
+                                        newEntry79.BaseType = "BOOLEAN";
+                                        newEntry79.SourceType = "System.Boolean";
+                                        newEntry79.Source = "Channel3.Device1._System._Enabled";
+                                        newEntry79.Name = "_Enabled";
+                                    
+                                        var newEntry80 = new Object();
+                                        newEntry80.ReadOnly = false;
+                                        newEntry80.Description = undefined;
+                                        newEntry80.BaseType = "BOOLEAN";
+                                        newEntry80.SourceType = "System.Boolean";
+                                        newEntry80.Source = "Channel3.Device1._System._Error";
+                                        newEntry80.Name = "_Error";
+                                    
+                                        var newEntry81 = new Object();
+                                        newEntry81.ReadOnly = false;
+                                        newEntry81.Description = undefined;
+                                        newEntry81.BaseType = "BOOLEAN";
+                                        newEntry81.SourceType = "System.Boolean";
+                                        newEntry81.Source = "Channel3.Device1._System._NoError";
+                                        newEntry81.Name = "_NoError";
+                                    
+                                        var newEntry82 = new Object();
+                                        newEntry82.ReadOnly = false;
+                                        newEntry82.Description = undefined;
+                                        newEntry82.BaseType = "STRING";
+                                        newEntry82.SourceType = "System.String";
+                                        newEntry82.Source = "Channel3.Device1._System._ScanMode";
+                                        newEntry82.Name = "_ScanMode";
+                                    
+                                        var newEntry83 = new Object();
+                                        newEntry83.ReadOnly = false;
+                                        newEntry83.Description = undefined;
+                                        newEntry83.BaseType = "INTEGER";
+                                        newEntry83.SourceType = "System.UInt32";
+                                        newEntry83.Source = "Channel3.Device1._System._ScanRateMs";
+                                        newEntry83.Name = "_ScanRateMs";
+                                    
+                                        var newEntry84 = new Object();
+                                        newEntry84.ReadOnly = false;
+                                        newEntry84.Description = undefined;
+                                        newEntry84.BaseType = "INTEGER";
+                                        newEntry84.SourceType = "System.UInt32";
+                                        newEntry84.Source = "Channel3.Device1._System._SecondsInError";
+                                        newEntry84.Name = "_SecondsInError";
+                                    
+                                        var newEntry85 = new Object();
+                                        newEntry85.ReadOnly = false;
+                                        newEntry85.Description = undefined;
+                                        newEntry85.BaseType = "BOOLEAN";
+                                        newEntry85.SourceType = "SSystem.Boolean";
+                                        newEntry85.Source = "Channel3.Device1._System._Simulated";
+                                        newEntry85.Name = "_Simulated";
+                                    
+                                        result.AddRow(newEntry76);
+                                        result.AddRow(newEntry77);
+                                        result.AddRow(newEntry78);
+                                        result.AddRow(newEntry79);
+                                        result.AddRow(newEntry80);
+                                        result.AddRow(newEntry81);
+                                        result.AddRow(newEntry82);
+                                        result.AddRow(newEntry83);
+                                        result.AddRow(newEntry84);
+                                        result.AddRow(newEntry85);
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

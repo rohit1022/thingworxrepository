@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b937"
+ build="b222"
  majorVersion="8"
- minorVersion="3"
- modelPersistenceProviderPackage="H2PersistenceProviderPackage"
- revision="3"
- schemaVersion="1030"
- universal="">
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
     <ThingTemplates>
         <ThingTemplate
          aspect.isSystemObject="true"
@@ -15,7 +15,7 @@
          documentationContent=""
          effectiveThingPackage="RemoteThing"
          homeMashup=""
-         lastModifiedDate="2018-12-03T14:53:14.374+05:30"
+         lastModifiedDate="2020-03-03T01:03:57.152+05:30"
          name="ValidationMicroserver"
          projectName=""
          tags=""
@@ -34,7 +34,36 @@
                 <Visibility></Visibility>
             </VisibilityPermissions>
             <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
-            <ConfigurationTables></ConfigurationTables>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 description="Reporting Settings"
+                 isMultiRow="false"
+                 name="ReportingConfiguration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="NotReporting"
+                             aspect.isPrimaryKey="true"
+                             aspect.isReadOnly="false"
+                             aspect.thingTemplate="ReportingStrategy"
+                             baseType="THINGNAME"
+                             description="Strategy to determine health"
+                             name="reportingStrategy"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <reportingStrategy>
+                            <![CDATA[
+                            AlwaysOnReporting
+                            ]]>
+                            </reportingStrategy>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
             <PropertyBindings></PropertyBindings>
             <RemotePropertyBindings></RemotePropertyBindings>
             <RemoteServiceBindings>
@@ -42,6 +71,11 @@
                  enableQueue="false"
                  name="CreateJob"
                  sourceName="CreateJob"
+                 timeout="0"></RemoteServiceBinding>
+                <RemoteServiceBinding
+                 enableQueue="false"
+                 name="RetrieveConfidenceModel"
+                 sourceName="RetrieveConfidenceModel"
                  timeout="0"></RemoteServiceBinding>
                 <RemoteServiceBinding
                  enableQueue="false"
@@ -74,6 +108,17 @@
                          ordinal="0"></ResultType>
                         <ParameterDefinitions>
                             <FieldDefinition
+                             baseType="NUMBER"
+                             description="The probability that the returned confidence interval will contain the true value. Must be between 0 and 1, exclusive (Default is .80). Larger confidence levels yield wider confidence intervals."
+                             name="confidenceLevel"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             baseType="BOOLEAN"
+                             description="If True, a confidence model is created (Default is False)."
+                             name="createConfidenceModel"
+                             ordinal="6"></FieldDefinition>
+                            <FieldDefinition
                              aspect.dataShape="AnalyticsDatasetRef"
                              baseType="INFOTABLE"
                              description="Reference to the dataset for this job"
@@ -105,6 +150,27 @@
                              description="Queryable tags associated with this job"
                              name="tags"
                              ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     category=""
+                     description="Retrieve Confidence model PMML"
+                     isAllowOverride="false"
+                     isLocalOnly="true"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="RetrieveConfidenceModel">
+                        <ResultType
+                         baseType="STRING"
+                         description="Confidence model in PMML format"
+                         name="ConfidenceModel"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="ID of the validation job"
+                             name="jobId"
+                             ordinal="0"></FieldDefinition>
                         </ParameterDefinitions>
                     </ServiceDefinition>
                     <ServiceDefinition

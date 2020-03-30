@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="false"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Popup allows user modify Connection Refresh Rate&quot; setting on a specific KEPWare Server&quot; {PTC.Factory.KEPServerEX.EditConnectionRefreshRate}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:40.008+05:30"
+         name="PTC.Factory.KEPServerEX.EditConnectionRefreshRate"
+         projectName="PTC.SCA.SCO.User Management"
+         rows="0.0"
+         tags="PTC:sca-sco-usermanagement;PTC:sca-common;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:KEPServerMonitoring"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.dataShape="PTC.Factory.KepServerProperties"
+                 aspect.isDataTableEntry="true"
+                 aspect.ordinal="0"
+                 baseType="INFOTABLE"
+                 description=""
+                 name="ServerProperties"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.ControlsAdvisorUtils</Thing>
+                <Thing>PTC.Factory.ValueStoreUtility</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.ControlsAdvisorUtils" : {
+                  "DataName" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                  "EntityName" : "PTC.SCA.SCO.ControlsAdvisorUtils",
+                  "EntityType" : "Things",
+                  "Id" : "8bb160dd-b291-453e-8025-83ff0f73ba2b",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "a7ddc031-2f31-4f49-9a54-accbb57111e6",
+                    "Name" : "EditServerThing",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "EditServerThing"
+                  } ]
+                },
+                "Things_PTC_Factory_ValueStoreUtility" : {
+                  "DataName" : "Things_PTC_Factory_ValueStoreUtility",
+                  "EntityName" : "PTC.Factory.ValueStoreUtility",
+                  "EntityType" : "Things",
+                  "Id" : "b0bee2b0-370c-42f1-a68a-19eda0197f5e",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "b31eacd0-7a84-4c86-8625-625713e482ee",
+                    "Name" : "StringValueStore",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "StringValueStore"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "9768ae3e-61f2-40d2-b098-4f683e867433",
+                    "Name" : "IntegerValueStore",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "IntegerValueStore"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "022c1027-b5cc-4779-85c4-fd2a9ea6e78c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "ServerProperties",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "Description",
+                  "TargetProperty" : "stirngValue",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "StringValueStore",
+                "TargetSection" : "Things_PTC_Factory_ValueStoreUtility"
+              }, {
+                "Id" : "34cb509b-a14c-4c90-8da1-0505f1757d18",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "StringValueStore",
+                "SourceSection" : "Things_PTC_Factory_ValueStoreUtility",
+                "TargetArea" : "UI",
+                "TargetId" : "TextArea-75",
+                "TargetSection" : ""
+              }, {
+                "Id" : "b5b54df4-79a1-4c4e-aaf7-b53246ca2232",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "ServerProperties",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "SubProperty" : "PublishFloorMS",
+                  "TargetProperty" : "integerValue",
+                  "TargetPropertyBaseType" : "INTEGER"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "IntegerValueStore",
+                "TargetSection" : "Things_PTC_Factory_ValueStoreUtility"
+              }, {
+                "Id" : "c3da9a6b-5aef-4d69-8819-e7ecc6b619d8",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "SelectedRows",
+                "SourceId" : "IntegerValueStore",
+                "SourceSection" : "Things_PTC_Factory_ValueStoreUtility",
+                "TargetArea" : "UI",
+                "TargetId" : "label-95",
+                "TargetSection" : ""
+              }, {
+                "Id" : "11ea1917-bf4e-4be7-b485-0a523d08bd54",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "description",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "TextArea-75",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EditServerThing",
+                "TargetSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils"
+              }, {
+                "Id" : "b2b205d5-c4e8-4bec-916e-75d239eb640e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "ServerProperties",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "Name",
+                  "TargetProperty" : "serverName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EditServerThing",
+                "TargetSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils"
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-54",
+                "EventTriggerSection" : "",
+                "Id" : "08152eb7-16a2-46b6-93b4-98ad2c385df2"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC_Factory_ValueStoreUtility",
+                "EventHandlerService" : "IntegerValueStore",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "a8e34000-e31e-4edd-b3a5-d1ae4a1143a6"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC_Factory_ValueStoreUtility",
+                "EventHandlerService" : "StringValueStore",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "7382541f-3bb6-4935-894c-4fdc1fd8e317"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "EditServerThing",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                "Id" : "23bb40d5-42ef-4535-9d68-43871a9b777c"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ControlsAdvisorUtils",
+                "EventHandlerService" : "EditServerThing",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-21",
+                "EventTriggerSection" : "",
+                "Id" : "680f7c47-fb3c-4df1-8e35-70d88c0ef063"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 280,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : false,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "PTC.SCA.SCO.NoStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 360,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "Aspects" : {
+                      "dataShape" : "PTC.Factory.KepServerProperties",
+                      "isDataTableEntry" : true
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "",
+                    "ParameterName" : "ServerProperties"
+                  } ],
+                  "id_index" : 97,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "Panel-3",
+                    "Height" : 40,
+                    "HideScrollbars" : true,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "Panel-3",
+                    "Left" : 0,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                    "Top" : 0,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 360,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "ValueDisplay-4",
+                      "Height" : 19,
+                      "Id" : "ValueDisplay-4",
+                      "ImageScaling" : "width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "Left" : 10,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.EditConnectionPopupLabel]]",
+                      "TextIfNoValueOffset" : 10,
+                      "TextIfNoValueStyle" : "PTC.SCA.SCO.Core.PopupHeaderStyle",
+                      "TextWrap" : true,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 10,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "DefaultWidgetLabelStyle",
+                      "ValueDisplayStyle" : "PTC.SCA.SCO.Core.AppIconText",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 275,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "Panel-47",
+                    "Height" : 240,
+                    "HideScrollbars" : true,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "Panel-47",
+                    "Left" : 0,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupDialogBoxBody",
+                    "Top" : 40,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 360,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                      "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                      "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                      "ContextId" : "",
+                      "DefaultConfirmationButton" : "button1",
+                      "Disabled" : false,
+                      "DisabledStyle" : "PTC.SCA.SCO.Core.Accent1ButtonDisabledStyle",
+                      "DisplayName" : "Button-OK",
+                      "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                      "Height" : 32,
+                      "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                      "IconAlignment" : "left",
+                      "Id" : "Button-21",
+                      "Label" : "[[PTC.SCA.SCO.Core.OK]]",
+                      "Left" : 125,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.ConfirmationPopupOkOrYes",
+                      "TabSequence" : 5,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 190,
+                      "Type" : "button",
+                      "Visible" : true,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                      "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                      "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                      "ContextId" : "",
+                      "DefaultConfirmationButton" : "button1",
+                      "Disabled" : false,
+                      "DisabledStyle" : "PTC.SCA.SCO.Core.ButtonDisabledStyle",
+                      "DisplayName" : "Button-54",
+                      "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                      "Height" : 32,
+                      "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                      "IconAlignment" : "left",
+                      "Id" : "Button-54",
+                      "Label" : "[[PTC.SCA.SCO.Core.Cancel]]",
+                      "Left" : 240,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNo",
+                      "TabSequence" : 8,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 190,
+                      "Type" : "button",
+                      "Visible" : true,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "Description" : "",
+                      "DisplayName" : "Fieldset-55",
+                      "FieldsetLabelStyle" : "PTC.Factory.Generic.DialogBoxFieldSetTitle",
+                      "FieldsetStyle" : "PTC.Factory.Generic.DialogBoxFieldSetInterior",
+                      "Height" : 168,
+                      "Id" : "Fieldset-55",
+                      "Left" : 20,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Title" : "",
+                      "Top" : 210,
+                      "Type" : "fieldset",
+                      "Visible" : false,
+                      "Width" : 320,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Fieldset"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Alignment" : "left",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "Description" : "",
+                        "DisplayName" : "ConnectionPublishFloor",
+                        "Height" : 20,
+                        "Id" : "label-84",
+                        "Left" : 10,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                        "Text" : "[[PTC.SCA.SCO.ConnectionPublishFloor]]",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 10,
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 215,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label",
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Alignment" : "center",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "DisplayName" : "label-95",
+                        "Height" : 57,
+                        "Id" : "label-95",
+                        "Left" : 10,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "PTC.Factory.Widget_Display_Count_Large",
+                        "Text" : "0",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 50,
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 125,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label",
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "panel-96",
+                        "Height" : 2,
+                        "HideScrollbars" : false,
+                        "HorizontalAnchor" : "left",
+                        "Id" : "panel-96",
+                        "Left" : 10,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "PTC.Factory.Widget_Bar_Grey",
+                        "Top" : 110,
+                        "Type" : "panel",
+                        "VerticalAnchor" : "top",
+                        "Visible" : true,
+                        "Width" : 125,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Panel"
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Alignment" : "center",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "Description" : "",
+                        "DisplayName" : "label-97",
+                        "Height" : 22,
+                        "Id" : "label-97",
+                        "Left" : 10,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "PTC.Factory.InfoTile.text.16px",
+                        "Text" : "[[PTC.SCA.SCO.ms]]",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 120,
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 125,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label",
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "Fieldset-74",
+                      "FieldsetLabelStyle" : "PTC.Factory.Generic.DialogBoxFieldSetTitle",
+                      "FieldsetStyle" : "PTC.Factory.Generic.DialogBoxFieldSetInterior",
+                      "Height" : 130,
+                      "Id" : "Fieldset-74",
+                      "Left" : 20,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Title" : "",
+                      "Top" : 40,
+                      "Type" : "fieldset",
+                      "Visible" : true,
+                      "Width" : 320,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Fieldset"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "TextArea-Description",
+                        "Height" : 80,
+                        "Id" : "TextArea-75",
+                        "InnerShadow" : false,
+                        "Label" : "",
+                        "LabelAlignment" : "left",
+                        "Left" : 10,
+                        "ReadOnly" : false,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "PTC.Factory.Generic.DialogBoxTextInputField",
+                        "TabSequence" : 1,
+                        "Text" : "",
+                        "TextareaFocusStyle" : "DefaultSquealInputBGStyle",
+                        "TextareaLabelStyle" : "PTC.Factory.Generic.ConfirmationPopupDialogBoxBody",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 25.91668701171875,
+                        "Type" : "textarea",
+                        "Visible" : true,
+                        "Width" : 300,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "TextArea",
+                        "__supportsLabel" : true,
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "Description" : "",
+                      "DisplayName" : "statusmessage-Description",
+                      "Height" : 58,
+                      "Id" : "statusmessage-90",
+                      "Left" : 35,
+                      "Message" : "[[PTC.Factory.DescriptionWarning]]",
+                      "MessageType" : "warning",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 401,
+                      "Type" : "statusmessage",
+                      "Visible" : true,
+                      "Width" : 65,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Status Message"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "AllowEllipsis" : false,
+                      "Area" : "UI",
+                      "DisplayName" : "label-93",
+                      "Height" : 9,
+                      "Id" : "label-93",
+                      "Left" : 20,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.SCA.SCO.FieldsetLabelStyle",
+                      "Text" : "[[PTC.Factory.Description]]",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 17,
+                      "Type" : "label",
+                      "Visible" : true,
+                      "Width" : 125,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Label",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "AllowEllipsis" : false,
+                      "Area" : "UI",
+                      "DisplayName" : "label-94",
+                      "Height" : 9,
+                      "Id" : "label-94",
+                      "Left" : 20,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.SCA.SCO.FieldsetLabelStyle",
+                      "Text" : "[[PTC.Factory.DataRates]]",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 188,
+                      "Type" : "label",
+                      "Visible" : false,
+                      "Width" : 125,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Label",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            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
+            1m8+dgJ4bNYAAAAASUVORK5CYII=
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

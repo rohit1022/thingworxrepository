@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="General Action Handler used for hook {PTC.SCA.SCO.CommonActionHandlerThingShape}."
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:32.612+05:30"
+         name="PTC.SCA.SCO.CommonActionHandlerThingShape"
+         projectName="PTC.SCA.SCO.Asset Monitor"
+         tags="PTC:sca-sco-assetmonitor;PTC:DataShape;PTC:sca-common;PTC:AssetMonitor">
+            <PropertyDefinitions></PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Applies filter selections from the Asset Advisor UI and AssetAdvisorPreFilter custom implementation to the asset list.                  Allows adding custom post-filter javascript or JSON. Custom post-filter javascript or JSON can be added"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="AssetAdvisorFilterActions">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.AssetMonitor.AssetList.AssetCollectionPageInfoDataShape"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description="Name of the context these assets belongs to"
+                         name="contextName"
+                         ordinal="5"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.defaultValue="{}"
+                         baseType="JSON"
+                         description="Criteria to filter results by"
+                         name="filters"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="INTEGER"
+                         description="Requested page number in the result set to retrieve"
+                         name="pageNumber"
+                         ordinal="4"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="INTEGER"
+                         description="The number of assets per page of the result set"
+                         name="pageSize"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Allows custom JSON filter implementation before any filters from the Asset AdvisorUI are processed for the asset list"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="AssetAdvisorPreFilter">
+                    <ResultType
+                     baseType="QUERY"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="JSON"
+                         description=""
+                         name="currentFilter"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="AssetAdvisorFilterActions">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    // Result: INFOTABLE dataShape: "PTC.SCA.SCO.AssetMonitor.AssetList.AssetCollectionPageInfoDataShape"
+                                    var assetList = Things["PTC.SCA.SCO.AssetMonitor.AssetList.AssetListServiceController"].GetFilteredAssetCollection({
+                                    	"contextName": contextName /* STRING */,
+                                    	"pageNumber": pageNumber /* INTEGER */,
+                                    	"pageSize": pageSize /* INTEGER */,
+                                    	"filters": filters /* JSON */
+                                    });
+                                    
+                                    //TODO Place holder for post filtering - Place your custom code here this will be called by AssetAdvisor list asset action
+                                    
+                                    var result = assetList;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="AssetAdvisorPreFilter">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    //Place holder for code
+                                    
+                                    // e.g.: {"filters": [{"fieldName":"serialNumber","type":"LIKE","value":"C%"},{"fieldName":"physicalLocation","type":"LIKE","value":"N%"}]};
+                                    
+                                    var result = {"filters": []};
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

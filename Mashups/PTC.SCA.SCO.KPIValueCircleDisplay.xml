@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="false"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Displays a single KPI value in a colored circle. {PTC.SCA.SCO.KPIValueCircleDisplay}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.883+05:30"
+         name="PTC.SCA.SCO.KPIValueCircleDisplay"
+         projectName="PTC.SCA.SCO.Production KPI"
+         rows="0.0"
+         tags="PTC:sca-sco-productionkpi;PTC:sca-sco">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:AssetPerformance"
+                     type="OrganizationalUnit"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:PlantStatus"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="true"
+                 aspect.ordinal="1"
+                 baseType="STRING"
+                 description=""
+                 name="bgColor"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="true"
+                 aspect.ordinal="1"
+                 baseType="STRING"
+                 description=""
+                 name="color"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="true"
+                 aspect.ordinal="4"
+                 baseType="STRING"
+                 description=""
+                 name="displayKPIName"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="1"
+                 baseType="BOOLEAN"
+                 description=""
+                 name="isConfigured"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="true"
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description=""
+                 name="kpiName"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.dataShape="PTC.SCA.SCO.KPIInformation"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="0"
+                 baseType="INFOTABLE"
+                 description=""
+                 name="kpiValue"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="true"
+                 aspect.ordinal="2"
+                 baseType="NUMBER"
+                 description=""
+                 name="trend"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things></Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "7b49c057-213d-4b65-82e0-20972e45626c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "SourceURL",
+                  "TargetPropertyBaseType" : "IMAGELINK"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-10",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "image-12",
+                "TargetSection" : ""
+              }, {
+                "Id" : "27f44b3e-9cb0-4f18-884a-ed001b9cf5f9",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-9",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "htmltextarea-11",
+                "TargetSection" : ""
+              }, {
+                "Id" : "06ede94b-2a4d-40d5-a591-d186ed42911d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "kpiValue",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "color",
+                  "TargetProperty" : "borderColor",
+                  "TargetPropertyBaseType" : ""
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-9",
+                "TargetSection" : ""
+              }, {
+                "Id" : "165ea323-e6ca-4b0f-9c63-85e26fcbd8ca",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "kpiValue",
+                  "SourcePropertyBaseType" : "NUMBER",
+                  "SubProperty" : "trend",
+                  "TargetProperty" : "trend",
+                  "TargetPropertyBaseType" : ""
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-10",
+                "TargetSection" : ""
+              }, {
+                "Id" : "8f4fe8bb-8371-4c91-974f-24d20b4c69a1",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "kpiValue",
+                  "SourcePropertyBaseType" : "NUMBER",
+                  "SubProperty" : "value",
+                  "TargetProperty" : "kpiValue",
+                  "TargetPropertyBaseType" : ""
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-9",
+                "TargetSection" : ""
+              }, {
+                "Id" : "3f379ffd-36cb-464b-a324-ff131e14ea83",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "kpiValue",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "displayName",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "label-14",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-9",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "9df7be45-1dcb-44fd-bef9-23043c732180"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-9",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "RefreshRequested",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "9a516b00-ca3e-4d2c-9757-00df176e77e1"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-9",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "kpiValueChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "10c8c607-6ff2-4641-ab5b-8219d5e8a726"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-10",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "2a1bd88f-2c75-4e12-9f20-0d776868eebd"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-10",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "RefreshRequested",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "65742786-92a5-4771-9e68-331367cc44a9"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-10",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "kpiValueChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "7711baad-0608-4974-879f-a4bc2e8c37ae"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 190,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MigratedOn" : "2019-05-18T18:57:46.000Z",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : false,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "StyleProperties" : {
+                    "data" : { },
+                    "meta" : {
+                      "type" : "WidgetStyler",
+                      "version" : "1.0"
+                    }
+                  },
+                  "StyleTheme" : "Base Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 190,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "Aspects" : {
+                      "bindingDirection" : "IN",
+                      "dataShape" : "PTC.SCA.SCO.KPIInformation",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "",
+                    "ParameterName" : "kpiValue"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "IN",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "BOOLEAN",
+                    "Description" : "",
+                    "ParameterName" : "isConfigured"
+                  } ],
+                  "id_index" : 14,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "VALUE",
+                    "DisplayName" : "renderKPI",
+                    "Expression" : "\"<div style ='width: 120px; height: 150px;padding-right: 27px;line-height: 150px;border-width: 10px;border-style: solid;text-align: center;font-size: \" + (Math.abs(kpiValue) >= 10 ? 32 : 36) + \"px;font-weight: bold; border-radius: 50%;  border-color: \" + (borderColor ? borderColor : '#A2A2A2') + \"'>\" + \n(kpiValue !== undefined ? Math.round(kpiValue * 100) + \"%\" : \"\") + \n\"</div>\"",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-9",
+                    "Left" : 0,
+                    "OutputBaseType" : "STRING",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "NUMBER",
+                      "DefaultValue" : "0",
+                      "Description" : "",
+                      "ParameterName" : "kpiValue",
+                      "bindingDirection" : "",
+                      "bindingStatus" : true,
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "kpiValue"
+                    }, {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "borderColor",
+                      "bindingDirection" : "",
+                      "bindingStatus" : true,
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "borderColor"
+                    } ],
+                    "flex-grow" : "",
+                    "flex-shrink" : ""
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "VALUE",
+                    "DisplayName" : "trendDisplay",
+                    "Expression" : "if (trend > 0) {\n    'PTC.Factory.MetricsWidget.Trend.Up.Gray'\n} else if (trend < 0) {\n    'PTC.Factory.MetricsWidget.Trend.Down.Gray'\n} else {\n    'PTC.Factory.MetricsWidget.Trend.DoubleDash.Black'\n}",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-10",
+                    "Left" : 0,
+                    "OutputBaseType" : "STRING",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "NUMBER",
+                      "DefaultValue" : "0",
+                      "Description" : "",
+                      "ParameterName" : "trend",
+                      "bindingDirection" : "",
+                      "bindingStatus" : true,
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "trend"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "htmltextarea-11",
+                    "EscapeHTMLText" : false,
+                    "Height" : 180,
+                    "Id" : "htmltextarea-11",
+                    "Label" : "",
+                    "LabelAlignment" : "left",
+                    "LabelStyle" : "DefaultWidgetLabelStyle",
+                    "Left" : 10,
+                    "ReadOnly" : true,
+                    "ResponsiveLayout" : false,
+                    "ShowBorder" : false,
+                    "ShowDataLoading" : true,
+                    "ShowToolbar" : true,
+                    "Text" : "",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 10,
+                    "Type" : "htmltextarea",
+                    "UseTheme" : false,
+                    "Visible" : true,
+                    "Width" : 180,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Html TextArea",
+                    "__supportsLabel" : true,
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "AlternateText" : "",
+                    "Area" : "UI",
+                    "BorderStyle" : "DefaultImageBorderStyle",
+                    "DisplayName" : "image-12",
+                    "Height" : 16,
+                    "Id" : "image-12",
+                    "Left" : 140,
+                    "PreventCaching" : false,
+                    "ResponsiveLayout" : false,
+                    "Scaling" : "width",
+                    "ShowDataLoading" : true,
+                    "SourceURL" : "PTC.Factory.MetricsWidget.Trend.DoubleDash.Black",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 90,
+                    "Type" : "image",
+                    "Visible" : true,
+                    "Width" : 16,
+                    "Z-index" : 11,
+                    "__TypeDisplayName" : "Image",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Alignment" : "center",
+                    "AllowEllipsis" : false,
+                    "Area" : "UI",
+                    "DisplayName" : "label-14",
+                    "Height" : 22,
+                    "Id" : "label-14",
+                    "Left" : 60,
+                    "ResponsiveLayout" : false,
+                    "SetLabelTextAsToolTip" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.MetricsWidget.LabelStyles.BlackFont.Small",
+                    "Text" : "[[PTC.Factory.KPI.OEE]]",
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 113,
+                    "Type" : "label",
+                    "Visible" : true,
+                    "Width" : 75,
+                    "Z-index" : 11,
+                    "__TypeDisplayName" : "Label",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            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
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

@@ -1,0 +1,1736 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="Thing Shape that holds all the necessary properties and services for managing Shift and related entities from UI {PTC.SCA.SCO.ShiftManagementUtilsThingShape}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.061+05:30"
+         name="PTC.SCA.SCO.ShiftManagementUtilsThingShape"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common">
+            <PropertyDefinitions></PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Creates Crews"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateCrews">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.Crew"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.Crew"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="Crews"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Wrapper Service to create Shifts using Configured Shift Manager."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateShifts">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.Shift"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.Shift"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="shifts"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Creates Work Activities"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateWorkActivities">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.WorkActivity"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.WorkActivity"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="WorkActivities"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Delete the crew and all related links referencing the crew"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="DeleteCrew">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.BatchDeleteDataShape"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="CrewUID"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Delete the shift and all related links referencing the shift"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="DeleteShift">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.BatchDeleteDataShape"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="ShiftUID"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Delete the work activity and all related links referencing the work activity"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="DeleteWorkActivity">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.BatchDeleteDataShape"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="WorkActivityUID"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Returns filtered InfoTable by applying given query, a wrapper service to InfoTable function Query"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="FilterInfotableQuery">
+                    <ResultType
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="false"
+                         baseType="QUERY"
+                         description=""
+                         name="filterQuery"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="infotableToFilter"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Returns a list of all the crews"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetCrews">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.Crew"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="JSON"
+                         description=""
+                         name="filter"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="INTEGER"
+                         description=""
+                         name="limit"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="INTEGER"
+                         description=""
+                         name="offset"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Returns filtered InfoTable by applying given query, a wrapper service to InfoTable function Query"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetFilteredCrews">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.Crew"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.Crew"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="Crews"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="false"
+                         baseType="QUERY"
+                         description=""
+                         name="filterQuery"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Returns filtered InfoTable by applying given query, a wrapper service to InfoTable function Query"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetFilteredShifts">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.Shift"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="false"
+                         baseType="QUERY"
+                         description=""
+                         name="filterQuery"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.Shift"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="Shifts"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Returns filtered InfoTable by applying given query, a wrapper service to InfoTable function Query"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetFilteredWorkActivities">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.WorkActivity"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="false"
+                         baseType="QUERY"
+                         description=""
+                         name="filterQuery"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.WorkActivity"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="WorkActivities"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to provide tiles info for Shift And Crew Hub Page"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetHubTiles">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.HubTileDetails"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Returns the configured Shift and Crew Tile DataTable."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetShiftAndCrewTileTable">
+                    <ResultType
+                     baseType="THINGNAME"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Returns the configured Shift Manager name."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetShiftManager">
+                    <ResultType
+                     baseType="THINGNAME"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Returns a list of all the shifts"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetShifts">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.Shift"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="JSON"
+                         description=""
+                         name="filter"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="INTEGER"
+                         description=""
+                         name="limit"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="INTEGER"
+                         description=""
+                         name="offset"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Take a string describing a localization token and look up its value."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetTokenValue">
+                    <ResultType
+                     baseType="STRING"
+                     description="Value of token."
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Token name to look up."
+                         name="TokenName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Returns a list of all Work Activities"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetWorkActivities">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.WorkActivity"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="JSON"
+                         description=""
+                         name="filter"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="INTEGER"
+                         description=""
+                         name="limit"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="INTEGER"
+                         description=""
+                         name="offset"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Returns the Configured Workforce Manager name."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetWorkforceManager">
+                    <ResultType
+                     baseType="THINGNAME"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Takes a String as input and returns true if empty or undefined, else false"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="IsFieldEmpty">
+                    <ResultType
+                     baseType="BOOLEAN"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="String to be checked for empty or null."
+                         name="FieldContent"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Takes string as input, returns true if matches expected format, else false"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="IsTimeValid">
+                    <ResultType
+                     baseType="BOOLEAN"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="String input checked against required time format"
+                         name="Time"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Updates crew records"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="UpdateCrews">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.Crew"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.Crew"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="Crews"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Updates shift records"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="UpdateShifts">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.Shift"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.Shift"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="Shifts"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Updates Work Activities"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="UpdateWorkActivities">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.WorkActivity"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.WorkActivity"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="WorkActivities"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Validates time and name fields of 1 or more Activity InfoTables against criteria and returns data shape with Successful boolean and error message if applicable."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ValidateActivities">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.MessageResponse"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.WorkActivity"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="Infotable of Activity DataShape containing fields to be validated"
+                         name="Activities"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Validates name field of 1 or more Crew InfoTables against criteria and returns data shape with Successful boolean and error message if applicable."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ValidateCrews">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.MessageResponse"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.Crew"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="Infotable of Crew DataShape containing fields to be validated"
+                         name="Crews"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Validates infotables against time and non-null fields"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ValidateNonNullAndTimeFields">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.MessageResponse"
+                     baseType="INFOTABLE"
+                     description="Successful/unsuccessful with errors if any"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="JSON"
+                         description="Fields to validate, by category, as JSON"
+                         name="FieldsToValidate"
+                         ordinal="5"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="Infotable input to validate without specified data shape"
+                         name="InfoTableToValidate"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Appropriate error message for null field"
+                         name="NullFieldError"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Validates time and name fields of 1 or more Shift InfoTables against criteria and returns data shape with Successful boolean and error message if applicable."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ValidateShifts">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.MessageResponse"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.Shift"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="Infotable of Shift DataShape containing fields to be validated"
+                         name="Shifts"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateCrews">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things[me.GetWorkforceManager()].CreateCrews({
+                                        Crews: Crews
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateShifts">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    // result: INFOTABLE dataShape: "PTC.SCA.SCO.Shift"
+                                    var result =  Things[me.GetShiftManager()].CreateShifts({
+                                    	Shifts: shifts /* INFOTABLE */
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateWorkActivities">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    // result: INFOTABLE dataShape: "PTC.SCA.SCO.WorkActivity"
+                                    var result =  Things[me.GetShiftManager()].CreateWorkActivities({
+                                        WorkActivities: WorkActivities /* INFOTABLE */
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="DeleteCrew">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things[me.GetWorkforceManager()].DeleteCrewAndLinks({
+                                    	CrewUID: CrewUID
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="DeleteShift">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things[me.GetShiftManager()].DeleteShiftAndLinks({
+                                    	ShiftUID: ShiftUID
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="DeleteWorkActivity">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things[me.GetShiftManager()].DeleteWorkActivityAndLinks({
+                                    	WorkActivityUID: WorkActivityUID
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="FilterInfotableQuery">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                    	t: infotableToFilter /* INFOTABLE */ ,
+                                    	query: filterQuery /* QUERY */
+                                    };
+                                    
+                                    // result: INFOTABLE
+                                    var result = Resources["InfoTableFunctions"].Query(params);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetCrews">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things[me.GetWorkforceManager()].GetCrews({
+                                        filter: filter,
+                                        limit: limit,
+                                        offset: offset
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetFilteredCrews">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = me.FilterInfotableQuery({
+                                    	filterQuery: filterQuery /* QUERY */ ,
+                                    	infotableToFilter: Crews /* INFOTABLE */
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetFilteredShifts">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = me.FilterInfotableQuery({
+                                    	filterQuery: filterQuery /* QUERY */ ,
+                                    	infotableToFilter: Shifts /* INFOTABLE */
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetFilteredWorkActivities">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = me.FilterInfotableQuery({
+                                        	filterQuery: filterQuery /* QUERY */ ,
+                                        	infotableToFilter: WorkActivities /* INFOTABLE */
+                                        });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetHubTiles">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var Tiles;
+                                    
+                                    try {
+                                    	Tiles = Things[me.GetShiftAndCrewTileTable()].GetDataTableEntries({});
+                                    } catch (err) {
+                                    	throw "Error retrieving Shift and Crew tile information.";
+                                    }
+                                    
+                                    var tableLength = Tiles.rows.length;
+                                    for (var x=0; x < tableLength; x++) {
+                                        var row = Tiles.rows[x];
+                                        var tokenValue = me.GetTokenValue({TokenName: row.ImageTitle });
+                                        if (tokenValue !== "???") {
+                                            row.ImageTitle = tokenValue;
+                                        }
+                                    }
+                                    
+                                    var sort = new Object();
+                                    sort.name = "Position";
+                                    sort.ascending = true;
+                                    Tiles.Sort(sort);
+                                    var result = Tiles;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetShiftAndCrewTileTable">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointEntityName({
+                                    	launchPointDescription: "ShiftAndCrewTilesDataTable"
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetShiftManager">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things["PTC.Factory.LaunchPointConfigurationThing"].GetShiftManagerThingName();
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetShifts">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things[me.GetShiftManager()].GetShifts({
+                                            filter: filter,
+                                            limit: limit,
+                                            offset: offset
+                                        });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetTokenValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    result = Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({
+                                        token: TokenName
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetWorkActivities">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things[me.GetShiftManager()].GetWorkActivities({
+                                            filter: filter,
+                                            limit: limit,
+                                            offset: offset
+                                        });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetWorkforceManager">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things["PTC.Factory.LaunchPointConfigurationThing"].GetWorkforceManagerThingName();
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="IsFieldEmpty">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = false;
+                                    if (FieldContent === undefined || FieldContent === '' || /^\s*$/.test(FieldContent)) {
+                                    	result = true;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="IsTimeValid">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var regex = RegExp("^((([01][0-9]|2[0-3]):[0-5][0-9])|24:00)$");
+                                    var result = false;
+                                    if(regex.test(Time)) {
+                                       result = true;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="UpdateCrews">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things[me.GetWorkforceManager()].UpdateCrews({
+                                        Crews: Crews
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="UpdateShifts">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things[me.GetShiftManager()].UpdateShifts({
+                                            Shifts: Shifts
+                                        });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="UpdateWorkActivities">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = Things[me.GetShiftManager()].UpdateWorkActivities({
+                                            WorkActivities: WorkActivities
+                                        });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ValidateActivities">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result =  me.ValidateNonNullAndTimeFields({
+                                    	NullFieldError: "PTC.SCA.SCO.ActivityNameError",
+                                    	InfoTableToValidate: Activities,
+                                    	FieldsToValidate: { nonNullFields : ["Name"], timeFields : ["StartTime", "EndTime"] }
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ValidateCrews">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result =  me.ValidateNonNullAndTimeFields({
+                                        NullFieldError: "PTC.SCA.SCO.CrewNameError",
+                                        InfoTableToValidate: Crews,
+                                        FieldsToValidate: { nonNullFields : ["Name"], timeFields : [] }
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ValidateNonNullAndTimeFields">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var nonNullFields;
+                                    var timeFields;
+                                    
+                                    var fieldsAsJson = JSON.parse(FieldsToValidate);
+                                    
+                                    if (fieldsAsJson) {
+                                    	nonNullFields = fieldsAsJson.nonNullFields;
+                                    	timeFields = fieldsAsJson.timeFields;
+                                    }
+                                    
+                                    var nonNullLength = 0;
+                                    var timeFieldsLength = 0;
+                                    
+                                    if (nonNullFields) {
+                                        nonNullLength = nonNullFields.length;
+                                    }
+                                    
+                                    if (timeFields) {
+                                        timeFieldsLength = timeFields.length;
+                                    }
+                                    
+                                    var params = {
+                                        infoTableName: "InfoTable",
+                                        dataShapeName: "PTC.SCA.SCO.MessageResponse"
+                                    };
+                                    
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    var tableLength = 0;
+                                    if (InfoTableToValidate && InfoTableToValidate.rows) {
+                                        tableLength = InfoTableToValidate.rows.length;
+                                    }
+                                    
+                                    for (var x = 0; x < tableLength; x++) {
+                                    	var row = InfoTableToValidate.rows[x];
+                                    	for (var nonNullCount = 0; nonNullCount < nonNullLength; nonNullCount++) {
+                                    		if (me.IsFieldEmpty({
+                                    				FieldContent: row[nonNullFields[nonNullCount]]
+                                    			})) {
+                                    			var resultRow = {
+                                    				"Successful": false,
+                                    				"Message": me.GetTokenValue({
+                                    					TokenName: NullFieldError
+                                    				})
+                                    			};
+                                    			result.AddRow(resultRow);
+                                    		}
+                                    	}
+                                    	for (var timeFieldCount = 0; timeFieldCount < timeFieldsLength; timeFieldCount++) {
+                                    		if (!me.IsTimeValid({
+                                    				Time: row[timeFields[timeFieldCount]]
+                                    			})) {
+                                    			var resultRow = {
+                                    				"Successful": false,
+                                    				"Message": me.GetTokenValue({
+                                    					TokenName: "PTC.SCA.SCO.InvalidTimeError"
+                                    				})
+                                    			};
+                                    			result.AddRow(resultRow);
+                                    		}
+                                    	}
+                                    }
+                                    
+                                    if (result.rows.length === 0) {
+                                        var successfulResultRow = {
+                                        	"Successful": true,
+                                        	"Message": ""
+                                        };
+                                        result.AddRow(successfulResultRow);
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ValidateShifts">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result =  me.ValidateNonNullAndTimeFields({
+                                    	NullFieldError: "PTC.SCA.SCO.ShiftNameError",
+                                    	InfoTableToValidate: Shifts,
+                                        FieldsToValidate: { nonNullFields : ["Name"], timeFields : ["StartTime", "EndTime"] }
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description=""
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.680+05:30"
+         name="PTC.SCA.SCO.Footer"
+         projectName="PTC.SCA.SCO.Common"
+         rows="0.0"
+         tags="PTC:sca-sco-common;PTC:factory-mv">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:PlantStatus"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="1"
+                 baseType="STRING"
+                 description=""
+                 name="configurationTableKey"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="GenericStringList"
+                 aspect.isDataTableEntry="true"
+                 aspect.ordinal="0"
+                 baseType="INFOTABLE"
+                 description=""
+                 name="input_InfoTable"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="2"
+                 baseType="STRING"
+                 description=""
+                 name="thingName"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.Factory.LaunchPointConfigurationThing</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.Factory.LaunchPointConfigurationThing" : {
+                  "DataName" : "Things_PTC.Factory.LaunchPointConfigurationThing",
+                  "EntityName" : "PTC.Factory.LaunchPointConfigurationThing",
+                  "EntityType" : "Things",
+                  "Id" : "4c1f3318-a44d-4095-a5fc-0976a68cde0c",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "94eb6660-f8b4-4a88-956a-421758c50cf4",
+                    "Name" : "GetUIEntityForEquipment",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetUIEntityForEquipment"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "9cadda06-714c-4746-a948-7f3a188fa2f0",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "input_InfoTable",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "Input_1",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "mashupcontainer-1",
+                "TargetSection" : ""
+              }, {
+                "Id" : "5f90ce0f-90fc-42e2-a76b-c31989b5b028",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "configurationTableKey",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "launchPointDescription",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetUIEntityForEquipment",
+                "TargetSection" : "Things_PTC.Factory.LaunchPointConfigurationThing"
+              }, {
+                "Id" : "092426f7-1a04-483e-848d-7b3e73e6bc63",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Name",
+                  "TargetPropertyBaseType" : "MASHUPNAME",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetUIEntityForEquipment",
+                "SourceSection" : "Things_PTC.Factory.LaunchPointConfigurationThing",
+                "TargetArea" : "UI",
+                "TargetId" : "mashupcontainer-1",
+                "TargetSection" : ""
+              }, {
+                "Id" : "d6f8e9f4-38f6-4a61-8d10-d59938b5a842",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "thingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "thingName",
+                  "TargetPropertyBaseType" : "THINGNAME"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetUIEntityForEquipment",
+                "TargetSection" : "Things_PTC.Factory.LaunchPointConfigurationThing"
+              } ],
+              "DesignTimePermissions" : { },
+              "Events" : [ {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "mashupcontainer-1",
+                "EventHandlerService" : "Refresh",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "RefreshRequested",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "e8aba887-64bd-493b-8bee-c41648ba2462"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "mashupcontainer-1",
+                "EventHandlerService" : "Refresh",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "4d0bc884-20fe-4cd7-a72b-a4a5a8f07ad6"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.LaunchPointConfigurationThing",
+                "EventHandlerService" : "GetUIEntityForEquipment",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "thingNameChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "717cc138-da92-48b5-bec1-bed99dd13759"
+              } ],
+              "RunTimePermissions" : { },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "Aspects" : {
+                      "dataShape" : "GenericStringList",
+                      "isDataTableEntry" : true
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "",
+                    "ParameterName" : "input_InfoTable"
+                  }, {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "configurationTableKey"
+                  }, {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "thingName"
+                  } ],
+                  "id_index" : 1,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "mashupcontainer-1",
+                    "Height" : 300,
+                    "Id" : "mashupcontainer-1",
+                    "Left" : 235,
+                    "MashupParameters" : [ ],
+                    "Name" : "",
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "TabSequenceGroup" : 0,
+                    "Top" : 10,
+                    "Type" : "mashupcontainer",
+                    "Visible" : true,
+                    "Width" : 400,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Contained Mashup"
+                  },
+                  "Widgets" : [ ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            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
+            xkbsAgAAYhcAAACxCwAAAGIXAAAAxC4AAACIXQAAABC7AAAAiF0AAAAQuwAAACB2AQAAQOwCAACA
+            2AUAAACxCwAAgNgFAAAAsQsAAABiFwAAAMQuAAAAiF0AAADELgAAAIhdAAAAELsAAAAgdgEAAEDs
+            AgAAIHYBAABA7AIAAIDYBQAAALELAAAAYhcAAACxaxAAAAAQuwAAACB2AQAAQOwCAACA2AUAAACx
+            CwAAgNgFAAAAsQsAAABiFwAAAMQuAAAAiF0AAADELgAAAIhdAAAAELsAAAAgdgEAAEDsAgAAIHYB
+            AABA7AIAAIDYBQAAALELAAAAYhcAAADELgAAAGIXAAAAxC4AAACIXQAAABC7AAAAIHYBAAAQuwAA
+            ACB2AQAAQOwCAACA2AUAAACxCwAAgNgFAAAAsQsAAABiFwAAAMQuAAAAiF0AAADELgAAAIhdAAAA
+            ELsAAAAgdgEAAEDsAgAAgNgFAABA7AIAAIDYBQAAALELAAAAYhcAAADELgAAAGIXAAAAxC4AAACI
+            XQAAABC7AAAAIHYBAAAQuwAAACB2AQAAQOwCAACA2AUAAACxCwAAgNgFAAAAsQsAAABiFwAAAMQu
+            AAAAiF0AAAAQuwAAAIhdAAAAELsAAAAgdgEAAEDsAgAAgNgFAABA7AIAAIDYBQAAALELAAAAYhcA
+            AADELgAAAGIXAAAAxC4AAACIXQAAABC7AAAAIHYBAAAQuwYCAAAAsQsAAABiFwAAAMQuAAAAiF0A
+            AAAQuwAAAIhdAAAAELsAAAAgdgEAAEDsAgAAgNgFAABA7AIAAIDYBQAAALELAAAAYhcAAADELgAA
+            AGIXAAAAxC4AAACIXQAAABC7AAAAIHYBAAAQuwYBAAAAsQsAAABiFwAAAMQuAAAAiF0AAAAQuwAA
+            AIhdAAAAELsAAAAgdgEAAEDsAgAAgNgFAABA7AIAAIDYBQAAALELAAAAYhcAAADELgAAAGIXAAAA
+            xC4AAACIXQAAABC7AAAAIHYBAABA7AIAACB2AQAAQOwCAACA2AUAAACxCwAAAGIXAAAAsQsAAABi
+            FwAAAMQuAAAAiF0AAAAQuwAAAIhdAAAAELsAAAAgdgEAAEDsAgAAgNgFAABA7AIAAIDYBQAAALEL
+            AAAAYhcAAADELgAAAIhdAAAAxC4AAACIXQAAABC7AAAAIHYBAABA7AIAACB2AQAAQOwCAACA2AUA
+            AACxCwAAAGIXAAAAsQsAAABiFwAAAMQuAAAAiF0AAAAQuwAAAIhdAAAAELsAAAAgdgEAAEDsAgAA
+            gNgFAAAAsQsAAIDYBQAAALELAAAAYhcAAADELgAAAIhdAAAAxC4AAACIXQAAABC7AAAAIHYBAABA
+            7AIAACB2AQAAQOwCAACA2AUAAACxCwAAAGIXAAAAsWsQAAAAELsAAAAgdgEAAEDsAgAAgNgFAAAA
+            sQsAAIDYBQAAALELAAAAYhcAAADELgAAAIhdAAAAxC4AAACIXQAAABC7AAAAIHYBAABA7AIAACB2
+            AQAAQOwCAACA2AUAAACxCwAAAGIXAAAAxC4AAABiFwAAAMQuAAAAiF0AAAAQuwAAACB2AQAAELsA
+            AAAgdgEAAEDsAgAAwDD9D6Yo0mq7GQowAAAAAElFTkSuQmCC
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

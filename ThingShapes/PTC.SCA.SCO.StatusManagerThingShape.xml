@@ -1,0 +1,1751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="Thing Shape that holds all the necessary properties and services for manipulating status definitions in the database {PTC.SCA.SCO.StatusManagerThingShape}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.133+05:30"
+         name="PTC.SCA.SCO.StatusManagerThingShape"
+         projectName="PTC.SCA.SCO.Status"
+         tags="PTC:sca-sco-common;PTC:sca-sco-status">
+            <PropertyDefinitions>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.dataShape="PTC.SCA.SCO.StatusDefinition"
+                 baseType="INFOTABLE"
+                 category=""
+                 description="List of status definitions loaded from the database."
+                 isLocalOnly="false"
+                 name="statusDefinitions"
+                 ordinal="2"></PropertyDefinition>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 baseType="JSON"
+                 category=""
+                 description="Temporary cache that will store all the template hierarchies for a given Thing Template name."
+                 isLocalOnly="false"
+                 name="templateHierarchies"
+                 ordinal="3"></PropertyDefinition>
+            </PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to add or update an existing status definition depending if a status definition for same Index/Entity already exists or not"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="AddOrUpdateStatusDefinition">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.StatusDefinition"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="InfoTable containing row(s) for all status definition data (datashape: PTC.SCA.SCO.StatusDefinition)"
+                         name="statusDefinition"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to add a status definition at organization, template or thing level"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="AddStatusDefinition">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.StatusDefinition"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="InfoTable containing row(s) for all status definition data (datashape PTC.SCA.SCO.StatusDefinition)"
+                         name="statusDefinition"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Creates the default status definitions once the Status Definition tables have been created in the database"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateDefaultStatusDefinitions">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Adds a StateValue to the database table."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateStateValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.StateValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.StateValue"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="stateValue"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Retrieves the state value information for a given Thing and adds it to the database table"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateStateValueForThing">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.StateValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.thingShape="PTC.SCA.SCO.StatusThingShape"
+                         baseType="THINGNAME"
+                         description="Name of the Thing"
+                         name="thingName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to delete a status definition"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="DeleteStatusDefinition">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="INTEGER"
+                         description="Index/Entity uniquely identifying the status definition to delete"
+                         name="UID"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Get state value for a ownerName (thing name)"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetStateValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.StateValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="BOOLEAN"
+                         description="Sort ascending"
+                         name="ascending"
+                         ordinal="5"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="DATETIME"
+                         description=""
+                         name="endDate"
+                         ordinal="3"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.minimumValue="0"
+                         baseType="INTEGER"
+                         description="limit the number of rows in result"
+                         name="limit"
+                         ordinal="4"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="PTC.SCA.SCO.StatusThingShape"
+                         baseType="THINGNAME"
+                         description="Provide Thing name as input"
+                         name="ownerName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="DATETIME"
+                         description=""
+                         name="startDate"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Returns the list of status definition datashapes to consider during table creation"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetStatusDBInfo">
+                    <ResultType
+                     baseType="JSON"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to return the information of status definitions"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetStatusDefinitions">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.StatusDefinition"
+                     baseType="INFOTABLE"
+                     description="InfoTable with status definitions (datashape PTC.SCA.SCO.StatusDefinition)"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.defaultValue="false"
+                         baseType="BOOLEAN"
+                         description="Only return the status definition of the status evaluated for the Thing name"
+                         name="actualStatusOnly"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.defaultValue="true"
+                         baseType="BOOLEAN"
+                         description="Only return the status definitions that are marked as enabled"
+                         name="enabledOnly"
+                         ordinal="3"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="PTC.SCA.SCO.StatusThingShape"
+                         baseType="THINGNAME"
+                         description="Thing name"
+                         name="thingName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to get all status definitions regardless if defined at organization, template or thing level"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetStatusDefinitionsForAllEntities">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.StatusDefinition"
+                     baseType="INFOTABLE"
+                     description="InfoTable with status definitions (datashape PTC.SCA.SCO.StatusDefinition)"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="QUERY"
+                         description="used for filtering"
+                         name="query"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Retrieves statuses that are involved in time element calculations"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetTimeElementStatuses">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.TimeElementsStatusesDataShape"
+                     baseType="INFOTABLE"
+                     description="The service retrieves statuses from the status configuration table involved in time element calculations"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="PTC.SCA.SCO.StatusThingShape"
+                         baseType="THINGNAME"
+                         description=""
+                         name="thingName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="timeElements"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="QueryValue">
+                    <ResultType
+                     aspect.dataShape="NumberValueStream"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="columnName"
+                         ordinal="7"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="columnValueName"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="DATETIME"
+                         description=""
+                         name="endDate"
+                         ordinal="6"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="INTEGER"
+                         description=""
+                         name="limit"
+                         ordinal="4"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="BOOLEAN"
+                         description=""
+                         name="oldestFirst"
+                         ordinal="5"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="THINGNAME"
+                         description=""
+                         name="ownerName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="DATETIME"
+                         description=""
+                         name="startDate"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to read all status definitions from database table and cache them all on property statusDefinitions"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ReloadStatusDefinitions">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to update a status definition at organization, template or thing level"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="UpdateStatusDefinition">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.StatusDefinition"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="InfoTable containing row(s) for all status definition data (datashape PTC.SCA.SCO.StatusDefinition)"
+                         name="statusDefinition"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Validate ADD, UPDATE, DELETE actions to the status definition"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ValidateStatusAction">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="action"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.StatusDefinition"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="statusDefinition"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="AddOrUpdateStatusDefinition">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    if (statusDefinition) {
+                                        var allStatusDefinitions = me.GetStatusDefinitionsForAllEntities();
+                                        var uidToAddOrUpdate = statusDefinition.getRow(0).UID;
+                                        var isUpdating = false;
+                                    
+                                        if (uidToAddOrUpdate !== undefined && allStatusDefinitions && allStatusDefinitions.getRowCount() > 0) {
+                                            var findRow = allStatusDefinitions.Find({
+                                                "UID": uidToAddOrUpdate
+                                            });
+                                    
+                                            if (findRow) {
+                                                isUpdating = true;
+                                                me.UpdateStatusDefinition({
+                                                    "statusDefinition": statusDefinition /* INFOTABLE */
+                                                });
+                                            }
+                                        }
+                                    
+                                        if (!isUpdating) {
+                                            me.AddStatusDefinition({
+                                                "statusDefinition": statusDefinition /* INFOTABLE */
+                                            });
+                                        }
+                                    } else {
+                                        logger.warn("statusDefinition definitiaon is null");
+                                    }
+                                    me.ReloadStatusDefinitions();
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="AddStatusDefinition">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    me.ValidateStatusAction({
+                                    	"action": "ADD" /* STRING */,
+                                    	"statusDefinition": statusDefinition /* INFOTABLE */
+                                    });
+                                    
+                                    Things[me.GetDatabaseThingName()].Insert({
+                                    	"infoTable": statusDefinition,
+                                    	"dataShapeName": "PTC.SCA.SCO.StatusDefinition"
+                                    });
+                                    
+                                    me.ReloadStatusDefinitions();
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateDefaultStatusDefinitions">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var DEFAULT_DATASHAPE = "PTC.SCA.SCO.StatusDefinition";
+                                    
+                                    var infoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : DEFAULT_DATASHAPE
+                                    });
+                                    
+                                    function addRowToTable(statusIndex, entityName, internalName, localizationToken, icon, color,
+                                                           timeElement, evaluationOrder, criticalityOrder, enabled, editableExpression) {
+                                        infoTable.AddRow({
+                                            "statusIndex":statusIndex,
+                                            "entityName":entityName,
+                                            "internalName":internalName,
+                                            "localizationToken":localizationToken,
+                                            "icon":icon,
+                                            "color":color,
+                                            "timeElement":timeElement,
+                                            "evaluationOrder":evaluationOrder,
+                                            "criticalityOrder":criticalityOrder,
+                                            "enabled":enabled,
+                                            "editableExpression":editableExpression
+                                        });
+                                    }
+                                    
+                                    // verify if default status definitions are already inserted into the database
+                                    me.ReloadStatusDefinitions();
+                                    
+                                    if (me.statusDefinitions.getRowCount() === 0) {
+                                        addRowToTable("0", "", "NotConfigured", "PTC.SCA.SCO.NotConfiguredStatus", "PTC.Factory.Status.NotConfigured", "#a2a2a2", "", 0, 10, true, false);
+                                        addRowToTable("3", "", "PlannedDowntime", "PTC.SCA.SCO.PlannedDowntimeStatus", "PTC.Factory.Status.PlannedDowntime", "#09aec6", "", 1, 30, true, true);
+                                        addRowToTable("1", "", "Warning", "PTC.SCA.SCO.WarningStatus", "PTC.Factory.Status.Warning", "#f2b927", "APT,PBT", 2, 50, true, true);
+                                        addRowToTable("2", "", "Running", "PTC.SCA.SCO.RunningStatus", "PTC.Factory.Status.Running", "#3ec556", "APT,PBT", 3, 20, true, true);
+                                        addRowToTable("4", "", "UnplannedDowntime", "PTC.SCA.SCO.UnplannedDowntimeStatus", "PTC.Factory.Status.UnplannedDowntime", "#ed684a", "PBT", 4, 60, true, true);
+                                        addRowToTable("5", "", "Unavailable", "PTC.SCA.SCO.UnavailableStatus", "PTC.Factory.Status.Unavailable", "#a2a2a2", "PBT", 8, 40, true, false);
+                                        addRowToTable("6", "", "Custom1", "", "PTC.SCA.SCO.Status.Setup", "#095B18", "", 5, 70, false, true);
+                                        addRowToTable("7", "", "Custom2", "", "PTC.SCA.SCO.Status.Maintenance", "#0814AD", "", 6, 80, false, true);
+                                        addRowToTable("8", "", "Custom3", "", "PTC.SCA.SCO.Status.Idle", "#D8730E", "", 7, 90, false, true);
+                                    
+                                        Things[me.GetDatabaseThingName()].Insert({
+                                            infoTable: infoTable,
+                                            dataShapeName: DEFAULT_DATASHAPE
+                                        });
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateStateValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var thingName = stateValue.OwnerName;
+                                    var statusIndex = stateValue.OwnerStateID;
+                                    var result;
+                                    
+                                    // result: INFOTABLE dataShape: "PTC.SCA.SCO.StateValue"
+                                    var queryResult = me.GetStateValue({
+                                        ownerName: thingName, /* STRING */
+                                        ascending: false
+                                    });
+                                    
+                                    if (queryResult.rows.length) {
+                                        var currentStatus = queryResult.OwnerStateID;
+                                        if (statusIndex != currentStatus) {
+                                            result = addRow();
+                                        }
+                                    } else {
+                                        result = addRow();
+                                    }
+                                    
+                                    function addRow() {
+                                        return Things[me.GetDatabaseThingName()].Insert({
+                                            "infoTable": stateValue,
+                                            "dataShapeName": "PTC.SCA.SCO.StateValue"
+                                        });
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateStateValueForThing">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var thing = Things[thingName];
+                                    
+                                    if (!thing) {
+                                        throw "Thing does not exist";
+                                    }
+                                    
+                                    var StartTime = getStartDate(thing);
+                                    var currentShift = getCurrentShift(thing);
+                                    
+                                    var stateValueTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                        infoTableName: "InfoTable",
+                                        dataShapeName: "PTC.SCA.SCO.StateValue"
+                                    });
+                                    
+                                    stateValueTable.AddRow({
+                                        "OwnerName": thing.name,
+                                        "OwnerStateID": thing.status,
+                                        "StartTime": StartTime,
+                                        "ShiftUID": getShiftUID(currentShift),
+                                        "LastUpdatedTime": StartTime,
+                                        "JobOrderUID": getJobOrderUID(thing),
+                                        "CrewUID": getCrewUID(thing),
+                                        "SiteUID": getSiteUID(currentShift),
+                                        "ShiftScheduleUID": isNaN(parseInt(thing.ShiftScheduleUID)) ? null : Number(thing.ShiftScheduleUID)
+                                    });
+                                    
+                                    // result: INFOTABLE dataShape: "PTC.SCA.SCO.StateValue"
+                                    var result = me.CreateStateValue({
+                                        stateValue: stateValueTable /* INFOTABLE */
+                                    });
+                                    
+                                    function getStartDate(thing) {
+                                        var startDate = thing.statusTimestamp;
+                                        if (!startDate) {
+                                            startDate = new Date().toUTCString; // in UTC
+                                        }
+                                        return startDate;
+                                    }
+                                    
+                                    function getCurrentShift(thing) {
+                                    	if (thing.ImplementsShape({
+                                    			thingShapeName: "PTC.SCA.SCO.ShiftThingShape" /* THINGSHAPENAME */
+                                    		})) {
+                                    		var currentShift = thing.GetCurrentShifts();
+                                    		if (currentShift != null && currentShift.getRowCount() > 0) {
+                                    			return currentShift;
+                                    		}
+                                    	}
+                                    	return null;
+                                    }
+                                    
+                                    function getShiftUID(currentShift) {
+                                    	if (currentShift != null && currentShift.getRowCount() > 0) {
+                                    		return currentShift.getRow(0).UID;
+                                    	}
+                                    }
+                                    
+                                    function getSiteUID(currentShift) {
+                                    	if (currentShift != null && currentShift.getRowCount() > 0) {
+                                    		return currentShift.getRow(0).SiteUID;
+                                    	}
+                                    }
+                                    
+                                    function getJobOrderUID(thing) {
+                                    	if (thing.ImplementsShape({
+                                    			thingShapeName: "PTC.SCA.SCO.JobOrderThingShape" /* THINGSHAPENAME */
+                                    		}) && thing.JobOrderUID) {
+                                    		return thing.JobOrderUID;
+                                    	}
+                                    	return null;
+                                    }
+                                    
+                                    function getCrewUID(thing) {
+                                    	if (thing.ImplementsShape({
+                                    			thingShapeName: "PTC.SCA.SCO.WorkforceThingShape" /* THINGSHAPENAME */
+                                    		}) && thing.CrewUID) {
+                                    		return thing.CrewUID;
+                                    	}
+                                    	return null;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="DeleteStatusDefinition">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    me.ValidateStatusAction({
+                                    	"action": "DELETE" /* STRING */,
+                                    	"statusDefinition": createValidationPayload() /* INFOTABLE */
+                                    });
+                                    
+                                    Things[me.GetDatabaseThingName()].Delete({
+                                    	"UID": UID,
+                                    	"dataShapeName": "PTC.SCA.SCO.StatusDefinition"
+                                    });
+                                    
+                                    me.ReloadStatusDefinitions();
+                                    
+                                    function createValidationPayload() {
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.StatusDefinition)
+                                        var statusDefinition = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.StatusDefinition"
+                                        });
+                                    
+                                        statusDefinition.AddRow({"UID":UID});
+                                    
+                                        return statusDefinition;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetStateValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var dataTableName = "PTC.SCA.SCO.StateValue";
+                                    
+                                    if (ownerName) {
+                                        var filter = {
+                                            "filters": {
+                                                "filters": [],
+                                                "type": "AND"
+                                            },
+                                            sorts: [{
+                                                "dataShapeName": dataTableName,
+                                                "fieldName": "StartTime",
+                                                "isAscending": ascending,
+                                            }]
+                                        };
+                                    
+                                        filter = addFilter(filter, "OwnerName", "EQ", ownerName);
+                                    
+                                        if (startDate) {
+                                            filter = addFilter(filter, "StartTime", "GE", startDate);
+                                        }
+                                        if (endDate) {
+                                            filter = addFilter(filter, "StartTime", "LE", endDate);
+                                        }
+                                        var params = {
+                                            "filter": filter,
+                                            "dataShapeName": dataTableName,
+                                        };
+                                        if (limit) {
+                                            params.limit = limit;
+                                        }
+                                        var result = Things[me.GetDatabaseThingName()].Query(
+                                            params
+                                        );
+                                    } else {
+                                        logger.warn("input is empty please provide thing name");
+                                    }
+                                    
+                                    function addFilter(currentFilter, fieldName, operator, value) {
+                                        var newFilter = {
+                                            "dataShapeName": dataTableName,
+                                            "fieldName": fieldName,
+                                            "type": operator,
+                                            "value": value,
+                                            isCaseSensitive: true
+                                        };
+                                        currentFilter.filters.filters.push(newFilter);
+                                        return currentFilter;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetStatusDBInfo">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var dbInfo = {
+                                        dbInfo: [
+                                            {dataShapeName: "PTC.SCA.SCO.StatusDefinition", indexedFields: [{"name":"UID"},{"name":"statusIndex"},{"name":"entityName"}]},
+                                            {dataShapeName: "PTC.SCA.SCO.StatusDefinition_AP", indexedFields: [{"name":"UID"}]},
+                                            {dataShapeName: "PTC.SCA.SCO.StateValue", indexedFields: [{"name":"UID"},{"name":"OwnerName"}]}
+                                        ]
+                                    };
+                                    
+                                    var result = dbInfo;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetStatusDefinitions">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var allStatusDefinitions = me.GetStatusDefinitionsForAllEntities();
+                                    var templateHierarchy = getEquipmentHierarchy(thingName);
+                                    var statusTracker = [];
+                                    
+                                    // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.StatusDefinition)
+                                    var statusInfoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape( {
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : "PTC.SCA.SCO.StatusDefinition"
+                                    });
+                                    
+                                    templateHierarchy.forEach(function(entityName) {
+                                        var query = {
+                                            "filters": {
+                                                 "type": "And",
+                                                 "filters": [{
+                                                     "type": "EQ",
+                                                     "fieldName": "entityName",
+                                                     "value": entityName
+                                                 }]
+                                            }
+                                        };
+                                    
+                                        if (actualStatusOnly) {
+                                             query.filters.filters.push({
+                                                "type": "EQ",
+                                                "fieldName": "statusIndex",
+                                                "value": Things[thingName].status
+                                            });
+                                        }
+                                    
+                                        // result: INFOTABLE
+                                        var queryResult = Resources["InfoTableFunctions"].Query({
+                                            "t": allStatusDefinitions /* INFOTABLE */,
+                                            "query": query /* QUERY */
+                                        });
+                                    
+                                        var tableLength = queryResult.rows.length;
+                                        for (var x=0; x < tableLength; x++) {
+                                            var row = queryResult.rows[x];
+                                            if (statusTracker.indexOf(row.statusIndex) === -1) {
+                                                if (row.localizationToken === '' || row.localizationToken == null) {
+                                                    row.localizationToken = row.internalName;
+                                                }
+                                                statusTracker.push(row.statusIndex);
+                                                statusInfoTable.AddRow(row);
+                                            }
+                                        }
+                                    });
+                                    
+                                    // do not display disabled status definitions
+                                    if (enabledOnly) {
+                                        statusInfoTable.Delete({
+                                            "enabled": false
+                                        });
+                                    }
+                                    
+                                    result = statusInfoTable;
+                                    
+                                    function getEquipmentHierarchy(thingName) {
+                                        var hierarchy = [];
+                                        var thingBaseTemplate = Things[thingName].thingTemplate;
+                                        var templateHierarchies = JSON.parse(me.templateHierarchies);
+                                        var cachedTemplateHierarchy = templateHierarchies[thingBaseTemplate];
+                                        var shouldCacheHierarchy = true;
+                                    
+                                        if (cachedTemplateHierarchy) {
+                                            hierarchy = cachedTemplateHierarchy;
+                                        } else {
+                                            var templateName = thingBaseTemplate;
+                                            while (templateName) {
+                                                 // Break if the user don't have access to the thing template (ex. GenericThing)
+                                                 if(ThingTemplates[templateName] == null) {
+                                                     shouldCacheHierarchy = false; // do not cache hierarchy if it is not complete and did not traverse the whole hierarchy.
+                                                     break;
+                                                 }
+                                                 hierarchy.push(templateName);
+                                                 templateName = ThingTemplates[templateName].GetBaseThingTemplate();
+                                            }
+                                            
+                                            if (shouldCacheHierarchy) {
+                                                 templateHierarchies[thingBaseTemplate] = JSON.parse(JSON.stringify(hierarchy));
+                                                 me.templateHierarchies = templateHierarchies;
+                                            }
+                                        }
+                                        
+                                        // look for statuse customization at thing level at first
+                                        hierarchy.unshift(thingName);
+                                        // look for default statuses at the end
+                                        hierarchy.push("");
+                                        return hierarchy;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetStatusDefinitionsForAllEntities">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    if (!me.statusDefinitions || me.statusDefinitions.getRowCount() < 9) {
+                                        me.ReloadStatusDefinitions();
+                                    }
+                                    
+                                    var outputTable = me.statusDefinitions;
+                                    
+                                    if (query) {
+                                        // result: INFOTABLE
+                                        outputTable = Resources["InfoTableFunctions"].Query({
+                                            t: outputTable /* INFOTABLE */,
+                                            query: query /* QUERY */
+                                        });
+                                    }
+                                    
+                                    result = outputTable;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetTimeElementStatuses">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var SEPARATOR = ",";
+                                    var timeElementsHashSet = {};
+                                    timeElements.split(SEPARATOR).forEach(function(timeElement) {
+                                    	timeElementsHashSet[timeElement] = "";
+                                    });
+                                    
+                                    parseInfoTableForTimeElementsStatuses();
+                                    
+                                    var resultTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : "PTC.SCA.SCO.TimeElementsStatusesDataShape"
+                                    });
+                                    
+                                    var timeElementList = Object.keys(timeElementsHashSet);
+                                    timeElementList.forEach(function(timeElement) {
+                                        resultTable.AddRow({timeElement: timeElement, statusIndexes: timeElementsHashSet[timeElement]});
+                                    });
+                                    
+                                    result = resultTable;
+                                    
+                                    function parseInfoTableForTimeElementsStatuses() {
+                                        var statusDefinitions = me.GetStatusDefinitions({thingName: thingName});
+                                        var tableLength = statusDefinitions.rows.length;
+                                        for (var x=0; x < tableLength; x++) {
+                                            var row = statusDefinitions.rows[x];
+                                            if(row.timeElement !== "") {
+                                                /* split the comma separated timeElements from the infotable
+                                                then check if each of them is contained in the hashset which is the input
+                                                If true, then get the statusIndex and assigned it as value in the hashset
+                                                then separate by comma
+                                                */
+                                                row.timeElement.split(SEPARATOR).forEach(function(timeElement) {
+                                                    if(timeElement in timeElementsHashSet) {
+                                                        var statusSeparator = timeElementsHashSet[timeElement] ? SEPARATOR : "";
+                                                        timeElementsHashSet[timeElement] += statusSeparator + row.statusIndex;
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="QueryValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var dataTableName = "PTC.SCA.SCO.StateValue";
+                                    var filter = {
+                                        "filters": {
+                                            "filters":[
+                                           ],
+                                            type: "AND",
+                                        },
+                                        sorts:[
+                                                {
+                                                    "dataShapeName": dataTableName,
+                                                    "fieldName": "LastUpdatedTime",
+                                                    "isAscending": oldestFirst,
+                                                }
+                                        ] 
+                                    };
+                                    
+                                    if ( ownerName ){
+                                        filter = addFilter(filter,"OwnerName","EQ",ownerName);
+                                    }
+                                    if ( columnName && columnValueName){
+                                        filter = addFilter(filter,columnName,"EQ",columnValueName);
+                                    }
+                                    if ( startDate ){
+                                        filter = addFilter(filter,"LastUpdatedTime","GE",startDate);
+                                    }
+                                    if ( endDate ){
+                                        filter = addFilter(filter,"LastUpdatedTime","LE",endDate);
+                                    }
+                                    
+                                    var params = {
+                                        "filter": filter,
+                                        "dataShapeName": dataTableName,
+                                    };
+                                    
+                                    if ( limit ){
+                                    	params.limit = limit;
+                                    }
+                                    
+                                    
+                                    var dbResult = Things[me.GetDatabaseThingName()].Query(params);
+                                    var infoParam = {
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : "NumberValueStream"
+                                    };
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(infoParam);
+                                    var dbResultLength = dbResult.rows.length;
+                                    //Convert db output into numberValueStream format as standard for graph related operation
+                                    for (var y=0; y < dbResultLength; y++) {
+                                        result.AddRow({ id:dbResult[y][columnName] ,value:dbResult[y][columnName] , timestamp:dbResult[y].LastUpdatedTime });
+                                    }
+                                    
+                                    function addFilter(currentFilter,fieldName,operator,value){
+                                    	var newFilter= {
+                                                "dataShapeName":dataTableName,
+                                                "fieldName":fieldName,
+                                                "type":operator,
+                                                "value":value,
+                                                isCaseSensitive:true
+                                            };
+                                        currentFilter.filters.filters.push(newFilter);
+                                        return currentFilter;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ReloadStatusDefinitions">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var DEFAULT_DATASHAPE = "PTC.SCA.SCO.StatusDefinition";
+                                    
+                                    me.statusDefinitions = Things[me.GetDatabaseThingName()].Query({
+                                        dataShapeName: DEFAULT_DATASHAPE
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="UpdateStatusDefinition">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    me.ValidateStatusAction({
+                                    	"action": "UPDATE" /* STRING */,
+                                    	"statusDefinition": statusDefinition /* INFOTABLE */
+                                    });
+                                    
+                                    Things[me.GetDatabaseThingName()].Update({
+                                    	"infoTable": statusDefinition,
+                                    	"dataShapeName": "PTC.SCA.SCO.StatusDefinition"
+                                    });
+                                    
+                                    me.ReloadStatusDefinitions();
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ValidateStatusAction">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var ALLOWED_INTERNAL_NAME = {"NotConfigured":"", "Warning":"", "Running":"", "PlannedDowntime":"", "UnplannedDowntime":"", "Unavailable":"", "Custom1":"", "Custom2":"", "Custom3":""};
+                                    var MAX_STATUS_PER_ENTITY_NAME = 9;
+                                    
+                                    switch(action) {
+                                         case "ADD" :
+                                             validateAdd();
+                                         break;
+                                    
+                                         case "UPDATE" :
+                                             validateUpdate();
+                                         break;
+                                    
+                                         case "DELETE" :
+                                             validateDelete();
+                                         break;
+                                    
+                                         default:
+                                             throw "Invalide action to validate";
+                                    }
+                                    
+                                    function validateAdd() {
+                                        assertBaseCases();
+                                    
+                                        // make sure we have the most recent cached status definitions
+                                        me.ReloadStatusDefinitions();
+                                    
+                                        if (getDefaultStatusIndex() != statusDefinition.statusIndex) {
+                                            throwError("The statusIndex and internalName that are defined for each status cannot be changed. Status definition entries added for thing templates or equipment things must retain the statusIndex and internalName values that are defined for the status at the global level.");
+                                        }
+                                    
+                                        // result: INFOTABLE
+                                        var joinedStatusTables = Resources["InfoTableFunctions"].Union({
+                                            t1: me.statusDefinitions /* INFOTABLE */,
+                                            t2: statusDefinition /* INFOTABLE */
+                                        });
+                                    
+                                        var uniqueStatusDefinition = {}; // concatenation of entityName and statusIndex
+                                        var uniqueEvaluationOrderList = {};
+                                        var uniqueInternalNameList = {};
+                                        var entityNameList = {};
+                                        for (var j = 0; j < joinedStatusTables.getRowCount(); j++) {
+                                            var status = joinedStatusTables[j];
+                                    
+                                            if (isEmpty(status.entityName)) {
+                                                status.entityName = "";
+                                            }
+                                    
+                                            // cannot add more than 9 statuses per entity name
+                                            if (entityNameList.hasOwnProperty(status.entityName)) {
+                                                entityNameList[status.entityName] = entityNameList[status.entityName] + 1; // increment status count
+                                                if (entityNameList[status.entityName] > MAX_STATUS_PER_ENTITY_NAME) {
+                                                    throwError('No more than 9 statuses can be defined for an entityName: "' + status.entityName + '".');
+                                                }
+                                            } else {
+                                                entityNameList[status.entityName] = 1;
+                                            }
+                                    
+                                            // cannot add an existing status
+                                            var checkUniqueStatusDefinition = status.entityName + status.statusIndex;
+                                            assert("The combination of statusIndex and entityName values must be unique for each status definition entry.",
+                                                   uniqueStatusDefinition, checkUniqueStatusDefinition);
+                                    
+                                            // internal name must be unique per entityName
+                                            var checkUniqueInternalNamePerUniqueStatus = status.entityName + status.internalName;
+                                            assert("The combination of internalName and entityName values must be unique for each status definition entry.",
+                                                   uniqueInternalNameList, checkUniqueInternalNamePerUniqueStatus);
+                                    
+                                            // evaluationOrder must be unique per entityName
+                                            var checkEvaluationOrderPerUniqueStatus = status.entityName + status.evaluationOrder.toString();
+                                            assert("The combination of entityName and evaluationOrder values must be unique for each status definition entry.",
+                                                   uniqueEvaluationOrderList, checkEvaluationOrderPerUniqueStatus);
+                                        }
+                                    }
+                                    
+                                    function validateUpdate() {
+                                        // color value cannot be empty
+                                        // evaluation order must be a positive integer
+                                        // criticality order must be a positive integer
+                                        assertBaseCases();
+                                    
+                                        // make sure we have the most recent cached status definitions
+                                        me.ReloadStatusDefinitions();
+                                        var cachedStatusDefinitions = me.statusDefinitions;
+                                    
+                                        for (var x = 0; x < statusDefinition.getRowCount(); x++) {
+                                            var status = statusDefinition.getRow(x);
+                                            var cachedStatus = cachedStatusDefinitions.Find({"UID":status.UID});
+                                            var isModifyingDefaultStatus = cachedStatus && isEmpty(cachedStatus.entityName);
+                                    
+                                            if (isModifyingDefaultStatus) {
+                                                // cannot update entityName at organizational level
+                                                if (!isEmpty(status.entityName)) {
+                                                    throwError("The entityName cannot be updated for status definition entries at the organization level (with no entityName value).");
+                                                }
+                                    
+                                                // cannot update statusIndex at organizational level
+                                                else if (status.statusIndex !== cachedStatus.statusIndex) {
+                                                    throwError("The statusIndex cannot be updated for status definition entries at the organization level (with no entityName value).");
+                                                }
+                                    
+                                                // cannot update internalName at organizational level
+                                                else if (status.internalName !== cachedStatus.internalName) {
+                                                    throwError("The internalName cannot be updated for status definition entries at the organization level (with no entityName value).");
+                                                }
+                                            }
+                                    
+                                            // cannot update customized entityName to entityName=""
+                                            var isUpdatingToDefaultStatus = cachedStatus && !isEmpty(cachedStatus.entityName) && isEmpty(status.entityName);
+                                            if (isUpdatingToDefaultStatus) {
+                                                throwError("No more than 9 statuses can be defined at the organization level (with no entityName value).");
+                                            }
+                                    
+                                            // evaluation order must be unique per entity name
+                                            var existEvaluationOrder = cachedStatusDefinitions.Find({
+                                                "entityName":status.entityName,
+                                                "evaluationOrder":status.evaluationOrder
+                                            });
+                                            if (existEvaluationOrder && existEvaluationOrder.statusIndex !== status.statusIndex) {
+                                                throwError("The combination of statusIndex, entityName, and evaluationOrder values must be unique for each status definition entry.");
+                                            }
+                                    
+                                            // internal name must be unique per entity name
+                                            var existInternalName = cachedStatusDefinitions.Find({
+                                                "entityName":status.entityName,
+                                                "internalName":status.internalName
+                                            });
+                                            if (existInternalName && existInternalName.statusIndex !== status.statusIndex) {
+                                                throwError("The combination of statusIndex, entityName, and internalName values must be unique for each status definition entry.");
+                                            }
+                                        }
+                                    }
+                                    
+                                    function validateDelete() {
+                                        // Prevent delete of the default status definitions at organizational level
+                                        me.ReloadStatusDefinitions();
+                                        var cachedStatuses = me.statusDefinitions;
+                                        for (var x = 0; x < statusDefinition.getRowCount(); x++) {
+                                            var status = statusDefinition.getRow(x);
+                                            var foundStatus = cachedStatuses.Find({"UID":status.UID});
+                                            if (foundStatus && isEmpty(foundStatus.entityName)) {
+                                                throwError("Status definition entries at the organization level (with no entityName value) cannot be deleted.");
+                                            }
+                                        }
+                                    }
+                                    
+                                    function isEmpty(value) {
+                                        return (value === '' || value === null || value === undefined);
+                                    }
+                                    
+                                    function isColorValid(value) {
+                                        var isOk  = /^#[0-9A-F]{6}$/i.test(value);
+                                     return isOk;
+                                    }
+                                    
+                                    function assert(msg, map, key) {
+                                        if (map.hasOwnProperty(key)) {
+                                            throwError(msg);
+                                        } else {
+                                            map[key] = "";
+                                        }
+                                    }
+                                    
+                                    function assertBaseCases() {
+                                        for (var i = 0; i < statusDefinition.getRowCount(); i++) {
+                                            var status = statusDefinition.getRow(i);
+                                    
+                                            // cannot add more than 9 statuses at the global / organization level
+                                            if (action === "ADD" && isEmpty(status.entityName)) {
+                                                throwError("No more than 9 statuses can be defined at the organization level (with no entityName value).");
+                                            }
+                                    
+                                            // statusIndex can only be 0-8
+                                            if (isEmpty(status.statusIndex) || !status.statusIndex.match(/^[0-8]$/)) {
+                                                throwError("The statusIndex value must be an integer between 0 and 8, inclusive.");
+                                            }
+                                    
+                                            // color value cannot be empty
+                                            if (isEmpty(status.color)) {
+                                                throwError("The color value for a status definition entry cannot be empty.");
+                                            }
+                                    
+                                            // color value needs to be valid hex
+                                            if(!isColorValid(status.color)){
+                                                throwError("The color value is not valid.");
+                                            }
+                                    
+                                            // internalName must be "NotConfigured", "Warning", "Running", "PlannedDowntime", "UnplannedDowntime", "Unavailable", "Custom1", "Custom2", "Custom3"
+                                            if (!ALLOWED_INTERNAL_NAME.hasOwnProperty(status.internalName)) {
+                                                throwError('For each status definition entry, the internalName value must be one of the following: "NotConfigured", "Warning", "Running", "PlannedDowntime", "UnplannedDowntime", "Unavailable", "Custom1", "Custom2", or "Custom3".');
+                                            }
+                                    
+                                            // evaluation order must be a positive integer
+                                            if (isEmpty(status.evaluationOrder) || status.evaluationOrder < 0) {
+                                                throwError("The evaluationOrder value must be a positive integer.");
+                                            }
+                                    
+                                            // criticality order must be a positive integer
+                                            if (isEmpty(status.criticalityOrder) || status.criticalityOrder < 1) {
+                                                throwError("The criticalityOrder value must be a positive integer.");
+                                            }
+                                    
+                                            // not configured (statusIndex : 0) status cannot be disabled
+                                            if (status.statusIndex === "0" && status.enabled === false) {
+                                                throwError("The status definition entry with statusIndex=0 and internalName=NotConfigured cannot be disabled.");
+                                            }
+                                    
+                                            // unavailable (statusIndex : 5) status cannot be disabled
+                                            if (status.statusIndex === "5" && status.enabled === false) {
+                                                throwError("The status definition entry with statusIndex=5 and internalName=Unavailable cannot be disabled.");
+                                            }
+                                    
+                                            // unavailable (statusIndex : 5) status expression cannot be editable
+                                            if (status.statusIndex === "5" && status.editableExpression === true) {
+                                                throwError("The status definition entry with statusIndex=5 and internalName=Unavailable cannot be editableExpression=true.");
+                                            }
+                                        }
+                                    }
+                                    
+                                    function throwError(msg) {
+                                        logger.error(msg);
+                                        throw msg;
+                                    }
+                                    
+                                    //Use this function after we have most recent cached status definitions
+                                    function getDefaultStatusIndex() {
+                                        var query = {
+                                            "filters": {
+                                                "filters": [{
+                                                        "fieldName": "entityName",
+                                                        "type": "EQ",
+                                                        "value": ""
+                                                    },
+                                                    {
+                                                        "fieldName": "internalName",
+                                                        "type": "EQ",
+                                                        "value": statusDefinition[0].internalName
+                                                    }
+                                                ],
+                                                "type": "AND"
+                                            }
+                                        };
+                                    
+                                        var queryResult = Resources["InfoTableFunctions"].Query({
+                                            query: query,
+                                            t: me.statusDefinitions
+                                        });
+                                    
+                                        return queryResult[0].statusIndex;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

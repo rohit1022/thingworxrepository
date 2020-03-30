@@ -1,0 +1,2351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="Thing Shape for the KPI manager. Provides services to manage and calculate KPI values and KPI element values. {PTC.SCA.SCO.KPIManagerThingShape}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.018+05:30"
+         name="PTC.SCA.SCO.KPIManagerThingShape"
+         projectName="PTC.SCA.SCO.KPI"
+         tags="PTC:sca-sco;PTC:sca-sco-kpi;PTC:sca-common">
+            <PropertyDefinitions></PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Calculates the KPI element values for all Things that implement the KPIElementThingShape. Triggered by the PTC.SCA.SCO.KPIScheduler."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CalculateKPIElements">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.TimeInfo"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="TimeInfo"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Calculates KPI values for all Things that implement the KPIElementThingShape. Triggered by the PTC.SCA.SCO.KPIScheduler."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CalculateKPIs">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.TimeInfo"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="TimeInfo"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Purges the last 7 days of history for the given equipment"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ClearEquipmentHistory">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.ClearDataHistory"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.PhysicalAssetDataShape"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="An infotable of equipment ids."
+                         name="equipment"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Adds a KPIElementValue to the database."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateKPIElementValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.KPIElementValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.KPIElementValue"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="KPIElementValue"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Adds a KPIValue to the database"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateKPIValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.KPIValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.KPIValue"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="KPIValue"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Deletes a KPIElementValue object from the Data Table."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="DeleteKPIElementValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.KPIElementValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="LONG"
+                         description=""
+                         name="UID"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Deletes a KPIValue object from the Data Table."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="DeleteKPIValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.KPIValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="LONG"
+                         description=""
+                         name="UID"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Retrieves all Things that implement the KPIElementThingShape."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetAllKPIElements">
+                    <ResultType
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Returns a comma-delimited list of the names of the KPIs implemented on a specified Thing, based on an input JSON array of KPI Thing Shapes and KPI names. Used internally by other services, not intended for standalone use."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetImplementedKPIsOnThing">
+                    <ResultType
+                     baseType="STRING"
+                     description="Comma-delimited string of KPI names."
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="JSON"
+                         description="An array of KPI information, including KPI name and the thingshape name that implements it"
+                         name="kpiInfo"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="THINGNAME"
+                         description="Then thing this service will check"
+                         name="thingName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Retrieves database schema information for KPIs."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetKPIDBInfo">
+                    <ResultType
+                     baseType="JSON"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Retrieves all Things that are related to a given time info (ShifSchedule, joborder ...)"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetKPIElementsFromTimeInfo">
+                    <ResultType
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="INFOTABLE"
+                         description=""
+                         name="TimeInfo"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Retrieves the oldest value of a KPIElement for the given start date, Thing name, and element name."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetKPIElementStartValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.KPIElementValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="elementName"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="PTC.SCA.SCO.KPIElementThingShape"
+                         baseType="THINGNAME"
+                         description=""
+                         name="ownerName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="DATETIME"
+                         description=""
+                         name="startDate"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Retrieves the latest KPIElementValue object present in the database for a given Thing name and element name."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetLatestKPIElementValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.KPIElementValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="elementName"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="PTC.SCA.SCO.KPIElementThingShape"
+                         baseType="THINGNAME"
+                         description=""
+                         name="ownerName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Retrieves the latest KPIValue object present in the database for a given Thing name and element name."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetLatestKPIValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.KPIValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="kpiName"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="PTC.SCA.SCO.KPIElementThingShape"
+                         baseType="THINGNAME"
+                         description=""
+                         name="ownerName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Return the number of KPIs configured for this Thing."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetNumberOfKPIsConfigured">
+                    <ResultType
+                     baseType="INTEGER"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="PTC.SCA.SCO.KPIElementThingShape"
+                         baseType="THINGNAME"
+                         description="The Thing from which this service is being called."
+                         name="ownerName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Returns the threshold values for a given Thing and KPI name."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetThresholdValues">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.KPIThresholdValues"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="The name of the KPI for which the threshold values are being retrieved."
+                         name="kpiName"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="THINGNAME"
+                         description="The Thing from which this service is being called."
+                         name="ownerName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Returns the trend for a given Thing and KPI name by calculating the difference between the current KPI value and the previously calculated KPI value. "
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetTrend">
+                    <ResultType
+                     baseType="NUMBER"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="kpiName"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="PTC.SCA.SCO.KPIElementThingShape"
+                         baseType="THINGNAME"
+                         description=""
+                         name="ownerName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="This service is invoked when a KPI value is changed, and is available for customizations. Nothing is implemented for this service out-of-the-box."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="OnKPIValueChanged">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="INFOTABLE"
+                         description=""
+                         name="event"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Queries for KPIElementValue objects in the database."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="QueryKPIElementValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.KPIElementValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="elementName"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.defaultValue="500"
+                         aspect.isRequired="true"
+                         baseType="INTEGER"
+                         description=""
+                         name="limit"
+                         ordinal="4"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.defaultValue="true"
+                         baseType="BOOLEAN"
+                         description=""
+                         name="oldestFirst"
+                         ordinal="5"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.thingShape="PTC.SCA.SCO.KPIElementThingShape"
+                         baseType="THINGNAME"
+                         description=""
+                         name="ownerName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="DATETIME"
+                         description=""
+                         name="startDate"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Queries for KPIValue objects in the database."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="QueryKPIValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.KPIValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="kpiName"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.defaultValue="500"
+                         aspect.isRequired="true"
+                         baseType="INTEGER"
+                         description=""
+                         name="limit"
+                         ordinal="4"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.defaultValue="true"
+                         aspect.isRequired="true"
+                         baseType="BOOLEAN"
+                         description=""
+                         name="oldestFirst"
+                         ordinal="5"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.thingShape="PTC.SCA.SCO.KPIElementThingShape"
+                         baseType="THINGNAME"
+                         description=""
+                         name="ownerName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="DATETIME"
+                         description=""
+                         name="startDate"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Queries for objects in the database."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="QueryValue">
+                    <ResultType
+                     aspect.dataShape="NumberValueStream"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="columnName"
+                         ordinal="7"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="columnValueName"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="false"
+                         baseType="DATETIME"
+                         description=""
+                         name="endDate"
+                         ordinal="6"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.defaultValue="500"
+                         aspect.isRequired="true"
+                         baseType="INTEGER"
+                         description=""
+                         name="limit"
+                         ordinal="4"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.defaultValue="true"
+                         aspect.isRequired="true"
+                         baseType="BOOLEAN"
+                         description=""
+                         name="oldestFirst"
+                         ordinal="5"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.thingShape="PTC.SCA.SCO.KPIElementThingShape"
+                         baseType="THINGNAME"
+                         description=""
+                         name="ownerName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="DATETIME"
+                         description=""
+                         name="startDate"
+                         ordinal="3"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Updates a KPIElementValue object in the database."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="UpdateKPIElementValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.KPIElementValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.KPIElementValue"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="KPIElementValue"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Updates a KPIValue object in the database."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="UpdateKPIValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.KPIValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.KPIValue"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="KPIValue"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CalculateKPIElements">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var customLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.KPIManager.CalculateKPIElements");
+                                    var shiftScheduleUID = TimeInfo.getRow(0).ShiftScheduleUID;
+                                    customLogger.debug("CalculateKPIElements TimeInfo: " + TimeInfo.toJSON());
+                                    var allThings = me.GetKPIElementsFromTimeInfo({
+                                    	TimeInfo: TimeInfo /* STRING */
+                                    });
+                                    customLogger.debug("CalculateKPIElements ScheduleUID [" + shiftScheduleUID + "] things found: " + allThings.getRowCount());
+                                    var tableLength = allThings.rows.length;
+                                    for (var x=0; x < tableLength; x++) {
+                                        var row = allThings.rows[x];
+                                        var thing = Things[row.name];
+                                    
+                                        if (thing.status === 0) {
+                                            customLogger.debug("CalculateKPIElementValues for [" + row.name + "] is ignored as it is in 'Not Configured' state");
+                                            continue;
+                                        }
+                                    
+                                        var start = new Date().getTime();
+                                        if (thing.IsEnabled()) {
+                                            thing.CalculateKPIElementValues({
+                                                "TimeInfo": TimeInfo
+                                            });
+                                        }
+                                        var end = new Date().getTime();
+                                        var time = end - start;
+                                        customLogger.debug("CalculateKPIElementValues for ["+row.name+"]"+time+" ms");
+                                    }
+                                    var result = allThings;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CalculateKPIs">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var customLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.KPIManager.CalculateKPIs");
+                                    customLogger.debug("CalculateKPIs");
+                                    var shiftScheduleUID = TimeInfo.getRow(0).ShiftScheduleUID;
+                                    var allThings = me.GetKPIElementsFromTimeInfo({
+                                    	TimeInfo: TimeInfo /* STRING */
+                                    });
+                                    customLogger.debug("CalculateKPIs ScheduleUID [" + shiftScheduleUID + "] things found:" + allThings.getRowCount());
+                                    var tableLength = allThings.rows.length;
+                                    for (var x=0; x < tableLength; x++) {
+                                        var row = allThings.rows[x];
+                                        var thing = Things[row.name];
+                                    
+                                        if (thing.status === 0) {
+                                            customLogger.debug("CalculateKPIs for [" + row.name + "] is ignored as it is in 'Not Configured' state");
+                                            continue;
+                                        }
+                                        var start = new Date().getTime();
+                                    
+                                        if (thing.IsEnabled()) {
+                                            thing.CalculateKPIs({
+                                                "TimeInfo": TimeInfo
+                                            });
+                                        }
+                                    
+                                        var end = new Date().getTime();
+                                        var time = end - start;
+                                        customLogger.debug("CalculateKPIs for [" + row.name + "]" + time + "ms");
+                                    }
+                                    var result = allThings;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ClearEquipmentHistory">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var success = true;
+                                    var errorMessage = null;
+                                    
+                                    var tableLength = equipment.rows.length;
+                                    for (var x=0; x < tableLength; x++) {
+                                        var row = Things[equipment.rows[x].Id];
+                                        var implementsKPIElement = row.ImplementsShape({thingShapeName: "PTC.SCA.SCO.KPIElementThingShape"});
+                                    
+                                        if (implementsKPIElement) {
+                                            try {
+                                               row.ClearHistory();
+                                            } catch(e) {
+                                                success = false;
+                                                errorMessage = e.message;
+                                            }
+                                        }
+                                    }
+                                    
+                                    var result = getOperationResult();
+                                    
+                                    function getOperationResult() {
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.ClearDataHistory"
+                                        };
+                                    
+                                        var table = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        // PTC.SCA.SCO.ClearDataHistory entry object
+                                        var newEntry = new Object();
+                                        newEntry.ErrorMessage = errorMessage; // STRING
+                                        newEntry.WarningMessage = ""; // STRING
+                                        newEntry.IsSuccess = success; // STRING
+                                    
+                                        table.AddRow(newEntry);
+                                    
+                                        return table;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateKPIElementValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var customLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.KPICalculation.KPIManager");
+                                    var params = {
+                                        infoTable: KPIElementValue,
+                                        dataShapeName: "PTC.SCA.SCO.KPIElementValue"
+                                    };
+                                    
+                                    var result = Things[me.GetDatabaseThingName()].Insert(params);
+                                    if (customLogger.debugEnabled) {
+                                        for (var i=0; i < KPIElementValue.rows.length; i++) {
+                                            var currentRow = KPIElementValue.rows[i];
+                                            customLogger.debug("KPIElementValue of [OwnerName= " + currentRow.OwnerName + ", ElementName= " + currentRow.ElementName + ", Value= " + currentRow.Value + ", LastUpdateTime= " + currentRow.LastUpdatedTime + "] is inserted into KPIElementValue table.");
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateKPIValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var customLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.KPICalculation.KPIManager");
+                                    var params = {
+                                        infoTable: KPIValue,
+                                        dataShapeName: "PTC.SCA.SCO.KPIValue"
+                                    };
+                                    
+                                    var result = Things[me.GetDatabaseThingName()].Insert(params);
+                                    if (customLogger.debugEnabled) {
+                                        for (var i=0; i < KPIValue.rows.length; i++) {
+                                            var currentRow = KPIValue.rows[i];
+                                            customLogger.debug("KPIValue of [OwnerName= " + currentRow.OwnerName + ", KPIName= " + currentRow.KPIName + ", StartTime= " + currentRow.StartTime + ", EndTime= " + currentRow.EndTime + ", Value= " + currentRow.Value + ", LastUpdatedTime= " + currentRow.LastUpdatedTime + "] is inserted into KPIValue table.");
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="DeleteKPIElementValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var customLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.KPICalculation.KPIManager");
+                                    var params = {
+                                        UID: UID.toString(),
+                                        dataShapeName: "PTC.SCA.SCO.KPIElementValue"
+                                    };
+                                    
+                                    var result = Things[me.GetDatabaseThingName()].Delete(params);
+                                    customLogger.debug("KPIElementValue with UID= " + UID + " is removed from KPIElementValue table");
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="DeleteKPIValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var customLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.KPICalculation.KPIManager");
+                                    var params = {
+                                        UID: UID.toString(),
+                                        dataShapeName: "PTC.SCA.SCO.KPIValue"
+                                    };
+                                    
+                                    var result = Things[me.GetDatabaseThingName()].Delete(params);
+                                    customLogger.debug("KPIValue with UID= " + UID + " is removed from KPIValue table");
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetAllKPIElements">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    //Calculate all elements value
+                                    //Retrieve all  KPIElement things
+                                    var elementThingShape = "PTC.SCA.SCO.KPIElementThingShape";
+                                    var params = {
+                                        thingShape: elementThingShape /* THINGSHAPENAME */,
+                                        maxItems: 9007199254740991 /* NUMBER */,
+                                        nameMask: undefined /* STRING */,
+                                        query: undefined /* QUERY */,
+                                        tags: undefined /* TAGS */
+                                    };
+                                    
+                                    // result: INFOTABLE dataShape: RootEntityList
+                                    var result = Resources["SearchFunctions"].SearchThingsByShape(params);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetImplementedKPIsOnThing">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var customLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.KPIManagerThingShape.GetImplementedKPIsOnThing");
+                                    
+                                    if (thingName) {
+                                        customLogger.debug("GetImplementedKPIsOnThing start for:"+thingName);
+                                        var targetThing = Things[thingName];
+                                        if (targetThing && kpiInfo) {
+                                            // Get all implemented thingshapes on "targetThing", then prepare a "set" from these thingshapes
+                                            var implementedThingShapes =  targetThing.GetImplementedShapes();
+                                            var setImplementedThingShapes = new Object();
+                                            for (var i = 0; i < implementedThingShapes.length; i++) {
+                                                setImplementedThingShapes[implementedThingShapes.rows[i].name]= true;
+                                            }
+                                    
+                                            // This json needs to have a structure like:
+                                            /* 	{kpiThingShapeName: 'PTC.SCA.SCO.AvailabilityThingShape', kpiName: 'Availability'},
+                                                {kpiThingShapeName: 'PTC.SCA.SCO.QualityRatioThingShape', kpiName: 'QualityRatio'},
+                                                {kpiThingShapeName: 'PTC.SCA.SCO.EffectivenessThingShape', kpiName: 'Effectiveness'},
+                                                {kpiThingShapeName: 'PTC.SCA.SCO.OEEThingShape', kpiName: 'OEE'}]*/
+                                            
+                                            // Go through each thingshape name in json, if implemented put it aside for return
+                                            kpiInfo = JSON.parse(kpiInfo);
+                                            var implementedOotbKPIThingShapeNames = [];
+                                            if ( customLogger.isTraceEnabled()){
+                                            	customLogger.trace("retrieving json key:"+JSON.stringify(kpiInfo));
+                                            }
+                                            var kpiInformation = kpiInfo.kpiInfoArray;
+                                            // Go through each thingshape name in array kpiInformation, if implemented put it aside for return
+                                            for (i = 0; i < kpiInformation.length; i++) {
+                                                if (setImplementedThingShapes[kpiInformation[i].kpiThingShapeName]) {
+                                                    implementedOotbKPIThingShapeNames.push(kpiInformation[i].kpiName);
+                                                }
+                                            }
+                                    
+                                    
+                                            // Convert array into a comma separated string to return
+                                            var result = implementedOotbKPIThingShapeNames.join();
+                                        } else {
+                                            customLogger.warn('Thing ' + thingName + ' does not exist, service quits.');
+                                        }
+                                    } else {
+                                        customLogger.warn('Given thing name ' + thingName + ' is invalid, service quits.');
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetKPIDBInfo">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var dbInfo = {
+                                        dbInfo: [
+                                            {
+                                                dataShapeName: "PTC.SCA.SCO.KPIElementValue", 
+                                                indexedFields: [{name:"OwnerName"},{name:"ElementName"}]
+                                            },
+                                            {
+                                                dataShapeName: "PTC.SCA.SCO.KPIValue", 
+                                                indexedFields: [{name:"OwnerName"},{name:"KPIName"}]
+                                          	}
+                                    	]
+                                    };
+                                    
+                                    var result = dbInfo;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetKPIElementsFromTimeInfo">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var MAX_ITEMS = 500;
+                                    var shiftScheduleUID = TimeInfo.getRow(0).ShiftScheduleUID;
+                                    //Calculate all elements value
+                                    //Retrieve all  KPIElement things
+                                    var elementThingShape = "PTC.SCA.SCO.KPIElementThingShape";
+                                    var filter = {};
+                                    if (!shiftScheduleUID) {
+                                        filter = {
+                                            "filters" : {
+                                                "type" : "MISSINGVALUE",
+                                                "fieldName" : "ShiftScheduleUID"
+                                            }
+                                        };
+                                    } else {
+                                        filter = {
+                                            "filters" : {
+                                                "type" : "EQ",
+                                                "fieldName" : "ShiftScheduleUID",
+                                                "value" : shiftScheduleUID
+                                            }
+                                        };
+                                    }
+                                    
+                                    var params = {
+                                        infoTableName: "InfoTable",
+                                        dataShapeName: "EntityList"
+                                    };
+                                    
+                                    var basicPropertyNames = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    var propertyName = new Object();
+                                    propertyName.name = "name";
+                                    basicPropertyNames.AddRow(propertyName);
+                                    
+                                    var propertyNames = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    var tmpResult = ThingShapes["PTC.SCA.SCO.KPIElementThingShape"].QueryImplementingThingsWithNamedData({
+                                        maxItems: 9007199254740991 /* NUMBER */ ,
+                                        basicPropertyNames: basicPropertyNames /* INFOTABLE */ ,
+                                        nameMask: undefined /* STRING */ ,
+                                        propertyNames: propertyNames /* INFOTABLE */ ,
+                                        query: filter /* QUERY */ ,
+                                        tags: undefined /* TAGS */
+                                    });
+                                    
+                                    removeDisabledEntities(tmpResult);
+                                    
+                                    if (tmpResult.getRowCount() > MAX_ITEMS) {
+                                        logger.warn("The GetKPIElementsFromTimeInfo service has reached the maximum search limit. Only " + MAX_ITEMS + " entities (the MAX_ITEMS value) have been selected for calculating KPIs.");
+                                        sortAndRemoveExtraEntities(tmpResult);
+                                    }
+                                    
+                                    var result = tmpResult;
+                                    
+                                    function removeDisabledEntities(entitiesInfoTable) {
+                                        var length = entitiesInfoTable.rows.length;
+                                    
+                                        for (var x = 0; x < length; x++) {
+                                            var row = entitiesInfoTable.rows[x];
+                                            var entity = Things[row.name];
+                                    
+                                            if (!entity.IsEnabled()) {
+                                                entitiesInfoTable.RemoveRow(x);
+                                                x--;
+                                                length--;
+                                            }
+                                        }
+                                    }
+                                    
+                                    function sortAndRemoveExtraEntities(entitiesInfoTable) {
+                                        var sort = new Object();
+                                        sort.name = "name";
+                                        sort.ascending = true;
+                                        tmpResult.Sort(sort);
+                                    
+                                        var length = entitiesInfoTable.rows.length;
+                                        while (length > MAX_ITEMS) {
+                                            entitiesInfoTable.RemoveRow(--length);
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetKPIElementStartValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = me.QueryKPIElementValue({
+                                        ownerName: ownerName /* THINGNAME */,
+                                        elementName: elementName /* STRING */,
+                                        startDate: startDate /* DATETIME */,
+                                        limit: 1 /* INTEGER */
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetLatestKPIElementValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var dataTableName = "PTC.SCA.SCO.KPIElementValue";
+                                    var filter = {
+                                        "filters": {
+                                            "filters":[{
+                                                fieldName:"OwnerName",
+                                                type:"EQ",
+                                                value:ownerName,
+                                                isCaseSensitive:true
+                                            },{
+                                                fieldName:"ElementName",
+                                                type:"EQ",
+                                                value:elementName,
+                                                isCaseSensitive:true
+                                            }],
+                                            type: "AND"
+                                        },
+                                        sorts:[
+                                                {
+                                                    "dataShapeName": dataTableName,
+                                                    "fieldName": "LastUpdatedTime",
+                                                    "isAscending": false,
+                                                }
+                                         ] 
+                                    };
+                                    
+                                    var params = {
+                                        filter: filter,
+                                        dataShapeName: "PTC.SCA.SCO.KPIElementValue",
+                                        limit : 1
+                                    };
+                                    
+                                    var result = Things[me.GetDatabaseThingName()].Query(params);
+                                    //result = result.Filter(params);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetLatestKPIValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var filter = {
+                                        "filters": {
+                                            "filters": [{
+                                                    fieldName:"OwnerName",
+                                                    type:"EQ",
+                                                    value:ownerName,
+                                                    isCaseSensitive:true
+                                                }, {
+                                                    fieldName:"KPIName",
+                                                    type:"EQ",
+                                                    value:kpiName,
+                                                    isCaseSensitive:true
+                                                }
+                                            ],
+                                            type:"AND"
+                                        },
+                                        sorts:[{
+                                            "dataShapeName":"PTC.SCA.SCO.KPIValue",
+                                            "fieldName":"LastUpdatedTime",
+                                            "isAscending":false,
+                                        }]
+                                    };
+                                    
+                                    var params = {
+                                        filter: filter,
+                                        dataShapeName: "PTC.SCA.SCO.KPIValue",
+                                        limit: 1
+                                    };
+                                    
+                                    var result = Things[me.GetDatabaseThingName()].Query(params);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetNumberOfKPIsConfigured">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var isKpiShapeImplemented =  Things[ownerName].ImplementsShape({
+                                            thingShapeName: "PTC.SCA.SCO.KPIElementThingShape" /* THINGSHAPENAME */
+                                    });
+                                    var result = 0;
+                                    if ( isKpiShapeImplemented){
+                                    	var kpis = Things[ownerName].GetKPINames();
+                                        if ( kpis){
+                                        	var str_array = kpis.split(',');
+                                            result = str_array.length;
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetThresholdValues">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    customLogger = logger.getLoggerContext().getLogger(logger.getName()+".com.ptc.sca.sco.ThresholdValues." + kpiName);
+                                    var kpiThing = Things[ownerName];
+                                    var thresholdValues = me.GetConfigurationTable({
+                                        tableName: kpiName + "ThresholdValues"
+                                    });
+                                    
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape( {
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : "PTC.SCA.SCO.KPIThresholdValues"
+                                    });
+                                    
+                                    var currentKPIValue = Math.round( kpiThing["Get_" + kpiName + "_CurrentValue"]() * 100);
+                                    var tableLength = thresholdValues.rows.length;
+                                    for (var x=0; x < tableLength; x++) {
+                                        var row = thresholdValues.rows[x];
+                                        customLogger.debug("currentKPIValue is: " + currentKPIValue + " lowValue: " + row.lowValue + " highValue: " + row.highValue + " color: " + row.color + " additionalProperties: " + row.additionalProperties);
+                                        if (currentKPIValue >=  row.lowValue  && currentKPIValue <= row.highValue){
+                                            result.AddRow(row);
+                                            break;
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetTrend">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var table =  me.QueryKPIValue({
+                                        oldestFirst: false /* BOOLEAN */,
+                                        ownerName: ownerName /* THINGNAME */,
+                                        limit: 2 /* INTEGER */,
+                                        kpiName: kpiName /* STRING */
+                                    });
+                                    
+                                    var rows = table.rows;
+                                    var length = rows.length;
+                                    
+                                    if (length === 0) {
+                                        result = 0;
+                                    } else {
+                                        var value1 = rows[0].Value;
+                                        
+                                        if (length === 1) {
+                                            result = value1;
+                                        } else {
+                                            var value2 = rows[1].Value;
+                                            result = value1 - value2;
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="OnKPIValueChanged">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code></code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="QueryKPIElementValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var customLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.KPIManager");
+                                    customLogger.debug("QueryKPIElementValue");
+                                    var dataTableName = "PTC.SCA.SCO.KPIElementValue";
+                                    var filter = {
+                                        "filters": {
+                                            "filters":[
+                                           ],
+                                            type: "AND"
+                                        },
+                                        sorts:[
+                                                {
+                                                    "dataShapeName": dataTableName,
+                                                    "fieldName": "LastUpdatedTime",
+                                                    "isAscending": oldestFirst,
+                                                }
+                                            ] 
+                                    };
+                                    
+                                    if ( ownerName ){
+                                        filter = addFilter(filter,"OwnerName","EQ",ownerName);
+                                    }
+                                    if ( elementName ){
+                                        filter = addFilter(filter,"ElementName","EQ",elementName);
+                                    }
+                                    if ( startDate ){
+                                        filter = addFilter(filter,"LastUpdatedTime","GE",startDate);
+                                    }
+                                    
+                                    var params = {
+                                        "filter": filter,
+                                        "dataShapeName": dataTableName,
+                                    };
+                                    
+                                    if ( limit ){
+                                    	params.limit = limit;
+                                    }
+                                    
+                                    customLogger.debug("QueryKPIElementValue:"+filter);
+                                    var result = Things[me.GetDatabaseThingName()].Query(params);
+                                    
+                                    function addFilter(currentFilter,fieldName,operator,value){
+                                        var newFilter= {
+                                                "dataShapeName":dataTableName,
+                                                "fieldName":fieldName,
+                                                "type":operator,
+                                                "value":value,
+                                                isCaseSensitive:true
+                                            };
+                                        currentFilter.filters.filters.push(newFilter);
+                                        return currentFilter;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="QueryKPIValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var dataTableName = "PTC.SCA.SCO.KPIValue";
+                                    var filter = {
+                                        "filters": {
+                                            "filters":[
+                                           ],
+                                            type: "AND",
+                                        },
+                                        sorts:[
+                                                {
+                                                    "dataShapeName": dataTableName,
+                                                    "fieldName": "LastUpdatedTime",
+                                                    "isAscending": oldestFirst,
+                                                }
+                                        ] 
+                                    };
+                                    
+                                    if ( ownerName ){
+                                        filter = addFilter(filter,"OwnerName","EQ",ownerName);
+                                    }
+                                    if ( kpiName ){
+                                        filter = addFilter(filter,"KPIName","EQ",kpiName);
+                                    }
+                                    if ( startDate ){
+                                        filter = addFilter(filter,"LastUpdatedTime","GE",startDate);
+                                    }
+                                    
+                                    var params = {
+                                        "filter": filter,
+                                        "dataShapeName": dataTableName,
+                                    };
+                                    
+                                    if ( limit ){
+                                        params.limit = limit;
+                                    }
+                                    
+                                    
+                                    var result = Things[me.GetDatabaseThingName()].Query(params);
+                                    //result = result.Filter(params);
+                                    
+                                    function addFilter(currentFilter,fieldName,operator,value){
+                                    	var newFilter= {
+                                                "dataShapeName":dataTableName,
+                                                "fieldName":fieldName,
+                                                "type":operator,
+                                                "value":value
+                                            };
+                                        currentFilter.filters.filters.push(newFilter);
+                                        return currentFilter;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="QueryValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var dataTableName = "PTC.SCA.SCO.KPIValue";
+                                    var filter = {
+                                        "filters": {
+                                            "filters":[
+                                           ],
+                                            type: "AND",
+                                        },
+                                        sorts:[
+                                                {
+                                                    "dataShapeName": dataTableName,
+                                                    "fieldName": "LastUpdatedTime",
+                                                    "isAscending": oldestFirst,
+                                                }
+                                        ] 
+                                    };
+                                    
+                                    if ( ownerName ){
+                                        filter = addFilter(filter,"OwnerName","EQ",ownerName);
+                                    }
+                                    if ( columnName ){
+                                        filter = addFilter(filter,columnName,"EQ",columnValueName);
+                                    }
+                                    if ( startDate ){
+                                        filter = addFilter(filter,"LastUpdatedTime","GE",startDate);
+                                    }
+                                    if ( endDate ){
+                                        filter = addFilter(filter,"LastUpdatedTime","LE",endDate);
+                                    }
+                                    
+                                    var params = {
+                                        "filter": filter,
+                                        "dataShapeName": dataTableName,
+                                    };
+                                    
+                                    if ( limit ){
+                                    	params.limit = limit;
+                                    }
+                                    
+                                    
+                                    var dbResult = Things[me.GetDatabaseThingName()].Query(params);
+                                    var infoParam = {
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : "NumberValueStream"
+                                    };
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(infoParam);
+                                    var dbResultLength = dbResult.rows.length;
+                                    //Convert db output into numberValueStream format as standard for graph related operation
+                                    for (var y=0; y < dbResultLength; y++) {
+                                        result.AddRow({ id:dbResult[y].KPIName ,value:dbResult[y].Value , timestamp:dbResult[y].LastUpdatedTime });
+                                    }
+                                    
+                                    function addFilter(currentFilter,fieldName,operator,value){
+                                    	var newFilter= {
+                                                "dataShapeName":dataTableName,
+                                                "fieldName":fieldName,
+                                                "type":operator,
+                                                "value":value,
+                                                isCaseSensitive:true
+                                            };
+                                        currentFilter.filters.filters.push(newFilter);
+                                        return currentFilter;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="UpdateKPIElementValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                        infoTable: KPIElementValue,
+                                        dataShapeName: "PTC.SCA.SCO.KPIElementValue"
+                                    };
+                                    
+                                    var result = Things[me.GetDatabaseThingName()].Update(params);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="UpdateKPIValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                        infoTable: KPIValue,
+                                        dataShapeName: "PTC.SCA.SCO.KPIValue"
+                                    };
+                                    
+                                    var result = Things[me.GetDatabaseThingName()].Update(params);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions>
+                <ConfigurationTableDefinition
+                 category="KPIs"
+                 dataShapeName="PTC.SCA.SCO.KPIThresholdValues"
+                 description="Threshold definitions for the OEE KPI value range."
+                 isHidden="false"
+                 isMultiRow="true"
+                 name="OEEThresholdValues"
+                 ordinal="0"
+                 source="IMPORT"></ConfigurationTableDefinition>
+                <ConfigurationTableDefinition
+                 category="KPIs"
+                 dataShapeName="PTC.SCA.SCO.KPIThresholdValues"
+                 description="Threshold definitions for the quality ratio KPI value range."
+                 isHidden="false"
+                 isMultiRow="true"
+                 name="QualityRatioThresholdValues"
+                 ordinal="0"
+                 source="IMPORT"></ConfigurationTableDefinition>
+                <ConfigurationTableDefinition
+                 category="KPIs"
+                 dataShapeName="PTC.SCA.SCO.KPIThresholdValues"
+                 description="Threshold definitions for the effectiveness KPI value range."
+                 isHidden="false"
+                 isMultiRow="true"
+                 name="EffectivenessThresholdValues"
+                 ordinal="0"
+                 source="IMPORT"></ConfigurationTableDefinition>
+                <ConfigurationTableDefinition
+                 category="KPIs"
+                 dataShapeName="PTC.SCA.SCO.KPIThresholdValues"
+                 description="Threshold definitions for the availability KPI value range."
+                 isHidden="false"
+                 isMultiRow="true"
+                 name="AvailabilityThresholdValues"
+                 ordinal="0"
+                 source="IMPORT"></ConfigurationTableDefinition>
+            </ConfigurationTableDefinitions>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 description="Threshold definitions for the availability KPI value range."
+                 isMultiRow="true"
+                 name="AvailabilityThresholdValues"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="false"
+                             baseType="JSON"
+                             description="Additional properties to apply for the KPI value range. "
+                             name="additionalProperties"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="true"
+                             baseType="STRING"
+                             description="The hexadecimal color value for the KPI value range."
+                             name="color"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="false"
+                             baseType="NUMBER"
+                             description="The high threshold for the KPI value range."
+                             name="highValue"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="false"
+                             baseType="NUMBER"
+                             description="The low threshold for the KPI value range."
+                             name="lowValue"
+                             ordinal="1"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <additionalProperties>
+                                <json>
+                                <![CDATA[
+                                {}
+                                ]]>
+                                </json>
+                            </additionalProperties>
+                            <color>
+                            <![CDATA[
+                            #ED684A
+                            ]]>
+                            </color>
+                            <highValue>29.0</highValue>
+                            <lowValue>0.0</lowValue>
+                        </Row>
+                        <Row>
+                            <additionalProperties>
+                                <json>
+                                <![CDATA[
+                                {}
+                                ]]>
+                                </json>
+                            </additionalProperties>
+                            <color>
+                            <![CDATA[
+                            #F2B927
+                            ]]>
+                            </color>
+                            <highValue>69.0</highValue>
+                            <lowValue>30.0</lowValue>
+                        </Row>
+                        <Row>
+                            <additionalProperties>
+                                <json>
+                                <![CDATA[
+                                {}
+                                ]]>
+                                </json>
+                            </additionalProperties>
+                            <color>
+                            <![CDATA[
+                            #3EC556
+                            ]]>
+                            </color>
+                            <highValue>2.147483647E9</highValue>
+                            <lowValue>70.0</lowValue>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Threshold definitions for the effectiveness KPI value range."
+                 isMultiRow="true"
+                 name="EffectivenessThresholdValues"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="false"
+                             baseType="JSON"
+                             description="Additional properties to apply for the KPI value range. "
+                             name="additionalProperties"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="true"
+                             baseType="STRING"
+                             description="The hexadecimal color value for the KPI value range."
+                             name="color"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="false"
+                             baseType="NUMBER"
+                             description="The high threshold for the KPI value range."
+                             name="highValue"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="false"
+                             baseType="NUMBER"
+                             description="The low threshold for the KPI value range."
+                             name="lowValue"
+                             ordinal="1"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <additionalProperties>
+                                <json>
+                                <![CDATA[
+                                {}
+                                ]]>
+                                </json>
+                            </additionalProperties>
+                            <color>
+                            <![CDATA[
+                            #ED684A
+                            ]]>
+                            </color>
+                            <highValue>29.0</highValue>
+                            <lowValue>0.0</lowValue>
+                        </Row>
+                        <Row>
+                            <additionalProperties>
+                                <json>
+                                <![CDATA[
+                                {}
+                                ]]>
+                                </json>
+                            </additionalProperties>
+                            <color>
+                            <![CDATA[
+                            #F2B927
+                            ]]>
+                            </color>
+                            <highValue>69.0</highValue>
+                            <lowValue>30.0</lowValue>
+                        </Row>
+                        <Row>
+                            <additionalProperties>
+                                <json>
+                                <![CDATA[
+                                {}
+                                ]]>
+                                </json>
+                            </additionalProperties>
+                            <color>
+                            <![CDATA[
+                            #3EC556
+                            ]]>
+                            </color>
+                            <highValue>2.147483647E9</highValue>
+                            <lowValue>70.0</lowValue>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Threshold definitions for the OEE KPI value range."
+                 isMultiRow="true"
+                 name="OEEThresholdValues"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="false"
+                             baseType="JSON"
+                             description="Additional properties to apply for the KPI value range. "
+                             name="additionalProperties"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="true"
+                             baseType="STRING"
+                             description="The hexadecimal color value for the KPI value range."
+                             name="color"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="false"
+                             baseType="NUMBER"
+                             description="The high threshold for the KPI value range."
+                             name="highValue"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="false"
+                             baseType="NUMBER"
+                             description="The low threshold for the KPI value range."
+                             name="lowValue"
+                             ordinal="1"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <additionalProperties>
+                                <json>
+                                <![CDATA[
+                                {}
+                                ]]>
+                                </json>
+                            </additionalProperties>
+                            <color>
+                            <![CDATA[
+                            #ED684A
+                            ]]>
+                            </color>
+                            <highValue>29.0</highValue>
+                            <lowValue>0.0</lowValue>
+                        </Row>
+                        <Row>
+                            <additionalProperties>
+                                <json>
+                                <![CDATA[
+                                {}
+                                ]]>
+                                </json>
+                            </additionalProperties>
+                            <color>
+                            <![CDATA[
+                            #F2B927
+                            ]]>
+                            </color>
+                            <highValue>69.0</highValue>
+                            <lowValue>30.0</lowValue>
+                        </Row>
+                        <Row>
+                            <additionalProperties>
+                                <json>
+                                <![CDATA[
+                                {}
+                                ]]>
+                                </json>
+                            </additionalProperties>
+                            <color>
+                            <![CDATA[
+                            #3EC556
+                            ]]>
+                            </color>
+                            <highValue>2.147483647E9</highValue>
+                            <lowValue>70.0</lowValue>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Threshold definitions for the quality ratio KPI value range."
+                 isMultiRow="true"
+                 name="QualityRatioThresholdValues"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="false"
+                             baseType="JSON"
+                             description="Additional properties to apply for the KPI value range. "
+                             name="additionalProperties"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="true"
+                             baseType="STRING"
+                             description="The hexadecimal color value for the KPI value range."
+                             name="color"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="false"
+                             baseType="NUMBER"
+                             description="The high threshold for the KPI value range."
+                             name="highValue"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isPrimaryKey="false"
+                             baseType="NUMBER"
+                             description="The low threshold for the KPI value range."
+                             name="lowValue"
+                             ordinal="1"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <additionalProperties>
+                                <json>
+                                <![CDATA[
+                                {}
+                                ]]>
+                                </json>
+                            </additionalProperties>
+                            <color>
+                            <![CDATA[
+                            #ED684A
+                            ]]>
+                            </color>
+                            <highValue>29.0</highValue>
+                            <lowValue>0.0</lowValue>
+                        </Row>
+                        <Row>
+                            <additionalProperties>
+                                <json>
+                                <![CDATA[
+                                {}
+                                ]]>
+                                </json>
+                            </additionalProperties>
+                            <color>
+                            <![CDATA[
+                            #F2B927
+                            ]]>
+                            </color>
+                            <highValue>69.0</highValue>
+                            <lowValue>30.0</lowValue>
+                        </Row>
+                        <Row>
+                            <additionalProperties>
+                                <json>
+                                <![CDATA[
+                                {}
+                                ]]>
+                                </json>
+                            </additionalProperties>
+                            <color>
+                            <![CDATA[
+                            #3EC556
+                            ]]>
+                            </color>
+                            <highValue>2.147483647E9</highValue>
+                            <lowValue>70.0</lowValue>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

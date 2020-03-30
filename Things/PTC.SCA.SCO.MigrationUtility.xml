@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Things>
+        <Thing
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         description="Provides post-upgrade services for each upgrade path. Before executing a service, view the service description for any warnings."
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         enabled="true"
+         homeMashup=""
+         identifier=""
+         lastModifiedDate="2020-03-19T18:16:52.829+05:30"
+         name="PTC.SCA.SCO.MigrationUtility"
+         projectName="PTC.SCA.SCO.Common"
+         published="false"
+         tags="PTC:sca-sco-common;PTC:Thing;PTC:sca-mfg"
+         thingTemplate="GenericThing"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions>
+                    <PropertyDefinition
+                     aspect.dataChangeType="VALUE"
+                     baseType="DATETIME"
+                     category=""
+                     description=""
+                     isLocalOnly="false"
+                     name="lastExecutionTime_PostUpgradeUtil8_3_XX_To_8_5_XX"
+                     ordinal="3"></PropertyDefinition>
+                </PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Runs all post-upgrade steps required to migrate data and entities from 8.3 to 8.5. WARNING: This service re-initializes the TagsToExport configuration table on PTC.Factory.Administration.ImportExportUtils. Any custom tags you have added to the table will be lost when the service is run."
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="PostUpgradeUtil8_3_XX_To_8_5_XX">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ExecutionStatus"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="PostUpgradeUtil8_3_XX_To_8_5_XX">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        //Runs all post-upgrade steps required to migrate data and entities from 8.3.0 to 8.4.0.
+                                        //WARNING: This service re-initializes the TagsToExport configuration table on PTC.Factory.Administration.ImportExportUtils.
+                                        //Any custom tags you have added to the table will be lost when the service is run.
+                                        
+                                        //Services or Steps which are supposed to be executed post upgrade.
+                                        //This Utility returns an infotable indicating the status of service execution.
+                                        
+                                        function executePostUpgradeStep(entityName, serviceName){
+                                        try{
+                                            logger.info("Executing post upgrade step/service named" + serviceName +"under entity" + entityName);
+                                            Things[entityName][serviceName] ();
+                                            logger.info("Succesfully executed  step/service named" + serviceName +"under entity" + entityName);
+                                        }catch(err){
+                                            var newEntry = new Object();
+                                            newEntry.ExecutionStatus = "Service execution failure: " + serviceName + " on " + entityName + ". Resolve the issue and re-run the service. See the script log for more information."; // STRING
+                                            result.AddRow(newEntry);
+                                            logger.error("Error in execution " + entityName + ": " +  serviceName + "Resolve the issue and re-execute this service." + err);
+                                        }
+                                        }
+                                        var params = {
+                                        infoTableName : "InfoTable",
+                                        dataShapeName : "PTC.SCA.SCO.ExecutionStatus"
+                                        };
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(DemoCommentDataShape)
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        // 1. Reset the TagsToExport configuration table in the PTC.Factory.Administration.ImportExportUtils thing
+                                        executePostUpgradeStep("PTC.Factory.Administration.ImportExportUtils", "ResetTagList");
+                                        
+                                        // 2. Upgrade the Status Expressions of Assets/Lines
+                                        executePostUpgradeStep("PTC.SCA.SCO.AppHome.ApplicationInitialization", "UpgradeStatusExpressions");
+                                        
+                                        // 3. Upgrade Assets for Remote Access Capability
+                                        executePostUpgradeStep("PTC.SCA.SCO.AppHome.ApplicationInitialization", "SetupRemoteAccessProviderName");
+                                        
+                                        // Add the services here, which are supposed to be executed post upgrade.
+                                        
+                                        if(result.getRowCount()  < 1){
+                                            var newEntry= new Object();
+                                            newEntry.ExecutionStatus = "Post-upgrade steps successfully completed. See the script logs for more information.";
+                                            result.AddRow(newEntry);
+                                        }
+                                        
+                                        // Last execution timestamp for this utility
+                                        var dateValue = new Date();
+                                        me.lastExecutionTime_PostUpgradeUtil8_3_XX_To_8_5_XX= dateValue;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations>
+                <AlertDefinitions
+                 name="lastExecutionTime_PostUpgradeUtil8_3_XX_To_8_5_XX"></AlertDefinitions>
+            </AlertConfigurations>
+            <ImplementedShapes></ImplementedShapes>
+            <ThingProperties></ThingProperties>
+        </Thing>
+    </Things>
+</Entities>

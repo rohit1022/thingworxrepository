@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b937"
+ build="b222"
  majorVersion="8"
- minorVersion="3"
- modelPersistenceProviderPackage="H2PersistenceProviderPackage"
- revision="3"
- schemaVersion="1030"
- universal="">
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
     <Subsystems>
         <Subsystem
          aspect.isCreatable="false"
@@ -18,8 +18,8 @@
          documentationContent=""
          enabled="true"
          friendlyName="Alert Processing"
-         homeMashup="MonitoringSubsystemDefaultHomeMashup"
-         lastModifiedDate="2018-12-03T14:53:15.452+05:30"
+         homeMashup=""
+         lastModifiedDate="2020-03-03T01:03:58.433+05:30"
          name="AlertProcessingSubsystem"
          projectName=""
          tags="">
@@ -45,11 +45,11 @@
                     <DataShape>
                         <FieldDefinitions>
                             <FieldDefinition
-                             aspect.friendlyName="AnomalyMonitor ModelService URI"
-                             baseType="STRING"
-                             description="URI to the anomaly monitor model server for importing/loading pmml models"
-                             name="anomalyMonitorModelServiceURI"
-                             ordinal="4"></FieldDefinition>
+                             aspect.thingTemplate="AnalyticsGateway"
+                             baseType="THINGNAME"
+                             description="The instance of AnalyticsGateway to use for the training and results microservices"
+                             name="AnalyticsGateway"
+                             ordinal="3"></FieldDefinition>
                             <FieldDefinition
                              aspect.defaultValue="ThingworxPersistenceProvider"
                              aspect.friendlyName="Data Persistence Provider"
@@ -71,17 +71,11 @@
                              description="Maximum number of alert summary entries to queue (will be rejected after that)"
                              name="maximumQueueSize"
                              ordinal="1"></FieldDefinition>
-                            <FieldDefinition
-                             aspect.friendlyName="ThingWatcher Training URI"
-                             baseType="STRING"
-                             description="URI to the training server for ThingWatcher Analytics"
-                             name="thingWatcherTrainingURI"
-                             ordinal="3"></FieldDefinition>
                         </FieldDefinitions>
                     </DataShape>
                     <Rows>
                         <Row>
-                            <anomalyMonitorModelServiceURI></anomalyMonitorModelServiceURI>
+                            <AnalyticsGateway></AnalyticsGateway>
                             <dataPersistenceProvider>
                             <![CDATA[
                             ThingworxPersistenceProvider
@@ -89,7 +83,6 @@
                             </dataPersistenceProvider>
                             <isFiltered>true</isFiltered>
                             <maximumQueueSize>50000.0</maximumQueueSize>
-                            <thingWatcherTrainingURI></thingWatcherTrainingURI>
                         </Row>
                     </Rows>
                 </ConfigurationTable>

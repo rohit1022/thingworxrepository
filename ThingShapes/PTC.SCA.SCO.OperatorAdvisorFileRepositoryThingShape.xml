@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="The thing shape for Operator Advisor File Repository ThingShape {PTC.SCA.SCO.OperatorAdvisorFileRepositoryThingShape}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:15.971+05:30"
+         name="PTC.SCA.SCO.OperatorAdvisorFileRepositoryThingShape"
+         projectName=""
+         tags="PTC:OA">
+            <PropertyDefinitions></PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="DownloadFromURL">
+                    <ResultType
+                     aspect.dataShape="FileSystemFileWithLinks"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.tagType="ModelTags"
+                         baseType="STRING"
+                         description=""
+                         name="destPath"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.tagType="ModelTags"
+                         baseType="STRING"
+                         description=""
+                         name="filename"
+                         ordinal="3"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.tagType="ModelTags"
+                         baseType="STRING"
+                         description=""
+                         name="url"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="false"
+                         aspect.tagType="ModelTags"
+                         baseType="THINGNAME"
+                         description=""
+                         name="workDefinitionConverterThing"
+                         ordinal="4"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="DownloadFromURL">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var convertJSONToInfoTable = function(json) {
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "FileSystemFileWithLinks"
+                                        };
+                                    
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        result.AddRow(json);
+                                        return result;
+                                    };
+                                    
+                                    var isStatusOK = function(httpStatus) {
+                                        var regex = /^2[0-9][0-9]$/; // HTTP Status 2XX is OK
+                                        return regex.test(httpStatus);
+                                    };
+                                    
+                                    var getFileListingWithLinksNoNameMask = function(destPath, filename, status) {
+                                        // FACTORY-17847
+                                        // GetFileListingWithLinks (called by StreamToFileRepository()) is not able to work with the provided 'nameMask',
+                                        // so we will attempt to GetFileListingWithLinks without 'nameMask' and construct the result ourselves
+                                        var result = null;
+                                    
+                                        var file_listing_infotable = me.GetFileListingWithLinks({"path": destPath});
+                                        var file_listing = Resources["InfoTableFunctions"].ToJSON({
+                                            "table": file_listing_infotable
+                                        });
+                                    
+                                        var found = false;
+                                        for (var i = 0; i < file_listing.rows.length && !found; ++i) {
+                                            var row = file_listing.rows[i];
+                                            if (row["name"] === filename) {
+                                                result = row;
+                                                result.status = status; // just in case
+                                                found = true;
+                                            }
+                                        }
+                                    
+                                        return result;
+                                    };
+                                    
+                                    var downloadUsingContentLoaderFunction = function(destPath, url, filePath, filename, fileServerUsername, fileServerPassword) {
+                                        var blob;
+                                        try {
+                                            blob = Resources["ContentLoaderFunctions"].LoadBinary({
+                                                "url": url,
+                                                "password": fileServerPassword,
+                                                "username": fileServerUsername,
+                                                "ignoreSSLErrors": true
+                                            });
+                                        } catch (err) {
+                                            logger.error("[DownloadFromURL:downloadUsingContentLoaderFunction] Could not download from url " + url + ", failure to LoadBinary");
+                                            logger.error(err);
+                                        }
+                                    
+                                        if (blob === undefined) {
+                                            logger.warn("[DownloadFromURL] Could not download from url " + url);
+                                            return null;
+                                        }
+                                    
+                                        try {
+                                            me.SaveBinary({ "path": filePath, "content": blob});
+                                        } catch (err) {
+                                            logger.error("[DownloadFromURL:downloadUsingContentLoaderFunction] Could not download from url " + url + ", failure to SaveBinary");
+                                            logger.error(err);
+                                        }
+                                    
+                                        var file_listing_infotable = me.GetFileListingWithLinks({"path": destPath, "nameMask": filename});
+                                        var file_listing = Resources["InfoTableFunctions"].ToJSON({
+                                            "table": file_listing_infotable
+                                        });
+                                    
+                                        if (file_listing.rows.length === 0) {
+                                            // FACTORY-17847
+                                            var file_listing_row_no_mask = getFileListingWithLinksNoNameMask(destPath, filename, 200);
+                                            if (file_listing_row_no_mask === null) {
+                                                logger.warn("[DownloadFromURL:downloadUsingContentLoaderFunction] Could not download from url " + url + ", failure to getFileListingWithLinksNoNameMask");
+                                                return null;
+                                            }
+                                    
+                                            return convertJSONToInfoTable(file_listing_row_no_mask);
+                                        }
+                                    
+                                        var file_listing_row = file_listing.rows[0];
+                                        return convertJSONToInfoTable(file_listing_row);
+                                    };
+                                    
+                                    // function used to remove sessionUser query parameter from the contentDownload URL. This is a requirement
+                                    // of the mediaEntityService that the relativeUrl does not include sessionUser query parameter. The mediaEntity
+                                    // will add the queryParameter while constructing the contentDownload url.
+                                    var removeURLParameter = function(url, parameter) {
+                                        //prefer to use l.search if you have a location/link object
+                                        var urlparts = url.split('?');   
+                                        if (urlparts.length >= 2) {
+                                    
+                                            var prefix = encodeURIComponent(parameter) + '=';
+                                            var pars = urlparts[1].split(/[&;]/g);
+                                    
+                                            //reverse iteration as may be destructive
+                                            for (var i = pars.length; i-- > 0;) {    
+                                                //idiom for string.startsWith
+                                                if (pars[i].lastIndexOf(prefix, 0) !== -1) {  
+                                                    pars.splice(i, 1);
+                                                }
+                                            }
+                                    
+                                            return urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : '');
+                                        }
+                                        return url;
+                                    };
+                                    
+                                    var main = function(destPath, url, filename, workDefinitionConverterThing) {
+                                        var filePath = destPath.match(/\/$/) ? destPath + filename : destPath + "/" + filename;
+                                        var configTable;
+                                    
+                                        try {
+                                            if (workDefinitionConverterThing) {
+                                                configTable = Things[workDefinitionConverterThing].GetConfigurationTable({tableName: "ConverterConfiguration"}).getFirstRow();
+                                            } else {
+                                                configTable = Things["PTC.SCA.SCO.MPMLinkWorkDefinitionConverter"].GetConfigurationTable({tableName: "ConverterConfiguration"}).getFirstRow();
+                                            }
+                                        } catch (err) {
+                                            logger.error("Configuration required to download content from " + url + " is unavailable. " + err);
+                                            return null;
+                                        }
+                                    
+                                        var content_proxy_name = configTable.get("ContentProxy");
+                                        var username = configTable.get("FileServerUsername");
+                                        var password = configTable.get("FileServerPassword");
+                                        var serviceDefinition;
+                                    
+                                        if (content_proxy_name) {
+                                            try {
+                                                // check if the StreamToFileRepository service is available on the mediaEntity
+                                                serviceDefinition = MediaEntities[content_proxy_name].GetServiceDefinition({
+                                                    name: "StreamToFileRepository"
+                                                });
+                                    
+                                                // if service is available, use it to download content
+                                                var baseUrl = MediaEntities[content_proxy_name].GetConfigurationTable({tableName: "ContentSourceConnectionInformation"}).getFirstRow().getStringValue("url");
+                                                var regEx = new RegExp(baseUrl, "ig");
+                                                var relativeUrl = url.replace(regEx, "");
+                                                
+                                                // remove sessionUser query parameter from the relative Url
+                                                var authTypeConfig = MediaEntities[content_proxy_name].GetConfigurationTable({tableName: "ContentSourceConnectionInformation"}).getFirstRow().getStringValue("authenticationType");
+                                                if(authTypeConfig === 'SessionUser'){
+                                                    var sessionUserQueryParam = MediaEntities[content_proxy_name].GetConfigurationTable({tableName: "SessionUserConfigurationTable"}).getFirstRow().getStringValue("SessionUserQueryParameter");
+                                                    relativeUrl = sessionUserQueryParam ? removeURLParameter(relativeUrl, sessionUserQueryParam) : relativeUrl;
+                                                }
+                                    
+                                                var resultJSON;
+                                                try {
+                                                    resultJSON = MediaEntities[content_proxy_name].StreamToFileRepository({
+                                                        filePath: filePath /* STRING */,
+                                                        fileRepositoryThing: me.name /* THINGNAME */,
+                                                        relativeURL: relativeUrl /* STRING */
+                                                    });
+                                                } catch (err) {
+                                                    logger.error(err);
+                                                }
+                                    
+                                                if (resultJSON === undefined) {
+                                                    logger.warn("[DownloadFromURL] Could not download from url " + url);
+                                                    return null;
+                                                }
+                                    
+                                                var result_status = resultJSON.status;
+                                                if (!isStatusOK(result_status)) {
+                                                    logger.warn("[DownloadFromURL] Could not download from url " + url + ", received status " + resultJSON.status);
+                                                    return null;
+                                                }
+                                    
+                                                if (!resultJSON.hasOwnProperty("downloadLink")) {
+                                                    // FACTORY-17847
+                                                    resultJSON = getFileListingWithLinksNoNameMask(destPath, filename, result_status);
+                                    
+                                                    if (resultJSON == null) {
+                                                        logger.warn("[DownloadFromURL] Could not download from url " + url + ", failure to getFileListingWithLinksNoNameMask");
+                                                        return null;
+                                                    }
+                                                }
+                                    
+                                                return convertJSONToInfoTable(resultJSON);
+                                            } catch (error) {
+                                                // if StreamToFileRepository is not available on the media entity (this is true in TWX 8.2.x),
+                                                // use the content loader function to download content
+                                                logger.warn("Either the media entity " + content_proxy_name + " or the service StreamToFileRepository on it was not found. Trying to download content using content loader function");
+                                                return downloadUsingContentLoaderFunction(destPath, url, filePath, filename, username, password);
+                                            }
+                                        } else {
+                                            logger.warn("Trying to download content using content loader function");
+                                            return downloadUsingContentLoaderFunction(destPath, url, filePath, filename, username, password);
+                                        }
+                                    };
+                                    
+                                    var result = main(destPath, url, filename, workDefinitionConverterThing);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

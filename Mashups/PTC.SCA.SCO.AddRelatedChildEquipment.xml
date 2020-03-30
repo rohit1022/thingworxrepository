@@ -1,0 +1,1730 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="false"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Dialog to select child equipment when creating a relationship"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.604+05:30"
+         name="PTC.SCA.SCO.AddRelatedChildEquipment"
+         projectName="PTC.SCA.SCO.Common"
+         rows="0.0"
+         tags="PTC:sca-sco-common;PTC:factory-mv">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:AssetPerformance"
+                     type="OrganizationalUnit"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:PlantStatus"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.bindingDirection="BOTH"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="2"
+                 baseType="STRING"
+                 description="Context name passed by master mashup"
+                 name="contextName"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="BOTH"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="0"
+                 baseType="INTEGER"
+                 description=""
+                 name="mode"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="BOTH"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="1"
+                 baseType="STRING"
+                 description=""
+                 name="thingId"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.ManageResourceUtils</Thing>
+                <Thing>PTC.Factory.LaunchPointConfigurationThing</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : ".twActiveFiltersBar.active-filters-bar{\n    z-index:999999\n}\n.mashup-popup {\n    z-index: 15002;\n}",
+              "Data" : {
+                "Resources_PTC.Factory.CommonUtilities1" : {
+                  "DataName" : "Resources_PTC.Factory.CommonUtilities1",
+                  "EntityName" : "PTC.Factory.CommonUtilities",
+                  "EntityType" : "Resources",
+                  "Id" : "7cb10721-fd90-4306-a04d-7ad11c83563c",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "629cb8c1-25cc-4859-9b6e-8af307675136",
+                    "Name" : "GetRowCount",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetRowCount"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.Factory.LaunchPointConfigurationThing" : {
+                  "DataName" : "Things_PTC.Factory.LaunchPointConfigurationThing",
+                  "EntityName" : "PTC.Factory.LaunchPointConfigurationThing",
+                  "EntityType" : "Things",
+                  "Id" : "c2967ca6-9fee-435a-a1b3-95c0d9921b9e",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "a66742ff-e9fe-4d29-89d8-bac16e9481e6",
+                    "Name" : "GetNetworkNameByContextName",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetNetworkNameByContextName"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.ManageResourceUtils" : {
+                  "DataName" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                  "EntityName" : "PTC.SCA.SCO.ManageResourceUtils",
+                  "EntityType" : "Things",
+                  "Id" : "37770b03-1841-4804-82e6-9bab6421c803",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "add52628-e15c-4f96-9cf8-1cd87f2f5182",
+                    "Name" : "GetPossibleChildElements",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetPossibleChildElements"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "dab6ce9d-c9c8-4eb7-87ec-c5b2046c8325",
+                    "Name" : "GetSelectedRows",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetSelectedRows"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "dd7cad33-fee5-49e8-a722-76c421fddb6b",
+                    "Name" : "AddChildrenToEquipment",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "AddChildrenToEquipment"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "2bd28795-2e53-4e59-83e1-0faf386de6e9",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Disabled",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-248",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Button-71",
+                "TargetSection" : ""
+              }, {
+                "Id" : "38019f5d-8af9-43a1-80c8-6fbc86dd9a00",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "NumberOfRowsSelected",
+                  "TargetPropertyBaseType" : "NUMBER",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetRowCount",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities1",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-248",
+                "TargetSection" : ""
+              }, {
+                "Id" : "30108df7-243b-4ab9-bdef-66a08cd4931a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "EditedTable",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "EditedTable",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "gridadvanced-234",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetPossibleChildElements",
+                "TargetSection" : "Things_PTC.SCA.SCO.ManageResourceUtils"
+              }, {
+                "Id" : "d2b96a1b-ae65-4324-94d3-28bbe50bc10a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "thingId",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "elementID",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetPossibleChildElements",
+                "TargetSection" : "Things_PTC.SCA.SCO.ManageResourceUtils"
+              }, {
+                "Id" : "86c569ab-2027-417d-b605-5ce5b8e87502",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Query",
+                  "SourcePropertyBaseType" : "QUERY",
+                  "TargetProperty" : "filterQuery",
+                  "TargetPropertyBaseType" : "QUERY"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "datafilter-236",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetPossibleChildElements",
+                "TargetSection" : "Things_PTC.SCA.SCO.ManageResourceUtils"
+              }, {
+                "Id" : "0d4e783c-5dc6-47ca-ac4f-600c0f7d7246",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "QueryFilter",
+                  "SourcePropertyBaseType" : "QUERY",
+                  "TargetProperty" : "sortQuery",
+                  "TargetPropertyBaseType" : "QUERY"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "gridadvanced-234",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetPossibleChildElements",
+                "TargetSection" : "Things_PTC.SCA.SCO.ManageResourceUtils"
+              }, {
+                "Id" : "e17c5560-47f1-41ee-acf7-741e22226596",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetPossibleChildElements",
+                "SourceSection" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "gridadvanced-234",
+                "TargetSection" : ""
+              }, {
+                "Id" : "a3baffcb-2ebe-45a1-88fa-31e156ae5b42",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "UneditedTable",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetPossibleChildElements",
+                "SourceSection" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "TargetArea" : "Data",
+                "TargetId" : "GetPossibleChildElements",
+                "TargetSection" : "Things_PTC.SCA.SCO.ManageResourceUtils"
+              }, {
+                "Id" : "c919499a-7b21-445f-b5c3-5d7c5f1d8d45",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "Rows",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetPossibleChildElements",
+                "SourceSection" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "TargetArea" : "Data",
+                "TargetId" : "GetSelectedRows",
+                "TargetSection" : "Things_PTC.SCA.SCO.ManageResourceUtils"
+              }, {
+                "Id" : "1be29876-9f6f-49d4-883c-93cab5859113",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "table",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetSelectedRows",
+                "SourceSection" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "TargetArea" : "Data",
+                "TargetId" : "GetRowCount",
+                "TargetSection" : "Resources_PTC.Factory.CommonUtilities1"
+              }, {
+                "Id" : "088f82b0-3405-4ca5-9503-ccefa38e1876",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "thingId",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "elementID",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "AddChildrenToEquipment",
+                "TargetSection" : "Things_PTC.SCA.SCO.ManageResourceUtils"
+              }, {
+                "Id" : "d98f74c6-824e-442e-93f0-578757edceb1",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "NUMBER",
+                  "TargetProperty" : "Input1",
+                  "TargetPropertyBaseType" : "INTEGER"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-253",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-245",
+                "TargetSection" : ""
+              }, {
+                "Id" : "8a0981bc-bcb6-429a-a8f7-b8e665b8980b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "NUMBER",
+                  "TargetProperty" : "Input2",
+                  "TargetPropertyBaseType" : "INTEGER"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-254",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-245",
+                "TargetSection" : ""
+              }, {
+                "Id" : "959f66fe-6c06-40f0-b58a-bbe89c2862d6",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "NUMBER",
+                  "TargetProperty" : "Input3",
+                  "TargetPropertyBaseType" : "INTEGER"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-252",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-245",
+                "TargetSection" : ""
+              }, {
+                "Id" : "52cee53f-a7ae-4e5a-a891-6f656115d67f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "TargetProperty" : "MarkAllRowsSelected",
+                  "TargetPropertyBaseType" : "INTEGER",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "eventsrouter-245",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetPossibleChildElements",
+                "TargetSection" : "Things_PTC.SCA.SCO.ManageResourceUtils"
+              }, {
+                "Id" : "85ed6af5-191e-405c-9b1a-66cb463a7f84",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "children",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetSelectedRows",
+                "SourceSection" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "TargetArea" : "Data",
+                "TargetId" : "AddChildrenToEquipment",
+                "TargetSection" : "Things_PTC.SCA.SCO.ManageResourceUtils"
+              }, {
+                "Id" : "f63fceeb-2776-4b78-aa35-b1ff55f88ab7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "contextName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "contextName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetPossibleChildElements",
+                "TargetSection" : "Things_PTC.SCA.SCO.ManageResourceUtils"
+              }, {
+                "Id" : "387e266d-b923-4cbc-9bf5-fb4517f10b28",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "contextName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "contextName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetNetworkNameByContextName",
+                "TargetSection" : "Things_PTC.Factory.LaunchPointConfigurationThing"
+              }, {
+                "Id" : "c2a84716-f77e-4e3e-b48b-d9e2fcf34524",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "networkName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetNetworkNameByContextName",
+                "SourceSection" : "Things_PTC.Factory.LaunchPointConfigurationThing",
+                "TargetArea" : "Data",
+                "TargetId" : "AddChildrenToEquipment",
+                "TargetSection" : "Things_PTC.SCA.SCO.ManageResourceUtils"
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Expression-34",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "UploadComplete",
+                "EventTriggerId" : "FileUpload-17",
+                "EventTriggerSection" : "",
+                "Id" : "3f936d5e-0337-429c-bd0d-030a76c2bf28"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-36",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-35",
+                "EventTriggerSection" : "",
+                "Id" : "83d8f9ee-a29f-493f-bb58-b56242953559"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "StatusMessage-37",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "Validator-36",
+                "EventTriggerSection" : "",
+                "Id" : "c79e9f24-cbf1-45be-86c0-b66efd17fb9c"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "StatusMessage-155",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "Validator-151",
+                "EventTriggerSection" : "",
+                "Id" : "ce97125a-b86f-4ac7-8069-dad7d382e747"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "StatusMessage-191",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "Validator-189",
+                "EventTriggerSection" : "",
+                "Id" : "7db96947-d98e-4591-87e3-092255a32001"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "StatusMessage-192",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "Validator-190",
+                "EventTriggerSection" : "",
+                "Id" : "2d46dd2d-9ee8-456f-8336-5cafecc733e0"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-22",
+                "EventTriggerSection" : "",
+                "Id" : "11356f0b-0ade-4da8-9d8e-9735a52e07f8"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-218",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "d222cc6e-e2fd-4896-8d2d-c7a16e971015"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-222",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "9aace1b8-510b-4613-a4ee-16310116df39"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-227",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "07e9e408-04d2-40ee-adc0-bae8dd4da064"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-231",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "3a0d4079-852f-4a44-8d03-cc04c542d41b"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-232",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "8fa4f2ad-cec7-4419-b44f-e8fc7212a3ed"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.ManageResourceUtils",
+                "EventHandlerService" : "GetUnrelatedChildElements",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "55a7a6fb-3e29-46a6-ae3f-87ac2260cc31"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.ManageResourceUtils",
+                "EventHandlerService" : "GetUnrelatedChildElements",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "datafilter-236",
+                "EventTriggerSection" : "",
+                "Id" : "c6baf768-edb1-43a9-8ac7-edfb18b5a796"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-248",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetRowCount",
+                "EventTriggerSection" : "Resources_PTC.Factory.CommonUtilities1",
+                "Id" : "8493294b-cd85-4b7f-8ff3-e4cf253d6e30"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "EventHandlerService" : "GetPossibleChildElements",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "221309c5-c780-4b98-a909-0040f4b361a3"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "EventHandlerService" : "GetPossibleChildElements",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "datafilter-236",
+                "EventTriggerSection" : "",
+                "Id" : "78e6463a-1c10-4a22-ae07-fa5db902a530"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "EventHandlerService" : "GetSelectedRows",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetPossibleChildElements",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "Id" : "d20204a5-4401-4514-8bf7-24dd19b94222"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities1",
+                "EventHandlerService" : "GetRowCount",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetSelectedRows",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "Id" : "ef78a303-9c80-48ad-b8e6-0afc3b416019"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "EventHandlerService" : "AddChildrenToEquipment",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-71",
+                "EventTriggerSection" : "",
+                "Id" : "5b0faf61-0d22-4bbf-b425-daa7333113e4"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "AddChildrenToEquipment",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "Id" : "cb16b1e0-e0dd-4194-9ac2-d1219d19f128"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-252",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "EditCellCompleted",
+                "EventTriggerId" : "gridadvanced-234",
+                "EventTriggerSection" : "",
+                "Id" : "77c1a80e-de62-4c74-b7a4-238c2b9bcd08"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-253",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-239",
+                "EventTriggerSection" : "",
+                "Id" : "29d529a4-6ecc-46c8-b29d-c84f3b90af82"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-254",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-240",
+                "EventTriggerSection" : "",
+                "Id" : "fef5b7a5-79f1-461b-9a15-e2941b8abef8"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "EventHandlerService" : "GetPossibleChildElements",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "eventsrouter-245",
+                "EventTriggerSection" : "",
+                "Id" : "170dc2ee-2429-4737-82fb-409cd57dd38f"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "EventHandlerService" : "GetPossibleChildElements",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "contextNameChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "c841c72b-0537-4f21-9594-2da539dc6013"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.LaunchPointConfigurationThing",
+                "EventHandlerService" : "GetNetworkNameByContextName",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "contextNameChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "e86984dd-6cab-43db-9eb2-14b2004026dd"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ManageResourceUtils",
+                "EventHandlerService" : "GetPossibleChildElements",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Filter",
+                "EventTriggerId" : "gridadvanced-234",
+                "EventTriggerSection" : "",
+                "Id" : "3fe7a1f3-90f7-47d8-b62c-f88d317afc7b"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "Description" : "",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 464,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : false,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "StyleTheme" : "Base Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseMasterTheme" : false,
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 802,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "Aspects" : {
+                      "bindingDirection" : "BOTH",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "INTEGER",
+                    "Description" : "",
+                    "ParameterName" : "mode"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "BOTH",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "STRING",
+                    "DefaultValue" : "",
+                    "Description" : "",
+                    "ParameterName" : "thingId"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "BOTH",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "STRING",
+                    "Description" : "Context name passed by master mashup",
+                    "ParameterName" : "contextName"
+                  } ],
+                  "id_index" : 255,
+                  "supportsAutoResize" : true,
+                  "thingId" : ""
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                    "Area" : "UI",
+                    "CancelConfirmationButton" : "button2",
+                    "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                    "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                    "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                    "ConfirmationRequired" : false,
+                    "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                    "ContextId" : "",
+                    "DefaultConfirmationButton" : "button1",
+                    "Disabled" : false,
+                    "DisabledStyle" : "PTC.SCA.SCO.Core.ButtonDisabledStyle",
+                    "DisplayName" : "Button-Cancel",
+                    "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                    "Height" : 32,
+                    "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                    "IconAlignment" : "left",
+                    "Id" : "Button-22",
+                    "Label" : "[[PTC.SCA.SCO.Core.Cancel]]",
+                    "LastContainer" : false,
+                    "Left" : 675,
+                    "ResponsiveLayout" : false,
+                    "RoundedCorners" : false,
+                    "ShowDataLoading" : true,
+                    "SingleClickSelectOnTablets" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNo",
+                    "TabSequence" : 7,
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 412,
+                    "Type" : "button",
+                    "Visible" : true,
+                    "Width" : 105,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Button",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                    "Area" : "UI",
+                    "CancelConfirmationButton" : "button2",
+                    "ConfirmationButton1Label" : "[[PTC.SCA.SCO.Core.Yes]]",
+                    "ConfirmationButton2Label" : "[[PTC.SCA.SCO.Core.No]]",
+                    "ConfirmationPrompt" : "[[PTC.SCA.SCO.Core.Do Action?]]",
+                    "ConfirmationRequired" : false,
+                    "ConfirmationTitle" : "[[PTC.SCA.SCO.Core.Confirm Action]]",
+                    "ContextId" : "",
+                    "DefaultConfirmationButton" : "button1",
+                    "Description" : "",
+                    "Disabled" : false,
+                    "DisabledStyle" : "PTC.Factory.Generic.DisableButton",
+                    "DisplayName" : "Button-OK",
+                    "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                    "Height" : 32,
+                    "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                    "IconAlignment" : "left",
+                    "Id" : "Button-71",
+                    "Label" : "[[add]]",
+                    "LastContainer" : false,
+                    "Left" : 520,
+                    "ResponsiveLayout" : false,
+                    "RoundedCorners" : false,
+                    "ShowDataLoading" : true,
+                    "SingleClickSelectOnTablets" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupOkOrYes",
+                    "TabSequence" : 5,
+                    "ToolTipField" : "",
+                    "ToolTipStyle" : "DefaultTooltipStyle",
+                    "Top" : 412,
+                    "Type" : "button",
+                    "Visible" : true,
+                    "Width" : 105,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Button",
+                    "__supportsTooltip" : true
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "Panel-3",
+                    "Height" : 40,
+                    "HideScrollbars" : false,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "Panel-3",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                    "Top" : 0,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 802,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "Description" : "",
+                      "DisplayName" : "PopupTitle",
+                      "Height" : 25,
+                      "Id" : "valuedisplay-220",
+                      "ImageScaling" : "width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 10,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.SCA.SCO.AddChildEquipmentTitle]]",
+                      "TextIfNoValueOffset" : 10,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                      "TextWrap" : true,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 7,
+                      "Type" : "valuedisplay",
+                      "UseTheme" : false,
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                      "ValueFormat" : {
+                        "renderer" : "DEFAULT"
+                      },
+                      "ValueFormat_StateParameters" : [ ],
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 320,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoScroll" : true,
+                    "CellBorderStyle" : "DefaultGridAdvancedCellBorderStyle",
+                    "CellValidationErrorStyle" : "DefaultGridAdvancedCellValidationErrorStyle",
+                    "CellValidationErrorTooltipStyle" : "DefaultGridAdvancedCellValidationErrorTooltipStyle",
+                    "ColumnFormat" : {
+                      "formatInfo" : [ {
+                        "Align" : "center",
+                        "AllowEdit" : true,
+                        "EditorOptions" : {
+                          "Type" : "checkbox",
+                          "Validators" : [ "None", "NotEmpty", "Empty", "Checkbox", "Custom" ]
+                        },
+                        "FieldName" : "RowSelected",
+                        "FormatOptions" : {
+                          "FormatString" : "checkbox",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "BOOLEAN",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "&#32;",
+                        "Width" : "30px",
+                        "headerTextAlignment" : "center",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "EditorOptions" : {
+                          "Type" : "string",
+                          "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                        },
+                        "FieldName" : "displayName",
+                        "FormatOptions" : {
+                          "FormatString" : "full",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "STRING",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.Factory.Name]]",
+                        "Width" : "115px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "EditorOptions" : {
+                          "Type" : "string",
+                          "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                        },
+                        "FieldName" : "typeDisplayString",
+                        "FormatOptions" : {
+                          "FormatString" : "full",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "STRING",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.Factory.Type]]",
+                        "Width" : "51px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "EditorOptions" : {
+                          "Type" : "string",
+                          "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                        },
+                        "FieldName" : "description",
+                        "FormatOptions" : {
+                          "FormatString" : "full",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "STRING"
+                        },
+                        "Title" : "[[PTC.Factory.Description]]",
+                        "Width" : "270px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "EditorOptions" : {
+                          "Type" : "string",
+                          "Validators" : [ "None", "NotEmpty", "Empty", "Custom" ]
+                        },
+                        "FieldName" : "CreatedBy",
+                        "FormatOptions" : {
+                          "FormatString" : "text",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "DEFAULT"
+                        },
+                        "Title" : "[[PTC.Factory.Created By]]",
+                        "Width" : "113px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "EditorOptions" : {
+                          "Type" : "date",
+                          "Validators" : [ "None", "NotEmpty", "Empty", "ValidDate", "ValidDatetime", "ValidTime", "Custom" ]
+                        },
+                        "FieldName" : "UpdateTimestamp",
+                        "FormatOptions" : {
+                          "FormatString" : "[[dateTimeFormat_Default]]",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "DATETIME"
+                        },
+                        "Title" : "[[PTC.Factory.LastModified]]",
+                        "Width" : "140px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : false,
+                        "inLayout" : true
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "EditorOptions" : {
+                          "Type" : "string",
+                          "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                        },
+                        "FieldName" : "type",
+                        "FormatOptions" : {
+                          "FormatString" : "full",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "STRING",
+                          "roundingEnabled" : true
+                        },
+                        "Title" : "[[PTC.Factory.Type]]",
+                        "Width" : "51px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : true,
+                        "inLayout" : false
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "EditorOptions" : {
+                          "Type" : "date",
+                          "Validators" : [ "None", "NotEmpty", "Empty", "ValidDate", "ValidDatetime", "ValidTime", "Custom" ]
+                        },
+                        "FieldName" : "CreateTimestamp",
+                        "FormatOptions" : {
+                          "FormatString" : "[[dateTimeFormat_Default]]",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "renderer" : "DATETIME"
+                        },
+                        "Title" : "[[PTC.Factory.Created On]]",
+                        "Width" : "140px",
+                        "headerTextAlignment" : "left",
+                        "hidden" : true,
+                        "inLayout" : false
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "EditorOptions" : {
+                          "Type" : "string",
+                          "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                        },
+                        "FieldName" : "Name",
+                        "FormatOptions" : {
+                          "FormatString" : "full",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "formatText" : "View",
+                          "renderer" : "STRING"
+                        },
+                        "Title" : "Name",
+                        "Width" : "auto",
+                        "headerTextAlignment" : "left",
+                        "hidden" : true,
+                        "inLayout" : false
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "EditorOptions" : {
+                          "Type" : "string",
+                          "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                        },
+                        "FieldName" : "displayId",
+                        "FormatOptions" : {
+                          "FormatString" : "full",
+                          "formatInfo" : {
+                            "FieldName" : "",
+                            "StateDefinition" : "",
+                            "StateDefinitionType" : "fixed",
+                            "StateFormats" : [ {
+                              "state" : "",
+                              "stateName" : "fixed"
+                            } ]
+                          },
+                          "formatText" : "View",
+                          "renderer" : "STRING"
+                        },
+                        "Title" : "displayId",
+                        "Width" : "auto",
+                        "headerTextAlignment" : "left",
+                        "hidden" : true,
+                        "inLayout" : false
+                      }, {
+                        "Align" : "left",
+                        "AllowEdit" : false,
+                        "EditorOptions" : {
+                          "Type" : "string",
+                          "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                        },
+                        "FieldName" : "Id",
+                        "FormatOptions" : {
+                          "FormatString" : "full",
+                          "renderer" : "STRING"
+                        },
+                        "Title" : "Id",
+                        "Width" : "auto",
+                        "headerTextAlignment" : "left",
+                        "hidden" : true,
+                        "inLayout" : false
+                      } ]
+                    },
+                    "Configuration" : "",
+                    "ConfigurationId" : 54,
+                    "CookiePersistence" : true,
+                    "DataOverflow" : "tooltip",
+                    "DataServiceBindingDef" : {
+                      "entityName" : "PTC.SCA.SCO.ManageResourceUtils",
+                      "entityType" : "Things",
+                      "target" : "GetPossibleChildElements"
+                    },
+                    "DefaultSelectedRows" : "1",
+                    "Description" : "",
+                    "DisplayName" : "gridadvanced",
+                    "DisplayOnlyMode" : false,
+                    "EditButtonsLocation" : "top-right",
+                    "EnableAddDeleteButtons" : false,
+                    "EnableContextMenu" : true,
+                    "EnableEditButtons" : false,
+                    "EnableFilterEventOnConfigChange" : true,
+                    "EnableFooter" : false,
+                    "EnableGridReset" : false,
+                    "EnableGridSearch" : false,
+                    "EnableSorting" : true,
+                    "FocusStyle" : "DefaultContainerStyle",
+                    "GridResetButtonLocation" : "top-right",
+                    "GridSearchLocation" : "top-left",
+                    "HeaderOverflow" : "wrapped",
+                    "Height" : 312,
+                    "IDFieldName" : "Id",
+                    "Id" : "gridadvanced-234",
+                    "IsEditable" : true,
+                    "LastContainer" : false,
+                    "Left" : 20,
+                    "MaxHeaderHeight" : 100,
+                    "MinRowHeight" : 30,
+                    "ResponsiveLayout" : false,
+                    "RowAlternateBackgroundStyle" : "PTC.Factory.Generic.TableRowNonSelected",
+                    "RowBackgroundStyle" : "PTC.Factory.Generic.TableRowNonSelected",
+                    "RowBorderStyle" : "DefaultGridAdvancedRowBorderStyle",
+                    "RowFormat" : {
+                      "FieldName" : "",
+                      "StateDefinition" : "",
+                      "StateDefinitionType" : "fixed",
+                      "StateFormats" : [ {
+                        "state" : "",
+                        "stateName" : "fixed"
+                      } ]
+                    },
+                    "RowFormat_StateParameters" : [ ],
+                    "RowHoverStyle" : "PTC.Factory.Generic.TableRowHover",
+                    "RowSelectedStyle" : "PTC.Factory.Generic.TableRowSelected",
+                    "RowSelection" : "multi",
+                    "SelectedRows" : "",
+                    "ShowDataLoading" : true,
+                    "SortAscendingStyle" : "PTC.SCA.SCO.SortAscendingStyle",
+                    "SortDescendingStyle" : "PTC.SCA.SCO.SortDescendingStyle",
+                    "TableFooterStyle" : "DefaultGridAdvancedFooterStyle",
+                    "TableHeaderStyle" : "PTC.Factory.Generic.TableColumnHeader",
+                    "TableWrapperStyle" : "PTC.SCA.SCO.Core.GridBackgroundStyle",
+                    "ToolbarStyle" : "PTC.SCA.SCO.NoStyle",
+                    "TooltipStyle" : "DefaultTooltipStyle",
+                    "Top" : 80,
+                    "Type" : "gridadvanced",
+                    "UseTheme" : false,
+                    "Visible" : true,
+                    "Width" : 760,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Grid Advanced"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "panel-237",
+                    "Height" : 43,
+                    "HideScrollbars" : false,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "panel-237",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Style" : "PTC.SCA.SCO.NoStyle",
+                    "Top" : 43,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 783,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AddButtonStyle" : "PTC.SCA.SCO.16px.TitleSmall.DarkGray",
+                      "Area" : "UI",
+                      "BarStyle" : "PTC.SCA.SCO.16px.TitleSmall.DarkGray",
+                      "ColumnFormat" : "{\"displayName\":{\"name\":\"displayName\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":3,\"Title\":\"[[PTC.Factory.Name]]\",\"__showThisField\":true},\"typeDisplayString\":{\"name\":\"typeDisplayString\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":6,\"Title\":\"[[PTC.Factory.Type]]\",\"__showThisField\":true},\"description\":{\"name\":\"description\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":4,\"Title\":\"[[PTC.Factory.Description]]\",\"__showThisField\":true},\"CreatedBy\":{\"name\":\"CreatedBy\",\"aspects\":{},\"description\":\"\",\"baseType\":\"USERNAME\",\"ordinal\":7,\"Title\":\"[[PTC.Factory.CreatedBy]]\",\"__showThisField\":true},\"UpdateTimestamp\":{\"name\":\"UpdateTimestamp\",\"aspects\":{},\"description\":\"\",\"baseType\":\"DATETIME\",\"ordinal\":10,\"Title\":\"[[PTC.Factory.LastModified]]\",\"__showThisField\":true},\"type\":{\"name\":\"type\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":5,\"Title\":\"[[PTC.Factory.Type]]\",\"__showThisField\":false},\"Name\":{\"name\":\"Name\",\"aspects\":{\"isPrimaryKey\":true},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":1,\"Title\":\"[[PTC.Factory.Name]]\",\"__showThisField\":false},\"CreateTimestamp\":{\"name\":\"CreateTimestamp\",\"aspects\":{},\"description\":\"\",\"baseType\":\"DATETIME\",\"ordinal\":8,\"Title\":\"CreateTimestamp\",\"__showThisField\":false},\"displayId\":{\"name\":\"displayId\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":2,\"Title\":\"displayId\",\"__showThisField\":false},\"Id\":{\"name\":\"Id\",\"aspects\":{},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":9,\"Title\":\"Id\",\"__showThisField\":false},\"RowSelected\":{\"name\":\"RowSelected\",\"aspects\":{},\"description\":\"\",\"baseType\":\"BOOLEAN\",\"ordinal\":11,\"Title\":\"RowSelected\",\"__showThisField\":false}}",
+                      "DateFormat" : "",
+                      "DateFormatToken" : "",
+                      "DisplayName" : "datafilter-236",
+                      "FocusStyle" : "PTC.SCA.SCO.NoFocusStyle",
+                      "Height" : 25,
+                      "Horizontal" : false,
+                      "Id" : "datafilter-236",
+                      "LastContainer" : false,
+                      "Left" : 495,
+                      "LiveFiltering" : true,
+                      "ResponsiveLayout" : false,
+                      "ShowAdvancedOptions" : false,
+                      "ShowDataLoading" : true,
+                      "SortFilters" : true,
+                      "TabSequence" : 0,
+                      "Top" : 8,
+                      "Type" : "datafilter",
+                      "Visible" : true,
+                      "Width" : 285,
+                      "Z-index" : 9000,
+                      "__TypeDisplayName" : "Data filter"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "ActiveStyle" : "PTC.SCA.SCO.NoStyle",
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "Yes",
+                      "ConfirmationButton2Label" : "No",
+                      "ConfirmationPrompt" : "Do Action?",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "Confirm Action",
+                      "ContextId" : "",
+                      "DefaultConfirmationButton" : "button1",
+                      "Disabled" : false,
+                      "DisabledStyle" : "PTC.SCA.SCO.NoStyle",
+                      "DisplayName" : "button-SelectAll",
+                      "FocusStyle" : "PTC.SCA.SCO.NoStyle",
+                      "Height" : 30,
+                      "HoverStyle" : "PTC.SCA.SCO.SelectHoverStyle",
+                      "IconAlignment" : "left",
+                      "Id" : "button-239",
+                      "Label" : "",
+                      "LastContainer" : false,
+                      "Left" : 20,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : true,
+                      "ShowDataLoading" : true,
+                      "SingleClickSelectOnTablets" : true,
+                      "Style" : "PTC.SCA.SCO.SelectStyle",
+                      "TabSequence" : 0,
+                      "ToolTipField" : "[[PTC.SCA.SCO.SelectAll]]",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 3,
+                      "Type" : "button",
+                      "Visible" : true,
+                      "Width" : 30,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "ActiveStyle" : "PTC.SCA.SCO.NoStyle",
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "Yes",
+                      "ConfirmationButton2Label" : "No",
+                      "ConfirmationPrompt" : "Do Action?",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "Confirm Action",
+                      "ContextId" : "",
+                      "DefaultConfirmationButton" : "button1",
+                      "Description" : "",
+                      "Disabled" : false,
+                      "DisabledStyle" : "PTC.SCA.SCO.NoStyle",
+                      "DisplayName" : "button-DeselectAll",
+                      "FocusStyle" : "PTC.SCA.SCO.NoStyle",
+                      "Height" : 30,
+                      "HoverStyle" : "PTC.SCA.SCO.DeselectHoverStyle",
+                      "IconAlignment" : "left",
+                      "Id" : "button-240",
+                      "Label" : "",
+                      "LastContainer" : false,
+                      "Left" : 55,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : true,
+                      "ShowDataLoading" : true,
+                      "SingleClickSelectOnTablets" : true,
+                      "Style" : "PTC.SCA.SCO.DeselectStyle",
+                      "TabSequence" : 0,
+                      "ToolTipField" : "[[PTC.SCA.SCO.DeselectAll]]",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 3,
+                      "Type" : "button",
+                      "Visible" : true,
+                      "Width" : 30,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DataShape" : "",
+                    "DataType" : "INTEGER",
+                    "DisplayName" : "eventsrouter-RowSelectedLast",
+                    "Id" : "eventsrouter-245",
+                    "LastContainer" : false,
+                    "Left" : 240,
+                    "NumberOfInputs" : 3,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 430,
+                    "Type" : "eventsrouter",
+                    "Visible" : false,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Events Router"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "VALUE",
+                    "Description" : "",
+                    "DisplayName" : "expression-NoRowsSelected",
+                    "Expression" : "NumberOfRowsSelected == 0",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-248",
+                    "LastContainer" : false,
+                    "Left" : 65,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 430,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "NUMBER",
+                      "Description" : "",
+                      "ParameterName" : "NumberOfRowsSelected",
+                      "isBindingTarget" : true,
+                      "name" : "NumberOfRowsSelected"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "ALWAYS",
+                    "Description" : "",
+                    "DisplayName" : "expression-SetNull",
+                    "Expression" : "2",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-252",
+                    "LastContainer" : false,
+                    "Left" : 25,
+                    "OutputBaseType" : "NUMBER",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 395,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "ALWAYS",
+                    "DisplayName" : "expression-SetTrue",
+                    "Expression" : "0",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-253",
+                    "LastContainer" : false,
+                    "Left" : 35,
+                    "OutputBaseType" : "NUMBER",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 435,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "ALWAYS",
+                    "Description" : "",
+                    "DisplayName" : "expression-SetFalse",
+                    "Expression" : "1",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-254",
+                    "LastContainer" : false,
+                    "Left" : 50,
+                    "OutputBaseType" : "NUMBER",
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Top" : 420,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression"
+                  },
+                  "Widgets" : [ ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            iVBORw0KGgoAAAANSUhEUgAAAp0AAAGECAYAAAB05JvwAAAjzUlEQVR42u3debBU5d0ncP9LvVkq
+            lVQl+SupSk3eTM07b+JUzUy982Zq8k5ilTGLxokxcQHZERBcA0aDr6LG3UQhikaNC0iIssQo4h6i
+            iIogIiBhk00BNwR5UQHxmf49ydN1aPve21fuFS98PlXf4tJ9+nTf092nv+c55/Q9aMSIEWn48OH1
+            nHTSSTnDhg2rZ+jQoWnIkCH1fyMnnnhiPYMHD06DBg2q/xsZOHBgPQMGDMjp379//d9Iv3799kjf
+            vn1z+vTps8fPkRNOOKFpevfuXU+vXr1yGv9fcvzxx3cqxx13XEs59thjO0yr8xIREZEPP135Wd7Z
+            vtHYV9rqNZG2+lDpS826VGPfKj2s2s0i1e5W+ly141W73+jRo9MLL7yQZs+enb7+9a+nj33sY+mT
+            n/xkOuOMM9J7772X5s6dm775zW+mL37xi+nqq69O77zzTjooiuakSZPS3XffLSIiIiLSYSZMmJC2
+            b9+eC+VnPvOZXDr/4R/+IR166KFp0aJFuXg+88wz6Xe/+10unJs3b/5b6YwJRERERERayeTJk3OZ
+            POuss9LHP/7xej772c/m0d4VK1ak8O6776atW7emiy66SOkUERERkc5l1qxZeaRz5MiRebd6NV/9
+            6lfTQw89lEc7w5o1a9IPf/jDdFAcv2nhiYiIiEirmTFjRtq1a1caM2ZM+tSnPlUvnF/+8pfzLvWd
+            O3emHTt2pDfeeCMXz9jVrnSKiIiISKcSx3RGqZw4cWL60pe+lAvnpz/96XySUVweu9THjh2bjjrq
+            qLRs2bI86nlQnJ1u4YmIiIhIq/n1r3+d1q9fn1auXJkOOeSQeuk85phj0p///Od03nnnpc997nPp
+            E5/4RC6e99xzj9IpIiIiIp1LfOXmgw8+mN5666100003pS984Qu5eH7+859PBx98cP3/cVZ77H6P
+            4zyVThERERHpVI444oh01VVX5V3ncRb72Wef/b4TikrpLDkovvDdwhMRERGRVnPYYYflPxp06623
+            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
+            maxe3uoxnXH/rZTOmHeU4ep5GvEVS+WYznjcUXyVTqVTDsCz2uOYoDgWMcpd9euVDpTvyPMtCiI9
+            f2M6zgmIIhPHqVsmonQqnfIR/v7OOGO7bBkrnSLS00YIY4S0p55AJKJ0ioiIiMiBWzr9GUwRERER
+            UTpFREREROlUOkVERESUTqVTRERERJROEREREVE6lU4RERERpVPpFBERERGlU0RERESUzq4pnatX
+            rxYRERGR/TAfqdK5atUqEREREemi7I+6pHQCAIDSCQCA0gkAgNIJAABKJwAASicAAEqn0gkAgNIJ
+            AIDSCQAASicAAEonAABKJwAAKJ0AACidAAAonUonAABKJwAASicAACidAAAonQAAKJ0AAKB0AgCg
+            dAIAgNIJAIDSCQCA0gkAAEonAABKJwAASicAACidAAAonQAAoHQCAKB0AgCgdAIAgNIJAIDSCQCA
+            0gkAAEonAABKJwAAKJ0AACidAAAonQAAoHQCAKB0AgCgdAIAgNIJAIDSCQAASicAAEonAABKJwAA
+            KJ0AACidAAAonQAAoHQCAKB0AgCA0gkAgNIJAIDSCQAASicAAEonAABKJwAAKJ0AACidAACgdAIA
+            oHQCAKB0AgCA0gkAgNIJAIDSCQAASicAAEonAAAonQAAKJ0AACidAACgdAIAoHQCAKB0AgCA0gkA
+            gNIJAABKJwAASicAAEonAAAonQAAKJ0AACidAACgdAIAoHQCAIDSCQCA0gkAgNIJAABKJwAASicA
+            AEonAAAonQAAKJ0AAKB0AgCgdAIAoHQCAIDSCQCA0gkAgNIJAABKJwAASicAACidAAAonQAAKJ0A
+            AKB0AgCgdAIAoHQCAIDSCQCA0gkAAEonAABKJwAASicAACidAAAonQAAKJ0AAKB0AgCgdAIAgNIJ
+            AIDSCQCA0gkAAEonAABKJwAASicAACidAAAonQAAoHQCAKB0AgCgdAIAgNIJAIDSCQCA0mkpAACg
+            dAIAoHQCAIDSCQCA0gkAgNIJAABKJwAASicAAEqn0gkAgNIJAIDSCQAASicAAEonAABKJwAAKJ0A
+            ACidAACgdAIAoHQCAKB0AgCA0gkAgNIJAIDSCQAASicAAEonAAAonQAAKJ0AACidAACgdAIAoHQC
+            AKB0AgCA0gkAgNIJAABKJwAASicAAEonAAAonQAAKJ0AACidAACgdAIAoHQCAIDSCQCA0gkAgNIJ
+            AABKJwAASicAAEonAAAonQAAKJ0AAKB0AgCgdAIAoHQCAIDSCQCA0gkAgNIJAABKJwAASicAACid
+            AAAonQAAKJ0AAKB0AgCgdAIAoHQCAIDSCQCA0gkAAEonAABKJwAASicAAHSudB577LGWAgAASicA
+            AEonAAAonQAAKJ0AACidAACgdAIAoHQCAKB0Kp0AAHR36fQXiQAAUDoBAFA6AQBA6QQAQOkEAEDp
+            BAAApRMAAKUTAACUTgAAlE4AAPaH0nn88cdbCgAAKJ0AACidAACgdAIAoHQCAKB0AgCA0gkAgNIJ
+            AIDSqXQCAKB0AgCgdAIAgNIJAMA+L529evWyFAAAUDoBAFA6AQBA6QQAYB+Xzt69e1sKAAAonQAA
+            9PDSafc6AABKJwAAPb902r0OAIDSCQCA0gkAAB2WzhNOOMFSAABA6QQAQOkEAAClEwAApRMAAKUT
+            AAD2snT26dPHUgCgx1q+fLl0Y3qC2267TboxSicAKJ1Kp9LZc0pn3759rbEAUDpF6RSlEwCUTqVT
+            6bR7HQCUTqVT6VQ6jXQCoHSK0ilKJwAonUqn0rm/l85+/fpZYwGgdIrSKUonACidSqfSqXQCgNJZ
+            yb333pumT5/e5vWzZs3K0zReftddd6U5c+YonT2odK5YsaL+OHbv3p0WLlzY5ffxwAMPpC1btqTZ
+            s2crnQCgdP4tCxYsSFOnTs2Jn5XO/bd0bty4MW3fvj2Xwu68n/2mdPbv398aCwCls4tSCmVJ9fLy
+            IR6joOW6+DkumzRpUi6qSmfPKJ1RAKNwNiuCMdoZo56hlNIYEX399dfTzp078+Xx/zKfclmZNgpm
+            deRU6QQApbPN0cpIlMjFixfnEc877rijPvJZSmcU0bIbPq6bPHmy0tmDSufLL7/c4XRRNKM4RsmM
+            chm3i/9v27YtzZs3L/9b3SUf08UIavU+9pvSOWDAAGssAJTOLkgUxokTJ9Y/rOPnUkCjjDYbDY2f
+            7V7vmaUzimCzXevV0csyqtlYJuO2ixYtet88YpqqGP2McmqkEwCUzj1OIKqWyFIujXTuf6UzEkUw
+            0nh5jE6WghjXt1U6Oxrp3O+O6TTSCYDSufeJ3ehRIKsnD1XLZpTMxmM64zZxvWM6e2bpLKWyKMdg
+            Vkcr33nnnTZLZ5TJZsd/VucZt1E6AUDp9D2dB3jp9D2dnSidAwcOtMYCQOkUpVOUTgBQOpVOpVPp
+            BAClU+lUOpXO9kvnoEGDrLEAUDpF6RSlEwCUTqVT6ezhpXPw4MHWWAAonaJ0ipFOAFA6lU6l00gn
+            ACidSqfSqXS2XzpPPPFEaywAlE5ROkXpBACgZ1M6AQDo/tI5ZMgQSwEAAKUTAIAeXjqHDh1qKQAA
+            0L2l00gnAADdXjqNdAIA0O2lc9iwYZYCAABKJwAASicAALRfOk866SRLAQAApRMAgB5eOocPH24p
+            AACgdAIAoHQCAED7pXPEiBGWAgAA3er/A//Lw+f+vmNGAAAAAElFTkSuQmCC
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

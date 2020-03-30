@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b937"
+ build="b222"
  majorVersion="8"
- minorVersion="3"
- modelPersistenceProviderPackage="H2PersistenceProviderPackage"
- revision="3"
- schemaVersion="1030"
- universal="">
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
     <ThingTemplates>
         <ThingTemplate
          aspect.isSystemObject="true"
-         baseThingTemplate="AnalyticsServer"
+         baseThingTemplate="AnalyticsJobServer"
          description=""
          documentationContent=""
          effectiveThingPackage="RemoteThing"
          homeMashup=""
-         lastModifiedDate="2018-12-03T14:53:14.391+05:30"
+         lastModifiedDate="2020-03-03T01:03:57.183+05:30"
          name="PrescriptiveMicroserver"
          projectName=""
          tags=""
@@ -34,14 +34,53 @@
                 <Visibility></Visibility>
             </VisibilityPermissions>
             <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
-            <ConfigurationTables></ConfigurationTables>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 description="Reporting Settings"
+                 isMultiRow="false"
+                 name="ReportingConfiguration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="NotReporting"
+                             aspect.isPrimaryKey="true"
+                             aspect.isReadOnly="false"
+                             aspect.thingTemplate="ReportingStrategy"
+                             baseType="THINGNAME"
+                             description="Strategy to determine health"
+                             name="reportingStrategy"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <reportingStrategy>
+                            <![CDATA[
+                            AlwaysOnReporting
+                            ]]>
+                            </reportingStrategy>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
             <PropertyBindings></PropertyBindings>
             <RemotePropertyBindings></RemotePropertyBindings>
             <RemoteServiceBindings>
                 <RemoteServiceBinding
                  enableQueue="false"
+                 name="BatchScore"
+                 sourceName="BatchScore"
+                 timeout="0"></RemoteServiceBinding>
+                <RemoteServiceBinding
+                 enableQueue="false"
                  name="RealtimeScore"
                  sourceName="RealtimeScore"
+                 timeout="0"></RemoteServiceBinding>
+                <RemoteServiceBinding
+                 enableQueue="false"
+                 name="RetrieveResult"
+                 sourceName="RetrieveResult"
                  timeout="0"></RemoteServiceBinding>
             </RemoteServiceBindings>
             <RemoteEventBindings></RemoteEventBindings>
@@ -51,7 +90,73 @@
                 <ServiceDefinitions>
                     <ServiceDefinition
                      category=""
-                     description="Analyze a model and dataset to maximize or minimize scores by modifying lever fields (for small datasets only. batch not yet provided)"
+                     description="Analyze a model and dataset to maximize or minimize scores by modifying lever fields (for large datasets)"
+                     isAllowOverride="false"
+                     isLocalOnly="true"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="BatchScore">
+                        <ResultType
+                         baseType="STRING"
+                         description="ID of the created job"
+                         name="jobId"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="AnalyticsDatasetRef"
+                             baseType="INFOTABLE"
+                             description="Reference to the dataset for this job"
+                             name="datasetRef"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Optional description for this job"
+                             name="description"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Name of the goal to optimize"
+                             name="goalField"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="GenericStringList"
+                             baseType="INFOTABLE"
+                             description="Fields to be included in the results as row identifiers"
+                             name="identifierFields"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Name for this job"
+                             name="jobName"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="AnalyticsOptimizationLever"
+                             baseType="INFOTABLE"
+                             description="Fields that can be modified to optimize the goal (should be fields that can be controlled)"
+                             name="levers"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             baseType="BOOLEAN"
+                             description="Maximize or minimize the goal value?"
+                             name="maximize"
+                             ordinal="8"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="URI to the model to use for analysis"
+                             name="modelUri"
+                             ordinal="6"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="GenericStringList"
+                             baseType="INFOTABLE"
+                             description="Queryable tags associated with this job"
+                             name="tags"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     category=""
+                     description="Analyze a model and dataset to maximize or minimize scores by modifying lever fields (for small datasets only. for large datasets use BatchScoring instead)"
                      isAllowOverride="false"
                      isLocalOnly="true"
                      isOpen="false"
@@ -98,6 +203,27 @@
                              description="URI to the model to use for analysis"
                              name="modelUri"
                              ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     category=""
+                     description="Retrieve results of a prescriptive job "
+                     isAllowOverride="false"
+                     isLocalOnly="true"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="RetrieveResult">
+                        <ResultType
+                         baseType="INFOTABLE"
+                         description="List of optimized results containing original and optimized goal scores plus original and optimized lever values"
+                         name="prescriptiveScores"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="ID of the job result to retrieve"
+                             name="jobId"
+                             ordinal="0"></FieldDefinition>
                         </ParameterDefinitions>
                     </ServiceDefinition>
                 </ServiceDefinitions>

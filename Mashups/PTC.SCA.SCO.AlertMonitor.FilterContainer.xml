@@ -1,0 +1,1281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Top-level mashup for the Alert Monitor left sidebar. {PTC.SCA.SCO.AlertMonitor.FilterContainer}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:46.671+05:30"
+         name="PTC.SCA.SCO.AlertMonitor.FilterContainer"
+         projectName="PTC.SCA.SCO.Alert Monitor"
+         rows="0.0"
+         tags="PTC:sca-common;PTC:Mashup;PTC:AlertMonitor">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="7"
+                 baseType="STRING"
+                 description=""
+                 name="contextName"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.dataShape="PTC.SCA.SCO.SimpleEquipmentStructureTree"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="5"
+                 baseType="INFOTABLE"
+                 description=""
+                 name="defaultSelectedRow"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="1"
+                 baseType="STRING"
+                 description=""
+                 name="filterMashupSpecification"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="BOTH"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="0"
+                 baseType="BOOLEAN"
+                 description="Toggled whenever filters change to signal need to refresh list"
+                 name="filtersChangedToggle"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="BOTH"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="6"
+                 baseType="BOOLEAN"
+                 description=""
+                 name="isAlertMonitoringRollupFilterChecked"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="BOTH"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="3"
+                 baseType="BOOLEAN"
+                 description=""
+                 name="isAlertMonitoringStructureFilterChecked"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="OUT"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="4"
+                 baseType="STRING"
+                 description=""
+                 name="selectedEntityNameInFilter"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="2"
+                 baseType="BOOLEAN"
+                 description=""
+                 name="showEnableStructureFilterCheckbox"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.SessionHelper</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.SessionHelper" : {
+                  "DataName" : "Things_PTC.SCA.SCO.SessionHelper",
+                  "EntityName" : "PTC.SCA.SCO.SessionHelper",
+                  "EntityType" : "Things",
+                  "Id" : "a814e606-45f6-4eae-95b5-55dc710d1758",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "9628f049-75b1-4b6f-92d5-9386fbbbe9a9",
+                    "Name" : "SetBoolean",
+                    "Parameters" : {
+                      "JSONFieldName" : "AlertMonitoringListFilters",
+                      "field" : "isAlertMonitoringStructureFilterChecked"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "SetBoolean"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "b1453274-0a70-4491-b7e1-d2f218e362ef",
+                    "Name" : "SetBoolean1",
+                    "Parameters" : {
+                      "JSONFieldName" : "AlertMonitoringListFilters",
+                      "field" : "isAlertMonitoringRollupFilterChecked"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "SetBoolean"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "7d1c357e-f431-4e09-bff8-45013054e4a6",
+                    "Name" : "GetBoolean",
+                    "Parameters" : {
+                      "JSONFieldName" : "AlertMonitoringListFilters",
+                      "field" : "isAlertMonitoringRollupFilterChecked"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetBoolean"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "6a85aea1-4d65-450d-8a22-d0b616ede831",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "filtersChangedToggle",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "filtersChangedToggle",
+                  "TargetPropertyBaseType" : ""
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "mashupcontainer-5",
+                "SourceSection" : "",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "5f233f1b-53c9-470e-9dfd-3f61c6860143",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "showEnableStructureFilterCheckbox",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "Expanded",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "container-12",
+                "TargetSection" : ""
+              }, {
+                "Id" : "7996509a-1211-4faf-bd36-438a633a472b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedThingName",
+                  "SourcePropertyBaseType" : "THINGNAME",
+                  "TargetProperty" : "selectedEntityNameInFilter",
+                  "TargetPropertyBaseType" : ""
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "mashupcontainer-5",
+                "SourceSection" : "",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "256f26df-1871-44d5-8821-3236745ba00c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "isAlertMonitoringStructureFilterChecked",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "State",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "checkbox-15",
+                "TargetSection" : ""
+              }, {
+                "Id" : "728b79fd-4f17-4375-86f9-c317358fdfc0",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "State",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "isAlertMonitoringStructureFilterChecked",
+                  "TargetPropertyBaseType" : ""
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "checkbox-15",
+                "SourceSection" : "",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "1b9dfddb-23cf-49c8-9a55-2c0f3e7f3201",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "defaultSelectedRow",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "defaultSelectedRow",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "mashupcontainer-5",
+                "TargetSection" : ""
+              }, {
+                "Id" : "6d3c6086-d65a-4bb4-8902-9de870778a85",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "State",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "checkbox-15",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "SetBoolean",
+                "TargetSection" : "Things_PTC.SCA.SCO.SessionHelper"
+              }, {
+                "Id" : "27b9610a-1927-48e7-89b5-18e72a7052fa",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "State",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "checkbox-16",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "SetBoolean1",
+                "TargetSection" : "Things_PTC.SCA.SCO.SessionHelper"
+              }, {
+                "Id" : "32e252f9-b69d-4118-8c80-79a861fde21e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "State",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetBoolean",
+                "SourceSection" : "Things_PTC.SCA.SCO.SessionHelper",
+                "TargetArea" : "UI",
+                "TargetId" : "checkbox-16",
+                "TargetSection" : ""
+              }, {
+                "Id" : "d74549c1-9bf0-4683-b2ee-7b368b74b3c4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "State",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "isEnableAlertMonitoringRollupFilter",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "checkbox-16",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "mashupcontainer-5",
+                "TargetSection" : ""
+              }, {
+                "Id" : "5f5116de-5bc9-4746-a1a6-ab4ef76eb7f7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "State",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "isAlertMonitoringRollupFilterChecked",
+                  "TargetPropertyBaseType" : ""
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "checkbox-16",
+                "SourceSection" : "",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "4fa00c7f-c4b4-4700-9a89-577ed4607c44",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "contextName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "contextName",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "mashupcontainer-5",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.SessionHelper",
+                "EventHandlerService" : "SetBoolean",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "checkbox-15",
+                "EventTriggerSection" : "",
+                "Id" : "a549486f-646f-4aea-87bc-e18354af85b0"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.SessionHelper",
+                "EventHandlerService" : "SetBoolean1",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "checkbox-16",
+                "EventTriggerSection" : "",
+                "Id" : "73f8f73e-e84c-4f73-b1a9-b1115de6afb6"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "mashupcontainer-5",
+                "EventHandlerService" : "Refresh",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "checkbox-16",
+                "EventTriggerSection" : "",
+                "Id" : "66044ce5-1bbd-4917-bcf9-8e39fa8daf1b"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.SessionHelper",
+                "EventHandlerService" : "GetBoolean",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "RefreshRequested",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "93bee271-7e64-4889-81a4-1092354f920e"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "mashupcontainer-5",
+                "EventHandlerService" : "Refresh",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetBoolean",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.SessionHelper",
+                "Id" : "966b49b9-ebc9-48d7-8b94-6b6e5e514c62"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "CustomClass" : "asset-list-filters",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : false,
+                  "Style" : "PTC.Factory.ConfigResourceMenuStyle",
+                  "StyleTheme" : "Base Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "Aspects" : {
+                      "bindingDirection" : "BOTH",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "BOOLEAN",
+                    "Description" : "Toggled whenever filters change to signal need to refresh list",
+                    "ParameterName" : "filtersChangedToggle"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "IN",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "filterMashupSpecification"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "IN",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "BOOLEAN",
+                    "Description" : "",
+                    "ParameterName" : "showEnableStructureFilterCheckbox"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "BOTH",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "BOOLEAN",
+                    "Description" : "",
+                    "ParameterName" : "isAlertMonitoringStructureFilterChecked"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "OUT",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "selectedEntityNameInFilter"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "IN",
+                      "dataShape" : "PTC.SCA.SCO.SimpleEquipmentStructureTree",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "",
+                    "ParameterName" : "defaultSelectedRow"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "BOTH",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "BOOLEAN",
+                    "Description" : "",
+                    "ParameterName" : "isAlertMonitoringRollupFilterChecked"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "IN",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "contextName"
+                  } ],
+                  "id_index" : 16,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Columns" : 0,
+                    "DisplayName" : "layout-1",
+                    "Footer" : false,
+                    "FooterHeight" : 0,
+                    "Header" : true,
+                    "HeaderCustomClass" : "",
+                    "HeaderHeight" : 50,
+                    "Id" : "layout-1",
+                    "IncludeSpacingInFixedAreas" : false,
+                    "IsPrintLayout" : false,
+                    "Left" : 350,
+                    "LeftSidebar" : false,
+                    "LeftSidebarWidth" : 0,
+                    "Orientation" : "vertical",
+                    "PctColumn1" : 50,
+                    "PctColumn2" : 50,
+                    "PctColumn3" : 1,
+                    "PctColumn4" : 1,
+                    "PctColumn5" : 1,
+                    "PctColumn6" : 1,
+                    "PctColumn7" : 1,
+                    "PctColumn8" : 1,
+                    "PctRow1" : 100,
+                    "PctRow2" : 50,
+                    "PctRow3" : 0,
+                    "PctRow4" : 0,
+                    "PctRow5" : 0,
+                    "PctRow6" : 0,
+                    "PctRow7" : 0,
+                    "PctRow8" : 0,
+                    "PrintMarginLeftRight" : 0.5,
+                    "PrintMarginTopBottom" : 0.5,
+                    "PrintWidth" : 650,
+                    "ResponsiveLayout" : true,
+                    "RightSidebar" : false,
+                    "RightSidebarWidth" : 0,
+                    "Rows" : 1,
+                    "ShowDataLoading" : false,
+                    "Spacing" : 0,
+                    "Top" : 135,
+                    "Type" : "layout",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Layout"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Header",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-2",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : false,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "PTC.SCA.SCO.NoStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container",
+                      "userCannotRemove" : true
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "panel-7",
+                        "Height" : 200,
+                        "HideScrollbars" : true,
+                        "HorizontalAnchor" : "left",
+                        "Id" : "panel-7",
+                        "Left" : 90,
+                        "ResponsiveLayout" : true,
+                        "ShowDataLoading" : false,
+                        "Style" : "PTC.SCA.SCO.NoStyle",
+                        "Top" : 35,
+                        "Type" : "panel",
+                        "VerticalAnchor" : "top",
+                        "Visible" : true,
+                        "Width" : 300,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Panel"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "Alignment" : "left",
+                          "AllowEllipsis" : false,
+                          "Area" : "UI",
+                          "CustomClass" : "",
+                          "Description" : "",
+                          "DisplayName" : "",
+                          "Height" : 22,
+                          "Id" : "label-8",
+                          "Left" : 20,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : false,
+                          "Style" : "PTC.SCA.SCO.AssetMonitor.FilterTitle",
+                          "Text" : "[[PTC.SCA.SCO.AlertMonitor.FilterHeader]]",
+                          "ToolTipField" : "",
+                          "ToolTipStyle" : "DefaultTooltipStyle",
+                          "Top" : 13,
+                          "Type" : "label",
+                          "Visible" : true,
+                          "Width" : 260,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Label",
+                          "__supportsTooltip" : true
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "Description" : "",
+                          "DisplayName" : "div-bottom",
+                          "Height" : 1,
+                          "Id" : "divider-10",
+                          "Left" : 0,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Style" : "DefaultDividerStyle",
+                          "Top" : 49,
+                          "Type" : "divider",
+                          "Visible" : true,
+                          "Width" : 300,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Divider"
+                        },
+                        "Widgets" : [ ]
+                      } ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Row 1",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-3",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : false,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "PTC.SCA.SCO.NoStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container",
+                      "userCannotRemove" : true
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "Columns" : 0,
+                        "Description" : "",
+                        "DisplayName" : "layout-11",
+                        "Footer" : false,
+                        "FooterHeight" : 0,
+                        "Header" : true,
+                        "HeaderHeight" : 70,
+                        "Id" : "layout-11",
+                        "IncludeSpacingInFixedAreas" : false,
+                        "IsPrintLayout" : false,
+                        "Left" : 110,
+                        "LeftSidebar" : false,
+                        "LeftSidebarWidth" : 0,
+                        "Orientation" : "vertical",
+                        "PctColumn1" : 50,
+                        "PctColumn2" : 50,
+                        "PctColumn3" : 1,
+                        "PctColumn4" : 1,
+                        "PctColumn5" : 1,
+                        "PctColumn6" : 1,
+                        "PctColumn7" : 1,
+                        "PctColumn8" : 1,
+                        "PctRow1" : 100,
+                        "PctRow2" : 0,
+                        "PctRow3" : 0,
+                        "PctRow4" : 0,
+                        "PctRow5" : 0,
+                        "PctRow6" : 0,
+                        "PctRow7" : 0,
+                        "PctRow8" : 0,
+                        "PrintMarginLeftRight" : 0.5,
+                        "PrintMarginTopBottom" : 0.5,
+                        "PrintWidth" : 650,
+                        "ResponsiveLayout" : true,
+                        "RightSidebar" : false,
+                        "RightSidebarWidth" : 0,
+                        "Rows" : 1,
+                        "ShowDataLoading" : true,
+                        "Spacing" : 0,
+                        "Top" : 30,
+                        "Type" : "layout",
+                        "Visible" : true,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Layout"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Header",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : false,
+                          "Id" : "container-12",
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "PTC.SCA.SCO.NoStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container",
+                          "userCannotRemove" : true
+                        },
+                        "Widgets" : [ {
+                          "Properties" : {
+                            "Area" : "UI",
+                            "DisplayName" : "panel-14",
+                            "Height" : 200,
+                            "HideScrollbars" : false,
+                            "HorizontalAnchor" : "left",
+                            "Id" : "panel-14",
+                            "Left" : 140,
+                            "ResponsiveLayout" : true,
+                            "ShowDataLoading" : true,
+                            "Style" : "PTC.SCA.SCO.NoStyle",
+                            "Top" : 15,
+                            "Type" : "panel",
+                            "VerticalAnchor" : "top",
+                            "Visible" : true,
+                            "Width" : 300,
+                            "Z-index" : 10,
+                            "__TypeDisplayName" : "Panel"
+                          },
+                          "Widgets" : [ {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "CustomClass" : "filter-option",
+                              "Description" : "",
+                              "Disabled" : false,
+                              "DisplayName" : "checkbox-EnableAlertMonitoringStructureFilter",
+                              "FocusStyle" : "PTC.SCO.SCA.AssetMonitor.MenuStyle",
+                              "Height" : 20,
+                              "Id" : "checkbox-15",
+                              "Left" : 10,
+                              "Prompt" : "[[PTC.SCA.SCO.EnableStructureFilter]]",
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : false,
+                              "State" : false,
+                              "Style" : "PTC.SCO.SCA.AssetMonitor.MenuStyle",
+                              "TabSequence" : 0,
+                              "ToolTipField" : "",
+                              "ToolTipStyle" : "DefaultTooltipStyle",
+                              "Top" : 2,
+                              "Type" : "checkbox",
+                              "Visible" : true,
+                              "Width" : 260,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Checkbox",
+                              "__supportsTooltip" : true
+                            },
+                            "Widgets" : [ ]
+                          }, {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "CustomClass" : "filter-option",
+                              "Description" : "",
+                              "Disabled" : false,
+                              "DisplayName" : "checkbox-EnableAlertMonitoringRollupFilter",
+                              "FocusStyle" : "PTC.SCO.SCA.AssetMonitor.MenuStyle",
+                              "Height" : 20,
+                              "Id" : "checkbox-16",
+                              "Left" : 10,
+                              "Prompt" : "[[PTC.SCA.SCO.EnableAlertRollup]]",
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : false,
+                              "State" : false,
+                              "Style" : "PTC.SCO.SCA.AssetMonitor.MenuStyle",
+                              "TabSequence" : 0,
+                              "ToolTipField" : "",
+                              "ToolTipStyle" : "DefaultTooltipStyle",
+                              "Top" : 28,
+                              "Type" : "checkbox",
+                              "Visible" : true,
+                              "Width" : 266,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Checkbox",
+                              "__supportsTooltip" : true
+                            },
+                            "Widgets" : [ ]
+                          } ]
+                        } ]
+                      }, {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Row 1",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-13",
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "DefaultContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container",
+                          "userCannotRemove" : true
+                        },
+                        "Widgets" : [ {
+                          "Properties" : {
+                            "Area" : "UI",
+                            "CustomClass" : "",
+                            "DisplayName" : "FilterMashup",
+                            "Height" : 300,
+                            "Id" : "mashupcontainer-5",
+                            "Left" : 195,
+                            "MashupParameters" : [ {
+                              "BaseType" : "INTEGER",
+                              "DefaultValue" : 13,
+                              "Description" : "",
+                              "ParameterName" : "maxLevel",
+                              "ParmDef" : {
+                                "aspects" : {
+                                  "bindingDirection" : "BOTH",
+                                  "isMandatory" : "true",
+                                  "ordinal" : "3"
+                                },
+                                "baseType" : "INTEGER",
+                                "description" : "",
+                                "name" : "maxLevel",
+                                "ordinal" : 0
+                              }
+                            }, {
+                              "BaseType" : "STRING",
+                              "Description" : "",
+                              "ParameterName" : "contextName",
+                              "ParmDef" : {
+                                "aspects" : {
+                                  "bindingDirection" : "IN",
+                                  "isMandatory" : "true",
+                                  "ordinal" : "6"
+                                },
+                                "baseType" : "STRING",
+                                "description" : "",
+                                "name" : "contextName",
+                                "ordinal" : 0
+                              }
+                            }, {
+                              "BaseType" : "INFOTABLE",
+                              "Description" : "",
+                              "ParameterName" : "selectedTreeNode",
+                              "ParmDef" : {
+                                "aspects" : {
+                                  "bindingDirection" : "BOTH",
+                                  "dataShape" : "PTC.SCA.SCO.SimpleEquipmentStructureTree",
+                                  "isMandatory" : "true",
+                                  "ordinal" : "0"
+                                },
+                                "baseType" : "INFOTABLE",
+                                "description" : "",
+                                "name" : "selectedTreeNode",
+                                "ordinal" : 0
+                              }
+                            }, {
+                              "BaseType" : "BOOLEAN",
+                              "Description" : "",
+                              "ParameterName" : "isEnableAlertMonitoringRollupFilter",
+                              "ParmDef" : {
+                                "aspects" : {
+                                  "bindingDirection" : "IN",
+                                  "isMandatory" : "false",
+                                  "ordinal" : "5"
+                                },
+                                "baseType" : "BOOLEAN",
+                                "description" : "",
+                                "name" : "isEnableAlertMonitoringRollupFilter",
+                                "ordinal" : 0
+                              }
+                            }, {
+                              "BaseType" : "STRING",
+                              "Description" : "",
+                              "ParameterName" : "networkName",
+                              "ParmDef" : {
+                                "aspects" : {
+                                  "bindingDirection" : "BOTH",
+                                  "isMandatory" : "true",
+                                  "ordinal" : "2"
+                                },
+                                "baseType" : "STRING",
+                                "description" : "",
+                                "name" : "networkName",
+                                "ordinal" : 0
+                              }
+                            }, {
+                              "BaseType" : "THINGNAME",
+                              "Description" : "",
+                              "ParameterName" : "selectedThingName",
+                              "ParmDef" : {
+                                "aspects" : {
+                                  "bindingDirection" : "BOTH",
+                                  "isMandatory" : "true",
+                                  "ordinal" : "1"
+                                },
+                                "baseType" : "THINGNAME",
+                                "description" : "",
+                                "name" : "selectedThingName",
+                                "ordinal" : 0
+                              }
+                            }, {
+                              "BaseType" : "INFOTABLE",
+                              "Description" : "",
+                              "ParameterName" : "defaultSelectedRow",
+                              "ParmDef" : {
+                                "aspects" : {
+                                  "bindingDirection" : "BOTH",
+                                  "dataShape" : "PTC.SCA.SCO.SimpleEquipmentStructureTree",
+                                  "isMandatory" : "true",
+                                  "ordinal" : "4"
+                                },
+                                "baseType" : "INFOTABLE",
+                                "description" : "",
+                                "name" : "defaultSelectedRow",
+                                "ordinal" : 0
+                              }
+                            } ],
+                            "Name" : "PTC.SCA.SCO.AlertMonitor.StructureFilterMashup",
+                            "ResponsiveLayout" : true,
+                            "ShowDataLoading" : false,
+                            "TabSequenceGroup" : 0,
+                            "Top" : 65,
+                            "Type" : "mashupcontainer",
+                            "Visible" : true,
+                            "Width" : 400,
+                            "Z-index" : 10,
+                            "__TypeDisplayName" : "Contained Mashup",
+                            "maxLevel" : 13,
+                            "networkName" : ""
+                          },
+                          "Widgets" : [ ]
+                        } ]
+                      } ]
+                    } ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            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
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

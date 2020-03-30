@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="PTC.ISA95.EquipmentThingTemplate"
+         description="Base thing template for production lines. {PTC.ISA95.ProductionLineBaseThingTemplate}"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.868+05:30"
+         name="PTC.ISA95.ProductionLineBaseThingTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:Common;PTC:sca-mfg;PTC:ThingTemplate"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions></ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetTagPickerProperties">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*
+                                        *  The final result is generated as follows:
+                                        *
+                                        *  If IncludeInheritedProperties is True and myList is empty, Then
+                                        *     result = My Properties + (Inherited Properties - Excluded Properties)
+                                        *  Else
+                                        *     result = My Properties + myList
+                                        */
+                                        
+                                        // ***DEPRECATED-J*** Properties goodCount, totalCount, idealRunRate, availability, quality, performance and oee will be deleted in a future release.
+                                        var includeInheritedProperties = true;
+                                        var myList = "actualProductionTime_APT,availability,Availability_currentValue,Effectiveness_currentValue,goodCount,goodQuantity_GQ,idealRunRate,oee,OEE_currentValue,performance,plannedBusyTime_PBT,plannedRunTimePerItem_PRI,producedQuantity_PQ,quality,QualityRatio_currentValue,status,totalCount";
+                                        var excludedProperties = me.GetExcludedProperties();
+                                        
+                                        // result: INFOTABLE dataShape: "PTC.SCA.SCO.PropertyDetailsDataShape"
+                                        var result =  Things["PTC.SCA.SCO.CommonUtils"].GetPropertiesInformation({
+                                            propertiesList: myList /* STRING */,
+                                            excludedPropertiesList: excludedProperties /* STRING */,
+                                            query: query /* QUERY */,
+                                            includeInheritedProperties: includeInheritedProperties /* BOOLEAN */,
+                                            filterType: "" /* STRING */,
+                                            entity: me.name /* THINGNAME */,
+                                            filterLoggedProperties: false /* BOOLEAN */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.SiteThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.KPIElementThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.StatusThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.QualityRatioThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.OEEThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.Mfg.AssetFilteringThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.AvailabilityThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.EffectivenessThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.Factory.ProductionLineResourceThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.ShiftThingShape"
+                 type="ThingShape"></ImplementedShape>
+            </ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read>
+                    <Principal
+                     isPermitted="true"
+                     name="Controls Engineer"
+                     type="Group"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="Maintenance Engineer"
+                     type="Group"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="Maintenance Manager"
+                     type="Group"></Principal>
+                </Read>
+                <Update>
+                    <Principal
+                     isPermitted="true"
+                     name="Controls Engineer"
+                     type="Group"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="Maintenance Engineer"
+                     type="Group"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="Maintenance Manager"
+                     type="Group"></Principal>
+                </Update>
+                <Delete>
+                    <Principal
+                     isPermitted="true"
+                     name="Controls Engineer"
+                     type="Group"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="Maintenance Engineer"
+                     type="Group"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="Maintenance Manager"
+                     type="Group"></Principal>
+                </Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

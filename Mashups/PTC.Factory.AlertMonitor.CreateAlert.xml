@@ -1,0 +1,3272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Creates new alert {PTC.Factory.AlertMonitor.CreateAlert}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:46.682+05:30"
+         name="PTC.Factory.AlertMonitor.CreateAlert"
+         projectName="PTC.SCA.SCO.Alert Monitor"
+         rows="0.0"
+         tags="PTC:sca-sco-alertmonitor;PTC:sca-common;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:AlertEditing"
+                     type="OrganizationalUnit"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:AlertsManager"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="3"
+                 baseType="STRING"
+                 description=""
+                 name="alertId"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="1"
+                 baseType="STRING"
+                 description=""
+                 name="opcdaServerThingName"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="5"
+                 baseType="STRING"
+                 description=""
+                 name="resourceProvider"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="4"
+                 baseType="INTEGER"
+                 description=""
+                 name="selectedAlertPriority"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="PTC.Resource.ChartableItemShape"
+                 aspect.ordinal="2"
+                 baseType="INFOTABLE"
+                 description=""
+                 name="selectedAlertType"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.dataShape="PTC.SCA.SCO.ServerTagDataShape"
+                 aspect.ordinal="0"
+                 baseType="INFOTABLE"
+                 description=""
+                 name="selectedTag"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.ContextUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Resources_PTC.Factory.AlertMonitorUtilities" : {
+                  "DataName" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                  "EntityName" : "PTC.Factory.AlertMonitorUtilities",
+                  "EntityType" : "Resources",
+                  "Id" : "a813a667-9ca7-415e-9728-bed7701aa29f",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "d0587b60-f8e9-4332-977b-288246008886",
+                    "Name" : "CreateEntityAlert",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "ShowErrorMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "CreateEntityAlert"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "851eccdf-9af8-4061-8f4f-62a84428e118",
+                    "Name" : "CreateEntityAlert1",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "ShowErrorMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "CreateEntityAlert"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "af573186-2c40-403c-b5d0-935c19e486a0",
+                    "Name" : "CreateEntityAlert2",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "ShowErrorMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "CreateEntityAlert"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "adda5e5b-d15b-4606-80c4-fbca254b33a4",
+                    "Name" : "CreateEntityAlert3",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "ShowErrorMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "CreateEntityAlert"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "f502972f-66a1-459d-8fa6-5e707fbcbfd8",
+                    "Name" : "EntityAlertExists",
+                    "Parameters" : {
+                      "entityType" : "Thing"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "EntityAlertExists"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "4d20042c-4518-4dec-92e9-c3ad201c06ed",
+                    "Name" : "GetAlertId",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetAlertId"
+                  } ]
+                },
+                "Resources_PTC.Resource.Factory.MessageFormatUtilities" : {
+                  "DataName" : "Resources_PTC.Resource.Factory.MessageFormatUtilities",
+                  "EntityName" : "PTC.Resource.Factory.MessageFormatUtilities",
+                  "EntityType" : "Resources",
+                  "Id" : "15357521-785d-4620-8898-ed316843a7f0",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "5a4f3d75-f940-4a2e-964d-17c3aa173f91",
+                    "Name" : "IsAValidAlertName",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "IsAValidAlertName"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.ContextUtils" : {
+                  "DataName" : "Things_PTC.SCA.SCO.ContextUtils",
+                  "EntityName" : "PTC.SCA.SCO.ContextUtils",
+                  "EntityType" : "Things",
+                  "Id" : "dc002bb6-9ab4-48d0-affc-ba3bd0e5ca3c",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "0e483361-2048-43e4-be63-2c42e8edee07",
+                    "Name" : "GetCurrentUserPermissionOnThing",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserPermissionOnThing"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "04e4576f-667c-4bde-99a9-bf12f9c177d7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "selectedTag",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ContainedMashup-36",
+                "TargetSection" : ""
+              }, {
+                "Id" : "1ad1e8fc-11e2-4356-babe-ed18e592fdee",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedAlertType",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "selectedAlertType",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "7a6f8b61-8c40-4396-bf1f-537efc7d0d17",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "SubProperty" : "BaseType",
+                  "TargetProperty" : "baseType",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ContainedMashup-36",
+                "TargetSection" : ""
+              }, {
+                "Id" : "6f5ffa4c-7c5f-45ac-bbf6-77e47e77d5e7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "tagInfo",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "a6d5460a-241b-44b9-860d-0ded1d98ebd2",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "tagInfo",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert1",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "595f35a1-615d-4dae-9c91-ab719df3700c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "tagInfo",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert2",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "c5f05865-5fb2-4d79-8728-8c252540316b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "opcdaServerThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "entityName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert2",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "cc26a94c-5428-4e19-ba18-f803582e3cd2",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "tagInfo",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert3",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "74e1a3c6-bfbd-44f2-8196-c60b1c217b97",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "opcdaServerThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "entityName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert3",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "7a26e9d7-9a60-4ac0-89c9-f8e0927c0295",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "opcdaServerThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "entityName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert1",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "2542f08a-804b-4bf2-9e2d-f4edeaee923e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "opcdaServerThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "entityName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "82e366e8-6e97-4dcc-886a-6bdd9edfc3a9",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertDescription",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "alertDescription",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "501d5076-3c54-461d-9b27-3a96299181ff",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "alertName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "f76aa907-770a-453e-8cf9-4eeb78d3e49b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "alertName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert1",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "04d44ad5-4254-437c-a92a-88aeba7bca2c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertDescription",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "alertDescription",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert1",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "32c6f04d-0665-4d21-8d5d-3f9b46df1ffc",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertDescription",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "alertDescription",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert2",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "21c28032-4679-456c-8a62-19b029802ae7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "alertName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert2",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "3691b40b-f241-4b01-b6e1-092db8944d06",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertDescription",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "alertDescription",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert3",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "5b62f092-4c50-4227-956e-3a4069d9b21c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "alertName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert3",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "3d215e2f-6ef5-4908-9bd5-24ade89c0aad",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "BaseType",
+                  "TargetProperty" : "baseType",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Validator-43",
+                "TargetSection" : ""
+              }, {
+                "Id" : "889e4891-70ea-40be-9567-51ee8232dbb7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "BaseType",
+                  "TargetProperty" : "baseType",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Validator-44",
+                "TargetSection" : ""
+              }, {
+                "Id" : "5077b3d1-58cc-44ef-aea3-a35c3ae527d7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "BaseType",
+                  "TargetProperty" : "baseType",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Validator-45",
+                "TargetSection" : ""
+              }, {
+                "Id" : "1439925d-828d-47b3-a1e3-b610e80b75c0",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "BaseType",
+                  "TargetProperty" : "baseType",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Validator-46",
+                "TargetSection" : ""
+              }, {
+                "Id" : "84abe3b3-3b5f-445e-b618-fb9818dac41c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "stringValue",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "8cecaa2e-9ea7-4644-ba44-31613963bd87",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "intValue",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert1",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "741c26a8-593c-46ad-9da6-bd8d8ba060eb",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "numValue",
+                  "SourcePropertyBaseType" : "NUMBER",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert2",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "79086343-35d7-4962-98ec-f9dd94f4c667",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "boolValue",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert3",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "0e765c95-990c-49ea-bb8d-b345fe983f24",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "name",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "IsAValidAlertName",
+                "TargetSection" : "Resources_PTC.Resource.Factory.MessageFormatUtilities"
+              }, {
+                "Id" : "23ac90be-74f6-4595-b9dd-e546480092ae",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "input",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "IsAValidAlertName",
+                "SourceSection" : "Resources_PTC.Resource.Factory.MessageFormatUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-48",
+                "TargetSection" : ""
+              }, {
+                "Id" : "24a2309b-d883-47d0-9f01-2233e492adfa",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "Name",
+                  "TargetProperty" : "propertyName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EntityAlertExists",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "8792ce4c-6704-4756-8f8e-f8b562d3af68",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "opcdaServerThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "entityName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EntityAlertExists",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "c4a13383-3a73-42f0-a596-1cd314359c3f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "alertName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EntityAlertExists",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "2ac6db4d-c459-463e-acdc-5f067c44ce45",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "input",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "EntityAlertExists",
+                "SourceSection" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-50",
+                "TargetSection" : ""
+              }, {
+                "Id" : "cc298b79-a0b2-467e-8980-e880fc785fbc",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "boolValue",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Validator-51",
+                "TargetSection" : ""
+              }, {
+                "Id" : "00a25a05-5cab-4c9d-9426-deb229da7e5a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "numValue",
+                  "SourcePropertyBaseType" : "NUMBER",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "NUMBER"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Validator-54",
+                "TargetSection" : ""
+              }, {
+                "Id" : "a0950625-e5ab-4416-bbb4-dce7b0969181",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "intValue",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "NUMBER"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Validator-53",
+                "TargetSection" : ""
+              }, {
+                "Id" : "625a7184-22cd-4606-9b8d-f9f5b49bd8ba",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "stringValue",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Validator-52",
+                "TargetSection" : ""
+              }, {
+                "Id" : "16295c29-d259-4fe9-8542-4a98d3c417fe",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "intValue",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "NUMBER"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-57",
+                "TargetSection" : ""
+              }, {
+                "Id" : "f861171d-fbe3-45a9-ae22-f99f0f9f3aee",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "alertName",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetAlertId",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "14790b9c-dffa-4637-a5ed-bf4d0a93d3f0",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "opcdaServerThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "thingName",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetAlertId",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "7aa9e227-7bf3-4699-8265-2a769bb86e66",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "alertId",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetAlertId",
+                "SourceSection" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "5e303ca1-4e47-458c-97e4-f5cb8bf0929c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "Name",
+                  "TargetProperty" : "propertyName",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetAlertId",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "04d725ef-1a34-4b6a-8a76-b647a3df68ea",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "opcdaServerThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "thingName",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ContainedMashup-36",
+                "TargetSection" : ""
+              }, {
+                "Id" : "95c4b79c-af45-4d92-8667-b8e98c3311b4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedTag",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "Source",
+                  "TargetProperty" : "tagName",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ContainedMashup-36",
+                "TargetSection" : ""
+              }, {
+                "Id" : "4ee4759a-c42e-4e54-82d9-58e30bfa73a1",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertRecipients",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "recipients",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceDetails" : "AllData",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "651c11fb-2b65-43ab-9fda-43e17bad6037",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertRecipients",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "recipients",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceDetails" : "AllData",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert1",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "fd11c5c5-1f0c-4a6a-ae96-2520725de68a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertRecipients",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "recipients",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceDetails" : "AllData",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert2",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "2f025bb1-41cb-4fa1-9d35-240b41b0a01f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "alertRecipients",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "recipients",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceDetails" : "AllData",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert3",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "93a6e89c-2d12-4bb7-9dfa-a00183693363",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "isNumValueChanged",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "isNumberValueChanged",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-59",
+                "TargetSection" : ""
+              }, {
+                "Id" : "6af41b25-6183-4c4f-9618-10c5e1c4f4f6",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedAlertType",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "Label",
+                  "TargetProperty" : "alertType",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "ce6a51e3-1d17-40cc-8bdf-c9e91201c010",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedAlertType",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "Label",
+                  "TargetProperty" : "alertType",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert1",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "651e2f2b-c8ed-48b7-9fd1-70f943e2e3cc",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedAlertType",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "Label",
+                  "TargetProperty" : "alertType",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert2",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "b8a53abf-6ab1-4cc6-b9e7-0e48aa2cd78f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedAlertType",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "Label",
+                  "TargetProperty" : "alertType",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert3",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "30934d2a-9007-4539-a3cd-12d378d8f95f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Disabled",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-63",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "Button-28",
+                "TargetSection" : ""
+              }, {
+                "Id" : "925937a9-af36-4eba-a390-6f4da1677c45",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedAlertPriority",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "TargetProperty" : "selectedAlertPriority",
+                  "TargetPropertyBaseType" : "INTEGER"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ContainedMashup-36",
+                "SourceSection" : "",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "4f7a63b5-71cc-4059-8092-ea4beda3a46b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedAlertPriority",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "TargetProperty" : "priority",
+                  "TargetPropertyBaseType" : "INTEGER",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "3e38473d-7419-44a3-9e25-c35c81f02443",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedAlertPriority",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "TargetProperty" : "priority",
+                  "TargetPropertyBaseType" : "INTEGER",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert1",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "43fc0937-cc2d-4bab-be15-a880eacf6d50",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedAlertPriority",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "TargetProperty" : "priority",
+                  "TargetPropertyBaseType" : "INTEGER",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert2",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "7c0e676e-c0c5-4b68-9f15-2514e5cfd525",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "selectedAlertPriority",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "TargetProperty" : "priority",
+                  "TargetPropertyBaseType" : "INTEGER",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert3",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "7085aac2-9248-4590-9f5e-a9d6c26e44b4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "entityType",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-65",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "ae6f97d9-442b-4904-8804-298b86584721",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "entityType",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-65",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert1",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "0968de63-bd61-4bf5-870b-23a1ad787326",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "entityType",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-65",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert2",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "d254c179-8178-484d-8cd3-58ba898c7c38",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "entityType",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-65",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "CreateEntityAlert3",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "7dbc17fd-8f3c-48fd-bb4b-ded542acfe38",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "entityType",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-65",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EntityAlertExists",
+                "TargetSection" : "Resources_PTC.Factory.AlertMonitorUtilities"
+              }, {
+                "Id" : "d222f98a-fb3d-40c0-8050-dfc7c905cc23",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "resourceProvider",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "resourceProvider",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-65",
+                "TargetSection" : ""
+              }, {
+                "Id" : "07b65cb6-13e9-4c17-bb6b-ae1f45f40563",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "resourceProvider",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "resourceProvider",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ContainedMashup-36",
+                "TargetSection" : ""
+              }, {
+                "Id" : "c007e5ad-90dc-498e-861d-b67a8d65d658",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "entityType",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-65",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ContainedMashup-36",
+                "TargetSection" : ""
+              }, {
+                "Id" : "9d4542e2-139b-436a-a0bc-19a1565df68d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "permission",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetCurrentUserPermissionOnThing",
+                "SourceSection" : "Things_PTC.SCA.SCO.ContextUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-67",
+                "TargetSection" : ""
+              }, {
+                "Id" : "272b5440-8f18-4cfa-a0dc-5fd29d2704bb",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "opcdaServerThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "equipmentName",
+                  "TargetPropertyBaseType" : "THINGNAME"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetCurrentUserPermissionOnThing",
+                "TargetSection" : "Things_PTC.SCA.SCO.ContextUtils"
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-29",
+                "EventTriggerSection" : "",
+                "Id" : "b8c1bdea-f8db-411c-927c-ac28ade0dd32"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-47",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-48",
+                "EventTriggerSection" : "",
+                "Id" : "420ddf2b-92ad-4d76-ad07-54124b5d0b06"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-48",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "IsAValidAlertName",
+                "EventTriggerSection" : "Resources_PTC.Resource.Factory.MessageFormatUtilities",
+                "Id" : "bb085e6f-8e49-4618-bb9f-6029873aefc0"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Resource.Factory.MessageFormatUtilities",
+                "EventHandlerService" : "IsAValidAlertName",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-50",
+                "EventTriggerSection" : "",
+                "Id" : "7e980935-76e6-4284-8c02-9691555e8088"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-49",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-50",
+                "EventTriggerSection" : "",
+                "Id" : "55a076e6-d3b5-4333-bcc8-b26295b4225a"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-50",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "EntityAlertExists",
+                "EventTriggerSection" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "Id" : "881b5403-91cc-4d97-9ce6-d9d48cb76531"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-43",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-48",
+                "EventTriggerSection" : "",
+                "Id" : "b46d1099-6526-4a95-8a33-544f241f98cc"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-44",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-48",
+                "EventTriggerSection" : "",
+                "Id" : "58716815-3398-4986-8ea9-a1f1103372d8"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-45",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-48",
+                "EventTriggerSection" : "",
+                "Id" : "b866a9c5-921f-4a44-b0d7-30a1c911f854"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-46",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-48",
+                "EventTriggerSection" : "",
+                "Id" : "d4caa626-2ebb-4650-8852-132c8a432f3a"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-51",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-43",
+                "EventTriggerSection" : "",
+                "Id" : "791cb389-518f-4cda-89ce-99c27c37373c"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "EventHandlerService" : "CreateEntityAlert3",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-51",
+                "EventTriggerSection" : "",
+                "Id" : "6c072600-fd61-4a6c-b9af-e76dfe0097cd"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-55",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "Validator-51",
+                "EventTriggerSection" : "",
+                "Id" : "d5f4c195-20c0-4e99-abfa-c8f0b919ee23"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-55",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "Validator-52",
+                "EventTriggerSection" : "",
+                "Id" : "89408f90-cdeb-49cf-be2a-4634e24beaac"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "EventHandlerService" : "CreateEntityAlert",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-52",
+                "EventTriggerSection" : "",
+                "Id" : "a691e038-e0e3-4234-bf20-9e083a0a32a9"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-52",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-44",
+                "EventTriggerSection" : "",
+                "Id" : "0bf61aab-6396-4f66-9fcb-4eaced16b233"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-53",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-46",
+                "EventTriggerSection" : "",
+                "Id" : "a2181b79-e9be-450d-bebe-238188a418fe"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "EventHandlerService" : "CreateEntityAlert2",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-54",
+                "EventTriggerSection" : "",
+                "Id" : "a53c6ac6-2387-43d3-84e2-bd8b83fe015c"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-56",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "Validator-53",
+                "EventTriggerSection" : "",
+                "Id" : "002fd71f-d3e2-48b2-89bc-2c8b1ab79c0f"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-56",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "Validator-54",
+                "EventTriggerSection" : "",
+                "Id" : "dc5cb843-d95e-4208-bbd7-457c568d956d"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-57",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-53",
+                "EventTriggerSection" : "",
+                "Id" : "f9bd8980-de9e-4454-ab0e-a8620d62d037"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-58",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-57",
+                "EventTriggerSection" : "",
+                "Id" : "e60000cd-a7ba-475a-ae80-26791dbe7ae3"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "EventHandlerService" : "CreateEntityAlert1",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-57",
+                "EventTriggerSection" : "",
+                "Id" : "6d135a1d-e9ef-4e25-bc0c-e1b235c2112d"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "ContainedMashup-36",
+                "EventHandlerService" : "Refresh",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "selectedTagChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "2e13bbf3-82cf-4293-a3bf-043c5c8f570f"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "EventHandlerService" : "GetAlertId",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "CreateEntityAlert",
+                "EventTriggerSection" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "Id" : "a2efbfdc-9001-4003-a2f2-1530e3bf2b8d"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "EventHandlerService" : "GetAlertId",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "CreateEntityAlert1",
+                "EventTriggerSection" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "Id" : "d58bc605-028d-4d2b-a67e-1a9d7cb253bc"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "EventHandlerService" : "GetAlertId",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "CreateEntityAlert3",
+                "EventTriggerSection" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "Id" : "2a42ddd7-e3ed-4a7a-bfb8-7f44d7de72b3"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetAlertId",
+                "EventTriggerSection" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "Id" : "33d83863-11e9-4942-a442-967de72350eb"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "EventHandlerService" : "GetAlertId",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "CreateEntityAlert2",
+                "EventTriggerSection" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "Id" : "46294a05-b4fc-4b86-a9a1-a92aa149ceee"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-59",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-45",
+                "EventTriggerSection" : "",
+                "Id" : "14124730-c5fe-4168-afa6-d96fbf3ea509"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-54",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-59",
+                "EventTriggerSection" : "",
+                "Id" : "a9c26c2b-64e7-442e-b49e-a72a0cfbfd54"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-55",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-59",
+                "EventTriggerSection" : "",
+                "Id" : "223ca836-4b84-437f-a162-d5a8f59d5187"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-63",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-51",
+                "EventTriggerSection" : "",
+                "Id" : "0111b5e6-a671-46d8-9663-e19e4c58ee36"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-63",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-52",
+                "EventTriggerSection" : "",
+                "Id" : "612348fa-8fcf-430e-9e49-bca7a76a0f96"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-63",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "Validator-54",
+                "EventTriggerSection" : "",
+                "Id" : "6cdcc72c-6ad9-441a-b7f3-b7b82c8eee19"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-63",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-57",
+                "EventTriggerSection" : "",
+                "Id" : "52e8725e-b27c-4d43-b8f1-0451dc3d2993"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-67",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetCurrentUserPermissionOnThing",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.ContextUtils",
+                "Id" : "da37c27c-13f2-402e-a3ee-abba9ca51ffd"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.AlertMonitorUtilities",
+                "EventHandlerService" : "EntityAlertExists",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-67",
+                "EventTriggerSection" : " ",
+                "Id" : "69626bdb-b11d-4571-ab65-6f4b9f0208a6"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ContextUtils",
+                "EventHandlerService" : "GetCurrentUserPermissionOnThing",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-28",
+                "EventTriggerSection" : "",
+                "Id" : "fb7d6f63-e49c-46d1-9778-4cac8849bfd4"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-66",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-67",
+                "EventTriggerSection" : " ",
+                "Id" : "f3c5c008-cbf6-4360-acf5-2541b2440a79"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "StyleTheme" : "Base Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "Aspects" : {
+                      "dataShape" : "PTC.SCA.SCO.ServerTagDataShape"
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "",
+                    "ParameterName" : "selectedTag"
+                  }, {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "opcdaServerThingName"
+                  }, {
+                    "Aspects" : {
+                      "dataShape" : "PTC.Resource.ChartableItemShape"
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "",
+                    "ParameterName" : "selectedAlertType"
+                  }, {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "alertId"
+                  }, {
+                    "BaseType" : "INTEGER",
+                    "Description" : "",
+                    "ParameterName" : "selectedAlertPriority"
+                  }, {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "resourceProvider"
+                  } ],
+                  "id_index" : 67,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Columns" : 0,
+                    "DisplayName" : "Layout-32",
+                    "Footer" : true,
+                    "FooterHeight" : 57,
+                    "Header" : true,
+                    "HeaderHeight" : 40,
+                    "Id" : "Layout-32",
+                    "IncludeSpacingInFixedAreas" : false,
+                    "IsPrintLayout" : false,
+                    "Left" : 415,
+                    "LeftSidebar" : false,
+                    "LeftSidebarWidth" : 0,
+                    "Orientation" : "vertical",
+                    "PctColumn1" : 50,
+                    "PctColumn2" : 50,
+                    "PctColumn3" : 1,
+                    "PctColumn4" : 1,
+                    "PctColumn5" : 1,
+                    "PctColumn6" : 1,
+                    "PctColumn7" : 1,
+                    "PctColumn8" : 1,
+                    "PctRow1" : 100,
+                    "PctRow2" : 0,
+                    "PctRow3" : 0,
+                    "PctRow4" : 0,
+                    "PctRow5" : 0,
+                    "PctRow6" : 0,
+                    "PctRow7" : 0,
+                    "PctRow8" : 0,
+                    "PrintMarginLeftRight" : 0.5,
+                    "PrintMarginTopBottom" : 0.5,
+                    "PrintWidth" : 650,
+                    "ResponsiveLayout" : true,
+                    "RightSidebar" : false,
+                    "RightSidebarWidth" : 0,
+                    "Rows" : 1,
+                    "ShowDataLoading" : true,
+                    "Spacing" : 4,
+                    "Top" : 180,
+                    "Type" : "layout",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Layout"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Header",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-33",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container",
+                      "userCannotRemove" : true
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "panel-40",
+                        "Height" : 200,
+                        "HideScrollbars" : false,
+                        "HorizontalAnchor" : "left",
+                        "Id" : "panel-40",
+                        "Left" : 60,
+                        "ResponsiveLayout" : true,
+                        "ShowDataLoading" : true,
+                        "Style" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                        "Top" : 10,
+                        "Type" : "panel",
+                        "VerticalAnchor" : "top",
+                        "Visible" : true,
+                        "Width" : 300,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "panel"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "Alignment" : "left",
+                          "Area" : "UI",
+                          "BackgroundFill" : "content",
+                          "DisplayName" : "valuedisplay-42",
+                          "Height" : 22,
+                          "Id" : "valuedisplay-42",
+                          "ImageScaling" : "Width",
+                          "Label" : "",
+                          "LabelAlignment" : "left",
+                          "Left" : 20,
+                          "Overflow" : "hidden",
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "TextIfNoValue" : "[[PTC.Factory.Alert.CreateNewAlert]]",
+                          "TextIfNoValueOffset" : 0,
+                          "TextIfNoValueStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                          "TextWrap" : true,
+                          "ToolTipField" : "",
+                          "ToolTipStyle" : "DefaultTooltipStyle",
+                          "Top" : 10,
+                          "Type" : "valuedisplay",
+                          "UseTheme" : false,
+                          "ValueDisplayLabelStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                          "ValueDisplayStyle" : "PTC.Factory.Generic.ConfirmationPopupHeader",
+                          "VerticalAlignment" : "middle",
+                          "Visible" : true,
+                          "Width" : 210,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "valuedisplay",
+                          "__supportsLabel" : true,
+                          "__supportsTooltip" : true
+                        },
+                        "Widgets" : [ ]
+                      } ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Row",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-34",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container",
+                      "userCannotRemove" : true
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "ContainedMashup-36",
+                        "Height" : 200,
+                        "Id" : "ContainedMashup-36",
+                        "Left" : 0,
+                        "MashupParameters" : [ {
+                          "BaseType" : "STRING",
+                          "Description" : "",
+                          "ParameterName" : "alertType",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "3"
+                            },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "alertType",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "INTEGER",
+                          "Description" : "",
+                          "ParameterName" : "selectedAlertPriority",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "16"
+                            },
+                            "baseType" : "INTEGER",
+                            "description" : "",
+                            "name" : "selectedAlertPriority",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "STRING",
+                          "Description" : "",
+                          "ParameterName" : "entityType",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "20"
+                            },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "entityType",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "INTEGER",
+                          "Description" : "",
+                          "ParameterName" : "intValue",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "9"
+                            },
+                            "baseType" : "INTEGER",
+                            "description" : "",
+                            "name" : "intValue",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "STRING",
+                          "Description" : "",
+                          "ParameterName" : "thingName",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "12"
+                            },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "thingName",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "INTEGER",
+                          "Description" : "",
+                          "ParameterName" : "alertPriority",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "15"
+                            },
+                            "baseType" : "INTEGER",
+                            "description" : "",
+                            "name" : "alertPriority",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "STRING",
+                          "Description" : "",
+                          "ParameterName" : "tagName",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "5"
+                            },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "tagName",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "STRING",
+                          "Description" : "",
+                          "ParameterName" : "alertDescription",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "1"
+                            },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "alertDescription",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "STRING",
+                          "Description" : "",
+                          "ParameterName" : "baseType",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "4"
+                            },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "baseType",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "NUMBER",
+                          "Description" : "",
+                          "ParameterName" : "numValue",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "10"
+                            },
+                            "baseType" : "NUMBER",
+                            "description" : "",
+                            "name" : "numValue",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "BOOLEAN",
+                          "Description" : "",
+                          "ParameterName" : "isAlertNameEditable",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "11"
+                            },
+                            "baseType" : "BOOLEAN",
+                            "description" : "",
+                            "name" : "isAlertNameEditable",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "INFOTABLE",
+                          "Description" : "",
+                          "ParameterName" : "selectedAlertType",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "dataShape" : "PTC.Resource.ChartableItemShape",
+                              "ordinal" : "2"
+                            },
+                            "baseType" : "INFOTABLE",
+                            "description" : "",
+                            "name" : "selectedAlertType",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "STRING",
+                          "Description" : "",
+                          "ParameterName" : "stringValue",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "7"
+                            },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "stringValue",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "STRING",
+                          "Description" : "",
+                          "ParameterName" : "alertName",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "0"
+                            },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "alertName",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "BOOLEAN",
+                          "Description" : "",
+                          "ParameterName" : "isAlertOverrideCheckboxSelected",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "19"
+                            },
+                            "baseType" : "BOOLEAN",
+                            "description" : "",
+                            "name" : "isAlertOverrideCheckboxSelected",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "INFOTABLE",
+                          "Description" : "",
+                          "ParameterName" : "alertRecipients",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "dataShape" : "PTC.SCA.Common.Alert.RecipientDataShape",
+                              "ordinal" : "13"
+                            },
+                            "baseType" : "INFOTABLE",
+                            "description" : "",
+                            "name" : "alertRecipients",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "BOOLEAN",
+                          "Description" : "",
+                          "ParameterName" : "isNumValueChanged",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "14"
+                            },
+                            "baseType" : "BOOLEAN",
+                            "description" : "",
+                            "name" : "isNumValueChanged",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "BOOLEAN",
+                          "Description" : "",
+                          "ParameterName" : "boolValue",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "8"
+                            },
+                            "baseType" : "BOOLEAN",
+                            "description" : "",
+                            "name" : "boolValue",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "STRING",
+                          "Description" : "",
+                          "ParameterName" : "resourceProvider",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "17"
+                            },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "resourceProvider",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "BOOLEAN",
+                          "DefaultValue" : false,
+                          "Description" : "",
+                          "ParameterName" : "isAlertOverrideCheckboxVisible",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "18"
+                            },
+                            "baseType" : "BOOLEAN",
+                            "description" : "",
+                            "name" : "isAlertOverrideCheckboxVisible",
+                            "ordinal" : 0
+                          }
+                        }, {
+                          "BaseType" : "STRING",
+                          "Description" : "",
+                          "ParameterName" : "value",
+                          "ParmDef" : {
+                            "aspects" : {
+                              "ordinal" : "6"
+                            },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "value",
+                            "ordinal" : 0
+                          }
+                        } ],
+                        "Name" : "PTC.Factory.AlertMonitor.EditAlert",
+                        "ResponsiveLayout" : true,
+                        "ShowDataLoading" : true,
+                        "TabSequenceGroup" : 1,
+                        "Top" : 0,
+                        "Type" : "mashupcontainer",
+                        "Visible" : true,
+                        "Width" : 705,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Contained Mashup",
+                        "alertDescription" : "",
+                        "boolValue" : false,
+                        "intValue" : 0,
+                        "isAlertNameEditable" : true,
+                        "isAlertOverrideCheckboxVisible" : false,
+                        "numValue" : 0,
+                        "value" : ""
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Footer",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-35",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container",
+                      "userCannotRemove" : true
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "Panel-39",
+                        "Height" : 200,
+                        "HideScrollbars" : true,
+                        "HorizontalAnchor" : "left",
+                        "Id" : "Panel-39",
+                        "Left" : 85,
+                        "ResponsiveLayout" : true,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultContainerStyle",
+                        "Top" : 15,
+                        "Type" : "panel",
+                        "VerticalAnchor" : "top",
+                        "Visible" : true,
+                        "Width" : 300,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Panel"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                          "Area" : "UI",
+                          "CancelConfirmationButton" : "button2",
+                          "ConfirmationButton1Label" : "Yes",
+                          "ConfirmationButton2Label" : "[[PTC.Factory.Alert.TagAndName]]",
+                          "ConfirmationPrompt" : "Do Action?",
+                          "ConfirmationRequired" : false,
+                          "ConfirmationTitle" : "Confirm Action",
+                          "ContextId" : "",
+                          "DefaultConfirmationButton" : "button1",
+                          "Description" : "",
+                          "Disabled" : false,
+                          "DisabledStyle" : "PTC.Factory.Generic.DisableButton",
+                          "DisplayName" : "Save Button",
+                          "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                          "Height" : 32,
+                          "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupOkOrYesHover",
+                          "IconAlignment" : "left",
+                          "Id" : "Button-28",
+                          "Label" : "[[PTC.Factory.Save]]",
+                          "Left" : 550,
+                          "ResponsiveLayout" : false,
+                          "RoundedCorners" : false,
+                          "ShowDataLoading" : true,
+                          "SingleClickSelectOnTablets" : true,
+                          "Style" : "PTC.Factory.Generic.ConfirmationPopupOkOrYes",
+                          "TabSequence" : 3,
+                          "ToolTipField" : "",
+                          "ToolTipStyle" : "DefaultTooltipStyle",
+                          "Top" : 2,
+                          "Type" : "button",
+                          "Visible" : true,
+                          "Width" : 100,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Button",
+                          "__supportsTooltip" : true
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "ActiveStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                          "Area" : "UI",
+                          "CancelConfirmationButton" : "button2",
+                          "ConfirmationButton1Label" : "Yes",
+                          "ConfirmationButton2Label" : "No",
+                          "ConfirmationPrompt" : "Do Action?",
+                          "ConfirmationRequired" : false,
+                          "ConfirmationTitle" : "Confirm Action",
+                          "ContextId" : "",
+                          "DefaultConfirmationButton" : "button1",
+                          "Description" : "",
+                          "Disabled" : false,
+                          "DisabledStyle" : "PTC.Factory.Generic.DisableButton",
+                          "DisplayName" : "Cancel Button",
+                          "FocusStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                          "Height" : 32,
+                          "HoverStyle" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNoHover",
+                          "IconAlignment" : "left",
+                          "Id" : "Button-29",
+                          "Label" : "[[PTC.SCA.SCO.Alert.Cancel]]",
+                          "Left" : 670,
+                          "ResponsiveLayout" : false,
+                          "RoundedCorners" : false,
+                          "ShowDataLoading" : true,
+                          "SingleClickSelectOnTablets" : true,
+                          "Style" : "PTC.Factory.Generic.ConfirmationPopupCancelOrNo",
+                          "TabSequence" : 5,
+                          "ToolTipField" : "",
+                          "ToolTipStyle" : "DefaultTooltipStyle",
+                          "Top" : 0,
+                          "Type" : "button",
+                          "Visible" : true,
+                          "Width" : 100,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Button",
+                          "__supportsTooltip" : true
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "Description" : "",
+                          "DisplayName" : "BT is boolean",
+                          "Expression" : "baseType=='BOOLEAN'",
+                          "Height" : 28,
+                          "Id" : "Validator-43",
+                          "Left" : 10,
+                          "Output" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 10,
+                          "Type" : "validator",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Validator",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "STRING",
+                            "Description" : "",
+                            "ParameterName" : "baseType",
+                            "isBindingTarget" : true,
+                            "name" : "baseType"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "DisplayName" : "BT is string",
+                          "Expression" : "baseType=='STRING'",
+                          "Height" : 28,
+                          "Id" : "Validator-44",
+                          "Left" : 10,
+                          "Output" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 10,
+                          "Type" : "validator",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Validator",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "STRING",
+                            "Description" : "",
+                            "ParameterName" : "baseType",
+                            "isBindingTarget" : true,
+                            "name" : "baseType"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "DisplayName" : "BT is number",
+                          "Expression" : "baseType=='NUMBER'",
+                          "Height" : 28,
+                          "Id" : "Validator-45",
+                          "Left" : 10,
+                          "Output" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 10,
+                          "Type" : "validator",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Validator",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "STRING",
+                            "Description" : "",
+                            "ParameterName" : "baseType",
+                            "isBindingTarget" : true,
+                            "name" : "baseType"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "Description" : "",
+                          "DisplayName" : "BT is integer",
+                          "Expression" : "baseType=='INTEGER'||baseType=='LONG'",
+                          "Height" : 28,
+                          "Id" : "Validator-46",
+                          "Left" : 10,
+                          "Output" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 10,
+                          "Type" : "validator",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Validator",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "STRING",
+                            "Description" : "",
+                            "ParameterName" : "baseType",
+                            "isBindingTarget" : true,
+                            "name" : "baseType"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "DisplayName" : "Invalid name status message",
+                          "Height" : 18,
+                          "Id" : "statusmessage-47",
+                          "Left" : 227,
+                          "Message" : "[[PTC.Factory.Error.InvalidAlertName]]",
+                          "MessageType" : "error",
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 0,
+                          "Type" : "statusmessage",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "statusmessage"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "DisplayName" : "Is name valid",
+                          "Expression" : "input",
+                          "Height" : 13,
+                          "Id" : "validator-48",
+                          "Left" : 227,
+                          "Output" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 20,
+                          "Type" : "validator",
+                          "Visible" : true,
+                          "Width" : 165,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "validator",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "BOOLEAN",
+                            "Description" : "",
+                            "ParameterName" : "input",
+                            "isBindingTarget" : true,
+                            "name" : "input"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "DisplayName" : "Alert exists message",
+                          "Height" : 18,
+                          "Id" : "statusmessage-49",
+                          "Left" : 227,
+                          "Message" : "[[PTC.Factory.Error.AlertAlreadyExists]]",
+                          "MessageType" : "warning",
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 11,
+                          "Type" : "statusmessage",
+                          "Visible" : true,
+                          "Width" : 205,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "statusmessage"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "DisplayName" : "Does name exists",
+                          "Expression" : "!input",
+                          "Height" : 28,
+                          "Id" : "validator-50",
+                          "Left" : 10,
+                          "Output" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 10,
+                          "Type" : "validator",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "validator",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "BOOLEAN",
+                            "Description" : "",
+                            "ParameterName" : "input",
+                            "isBindingTarget" : true,
+                            "name" : "input"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "Description" : "",
+                          "DisplayName" : "Bool is not null",
+                          "Expression" : "value!=null",
+                          "Height" : 28,
+                          "Id" : "Validator-51",
+                          "Left" : 10,
+                          "Output" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 10,
+                          "Type" : "validator",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Validator",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "BOOLEAN",
+                            "Description" : "",
+                            "ParameterName" : "value",
+                            "isBindingTarget" : true,
+                            "name" : "value"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "DisplayName" : "String is not null or empty",
+                          "Expression" : "value!=null&&value!=\"\"",
+                          "Height" : 28,
+                          "Id" : "Validator-52",
+                          "Left" : 10,
+                          "Output" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 10,
+                          "Type" : "validator",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Validator",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "STRING",
+                            "Description" : "",
+                            "ParameterName" : "value",
+                            "isBindingTarget" : true,
+                            "name" : "value"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "DisplayName" : "Int is not null",
+                          "Expression" : "value!=null",
+                          "Height" : 13,
+                          "Id" : "Validator-53",
+                          "Left" : 10,
+                          "Output" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 10,
+                          "Type" : "validator",
+                          "Visible" : true,
+                          "Width" : 175,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Validator",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "NUMBER",
+                            "Description" : "",
+                            "ParameterName" : "value",
+                            "isBindingTarget" : true,
+                            "name" : "value"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "Description" : "",
+                          "DisplayName" : "Num is valide",
+                          "Expression" : "value!=null",
+                          "Height" : 18,
+                          "Id" : "Validator-54",
+                          "Left" : 10,
+                          "Output" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 20,
+                          "Type" : "validator",
+                          "Visible" : true,
+                          "Width" : 165,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Validator",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "NUMBER",
+                            "Description" : "",
+                            "ParameterName" : "value",
+                            "isBindingTarget" : true,
+                            "name" : "value"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "DisplayName" : "Select a value message",
+                          "Height" : 18,
+                          "Id" : "statusmessage-55",
+                          "Left" : 10,
+                          "Message" : "[[PTC.Factory.Error.ValueIsNull]]",
+                          "MessageType" : "warning",
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 30,
+                          "Type" : "statusmessage",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "statusmessage"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "Description" : "",
+                          "DisplayName" : "Value must be numeric",
+                          "Height" : 18,
+                          "Id" : "statusmessage-56",
+                          "Left" : 10,
+                          "Message" : "[[PTC.Factory.Error.ValueMustBeNumerical]]",
+                          "MessageType" : "warning",
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 0,
+                          "Type" : "statusmessage",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "statusmessage"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "Description" : "",
+                          "DisplayName" : "Int value is in range",
+                          "Expression" : "(value < 2147483648) && (value >= -2147483648)",
+                          "Height" : 13,
+                          "Id" : "validator-57",
+                          "Left" : 228,
+                          "Output" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 31,
+                          "Type" : "validator",
+                          "Visible" : true,
+                          "Width" : 160,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Validator",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "NUMBER",
+                            "Description" : "",
+                            "ParameterName" : "value",
+                            "isBindingTarget" : true,
+                            "name" : "value"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "DisplayName" : "Int is out of the range",
+                          "Height" : 18,
+                          "Id" : "statusmessage-58",
+                          "Left" : 398,
+                          "Message" : "[[PTC.Factory.AlertEditor.IntegerValueOutOfRange]]",
+                          "MessageType" : "warning",
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 30,
+                          "Type" : "statusmessage",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Status Message"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "Description" : "",
+                          "DisplayName" : "No number input",
+                          "Expression" : "isNumberValueChanged!=true",
+                          "Height" : 28,
+                          "Id" : "validator-59",
+                          "Left" : 805,
+                          "Output" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 15,
+                          "Type" : "validator",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Validator",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "BOOLEAN",
+                            "Description" : "",
+                            "ParameterName" : "isNumberValueChanged",
+                            "isBindingTarget" : true,
+                            "name" : "isNumberValueChanged"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "DataChangeType" : "VALUE",
+                          "Description" : "Set true Boolean value",
+                          "DisplayName" : "Set true Boolean value",
+                          "Expression" : "true",
+                          "FireOnFirstValue" : false,
+                          "Height" : 18,
+                          "Id" : "expression-63",
+                          "Left" : 1000,
+                          "OutputBaseType" : "BOOLEAN",
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : false,
+                          "Top" : 13,
+                          "Type" : "expression",
+                          "Visible" : false,
+                          "Width" : 175,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Expression",
+                          "_currentParameterDefs" : [ ]
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : true,
+                          "DataChangeType" : "VALUE",
+                          "DisplayName" : "EntityTypeExpression",
+                          "Expression" : "resourceProvider === 'PTC.SCA.SCO.EquipmentTemplateResourceProvider' ? 'ThingTemplate' : 'Thing'",
+                          "FireOnFirstValue" : false,
+                          "Height" : 28,
+                          "Id" : "expression-65",
+                          "Left" : 795,
+                          "OutputBaseType" : "STRING",
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 0,
+                          "Type" : "expression",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Expression",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "STRING",
+                            "Description" : "Determines the entity type based on the resource provider",
+                            "ParameterName" : "resourceProvider",
+                            "isBindingTarget" : true,
+                            "name" : "resourceProvider"
+                          } ]
+                        },
+                        "Widgets" : [ ]
+                      } ]
+                    } ]
+                  } ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Description" : "Message for use case that user do not have runtime write permission on specific equipment",
+                    "DisplayName" : "HaveNoRuntimeWritePermission",
+                    "Height" : 28,
+                    "Id" : "statusmessage-66",
+                    "Left" : 0,
+                    "Message" : "[[PTC.SCA.SCO.HaveNoRuntimeWritePermission]]",
+                    "MessageType" : "error",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "statusmessage",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Status Message",
+                    "_currentParameterDefs" : [ ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DisplayName" : "hasWriteRuntimePermission",
+                    "Expression" : "permission==='Write';",
+                    "Height" : 28,
+                    "Id" : "validator-67",
+                    "Left" : 0,
+                    "Output" : true,
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "validator",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Validator",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "permission",
+                      "bindingDirection" : "",
+                      "bindingStatus" : false,
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "permission"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            iVBORw0KGgoAAAANSUhEUgAAAzMAAALSCAYAAADpxI8lAABVjElEQVR42uzda5BlVWG4/f6WVCof
+            8iEfkw+ptypB+OMlJFgaDKhkkGvoK3OHGWa4DJcBS2K0/GuZmCm8xBEcDWpExSiDGhnUQkwiU5Yk
+            hQhOfH0TDaCVECeDKbSIk8Sgodbba5+zTq+9z97n0n369OmZ31P1THefyz67L6dnPb3W3mfqhhtu
+            CNe3ve7660vvR/dcd13nbfTaPXu6vfbacE30mmtab9vvXx29+upw1aLpbXL3VVd1uWv37o5X7trV
+            en/x7ZXJK68MO9vm7+/cuTPsSO7Y0bLy8RXRK67oeHnbK9rXXZ5dltx++eXLc/v2jtt6uW1brVvb
+            but3/wG2RZIkyYpDjLE647JlbCsfEy53XFk3Rq2OX/Mx7hVpLFwzHk4fx7Fz3Zg6vp/G3bvaY/HO
+            mLxt3Rg+H+PnY//YAtU+iG9jO9Q1ReqNvEGqfZLejw1zw403hqnrs5gZScikiGkImZFFTPsb0fUN
+            yuMlC5jqD8Ag4bKt6QevX6zUxMlyYmYot24lSZLkIC5jrDVMzGwd8Hb9YqdpLHp5n7FtHjZdcZO9
+            vzMLm1FGTTVoSlGzwqDJjUEzVRcxA4VMipi0U22XEzGlL05NxFxZiZi8MvNv0ErjpSlaegZIn4gZ
+            Njq29HPLFr+ASJIkR2wcY/Ubhy0nkoYZO9aGzjJmb3rFTT5urputycfddVFTHbsPEzV5M6SOqIua
+            pqCpi5qpkc7GDLikrG4WZtcwszANy8eavoF9K7dXtDT8wPUKlEF/+AcJl0HdTJIkyYEcZoy1nMAZ
+            6HZNwdNnPFoXOXUzOE1x07gcbcDZml0NszXLWno2glmaqWrI5NZt9JohQmao5WQNEbOjJmLqlpAN
+            PfvSL16aZleafkizGZNBw6Tvk23z5uH0y4kkSXKs46tBA6jXDFDTzE7T+LQrbpYxa1O7FC0fcw8S
+            NQMsP6sLmje88Y3hgx/8YPjKV74Snn766fDcc88Vxvcf+tu/DR/96EfDm/7v/y0FTR42edBMVUMm
+            vZ/HS2lGplJTw4ZMr2NihpmJGXQWpnH2pV+8NNR1Y3X3C5XlPEGGfLJtIkmSZE9HGjMD3qdX7Awy
+            5hw0bvotTes5WzPETE2/Y2qaguYNf/iH4d577w3/9V//FXKeeeaZcPTo0dJl//3f/x0OHTpUhE91
+            5VgeNFM7Fh94x+IOXbFo/v4Vizvdebvo5dH4SWduj/Gw6Lb22+L9ONW16Nb4RW2/TW6J34j22+jm
+            xW9ONH8/umnxm9zl4g/GxraXbdpUer/jxo2ljxcWP86dv+yywuLj+Lb9ceHCQse5tum6ueyykvPz
+            JWdz5+aar6vcrskZkiRJrqm9xmpN47vSGLByu+r4sWmcWR2H5mPVzpg2WR3nZvYaK9eNrYvoqxmL
+            52P16jg+H+PnY/+8Cd76x38cvvu97xWh8rOf/Szcc889Rfj9/M//fMnzzz8/3HnnneF//ud/itv+
+            0z/9U7j1He8oGiW2StEs7fd3Ljp10003hb1794b4Nr2fvPHGGzsWp3BeLKD0NnldrKO2e+JUUMVr
+            0zq46okC0rq5NKMTqy3WW6y5RfP3O8fULO54/n7nAKXF0Loym9HZmZ+pocYrKqewuzyW6qLVj3O3
+            V8840cdBTw3Y70CyYU4z6OA9kiTJ8Y2tBt3OsOPIurFo07g12Wvsm4+R87Fzsm6sXTcmT+P16jg+
+            H+PnY//UA+985zuLZWSRv/3bvw0vfOELuyKm6ste9rLwD//wD534OXDgQKlX4tubb765FTPViMlD
+            5oZ0Hue2ecTkMdMUMemTWknE5OYBU42YarA0BUz+QzBIuNT9EA77gz/K8Ngy7IFrJEmS7OkoA2nY
+            8Blk7NkUOHVx02tMXDeGrkZN7nKiJm+At771reFHP/pRESWf/exnw8/93M/V2hQ1f/Znf9YJmj/9
+            0z8tTcJEp/KQifGy0pBZTsTkX5y6iFnOLMygMy/LmWFZbqQM+6SKU29+uZAkSa6NyxmLLTd6ljOj
+            M+jMzUpma6pRk4/d+0XNLbfcEr72ta8VMfLQQw81hkyvmIl+8pOfLLbxj//4j+GNb3xjKWimJilk
+            qlNcvSJmkCVkgwRM9QelX5ysJFiGfUJsXs5BaiRJkhyZo4yffqHTL356jWGbwmaQpWj9oqbX8rNe
+            QfPuP/3TIkJ+8pOfhFNPPbUUL+eee264+OKLu2Lm137t18If/MEfhF/6pV/qXPYLv/AL4Qc/+EGx
+            rY997GOdiZhOzOTHxvQLmZUsK6suKRt0OVm/iBlkCdlyAqbXbMtKCn+oM5Rt2jSwfuGQJEmu3dhq
+            lEvcmsalywmbYWdrqlHTa/lZ09KzGBp/93d/VwTIxz/+8VLIvOIVr+ictez222/vXP6Sl7wk/Pu/
+            /3txeTxBQD47E2dkIk888UT4wz/8w+6YaZqViRHz+c9/niRJkiQHMr5WzLFjx4oAueCCC0oxc/rp
+            p3fOVpaC5rd/+7c7IRP58Ic/XIqZX/3VXw3PP/98cd1b3vzmzuzMVL+QETMkSZIkh/F9Bw4U4fGf
+            //mftcfIxBmkPGji7RJ//dd/XXvszHe+853i+nhms9QwU9WQqZ5+OS4p27BhA0mSJEkO5H333VeE
+            x1NPPRV+8Rd/sda4lO2nP/1p6cUyY8g0nRjg8OHDxW3iCQFSw0wNcoyMbwhJkiTJQf2rv/qrIjy+
+            +93vNsbMWWedFZ599tlSzLz3ve9tjJm/+Zu/KW7z6U9/emlmpmlpWX7WMt8QkiRJkoN67733FuHx
+            H//xH40h88Mf/rATMel4mOpJAfKY+eY3v9k5niatLJuqm5XJQyaeqcw3hCRJkuSg3nnnneF///d/
+            i/h44QtfWAqZX/mVXymFzJe//OXiDGv5MTRvectbumLmxz/+cXHdH//xHxfd0hUzaVam+joyviEk
+            SZIkB/W2227rnJ3sT/7kT0oxc8kll5RCJl5WPSnAAw88UIqZeOrryPe///3idWhSv0wN8loyviEk
+            SZIkB/VNb3pTeOihh4oAibMwv/zLv1wKmnj9H/3RH3U+TsvKXvOa1xTLzNKLbKaY+frXv15s68EH
+            Hwy33HJLOWb6vSimbwhJkiTJQY0v0hlPofyjH/2oiJCPfOQjjScCyGOmagyZ173udcU24rbi0rKb
+            b755KWb6hcy1117rG0KSJElyKN/85jeHv/zLv+wsKXv9618/dMzEJWk/+9nPivvfc8894aabbupM
+            xHRipnrAfx4yYoYkSZLkcmZn3v72t4evfvWrpVMvDxozcQbmueeeK+73ta99LezcsaO4LLVLETN5
+            yOQxk0Lmmmuu8c0gSZIkObSxM+LZx9ILXkb++Z//uVgulh9Hk0fMpk2bwpEjRzq3jyGzcePG4j55
+            u8S3U3Uhk2ImhoyZGZIkSZLLNUZIXHL28Y9/vHRK5p/+9Kfh8ccfL16T5jOf+Uz41re+1Tn9cuQH
+            P/hB+NjHPhZmZ2c7rZK6JS01m+oXMmZmSJIkSa7E2BXxmJkdO3aE+++/Pxw7diw08b3vfa+Im3PO
+            OSfMz82FnTt3llolP9Z/qhoy1SVmYoYkSZLkSt26dWsxSxPPThajZtu2bcUpmuPsy3ve854iTs4/
+            //xw9u/+brjooovCli1biuNu4ttqr3SWmTXNyiSvvvpqX3ySJEmSIzEeExMbI51m+bWvfW0477zz
+            woUXXhguvvjicOmllxYBE2+XjI1SNzszVTcjk4ImPoiYIUmSJDlOL7vsso7x4P/UKNWgmeoXMmKG
+            JEmS5DhdWFjoGIMmb5U8aKbqjpHJY+aqq67yBSVJkiQ5Nufn54uQSW9To1SDZqru7GX5rMyqxswd
+            R8Lx7MwF//Kl9uVf+pfyKQ2OHwkf2DDAdYVfDP+Sb6vuPomnvti5fbbBcOSO6r5+IBw5nm5feazO
+            47dvU/l8vvhUZV/atytdVnwd/iV8senrVOx/9/Uf+Pvj4fjff6B+X7u+rk2Xt7ZTR/e2SZIkydU3
+            no55bm6uY94qpZipLi+rzsrs3r17VXawNYAuD9C/+PftMIiD9ywcYhB0BtaV6+oG/sefWrQrctKA
+            vhorMWZ6hER2v+PVCOmKmZoQqu5vO+BKodDnc/riU4up81R3uDTHTFOQZZfXBtQgXwuSJEly/DGT
+            z8ykoJnqtbxs9WKmz6C5OrjPPx5g4H/kjgEH9EPGzJEvHalE0gAxc0f5PkWAVGKre/amJpjuONIV
+            aCuKmWV/LUiSJMnVdWZmphQ0sU/yZunETK/lZTFkViVmBphdqc7MlJagNd53KS4GH+gPETN3VGaJ
+            BomZyuXdsdV0v2ymqXi87tuteGamdomemCFJkuTaz8wkU8ykoMmXm031Wl62WjMz9YPw5mNceh7/
+            koVNabu1g/WmmCk9Ws1gPr9fvH32fuMxM3nApABaioVOoNXuZ/3+Vr9ugx0zk0dTr2ONxAxJkiQn
+            L2biSQDymMmXm01VQ6a6xGzXrl1rOjNTHFvTtORs6GVUK5+ZKe/DIDMz2e1juFSXy/X6WlRDp27J
+            2rJmZvIgEzMkSZKc3GNm4gto5q2SLzeb6rW8bNViZpCzd3UG+E0hUbfNfmfkGlHMdM5INmDMtB/j
+            SM3M0ZEex8vUn2WseaZmqGVmtV9HMUOSJMnJiZnNmzeHHTt2FI1SDZrOzExTzMSQWZWYaS+zKi91
+            WhxsP1V/NrPi4+MN1/WapeiKplHFTIqR49lMSa+YSWdD6545Ot7nPtXr8pmqlZ8AoObsbGKGJEmS
+            a2zqkNQljTFTFzL5ErPVipnumYdeswatgXcxcO96zZg4+O41gM8H7IMcM1M3U1K//XKQdb+OS/X4
+            lupxKt1B12OJWU2gdc3cFLdv2o+az6Hr9WvEDEmSJCcrZvJGqQbNVN1xMilkrrzyylWNGZIkSZKs
+            i5nUIvnsTB40XTFTNysTN+ILSpIkSXJcppDpNTvTiZlUOXUhI2ZIkiRJjjtm6oKmOjsz1XQGsxQz
+            O3fu9AUlSZIkOTZjg1Rjpu5kAFP9ZmXMzJAkSZJci5mZfrMzU/1mZczMkCRJkhz3zMwgszNT1VmZ
+            dIdUQmKGJEmS5FosM8vbpDo7U8RMv1mZ+IqbvqAkSZIkx2VskEFmZ6b6zcqIGZIkSZJrETP9Zmem
+            +s3KiBmSJEmS446ZfrMznZhJV4gZkiRJkpMcM3nQTDWdjlnMkCRJklzrmGk6TXMRM/1mZa644gpf
+            UJIkSZJjMzbIILMzU/1mZcQMSZIkybWMmabZmaleszIpZgAAAABgXOQx0+tEAFNNp2NOIXP55Zf7
+            agIAAAAYG7FBmmZn8tM0T/VbYiZmAAAAAExKzOSzM1N1S8ziHXMBAAAAYFxUe6RpqdlUvyVmZmYA
+            AAAAjJPUIb2WmhUxs3XbtrBl69awpf1285YthZs2by7cuCgAAAAAjIuN7RaJpj7JmyU2THQqXZCH
+            THTjpk2tmFl8CwAAAABji5msRfJGSd0SG2bb9u3tmKmZlYl33ChmAAAAAKxBzKQWqZ2diTMzRcz0
+            WmIWNyJmAAAAAIw7Ztoh07jUrBMzlSVmecxctnGjryYAAACAsREbpC5m8qVmxTEzmysxU11iJmYA
+            AAAArEXMNC0125xipvF4mXbIWGYGAAAAYJzkLdLruJmpfkvMzMwAAAAAGCepQ3ouNavGTP7aMmIG
+            AAAAwFrHTONrziw61et4GcfMAAAAAFiLmEk90niK5saYyWZlxAwAAACAccdMaXam4biZqX7Hyyxc
+            dpmvJgAAAICxERuk73Ezecxsytai5bMzYgYAAADAWsRM9cUzq7MzU/2OlxEzAAAAANYyZpqOm5nq
+            9WKZcSNiBgAAAMC4Y6YUNIPETN3xMmIGAAAAwFrFTNNxM52YqR4vI2YAAAAATGLMpKApxUx1iZmY
+            AQAAADApMVO31Gyq38H/YgYAAADAWsVMr5MANMZMvPP8woKYAQAAADD2mEktMlDMNB0vEzcCrCmP
+            HQgbNhwIR3wlAAAATgpSyPQ7CcBExsyR2zcsDl6b3Bvue3r9fCNqP5fbT85heelrsfe+cGwiYuZY
+            uG9vw/48fV/Yu7ivew8d8xsFAABgEmNmUzZdM4kzM8cO7R1u4DuJA/hSvBwJB9ZL0KxCRBTfz2E/
+            96H3oxUog0dI63tSvn07cm43HwQAADBJMZMvNZvqdyYzMTPqmAnrZ9nUSRMz7f3KHqP6MQAAANY+
+            Zjb2i5n8TGZxI5McM60B59LSpe7Ba3sWJFveVRsX3QlSvl/X0rY0WD7S+uv94m0OPDZEzBTLl9rb
+            TO8/1lrSVB5A99mPznaOdfajaRlb9WtV2t8UC8Xb1pKrL3ctj0vXdw/wl75HdTMcfWImbfPp9Pn3
+            2L9BPp/KdjYMvEwsn4lpfR5N31MAAACsfsykoOl1RrN1HDOLA858UNwexC4NQLsH1p0BcK+YqTtO
+            oj3IX9p2iof+x+/0nZlJg+/q5zjIfnQG7vl+dC9j6/oaVr9WKWL6ziDVDfLzWZDlxkz58++aFans
+            R9/PZxkzM3kc7rW8DAAAYJ3FTGa+xGz9LDMrD2Cb7tdvZqbp+vLlgx9P0bW9aqR0DcSH2I+G+5YH
+            /zEwuqOrtJ3i9jVh1jQj0vX5DL4cqz5mqo9diaZhP5/lxkzazjo7yQQAAMCJHDOl0zO3LcVMr4P/
+            JztmqsuwlgawcVBaN5jtHTOtQXDt8qI4oO7sx+CD5bqzmZW2ny85G3Y/au8bapaxNZwZrhQzNUFS
+            d3klXoY9BqZxmVkYMGYG+XyWGzPtsNq7d8O6Pk4LAADgRIuZpjOarduYSUvGmpYWTVTM9F3Wttox
+            02fmZJiYKe1bfH+4WYzRxEy/maDlxEy+RK7/cjkAAABMQMz0O5PZZMZM3WC1O2aa7jeqZWarFzPD
+            LDPrvm/5azbAwexDxUz78rgP8fGHnMFYccwMdHD+8DFT/XlxNjMAAIDJjJnULus4ZroH+2mmpnos
+            yuhOAJBHw+rHzED78XTNGdBq7tda6lY99uXA0naaoqVp34qgWLz/4tez/DVYwdnMBo6ZAT6fQb7u
+            XdFWPzvmRAAAAADrJGbqzmQ20WczKx0rc6Q7MCrHV8TrBhrkdh2XUb/UalVjZpD96Dqtc/OpiLuO
+            3ekbFNX7la+vC4p+MVPah/Q9XUbM9P18Kl+7nt+ndLu671FdUAIAAGBsMdPvjGYTHzOjZqi/2E86
+            vULI1xEAAAAnY8zkdz6xYuYEezHENYuZ9fZ17D7rXa8XGAUAAMDkxEy0MWaqZzI7YWZm4kC/NFBt
+            HwNxIp1yd41iZvDX/gEAAABWFjP5MTPVM5pN9Tot89z8/Dqeman5a/yJNgAfd8zUnXAAAAAAWIWY
+            SS3S6/TMU/1eYyZuBAAAAADGRQqZvjFzWbwy3jDeYdG5ubnC2dnZwpmZGV9NAAAAAGMjNkjqkdQn
+            qVdiu6SGmdqyZUvYHMsmFk48oCYWTyyftgsn2NnMAAAAAEw2KViSsVFSr8R2iQ0TnXrpuReHM199
+            UeFLi7cXtnzVBeGlr2q9BQAAAIBxkbdI6pOXtpul6JbYMIt2Yual57avfNVSzCQBAAAAYJwx07Fo
+            kwtLzTJ4zLxSzAAAAAAYY8y8UswAAAAAEDMAAAAAIGbWP48dCBtG9GKVR24/AV/MEwAAAFjtmHl1
+            U8y8au1j5tihvYvBsKHb2yfgtefFDAAAADCemHnVeo2ZrkH+sXDf3g0jC4kxf0bFvu89JFsAAACA
+            kcRM/Kf0GjPpxq+cxJhpsT5nM8QMAAAAMFTMvDKPmfy1Zhpi5qXt2ZnOi9S88vyJi5nw9H1hb3V2
+            priseTlaEUDZ9Qce6w6N7utTgBzpXF9cXiwzOxA6j9D5+Eg4kG2jEy7VfcuuK/arunSu2F52++rX
+            IT1eZbv552T5GgAAANZvzJyfvXDmheVWWfcx046GzuC9K27acdKOhK5tLcbA0sC/HSB5UHSub1jW
+            VhszG8qXtUNjaSamfmamGjOtY4XKj9cKsZrHyz6n1v2WbiNmAAAAIGYmMmZaYZCCJA7cu5ZvZcFR
+            O/sxxOPUz5xU46L7OJ7ytgeJmUqkNcVb7eM13RcAAAAQMxMUM/nAvXuJ2JLt4Ogsx+oOjtoQqsRM
+            r1Cq/bj28gFiptjPmu1U97P28cQMAAAAxMw6OWamHAkDDeI7y8GWokbMAAAAAOsxZi5qipkLJjhm
+            uqOg1zKyfoEyyDKz5cZMeb9GvcxMzAAAAOBkiJkLamMmnp55fcVMWi7WcPav0kB+8bYHOmcMywf+
+            1ajofwKAwWJmQ9dJBmrPMFZ3lrVBTgDQte3eMeMEAAAAABAzaxkzXcfA9HixzOrpjKtn9qo7ZXIl
+            BLrvO+TMTGUfumZJslMp9zo1c9fn3u8EBGIGAAAAYmZyYmZd0XTMDAAAAAAxI2YAAAAAMVOJmYua
+            Y+aVYkbMAAAAAGsQM6/sFTMXLcXMS89tXxhv/Or2jEwxK9N6CzEDAAAAjC1mshYpfPWF7VZZahcx
+            AwAAAEDMAAAAAICYAQAAACBmxAwAAAAAMQMAAAAAYgYAAAAAxAwAAAAAMSNmAAAAAKyDmJmbmwvR
+            2dnZMDMzUzg9PV146aWXFgIAAADAuEgdkrokdUpsltQv8/PzYWr79u0hum3btrB169bCLVu2FG7e
+            vLkQAAAAAMZF6pDUJalTYrOkfrniiivEDAAAAAAxAwAAAABiBgAAAICYETMAAAAAxAwAAAAAiBkA
+            AAAAEDMAAAAAxIyYAQAAACBmAAAAAEDMAAAAABAzYgYAAACAmAEAAAAAMQMAAABAzIgZAAAAAGIG
+            AAAAAMQMAAAAAIgZAAAAAGJGzAAAAAAQMwAAAAAgZgAAAACIGTEDAAAAQMwAAAAAgJgBAAAAIGbE
+            DAAAAAAxAwAAAABiBgAAAADEDAAAAAAxI2YAAAAArJeYmZ+fD9G5ubkwOztbODMzUzg9PV0IAAAA
+            AOMidUjqktQpsVlSvywsLJiZAQAAADBZWGYGAAAAQMwAAAAAgJgBAAAAADEDAAAAQMyIGQAAAABi
+            BgAAAADEDAAAAAAxI2YAAAAAiBkAAAAAEDMAAAAAIGYAAAAAiBkxAwAAAEDMAAAAAICYAQAAACBm
+            xAwAAAAAMQMAAAAAYgYAAACAmBEzAAAAAMQMAAAAAIgZAAAAABAzAAAAAMSMmAEAAAAgZgAAAADg
+            5IuZI+HAhg1hw6J7Dx0rX3N7vHxvuO/p1XvM3AOPDb6FY4f2tu+3uH//331hb3x/733hWL87Pnag
+            db/bjyzvegAAAEDMTEjMpMF7TQysJGZasdF033bMZI/XeqzuoKrl6Xa8pOCofjzA55sep2s/K9cD
+            AAAAYmZCY6YVEQfCgZpwWX7MHAv37d0wVMws3edA6JskI5s96befAAAAgJiZ0JhpR0WMgpoZia6Y
+            yWdxOsvCloJgb/F2T3jbnvLyse5ZjrqYWZqd6Sw3SzMu+XYq+1DET2VmJu13a38q+9D5PP/f9n7X
+            b39pn6tL4pZiq+fjAAAAAGJmFWkP3Fvx0LT0qx0zpdvmsyjHOlGwdMzLcmZmlo6DKbbTDpQUB3X7
+            0rTMrBxFKUbaEVKKlZr9rL0+BUx5Wz0fBwAAAFjPMTM/Px+ic3NzYXZ2tnBmZqZwenq6cC1Jg/Gy
+            SwP7PCCab1u3PGx5MZM/3tIB/jUnCRgoZtJjV/ZlmJipORan+2vS8DgAAADABJI6JHVJ6pTYLKlf
+            FhYWJnxm5unuM4ClgKibDWk+fmZUMVOe2SjN0lQRMwAAAMCyOCGWmVXDpS5wamdKOgP7xcH7oSOh
+            6cD93icPaD6bWSdeUrDktznUfn9kMdN8XFDPZWY1Xx8xAwAAADEznpSpOc6le0BeHeh3Lf26vTlm
+            8oP3G08A0LC8rUP1YP+9o4+Zrv1cxgkAxAwAAADEDAAAAACIGQAAAAAQMwAAAADEjJgBAAAAIGaW
+            zXe/+12SJEmSa6SYWWHMPPfccyRJkiTHrJgRMyRJkqSYETMkSZIkxYyYIUmSJClmxAxJkiQpZsSM
+            mCFJkiTFjJghSZIkKWbEDEmSJClmxIyYIUmSJMWMmCFJkiQpZsQMSZIkSTEjZkiSJEkxI2ZIkiRJ
+            ihkxQ5IkSVLMiBmSJElSzIgZMUOSJEmKGTFDkiRJUsysr5h5eF845ZRTFt0dDj61dPnRe3YXl+97
+            eDnbK28r+citp7Qe69ZHuh5/6MdZoXFfxv2Y5Mgd1/O38zgVdx0MR30fSJIUM2sVM53AWHT3PUdX
+            PBhq3a9PzOTXjztmnjoYdhuM8QRxnM/f/PmTPxbJlXo0HNwVn8f7wiNdz+8ez8fnHgn7Rvr/WNxe
+            eR9IipkJj5n2L8JbD7Z+kWa/EKuDoXzQlG6XbpMC5c8/tLv0V9vqQCr9Yt6dP1YpZtIv9GT7l2r7
+            Nrt3Zdu/dV9r36u/yCuxUjuY69zGL22uZ8f7/K2Pmeog7GhnX77V3n7+vM23WbdPvqc8We3+A8Qg
+            oTK6mCn/PvAHC1LMrJeYyUKi+hfZ/Bdr6/32YCUbzKTbdP9FuNfMzOJ28gFR08xMCo64JC0tcSmW
+            p7V/ebf3p/x4revS/nQer2GJWXzrFzbX+xKzcT1/G2dm8udwj+3nz8emffJ95Ulr/n9e1/Oi4Q99
+            pZg5Wv6jRvojYPt5VY6V+j/kdW6TLwUneeLFzPz8fIjOzc2F2dnZwpmZmcLp6enC9RIzpcF+wy++
+            fQ9Xf4kuHfdSt5RloJjJp8/v2df7L7ZZzJR+qdfN7NSu6+81RU+u9yVm43v+Ni8zSzNEj5Qipbr9
+            pW0375PvKy01q/tDXVP0DBgzpWPhlp6v9UvM4lv/b5LrMWZSh6QuSZ0SmyX1y8LCwok0M/PI0jKt
+            U5qXoCwNhrr/krOSmKk+fv5X3dIv6WXEjL/w8qRZYjbG52+vY2ZKS0jbg6T+MWOZJ1l/zNrRrqWj
+            tX/oGzBmSveztJM0M3PCxMzDTTMirYFM9zKV7LYPH+y6zfAxU55JyWOkK2wGjZmu9cOLt73HX3t5
+            Yi8xG9fzt+cJALJj1crxUv+8bdon31taarb4nLl1X/l51vSHvqFixmwLKWZOqJhJfxmt/HLLfvn1
+            PIC4ZsBU9xfj+hMA1J2tpRIjxS/n3cuImZqzlVm6whN2Ocp4n7+9z2Z2tPEkBE1LPuv2yfeWntt9
+            zvrZb5lZZZlnfmxqHkcHvTQBKWa8aCZJNkfOsl/rhnRWs8oysIY/9FVXI2SrHdJZBOtPAOB5SYoZ
+            MUOS5RmWyiyomCFJihkxI2ZIkiRJMSNmSJIkSYoZMUOSJElSzIgZkiRJUsyIGT9IJEmSpJgRMyRJ
+            kiTFjJghSZIkxYyYETMkSZKkmDlJY+bRRx8l2eB6+IV5/PjxcPTo0fDEE0+Exx9/nDwpPHz4cLj/
+            /vtH5oMPPhgeeuihNf9joN+75IkxPhAzY44ZAN2sh5iJIRMj5tlnnw3PP/+8bxpOGmKAfOQjHwkf
+            /ehHR/b205/+dPjSl74UnnzyyTWNGQDrf3wgZsQMIGYGMM7IxJABTsaY+fCHP9zxzjvvHMnHn/rU
+            p4oZGjEDQMyIGUDMrLJxVsaMDE7WmPngBz8YPvShD438bVxyJmYAiBkxA4iZVTYeOwCcrDFzxx13
+            dPzABz4wso/jtsUMADEjZgAxI2aAVYuZ973vfeH973//yN+KGQBiRswAYkbMAKsaM+9973tXRTED
+            QMyIGUDMiBlgVWPmPe95T8fbbrttZB+LGQBiRswAYkbMAKsaM+9+97tXRTEDQMyIGUDMrGnMfDPs
+            P+OMcEbH/YuXjJAfHAr773umfNmR/dnjrdLjAlnMvPOd7+z4rne9q/TxN77xjcb7xudN9fb5x2IG
+            gJgRM4CYWeuYueFQeGa1vjh1MTOuxwbaMfP2t7+90f3799e+BtNPfvKT4kD/XvcVMwDEjJgBxMxE
+            xkw2Y3PD/sXbtGdOKnHyzH03hv1H2ve4bWmm5cZ0m6FjpjxTlLYNrCRm9u3b19NPfOITXff7whe+
+            0Pd+YgaAmBEzgJiZpGVm7biIYZIHyY1n9I+ZJZ4Jhxrip3fMxPtlAZM/LrCCmHnb297W13y52ZNP
+            PjnQfcQMADEjZgAxM3EzMzFw8ohojpNSzBTxkcLoxnDoB0PGTLx/ZV++eVt7O8AKYuatb31rX2+9
+            9dbw4x//uHi+xDOVDXIfMQNAzIgZQMycEDFTvk8nQsQMJiBm3vKWtxS++c1v7rxf9/Fdd91VLC8b
+            9PZiBoCYETOAmJm4mOmx3KsUHK0lasXtui5fRsxYZoZVipk3velNq6KYAXBSxMz8/HyIzs3NhdnZ
+            2cKZmZnC6enpQjEDiJnJODXzUoTcWHcCgJAf6L8/HKo9AcDi7ZczMxNC/VI1YIUx84Y3vCG88Y1v
+            HPlbMQNgPcdM6pDUJalTYrOkfllYWDAzA/hltd5fNDNbZgasw5h5/etfvyqKGQDrOWYsMwMgZoB1
+            EDOve93rwi233DLyt2IGgJgRM4CYmfiYAdZ3zLz2ta8tvPnmmzvvj+JjMQNAzIgZQMyMwSeeeCI8
+            //zzvlk4KWNm79694aabbhr52wcffFDMABAzYgYQM6vt0aNHw7PPPuubhZMyZm644YbC66+/vvP+
+            Sj++7bbbwkMPPSRmAIgZMQOImdX2+PHjxexMDBozNDjZYmbPnj3huuuuG9nb/fv3h89//vND/R8q
+            ZgDjAzEzATFDst5Jj5kUNHGGJkZNPIaGPBk8fPhwETSjMi4tizMyTz755Jo+n/3eJU+M8YGYGWPM
+            kCRJkhydYkbMkCRJkmJGzJAkSZIUM2KGJEmSpJgRMyRJkqSYETNihiRJkhQzYoYkSZKkmBEzJEmS
+            pJgRM2KGJEmSFDNihiRJkqSYETMkSZIkxYyYIUmSJMWMmCFJkiQpZk70mHl4XzjllFMW3R0OPrV0
+            +dF7dheX73t4Odsrbyv5yK2ntB9ryaG3v4zPbfc9R/vetti3XQfD0eLjR8K+U/KPSZIk18CnDobd
+            lbFT87hmueOXyv3aj7mqYzQxI2ZGFTN5YORPjuXGTOt+vWJmX3ik8hiDxMbqejQc3CVeSJLkZMZM
+            Giv1GmeN+o/BYkbMrIOYaZf4rQe7BvPVmCnNqrRvl26TZnb+/EO7e866VGOmOyLa+1OJq9LjdG7b
+            vm922+r+HLw/n5lJf3XYvfQXjmJb5e209q/6l43yfp1y6yOVv2RUt+nJTJIkRx8zeWh0jXueqp9h
+            6fqjdWdVThqvZferXLf7nr+uHxN1xkIUM2sZM11PiKXSz2Om9X47QrInVd3MyjAzM+XL2lHRfnJ0
+            tvON9hOx9KRJAVLeVtf+PFwTMzWfR2NUlWKn7n7lbS57aR5JkuSQMzPd47B8/FIJm3y2JQVL1x9n
+            a25bHduZtREzkxQzpbioHF+yNDCvzlwszU7UDd6XHTM1a0JLfy0Y4K8CXftTFzO12+gRM09VYyq/
+            be8nP0mS5KiPmSlHRj7u6J5h6QqdOJ5puq5pPJMFVfkYY4qZNY2ZytKphiVkSzFTjpCm42qGi5ks
+            DJ6qm4GpzsSc0mO2RsyQJMkTfJlZz3HYKsVMZ+yzu3FfKGbGHzM1A+9WbJSnLvM1mUuRcLDrNsuJ
+            mXQcTuv+3dH0yD3l8l/adu9lZj1jpjITVXrsXsvMKutPawNJzJAkyUmImeoqlpplZoPHzHONZ7+l
+            mFmjmEkxUPmBzH64e54AoCZ46mZ86k8A0L2dxtmifGak64xr3ScLGCxm6g7kz5+kyzkBgJghSZKT
+            FDP9TwDQGDPZipjamR3fFzHjRTPXQq8dQ5IkuSz9wfbEiZn5+fkQnZubC7Ozs4UzMzOF09PThWJG
+            zJAkSa5/62ZpOIkxkzokdUnqlNgsqV8WFhbMzJAkSZK0zEzMkCRJkmJGzIgZkiRJUsyIGZIkSZJi
+            RsyQJEmSYkbMiBmSJElSzIgZkiRJkmJGzJAkSZJiRsyIGZIkSVLMiJmePvrooyRJklwDBx2vHT9+
+            PBw9ejQ88cQT4fHHH2cPDx8+HO6///6R+eCDD4aHHnoofO973xMzkxozAAAAGC+DxkwMmRgxzz77
+            bHj++ed94foQA+SjH/1o+MhHPjKyt5/5zGfCl770pfDkk0+KGTEDAACAQWMmzsjEkMHgMfPhD3+4
+            8M477+y8v9KPP/WpTxUzNGJGzAAAAIiZAWMmzsqYkRkuZj70oQ+FD37wgyN/G5eciRkxAwAAIGYG
+            jJl4HAiGi5k77rij8AMf+EDn/VF8HLctZsQMAACAmBEzqxYz73//+8P73ve+kb8VM2IGAAAAYmZV
+            Y+a9733vqihmxAwAAADEzKrGzHve857C2267rfP+KD4WM2IGAAAAYmZVY+bd7373qihmxAwAAADE
+            zKrGzDvf+c7Cd73rXZ3308ff+MY3Gu8bv9bV2+cfixkxAwAAADGzqjHz9re/vdH9+/fXvm7PT37y
+            k+Ig/173FTNiBgAAACOLmW+G/WecEW6875ll7MEz4dAN+xe3ULPV2wbY5pH9y3zcbA/uuzHsPzL6
+            mNm3b19PP/GJT3Td7wtf+ELf+4kZMQMAAIBRxMwPDoUbF0Nm/237Rx4zAzHBMfO2t72tr/lysyef
+            fHKg+4gZMQMAAIAwwmVmR1YWM4cWg+KMxSg644wbw6EfpMjY33k/RVNxm8Vw2n/DofBM53EPFTND
+            reu+WdqnM9qXL+3bN5duu7iNJzqPW7nvCGLmrW99a19vvfXW8OMf/7j4GsczlQ1yHzEjZgAAADAx
+            MZPFRgyQdlQsxUzrNp3Zk3ibLGbOOCPN7MTbtWMoxk8WJ9+8rXV5XLpWnYVZrZmZt7zlLeHNb35z
+            8TZZ9/HHP/7xYnnZoLcXM2IGAAAAYXJmZrLsCPurMRPDJMVLuk1pZuaZLExa93kmn3FpWwRLET9L
+            sz+rGTNvetObVkUxI2YAAAAwrpgpLRH75thipjmuWjM9aXZntWLmjW98Y3jDG94w8rdiRswAAAAg
+            rJOZmeI4l2w2pbLMrC5mysvPej/uasXM61//+lVRzIgZAAAAhNGdzaxrOddIYyaUDubvPgFATcyE
+            6lKz1mPEY2a6TgqQPocRnwDglltuCa973etG/lbMiBkAAACEdfqimdlJAiaVGByvfe1rw80331y8
+            TY7i4xMmZubn50N0bm4uzM7OFs7MzBROT08XihkAAACsNGaeeOKJ8Pzzz6/RXraPcclOqfzMhH9d
+            Y3DcdNNNYe/evSN/++CDD050zKQOSV2SOiU2S+qXhYUFMzMAAAAYT8wcPXo0PPvss75gQ8TMDTfc
+            EK6//vribXKlH8fXonnooYcsMxMzAAAAGDRmjh8/XszOxKBZuxma9RUz1113XdizZ8/I3saQ+dzn
+            PjfQOFvMrEHMkCRJcvwOOl6LQRNnaGLUxGNo2Ozhw4eLoBmVcWlZnJEZdIwtZsYcMyRJkiRHo5gR
+            MyRJkqSYETMkSZIkxYyYIUmSJClmxAxJkiQpZsSMmCFJkiTFjJghSZIkKWbEDEmSJClmxIyYIUmS
+            JMWMmCFJkiQpZsQMSZIkSTEjZkiSJEkxI2ZIkiRJihkxQ5IkSVLMiBmSJElSzIiZ2pghSZIkuTaK
+            GQAAAAAQMwAAAADEjJgBAAAAIGYAAAAAQMwAAAAAEDNiBgAAAICYAQAAAAAxAwAAAABiBgAAAICY
+            ETMAAAAA1kXMzM/Ph+jc3FyYnZ0tnJmZKZyeni4EAAAAgHGROiR1SeqU2CypXxYWFszMAAAAAJgs
+            LDMDAAAAIGYAAAAAQMwAAAAAgJgBAAAAIGbEDAAAAAAxAwAAAABiBgAAAICYETMAAAAAxAwAAAAA
+            iBkAAAAAEDMAAAAAxIyYAQAAACBmAAAAAODkipkj4cCGDWHDonsPHStfc3u8fG+47+nVe8zcA48N
+            eO98vx470Lr/7Uf8ZAIAAAAnVcykGIjuvS8cG1HMHDu0t8d92zGTPV7rsbqDatCYGeR+AAAAgJg5
+            gWKmFQYHwoGacFl+zBwL9+3dMFTMLN3nQDgy0D6vxowRAAAAIGbWScy0oyIu0aqZ4eiKhnwWp7Ms
+            bClc9hZv94S37SkvH+ueNamLmaXZmc5ys6fvC3trttM0M9OaDcoeL90/LUEbav+XPu+03UGXwQEA
+            AABiZrVpD+5bg/SmpV/laCgHQJxFSe/ng/3lzMxUoqEdInUB07zMrLzd0vaG2P9yFA0+YwQAAACI
+            mTGRZkLKLgVId0DU3bZusL+8mMkfLwVF3UkCeh0zk5bNdSKl/RjD7X+2f9XZHQAAAEDMrHHMpEF6
+            FhTVZVqNsyElRhUz6Qxnre30WtrV8wQAaQbmUPPMTv/9z25/6IDjcwAAACBmJilmuo4vqQmc2pmS
+            zgzFYgQcOtI/BoY8m1knXtLxLfltDnXvV/exPvlpn7uPexl0/3ud5Q0AAAAQM2sWM3XHueSX18/G
+            dC39ur1HDGQH7zeeAKBheVttUDREVvOJC5qPyRlo/3u8/g4AAAAgZibiRTPRmHw9XysHAAAAEDOY
+            SLLTVgMAAABiRsysi4y53bEyAAAAEDMTGzPf/e53SZIkSY5JMTPimHnuuedIkiRJrrJiRsyQJEmS
+            YmZcMTM/Px+ic3NzYXZ2tnBmZqZwenq6UMyQJEmSYmZcpA5JXZI6JTZL6peFhQUzMyRJkiQtMxMz
+            JEmSpJgRM2KGJEmSFDNihiRJkqSYETMkSZKkmBEzYoYkSZIUM2KGJEmSpJgRMyRJkqSYETNihiRJ
+            khQzYqbZpw6G3aecEk7J3Pfwc+HoPbs77w+7rd33HK1cdzQc3FV+jFNO2RceWcYPy6D7taz9r/lc
+            ln1/kiRJihkxM56Y6Q6Q5QdAY8zsOhiOFh8/EvbFoLn1kcn9wXx438piiCRJkmJGzKxNzOQzG+n9
+            3bt2l2ZvmmZ2+sdMQ9x03b88oxMvL824tIMj36903+rMzCO3ZvvYftzGz6u93ebPhyRJkhQzE7jM
+            bHc4+FRDzBSD+nZ4FEGQYqO9ZCzFRb+YKQVU+7r2LE3rseI+VLZdt3wsRUfXfev2v72d7LGbPy8z
+            MyRJkhQzJ9TMTGtgn4VJCqG0XGzgY2ZawdE0s9N6rPqlaLUzM+nxsgBZul3d8Tqt7TZ+XmKGJEmS
+            YubkiJnOfQc6ZibFRTtoqkFUnTEaWcx0n3BAzJAkSVLMnKwxUwmA8rKt/svMapeqxeNb7qm/vN8y
+            s9ZxMa3bN+9/vN/BrqVoYoYkSZJi5qSKmeWeAGDpgPzS8SqVA/TrTgxQGzOV00r3PQFAzXE1jScp
+            cAIAkiRJihkvmjlyG084QJIkSYoZMSNmSJIkSTEjZkiSJEkxI2bEDEmSJClmxAxJkiRJMSNmSJIk
+            STEjZsQMSZIkKWbEDEmSJEkxI2ZIkiRJihkxQ5IkSYoZMSNmSJIkSTEjZkiSJEmeeDEzPz8fonNz
+            c2F2drZwZmamcHp6ulDMkOTofPzxx8laPT9IipkWqUNSl6ROic2S+mVhYcHMDEmKGYoZkrTMTMyQ
+            pJihmCEpZsSMmCEpZihmSFLMiBmSFDMUMyQpZsQMSYoZihmSYkbMjDhmHn30UZIci2KGYoakmBEz
+            I48ZAFhtToiYOXxvuOuue8PhPrd79P67w933PzrcdcW271ry7vvDo8vcz/gYd3328MhuJ2ZIUsyI
+            GQBiZp3HzOHP3h3u/WxzqKw4ZrKwOPzZu/o+zpr79fvD3SuILjFDUsyIGTEDQMyMxcPh3jhwH2AA
+            P4qY6fpYzIgZkmJGzIgZAGJmuUvMWhHyaLj/7rvD/V+vhE5nidi94f5SsPS6rvfMzL2HG5ah5QER
+            gyLb/uFKMLXeP7y4z+Xb1IVVfMz0GJ3L28FyOC5JK65rf+6lx63sq5ghKWbEjJgBIGYmJWbKAVOO
+            gEeLUKjGy1L4NF3X+5iZrpDJQmfp8eP2qmHVHTN33VXe97St/HbleMo+33a0lLaX9sXMDEmKGTED
+            QMxMeMxUB+2lj9vLz2pjotd1zTMz1QPzH+3MimTG6xuWonXPzDxamUWqzuA8ms3cVIKq1+cuZkhS
+            zIgZAGJmsmOmNiby5VZNwdLrup7LzHrNBPXf1vJipnuGp2/IiRmSFDNiBoCYmeSYqR/oL82etGY1
+            lpZodS8zq79ugBMApFBoOiV0sQRsgGVmWXD0WmZWe8IBMUOSYkbMABAz6zRmmgbsRUi0A6NyEH7p
+            IP9e1/WKmcrxNtXZoU4glY61aTgBwGfvXdqHSthUj/2pbqv3Erul+zgBAEkxI2bEDAAxM8kvmrkO
+            7XWa6BNFgymSYkbMAICYETNihiTFjJgBADEjZsQMSTEjZsQMADEjZihmSIoZMSNmAIgZihmSFDNi
+            BgDEDMUMSTEjZsQMADEjZihmSIoZMSNmAIgZihmSFDNiBgAmI2ZIkhQzYkbMABAzJEmKGTEDAGKG
+            JClmxIyYASBmSJIUM2JGzAAQMyTJE9Xjx4+H73znO+HLX/5yuPvuu8Ndd91VMl4Wr4u3ibcVMyd4
+            zJDkOPQfMElypT722GO1AfPAAw8U1oVNvI+YyWJmfn4+ROfm5sLs7GzhzMxM4fT0dOF6iRmSJEly
+            0n366afD5z73uU6kfOYznwnf+ta3wo9+9KOu28bL4nXxNun28b5xGydyzKQOSV2SOiU2S+qXhYWF
+            E2tmhiRJkpz0kEmzMfFtXD426H3jbfP7jjpoLDMTMyRJkmTfkImzK8s5BibeJ83qjDpoxIyYIUmS
+            JGtNEbLckKkLmvhWzIgZkiRJclUP9k+zKaM4K1ncRprlGdVJAcSMmCFJkiQbw2OYY2QGOYZmlIEk
+            ZsQMSZIkWRsd8Yxko952OsvZKCJJzIgZkiRJsmR80csYHPEUy6Pedtxm3HZ8DDEjZkiSJMmRmpaY
+            1b2OzEqN20xLzcSMmCFJkiRHanqxy+rl3//+95floNsXM2KGJEmSXHHMPPDAA7XLw5Zjdbla3LaY
+            OVFi5uF94ZRTTll0dzj41NLlR+/ZXVy+7+HlbK+8reQjt57SfqxTah9z2H3efc/Rnrdb9ueQfOpg
+            2L2S+5MkSVLMiJnVi5k8MPI4WG4ItO7XK2b2hUeKj4+Gg7sWP951MByd1CdTO5rEDEmSpGVmYmbi
+            YuaRsC+GzK0Hu8KiGjOlWZX27dJt0izLn39od2nmpRoB5Zhp+rj8GM9VHydens/MpPd37e6Ksurn
+            UN7f9uM23b8zY5Vvs/31avj8SJIk6QQAYmZcMZPNPFRnVPIQaL3fHvy3l17FwX26TfeMziAzMymk
+            Hsnu1/wYpXCoiZnydlqPX7pvaflb9til+7dniyqhUw66ZS6NI0mS5EA6NbOYGWKJWWWGomtWIw3w
+            Ky4O/utCo3/M1M1sND9GdfamKWY6QdUVaK33u4/XqZnlafia1M3smJUhSZJcHb1oppgZfIlZ3QC/
+            NmYqQdFwXM2gMzMpLlr3bXqMhsuXHTM1+zVEzJRPmLA0G0SSJMnRefz48c5Ss1FERzWS4rbjY4iZ
+            9RwzNQP1fMDfvcwsu+3DB7uXcS13mVn742Eeo9cys/wxupeZZdHz1OL2H15GzNQskSNJkuRofeyx
+            x0YaHnkgxW2PYh/FzJrFTJrxqERHNrDveQKAumNSamZ8+p0AoLNsqxQi3adt7joxQF3M1Cxf630C
+            gPrIqT3jWvv68v51z1SRJElydH7uc58r4iO+XUnQxPvm2xrV/okZL5q5cgd8zRmSJEmuL59++unO
+            bMpygyYPmbituE0xI2bEDEmSJMcaNPHtMMfQxNvm9x1lyIgZMUOSJEkOFDRpdiWd5SyeYrnudWji
+            ZfG6dNayNKsz6pARM2KGJEmSHOqkAGmmJfeBBx4orF4ebzuqg/3FjJghSZIkV2Q8BiYuH4svelkX
+            NvGyeF28zSjOgiZmxAxJkiR5wilmxAxJkiQpZsSMmCFJkiTFjJghSZIkKWbEDEmSJClmxIyYIUmS
+            JMXM8mJmfn4+ROfm5sLs7GzhzMxM4fT0dKGYIUmSJMXMuEgdkrokdUpsltQvCwsLJ87MzNPPPEOS
+            JEmyRsvMxAxJkiQpZsSMmCFJkiTFjJgRMyRJkqSYETMkSZKkmBEzYoYkSZIUM2JGzJAkSZJiRsyQ
+            JEmSYkbMiBmSJElSzIiZdRkzXwnv2LAhbKjzHV/x5OHK/PYnw572z9M7Di9d/q1PXFdctucT3/Y1
+            Ikfkg++o/h6/LvzFt0f8XN7zyfCtzmONcPv0s1v7M5uNUdo/ewP9nDaMX9LjFP8f9bnt4GOmd4UH
+            S9v3vBAzYmbNf5nkg05yVDGT/0ckZsjV+h2+SgOpysDPoI2rFeKl/xcOv2spGkYWM+2f25XETNoX
+            kS9mxIyY4UkUM9l/UmKGXGcxs4aPxZPnZ3fPnnK0FJfvua4UDCuJmWXftilmnvl2+Is9S7Mznhdi
+            RsxMXMyk6dS6KdT0BG7/8un3FxWRdHLHzDs+WfqFX42Z6vKYzs9R+2doz57rSlP673iHnzly0MAo
+            DRQ7y4jflS2XWbpPem52LTc2M8NV/9l9V/iL4ucv/Vy1xyDpZ7Vmdr/r/4HOTMl12R/Sln5Oe8/M
+            pHFNr5mgwWZmmsZFw+330thrsH0TM2JGzNTOzJQvy5/ES0+s1nVLcVP8kmgPKsvX5U9Mnlwx85XS
+            +80zM5WflRQnpQFUul8ltv3M0YCwdi1/7e/xyu/qur9O9xr4iRmuRsw82P45K37Hd36nVwIi/ZGr
+            bqa/sxqg/bu/1zKw0s90+/+MhsfoecxMdSap6f+hQfa7va3y/5GD7puYETNipn6ZWf5kLz2BugeL
+            6ckX79/9n6r/+E76mMn/I/lE9y/j8s9MeaBVncGp+4/CzxwNCHvPzJT+2l0d7GUxU/3rcd3B0mKG
+            qxIz2cD9LzqXlWOm62ev4Y9mT/dbBlZ3v74nQvpK1yxR83Ot/EfeofY7/yPDwPsmZsSMmGk4Zmbp
+            F0Fr+jfFyyAx4z86MVP9j6X8V626v6SVfnaGjhk/cxQzy4+Z8qxN/jtdzHA8MZN+7tpLtfKfy3HE
+            TN9AWMOYcYZZMSNmln8CgNJf6WrWlpaXLpSPiSjd/hOeiGKm/POULyUoz/gNHzN+5mhAuMKYqQ0W
+            McPxxkz3Kf0HW2ZW+jntuVS5bplZZfllcd9P1vx8Lz9mBtrvupgZeN/EjJgRM81nM6t9rZDKwWg1
+            S3oaDyTlSR0z+c9OOWDyAyeHjxk/czQg7F6K0j1T3nuZWekUuXvMzHANYqbrd/tXhj8BQM9jWppO
+            AFA9Hua60cbMIPtdGzOD7puYETNiZohfNA6wJkmSpJgRM+shZvKzi4gZkiRJihkxM/kxky3/6Vqu
+            I2ZIkiQpZsTMOlhmRpIkSYoZMSNmSJIkSTEjZkiSJEkxI2bEDEmSJClmxIyYIUmSJMXMSREzAAAA
+            AOoRM2IGAAAAEDNiRswAAAAAYmaFMTM/Px+ic3NzYXZ2tnBmZqZwenq6UMwAAAAAYmZcpA5JXZI6
+            JTZL6peFhQUzMwAAAICYscxMzAAAAABiRsyIGQAAAEDMiBkAAABAzIgZMQMAAACIGTEjZgAAAAAx
+            I2YAAAAAiBkxAwAAAIgZMSNmAAAAADEjZsQMAAAAIGbEDAAAACBmxIyYAQAAAMSMmBEzAAAAgJgR
+            MwAAAICYETNiBgAAABAzYkbMAAAAAGJGzIgZAAAAQMyIGQAAAEDMiBkxAwAAAIgZMSNmAAAAADEj
+            ZgAAAAAxI2bEDAAAACBmxIyYAQAAAMSMmAEAAAAgZsQMAAAAIGbEjJgBAAAAxIyYETMAAACAmBEz
+            AAAAgJgRM2IGAAAAEDOrGDPz8/MhOjc3F2ZnZwtnZmYKp6enC8UMAAAAIGbGReqQ1CWpU2KzpH5Z
+            WFgwMwMAAACIGcvMxAwAAAAgZsSMmAEAAADEjJgBAAAAxIyYETMAAACAmBEzYgYAAAAQM2IGAAAA
+            gJgRMwAAAICYETNiBgAAABAzYkbMAAAAAGJGzAAAAABiRsyIGQAAAEDMiBkxAwAAAIgZMQMAAACI
+            GTEjZgAAAAAxI2bEDAAAACBmxIyYAQAAAMSMmAEAAADEjJgRMwAAAICYETNiBgAAABAzYgYAAAAQ
+            M2JGzAAAAABiRsyIGQAAAEDMiBkAAAAAYkbMAAAAAGJGzIgZAAAAQMyIGTEDAAAAiBkxAwAAAIgZ
+            MSNmAAAAADGzijEzPz8fonNzc2F2drZwZmamcHp6ulDMAAAAAGJmXKQOSV2SOiU2S+qXhYUFMzMA
+            AACAmLHMTMwAAAAAYkbMiBkAAABAzIgZAAAAQMyIGTEDAAAAiBkxI2YAAAAAMSNmAAAAAIgZMQMA
+            AACIGTEjZgAAAAAxI2bEDAAAACBmxAwAAAAgZsSMmAEAAADEjJgRMwAAAICYETMAAACAmBEzYgYA
+            AAAQM2JGzAAAAABiRsyIGQAAAEDMiBkAAABAzIgZMQMAAACIGTEjZgAAAAAxI2YAAAAAMSNmxAwA
+            AAAgZsSMmAEAAADEjJgBAAAAIGbEDAAAACBmxIyYAQAAAMSMmBEzAAAAgJgRMwAAAICYETNiBgAA
+            ABAzqxgz8/PzITo3NxdmZ2cLZ2ZmCqenpwvFDAAAACBmxkXqkNQlqVNis6R+WVhYMDMDAAAAiBnL
+            zMQMAAAAIGbEjJgBAAAAxIyYAQAAAMSMmBEzAAAAgJgRM2IGAAAAEDNiBgAAAICYETMAAACAmBEz
+            YgYAAAAQM2JGzAAAAABiRswAAAAAYkbMiBkAAABAzIgZMQMAAACIGTEDAAAAiBkxI2YAAAAAMSNm
+            xAwAAAAgZsSMmAEAAADEjJgBAAAAxIyYETMAAACAmBEzYgYAAAAQM2IGAAAAEDNiRswAAAAAYkbM
+            iBkAAABAzIgZAAAAAGJGzAAAAABiRsyIGQAAAEDMiBkxAwAAAIgZMQMAAACImfUWMyloonnMbNq0
+            ScwAAAAAYmZsxAbJYyZ1St4uRczMz8+Hubm5kjMzMx2np6fFDAAAACBmxkZskLxJqr0SG2ZhYSFM
+            XX755WZmAAAAADEzMfvbb2YmNkwxMyNmAAAAADEjZsQMAAAAIGbEjJgBAAAAxMyQMZNOzyxmAAAA
+            ADGzljGTTslcjZmomAEAAADEjJgRMwAAAICYETNiBgAAABAzYgYAAAAQMyd8zMQbR+Odk2IGAAAA
+            EDPjIm+R1CdDxUx+emYxAwAAAIiZccZM6hExAwAAAIgZMSNmAAAAADEjZsQMAAAAIGaWETNXXHHF
+            iRMzJEmSJJevmBEzJEmSpJgRM2KGJEmSFDMDxkweNGKGJEmSFDOTEDN5yJRiJv5TNzsjZkiSJEkx
+            M2kxk0KmMWaiYoYkSZIUM2sdM6lPxAxJkiTJkyNm0kbEDEmSJClmxkXeIsuKmfy4GTFDkiRJiplx
+            xkx+vExjzMQP+p2eWcyQJEmSYmYtYqbuBAClUzOLGZIkSVLMiBkxQ5IkSYqZccdMfryMmCFJkiTF
+            zKTETAqa1C87duxYipl8dmaSYoYkSZLkeJzUmKnOynRiJp0JoG6p2VrHDAAAAICTj+rZzOrOZFbE
+            zMLCQojOz8+Hubm5krOzs2FmZsZXEwAAAMDYiA0SW6TaJ7FZUr9cdtllS68z0+u1ZgAAAABgXPR6
+            jZk0O9NZZiZmAAAAAIgZAAAAAFjLmMnPaAYAAAAA446ZXq8xU4qZ/IxmYgYAAADAJMVM3iydmIn/
+            1J2eOd05CgAAAADjIm+RptMy94yZ/LgZAAAAABhnzNQdL9MYM72OmwEAAACAccZMv+NlxAwAAACA
+            EydmovkSMzEDAAAAYK1iJpq3SuMxM3VnNItvAQAAAGBc5C1SPV4mxczOnTtbMdPvJAAAAAAAMM6Y
+            6Xfwf1fMNB03AwAAAADjYpDjZcQMAAAAgBMjZuqOm7HMDAAAAMA4yZeZ1R0v0xUzvY6bAQAAAIBx
+            xkyv42WiV155ZZiKRdNvqRkAAAAArFXM1C0xEzMAAAAA1mXMFMvMqjFTPWYmvgUAAACAcZG3SNNp
+            mbtipum4GQAAgEnh/9lxOyfIUXPXXXdxglzLmOl1vExnmVn8p99SMwAAADFDMSNm1iJmmo6X6Rwz
+            0ytmHDMDAADEDMWMmBkn+RKzpuNlamOmbqkZAACAmKGYETPjot8Ss1LM1C01EzMAAEDMUMyImUmK
+            mbxddu3a1Tpmpt9xMwAAAGKGYkbMjDtmeh0v04mZuqVm6Y7xLQAAgJihmBEz4yJvkaYlZqWY6bXU
+            DAAAQMxQzIiZccdM0xKzztnMYtH0W2oGAAAgZihmxMw4Y6bfErNiZibFTL7ULFVQEgAAQMxQzIiZ
+            cVHtkbolZkXMbN68OWzatCls3Lix8LLLLuu4sLAQ5ufn/dYEAABihmJGzIyN2CCxRfI2Sb0S2yU1
+            zFQqm15LzQAAAMRMf/d9+3+WdvS//jXsEzPrOmaeeDbbseeOhUfH9LiPHntu8eEedcxMjyVmnRMA
+            pCmaprOaWWYGAADEzAB+9YflgPnqv4a/u1vMrM+YeSI8W/RLFhRfPxaOPSlmxkWvF8pM/bJ79+5y
+            zDTNzgAAAIiZ/rMy//Htr1pmdgLEzFrHhJgJjbMyjTHTNDsjZgAAgJgZwLv/NfzH4v49+dXqdV8N
+            f/df2Sfwb/+wtCSt/X7n/mlmp72tFj8MnxIzY/TRcOy558Kxr/e6PtvhZ5/IZnOeDU88ubQ27dl8
+            Jie7fGnJWnlb6fZipjtmqrMynZiJ//SbnQEAABAzg/gP4cliL/+nYYlZDJt0XbztUqh0ZnbyqEnL
+            1/LoETNjWGK2GCVDh09raVonbmK8pGj5+rHwXNc2q9G09LhiJgw0K9MVM02zMwAAAGJm2FmaLGhi
+            kGSk2ZtP/Vt6P0ZOO2wqty2Y4JMJnHgx029mpjLLEtKMSjWC+sVJO35KtB5XzISBZmU6MVOdnREz
+            AABAzIzoGJrKiQGWAiabdclnXyZ8JuZkOGbmiWdDc0zkMy7t2/aLmaXbDDYDJGZC3wP/o1dddVWY
+            iv+kmGk6TTMAAICY6RcvPywtLYvREmOmfGxMaxna0nE1rRmZJ/8tm8WpzuqImfFbLAvrPuYlfhxD
+            o3ycTP+Yac3k1C0zq48mMRN6no45hUwRM6lses3OAAAAiJlBj5dpUwmYFjFcyicJKGKnuoysstRs
+            ks+SdkLGTN0ysErAtC8Mzw4wM5MCpUNnZqfyGO3LxUzoOytTmpnpNzsDAAAgZniyvWgm1y5mBpmV
+            ufrqq5eWmfWanQEAABAzFDNiZpwx029WphMz1dmZ6mmaAQAAxAzFjJgZF02nY87bpYiZ+E+/2RkA
+            AAAxQzEjZsbFILMypZjpNTsDAAAgZihmxMy4GGRWphMz+exMXdAAAACIGYoZMTPOmKmGTHVW5ppr
+            rinHTL7cLD9rAAAAgJihmBEz46J6BrPqWcy6YqbX7AwAAICYoZgRM+OMmV6zMp2Yif/UBY2YAQAA
+            YoZiRsysdcw0hcy1117bO2ZS0AAAAIgZihkxM86YaTqDWVfM1AVNvtQMAABAzFDMiJlxx0z1OJkU
+            MsmpWDTVoKkeOwMAACBmKGbEzLjodQazNCvTmZlJQdO03AwAAAAAxhkzvZaXdZaZ5TMz1dkZMzMA
+            AAAA1iJm6k7FnM/M7NmzpxUzyablZgAAAAAw7phpWl7WiZn4Tz5VU7fcDAAAAADGRb/lZbFhSjHT
+            a7kZAAAAAKxFzFSXl3XFTB40dbMzAAAAADAu6mZlqiFTipleQQMAAAAA446ZXiFz3XXXhan4TzVo
+            qsvNAAAAAGCcMVN39rI8ZIqYufzyy8P27dtLbtu2rePWrVt9NQEAAACMjdggeZNUeyU2THQqVU3d
+            7Ex6CwAAAADjounsZfmsTDEzc/3114d+QQMAAAAA46JfyMSGiU6lD6pBk58IAAAAAADGRd1pmPOQ
+            SW+n8g/qZmfMzAAAAAAYJ01nL8vb5YYbbmjFTD4zUxc0AAAAADDOmGk6Tib1SxEz8Z9+QQMAAAAA
+            42KQkOnETL+gAQAAAIBxx0yvkCnFTB401RMCAAAAAMA4Y6YaMdWQ6YqZFDTVEwIAAAAAwLhjpnrA
+            f+6NN94YpuI/dbMz+Z0BAAAAYFxUQ6YaM7FhamOm7vgZAAAAABhnzDSFTIqZvXv3hqn4T1E2V20K
+            5730tPCCX//18Bun/WY4Z2ZHccerN53rqwkAAABgrDGTh0x6m2ZkUsMUMzN7r9safu9FLwgv/f2d
+            4brrbwjX7ZoP55z+f8K5m/cUdwQAAACAcdFraVkKmc7MzPUL54TfeMlF4cr2DeKNd1744vCC39si
+            ZgAAAACMPWb6hUwnZnb//pnh1+Pyst/4jY7Fx+duKe4MAAAAAOOi7hiZ3NgwN910Uytm9sz9Tvj1
+            My8NV6XjZyonBQAAAACAtYiZplmZImbiP3uv2xjOecHp4RW/vz1cc8PijW64Omy/+Jxw7sZrFzdw
+            Tdhy7gvDC85ZCNdcf2X4/Ze+IPzm+Ve0zna2ezb8zqkvDGfP7gzXXLsn7NkxE85+0anh7LmrwzXX
+            XBO2n39GOPW3Xx3mL78qXH311WH39kvDK8++OGzbfXXYOfO74dQXnRUuuuzycNVVV4Xdl28MF/zu
+            q8LsFbvDriu3hPPOOCW86JWzYfvOXWHH9oXWyQnOvCBs2bkzXLntkvDy014UXnHJlrBz8eMdW2fD
+            q854QXj5xdvDjh07Cq+44orCTa85c/F+54eNl1+++PFMeOWpp4Zzpi8Ply9+vHHxulPPng7bt29v
+            e2k4J15/6fbOZZedt3ibM18TLtu2LWxbeE0489Qzw3kLW8PWrVvD3KtfHE77nQvD5i1bwpati9cv
+            3iZe3uSWeLsh3Lx589D3WW9uvOTs8OLTfyucfdFs2LR5S9i0cTZccNaLw+lnnhfmN8fbXBLOPu20
+            cPYlrdvPbzgznBavi/ffPBvOPeP08FvnXBzmN8WPN4X5C14RztqwuK3F6y85+7Rw5ob5pcebPy+c
+            edri92++9fHsq18STnv5BWHjpk3FY2/ZPB/OO/P08OKXnxcuXdjU2t6l54YzT3/x4uNvbG1j4+L+
+            vPj0cOarZ8LGeJ+FS8O58T7nXFI85paNF4azTntheMWFC4vb3BQWLv298LIXnRZOO/uSpf1vv9+y
+            /PltmT03vOS0l4cLLlvcp01bTvjvP8mT2fg7t/J7uofxd3r59+eg/49sDLMXXRAuWcj+L1j8vf7y
+            DZeG+Y2t/ztmLzo7/Fbxu37TgNtc/P/nN08PZ124qWt/Zn/vjHD6WRcW/ydsnL04XHDJQun/j/h/
+            1uzG1v8xC5eeF14e/085b77mNosfb1rc9wvOWtyXxf+75tJjLIQLXnZ6OP23zg4Xz24MGy/b2N7/
+            08PLzm89Vulxq1/njfPh0g0vDy/J/28r/k88o7XNudbntGnugvCKs84Ls5vS/59nh0t6fT9K/8e2
+            /z8964LW12vT/NLXb0vN9+T/b+/sn9O2wQC8/6bBGLuFUkPGwHHTGNpQAwnYgSztRliPu912yf9/
+            906SP5A1yZYN7dbe+8MTgz+ELAvrffLahrR3Uyg/PgaH/S6qHxtbX57D+CZetkrG7otZEjuQWK5F
+            lvuzZTze393A1H1N5o0goPsXXcOArP+zP4OQxQMhzN4NYDSNWCz2cWhAV9JPZ24LLNsCZxIe5tM4
+            wLTh3J9DuCHx3yaEOSvrjsWCMxqb+CsWM4pxYzqP5xCjyqHxbEoa+4rvKWl8zENj6JTtdptNUx4f
+            H3PsdrsMFrsnUwqN83moB1D2+302pdDfjknhn1ZW9tQylchkMsOE5o81+H0rfppZw4S2ewO///kX
+            7NeX0GqMINwnj23eBuA0LLjaxB/65SGAUceExosX0CCdzrv5zCrIKv1lB/fXQ+hYBpydnYFh9cAP
+            t9mOfrp9B710WasNQxLQpY2zeyAnCscEgyxrWg5cvR0QKfkA90kDfwpJJ26b0CTy0SCdpufN4f7z
+            bzmZodP1hMrIe7hjB3NBpK2RycwdXeYuuI4wl8hMFxrdMUT0fTRhMjMOH+JORuSmb5M6snm/Sjum
+            qoMWSU8ZP5zQBJfQ71hgkrY3WjY4wzEsonQ56V9k/kFmukSQ05MhIVyAP2iDZZJtDRNsx4MgjJcF
+            4smHnGi7RjeTmc2tnxw/Mi89oRJBej90wG7F5VmdPnjTMF/n1RTcN1x9yaDDTn7J8uVkAO10+zcu
+            jHrk9TA41D95Lds/JlT9uOyuH2KwgyDIjy0zXXmQKIOe0/PnT91xZAHeSxOcMXdOXU7B6x/GDuuV
+            A65wri8sc+aSbQfwQfZPJ/pPKcMhccEGFm9tMHtjEtQexqxxNsYYYNqvYXC1gIjfPgzgss+Pa7/A
+            eB7lP4ME21OXK6edH6vynxu3M10vRlVmBIsrMn6xcZHWzQEviLjxkwT+RcdDHGOjeHxm7Wda0Cbi
+            oTwmRFwMofzNZg3ByAaj48FiXVw/Nraeu+A5dnK82jCY5PvVcuodjiepzyvHhelqk+sTF3T7JpE0
+            Vt8J3G7iuCtgArL8d0w2vwCrOYDrtRDnrT6Cm9bFbGVl0WWzkZGTGZW0yObx4sILS5m8iO9FgeEl
+            RhQYXmKyGP1IiakrMjypvxwyM9xMfkX+ujT+kWjpB/K/RUMRK5pJTUK6gxRx59NGkTVY2ph8I/Pm
+            KB4Qlq2RGKiYtVEZrKyzlJmxrBPqUCYuuuUcK0gIgiAIgiDfIyufXvUQaK9/ythKt5yqcaRKXFTy
+            osq+VM3C8K/rSAwvMDKJ4UWGlxjV45dFkeF9hU6fnp64zIywAp/Okd1HI/txTZXU8DLDS43YEKLU
+            8I1XRWqOERtduSkTHN2OW+ULhTKDIAiCIAgiykwXjK8kM6eQlLL1VHFmmbxUFZiqEqNzOVmdbIzO
+            j2HKLi2TOQuTGfpHXChmZv5WPBhAFBpebHSFpihLUyY1PPyBqSs2ZXIjdiRV56uTyTkFp/xyIgiC
+            IAiCfA+w+5tHs6+WJTkFRTGjTsypIy+6AlN2OZlMYnSyMae+rEzMzMhEJpOZKkIjfmgdoamapaki
+            NbJsTV2xUcmNSmR0JOe/Fh4EQRAEQRDk24iKbpyoijd1YlWVwJTd0F9XYoqyMceITCozVUTm+fkZ
+            fqJ/RKFR3T9TJ0NzbJamqtSIB0smNrJ7bHTlpkxyqnRS3c6PYoQgCIIgCPLtBaSKpNSJBatIi0xe
+            ZDGtSmDE98dITNXLyuo+sUy82V8UmSwzwwtNkdSUCU2VLI1MauqIjYgsS1N2OZoqc1NHcnSFp4oI
+            VfkyIAiCIAiCIP+fGKxuHCmLSYsyL2XyIgqMeFO/rsCUSUydbEzRo5dFieHdhU7/AcnixbLj/NSt
+            AAAAAElFTkSuQmCC
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

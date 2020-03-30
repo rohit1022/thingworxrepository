@@ -1,0 +1,1825 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="Thing Template for ImportExport Utils"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.870+05:30"
+         name="PTC.SCA.SCO.Common.ImportExportEquipmentUtilsTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Compare two objects with JSON types"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CompareJSONObjects">
+                        <ResultType
+                         baseType="BOOLEAN"
+                         description="True if JSON objects are equal, otherwise false"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             aspect.tagType="ModelTags"
+                             baseType="JSON"
+                             description="First JSON object"
+                             name="json1"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             aspect.tagType="ModelTags"
+                             baseType="JSON"
+                             description="Second JSON object"
+                             name="json2"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Convert Base Type name to friendly case used in some services (eg. STRING -&gt; String)"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ConvertBaseTypeToFriendlyName">
+                        <ResultType
+                         baseType="STRING"
+                         description="Converted Base Type name to friendly name"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             aspect.tagType="ModelTags"
+                             baseType="STRING"
+                             description="Base Type string name"
+                             name="baseType"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get boolean value for specific cases"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetBooleanValue">
+                        <ResultType
+                         baseType="BOOLEAN"
+                         description="Boolean value or null if provided value is not valid"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             aspect.tagType="ModelTags"
+                             baseType="STRING"
+                             description="Default value if there is no value provided"
+                             name="defaultValue"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             aspect.tagType="ModelTags"
+                             baseType="STRING"
+                             description="Invalid value that will be returned in case of invalid boolean string"
+                             name="invalidValue"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             aspect.tagType="ModelTags"
+                             baseType="STRING"
+                             description="String with value"
+                             name="value"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Returns field names for given data shape."
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetDataShapeFieldNames">
+                        <ResultType
+                         baseType="JSON"
+                         description="Array of data shape field names"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="The data shape name"
+                             name="dataShapeName"
+                             ordinal="0"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves the equipment for the specified context."
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentForExport">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.EquipmentStatusTreeDataShape"
+                         baseType="INFOTABLE"
+                         description="Equipment network objects"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="context name"
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetExcludedPropertyBaseTypes">
+                        <ResultType
+                         baseType="JSON"
+                         description="Returns array of excluded property base types"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieve all the properties from a given list of ThingShape"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetExcludedThingShapeProperties">
+                        <ResultType
+                         baseType="JSON"
+                         description="Returns array of excluded property from thing shapes"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetImportExportConstants">
+                        <ResultType
+                         baseType="JSON"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetImportSupportedBaseTypes">
+                        <ResultType
+                         baseType="JSON"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Array of internal properties supported in import"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetInternalNonCalculatedPropertyNames">
+                        <ResultType
+                         baseType="JSON"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="***DEPRECATED-J*** This service will be deleted in the future release"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetLineRequiredShapes">
+                        <ResultType
+                         aspect.dataShape="GenericStringList"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetMfgAssetRequiredShapes">
+                        <ResultType
+                         aspect.dataShape="GenericStringList"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Check if passed value is number and parses it as Number or return undefined"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetNullSafeNumber">
+                        <ResultType
+                         baseType="NUMBER"
+                         description="Parsed number or undefined in case of empty parameter"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             aspect.tagType="ModelTags"
+                             baseType="STRING"
+                             description="Value that will be parsed"
+                             name="value"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetNullSafeString">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             aspect.tagType="ModelTags"
+                             baseType="TEXT"
+                             description=""
+                             name="value"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Returns array of number property base types"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetNumberPropertyBaseTypes">
+                        <ResultType
+                         baseType="JSON"
+                         description="Array of supported base types"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves the valid equipment relationships for the specified context if the parent type or child type in a specified relationship derive from other equipment types."
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetRelationshipInfoForDerivesFrom">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.EquipmentRelationshipDataShape"
+                         baseType="INFOTABLE"
+                         description="relationship information table"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="equipment type of child"
+                             name="childType"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="context name"
+                             name="contextName"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="equipment type of parent"
+                             name="parentType"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="***DEPRECATED-J*** This service will be deleted in the future release"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetSiteRequiredShapes">
+                        <ResultType
+                         aspect.dataShape="GenericStringList"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get equipment template name by equipment type"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetTemplateByEquipmentType">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description=""
+                             name="equipmentType"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Imports a piece of equipment by creating the equipment thing and adding it to the specified context."
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ImportEquipment">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="context value for the thing."
+                             name="context"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="thing description"
+                             name="description"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="thing name"
+                             name="name"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="thing type"
+                             name="type"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.isRequired="true"
+                             baseType="BOOLEAN"
+                             description="useDefaultPrefixForEquipmentThingName"
+                             name="useDefaultPrefixForEquipmentThingName"
+                             ordinal="5"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Verify is a property is inherited from the template or any implemented shape"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="isPropertyInherited">
+                        <ResultType
+                         baseType="BOOLEAN"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description=""
+                             name="equipmentType"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description=""
+                             name="propertyName"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Verify is a property is inherited from the template or any implemented shape"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="isPropertyInheritedForTemplate">
+                        <ResultType
+                         baseType="BOOLEAN"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description=""
+                             name="propertyName"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="templateName"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Converts Date into string with date in ISO format"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ToISOString">
+                        <ResultType
+                         baseType="STRING"
+                         description="String with date in ISO format"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             aspect.tagType="ModelTags"
+                             baseType="DATETIME"
+                             description=""
+                             name="date"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="CompareJSONObjects">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        compareObjects = function (obj1, obj2) {
+                                          //Loop through properties in object
+                                          for (var p in obj1) {
+                                            //Check property exists on both objects
+                                            if (obj1.hasOwnProperty(p) !== obj2.hasOwnProperty(p)) return false;
+                                        
+                                            switch (typeof (obj1[p])) {
+                                              //Deep compare objects
+                                              case 'object':
+                                                if (!compareObjects(obj1[p], obj2[p])) return false;
+                                                break;
+                                                //Compare function code
+                                              case 'function':
+                                                if (typeof (obj2[p]) == 'undefined' || (obj1[p].toString() != obj2[p].toString())) return false;
+                                                break;
+                                                //Compare values
+                                              default:
+                                                if (obj1[p] != obj2[p]) return false;
+                                            }
+                                          }
+                                        
+                                          //Check object 2 for any extra properties
+                                          for (var p in obj2) {
+                                            if (typeof (obj1[p]) == 'undefined') return false;
+                                          }
+                                          return true;
+                                        };
+                                        
+                                        var result = compareObjects(JSON.parse(json1), JSON.parse(json2));
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ConvertBaseTypeToFriendlyName">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = '';
+                                        
+                                        if (baseType != null) {
+                                          var lowerCaseString = baseType.toLowerCase();
+                                          result = lowerCaseString.replace(/\b\w/g, function (l) {
+                                            return l.toUpperCase();
+                                          });
+                                        
+                                          if (result === 'Datetime') {
+                                            result = 'DateTime';
+                                          } else if (result === 'Json') {
+                                            result = 'JSON';
+                                          }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetBooleanValue">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result;
+                                        
+                                        if (!!value) {
+                                          value = value.toUpperCase();
+                                          if (value === "TRUE") {
+                                            result = true;
+                                          } else if (value === "FALSE") {
+                                            result = false;
+                                          } else {
+                                            result = invalidValue;
+                                          }
+                                        } else {
+                                          result = defaultValue;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetDataShapeFieldNames">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var resultArray = [];
+                                        var rows = DataShapes[dataShapeName].GetFieldDefinitions()["rows"];
+                                        for (var i = 0; i < rows.length; i++) {
+                                          var row = rows[i];
+                                          resultArray.push(row.name);
+                                        }
+                                        var result = resultArray;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentForExport">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        //result datashape: PTC.Factory.EquipmentStatusTreeDataShape
+                                        result = null;
+                                        
+                                        var constants = me.GetImportExportConstants();
+                                        if (contextName === null|| contextName === undefined || contextName.length === 0) {
+                                            contextName = cconstants.defaultContext;
+                                        }
+                                        
+                                        try {
+                                            result =  Things["PTC.SCA.SCO.ContextUtils"].GetEquipmentNetwork({
+                                                includeStructureInFilter: undefined,
+                                                contextName: contextName,
+                                                filterQuery: undefined,
+                                                permissionType: "Read"
+                                            });
+                                        } catch (err) {
+                                            logger.error("Errors when call 'GetEquipmentForExport': " + err);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetExcludedPropertyBaseTypes">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = ['IMAGE', 'BLOB', 'PASSWORD', 'XML', 'DASHBOARDNAME'];
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetExcludedThingShapeProperties">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var thingShapesToExclude = ['Connectable'];
+                                        const propertiesToExclude = [];
+                                        const propertiesToIgnore = ['description', 'name', 'tags', 'thingTemplate'];
+                                        
+                                        for (var i = 0; i < thingShapesToExclude.length; i++) {
+                                            var thingShape = thingShapesToExclude[i];
+                                            var listOfProperties = ThingShapes[thingShape].GetInstancePropertyDefinitions();
+                                            
+                                            for each (var propertyDefinition in listOfProperties.rows) {
+                                                var propertyName = propertyDefinition.name;
+                                                if (propertiesToIgnore.indexOf(propertyName) === -1 && propertiesToExclude.indexOf(propertyName) === -1) {
+                                                    propertiesToExclude.push(propertyName);
+                                                }
+                                            }    
+                                        }
+                                        
+                                        result = propertiesToExclude;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetImportExportConstants">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function getLaunchPointName () {
+                                            return Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                        }
+                                        
+                                        var result = {
+                                          /* CONSTANTS */
+                                          parentSeparator: "/",
+                                          equipmentRelationshipSettings: "EquipmentRelationshipSettings",
+                                          manyToManyCardinality: "ManyToManyCardinality",
+                                          kepServerEX: "KEPServerEX",
+                                          niTestStand: "NI TestStand",
+                                          invalid: "Invalid",
+                                          creates: "Creates",
+                                          exists: "Exists",
+                                          updates: "Updates",
+                                          isValid: 1,
+                                          displayName: "displayName",
+                                          noneBound: "None",
+                                          locallyBound: "Locally Bound",
+                                          remotelyBound: "Remotely Bound",
+                                          useSystemDefault: "Use system default",
+                                          customTimeout: "Custom timeout",
+                                          
+                                          /* LAUNCHPOINT CONFIGURATION CONSTANTS */
+                                          ContextName: "ContextName",
+                                          Network: "Network",
+                                          defaultContext: "DefaultContext",
+                                          EquipmentRelationshipSettings: "EquipmentRelationshipSettings",
+                                          EquipmentType: "EquipmentType",
+                                          DerivesFrom: "DerivesFrom",
+                                        
+                                          /* DATA SHAPES */
+                                          importExportDataShape: "PTC.SCA.SCO.Common.ImportExportDataShape",
+                                          equipmentHierarchyDataShape: "PTC.SCA.SCO.Common.ImportExport.EquipmentHierarchyDataShape",
+                                          equipmentGeneralInformationDataShape: "PTC.SCA.SCO.Common.ImportExport.EquipmentGeneralInformationDataShape",
+                                          equipmentPropertiesDataShape: "PTC.SCA.SCO.Common.ImportExport.EquipmentPropertiesDataShape",
+                                          validationResultDataShape: "PTC.SCA.SCO.Common.ImportExport.ValidationResultDataShape",
+                                          importReportDataShape: "PTC.SCA.SCO.Common.ImportExport.ReportDataShape",
+                                          serverTagDataShape: "PTC.SCA.SCO.ServerTagDataShape",
+                                          equipmentContextSettingsDataShape: "PTC.SCA.SCO.EquipmentContextSettingsDataShape",
+                                        
+                                          /* THINGS */
+                                          importExportUtilsThingName: "PTC.SCA.SCO.Common.ImportExportEquipmentUtils",
+                                        
+                                          /* EQUIPMENT TYPES */
+                                          site: "Site",
+                                          line: "Line",
+                                          asset: "Asset",
+                                        
+                                          /* EXCEL TABS */
+                                          properties: "properties",
+                                          generalInformation: "generalInformation",
+                                          equipmentHierarchy: "equipmentStructure",
+                                        
+                                          /* EXCEL HEADERS */
+                                          implementedShapes: "implementedShapes",
+                                          published: "published",
+                                          active: "active",
+                                          valueStream: "valueStream",
+                                          name: "name",
+                                          type: "type",
+                                          context: "context",
+                                          rows: "rows",
+                                          baseThingTemplate: "baseThingTemplate",
+                                          homeMashup: "homeMashup",
+                                          identifier: "identifier",
+                                          project: "project",
+                                          tags: "tags",
+                                          description: "description",
+                                          equipmentType: "equipmentType",
+                                          thingName: "equipmentName",
+                                          array: "array",
+                                          baseType: "baseType",
+                                          binding: "binding",
+                                          timeout: "timeout",
+                                          timeoutInterval: "timeoutInterval",
+                                          pushThreshold: "pushThreshold",
+                                          pushType: "pushType",
+                                          startType: "startType",
+                                          cacheInterval: "cacheInterval",
+                                          remotePropertyName: "remotePropertyName",
+                                          property: "property",
+                                          thing: "thing",
+                                          dataChangeType: "dataChangeType",
+                                          category: "category",
+                                          readOnly: "readOnly",
+                                          persistent: "persistent",
+                                          logged: "logged",
+                                          value: "value",
+                                          hasDefaultValue: "hasDefaultValue",
+                                          defaultValue: "defaultValue",
+                                          readEdgeValue: "Read Edge Value",
+                                          useDefaultValue: "Use Default Value",
+                                          maxValue: "maxValue",
+                                          minValue: "minValue",
+                                          units: "units",
+                                          parent: "parent",
+                                          visibility: "visibility",
+                                          propertyRead: "propertyRead",
+                                          propertyWrite: "propertyWrite",
+                                          serviceExecute: "serviceExecute",
+                                          eventExecute: "eventExecute",
+                                          eventSubscribe: "eventSubscribe",
+                                          industrialDataType: "industrialDataType",
+                                          tagAddress: "tagAddress",
+                                          scanRate: "scanRate",
+                                          tagType: "tagType",
+                                          source: "source",
+                                          dataShape: "dataShape",
+                                        
+                                          /* Organization and OrganizationalUnit */
+                                          Organization: "Organization",
+                                          OrganizationalUnit: "OrganizationalUnit",
+                                        
+                                          /* User and Group */
+                                          User: "User",
+                                          Group: "Group",
+                                          UserGroupName: "UserGroupName",
+                                          
+                                          /* Permissions Data shape */
+                                          isPermitted: "isPermitted",
+                                          permissionName: "permissionName",
+                                          resourceName: "resourceName",
+                                          
+                                          /* Permission Names*/
+                                          PropertyRead: "PropertyRead",
+                                          PropertyWrite: "PropertyWrite",
+                                          ServiceInvoke: "ServiceInvoke",
+                                          EventInvoke: "EventInvoke",
+                                          EventSubscribe: "EventSubscribe",
+                                        
+                                          /* TEMPLATES */
+                                          siteTemplate: "PTC.ISA95.SiteThingTemplate",
+                                          remoteThingWithTunnelsAndFileTransfer: "RemoteThingWithTunnelsAndFileTransfer",
+                                          lineTemplate: "PTC.ISA95.ProductionLineThingTemplate",
+                                          mfgAssetTemplate: "PTC.ISA95.PhysicalAssetThingTemplate",
+                                          kepServerTemplate: "PTC.Factory.KepServerThingTemplate",
+                                        
+                                          /* LANGUAGE TOKENS */
+                                          equipmentHierarchyToken: "PTC.SCA.SCO.ConfigurationAndSetup.EquipmentStructure",
+                                          generalInformationToken: "PTC.SCA.SCO.ConfigurationAndSetup.GeneralInformation",
+                                          propertiesToken: "PTC.SCA.SCO.ConfigurationAndSetup.Properties",
+                                        
+                                          /* REQUIRED SHAPES FOR CUSTOM TEMPLATES: ***DEPRECATED-J*** The following constants will be deleted in the future release */
+                                          siteRequiredShapes: [
+                                            'PTC.Factory.SiteResourceThingShape',
+                                            'PTC.ISA95.GeneralEquipmentThingShape',
+                                            'PTC.ISA95.IdentifierThingShape',
+                                            'PTC.ISA95.EquipmentAssetMappingThingShape',
+                                            'PTC.SCA.SCO.IdentifierThingShape',
+                                            'PTC.ISA95.DisplayNameThingShape'
+                                          ],
+                                          lineRequiredShapes: [
+                                            'PTC.SCA.SCO.SiteThingShape',
+                                            'PTC.SCA.SCO.StatusThingShape',
+                                            'PTC.SCA.SCO.ShiftThingShape',
+                                            'PTC.SCA.Mfg.AssetFilteringThingShape',
+                                            'PTC.SCA.SCO.AvailabilityThingShape',
+                                            'PTC.SCA.SCO.EffectivenessThingShape',
+                                            'PTC.SCA.SCO.QualityRatioThingShape',
+                                            'PTC.SCA.SCO.OEEThingShape',
+                                            'PTC.SCA.SCO.KPIElementThingShape',
+                                            'PTC.ISA95.GeneralEquipmentThingShape',
+                                            'PTC.ISA95.IdentifierThingShape',
+                                            'PTC.ISA95.EquipmentAssetMappingThingShape',
+                                            'PTC.SCA.SCO.IdentifierThingShape',
+                                            'PTC.ISA95.DisplayNameThingShape',
+                                            'PTC.Factory.ProductionLineResourceThingShape'
+                                          ],
+                                          mfgRequiredShapes: [
+                                            'PTC.Factory.PhysicalAssetThingShape',
+                                            'PTC.SCA.SCO.SiteThingShape',
+                                            'PTC.SCA.Mfg.AssetFilteringThingShape',
+                                            'PTC.SCA.SCO.AvailabilityThingShape',
+                                            'PTC.SCA.SCO.EffectivenessThingShape',
+                                            'PTC.SCA.SCO.QualityRatioThingShape',
+                                            'PTC.SCA.SCO.OEEThingShape',
+                                            'PTC.SCA.SCO.KPIElementThingShape',
+                                            'PTC.ISA95.EquipmentAssetMappingThingShape',
+                                            'PTC.ISA95.GeneralPhysicalAssetThingShape',
+                                            'PTC.SCA.SCO.StatusThingShape',
+                                            'PTC.ISA95.IdentifierThingShape',
+                                            'PTC.SCA.SCO.ShiftThingShape',
+                                            'PTC.SCA.SCO.MonitoredPropertiesThingShape',
+                                            'PTC.SCA.SCO.AssetIdentifierThingShape',
+                                            'PTC.SCA.SCO.AnomalyThingShape'
+                                          ],
+                                        
+                                          /* ALLOWED VALUES FOR PUSH TYPE IN PROPERTY */
+                                          allowedPushTypes: [
+                                            'VALUE',
+                                            'ALWAYS',
+                                            'NEVER'
+                                          ],
+                                        
+                                          /* ALLOWED VALUES FOR PUSH TYPE IN PROPERTY */
+                                          allowedTimeoutOptions: [
+                                            'Use system default',
+                                            'Custom timeout'
+                                          ],
+                                        
+                                          /* ALLOWED VALUES FOR WHEN DISCONNECTED TYPE IN PROPERTY */
+                                          allowedWhenDisconnectedTypes: [
+                                            'NONE',
+                                            'FOLD'
+                                          ],
+                                        
+                                          /* ALLOWED VALUES FOR INDUSTRIAL DATA TYPE IN PROPERTY */
+                                          allowedIndustrialDataTypes: [
+                                            'Default',
+                                            'String',
+                                            'Boolean',
+                                            'Char',
+                                            'Byte',
+                                            'Short',
+                                            'Word',
+                                            'Long',
+                                            'DWord',
+                                            'Float',
+                                            'Double',
+                                            'BCD',
+                                            'LBCD',
+                                            'Date',
+                                            'LLong',
+                                            'QWord',
+                                            'String Array',
+                                            'Boolean Array',
+                                            'Char Array',
+                                            'Byte Array',
+                                            'Short Array',
+                                            'Word Array',
+                                            'Long Array',
+                                            'DWord Array',
+                                            'Float Array',
+                                            'Double Array',
+                                            'BCD Array',
+                                            'LBCD Array',
+                                            'Date Array',
+                                            'LLong Array',
+                                            'QWord Array'
+                                          ],
+                                        
+                                          /* OOTB TAGS */
+                                          siteDefaultTags: [
+                                            'PTC:FactorySiteInstance'
+                                          ],
+                                        
+                                          lineDefaultTags: [
+                                            'PTC:FactoryLineInstance'
+                                          ],
+                                        
+                                          assetDefaultTags: [
+                                            'PTC:FactoryPhysicalAssetInstance'
+                                          ],
+                                        
+                                          launchPointName : getLaunchPointName()
+                                        };
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetImportSupportedBaseTypes">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = ['Boolean', 'DateTime', 'Integer', 'Long', 'JSON', 'Number', 'String', 'Thingname'];
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetInternalNonCalculatedPropertyNames">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = ['serialNumber', 'modelNumber', 'physicalLocation', 'EXP_E_NotConfigured', 'EXP_E_PlannedDowntime',
+                                          'EXP_E_Running', 'EXP_E_UnplannedDowntime', 'EXP_E_Warning', 'EXP_E_Custom1', 'EXP_E_Custom2', 'EXP_E_Custom3'
+                                        ];
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetLineRequiredShapes">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var constants = me.GetImportExportConstants();
+                                        
+                                        var infoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                          infoTableName: "infoTable",
+                                          dataShapeName: "GenericStringList"
+                                        });
+                                        
+                                        var lineShapes = constants.lineRequiredShapes;
+                                        
+                                        lineShapes.forEach(function (element) {
+                                          var row = {
+                                            item: element
+                                          };
+                                        
+                                          infoTable.AddRow(row);
+                                        });
+                                        
+                                        var result = infoTable;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetMfgAssetRequiredShapes">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var constants = me.GetImportExportConstants();
+                                        
+                                        var infoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                          infoTableName: "infoTable",
+                                          dataShapeName: "GenericStringList"
+                                        });
+                                        
+                                        var assetShapes = constants.mfgRequiredShapes;
+                                        
+                                        assetShapes.forEach(function (element) {
+                                          var row = {
+                                            item: element
+                                          };
+                                        
+                                          infoTable.AddRow(row);
+                                        });
+                                        
+                                        var result = infoTable;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetNullSafeNumber">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result;
+                                        
+                                        if (value == null || value == '') {
+                                          result = undefined;
+                                        } else if (isNaN(value)) {
+                                          result = 0;
+                                        } else {
+                                          result = Number(value);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetNullSafeString">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = value == null ? "" : value;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetNumberPropertyBaseTypes">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = ['NUMBER', 'INTEGER', 'LONG'];
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetRelationshipInfoForDerivesFrom">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result;
+                                        parentType = isEmpty(parentType)? "" : parentType;
+                                        childType = isEmpty(childType)? "" : childType;
+                                        contextName = isEmpty(contextName)? "" : contextName;
+                                        try {
+                                           result = Things["PTC.SCA.SCO.EquipmentStructureManager"].GetRelationshipInfoForDerivesFrom({
+                                             parentType: parentType,
+                                             childType: childType,
+                                             contextName: contextName
+                                           });
+                                        } catch (error) {
+                                          logger.error(error);
+                                        }
+                                        
+                                        function isEmpty(str) {
+                                            return (str === null || str === undefined || str === "");
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetSiteRequiredShapes">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var constants = me.GetImportExportConstants();
+                                        
+                                        var infoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                          infoTableName: "infoTable",
+                                          dataShapeName: "GenericStringList"
+                                        });
+                                        
+                                        var siteShapes = constants.siteRequiredShapes;
+                                        
+                                        siteShapes.forEach(function (element) {
+                                          var row = {
+                                            item: element
+                                          };
+                                        
+                                          infoTable.AddRow(row);
+                                        });
+                                        
+                                        var result = infoTable;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetTemplateByEquipmentType">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        try {
+                                            var launchPointName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                            var equipmentTypeSettingRow = Things[launchPointName].GetEquipmentTypeSettingRowByType({
+                                                equipmentType: equipmentType /* STRING */
+                                            });
+                                        
+                                            if(equipmentTypeSettingRow && equipmentTypeSettingRow.rows.length > 0) {
+                                                result =  equipmentTypeSettingRow.getRow(0).ThingTemplate;
+                                            } else {
+                                                result = "";
+                                            }
+                                        } catch (err) {
+                                            logger.error("ImportExportUtils : GetTemplateByEquipmentType() could not retrieve 'EquipmentTypeSettings' configuration table or the equipment type '" + equipmentType + "' does not exist in the configuration table.");
+                                            result = "";
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ImportEquipment">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function isEmpty(str) {
+                                            return (str === null || str === undefined || str === "");
+                                        }
+                                        
+                                        if (!isEmpty(context)) {
+                                           try {
+                                             var contextList = context.split(",");
+                                             //create the equipment and add in the first context
+                                             var equipmentObject = {
+                                                name: name,
+                                                description: description,
+                                                type: type,
+                                                contextName: contextList[0],
+                                                parents: undefined,
+                                                useDefaultPrefixForEquipmentThingName: false
+                                             };    
+                                             Things["PTC.SCA.SCO.ManageResourceUtils"].CreateEquipment(equipmentObject); 
+                                             // add the equipment to the rest of contexts
+                                             var constants = me.GetImportExportConstants();
+                                             var contextSettings =  Things[constants.launchPointName].GetConfigurationTable({tableName: "EquipmentContextSettings"});
+                                             for (var i=1; i < contextList.length; i++) {
+                                               var findRow = contextSettings.Find({ContextName: contextList[i]});
+                                               if (findRow !== null) {
+                                                  var networkName = findRow["Network"];
+                                                  if (!isEmpty(networkName) && Networks[networkName] !== null) {
+                                                     Networks[networkName].AddConnection({
+                                                         from: undefined,
+                                                         to: name,
+                                                         connectionType: "CONTAINS"
+                                                     });
+                                                  }
+                                               }
+                                             }
+                                           } catch (error) {
+                                             logger.error("Errors when call 'ImportEquipment': " + error);
+                                           }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="isPropertyInherited">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        try {
+                                        	var launchPointName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                        	var equipmentTypeSettingRow = Things[launchPointName].GetEquipmentTypeSettingRowByType({
+                                        		equipmentType: equipmentType /* STRING */
+                                        	});
+                                        
+                                        	if (equipmentTypeSettingRow && equipmentTypeSettingRow.ThingTemplate) {
+                                        		var templateName = equipmentTypeSettingRow.ThingTemplate;
+                                        
+                                        		// result: BOOLEAN
+                                        		result = me.isPropertyInheritedForTemplate({
+                                        			propertyName: propertyName /* STRING */ ,
+                                        			templateName: templateName /* STRING */
+                                        		});
+                                        	}
+                                        } catch (err) {
+                                        	logger.error("ImportExportUtils : GetTemplateByEquipmentType() could not retrieve 'EquipmentTypeSettings' configuration table.");
+                                        	result = false;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="isPropertyInheritedForTemplate">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // Get all properties for the template and its implemented shapes
+                                        var propertyDefinitions = Resources["PTC.SCA.SCO.TemplateUtilities"].GetEffectivePropertyDefinitions({
+                                        	"templateName": templateName
+                                        });
+                                        
+                                        // Verify if the propertyName is among the list of properties
+                                        var properties = [];
+                                        for (var propertyIndex in propertyDefinitions.rows) {
+                                        	properties.push(propertyDefinitions[propertyIndex].name);
+                                        }
+                                        result = properties.indexOf(propertyName) != -1;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ToISOString">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var tzo = -date.getTimezoneOffset(),
+                                          dif = tzo >= 0 ? '+' : '-',
+                                          pad = function (num) {
+                                            var norm = Math.floor(Math.abs(num));
+                                            return (norm < 10 ? '0' : '') + norm;
+                                          };
+                                        var result = date.getFullYear() +
+                                          '-' + pad(date.getMonth() + 1) +
+                                          '-' + pad(date.getDate()) +
+                                          'T' + pad(date.getHours()) +
+                                          ':' + pad(date.getMinutes()) +
+                                          ':' + pad(date.getSeconds()) +
+                                          '.' + date.getMilliseconds() +
+                                          dif + pad(tzo / 60) +
+                                          ':' + pad(tzo % 60);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility></Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

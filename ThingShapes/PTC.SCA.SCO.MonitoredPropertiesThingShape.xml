@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="Caches properties which are to be monitored {PTC.SCA.SCO.MonitoredPropertiesThingShape}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.171+05:30"
+         name="PTC.SCA.SCO.MonitoredPropertiesThingShape"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:ThingShape">
+            <PropertyDefinitions>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.dataShape="GenericStringList"
+                 aspect.isLogged="false"
+                 aspect.isPersistent="true"
+                 aspect.isReadOnly="false"
+                 baseType="INFOTABLE"
+                 category=""
+                 description="***DEPRECATED-I***. This property will be deleted in the future release. Cache of property names used to identify those properties which are to be monitored"
+                 isLocalOnly="false"
+                 name="monitoredPropertyNames"
+                 ordinal="1"></PropertyDefinition>
+            </PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetAdditionalProperties">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.PropertyDetailsDataShape"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="QUERY"
+                         description="Query to sort the returned list of properties."
+                         name="query"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetExcludedProperties">
+                    <ResultType
+                     baseType="STRING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetMonitoredProperties">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.PropertyDetailsDataShape"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="QUERY"
+                         description="Query to sort the returned list of properties."
+                         name="query"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetTagPickerProperties">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.PropertyDetailsDataShape"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="QUERY"
+                         description="Query to sort the returned list of properties."
+                         name="query"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetAdditionalProperties">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    /*
+                                    *  The final result is generated as follows:
+                                    *
+                                    *  If IncludeInheritedProperties is True and myList is empty, Then
+                                    *     result = My Properties + (Inherited Properties - Excluded Properties)
+                                    *  Else
+                                    *      result = My Properties + myList
+                                    */
+                                    
+                                    var includeInheritedProperties = true;
+                                    var myList = "";  // Comma-separated list of property names
+                                    var excludedProperties = me.GetExcludedProperties();
+                                    
+                                    // result: INFOTABLE dataShape: "PTC.SCA.SCO.PropertyDetailsDataShape"
+                                    var result =  Things["PTC.SCA.SCO.CommonUtils"].GetPropertiesInformation({
+                                    	propertiesList: myList /* STRING */,
+                                    	excludedPropertiesList: excludedProperties /* STRING */,
+                                    	query: query /* QUERY */,
+                                    	includeInheritedProperties: includeInheritedProperties /* BOOLEAN */,
+                                    	filterType: "" /* STRING */,
+                                    	entity: me.name /* THINGNAME */,
+                                    	filterLoggedProperties: false /* BOOLEAN */
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetExcludedProperties">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    /* 
+                                     * If includeInheritedProperties is set to True and no properties are listed in the 
+                                     * GetMonitoredProperties, GetAdditionalProperties or GetTagPickerProperties services, 
+                                     * all properties of the thing will be returned in the different ThingWorx Apps user interfaces, with the exception of the ones listed in this service.  
+                                     *
+                                     */ 
+                                    var result = "anomalyAlertProperties,anomalyFeedback,anomalyStatus,anomalyStatusTimestamp,assetImage,AssetImage,availability_MaxThreshold,availability_MinThreshold,availabilityTrending,displayId,durationDowntime,durationNotConfiguredTime,durationPlannedDownTime,durationRuningTime,durationStatusUnavailableTime,durationUnPlannedDownTime,durationUpTime,durationWarningTime,equipmentAssetMapping,EXP_E_goodCount,EXP_E_idealRunRate,EXP_E_NotConfigured,EXP_E_performanceTag,EXP_E_PlannedDowntime,EXP_E_qualityTag,EXP_E_Running,EXP_E_totalCount,EXP_E_Unavailable,EXP_E_UnplannedDowntime,EXP_E_Warning,fixedAssetID,idealRunRate,isCalibrationRequested,isCalibrationStarted,isReporting,kpiForceUpdate,kpisCalculationPeriod,lastCalculationTime,lastCalibrationCompleteTimestamp,lastConnection,lastUpdateTime,monitoredPropertyNames,oEE_MaxThreshold,oEE_MinThreshold,oeeTrending,offsetgoodCount,offsettotalCount,oldgoodCount,oldidealRunRate,oldtotalCount,performance_MaxThreshold,performance_MinThreshold,performanceTag,performanceTrending,physicalAsset,physicalAssetCapabilityTestSpecificationID,physicalAssetClassID,providerName,quality_MaxThreshold,quality_MinThreshold,qualityTag,qualityTrending,relatedLines,relatedSite,relatedSiteID,remoteServerConfiguration,reportingLastChange,reportingLastEvaluation,shiftStartTime,status,statusCriticality,statusOrder,statusTimestamp,uuid,vncPassword,tags,thingTemplate,equipmentCapabilityTestSpecificationID,equipmentClassID,isConfigured,EXP_E_Custom1,EXP_E_Custom2,EXP_E_Custom3,kpiCacheValue";
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetMonitoredProperties">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    /*
+                                    *  The final result is generated as follows:
+                                    *
+                                    *  If IncludeInheritedProperties is True and myList is empty, Then
+                                    *     result = My Properties + (Inherited Properties - Excluded Properties)
+                                    *  Else
+                                    *      result = My Properties + myList
+                                    *
+                                    *  Note: Only numeric and logged properties are included in the result
+                                    */
+                                    
+                                    var includeInheritedProperties = true;
+                                    var myList = "";  // Comma-separated list of property names
+                                    var excludedProperties = me.GetExcludedProperties();
+                                    var filterType = "Boolean,Integer,Long,Number";
+                                    // result: INFOTABLE dataShape: "PTC.SCA.SCO.PropertyDetailsDataShape"
+                                    var result =  Things["PTC.SCA.SCO.CommonUtils"].GetPropertiesInformation({
+                                    	propertiesList: myList /* STRING */,
+                                    	excludedPropertiesList: excludedProperties /* STRING */,
+                                    	query: query /* QUERY */,
+                                    	includeInheritedProperties: includeInheritedProperties /* BOOLEAN */,
+                                    	filterType: filterType /* STRING */,
+                                    	entity: me.name /* THINGNAME */,
+                                    	filterLoggedProperties: true /* BOOLEAN */
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetTagPickerProperties">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    /*
+                                    *  The final result is generated as follows:
+                                    *
+                                    *  If IncludeInheritedProperties is True and myList is empty, Then
+                                    *     result = My Properties + (Inherited Properties - Excluded Properties)
+                                    *  Else
+                                    *      result = My Properties + myList
+                                    */
+                                    
+                                    var includeInheritedProperties = true;
+                                    var myList = "";  // Comma-separated list of property names
+                                    var excludedProperties = me.GetExcludedProperties();
+                                    
+                                    // result: INFOTABLE dataShape: "PTC.SCA.SCO.PropertyDetailsDataShape"
+                                    var result =  Things["PTC.SCA.SCO.CommonUtils"].GetPropertiesInformation({
+                                    	propertiesList: myList /* STRING */,
+                                    	excludedPropertiesList: excludedProperties /* STRING */,
+                                    	query: query /* QUERY */,
+                                    	includeInheritedProperties: includeInheritedProperties /* BOOLEAN */,
+                                    	filterType: "" /* STRING */,
+                                    	entity: me.name /* THINGNAME */,
+                                    	filterLoggedProperties: false /* BOOLEAN */
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations>
+                <AlertDefinitions
+                 name="monitoredPropertyNames"></AlertDefinitions>
+            </AlertConfigurations>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

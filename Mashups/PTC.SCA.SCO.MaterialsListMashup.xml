@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isFlex="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Displays parts and materials associated to the currently selected Work Definition. Mashup is integrated into UnifiedWorkInstructionScreen mashup {PTC.SCA.SCO.MaterialsListMashup}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.925+05:30"
+         name="PTC.SCA.SCO.MaterialsListMashup"
+         projectName=""
+         rows="0.0"
+         tags="PTC:OA">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.bindingDirection="BOTH"
+                 aspect.dataShape="PTC.SCA.SCO.MaterialsListEntry"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="1"
+                 baseType="INFOTABLE"
+                 description="Selected Parts"
+                 name="SelectedParts"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="BOTH"
+                 aspect.dataShape=""
+                 aspect.isMandatory="false"
+                 aspect.ordinal="2"
+                 baseType="INFOTABLE"
+                 description="Selected Rows"
+                 name="SelectedRows"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description=""
+                 name="WorkDefinitionUID"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.ThingViewUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.ThingViewUtils" : {
+                  "DataName" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                  "EntityName" : "PTC.SCA.SCO.ThingViewUtils",
+                  "EntityType" : "Things",
+                  "Id" : "de6973c1-7138-4664-a6d3-1f1a7840df3a",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "28fcc780-a60c-49d0-a939-acc9ad62dada",
+                    "Name" : "GetMaterialsList",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetMaterialsList"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "041ba5e2-7979-439d-89bf-41a0375676ec",
+                    "Name" : "ConvertSelectedRowsToSelectedParts",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "ConvertSelectedRowsToSelectedParts"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "0ccc7738-c237-4674-bee4-f37fe7a95b61",
+                    "Name" : "GetOccurrencePathsList",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetOccurrencePathsList"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "00578dd2-9e69-431e-94d7-ba6d6fc640dd",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetMaterialsList",
+                "SourceSection" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "gridadvanced-6",
+                "TargetSection" : ""
+              }, {
+                "Id" : "44f27eed-9fbb-4eaa-b482-4ec0e21bb443",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "WorkDefinitionUID",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "WorkDefinitionUID",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetMaterialsList",
+                "TargetSection" : "Things_PTC.SCA.SCO.ThingViewUtils"
+              }, {
+                "Id" : "1b256708-24f0-46f1-b7c8-456b8238f1f7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "SelectedRows",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "SelectedRows",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "gridadvanced-6",
+                "TargetSection" : ""
+              }, {
+                "Id" : "1144135b-a870-4533-8241-8daab006a21f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "SelectedRows",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "SelectedRows",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "gridadvanced-6",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "ConvertSelectedRowsToSelectedParts",
+                "TargetSection" : "Things_PTC.SCA.SCO.ThingViewUtils"
+              }, {
+                "Id" : "8608b63d-6038-4976-b06d-e5318d8d86c4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "SelectedParts",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "ConvertSelectedRowsToSelectedParts",
+                "SourceSection" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "c9a03fa5-49ab-466b-8f57-282a795546ab",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "PartsToPathsMapping",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetOccurrencePathsList",
+                "SourceSection" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "TargetArea" : "Data",
+                "TargetId" : "ConvertSelectedRowsToSelectedParts",
+                "TargetSection" : "Things_PTC.SCA.SCO.ThingViewUtils"
+              }, {
+                "Id" : "96eb15d8-0193-4808-bba6-7c6e20caeab2",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "WorkDefinitionUID",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "WorkDefinitionUID",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetOccurrencePathsList",
+                "TargetSection" : "Things_PTC.SCA.SCO.ThingViewUtils"
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "EventHandlerService" : "GetMaterialsList",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "61fda949-0a92-417c-abab-f76761b900fa"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "EventHandlerService" : "GetMaterialsList",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "WorkDefinitionUIDChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "883111af-5409-45e7-8b18-426d563bafe3"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "EventHandlerService" : "ConvertSelectedRowsToSelectedParts",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "SelectedRowsChanged",
+                "EventTriggerId" : "GetMaterialsList",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "Id" : "24d332d0-ae7f-45e5-be94-1fb3c0a12a0c"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "EventHandlerService" : "GetOccurrencePathsList",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "d8a339f4-609a-40c0-95ef-00c6a35c96af"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "EventHandlerService" : "GetOccurrencePathsList",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "WorkDefinitionUIDChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "b5998967-3f63-4690-903d-47db13da187b"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "StyleTheme" : "PTC Convergence Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseMasterTheme" : false,
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "Aspects" : {
+                      "bindingDirection" : "IN",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "WorkDefinitionUID"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "BOTH",
+                      "dataShape" : "PTC.SCA.SCO.MaterialsListEntry",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "Selected Parts",
+                    "ParameterName" : "SelectedParts"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "BOTH",
+                      "dataShape" : "",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "Selected Rows",
+                    "ParameterName" : "SelectedRows"
+                  } ],
+                  "id_index" : 7,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "container-2",
+                    "EnableExpandCollapse" : false,
+                    "Expanded" : true,
+                    "Id" : "flexcontainer-2",
+                    "LastContainer" : true,
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "ShowExpandCollapseTab" : false,
+                    "SourceURL" : "",
+                    "Style" : "DefaultContainerStyle",
+                    "StyleProperties" : { },
+                    "Type" : "flexcontainer",
+                    "UseTheme" : true,
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Responsive Container",
+                    "align-content" : "flex-start",
+                    "align-items" : "flex-start",
+                    "flex-basis" : "auto",
+                    "flex-direction" : "column",
+                    "flex-grow" : "1",
+                    "flex-max-height" : "",
+                    "flex-max-width" : "",
+                    "flex-min-height" : "",
+                    "flex-min-width" : "",
+                    "flex-shrink" : "1",
+                    "flex-size" : "default",
+                    "flex-wrap" : "nowrap",
+                    "iconClass" : "widgets-flexcontainer",
+                    "justify-content" : "flex-start",
+                    "positioning" : "responsive",
+                    "userCannotRemove" : true
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "container-5",
+                      "EnableExpandCollapse" : false,
+                      "Expanded" : true,
+                      "Id" : "flexcontainer-5",
+                      "LastContainer" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "SourceURL" : "",
+                      "Style" : "DefaultContainerStyle",
+                      "StyleProperties" : { },
+                      "Type" : "flexcontainer",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Responsive Container",
+                      "align-content" : "flex-start",
+                      "align-items" : "flex-start",
+                      "flex-basis" : "auto",
+                      "flex-direction" : "column",
+                      "flex-grow" : "1",
+                      "flex-max-height" : "50px",
+                      "flex-max-width" : "",
+                      "flex-min-height" : "50px",
+                      "flex-min-width" : "",
+                      "flex-shrink" : "1",
+                      "flex-size" : "fixed",
+                      "flex-wrap" : "nowrap",
+                      "iconClass" : "widgets-flexcontainer-fixed",
+                      "isLocked" : false,
+                      "justify-content" : "flex-start",
+                      "positioning" : "responsive",
+                      "userCannotRemove" : false
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisclosureControl" : "show-more",
+                        "DisplayName" : "ptcs-label-7",
+                        "HorizontalAlignment" : "left",
+                        "Id" : "ptcslabel-7",
+                        "LabelText" : "[[PTC.SCA.SCO.Materials]]",
+                        "LabelType" : "label",
+                        "LastContainer" : false,
+                        "Left" : 125,
+                        "Margin" : "5",
+                        "MultiLine" : false,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Top" : 85,
+                        "Type" : "ptcslabel",
+                        "UseTheme" : true,
+                        "VerticalAlignment" : "flex-start",
+                        "Visible" : true,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label",
+                        "overflowShowLessTxt" : "[[showLess]]",
+                        "overflowShowMoreTxt" : "[[showMore]]"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "container-4",
+                      "EnableExpandCollapse" : false,
+                      "Expanded" : true,
+                      "Id" : "flexcontainer-4",
+                      "LastContainer" : true,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "SourceURL" : "",
+                      "Style" : "DefaultContainerStyle",
+                      "StyleProperties" : { },
+                      "Type" : "flexcontainer",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Responsive Container",
+                      "align-content" : "flex-start",
+                      "align-items" : "flex-start",
+                      "flex-basis" : "auto",
+                      "flex-direction" : "row",
+                      "flex-grow" : "1",
+                      "flex-max-height" : "",
+                      "flex-max-width" : "",
+                      "flex-min-height" : "",
+                      "flex-min-width" : "",
+                      "flex-shrink" : "1",
+                      "flex-size" : "default",
+                      "flex-wrap" : "nowrap",
+                      "iconClass" : "widgets-flexcontainer",
+                      "isLocked" : true,
+                      "justify-content" : "flex-start",
+                      "positioning" : "responsive",
+                      "userCannotRemove" : false
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "AutoScroll" : true,
+                        "CellBorderStyle" : "DefaultGridAdvancedCellBorderStyle",
+                        "CellValidationErrorStyle" : "DefaultGridAdvancedCellValidationErrorStyle",
+                        "CellValidationErrorTooltipStyle" : "DefaultGridAdvancedCellValidationErrorTooltipStyle",
+                        "ColumnFormat" : {
+                          "formatInfo" : [ {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "EditorOptions" : {
+                              "Type" : "string",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                            },
+                            "FieldName" : "MaterialID",
+                            "FormatOptions" : {
+                              "FormatString" : "full",
+                              "formatInfo" : {
+                                "FieldName" : "",
+                                "StateDefinition" : "",
+                                "StateDefinitionType" : "fixed",
+                                "StateFormats" : [ {
+                                  "state" : "",
+                                  "stateName" : "fixed"
+                                } ]
+                              },
+                              "renderer" : "STRING",
+                              "roundingEnabled" : true,
+                              "showDependentField" : false
+                            },
+                            "Title" : "[[PTC.SCA.SCO.MaterialNumber]]",
+                            "Width" : "auto",
+                            "headerTextAlignment" : "left",
+                            "hidden" : false,
+                            "inLayout" : true
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "EditorOptions" : {
+                              "Type" : "string",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                            },
+                            "FieldName" : "MaterialName",
+                            "FormatOptions" : {
+                              "FormatString" : "full",
+                              "formatInfo" : {
+                                "FieldName" : "",
+                                "StateDefinition" : "",
+                                "StateDefinitionType" : "fixed",
+                                "StateFormats" : [ {
+                                  "state" : "",
+                                  "stateName" : "fixed"
+                                } ]
+                              },
+                              "renderer" : "STRING",
+                              "roundingEnabled" : true,
+                              "showDependentField" : false
+                            },
+                            "Title" : "[[PTC.SCA.SCO.MaterialName]]",
+                            "Width" : "auto",
+                            "headerTextAlignment" : "left",
+                            "hidden" : false,
+                            "inLayout" : true
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : false,
+                            "EditorOptions" : {
+                              "Type" : "number",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "ValidNumeric", "ValidCurrency", "Custom" ]
+                            },
+                            "FieldName" : "Quantity",
+                            "FormatOptions" : {
+                              "FormatString" : "0.00",
+                              "formatInfo" : {
+                                "FieldName" : "",
+                                "StateDefinition" : "",
+                                "StateDefinitionType" : "fixed",
+                                "StateFormats" : [ {
+                                  "state" : "",
+                                  "stateName" : "fixed"
+                                } ]
+                              },
+                              "renderer" : "DEFAULT",
+                              "roundingEnabled" : true,
+                              "showDependentField" : false
+                            },
+                            "Title" : "[[PTC.SCA.SCO.Quantity]]",
+                            "Width" : "auto",
+                            "headerTextAlignment" : "left",
+                            "hidden" : false,
+                            "inLayout" : true
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : true,
+                            "EditorOptions" : {
+                              "Type" : "string",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                            },
+                            "FieldName" : "idPath",
+                            "FormatOptions" : {
+                              "FormatString" : "full",
+                              "formatInfo" : {
+                                "FieldName" : "",
+                                "StateDefinition" : "",
+                                "StateDefinitionType" : "fixed",
+                                "StateFormats" : [ {
+                                  "state" : "",
+                                  "stateName" : "fixed"
+                                } ]
+                              },
+                              "renderer" : "STRING",
+                              "roundingEnabled" : true
+                            },
+                            "Title" : "idPath",
+                            "Width" : "auto",
+                            "headerTextAlignment" : "left",
+                            "hidden" : true,
+                            "inLayout" : true
+                          }, {
+                            "Align" : "left",
+                            "AllowEdit" : true,
+                            "EditorOptions" : {
+                              "Type" : "number",
+                              "Validators" : [ "None", "NotEmpty", "Empty", "ValidNumber", "Custom" ]
+                            },
+                            "FieldName" : "WorkDefinitionMaterialSpecificationUID",
+                            "FormatOptions" : {
+                              "FormatString" : "0",
+                              "formatInfo" : {
+                                "FieldName" : "",
+                                "StateDefinition" : "",
+                                "StateDefinitionType" : "fixed",
+                                "StateFormats" : [ {
+                                  "state" : "",
+                                  "stateName" : "fixed"
+                                } ]
+                              },
+                              "renderer" : "INTEGER",
+                              "roundingEnabled" : true
+                            },
+                            "Title" : "WorkDefinitionMaterialSpecificationUID",
+                            "Width" : "auto",
+                            "headerTextAlignment" : "left",
+                            "hidden" : true,
+                            "inLayout" : true
+                          } ]
+                        },
+                        "Configuration" : "",
+                        "ConfigurationId" : 4,
+                        "CookiePersistence" : true,
+                        "DataOverflow" : "tooltip",
+                        "DataServiceBindingDef" : {
+                          "entityName" : "PTC.SCA.SCO.ThingViewUtils",
+                          "entityType" : "Things",
+                          "target" : "GetMaterialsList"
+                        },
+                        "DefaultSelectedRows" : "",
+                        "DisplayName" : "gridadvanced-6",
+                        "DisplayOnlyMode" : false,
+                        "EditButtonsLocation" : "top-right",
+                        "EnableAddDeleteButtons" : false,
+                        "EnableContextMenu" : true,
+                        "EnableEditButtons" : false,
+                        "EnableFilterEventOnConfigChange" : true,
+                        "EnableFooter" : false,
+                        "EnableGridReset" : false,
+                        "EnableGridSearch" : false,
+                        "EnableSorting" : false,
+                        "FocusStyle" : "DefaultFocusStyle",
+                        "GridResetButtonLocation" : "top-right",
+                        "GridSearchLocation" : "top-left",
+                        "HeaderOverflow" : "tooltip",
+                        "Height" : 200,
+                        "IDFieldName" : "WorkDefinitionMaterialSpecificationUID",
+                        "Id" : "gridadvanced-6",
+                        "IsEditable" : false,
+                        "LastContainer" : false,
+                        "Left" : 305,
+                        "MaxHeaderHeight" : 100,
+                        "MinRowHeight" : 30,
+                        "ResponsiveLayout" : true,
+                        "RowAlternateBackgroundStyle" : "DefaultGridAdvancedRowAlternateBackgroundStyle",
+                        "RowBackgroundStyle" : "DefaultGridAdvancedRowBackgroundStyle",
+                        "RowBorderStyle" : "DefaultGridAdvancedRowBorderStyle",
+                        "RowFormat_StateParameters" : [ ],
+                        "RowHoverStyle" : "DefaultGridAdvancedRowHoverStyle",
+                        "RowSelectedStyle" : "DefaultGridAdvancedRowSelectedStyle",
+                        "RowSelection" : "multi",
+                        "SelectedRows" : "",
+                        "ShowDataLoading" : true,
+                        "SortAscendingStyle" : "DefaultSortAscendingStyle",
+                        "SortDescendingStyle" : "DefaultSortDescendingStyle",
+                        "TableFooterStyle" : "DefaultGridAdvancedFooterStyle",
+                        "TableHeaderStyle" : "DefaultGridAdvancedHeaderStyle",
+                        "TableWrapperStyle" : "DefaultGridAdvancedWrapperStyle",
+                        "ToolbarStyle" : "DefaultToolbarStyle",
+                        "TooltipStyle" : "DefaultTooltipStyle",
+                        "Top" : 75,
+                        "Type" : "gridadvanced",
+                        "UseTheme" : true,
+                        "Visible" : true,
+                        "Width" : 400,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Grid Advanced"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview></preview>
+        </Mashup>
+    </Mashups>
+</Entities>

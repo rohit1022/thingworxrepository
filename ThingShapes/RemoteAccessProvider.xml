@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isExtension="true"
+         className=""
+         description="Provides a way for a Thing to know which Remote Server to use to initiate its Remote Session, as well as retrieving session information for a specific session from the appropriate RemoteAccessServer."
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:15:04.574+05:30"
+         name="RemoteAccessProvider"
+         projectName=""
+         tags="Applications:RemoteAccess">
+            <PropertyDefinitions></PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 category=""
+                 description="End the session with the given UUID for the provided Thing."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="EndSession">
+                    <ResultType
+                     baseType="NOTHING"
+                     description="result"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="RemoteAccessible"
+                         baseType="THINGNAME"
+                         description="the device that the session belongs to"
+                         name="agentDevice"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="GUID"
+                         description="the ID of the session to end"
+                         name="sessionId"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="Get the list of active RemoteAccessServers names for this provider."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetActiveServers">
+                    <ResultType
+                     aspect.dataShape="RemoteAccessServerName"
+                     baseType="INFOTABLE"
+                     description="names of the active RemoteAccessServers for this provider"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="Get the list of all RemoteActiveServers for this provider."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetAllServers">
+                    <ResultType
+                     aspect.dataShape="RemoteAccessServerName"
+                     baseType="INFOTABLE"
+                     description="names of the active RemoteAccessServers for this provider"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="Get the sessions assigned by this provider."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetAllSessions">
+                    <ResultType
+                     aspect.dataShape="RemoteSession"
+                     baseType="INFOTABLE"
+                     description="the sessions assigned by this provider"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="Get the endpoints available on the given device."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetRemoteAccessibleEndpoints">
+                    <ResultType
+                     aspect.dataShape="RemoteEndpoint"
+                     baseType="INFOTABLE"
+                     description="Endpoints available on the device"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="RemoteAccessible"
+                         baseType="THINGNAME"
+                         description="the device to get endpoints for"
+                         name="agentDevice"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="Gets the remote viewer configuration data for the provided thing and endpoint name"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetRemoteServerConfiguration">
+                    <ResultType
+                     baseType="JSON"
+                     description="The remote server configuration properties"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="RemoteAccessible"
+                         baseType="THINGNAME"
+                         description="the device for the remote server configuration"
+                         name="agentDevice"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="the name of the endpoint for the remote server configuration"
+                         name="endpointName"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="Get the session with the given ID."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetSession">
+                    <ResultType
+                     aspect.dataShape="RemoteSession"
+                     baseType="INFOTABLE"
+                     description="The remote session with the given session ID"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="RemoteAccessible"
+                         baseType="THINGNAME"
+                         description="the device that the session belongs to"
+                         name="agentDevice"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="GUID"
+                         description="the ID of the session to get"
+                         name="sessionId"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="Get the sessions assigned by this provider to a Device."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetSessions">
+                    <ResultType
+                     aspect.dataShape="RemoteSession"
+                     baseType="INFOTABLE"
+                     description="the sessions assigned by this provider"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="RemoteAccessible"
+                         baseType="THINGNAME"
+                         description="the device to get sessions for"
+                         name="agentDevice"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category=""
+                 description="Starts a remote session for the given Thing."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="StartSession">
+                    <ResultType
+                     baseType="GUID"
+                     description="session ID of the remote session to be created"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="RemoteAccessible"
+                         baseType="THINGNAME"
+                         description="the device to start a session for"
+                         name="agentDevice"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.dataShape="RemoteSessionParameters"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="the parameters for the session to start"
+                         name="remoteSessionParameters"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetRemoteServerConfiguration">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    /* Default implementation returns an empty JSON element */
+                                    var result = { };
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetSession">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                    	remoteAccessible: agentDevice, /* THINGNAME */
+                                    	sessionId: sessionId
+                                    };
+                                    var result = Subsystems["RemoteAccessSubsystem"].GetSessionByRemoteAccessible(params);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetSessions">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                    	remoteAccessible: agentDevice /* THINGNAME */
+                                    };
+                                    var result = Subsystems["RemoteAccessSubsystem"].GetSessionsByRemoteAccessible(params);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

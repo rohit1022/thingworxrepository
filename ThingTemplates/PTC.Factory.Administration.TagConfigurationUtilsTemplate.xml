@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="Utilities for tag picker configuration. {PTC.Factory.Administration.TagConfigurationUtilsTemplate}"
+         documentationContent=""
+         effectiveThingPackage="PTC.Resource.Factory.TagConfigurationUtilsPackage"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:39.828+05:30"
+         name="PTC.Factory.Administration.TagConfigurationUtilsTemplate"
+         projectName="PTC.SCA.SCO.User Management"
+         tags="PTC:sca-sco-usermanagement;PTC:sca-common;PTC:Administration;PTC:ThingTemplate"
+         thingPackage="PTC.Resource.Factory.TagConfigurationUtilsPackage"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations>
+                <AlertDefinitions
+                 name="isEquipmentSelectionPreserved"></AlertDefinitions>
+            </AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions>
+                    <PropertyDefinition
+                     aspect.cacheTime="0.0"
+                     aspect.dataChangeType="VALUE"
+                     aspect.defaultValue="true"
+                     aspect.isLogged="false"
+                     aspect.isPersistent="true"
+                     aspect.isReadOnly="false"
+                     baseType="BOOLEAN"
+                     category=""
+                     description="Boolean value to decide if the last server node selection in server tree structure will be preserved per session."
+                     isLocalOnly="false"
+                     name="isEquipmentSelectionPreserved"
+                     ordinal="1"></PropertyDefinition>
+                </PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Clone the selected server node row from the server tree structure. Input and return are both in the form of InfoTable."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CloneSelectedServerNodeRow">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ServerStructureDataShape"
+                         baseType="INFOTABLE"
+                         description="Cloned Infotable containing the selected server node row from the server tree structure."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.ServerStructureDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="InfoTable containing the selected server node row in the server tree structure."
+                             name="selectedServerRow"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Service that will return a clone of the data of the GetSourceThingList"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="CloneSourceThingList">
+                        <ResultType
+                         aspect.dataShape="PTC.Resource.ListItem"
+                         baseType="INFOTABLE"
+                         description="Row containing all the things from the equipment type"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.Resource.ListItem"
+                             baseType="INFOTABLE"
+                             description="The list containing all things from the equipment type"
+                             name="thingList"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Convert the equipment name into a displayable format as a label value"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ConvertEquipmentNameToLabelValue">
+                        <ResultType
+                         aspect.dataShape="PTC.Resource.ListItem"
+                         baseType="INFOTABLE"
+                         description="InfoTable containing the label and value of a row"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.Resource.ListItem"
+                             aspect.isRequired="false"
+                             baseType="INFOTABLE"
+                             description="InfoTable containing the last selected server name and server node for each connection type in tag picker."
+                             name="listOfSourceThings"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="INTEGER"
+                             description="Index of the row of the List item for the preserved selection."
+                             name="rowIndex"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetInfoTableMultiSingleSource">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ServerTagDataShape"
+                         baseType="INFOTABLE"
+                         description="return a single or multi select table."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.isRequired="true"
+                             baseType="BOOLEAN"
+                             description=""
+                             name="isSingleSelect"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.ServerTagDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="multiSelectInfoTable"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.ServerTagDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="singleSelectInfoTable"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get the last selected server node preserved via the session variable for the input connection type."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetLastSelectedEquipment">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                         baseType="INFOTABLE"
+                         description="Single-row InfoTable representing the last selected server node."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Connection Type"
+                             name="connectionType"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             aspect.isRequired="true"
+                             baseType="BOOLEAN"
+                             description="Whether server structure expansion is preserved."
+                             name="isEquipmentSelectionPreserved"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                             baseType="INFOTABLE"
+                             description="InfoTable containing the last selected server name and server node for each connection type in tag picker."
+                             name="preservedServerNodeSelection"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="According to the last selected server node preserved by session variable get the server tree structure expended to that level. This service will be used to display the preserved tree structure in the tag picker."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetPreservedServerTreeStructure">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ServerStructureDataShape"
+                         baseType="INFOTABLE"
+                         description="InfoTable containing the preserved server structure expended to the level of the last selected server node."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Connection type."
+                             name="connectionType"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             aspect.isRequired="true"
+                             baseType="BOOLEAN"
+                             description="Whether the last server node selection in server tree structure will be preserved per session."
+                             name="isEquipmentSelectionPreserved"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Server name of last selection."
+                             name="lastSelectedServerName"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.ServerStructureDataShape"
+                             baseType="INFOTABLE"
+                             description="Single-row InfoTable representing the last selected server node."
+                             name="lastSelectedServerNode"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Server name."
+                             name="serverName"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Browse tags for given path and type filter"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetServerTags">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ServerTagDataShape"
+                         baseType="INFOTABLE"
+                         description="Retrieved tags from specified server"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Connection type used to retrieve a resource provider"
+                             name="connectionType"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="STRING"
+                             description="Filter will be applied on returned tags"
+                             name="filter"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Path to the node which we want to retrieve tags"
+                             name="path"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Server name on which we want to retrieve tags"
+                             name="serverName"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="QUERY"
+                             description="json input to sort your infotable"
+                             name="sortQuery"
+                             ordinal="8"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Filter will be applied on Remote Source field of returned tags"
+                             name="sourceFilter"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.ServerTagDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Subscribed tags of this server. Might be null"
+                             name="subscribedTags"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Filter will be applied on BaseTypes field of returned tags"
+                             name="typeFilter"
+                             ordinal="6"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetServerTreeStructure">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ServerStructureDataShape"
+                         baseType="INFOTABLE"
+                         description="Retrieved tree structure from a specified server"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Connection type used to retrieve a resource provider"
+                             name="connectionType"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Path to the node which we want to retrieve tree structure. In order to work properly with the advanced tree grid in the tag picker, this parameter name must be the same as the field name corresponding to the full path in the returned DataShape."
+                             name="FullPath"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Server name on which we want to get tree structure"
+                             name="serverName"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Get the list of source thing list with the preserved selection"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetSourceThingListWithPreservedSelection">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ListItemPreservedSelectionDataShape"
+                         baseType="INFOTABLE"
+                         description="Single-row InfoTable representing the last selected server node. "
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="A string indicate browser type of this equipment type. Can be either &quot;remoteConnection&quot; or &quot;property&quot;"
+                             name="browserType"
+                             ordinal="6"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="The equipment type being passed"
+                             name="equipmentType"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="only selects if the server node selection is preserved"
+                             name="isEquipmentSelectionPreserved"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                             baseType="INFOTABLE"
+                             description="InfoTable containing the last selected server name and server node for each connection type in tag picker."
+                             name="preservedServerNodeSelection"
+                             ordinal="8"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="The provider name to be retrieved from the GetThingListFromSource"
+                             name="providerName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="The thing template name to be retrieved from the GetThingListFromSource"
+                             name="templateName"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="The mashup thing name of the passed equipment"
+                             name="thingName"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Preserve the current selected server node in the InfoTable with the corresponding server name and connection type."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="PreserveSelectedEquipment">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                         baseType="INFOTABLE"
+                         description="InfoTable containing the last selected equipment name and server node for each connection type in tag picker."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Current equipment name."
+                             name="equipmentName"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Current equipment type."
+                             name="equipmentType"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                             baseType="INFOTABLE"
+                             description="InfoTable containing the last selected equipment name and server node for each equipment type in tag picker."
+                             name="lastSelectedEquipment"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Preserve the current selected server node in the InfoTable with the corresponding server name and connection type."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="PreserveSelectedServerNode">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                         baseType="INFOTABLE"
+                         description="InfoTable containing the last selected server name and server node for each connection type in tag picker."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Current connection type."
+                             name="connectionType"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.ServerStructureDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Single-row InfoTable representing the last selected server node."
+                             name="lastSelectedServerNode"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                             aspect.isRequired="false"
+                             baseType="INFOTABLE"
+                             description="InfoTable containing the last selected server name and server node for each connection type in tag picker."
+                             name="preservedServerNodeSelection"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Current server name."
+                             name="serverName"
+                             ordinal="4"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="CloneSelectedServerNodeRow">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = selectedServerRow
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="CloneSourceThingList">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        result = thingList
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ConvertEquipmentNameToLabelValue">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.Resource.ListItem"
+                                        };
+                                        var table = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        if (listOfSourceThings && listOfSourceThings.getRowCount() > 0) {
+                                            var foundRow = listOfSourceThings.getRow(rowIndex);
+                                            table.AddRow(foundRow);
+                                        }
+                                        var result = table;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetInfoTableMultiSingleSource">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = (isSingleSelect == true) ? singleSelectInfoTable : multiSelectInfoTable;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetLastSelectedEquipment">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            infoTableName: "InfoTable",
+                                            dataShapeName: "PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                                        };
+                                        var table = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        if (isEquipmentSelectionPreserved && connectionType != null && preservedServerNodeSelection != null ) {
+                                            var equipmentTypeFilter = new Object();
+                                            equipmentTypeFilter.EquipmentType = connectionType;
+                                            var preservedServerNodeSelectionForCurrentType = preservedServerNodeSelection.Find(equipmentTypeFilter);
+                                            if (preservedServerNodeSelectionForCurrentType != null) {
+                                                table.AddRow(preservedServerNodeSelectionForCurrentType);
+                                            }
+                                        }
+                                        result = table;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetPreservedServerTreeStructure">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // Default return: empty infotable
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.ServerStructureDataShape"
+                                        };
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        if (serverName) {
+                                            var params = {
+                                                connectionType: this.connectionType /* STRING */
+                                            };
+                                            // Remote connection resource provider THINGNAME
+                                            var resourceProviderName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionResourceProviderName(params);
+                                        
+                                            var getServerTreeStructureParams = {
+                                                path: "" /* STRING */,
+                                                serverName: this.serverName /* STRING */
+                                            };
+                                            // retrieve the first level server structure per given serverName. DataShape: PTC.SCA.SCO.ServerStructureDataShape
+                                            result = Things[resourceProviderName].GetServerTreeStructure(getServerTreeStructureParams);
+                                        
+                                            if (isEquipmentSelectionPreserved && serverName && (serverName === lastSelectedServerName) && lastSelectedServerNode && lastSelectedServerNode.getRowCount() > 0) {
+                                                // If preserver selection feature is enabled and there is preserved data and current server name is the same as preserved data's server name
+                                                var lastSelectedServerNodeRow = lastSelectedServerNode.getRow(0);
+                                                var preservedParent = lastSelectedServerNodeRow.Parent;
+                                                if (preservedParent) {
+                                                    // We do not want to process Root node, which parent is ""
+                                                    // Split full path
+                                                    var preservedFullPath = lastSelectedServerNodeRow.FullPath;
+                                                    var params = {
+                                                    propertyName: "pathDelimiter" /* STRING */
+                                                    };
+                                                    var pathDelimiter = Things[resourceProviderName].GetStringPropertyValue(params);
+                                                    var paths = preservedFullPath.split(pathDelimiter);
+                                        
+                                                    // Check and determine: which level on full path should we start processing. By default, it should be from the root
+                                                    var startLevel = 0;
+                                                    // Check: is preserved data from a legacy server (aggregator server)?
+                                                    if (serverName === paths[1]) {
+                                                        startLevel = 2;
+                                                    }
+                                                    // Set correct start path
+                                                    for (var i = 0; i < startLevel; i++) {
+                                                        getServerTreeStructureParams.path += paths[i] + pathDelimiter;
+                                                    }
+                                                    // Retrieve server structure per given full path of preserved node
+                                                    for (var i = startLevel; i < paths.length - 1; i++) {
+                                                        // no need to retrieve the children of the current server node, and thus stop at the second last level.
+                                                        getServerTreeStructureParams.path += paths[i];
+                                                        // result: INFOTABLE dataShape: PTC.SCA.SCO.ServerStructureDataShape
+                                                        var nextLevelServerStructure = Things[resourceProviderName].GetServerTreeStructure(getServerTreeStructureParams);
+                                        
+                                                        var unionParams = {
+                                                            t1: result /* INFOTABLE */,
+                                                            t2: nextLevelServerStructure /* INFOTABLE */
+                                                        };
+                                                        result = Resources["InfoTableFunctions"].Union(unionParams);
+                                        
+                                                        getServerTreeStructureParams.path += pathDelimiter;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetServerTags">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (!serverName || !path) {
+                                            // return empty table if server name or path is undefined
+                                            var params = {
+                                                infoTableName: "serverTags",
+                                                dataShapeName: "PTC.SCA.SCO.ServerTagDataShape"
+                                            };
+                                        
+                                            // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.ServerTagDataShape)
+                                            var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        } else {
+                                            // get provider name from connection type
+                                            var params = {
+                                                connectionType: this.connectionType /* STRING */
+                                            };
+                                            var providerName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionResourceProviderName(params);
+                                        
+                                            // get provider thing
+                                            var resourceProvider = Things[providerName];
+                                        
+                                            // get all server tags
+                                            var params = {
+                                                filter: this.filter /* STRING */,
+                                                path: this.path /* STRING */,
+                                                subscribedTags: this.subscribedTags /* INFOTABLE */,
+                                                serverName: this.serverName /* STRING */
+                                            };
+                                        
+                                            // result: INFOTABLE dataShape: PTC.SCA.SCO.ServerTagDataShape
+                                            var serverTags = resourceProvider.GetServerTags(params);
+                                        
+                                            if (serverTags != null) {
+                                                if (this.typeFilter != null && this.typeFilter.length != 0) {
+                                                    var params = {
+                                                        inclusive: true /* BOOLEAN */,
+                                                        fieldName: "BaseType" /* STRING */,
+                                                        t: serverTags /* INFOTABLE */,
+                                                        matchValues: this.typeFilter /* STRING */
+                                                    };
+                                        
+                                                    // result: INFOTABLE
+                                                    serverTags = Resources["InfoTableFunctions"].SetFilter(params);
+                                                }
+                                        
+                                                if (this.sourceFilter != null && this.sourceFilter.length != 0) {
+                                                    var params = {
+                                                        inclusive: false /* BOOLEAN */,
+                                                        fieldName: "Source" /* STRING */,
+                                                        t: serverTags /* INFOTABLE */,
+                                                        matchValues: this.sourceFilter /* STRING */
+                                                    };
+                                        
+                                                    // result: INFOTABLE
+                                                    serverTags = Resources["InfoTableFunctions"].SetFilter(params);
+                                                }
+                                        
+                                                var params = {
+                                                    myInfoTable: serverTags /* INFOTABLE */,
+                                                    defaultIsCaseSensitive: false /* BOOLEAN */,
+                                                    defaultAscending: true /* BOOLEAN */,
+                                                    sortQuery: this.sortQuery /* QUERY */,
+                                                    defaultSortColumn: true /* STRING */
+                                                };
+                                        
+                                                // result: sorted INFOTABLE
+                                                var result = Resources["PTC.Factory.CommonUtilities"].SortGridRows(params);
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetServerTreeStructure">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // get provider name from connection type
+                                        var params = {
+                                            connectionType: this.connectionType /* STRING */
+                                        };
+                                        var providerName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetRemoteConnectionResourceProviderName(params);
+                                        
+                                        // get provider thing
+                                        var resourceProvider = Things[providerName];
+                                        
+                                        var params = {
+                                            serverName: this.serverName /* STRING */,
+                                            path: FullPath /* STRING */
+                                        };
+                                        
+                                        // result: INFOTABLE dataShape: PTC.SCA.SCO.ServerStructureDataShape
+                                        var result = resourceProvider.GetServerTreeStructure(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetSourceThingListWithPreservedSelection">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var infoTableForPreserveSelectionList = {
+                                                infoTableName : "InfoTable",
+                                                dataShapeName : "PTC.SCA.SCO.ListItemPreservedSelectionDataShape"
+                                            };
+                                        
+                                            // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.ListItemPreservedSelectionDataShape)
+                                            var preserveSelectionInfoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(infoTableForPreserveSelectionList);
+                                        
+                                            var params = {
+                                                providerName: providerName,
+                                                templateName: templateName,
+                                                isRemoteConnection: (browserType == 'remoteConnection'? true: false)
+                                            };
+                                            // sourceList: INFOTABLE dataShape: PTC.Resource.ListItem
+                                            var sourceList = Resources["PTC.Factory.CommonTagPickerUtilities"].GetThingListFromSource(params);
+                                            /*
+                                                Filter sourceList by thingName
+                                            */
+                                            // Filtering, if thingName is not null and not empty
+                                            if (thingName && thingName.replace(/\s/g, '').length > 0) {
+                                                sourceList= Resources["InfoTableFunctions"].EQFilter({
+                                                    fieldName: "value",
+                                                    t:  sourceList,
+                                                    value: thingName.trim()
+                                                });
+                                            }
+                                            params = {
+                                                isEquipmentSelectionPreserved: isEquipmentSelectionPreserved /* BOOLEAN */,
+                                                preservedServerNodeSelection: preservedServerNodeSelection /* INFOTABLE */,
+                                                connectionType: equipmentType /* STRING */
+                                            };
+                                            var table = me.GetLastSelectedEquipment(params);
+                                            var row = new Object();
+                                            row.List = sourceList;
+                                            if (!table || table.getRow(0) === null) {
+                                                row.PreserveRowNumber = 0;
+                                            } else {
+                                                var lastEquipment = table.getRow(0);
+                                                params = {
+                                                    fieldName: 'value',
+                                                    data: sourceList /* INFOTABLE */,
+                                                    fieldValue: lastEquipment.EquipmentName /* STRING */
+                                                };
+                                                var rowNumber = Resources["PTC.Factory.CommonUtilities"].FindRowNumber(params);
+                                                if (rowNumber < 0) {
+                                                    rowNumber = 0;
+                                                }
+                                                row.PreserveRowNumber = rowNumber;
+                                            }
+                                            preserveSelectionInfoTable.AddRow(row);
+                                            result = preserveSelectionInfoTable;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="PreserveSelectedEquipment">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                                infoTableName : "lastEquipmentSelectionInTagPicker",
+                                                dataShapeName : "PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                                            };
+                                            if (!lastSelectedEquipment) {
+                                                lastSelectedEquipment = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                            }
+                                            if (equipmentType !== null && equipmentName !== null && equipmentName !== undefined) {
+                                                var equipmentTypeFilter = new Object();
+                                                equipmentTypeFilter.EquipmentType = equipmentType;
+                                                var preservedServerNodeSelectionRow = lastSelectedEquipment.Find(equipmentTypeFilter);
+                                                if (preservedServerNodeSelectionRow === null) {
+                                                    var lastServerNodeSelectionRow = new Object();
+                                                    lastServerNodeSelectionRow.EquipmentType = equipmentType;
+                                                    lastServerNodeSelectionRow.EquipmentName = equipmentName;
+                                                    lastServerNodeSelectionRow.LastSelectedServerNode = null;
+                                                    lastSelectedEquipment.AddRow(lastServerNodeSelectionRow);
+                                                } else {
+                                                   /* Verify if the LastSelectedServerNode is not null (which means it has been populated already
+                                                    from the PreserveServerNode then we will create an empty infotable for that selection*/
+                                                    if (preservedServerNodeSelectionRow.EquipmentName !== equipmentName
+                                                      && preservedServerNodeSelectionRow.LastSelectedServerNode !== null) {
+                                                       preservedServerNodeSelectionRow.LastSelectedServerNode = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                                    }
+                                                    preservedServerNodeSelectionRow.EquipmentName = equipmentName;
+                                                }
+                                            }
+                                            result = lastSelectedEquipment;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="PreserveSelectedServerNode">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (!preservedServerNodeSelection) {
+                                            var params = {
+                                                infoTableName : "lastEquipmentSelectionInTagPicker",
+                                                dataShapeName : "PTC.SCA.SCO.LastEquipmentSelectionDataShape"
+                                            };
+                                            preservedServerNodeSelection = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        }
+                                        
+                                        if (!lastSelectedServerNode) {
+                                            var params = {
+                                                infoTableName : "lastSelectedServerNodeInTagPicker",
+                                                dataShapeName : "PTC.SCA.SCO.ServerStructureDataShape"
+                                            };
+                                            lastSelectedServerNode = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        }
+                                        
+                                        var equipmentTypeFilter = new Object();
+                                        equipmentTypeFilter.EquipmentType = connectionType;
+                                        
+                                        preservedServerNodeSelection.Delete(equipmentTypeFilter);
+                                        
+                                        var lastServerNodeSelectionRow = new Object();
+                                        lastServerNodeSelectionRow.EquipmentType = connectionType;
+                                        lastServerNodeSelectionRow.EquipmentName = serverName;
+                                        lastServerNodeSelectionRow.LastSelectedServerNode = lastSelectedServerNode;
+                                        preservedServerNodeSelection.AddRow(lastServerNodeSelectionRow);
+                                        
+                                        result = preservedServerNodeSelection;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:Administration&amp;Configuration"
+                     type="OrganizationalUnit"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:Trend&amp;Troubleshooting"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

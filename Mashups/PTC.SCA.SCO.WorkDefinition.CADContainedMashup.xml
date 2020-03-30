@@ -1,0 +1,1247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Mashup used to display CAD data associated with a work definition {PTC.SCA.SCO.WorkDefinition.CADContainedMashup}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:16.372+05:30"
+         name="PTC.SCA.SCO.WorkDefinition.CADContainedMashup"
+         projectName=""
+         rows="0.0"
+         tags="PTC:OA">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.bindingDirection="BOTH"
+                 aspect.dataShape="PTC.SCA.SCO.MaterialsListEntry"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="2"
+                 baseType="INFOTABLE"
+                 description="Selected Parts"
+                 name="SelectedParts"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="BOTH"
+                 aspect.dataShape=""
+                 aspect.isMandatory="false"
+                 aspect.ordinal="1"
+                 baseType="INFOTABLE"
+                 description="Selected Rows"
+                 name="SelectedRows"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description="Work Definition UID"
+                 name="WorkDefinitionUID"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.ThingViewUtils</Thing>
+                <Thing>PTC.SCA.SCO.ProductionOrderUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.ProductionOrderUtils" : {
+                  "DataName" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                  "EntityName" : "PTC.SCA.SCO.ProductionOrderUtils",
+                  "EntityType" : "Things",
+                  "Id" : "cd54794f-dd1e-4c13-a033-fde3f76f34ea",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "39280f46-97a1-4704-8793-9a23a1ccc917",
+                    "Name" : "GetCADList",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCADList"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "ea6a9165-64e3-439c-a342-3c37c9f83cc6",
+                    "Name" : "IsMultipleMedia",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "IsMultipleMedia"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.ThingViewUtils" : {
+                  "DataName" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                  "EntityName" : "PTC.SCA.SCO.ThingViewUtils",
+                  "EntityType" : "Things",
+                  "Id" : "c7979ad2-4ab1-42ac-a4ba-f7a0393d499e",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "debcf12d-2a8a-43b8-b593-ea4f841e6d1f",
+                    "Name" : "ConvertSelectedPartsToSelectedRows",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "ConvertSelectedPartsToSelectedRows"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "44fad71e-c2da-4e27-9a91-17dd4f6770cd",
+                    "Name" : "GetOccurrencePathsList",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetOccurrencePathsList"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "505e2699-b5ee-4195-8789-3811d23f4f4f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "WorkDefinitionUID",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "WorkDefinitionUID",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetCADUrl",
+                "TargetSection" : "Things_PTC.SCA.SCO.ProductionOrderUtils"
+              }, {
+                "Id" : "1d069b6e-83f5-48fd-b5c4-8a5d73de494e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "WorkDefinitionUID",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "WorkDefinitionUID",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetCADList",
+                "TargetSection" : "Things_PTC.SCA.SCO.ProductionOrderUtils"
+              }, {
+                "Id" : "6c5396b0-0d51-4371-a556-6565520136a6",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IllustrationURL",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "MediaUrl",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetCADList",
+                "SourceSection" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-6",
+                "TargetSection" : ""
+              }, {
+                "Id" : "b3b4e324-38cf-4ad4-831f-ad99b8413378",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetCADList",
+                "SourceSection" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "collection-17",
+                "TargetSection" : ""
+              }, {
+                "Id" : "adb1429e-25d9-4978-9bbc-2c20f0dd7106",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "SelectedItems",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetCADList",
+                "SourceSection" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "collection-17",
+                "TargetSection" : ""
+              }, {
+                "Id" : "f47ce2de-4583-4537-a520-de9484a1a140",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "SelectedTabName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-6",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "tabsv2-7",
+                "TargetSection" : ""
+              }, {
+                "Id" : "a0d0e073-fd7a-4a9d-9ac0-54ef0f136759",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "IllustrationURL",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "ProductToView",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "SelectedRows",
+                "SourceId" : "GetCADList",
+                "SourceSection" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "thingview-13",
+                "TargetSection" : ""
+              }, {
+                "Id" : "17cebe6b-0368-49c3-b583-d326fc72ac0d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "IsMultipleMedia",
+                "SourceSection" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "collection-17",
+                "TargetSection" : ""
+              }, {
+                "Id" : "ee0277de-186e-43b5-a858-cd918203d637",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "MediaListTable",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetCADList",
+                "SourceSection" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                "TargetArea" : "Data",
+                "TargetId" : "IsMultipleMedia",
+                "TargetSection" : "Things_PTC.SCA.SCO.ProductionOrderUtils"
+              }, {
+                "Id" : "4404d72c-b15b-4f59-a889-6b38fe3edb78",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "SelectedParts",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "SelectedParts",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "thingview-13",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "ConvertSelectedPartsToSelectedRows",
+                "TargetSection" : "Things_PTC.SCA.SCO.ThingViewUtils"
+              }, {
+                "Id" : "de5c8804-5d0d-4d0a-87fa-3b24f25b8c1f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "SelectedRows",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "ConvertSelectedPartsToSelectedRows",
+                "SourceSection" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "TargetArea" : "Mashup",
+                "TargetId" : "mashup-root",
+                "TargetSection" : ""
+              }, {
+                "Id" : "c3f70084-fdab-4413-bdff-a614a14af503",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "SelectedParts",
+                  "SourcePropertyBaseType" : "",
+                  "TargetProperty" : "SelectedParts",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "thingview-13",
+                "TargetSection" : ""
+              }, {
+                "Id" : "0eed3b60-7ba9-4bd3-a6d3-1a46b9df3b09",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "",
+                  "SourcePropertyType" : "Data",
+                  "TargetProperty" : "PartsToPathsMapping",
+                  "TargetPropertyBaseType" : "INFOTABLE"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetOccurrencePathsList",
+                "SourceSection" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "TargetArea" : "Data",
+                "TargetId" : "ConvertSelectedPartsToSelectedRows",
+                "TargetSection" : "Things_PTC.SCA.SCO.ThingViewUtils"
+              }, {
+                "Id" : "5895a573-932e-43d8-97af-0bdf52e1f00f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "WorkDefinitionUID",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "WorkDefinitionUID",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetOccurrencePathsList",
+                "TargetSection" : "Things_PTC.SCA.SCO.ThingViewUtils"
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                "EventHandlerService" : "GetCADList",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "e9a7a1ca-a2ae-4dcd-911c-dbc5b7499ee2"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                "EventHandlerService" : "GetCADList",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "WorkDefinitionUIDChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "8d6f1b96-722d-4b49-85d7-0f3ae4417b16"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                "EventHandlerService" : "GetCADList",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "RefreshRequested",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "d7b7940c-c0ee-4436-a1c1-4494c00b1eb0"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-6",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetCADList",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                "Id" : "dd4c4cd0-843a-4e86-b8c7-851fa80ef71f"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                "EventHandlerService" : "IsMultipleMedia",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetCADList",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.ProductionOrderUtils",
+                "Id" : "01119521-9878-4b69-818c-10cfa5604fff"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "EventHandlerService" : "ConvertSelectedPartsToSelectedRows",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "SelectionChanged",
+                "EventTriggerId" : "thingview-13",
+                "EventTriggerSection" : "",
+                "Id" : "310128de-80a3-4a9f-8d7f-751102b1dc62"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "EventHandlerService" : "GetOccurrencePathsList",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "fb053d6a-22fc-4422-a424-5eab22532a3d"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ThingViewUtils",
+                "EventHandlerService" : "GetOccurrencePathsList",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "WorkDefinitionUIDChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "6572e0d6-6922-4afd-b5fc-52dc8f923a2b"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "StyleTheme" : "PTC Convergence Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseMasterTheme" : false,
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "Aspects" : {
+                      "bindingDirection" : "IN",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "STRING",
+                    "Description" : "Work Definition UID",
+                    "ParameterName" : "WorkDefinitionUID"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "BOTH",
+                      "dataShape" : "",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "Selected Rows",
+                    "ParameterName" : "SelectedRows"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "BOTH",
+                      "dataShape" : "PTC.SCA.SCO.MaterialsListEntry",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "Selected Parts",
+                    "ParameterName" : "SelectedParts"
+                  } ],
+                  "id_index" : 17,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "ALWAYS",
+                    "DisplayName" : "ToggleCADVisibility",
+                    "Expression" : "MediaUrl == undefined ? \"defaultImageTab\" : \"cadTab\"",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-6",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "OutputBaseType" : "STRING",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "MediaUrl",
+                      "isValid" : true
+                    } ],
+                    "editMode" : "edit",
+                    "helperType" : "expression",
+                    "parameters" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "MediaUrl",
+                      "isValid" : true
+                    } ],
+                    "parametersToDelete" : [ "DefaultImageVisible" ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Columns" : 0,
+                    "DisplayName" : "layout-14",
+                    "Footer" : true,
+                    "FooterHeight" : 25,
+                    "Header" : false,
+                    "HeaderHeight" : 0,
+                    "Id" : "layout-14",
+                    "IncludeSpacingInFixedAreas" : false,
+                    "IsPrintLayout" : false,
+                    "LastContainer" : false,
+                    "Left" : 60,
+                    "LeftSidebar" : false,
+                    "LeftSidebarWidth" : 0,
+                    "Orientation" : "vertical",
+                    "PctColumn1" : 50,
+                    "PctColumn2" : 50,
+                    "PctColumn3" : 1,
+                    "PctColumn4" : 1,
+                    "PctColumn5" : 1,
+                    "PctColumn6" : 1,
+                    "PctColumn7" : 1,
+                    "PctColumn8" : 1,
+                    "PctRow1" : 100,
+                    "PctRow2" : 0,
+                    "PctRow3" : 0,
+                    "PctRow4" : 0,
+                    "PctRow5" : 0,
+                    "PctRow6" : 0,
+                    "PctRow7" : 0,
+                    "PctRow8" : 0,
+                    "PrintMarginLeftRight" : 0.5,
+                    "PrintMarginTopBottom" : 0.5,
+                    "PrintWidth" : 650,
+                    "ResponsiveLayout" : true,
+                    "RightSidebar" : false,
+                    "RightSidebarWidth" : 0,
+                    "Rows" : 1,
+                    "ShowDataLoading" : true,
+                    "Spacing" : 0,
+                    "Top" : 25,
+                    "Type" : "layout",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Layout"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Row 1",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-15",
+                      "LastContainer" : false,
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container",
+                      "userCannotRemove" : true
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "CurrentTab" : 1,
+                        "DefaultTabAtRuntime" : 1,
+                        "DisplayName" : "tabsv2-7",
+                        "Height" : 300,
+                        "Id" : "tabsv2-7",
+                        "LastContainer" : false,
+                        "Left" : 60,
+                        "MaxTabWidth" : 256,
+                        "NumberOfTabs" : 2,
+                        "ResponsiveLayout" : true,
+                        "RoundedCorners" : true,
+                        "ShowDataLoading" : true,
+                        "Tab10Disabled" : false,
+                        "Tab10Image" : "",
+                        "Tab10Name" : "Tab10Name",
+                        "Tab10Value" : "Tab10Value",
+                        "Tab10Visible" : true,
+                        "Tab11Disabled" : false,
+                        "Tab11Image" : "",
+                        "Tab11Name" : "Tab11Name",
+                        "Tab11Value" : "Tab11Value",
+                        "Tab11Visible" : true,
+                        "Tab12Disabled" : false,
+                        "Tab12Image" : "",
+                        "Tab12Name" : "Tab12Name",
+                        "Tab12Value" : "Tab12Value",
+                        "Tab12Visible" : true,
+                        "Tab13Disabled" : false,
+                        "Tab13Image" : "",
+                        "Tab13Name" : "Tab13Name",
+                        "Tab13Value" : "Tab13Value",
+                        "Tab13Visible" : true,
+                        "Tab14Disabled" : false,
+                        "Tab14Image" : "",
+                        "Tab14Name" : "Tab14Name",
+                        "Tab14Value" : "Tab14Value",
+                        "Tab14Visible" : true,
+                        "Tab15Disabled" : false,
+                        "Tab15Image" : "",
+                        "Tab15Name" : "Tab15Name",
+                        "Tab15Value" : "Tab15Value",
+                        "Tab15Visible" : true,
+                        "Tab16Disabled" : false,
+                        "Tab16Image" : "",
+                        "Tab16Name" : "Tab16Name",
+                        "Tab16Value" : "Tab16Value",
+                        "Tab16Visible" : true,
+                        "Tab1Disabled" : false,
+                        "Tab1Image" : "",
+                        "Tab1Name" : "defaultImageTab",
+                        "Tab1Value" : "Tab1Value",
+                        "Tab1Visible" : true,
+                        "Tab2Disabled" : false,
+                        "Tab2Image" : "",
+                        "Tab2Name" : "cadTab",
+                        "Tab2Value" : "Tab2Value",
+                        "Tab2Visible" : true,
+                        "Tab3Disabled" : false,
+                        "Tab3Image" : "",
+                        "Tab3Name" : "Tab3Name",
+                        "Tab3Value" : "Tab3Value",
+                        "Tab3Visible" : true,
+                        "Tab4Disabled" : false,
+                        "Tab4Image" : "",
+                        "Tab4Name" : "Tab4Name",
+                        "Tab4Value" : "Tab4Value",
+                        "Tab4Visible" : true,
+                        "Tab5Disabled" : false,
+                        "Tab5Image" : "",
+                        "Tab5Name" : "Tab5Name",
+                        "Tab5Value" : "Tab5Value",
+                        "Tab5Visible" : true,
+                        "Tab6Disabled" : false,
+                        "Tab6Image" : "",
+                        "Tab6Name" : "Tab6Name",
+                        "Tab6Value" : "Tab6Value",
+                        "Tab6Visible" : true,
+                        "Tab7Disabled" : false,
+                        "Tab7Image" : "",
+                        "Tab7Name" : "Tab7Name",
+                        "Tab7Value" : "Tab7Value",
+                        "Tab7Visible" : true,
+                        "Tab8Disabled" : false,
+                        "Tab8Image" : "",
+                        "Tab8Name" : "Tab8Name",
+                        "Tab8Value" : "Tab8Value",
+                        "Tab8Visible" : true,
+                        "Tab9Disabled" : false,
+                        "Tab9Image" : "",
+                        "Tab9Name" : "Tab9Name",
+                        "Tab9Value" : "Tab9Value",
+                        "Tab9Visible" : true,
+                        "TabContentStyle" : "DefaultTabContentStyle",
+                        "TabDisabledStyle" : "DefaultTabDisabledStyle",
+                        "TabHeight" : 0,
+                        "TabSelectedStyle" : "DefaultTabSelectedStyle",
+                        "TabSpacing" : 2,
+                        "TabUnselectedStyle" : "DefaultTabUnselectedStyle",
+                        "Top" : 30,
+                        "Type" : "tabsv2",
+                        "Visible" : true,
+                        "Width" : 300,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Tabs - Responsive"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Tab #1",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-8",
+                          "LastContainer" : false,
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "DefaultContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container",
+                          "userCannotRemove" : true
+                        },
+                        "Widgets" : [ {
+                          "Properties" : {
+                            "Area" : "UI",
+                            "DisplayName" : "panel-10",
+                            "Height" : 200,
+                            "HideScrollbars" : false,
+                            "HorizontalAnchor" : "left",
+                            "Id" : "panel-10",
+                            "LastContainer" : false,
+                            "Left" : 75,
+                            "ResponsiveLayout" : true,
+                            "ShowDataLoading" : true,
+                            "Style" : "DefaultContainerStyle",
+                            "Top" : 70,
+                            "Type" : "panel",
+                            "VerticalAnchor" : "top",
+                            "Visible" : true,
+                            "Width" : 300,
+                            "Z-index" : 10,
+                            "__TypeDisplayName" : "Panel"
+                          },
+                          "Widgets" : [ {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "DisplayName" : "panel-11",
+                              "Height" : 200,
+                              "HideScrollbars" : false,
+                              "HorizontalAnchor" : "center",
+                              "Id" : "panel-11",
+                              "LastContainer" : false,
+                              "Left" : 55,
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : true,
+                              "Style" : "DefaultContainerStyle",
+                              "Top" : 45,
+                              "Type" : "panel",
+                              "VerticalAnchor" : "middle",
+                              "Visible" : true,
+                              "Width" : 200,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Panel"
+                            },
+                            "Widgets" : [ {
+                              "Properties" : {
+                                "AlternateText" : "",
+                                "Area" : "UI",
+                                "BorderStyle" : "DefaultImageBorderStyle",
+                                "DisplayName" : "image-12",
+                                "Height" : 100,
+                                "Id" : "image-12",
+                                "LastContainer" : false,
+                                "Left" : 10,
+                                "PreventCaching" : false,
+                                "ResponsiveLayout" : false,
+                                "Scaling" : "width",
+                                "ShowDataLoading" : true,
+                                "SourceURL" : "PTC.SCA.SCO.DefaultWorkDefinitionThumbnailIcon",
+                                "ToolTipField" : "",
+                                "ToolTipStyle" : "DefaultTooltipStyle",
+                                "Top" : 10,
+                                "Type" : "image",
+                                "Visible" : true,
+                                "Width" : 100,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Image",
+                                "__supportsTooltip" : true
+                              },
+                              "Widgets" : [ ]
+                            } ]
+                          } ]
+                        } ]
+                      }, {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Tab #2",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-9",
+                          "LastContainer" : false,
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "DefaultContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container",
+                          "userCannotRemove" : true
+                        },
+                        "Widgets" : [ {
+                          "Properties" : {
+                            "AcknowledgeStepText" : "",
+                            "AllowCORSCredentials" : false,
+                            "AllowClientRedirect" : true,
+                            "Area" : "UI",
+                            "BackgroundStyle" : "DefaultShapeUnfilledBackgroundStyle",
+                            "DataFormatter_StateParameters" : [ ],
+                            "DefaultPartStyle" : "",
+                            "DisplayAlternateRep" : false,
+                            "DisplayExplodeState" : false,
+                            "DisplayFilter" : "{ \"ModelAnnotation\": { \"HiddenByDefault\": true, \"PlanarAnnotation\": true, \"FloatingAnnotation\": false, \"MiscAnnotation\": false } }",
+                            "DisplayName" : "thingview-13",
+                            "DisplaySectionCut" : false,
+                            "DisplayViewState" : true,
+                            "EnablePartDragger" : false,
+                            "EnablePartSelection" : true,
+                            "EnableWindchillFileCache" : false,
+                            "Gnomon" : false,
+                            "Height" : 200,
+                            "Id" : "thingview-13",
+                            "LastContainer" : false,
+                            "Left" : 250,
+                            "MouseNavigation" : "CREOVIEW",
+                            "OccurrenceField" : "treeId",
+                            "Orientation" : "",
+                            "Orientations" : "ISO1",
+                            "PerspectiveHFOV" : 60,
+                            "Position" : "",
+                            "PreSelectedOccurrencePath" : "",
+                            "PreSelection" : "",
+                            "ProductToView" : "",
+                            "ProjectionMode" : "ORTHOGRAPHIC",
+                            "ResponsiveLayout" : true,
+                            "Scale" : "",
+                            "SelectedParts" : {
+                              "dataShape" : {
+                                "aspects" : {
+                                  "isExtension" : true
+                                },
+                                "avatar" : "",
+                                "baseDataShape" : "",
+                                "configurationTableDefinitions" : { },
+                                "configurationTables" : { },
+                                "description" : "Shape represents idpath selection in ThingView",
+                                "designTimePermissions" : {
+                                  "Create" : [ ],
+                                  "Delete" : [ ],
+                                  "Metadata" : [ ],
+                                  "Read" : [ ],
+                                  "Update" : [ ]
+                                },
+                                "documentationContent" : "",
+                                "effectiveFieldDefinitions" : {
+                                  "idPath" : {
+                                    "aspects" : { },
+                                    "baseType" : "STRING",
+                                    "description" : "",
+                                    "name" : "idPath",
+                                    "ordinal" : 1
+                                  }
+                                },
+                                "fieldDefinitions" : {
+                                  "idPath" : {
+                                    "aspects" : { },
+                                    "baseType" : "STRING",
+                                    "description" : "",
+                                    "name" : "idPath",
+                                    "ordinal" : 1
+                                  }
+                                },
+                                "homeMashup" : "",
+                                "lastModifiedDate" : 1575926101615,
+                                "name" : "Selection",
+                                "owner" : {
+                                  "name" : "SuperUser",
+                                  "type" : "User"
+                                },
+                                "projectName" : "",
+                                "runTimePermissions" : {
+                                  "permissions" : [ ]
+                                },
+                                "tags" : [ ],
+                                "visibilityPermissions" : {
+                                  "Visibility" : [ ]
+                                }
+                              },
+                              "rows" : [ ]
+                            },
+                            "Selection" : {
+                              "description" : "Selected Parts",
+                              "name" : "Selection",
+                              "rows" : [ ]
+                            },
+                            "SequenceStepName" : "",
+                            "SequenceStepNumber" : "",
+                            "ShowDataLoading" : true,
+                            "SpinCenter" : false,
+                            "ThingViewControls" : true,
+                            "Top" : 120,
+                            "Type" : "thingview",
+                            "Views" : {
+                              "dataShape" : {
+                                "aspects" : {
+                                  "isExtension" : true
+                                },
+                                "avatar" : "",
+                                "baseDataShape" : "",
+                                "configurationTableDefinitions" : { },
+                                "configurationTables" : { },
+                                "description" : "Views",
+                                "designTimePermissions" : {
+                                  "Create" : [ ],
+                                  "Delete" : [ ],
+                                  "Metadata" : [ ],
+                                  "Read" : [ ],
+                                  "Update" : [ ]
+                                },
+                                "documentationContent" : "Annotations, Viewstates",
+                                "effectiveFieldDefinitions" : {
+                                  "name" : {
+                                    "aspects" : { },
+                                    "baseType" : "STRING",
+                                    "description" : "",
+                                    "name" : "name",
+                                    "ordinal" : 1
+                                  },
+                                  "type" : {
+                                    "aspects" : { },
+                                    "baseType" : "STRING",
+                                    "description" : "",
+                                    "name" : "type",
+                                    "ordinal" : 2
+                                  },
+                                  "value" : {
+                                    "aspects" : { },
+                                    "baseType" : "STRING",
+                                    "description" : "",
+                                    "name" : "value",
+                                    "ordinal" : 3
+                                  }
+                                },
+                                "fieldDefinitions" : {
+                                  "name" : {
+                                    "aspects" : { },
+                                    "baseType" : "STRING",
+                                    "description" : "",
+                                    "name" : "name",
+                                    "ordinal" : 1
+                                  },
+                                  "type" : {
+                                    "aspects" : { },
+                                    "baseType" : "STRING",
+                                    "description" : "",
+                                    "name" : "type",
+                                    "ordinal" : 2
+                                  },
+                                  "value" : {
+                                    "aspects" : { },
+                                    "baseType" : "STRING",
+                                    "description" : "",
+                                    "name" : "value",
+                                    "ordinal" : 3
+                                  }
+                                },
+                                "homeMashup" : "",
+                                "lastModifiedDate" : 1575926101608,
+                                "name" : "Views",
+                                "owner" : {
+                                  "name" : "SuperUser",
+                                  "type" : "User"
+                                },
+                                "projectName" : "",
+                                "runTimePermissions" : {
+                                  "permissions" : [ ]
+                                },
+                                "tags" : [ ],
+                                "visibilityPermissions" : {
+                                  "Visibility" : [ ]
+                                }
+                              },
+                              "rows" : [ ]
+                            },
+                            "Visible" : true,
+                            "Width" : 300,
+                            "WindchillCacheSize" : 1000,
+                            "WindchillSourceData" : true,
+                            "Z-index" : 10,
+                            "__TypeDisplayName" : "ThingView",
+                            "acknowledgeStepText" : "",
+                            "baseUrl" : "",
+                            "mapUrl" : "",
+                            "markupUrl" : "",
+                            "oid" : "",
+                            "sequenceStepName" : "",
+                            "sequenceStepNumber" : ""
+                          },
+                          "Widgets" : [ ]
+                        } ]
+                      } ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Footer",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-16",
+                      "LastContainer" : false,
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container",
+                      "userCannotRemove" : true
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "AllowSelection" : true,
+                        "AlwaysUseCustomScrollerOniOS" : true,
+                        "Area" : "UI",
+                        "AutoSelectFirstRow" : true,
+                        "BottomPadding" : 0,
+                        "CellActiveStyle" : "PTC.SCA.SCO.DefaultCollectionCellActiveStyleDefinition",
+                        "CellBorderRadius" : "8px",
+                        "CellBoxShadow" : "0 2px 5px rgba(0,0,0,0.3)",
+                        "CellHoverStyle" : "PTC.SCA.SCO.DefaultCollectionCellHoverStyleDefinition",
+                        "CellMashupSelectedField" : "",
+                        "CellMenuStatesIconGravity" : "Left",
+                        "CellMenuStatesIconSize" : 16,
+                        "CellMenuStatesOrientation" : "Horizontal",
+                        "CellMenuStatesUseBuiltin" : false,
+                        "CellMultipleSelectionType" : "Disabled",
+                        "CellPointer" : "pointer",
+                        "CellSelectedStyle" : "PTC.SCA.SCO.DefaultCollectionCellSelectedStyleDefinition",
+                        "CellStyle" : "DefaultCollectionCellStyle",
+                        "DisableWrapping" : false,
+                        "DisplayName" : "collection-17",
+                        "FlowLayoutAlignment" : "Center",
+                        "FlowLayoutContentGravity" : "Center",
+                        "FlowLayoutGravity" : "Center",
+                        "FooterHeight" : 44,
+                        "FooterSectionParam" : "",
+                        "HandleSelectionUpdates" : true,
+                        "HasSelectedCells" : false,
+                        "HeaderHeight" : 44,
+                        "HeaderSectionParam" : "",
+                        "Height" : 300,
+                        "Id" : "collection-17",
+                        "ItemLoadBehavior" : "loadUnload",
+                        "LastContainer" : false,
+                        "Left" : 130,
+                        "LeftAlignFinalRow" : false,
+                        "Mashup" : "PTC.SCA.SCO.WorkDefinition.MultipleMediaDotMashup",
+                        "MashupGlobalPropertyBinding" : { },
+                        "MashupHeight" : 15,
+                        "MashupPropertyBinding" : { },
+                        "MashupWidth" : 15,
+                        "MinimumSpacing" : 10,
+                        "MultiSelect" : false,
+                        "OffScreenBufferFactor" : 0.1,
+                        "PinFootersToBottom" : false,
+                        "PinHeadersToTop" : false,
+                        "PlaysIntroAnimation" : true,
+                        "ResponsiveLayout" : true,
+                        "RippleEffectStyle" : "DefaultCollectionRippleStyle",
+                        "RowSpacing" : 0,
+                        "ScrollbarType" : "hover",
+                        "ScrollsToSelectedCell" : false,
+                        "SectionInsetBottom" : 0,
+                        "SectionInsetLeft" : 0,
+                        "SectionInsetRight" : 0,
+                        "SectionInsetTop" : 0,
+                        "SelectedCellsCount" : 0,
+                        "ShowDataLoading" : true,
+                        "ShowFooters" : false,
+                        "ShowHeaders" : false,
+                        "SortAscending" : false,
+                        "Top" : 20,
+                        "TopPadding" : 0,
+                        "Type" : "collection",
+                        "UIDField" : "IllustrationURL",
+                        "UseCustomScrollerOnWindowsDesktops" : true,
+                        "UseMashupDimensions" : false,
+                        "UseRippleEffect" : false,
+                        "View" : "flow",
+                        "Visible" : true,
+                        "Width" : 400,
+                        "Z-index" : 10,
+                        "_CanDoubleClick" : false,
+                        "_EventDataShape" : {
+                          "IllustrationName" : {
+                            "aspects" : { },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "IllustrationName",
+                            "ordinal" : 3
+                          },
+                          "IllustrationURL" : {
+                            "aspects" : { },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "IllustrationURL",
+                            "ordinal" : 4
+                          },
+                          "Type" : {
+                            "aspects" : { },
+                            "baseType" : "STRING",
+                            "description" : "",
+                            "name" : "Type",
+                            "ordinal" : 5
+                          },
+                          "UID" : {
+                            "aspects" : {
+                              "isPrimaryKey" : true
+                            },
+                            "baseType" : "LONG",
+                            "description" : "",
+                            "name" : "UID",
+                            "ordinal" : 1
+                          },
+                          "WorkDefinitionUID" : {
+                            "aspects" : { },
+                            "baseType" : "LONG",
+                            "description" : "",
+                            "name" : "WorkDefinitionUID",
+                            "ordinal" : 2
+                          }
+                        },
+                        "_GlobalDataShape" : { },
+                        "_MenuDefinition" : "[]",
+                        "__TypeDisplayName" : "Collection"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview></preview>
+        </Mashup>
+    </Mashups>
+</Entities>

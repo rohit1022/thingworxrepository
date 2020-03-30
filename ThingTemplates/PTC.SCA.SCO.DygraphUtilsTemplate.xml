@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="Dygraph utilities template  {PTC.SCA.SCO.DygraphUtilsTemplate}"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:54.700+05:30"
+         name="PTC.SCA.SCO.DygraphUtilsTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:ThingTemplate;PTC:FactoryTrendTroubleshooting;PTC:TrendManagement"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke></EventInvoke>
+                    <EventSubscribe></EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Provides history data for a specified property, either from the value stream for a thing or from the database, in a format for the Dygraph widget to display."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GenerateDygraphData">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.ChartInput"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Infotable containing the information for finding the property history for a given Thing"
+                             name="chartSeries"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="DATETIME"
+                             description="End time for the historical data query"
+                             name="endTime"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="DATETIME"
+                             description="Start time for the historical data query"
+                             name="startTime"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves history data for KPI properties and provides it in a format for the Dygraph widget to display."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetKPIPropertiesHistoryForDygraph">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.ChartData"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="DATETIME"
+                             description="End time for the historical data query"
+                             name="endDate"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="DATETIME"
+                             description="Start time for the historical data query"
+                             name="startDate"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="THINGNAME"
+                             description="The thing on which the historical search for KPIs is performed"
+                             name="thingName"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves status history data and provides it in a format for the Dygraph widget to display."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetStatusHistoryForDygraph">
+                        <ResultType
+                         aspect.dataShape="PTC.Factory.ChartData"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="DATETIME"
+                             description=""
+                             name="endTime"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="DATETIME"
+                             description=""
+                             name="startTime"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="THINGNAME"
+                             description=""
+                             name="thingName"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GenerateDygraphData">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var myLogger = logger.getLoggerContext().getLogger(logger.getName()+".com.ptc.sca.sco.DygraphUtils.GenerateDygraphData");
+                                        var tableLength = chartSeries.rows.length;
+                                        var toCombineParam = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "TimeSeriesDataset"
+                                        };
+                                        
+                                        var csvData = "Date";
+                                        var toCombine = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(toCombineParam);
+                                        myLogger.debug("Getting history for each row");
+                                        for (var x=0; x < tableLength; x++) {
+                                            var row = chartSeries.rows[x];
+                                            var rowData = null;
+                                            if (row.isDBHistory){
+                                                myLogger.debug("Getting database history for thing:"+ row.thingName + " and property: "+row.propName);
+                                                rowData = Things[row.dbManagerThing].QueryValue({
+                                                    ownerName:row.thingName,
+                                                    limit: 5000,
+                                                    columnValueName: row.propName,
+                                                    columnName:row.dbColumnName,
+                                                    startDate: startTime,
+                                                    endDate: endTime,
+                                                    oldestFirst: true
+                                                });
+                                                csvData += "," + row.displayName;
+                                            	toCombine.AddRow({ name: "serie"+x, data:rowData });
+                                            }
+                                            else {
+                                                myLogger.debug("Getting valuestream history for thing:"+ row.thingName + " and property: "+row.propName);
+                                                rowData = Things[row.thingName].QueryNumberPropertyHistory({
+                                                    maxItems: 5000,
+                                                    propertyName: row.propName,
+                                                    startDate: startTime,
+                                                    endDate: endTime,
+                                                    oldestFirst: true,
+                                                    query: null
+                                                });
+                                                csvData += "," + row.displayName;
+                                            	toCombine.AddRow({ name: "serie"+x, data:rowData });
+                                            }
+                                        }
+                                        
+                                        var paramsCombine = {
+                                        	tables: toCombine /* INFOTABLE */
+                                        };
+                                        var hasData = false;
+                                        
+                                        var combinedData = Resources["InfoTableFunctions"].Combine(paramsCombine);
+                                        var combinedDataLength = combinedData.rows.length;
+                                        var jsonData = JSON.parse(combinedData.ToJSON());
+                                        myLogger.debug("Combining result into a CSV format string");
+                                        var ignoreMilliDiff = 1000;//Amount of time in between point to combine the information (use last point)
+                                        var maxCombinedPoint = 100;//Maximum amount of point to combine at a time
+                                        var savedRow;
+                                        var numCombined = 0;
+                                        for (var y=0; y < combinedDataLength; y++) {
+                                            hasData = true;
+                                            var combinedRow = jsonData.rows[y];
+                                            //This validation serves to show only the latest point (which has all the information of the previous)
+                                            //when data point are milliseconds difference between them they are difficult to see and differentiate
+                                            //only the else is necessary to convert the data in a valid format.
+                                            if (!savedRow || ((combinedRow.timestamp - savedRow.timestamp) < ignoreMilliDiff) && maxCombinedPoint > numCombined  && y < combinedDataLength-1){
+                                                numCombined++;
+                                            } else {
+                                                csvData += "\n";
+                                                csvData += new Date(combinedRow.timestamp);
+                                                for (z = 0; z < tableLength; z++){
+                                                    var value = "";
+                                                    if (combinedRow["serie"+z] !== undefined){
+                                                        value = combinedRow["serie"+z];
+                                                    }
+                                                    csvData += "," + value;
+                                                }
+                                            }
+                                            savedRow = combinedRow;
+                                        }
+                                        var result = "";//return empty string when no data to show empty chart
+                                        if (hasData) {
+                                            result = csvData;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetKPIPropertiesHistoryForDygraph">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.ChartInput"
+                                        };
+                                        var myLogger = logger.getLoggerContext().getLogger(logger.getName()+".com.ptc.sca.sco.DygraphUtils.GetKPIPropertiesHistoryForDygraph");
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.ChartInput)
+                                        var chartSeries = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        var availability = Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({token:"PTC.Factory.KPI.Availability"});
+                                        var quality = Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({token:"PTC.Factory.KPI.Quality"});
+                                        var effect = Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({token:"PTC.Factory.KPI.Effectiveness"});
+                                        var oee = Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({token:"PTC.Factory.KPI.OEE"});
+                                        if ( Things[thingName].ImplementsShape({thingShapeName: "PTC.SCA.SCO.KPIElementThingShape"})){
+                                            var manager = Things[thingName].GetKPIManager();
+                                            chartSeries.AddRow({
+                                                propName:"OEE",
+                                                isDBHistory:true,
+                                                thingName:thingName,
+                                                dbManagerThing:manager,
+                                                dbColumnName:"KPIName",
+                                                displayName:oee
+                                            });
+                                        
+                                            chartSeries.AddRow({
+                                                propName:"Availability",
+                                                isDBHistory:true,
+                                                thingName:thingName,
+                                                dbManagerThing:manager,
+                                                dbColumnName:"KPIName",
+                                                displayName:availability
+                                            });
+                                        
+                                            chartSeries.AddRow({
+                                                propName:"QualityRatio",
+                                                isDBHistory:true,
+                                                thingName:thingName,
+                                                dbManagerThing:manager,
+                                                dbColumnName:"KPIName",
+                                                displayName:quality
+                                            });
+                                        
+                                            chartSeries.AddRow({
+                                                propName:"Effectiveness",
+                                                isDBHistory:true,
+                                                thingName:thingName,
+                                                dbManagerThing:manager,
+                                                dbColumnName:"KPIName",
+                                                displayName:effect
+                                            });
+                                        }
+                                        myLogger.debug("Getting historical data for KPI of thing "+ thingName);
+                                        var csvData =  me.GenerateDygraphData({
+                                        	chartSeries: chartSeries,
+                                        	startTime: startDate,
+                                        	endTime: endDate
+                                        });
+                                        
+                                        var paramsChartData = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.Factory.ChartData"
+                                        };
+                                        var chartData = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(paramsChartData);
+                                        
+                                        chartData.AddRow({
+                                            Data:csvData,
+                                            TrendName1:availability,
+                                            TrendName2:quality,
+                                            TrendName3:effect,
+                                            TrendName4:oee
+                                        });
+                                        result = chartData;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetStatusHistoryForDygraph">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.ChartInput"
+                                        };
+                                        var paramsNumVal = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "NumberValueStream"
+                                        };
+                                        var myLogger = logger.getLoggerContext().getLogger(logger.getName()+".com.ptc.sca.sco.DygraphUtils.GetStatusHistoryForDygraph");
+                                        
+                                        var chartSeries = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        var combinedStatusHistory = Resources["InfoTableFunctions"].CreateInfoTable(paramsNumVal);
+                                        var statusHistory;
+                                        var statusHistoryBeforeDate;
+                                        
+                                        if ( Things[thingName].ImplementsShape({thingShapeName: "PTC.SCA.SCO.StatusThingShape"})){
+                                            var manager = Things[thingName].GetStatusManager();
+                                            myLogger.debug("Getting historical data for Status of thing "+ thingName);
+                                            statusHistoryBeforeDate = Things[manager].QueryValue({
+                                                ownerName:thingName,
+                                                limit: 1,
+                                                columnName:"OwnerStateID",
+                                                endDate: startTime,
+                                                oldestFirst: false
+                                            });
+                                            if (statusHistoryBeforeDate.getRowCount()>0){
+                                                combinedStatusHistory.addRowsFrom(statusHistoryBeforeDate, false);
+                                            }
+                                            statusHistory = Things[manager].QueryValue({
+                                                ownerName:thingName,
+                                                limit: 5000,
+                                                columnName:"OwnerStateID",
+                                                startDate: startTime,
+                                                endDate: endTime,
+                                                oldestFirst: true
+                                            });
+                                            if (statusHistory.getRowCount()>0){
+                                                combinedStatusHistory.addRowsFrom(statusHistory, false);
+                                            }
+                                        }
+                                        
+                                        
+                                        var statusDef = Things[thingName].GetStatusDefinitions();
+                                        var sort = new Object();
+                                        sort.name = "id";
+                                        sort.ascending = true;
+                                        statusDef.Sort(sort);
+                                        
+                                        var statusIDColumn = {};
+                                        var hexColors = "";
+                                        var lastRowCSV = "";//keep the last one to make continuous data
+                                        var csvData = "Date";
+                                        
+                                        //One column per status
+                                        var statusDefLength = statusDef.rows.length;
+                                        for (var x=0; x < statusDefLength; x++) {
+                                            var statusDefRow = statusDef.rows[x];
+                                            csvData += ","+statusDefRow.name;
+                                            statusIDColumn[statusDefRow.id] = x;//To know where to insert for a given status in history
+                                            hexColors += statusDefRow.color + ",";
+                                        }
+                                        hexColors = hexColors.substr(0, hexColors.length-1);
+                                        
+                                        
+                                        for (var i=0; i< combinedStatusHistory.rows.length;i++){
+                                            csvData += "\n";
+                                            var statusHisRow = combinedStatusHistory.rows[i];
+                                            var rowDate = new Date(statusHisRow.timestamp);
+                                        
+                                            //column to add the value to
+                                            var columnID = statusIDColumn[statusHisRow.id];
+                                            if (lastRowCSV){
+                                                csvData += new Date(rowDate.getTime() - 1);
+                                                csvData += lastRowCSV;
+                                                lastRowCSV = "";
+                                                csvData += "\n";
+                                            }
+                                        
+                                            csvData += rowDate;
+                                            for (var j = 0; j < statusDefLength; j++){
+                                                if (j == columnID){
+                                                    lastRowCSV += "," + 1;
+                                                } else {
+                                                    lastRowCSV += ",NaN";
+                                                }
+                                            }
+                                            csvData += lastRowCSV;
+                                        }
+                                        if (lastRowCSV){
+                                            //Add point at end time for graph fill
+                                            csvData += "\n";
+                                            csvData += new Date(endTime);
+                                            csvData += lastRowCSV;
+                                            lastRowCSV = "";
+                                        }
+                                        
+                                        var paramsChartData = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.Factory.ChartData"
+                                        };
+                                        var chartData = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(paramsChartData);
+                                        
+                                        if (combinedStatusHistory.rows.length <= 0){
+                                            csvData = "X\n";
+                                        }
+                                        
+                                        chartData.AddRow({
+                                            Data:csvData,
+                                            TrendName1:lastRowCSV,
+                                            HexColors:hexColors
+                                        });
+                                        result = chartData;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Production Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke></EventInvoke>
+                    <EventSubscribe></EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

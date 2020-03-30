@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b937"
+ build="b222"
  majorVersion="8"
- minorVersion="3"
- modelPersistenceProviderPackage="H2PersistenceProviderPackage"
- revision="3"
- schemaVersion="1030"
- universal="">
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
     <ThingTemplates>
         <ThingTemplate
          aspect.isSystemObject="true"
@@ -15,7 +15,7 @@
          documentationContent=""
          effectiveThingPackage="RemoteThing"
          homeMashup=""
-         lastModifiedDate="2018-12-03T14:53:14.373+05:30"
+         lastModifiedDate="2020-03-03T01:03:57.147+05:30"
          name="TrainingMicroserver"
          projectName=""
          tags=""
@@ -34,7 +34,36 @@
                 <Visibility></Visibility>
             </VisibilityPermissions>
             <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
-            <ConfigurationTables></ConfigurationTables>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 description="Reporting Settings"
+                 isMultiRow="false"
+                 name="ReportingConfiguration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="NotReporting"
+                             aspect.isPrimaryKey="true"
+                             aspect.isReadOnly="false"
+                             aspect.thingTemplate="ReportingStrategy"
+                             baseType="THINGNAME"
+                             description="Strategy to determine health"
+                             name="reportingStrategy"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <reportingStrategy>
+                            <![CDATA[
+                            AlwaysOnReporting
+                            ]]>
+                            </reportingStrategy>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
             <PropertyBindings></PropertyBindings>
             <RemotePropertyBindings></RemotePropertyBindings>
             <RemoteServiceBindings>
@@ -69,10 +98,27 @@
                          ordinal="0"></ResultType>
                         <ParameterDefinitions>
                             <FieldDefinition
+                             aspect.dataShape="AnalyticsAnomalyDetectionParams"
+                             baseType="INFOTABLE"
+                             description="Parameters specific to anomaly detection. These parameters are calculated by ThingWatcher and should not be defined by the user."
+                             name="anomalyDetectionParams"
+                             ordinal="15"></FieldDefinition>
+                            <FieldDefinition
                              baseType="STRING"
                              description="Metric for evaluating model performance within ensemble (PEARSONS,RMSE,ROC)"
                              name="comparisonMetric"
                              ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="NUMBER"
+                             description="The probability that the returned confidence interval will contain the true value. Must be between 0 and 1, exclusive (Default is .80). Larger confidence levels yield wider confidence intervals."
+                             name="confidenceLevel"
+                             ordinal="17"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             baseType="BOOLEAN"
+                             description="If True, a confidence model is created (Default is False)."
+                             name="createConfidenceModel"
+                             ordinal="16"></FieldDefinition>
                             <FieldDefinition
                              aspect.dataShape="AnalyticsDatasetRef"
                              baseType="INFOTABLE"

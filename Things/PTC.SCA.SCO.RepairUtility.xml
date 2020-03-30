@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Things>
+        <Thing
+         aspect.isExtension="true"
+         description="Repair utility {PTC.SCA.SCO.RepairUtility}"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         enabled="true"
+         homeMashup=""
+         identifier=""
+         lastModifiedDate="2020-03-19T18:17:39.550+05:30"
+         name="PTC.SCA.SCO.RepairUtility"
+         projectName=""
+         published="false"
+         tags=""
+         thingTemplate="GenericThing"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Remove value for source name for all remote properties on the kep server thing"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="RepairKEPServerEXRemoteBinding">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.thingTemplate="PTC.Factory.KepServerThingTemplate"
+                             baseType="THINGNAME"
+                             description=""
+                             name="KepServerThing"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="RepairKEPServerEXRemoteBinding">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var kepServerThing = Things[KepServerThing];
+                                        
+                                        var propertyDefinitions = kepServerThing.GetPropertyDefinitions({
+                                        	category: undefined /* STRING */ ,
+                                        	type: undefined /* BASETYPENAME */ ,
+                                        	dataShape: undefined /* DATASHAPENAME */
+                                        });
+                                        
+                                        var tableLength = propertyDefinitions.rows.length;
+                                        for (var x = 0; x < tableLength; x++) {
+                                        	var row = propertyDefinitions.rows[x];
+                                        	try {
+                                        		var propertyBinding = kepServerThing.GetRemotePropertyBinding({
+                                        			propertyName: row.name /* STRING */
+                                        		});
+                                        		if (propertyBinding && propertyBinding.aspects.tagAddress && propertyBinding.sourceName) {
+                                        			logger.error("-Repair remote property binding for-------------------------------------");
+                                        			logger.error("name: " + propertyBinding.name);
+                                        			logger.error("sourceName: " + propertyBinding.sourceName);
+                                        			logger.error("aspects: " + propertyBinding.aspects);
+                                        			logger.error("pushType: " + propertyBinding.pushType);
+                                        			logger.error("pushThreshold: " + propertyBinding.pushThreshold);
+                                        			logger.error("timeout: " + propertyBinding.timeout);
+                                        
+                                        			kepServerThing.RemoveRemotePropertyBinding({
+                                        				propertyName: propertyBinding.name /* STRING */
+                                        			});
+                                        
+                                        			kepServerThing.SetRemotePropertyBinding({
+                                        				propertyName: propertyBinding.name /* STRING */ ,
+                                        				aspects: propertyBinding.aspects /* JSON */ ,
+                                        				pushThreshold: propertyBinding.pushThreshold /* NUMBER */ ,
+                                        				foldType: undefined /* STRING */ ,
+                                        				sourcePropertyName: undefined /* STRING */ ,
+                                        				timeout: propertyBinding.timeout /* INTEGER */ ,
+                                        				cacheTime: undefined /* INTEGER */ ,
+                                        				pushType: propertyBinding.pushType /* STRING */
+                                        			});
+                                        		}
+                                        	} catch (err) {
+                                        		// Not a remove property, continue
+                                        	}
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ImplementedShapes></ImplementedShapes>
+            <ThingProperties></ThingProperties>
+        </Thing>
+    </Things>
+</Entities>

@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="Common utilities for ThingWorx Apps. {PTC.SCA.SCO.CommonUtilsTemplate}"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.986+05:30"
+         name="PTC.SCA.SCO.CommonUtilsTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:sca-sco"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetPropertiesInformation">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.PropertyDetailsDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="THINGNAME"
+                             description=""
+                             name="entity"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="excludedPropertiesList"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             baseType="BOOLEAN"
+                             description=""
+                             name="filterLoggedProperties"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="filterType"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             baseType="BOOLEAN"
+                             description=""
+                             name="includeInheritedProperties"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="STRING"
+                             description=""
+                             name="propertiesList"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="QUERY"
+                             description=""
+                             name="query"
+                             ordinal="6"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description="This utility service returns information about the properties on a thing, such as the name, type, current value, and so on."
+                     handlerName="Script"
+                     name="GetPropertiesInformation">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var myList = (propertiesList) ? propertiesList : "";
+                                        var excludedProperties = (excludedPropertiesList) ? splitString(excludedPropertiesList) : [];
+                                        var myProperties = getMyProperties();
+                                        var typeFilter = (filterType) ? filterType.split(",") : [];
+                                        logger.debug("GetPropertiesInformation for:"+entity);
+                                        
+                                        function isType(property) {
+                                        	return typeFilter.indexOf(property.type) >= 0;
+                                        }
+                                        function isLogged(property){
+                                        	return property.isLogged;
+                                        }
+                                        function splitString(str) {
+                                            var arr = str.split(",");
+                                            var list = [];
+                                        
+                                            for(var x=0; x < arr.length; x++) {
+                                        		list.push(arr[x].trim());
+                                            }
+                                        
+                                            return list;
+                                        }
+                                        
+                                        function getMyProperties() {
+                                        	var arr = [];
+                                        	var properties = Resources["PTC.Factory.CommonUtilities"].GetMyPropertiesNames({
+                                        		thingId: entity
+                                        	});
+                                        
+                                        	var length = properties.rows.length;
+                                        	for (var x=0; x < length; x++) {
+                                        		var row = properties.rows[x];
+                                        		arr.push(row['propertyName']);
+                                        		logger.debug("GetPropertiesInformation 		My Property:"+row['propertyName']);
+                                        	}
+                                        
+                                        	return arr;
+                                        }
+                                        
+                                        function getInheritedProperties() {
+                                        	var properties = Things[entity].GetPropertyDefinitions();
+                                        	var arr = [];
+                                        
+                                        	var length = properties.rows.length;
+                                        	for(var x=0; x<length; x++) {
+                                        		var prop = properties.rows[x]['name'];
+                                        		if (myProperties.indexOf(prop) < 0) {
+                                        			arr.push(prop);
+                                        			logger.debug("GetPropertiesInformation 		Get Inherited Property:"+prop);
+                                        		}
+                                        	}
+                                        
+                                        	return arr;
+                                        }
+                                        
+                                        function isPropertyExcluded(property) {
+                                        	return excludedProperties.indexOf(property) >= 0;
+                                        }
+                                        
+                                        function addMyProperties(list) {
+                                        	for (var x=0; x < myProperties.length; x++) {
+                                        		list.push(myProperties[x]);
+                                        	}
+                                        }
+                                        
+                                        function addInheritedProperties(list) {
+                                        	var inheritedProperties = getInheritedProperties();
+                                        	for (var x=0; x < inheritedProperties.length; x++) {
+                                        		var prop = inheritedProperties[x];
+                                        		if(!isPropertyExcluded(prop)) {
+                                        			list.push(prop);
+                                        			logger.debug("GetPropertiesInformation 		Add Inherited Property:"+prop);
+                                        		}
+                                        	}
+                                        }
+                                        
+                                        function addServiceProperties(list) {
+                                        	var arr = splitString(myList);
+                                        	for(var x=0; x < arr.length; x++) {
+                                        		var prop = arr[x];
+                                        		if (list.indexOf(prop) < 0) {
+                                        			list.push(prop);
+                                        			logger.debug("GetPropertiesInformation 		Add Service Prop:"+prop);
+                                        		}
+                                        	}
+                                        }
+                                        
+                                        var list = [];
+                                        addMyProperties(list);
+                                        list.sort();
+                                        if (includeInheritedProperties && myList === "") {
+                                        	addInheritedProperties(list);
+                                        } else {
+                                        	addServiceProperties(list);
+                                        }
+                                        
+                                        var resultProp = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                        		infoTableName : "InfoTable",
+                                        		dataShapeName : "PTC.SCA.SCO.PropertyDetailsDataShape"
+                                        	});
+                                        
+                                        //Filter by Type or logged properties
+                                        if (filterLoggedProperties || (typeFilter.length>0) )
+                                        {
+                                        	logger.debug("GetPropertiesInformation 		filtering ");
+                                        	var propertiesDetails = Resources["PTC.Factory.CommonUtilities"].GetPropertyDetails({
+                                        		propertyList: list.join(","),
+                                        		thingId: entity
+                                        	});
+                                        	
+                                        	var propertiesDetailsLength = propertiesDetails.rows.length;
+                                        	for (var i=0; i < propertiesDetailsLength; i++) {
+                                        		var property = propertiesDetails.rows[i];
+                                        		var includeProperty = true;
+                                        		if  (typeFilter.length>0) {
+                                        			includeProperty = isType(property);
+                                        		}
+                                        		if ( includeProperty && filterLoggedProperties ) {
+                                        			includeProperty = isLogged(property);
+                                        		}
+                                        		if ( includeProperty ){
+                                        			resultProp.AddRow(property);
+                                        		}
+                                        	}
+                                        }else{
+                                        	resultProp = Resources["PTC.Factory.CommonUtilities"].GetPropertyDetails({
+                                                propertyList: list.join(","),
+                                                thingId: entity
+                                        	});
+                                        }
+                                        
+                                        var queryParams = {
+                                        	t: resultProp /* INFOTABLE */,
+                                        	query: query /* QUERY */
+                                        };
+                                        
+                                        var result = Resources["InfoTableFunctions"].Query(queryParams);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

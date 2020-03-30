@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b937"
+ build="b222"
  majorVersion="8"
- minorVersion="3"
- modelPersistenceProviderPackage="H2PersistenceProviderPackage"
- revision="3"
- schemaVersion="1030"
- universal="">
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
     <ThingShapes>
         <ThingShape
          aspect.isSystemObject="true"
@@ -15,7 +15,7 @@
          description="Provides a set of statistical calculation services. To use these services, create a Thing and attach this ThingShape. This component is installed with ThingWorx but is not active until the DescriptiveAnalytics microservice is installed."
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2018-12-03T14:53:13.652+05:30"
+         lastModifiedDate="2020-03-03T01:03:56.537+05:30"
          name="StatisticalCalculationThingShape"
          projectName=""
          tags="">
@@ -284,6 +284,28 @@
                 </ServiceDefinition>
                 <ServiceDefinition
                  category="AnalyticsStats"
+                 description="Calculate the range of values in the provided infotable."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CalculateRangeValue">
+                    <ResultType
+                     baseType="NUMBER"
+                     description="The range of values in the given infotable."
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="AnalyticsTimedValue"
+                         baseType="INFOTABLE"
+                         description="The list of timed values"
+                         name="timedValues"
+                         ordinal="0"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 category="AnalyticsStats"
                  description="Calculate the percentage of difference between two specified values"
                  isAllowOverride="false"
                  isLocalOnly="false"
@@ -453,6 +475,12 @@
                  description="Calculate the mode values from the provided infotable."
                  handlerName="Reflection"
                  name="CalculateModeValue">
+                    <ConfigurationTables></ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description="Calculate the range of values in the provided infotable."
+                 handlerName="Reflection"
+                 name="CalculateRangeValue">
                     <ConfigurationTables></ConfigurationTables>
                 </ServiceImplementation>
                 <ServiceImplementation

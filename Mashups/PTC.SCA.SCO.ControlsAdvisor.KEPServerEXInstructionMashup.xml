@@ -1,0 +1,1550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="false"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Used in PTC.Factory.KEPServerEX.ConnectionSummary mashup {PTC.SCA.SCO.ControlsAdvisor.KEPServerEXInstructionMashup}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:41.281+05:30"
+         name="PTC.SCA.SCO.ControlsAdvisor.KEPServerEXInstructionMashup"
+         projectName="PTC.SCA.SCO.KEPServerEX Monitor"
+         rows="0.0"
+         tags="PTC:sca-sco-kepserverexmonitor;PTC:sca-mfg;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="1"
+                 baseType="STRING"
+                 description=""
+                 name="appKeyName"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="2"
+                 baseType="BOOLEAN"
+                 description=""
+                 name="printOnLoad"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description=""
+                 name="thingName"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things></Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Resources_PTC.Factory.CommonUtilities" : {
+                  "DataName" : "Resources_PTC.Factory.CommonUtilities",
+                  "EntityName" : "PTC.Factory.CommonUtilities",
+                  "EntityType" : "Resources",
+                  "Id" : "b10491ce-a6b9-411f-ac4a-e81717968d54",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "9ddaf33e-6b7a-4691-9596-458a139e193a",
+                    "Name" : "GetAppKey",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetAppKey"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "274dcb01-f502-49f1-bf9e-7c2018eb0e1e",
+                    "Name" : "GetIndustrialThingName",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetIndustrialThingName"
+                  } ]
+                },
+                "Resources_PTC.Resource.Factory.MessageFormatUtilities" : {
+                  "DataName" : "Resources_PTC.Resource.Factory.MessageFormatUtilities",
+                  "EntityName" : "PTC.Resource.Factory.MessageFormatUtilities",
+                  "EntityType" : "Resources",
+                  "Id" : "a68583d5-05df-4b25-91d3-bf8a3df41dc1",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "e43d1377-80e0-4daa-a2f7-488ee3fb841b",
+                    "Name" : "GetLocalizedMessageOneParam",
+                    "Parameters" : {
+                      "label" : "PTC.Factory.InstructionNote3"
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetLocalizedMessageOneParam"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "6e6c0b6a-38d1-41c7-a18a-b1ba4c04e47a",
+                    "Name" : "GetLocalizedMessageOneParam1",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetLocalizedMessageOneParam"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "22ed3801-2020-4d4c-90c4-204ea402c417",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLocalizedMessageOneParam",
+                "SourceSection" : "Resources_PTC.Resource.Factory.MessageFormatUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "htmltextarea-24",
+                "TargetSection" : ""
+              }, {
+                "Id" : "bcfb6bbc-0eda-4c3a-abb4-6e9099a3ee61",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "appKeyName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "appKeyName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetAppKey",
+                "TargetSection" : "Resources_PTC.Factory.CommonUtilities"
+              }, {
+                "Id" : "3ab3fc2a-fa3b-4b09-884b-465a9bf4e71d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "thingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "serverThingName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetIndustrialThingName",
+                "TargetSection" : "Resources_PTC.Factory.CommonUtilities"
+              }, {
+                "Id" : "016e5250-9d13-406b-a785-072329fdd5fc",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "ANYSCALAR",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetAppKey",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "valuedisplay-20",
+                "TargetSection" : ""
+              }, {
+                "Id" : "89021ee8-d521-42d4-abb8-43d4ac589892",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "ANYSCALAR",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetIndustrialThingName",
+                "SourceSection" : "Resources_PTC.Factory.CommonUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "valuedisplay-19",
+                "TargetSection" : ""
+              }, {
+                "Id" : "d5f9acb6-d576-4dc9-b119-32071747db0a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "ANYSCALAR",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-14",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "valuedisplay-17",
+                "TargetSection" : ""
+              }, {
+                "Id" : "b08efbf9-7a96-434f-8512-458db2644925",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "ANYSCALAR",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-16",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "valuedisplay-18",
+                "TargetSection" : ""
+              }, {
+                "Id" : "9b59b0b2-6cc5-42cb-8386-1789c878281e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "printOnLoad",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "shouldPrint",
+                  "TargetPropertyBaseType" : "BOOLEAN"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-26",
+                "TargetSection" : ""
+              }, {
+                "Id" : "b8a831a8-60c5-4e93-9ff9-76188a6ce564",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "label",
+                  "TargetPropertyBaseType" : "TEXT",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-30",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetLocalizedMessageOneParam1",
+                "TargetSection" : "Resources_PTC.Resource.Factory.MessageFormatUtilities"
+              }, {
+                "Id" : "6608c66f-2c8a-41f3-9909-ee247e5313aa",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetLocalizedMessageOneParam1",
+                "SourceSection" : "Resources_PTC.Resource.Factory.MessageFormatUtilities",
+                "TargetArea" : "UI",
+                "TargetId" : "label-29",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "GetIndustrialThingName",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "85dadff7-4a5b-4d27-9c71-83f4f524a973"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "Refresh",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "GetAppKey",
+                "EventTriggerSection" : "Resources_PTC.Factory.CommonUtilities",
+                "Id" : "94fe0b24-b062-4ccd-b479-adbe4a2fafed"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Factory.CommonUtilities",
+                "EventHandlerService" : "GetAppKey",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "appKeyNameChanged",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "9bc85e7e-1fb1-4072-a1e2-8c46796c24dc"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-14",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "1416948a-0a83-454e-9b5b-0457ce33b113"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-16",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "6063ac20-5e21-4118-9094-7858f774fb24"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Resource.Factory.MessageFormatUtilities",
+                "EventHandlerService" : "GetLocalizedMessageOneParam",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "a38c3422-da0c-40da-bcbb-cea3eaedbc8f"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-26",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "c10d7b5b-c9ee-444f-9819-76d92bf8ecf9"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-30",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "204e42ff-2ce0-4ae8-b29b-08d298bed3ff"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Resources_PTC.Resource.Factory.MessageFormatUtilities",
+                "EventHandlerService" : "GetLocalizedMessageOneParam1",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "expression-30",
+                "EventTriggerSection" : " ",
+                "Id" : "ac297770-94cc-4370-953a-0202b5303247"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 270,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : false,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "StyleTheme" : "Base Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseMasterTheme" : false,
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 498,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "thingName"
+                  }, {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "appKeyName"
+                  }, {
+                    "BaseType" : "BOOLEAN",
+                    "Description" : "",
+                    "ParameterName" : "printOnLoad"
+                  } ],
+                  "id_index" : 31,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "fieldset-1",
+                    "FieldsetLabelStyle" : "DefaultFieldsetLabelStyle",
+                    "FieldsetStyle" : "DefaultFieldsetStyle",
+                    "Height" : 270,
+                    "Id" : "fieldset-1",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "ResponsiveLayout" : false,
+                    "ShowDataLoading" : true,
+                    "Title" : "",
+                    "Top" : 0,
+                    "Type" : "fieldset",
+                    "Visible" : true,
+                    "Width" : 498,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Fieldset"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-3",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-3",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 10.791656494140625,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.InstructionNote2]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "TextWrap" : true,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 7.7916717529296875,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 440,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-4",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-4",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 21.555572509765625,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.InstructionNote3]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "TextWrap" : true,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 263.5694580078125,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : false,
+                      "Width" : 440,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-5",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-5",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 10.763885498046875,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.InstructionNote4]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "TextWrap" : true,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 57,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 440,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-6",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-6",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 29.986114501953125,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.InstructionEnableString]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 82,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 210,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-7",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-7",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 29.986114501953125,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.InstructionHostString]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 119.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 210,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-8",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-8",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 29.986114501953125,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.InstructionPortString]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 138.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 210,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-9",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-9",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 29.986114501953125,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.InstructionThingNameString]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 157.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 210,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-10",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-10",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 29.986114501953125,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.InstructionApplicationKeyString]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 176.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 210,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-11",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-11",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 29.986114501953125,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.InstructionTrustedSelfSignedCertificatesString]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 195.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 210,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-12",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-12",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 29.986114501953125,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.InstructionTrustAllCertificatesString]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 214.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 210,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-13",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-13",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 29.986114501953125,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.InstructionDisableEncryptionString]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 233.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 210,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "DataChangeType" : "VALUE",
+                      "DisplayName" : "expression-14",
+                      "Expression" : "hostname = location.hostname",
+                      "FireOnFirstValue" : false,
+                      "Height" : 28,
+                      "Id" : "expression-14",
+                      "LastContainer" : false,
+                      "Left" : 341.9861145019531,
+                      "OutputBaseType" : "STRING",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 74,
+                      "Type" : "expression",
+                      "Visible" : true,
+                      "Width" : 135,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Expression",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "STRING",
+                        "Description" : "",
+                        "ParameterName" : "hostname",
+                        "isBindingTarget" : true,
+                        "name" : "hostname"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-15",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-15",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 252.98611450195312,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.Yes]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 82,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "DataChangeType" : "VALUE",
+                      "DisplayName" : "expression-16",
+                      "Expression" : "port = location.port",
+                      "FireOnFirstValue" : false,
+                      "Height" : 28,
+                      "Id" : "expression-16",
+                      "LastContainer" : false,
+                      "Left" : 341.9861145019531,
+                      "OutputBaseType" : "STRING",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 119,
+                      "Type" : "expression",
+                      "Visible" : true,
+                      "Width" : 135,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Expression",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "STRING",
+                        "Description" : "",
+                        "ParameterName" : "port",
+                        "isBindingTarget" : true,
+                        "name" : "port"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-17",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-17",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 252.98611450195312,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 119.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueFormat" : {
+                        "renderer" : "DEFAULT"
+                      },
+                      "ValueFormat_StateParameters" : [ ],
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 220,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-18",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-18",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 252.98611450195312,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "TextWrap" : true,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 138.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueFormat" : {
+                        "renderer" : "DEFAULT"
+                      },
+                      "ValueFormat_StateParameters" : [ ],
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-19",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-19",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 252.98611450195312,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 157.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueFormat" : {
+                        "FormatString" : "raw",
+                        "formatInfo" : {
+                          "FieldName" : "",
+                          "StateDefinition" : "",
+                          "StateDefinitionType" : "fixed",
+                          "StateFormats" : [ {
+                            "state" : "",
+                            "stateName" : "fixed"
+                          } ]
+                        },
+                        "renderer" : "HTML",
+                        "roundingEnabled" : true
+                      },
+                      "ValueFormat_StateParameters" : [ ],
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 220,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-20",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-20",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 252.98611450195312,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 176.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueFormat" : {
+                        "FormatString" : "full",
+                        "renderer" : "STRING"
+                      },
+                      "ValueFormat_StateParameters" : [ ],
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 220,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-21",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-21",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 252.984375,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.No]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 195.984375,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-22",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-22",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 252.98611450195312,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.No]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 214.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "htmltextarea-24",
+                      "EscapeHTMLText" : false,
+                      "Height" : 37,
+                      "Id" : "htmltextarea-24",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "LastContainer" : false,
+                      "Left" : 10.986114501953125,
+                      "ReadOnly" : true,
+                      "ResponsiveLayout" : false,
+                      "ShowBorder" : false,
+                      "ShowDataLoading" : true,
+                      "ShowToolbar" : true,
+                      "Text" : "",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 29,
+                      "Type" : "htmltextarea",
+                      "Visible" : true,
+                      "Width" : 440,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Html TextArea",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "DisplayName" : "validator-26",
+                      "Expression" : "shouldPrint",
+                      "Height" : 28,
+                      "Id" : "validator-26",
+                      "LastContainer" : false,
+                      "Left" : 274.9861145019531,
+                      "Output" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 287,
+                      "Type" : "validator",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Validator",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "BOOLEAN",
+                        "Description" : "",
+                        "ParameterName" : "shouldPrint",
+                        "isBindingTarget" : true,
+                        "name" : "shouldPrint"
+                      } ]
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-27",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-27",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 29.986114501953125,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.ConnectionInformation.Legacy]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 100.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DialogBoxLabelForTextInputField",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 210,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "BackgroundFill" : "content",
+                      "DisplayName" : "valuedisplay-28",
+                      "Height" : 22,
+                      "Id" : "valuedisplay-28",
+                      "ImageScaling" : "Width",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 252.98611450195312,
+                      "Overflow" : "hidden",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TextIfNoValue" : "[[PTC.Factory.ConnectionInformation.Disable]]",
+                      "TextIfNoValueOffset" : 0,
+                      "TextIfNoValueStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "TextWrap" : false,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 100.98611450195312,
+                      "Type" : "valuedisplay",
+                      "ValueDisplayLabelStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "ValueDisplayStyle" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "VerticalAlignment" : "middle",
+                      "Visible" : true,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Value Display",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "AllowEllipsis" : false,
+                      "Area" : "UI",
+                      "CustomClass" : "",
+                      "DisplayName" : "label-29",
+                      "Height" : 22,
+                      "Id" : "label-29",
+                      "LastContainer" : false,
+                      "Left" : 253,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "PTC.Factory.Generic.DefaultSentenceCase",
+                      "Text" : "[[PTC.Factory.No]]",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 234,
+                      "Type" : "label",
+                      "Visible" : true,
+                      "Width" : 100,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Label",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : true,
+                    "DataChangeType" : "ALWAYS",
+                    "DisplayName" : "isSecure",
+                    "Expression" : "result = TW.Runtime.Widgets.PTC_SCA_SCO_CustomFunctions.isSecure() ? \"PTC.Factory.No\" : \"PTC.Factory.Yes\";",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-30",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "OutputBaseType" : "STRING",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ ],
+                    "editMode" : "edit",
+                    "helperType" : "expression",
+                    "parameters" : [ ],
+                    "parametersToDelete" : [ ]
+                  },
+                  "Widgets" : [ ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview>
+            <![CDATA[
+            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
+            AABJRU5ErkJggg==
+            ]]>
+            </preview>
+        </Mashup>
+    </Mashups>
+</Entities>

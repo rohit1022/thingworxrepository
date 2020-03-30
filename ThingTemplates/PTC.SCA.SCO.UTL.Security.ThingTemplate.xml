@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="ThingTemplate for customizing app switcher and logout mashup of Software Configuration Management(SCM)"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.953+05:30"
+         name="PTC.SCA.SCO.UTL.Security.ThingTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Asset;PTC:ThingTemplate"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions></ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="RunPostVisibilityCleanup">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        function updateAppSwitcherAndLogoutMashup(utilityMashupName){
+                                            var utilityMashup = Mashups[utilityMashupName];
+                                            if(!utilityMashup){
+                                                return;
+                                            }
+                                        
+                                            var params = {
+                                                tableName: 'Settings' /* STRING */
+                                            };
+                                        
+                                            // result: INFOTABLE
+                                            var configTable = utilityMashup.GetConfigurationTable(params);
+                                        
+                                            configTable.getRow(0).AppSwitcherButtonMashup ='PTC.Factory.AppSwitcher.Button';
+                                            configTable.getRow(0).LogoutMashup ='PTC.SCA.SCO.Factory.LogoutContainer';
+                                        
+                                        
+                                        
+                                            var params = {
+                                                configurationTable: configTable/* INFOTABLE */,
+                                                persistent: true /* BOOLEAN */,
+                                                tableName: 'Settings' /* STRING */
+                                            };
+                                        
+                                            // no return
+                                            utilityMashup.SetConfigurationTable(params);
+                                        
+                                        }
+                                        
+                                        updateAppSwitcherAndLogoutMashup('PTC.BPE.Master');
+                                        updateAppSwitcherAndLogoutMashup('PTC.BPM.Master');
+                                        updateAppSwitcherAndLogoutMashup('TW.RSM.SFW.Master.ApplicationMaster');
+                                        
+                                        var utlTemplatesAndThingshapes = [
+                                        "TW.RSM.Template.AssetWithTunnels",
+                                        "TW.RSM.Template.AssetWithTunnelsAndFileTransfer",
+                                        "TW.RSM.Template.RemoteAsset",
+                                        "TW.UTL.RemoteThingWithFileTransfer",
+                                        "TW.UTL.RemoteThingWithTunnelsAndFileTransfer",
+                                        "TW.RSM.SFW.ThingShape.Updateable",
+                                        "PTC.Resource.Asset.SCMResourceThingShape",
+                                        "PTC.BPE.BusinessProcessManageable"]
+                                        params = {
+                                                      infoTableName : "InfoTable",
+                                                    dataShapeName : "GenericStringList"
+                                        };
+                                        
+                                        enityNamesInfoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        utlTemplatesAndThingshapes.forEach(function (element) {
+                                          var row = {
+                                            item: element
+                                          };
+                                        
+                                          enityNamesInfoTable.AddRow(row);
+                                        });
+                                        
+                                        Things["PTC.SCA.SCO.Common.SecurityHelper"].AdjustVisibilityPermissionByEntityNames({"entityNames":enityNamesInfoTable})
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes>
+                <ImplementedShape
+                 name="TW.UTL.Security.ThingShape"
+                 type="ThingShape"></ImplementedShape>
+            </ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility></Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Things>
+        <Thing
+         aspect.isExtension="true"
+         description="Thingworx internal remote access provider"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         enabled="true"
+         homeMashup=""
+         identifier=""
+         lastModifiedDate="2020-03-26T23:56:00.275+05:30"
+         name="ThingworxInternalRemoteAccessProvider"
+         projectName=""
+         published="false"
+         tags="Applications:RAE"
+         thingTemplate="GenericThing"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     category=""
+                     description="Maps a TunnelSession to a RemoteSession"
+                     isAllowOverride="false"
+                     isLocalOnly="true"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ConvertTunnelSessionToRemoteSession">
+                        <ResultType
+                         aspect.dataShape="RemoteSession"
+                         baseType="INFOTABLE"
+                         description="The remote session with the given session ID"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="TunnelSession"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="The TunnelSession to map to a RemoteSession"
+                             name="tunnelSession"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Converts RemoteEndpoint providerConfig InfoTable to JSON"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="EndpointInfoTableToJson">
+                        <ResultType
+                         baseType="JSON"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="ThingworxInternal.RemoteEndpointProviderConfig"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="The ThingworxInternal.RemoteEndpointProviderConfig Infotable to convert to providerConfig compatible json."
+                             name="providerConfigInfoTable"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Converts RemoteEndpoint providerConfig JSON to an InfoTable"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="EndpointJsonToInfoTable">
+                        <ResultType
+                         aspect.dataShape="ThingworxInternal.RemoteEndpointProviderConfig"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="JSON"
+                             description="The RemoteEndpoint formatted providerConfig to convert to Infotable."
+                             name="providerConfigJson"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Converts RemoteSessionParameters providerConfig InfoTable to JSON"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="SessionParametersInfoTableToJson">
+                        <ResultType
+                         baseType="JSON"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="ThingworxInternal.SessionParametersProviderConfig"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="The ThingworxInternal.RemoteEndpointProviderConfig Infotable to convert to providerConfig compatible json."
+                             name="providerConfigInfoTable"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Converts RemoteSessionParameters providerConfig JSON to an InfoTable"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="SessionParametersJsonToInfoTable">
+                        <ResultType
+                         aspect.dataShape="ThingworxInternal.SessionParametersProviderConfig"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="JSON"
+                             description="The RemoteSessionParameters formatted providerConfig to convert to Infotable."
+                             name="providerConfigJson"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ConvertTunnelSessionToRemoteSession">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var remoteSessionInfoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({dataShapeName : "RemoteSession"});
+                                        
+                                        var tunnelSessionCount = tunnelSession.rows.length;
+                                        for (var i=0; i < tunnelSessionCount; i++) {
+                                            var tunnelSessionRow = tunnelSession.rows[i];
+                                        
+                                            var remoteSession = {};
+                                            remoteSession.remoteServer = "ThingworxInternalRemoteAccessServer";
+                                            remoteSession.agentDevice = tunnelSessionRow.targetThing;
+                                            remoteSession.bytesTransferred = tunnelSessionRow.bytesTransferred;
+                                            remoteSession.createdBy = tunnelSessionRow.user;
+                                            remoteSession.createdTime = tunnelSessionRow.startTime;
+                                            remoteSession.endTime = tunnelSessionRow.endTime;
+                                            remoteSession.sessionId = tunnelSessionRow.tunnelId;
+                                        
+                                            var remoteSessionParameters = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({dataShapeName : "RemoteSessionParameters"});
+                                            remoteSessionParameters.remoteEndpoint = tunnelSessionRow.tunnelName;
+                                            
+                                            var providerConfigTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                dataShapeName : "ThingworxInternal.SessionParametersProviderConfig"
+                                            });
+                                            var tunnelSessionTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                dataShapeName : "TunnelSession"
+                                            });
+                                            tunnelSessionTable.AddRow(tunnelSessionRow);
+                                            var providerConfig = {};
+                                            providerConfig.tunnelSession = tunnelSessionTable;
+                                            providerConfigTable.AddRow(providerConfig);
+                                            // build providerConfig JSON by using internal conversion service
+                                            remoteSessionParameters.providerConfig = me.SessionParametersInfoTableToJson({
+                                                providerConfigInfoTable: providerConfigTable /* INFOTABLE */
+                                            });
+                                         
+                                            remoteSession.parameters = remoteSessionParameters;
+                                        
+                                            // map TunnelSession state to RemoteSessions status
+                                            switch (tunnelSessionRow.state) {
+                                                case "COMPLETE":
+                                                case "CANCELLED":
+                                                case "ERROR":
+                                                    remoteSession.status = "TERMINATED";
+                                                    break;
+                                                case "PENDING":
+                                                    remoteSession.status = "CREATED";
+                                                    break;
+                                                case "ACTIVE":
+                                                    remoteSession.status = "STARTED";
+                                                    break;
+                                                default:
+                                                    remoteSession.status = undefined;
+                                            }
+                                        
+                                            remoteSessionInfoTable.AddRow(remoteSession);
+                                        }
+                                        
+                                        var result = remoteSessionInfoTable;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="EndpointInfoTableToJson">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = {};
+                                        result.description = providerConfigInfoTable.description;
+                                        result.appUri = providerConfigInfoTable.appUri;
+                                        
+                                        var connectInfo = [];
+                                        var connectionInfotable = providerConfigInfoTable.connectionInformation;
+                                        if (connectionInfotable) {
+                                            for (var x=0; x < connectionInfotable.rows.length; x++) {
+                                                var row = connectionInfotable.rows[x];
+                                                connectInfo.push({
+                                                    "type" : row.type,
+                                                    "startPort" : row.startPort,
+                                                    "endPort" : row.endPort
+                                                });
+                                            }                    
+                                        }
+                                        result.connectionInformation = connectInfo;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="EndpointJsonToInfoTable">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            dataShapeName : "ThingworxInternal.RemoteEndpointProviderConfig"
+                                        });
+                                        
+                                        var connectionInfoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            dataShapeName : "ConnectionInformation"
+                                        });
+                                        
+                                        var connectInfo = providerConfigJson.connectionInformation;
+                                        for (var index = 0; index < connectInfo.length; ++index) {
+                                            connectionInfoTable.AddRow(connectInfo[index]);
+                                        }
+                                        
+                                        var config = {};
+                                        config.description = providerConfigJson.description;
+                                        config.appUri = providerConfigJson.appUri;
+                                        config.connectionInformation = connectionInfoTable;
+                                        result.AddRow(config);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="EndSession">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        Subsystems["RemoteAccessSubsystem"].CheckPermissions({
+                                            thingName: agentDevice /* THINGNAME */,
+                                            serviceName: "EndSession" /* STRING */
+                                        });
+                                        
+                                        // first check the RemoteAccessSubsystem
+                                        var foundRemoteSession = Subsystems["RemoteAccessSubsystem"].GetSession({sessionId: sessionId});
+                                        if (foundRemoteSession !== null && foundRemoteSession.sessionId !== null) {
+                                            // Delete the session from the RemoteAccessSubsystem
+                                            Subsystems["RemoteAccessSubsystem"].DeleteSession({
+                                                sessionId: sessionId
+                                            });
+                                        }
+                                        
+                                        // then check the TunnelSubsystem
+                                        foundRemoteSession = me.GetSession({sessionId:sessionId, agentDevice:agentDevice});
+                                        if (foundRemoteSession !== null && foundRemoteSession.sessionId !== null) {
+                                            // call CancelTunnel on the TunnelSubsystem
+                                            Subsystems["TunnelSubsystem"].CancelTunnel({
+                                                reason: "EndSession invoked on ThingworxInternalRemoteAccessProvider",
+                                                tid: sessionId
+                                            });
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetAllSessions">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var tunnelSession =  Subsystems["TunnelSubsystem"].GetActiveTunnels();
+                                        var result = me.ConvertTunnelSessionToRemoteSession({tunnelSession:tunnelSession});
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetRemoteAccessibleEndpoints">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var tunnels = Things[agentDevice].GetTunnels();
+                                        
+                                        var remoteEndpoints = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "RemoteEndpoint"
+                                        });
+                                        
+                                        var tunnelCount = tunnels.rows.length;
+                                        for (var i=0; i < tunnelCount; i++) {
+                                            var tunnel = tunnels.rows[i];
+                                        
+                                            var connInfoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                infoTableName : "InfoTable",
+                                                dataShapeName : "ConnectionInformation"
+                                            });
+                                            
+                                            var connInfo = {};
+                                            connInfo.startPort = tunnel.port;
+                                            connInfoTable.AddRow(connInfo);
+                                            
+                                            var providerConfigTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                dataShapeName : "ThingworxInternal.RemoteEndpointProviderConfig"
+                                            });
+                                            
+                                            var providerConfig = {};
+                                            providerConfig.connectionInformation = connInfoTable;
+                                            providerConfig.description = tunnel.description;
+                                            providerConfig.appUri = tunnel.appUri;
+                                            providerConfigTable.AddRow(providerConfig);
+                                            
+                                            var endpoint = {};
+                                            endpoint.name = tunnel.name;
+                                            // build providerConfig JSON by using internal conversion service
+                                            endpoint.providerConfig = me.EndpointInfoTableToJson({
+                                                providerConfigInfoTable: providerConfigTable /* INFOTABLE */
+                                            });
+                                            remoteEndpoints.AddRow(endpoint);
+                                        }
+                                        
+                                        var result = remoteEndpoints;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetSession">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        Subsystems["RemoteAccessSubsystem"].CheckPermissions({
+                                            thingName: agentDevice /* THINGNAME */,
+                                            serviceName: "GetSession" /* STRING */
+                                        });    
+                                        
+                                        // result: INFOTABLE dataShape: "TunnelSession"
+                                        var tunnelSession = Subsystems["TunnelSubsystem"].GetActiveTunnel({
+                                            tid: sessionId /* STRING */
+                                        });
+                                        
+                                        var result = me.ConvertTunnelSessionToRemoteSession({tunnelSession:tunnelSession});
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetSessions">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        Subsystems["RemoteAccessSubsystem"].CheckPermissions({
+                                            thingName: agentDevice /* THINGNAME */,
+                                            serviceName: "GetSessions" /* STRING */
+                                        }); 
+                                        
+                                        var tunnelSession =  Subsystems["TunnelSubsystem"].GetActiveTunnels();
+                                        var params = {
+                                        	t: tunnelSession,
+                                            query: {
+                                                "filters": {
+                                                    "type": "NE",
+                                                    "fieldName": "targetThing",
+                                                    "value": agentDevice
+                                                }
+                                            }
+                                        };
+                                        var filteredTunnelSession = Resources["InfoTableFunctions"].DeleteQuery(params);
+                                        var result = me.ConvertTunnelSessionToRemoteSession({tunnelSession:filteredTunnelSession});
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="SessionParametersInfoTableToJson">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = {};
+                                        result.timeout = providerConfigInfoTable.timeout;
+                                        
+                                        var tunnelSessionInfoTable = providerConfigInfoTable.tunnelSession;
+                                        if(tunnelSessionInfoTable && tunnelSessionInfoTable.rows.length > 0) {
+                                            result.tunnelSession = tunnelSessionInfoTable[0].toJSON();
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="SessionParametersJsonToInfoTable">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            dataShapeName : "ThingworxInternal.SessionParametersProviderConfig"
+                                        });
+                                        
+                                        var tunnelSessionInfoTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            dataShapeName : "TunnelSession"
+                                        });
+                                        
+                                        var config = {};
+                                        config.timeout = providerConfigJson.timeout;
+                                        tunnelSessionInfoTable.AddRow(providerConfigJson.tunnelSession);
+                                        config.tunnelSession = tunnelSessionInfoTable;
+                                        result.AddRow(config);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="StartSession">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        Subsystems["RemoteAccessSubsystem"].CheckPermissions({
+                                            thingName: agentDevice /* THINGNAME */,
+                                            serviceName: "StartSession" /* STRING */
+                                        });    
+                                                            
+                                        var tunnelParams = remoteSessionParameters[0];
+                                        var tunnel = tunnelParams.remoteEndpoint;
+                                        var timeout = 300;
+                                        
+                                        if(tunnelParams.providerConfig && tunnelParams.providerConfig.timeout) {
+                                            timeout = tunnelParams.providerConfig.timeout;
+                                        }
+                                        
+                                        // call StartTunnel on the TunnelSubsystem
+                                        var startTunnelResult =  Subsystems["TunnelSubsystem"].StartTunnel({
+                                            thing: agentDevice, /* THINGNAME */
+                                            tunnel: tunnel, /* STRING */
+                                            timeout: timeout /* INTEGER */
+                                        });
+                                        
+                                        var remoteSessionInfoTable = me.ConvertTunnelSessionToRemoteSession({tunnelSession:startTunnelResult});
+                                        Subsystems["RemoteAccessSubsystem"].CreateSession({remoteSession: remoteSessionInfoTable});
+                                        
+                                        var result = startTunnelResult[0].tunnelId;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ImplementedShapes>
+                <ImplementedShape
+                 name="RemoteAccessProvider"
+                 type="ThingShape"></ImplementedShape>
+            </ImplementedShapes>
+            <ThingProperties></ThingProperties>
+        </Thing>
+    </Things>
+</Entities>

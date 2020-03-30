@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Utility used to view, create, and edit customer information {PTC.Factory.TrendTroubleshooting.TrendDetailHeader}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:54.886+05:30"
+         name="PTC.Factory.TrendTroubleshooting.TrendDetailHeader"
+         projectName="PTC.SCA.SCO.Troubleshooting Tool"
+         rows="0.0"
+         tags="PTC:sca-sco-troubleshootingtool;PTC:sca-common;PTC:Mashup">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:Trend&amp;Troubleshooting"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="1"
+                 baseType="NUMBER"
+                 description="trigger an additional history back"
+                 name="numAdditionalBack"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description=""
+                 name="TrendId"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.Factory.TrendManagementUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.Factory.TrendManagementUtils" : {
+                  "DataName" : "Things_PTC.Factory.TrendManagementUtils",
+                  "EntityName" : "PTC.Factory.TrendManagementUtils",
+                  "EntityType" : "Things",
+                  "Id" : "d7040246-0b1d-41cd-b912-7d8121e71b57",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "ba809679-4540-4fee-8237-b54cc67e42aa",
+                    "Name" : "GetTrend",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetTrend"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "b0dbada3-889b-4880-822f-754569195188",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "TrendId",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "TrendId",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ContainedMashup-183",
+                "TargetSection" : ""
+              }, {
+                "Id" : "ed842fd1-07d5-49bd-8892-fd640a6c883d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "TrendId",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "trendId",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetTrend",
+                "TargetSection" : "Things_PTC.Factory.TrendManagementUtils"
+              }, {
+                "Id" : "02aa6906-e359-4a0f-b846-8f1a063d683a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "TrendName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "ANYSCALAR",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetTrend",
+                "SourceSection" : "Things_PTC.Factory.TrendManagementUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "valuedisplay-190",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "ContainedMashup-58",
+                "EventHandlerService" : "Refresh",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "PopupClosed",
+                "EventTriggerId" : "Navigation-83",
+                "EventTriggerSection" : "",
+                "Id" : "b5f3682e-21d3-40fb-84dc-bbf53922a99c"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Validator-85",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "PopupClosed",
+                "EventTriggerId" : "Navigation-84",
+                "EventTriggerSection" : "",
+                "Id" : "9f871e83-7c2f-4802-94e5-90cd409fc172"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Navigation-83",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-96",
+                "EventTriggerSection" : "",
+                "Id" : "aed4b00d-300c-4427-9696-917674118b3b"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Navigation-84",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-97",
+                "EventTriggerSection" : "",
+                "Id" : "9fa32189-da6b-4d93-84c8-6f2208581bb0"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Navigation-99",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-98",
+                "EventTriggerSection" : "",
+                "Id" : "d6a545e7-5359-4ca3-8c23-9d5df6a3e997"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "Navigation-102",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "Button-100",
+                "EventTriggerSection" : "",
+                "Id" : "bbdf2398-cd84-4d0b-870c-948477d4b857"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "ContainedMashup-58",
+                "EventHandlerService" : "Refresh",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "PopupClosed",
+                "EventTriggerId" : "Navigation-99",
+                "EventTriggerSection" : "",
+                "Id" : "2f57a706-eae7-4af3-86d9-c54cd29e7b57"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.TrendManagementUtils",
+                "EventHandlerService" : "GetTrend",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "aae531a1-7562-423d-b80e-0dc14761516d"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.Factory.TrendManagementUtils",
+                "EventHandlerService" : "GetTrend",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Refresh",
+                "EventTriggerId" : "autorefresh-189",
+                "EventTriggerSection" : "",
+                "Id" : "94fedaa6-3e36-42b6-aa3a-53055a2bab1a"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "Description" : "TrendDetail",
+                  "DisplayName" : "TrendDetail",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "Master" : "PTC.Factory.TrendTroubleshooting.Master",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "PTC.SCA.SCO.Core.MashupStyle",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "TrendId"
+                  }, {
+                    "BaseType" : "NUMBER",
+                    "Description" : "trigger an additional history back",
+                    "ParameterName" : "numAdditionalBack"
+                  } ],
+                  "id_index" : 190,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Columns" : 0,
+                    "DisplayName" : "Layout-1",
+                    "Footer" : false,
+                    "FooterHeight" : 0,
+                    "Header" : true,
+                    "HeaderHeight" : 48,
+                    "Id" : "Layout-1",
+                    "IncludeSpacingInFixedAreas" : false,
+                    "IsPrintLayout" : false,
+                    "Left" : 245,
+                    "LeftSidebar" : false,
+                    "LeftSidebarWidth" : 0,
+                    "Orientation" : "vertical",
+                    "PctColumn1" : 50,
+                    "PctColumn2" : 50,
+                    "PctColumn3" : 1,
+                    "PctColumn4" : 1,
+                    "PctColumn5" : 1,
+                    "PctColumn6" : 1,
+                    "PctColumn7" : 1,
+                    "PctColumn8" : 1,
+                    "PctRow1" : 100,
+                    "PctRow2" : 0,
+                    "PctRow3" : 0,
+                    "PctRow4" : 0,
+                    "PctRow5" : 0,
+                    "PctRow6" : 0,
+                    "PctRow7" : 0,
+                    "PctRow8" : 0,
+                    "PrintMarginLeftRight" : 0.5,
+                    "PrintMarginTopBottom" : 0.5,
+                    "PrintWidth" : 650,
+                    "ResponsiveLayout" : true,
+                    "RightSidebar" : false,
+                    "RightSidebarWidth" : 0,
+                    "Rows" : 1,
+                    "ShowDataLoading" : true,
+                    "Spacing" : 0,
+                    "Top" : 75,
+                    "Type" : "layout",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Layout"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Header",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-76",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "PTC.Factory.Generic.ToolBar",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "Columns" : 1,
+                        "DisplayName" : "Layout-86",
+                        "Footer" : false,
+                        "FooterHeight" : 0,
+                        "Header" : false,
+                        "HeaderHeight" : 0,
+                        "Id" : "Layout-86",
+                        "IncludeSpacingInFixedAreas" : false,
+                        "IsPrintLayout" : false,
+                        "Left" : 295,
+                        "LeftSidebar" : true,
+                        "LeftSidebarWidth" : 1280,
+                        "Orientation" : "horizontal",
+                        "PctColumn1" : 100,
+                        "PctColumn2" : 0,
+                        "PctColumn3" : 1,
+                        "PctColumn4" : 1,
+                        "PctColumn5" : 1,
+                        "PctColumn6" : 1,
+                        "PctColumn7" : 1,
+                        "PctColumn8" : 1,
+                        "PctRow1" : 90,
+                        "PctRow2" : 10,
+                        "PctRow3" : 0,
+                        "PctRow4" : 0,
+                        "PctRow5" : 0,
+                        "PctRow6" : 0,
+                        "PctRow7" : 0,
+                        "PctRow8" : 0,
+                        "PrintMarginLeftRight" : 0.5,
+                        "PrintMarginTopBottom" : 0.5,
+                        "PrintWidth" : 650,
+                        "ResponsiveLayout" : true,
+                        "RightSidebar" : false,
+                        "RightSidebarWidth" : 0,
+                        "Rows" : 0,
+                        "ShowDataLoading" : true,
+                        "Spacing" : 0,
+                        "Top" : 20,
+                        "Type" : "layout",
+                        "Visible" : true,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Layout"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Left Sidebar",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-87",
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "DefaultContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container"
+                        },
+                        "Widgets" : [ {
+                          "Properties" : {
+                            "Area" : "UI",
+                            "DisplayName" : "Panel-10",
+                            "Height" : 200,
+                            "HideScrollbars" : false,
+                            "HorizontalAnchor" : "left",
+                            "Id" : "Panel-10",
+                            "Left" : 365,
+                            "ResponsiveLayout" : true,
+                            "ShowDataLoading" : true,
+                            "Style" : "PTC.Factory.ToolBar.Color",
+                            "Top" : 15,
+                            "Type" : "panel",
+                            "VerticalAnchor" : "top",
+                            "Visible" : true,
+                            "Width" : 300,
+                            "Z-index" : 10,
+                            "__TypeDisplayName" : "Panel"
+                          },
+                          "Widgets" : [ {
+                            "Properties" : {
+                              "ActiveStyle" : "PTC.SCA.SCO.NoStyle",
+                              "Area" : "UI",
+                              "ContextId" : "",
+                              "Disabled" : false,
+                              "DisabledStyle" : "PTC.SCA.SCO.Factory.BackToOverviewBTN_Disabled",
+                              "DisplayName" : "backButton-191",
+                              "FocusStyle" : "PTC.SCA.SCO.NoStyle",
+                              "Height" : 32,
+                              "HoverStyle" : "PTC.SCA.SCO.NoStyle",
+                              "IconAlignment" : "left",
+                              "Id" : "backButton-191",
+                              "Label" : "",
+                              "Left" : 20,
+                              "ResponsiveLayout" : false,
+                              "RoundedCorners" : true,
+                              "ShowDataLoading" : true,
+                              "Style" : "PTC.Factory.BackToOverviewBTN",
+                              "TabSequence" : 0,
+                              "ToolTipField" : "[[PTC.SCA.SCO.BackButtonTooltipText]]",
+                              "ToolTipStyle" : "DefaultTooltipStyle",
+                              "Top" : 8,
+                              "Type" : "backButton",
+                              "Visible" : true,
+                              "Width" : 32,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Back Button",
+                              "__supportsTooltip" : true
+                            },
+                            "Widgets" : [ ]
+                          } ]
+                        } ]
+                      }, {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Column 1",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-88",
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "PTC.Factory.ToolBar.Color",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container"
+                        },
+                        "Widgets" : [ ]
+                      } ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Row",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-3",
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "Columns" : 0,
+                        "DisplayName" : "Layout-4",
+                        "Footer" : false,
+                        "FooterHeight" : 0,
+                        "Header" : false,
+                        "HeaderHeight" : 0,
+                        "Id" : "Layout-4",
+                        "IncludeSpacingInFixedAreas" : false,
+                        "IsPrintLayout" : false,
+                        "Left" : 110,
+                        "LeftSidebar" : false,
+                        "LeftSidebarWidth" : 0,
+                        "Orientation" : "vertical",
+                        "PctColumn1" : 50,
+                        "PctColumn2" : 50,
+                        "PctColumn3" : 1,
+                        "PctColumn4" : 1,
+                        "PctColumn5" : 1,
+                        "PctColumn6" : 1,
+                        "PctColumn7" : 1,
+                        "PctColumn8" : 1,
+                        "PctRow1" : 100,
+                        "PctRow2" : 0,
+                        "PctRow3" : 0,
+                        "PctRow4" : 0,
+                        "PctRow5" : 0,
+                        "PctRow6" : 0,
+                        "PctRow7" : 0,
+                        "PctRow8" : 0,
+                        "PrintMarginLeftRight" : 0.5,
+                        "PrintMarginTopBottom" : 0.5,
+                        "PrintWidth" : 650,
+                        "ResponsiveLayout" : true,
+                        "RightSidebar" : false,
+                        "RightSidebarWidth" : 0,
+                        "Rows" : 1,
+                        "ShowDataLoading" : true,
+                        "Spacing" : 0,
+                        "Top" : 140,
+                        "Type" : "layout",
+                        "Visible" : true,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Layout"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "AnimateExpandCollapse" : true,
+                          "Area" : "UI",
+                          "BGImageRepeat" : "no-repeat",
+                          "BGImageSize" : "auto",
+                          "DisplayName" : "Row",
+                          "ExpandCollapseTabLocation" : "outside",
+                          "Expanded" : true,
+                          "Id" : "container-6",
+                          "MinHeight" : 0,
+                          "MinWidth" : 0,
+                          "Overlay" : false,
+                          "OverlayIsTransparent" : false,
+                          "ResponsiveLayout" : true,
+                          "ShowDataLoading" : true,
+                          "ShowExpandCollapseTab" : false,
+                          "Style" : "PTC.SCA.SCO.Core.ContainerStyle",
+                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                          "TabExpandStyle" : "DefaultTabExpandStyle",
+                          "TabHeight" : 36,
+                          "TabLocation" : "center",
+                          "TabOffset" : 0,
+                          "TabWidth" : 36,
+                          "Type" : "container",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Container"
+                        },
+                        "Widgets" : [ {
+                          "Properties" : {
+                            "Area" : "UI",
+                            "Columns" : 0,
+                            "DisplayName" : "Layout-16",
+                            "Footer" : false,
+                            "FooterHeight" : 0,
+                            "Header" : true,
+                            "HeaderHeight" : 50,
+                            "Id" : "Layout-16",
+                            "IncludeSpacingInFixedAreas" : false,
+                            "IsPrintLayout" : false,
+                            "Left" : 160,
+                            "LeftSidebar" : false,
+                            "LeftSidebarWidth" : 0,
+                            "Orientation" : "vertical",
+                            "PctColumn1" : 50,
+                            "PctColumn2" : 50,
+                            "PctColumn3" : 1,
+                            "PctColumn4" : 1,
+                            "PctColumn5" : 1,
+                            "PctColumn6" : 1,
+                            "PctColumn7" : 1,
+                            "PctColumn8" : 1,
+                            "PctRow1" : 100,
+                            "PctRow2" : 50,
+                            "PctRow3" : 0,
+                            "PctRow4" : 0,
+                            "PctRow5" : 0,
+                            "PctRow6" : 0,
+                            "PctRow7" : 0,
+                            "PctRow8" : 0,
+                            "PrintMarginLeftRight" : 0.5,
+                            "PrintMarginTopBottom" : 0.5,
+                            "PrintWidth" : 650,
+                            "ResponsiveLayout" : true,
+                            "RightSidebar" : false,
+                            "RightSidebarWidth" : 0,
+                            "Rows" : 1,
+                            "ShowDataLoading" : true,
+                            "Spacing" : 0,
+                            "Top" : 105,
+                            "Type" : "layout",
+                            "Visible" : true,
+                            "Z-index" : 10,
+                            "__TypeDisplayName" : "Layout"
+                          },
+                          "Widgets" : [ {
+                            "Properties" : {
+                              "AnimateExpandCollapse" : true,
+                              "Area" : "UI",
+                              "BGImageRepeat" : "no-repeat",
+                              "BGImageSize" : "auto",
+                              "DisplayName" : "Header",
+                              "ExpandCollapseTabLocation" : "outside",
+                              "Expanded" : true,
+                              "Id" : "container-77",
+                              "MinHeight" : 0,
+                              "MinWidth" : 0,
+                              "Overlay" : false,
+                              "OverlayIsTransparent" : false,
+                              "ResponsiveLayout" : true,
+                              "ShowDataLoading" : true,
+                              "ShowExpandCollapseTab" : false,
+                              "Style" : "PTC.Factory.Generic.PageTitle",
+                              "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                              "TabExpandStyle" : "DefaultTabExpandStyle",
+                              "TabHeight" : 36,
+                              "TabLocation" : "center",
+                              "TabOffset" : 0,
+                              "TabWidth" : 36,
+                              "Type" : "container",
+                              "Visible" : true,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Container"
+                            },
+                            "Widgets" : [ {
+                              "Properties" : {
+                                "Area" : "UI",
+                                "DisplayName" : "Panel-184",
+                                "Height" : 200,
+                                "HideScrollbars" : false,
+                                "HorizontalAnchor" : "left",
+                                "Id" : "Panel-184",
+                                "Left" : 100,
+                                "ResponsiveLayout" : true,
+                                "ShowDataLoading" : true,
+                                "Style" : "PTC.SCA.SCO.NoStyle",
+                                "Top" : 15,
+                                "Type" : "panel",
+                                "VerticalAnchor" : "top",
+                                "Visible" : true,
+                                "Width" : 300,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Panel"
+                              },
+                              "Widgets" : [ {
+                                "Properties" : {
+                                  "ActiveStyle" : "DefaultButtonActiveStyle",
+                                  "Area" : "UI",
+                                  "AutoRefresh" : true,
+                                  "AutoRefreshTabSequence" : 0,
+                                  "DisplayName" : "autorefresh-189",
+                                  "FocusStyle" : "DefaultButtonFocusStyle",
+                                  "Height" : 28,
+                                  "HoverStyle" : "DefaultButtonHoverStyle",
+                                  "IconAlignment" : "left",
+                                  "Id" : "autorefresh-189",
+                                  "Label" : "Refresh Now",
+                                  "Left" : 920,
+                                  "RefreshInterval" : 10,
+                                  "RefreshNowTabSequence" : 0,
+                                  "RefreshToggleLabel" : "On",
+                                  "RefreshToggleLabelOff" : "Off",
+                                  "RefreshToggleSliderStyle" : "DefaultAutoRefreshToggleSliderStyle",
+                                  "RefreshToggleStyle" : "DefaultAutoRefreshToggleStyle",
+                                  "RefreshToggleStyleOff" : "DefaultAutoRefreshToggleOffStyle",
+                                  "ResponsiveLayout" : false,
+                                  "ShowControls" : true,
+                                  "ShowDataLoading" : true,
+                                  "Style" : "DefaultButtonStyle",
+                                  "Top" : 5,
+                                  "Type" : "autorefresh",
+                                  "Visible" : false,
+                                  "Width" : 145,
+                                  "Z-index" : 10,
+                                  "__TypeDisplayName" : "Auto Refresh"
+                                },
+                                "Widgets" : [ ]
+                              }, {
+                                "Properties" : {
+                                  "Alignment" : "left",
+                                  "Area" : "UI",
+                                  "BackgroundFill" : "content",
+                                  "DisplayName" : "valuedisplay-190",
+                                  "Height" : 27,
+                                  "Id" : "valuedisplay-190",
+                                  "ImageScaling" : "Width",
+                                  "Label" : "",
+                                  "LabelAlignment" : "left",
+                                  "Left" : 20,
+                                  "Overflow" : "hidden",
+                                  "ResponsiveLayout" : false,
+                                  "ShowDataLoading" : true,
+                                  "TextIfNoValue" : "",
+                                  "TextIfNoValueOffset" : 0,
+                                  "TextIfNoValueStyle" : "PTC.Factory.Generic.FooterOverviewTitleLabel",
+                                  "TextWrap" : true,
+                                  "ToolTipField" : "",
+                                  "ToolTipStyle" : "DefaultTooltipStyle",
+                                  "Top" : 7,
+                                  "Type" : "valuedisplay",
+                                  "ValueDisplayLabelStyle" : "PTC.Factory.Generic.FooterOverviewTitleLabel",
+                                  "ValueDisplayStyle" : "PTC.Factory.Generic.FooterOverviewTitleLabel",
+                                  "ValueFormat" : {
+                                    "FormatString" : "raw",
+                                    "formatInfo" : {
+                                      "FieldName" : "",
+                                      "StateDefinition" : "",
+                                      "StateDefinitionType" : "fixed",
+                                      "StateFormats" : [ {
+                                        "state" : "",
+                                        "stateName" : "fixed"
+                                      } ]
+                                    },
+                                    "renderer" : "HTML",
+                                    "roundingEnabled" : true
+                                  },
+                                  "ValueFormat_StateParameters" : [ ],
+                                  "VerticalAlignment" : "middle",
+                                  "Visible" : true,
+                                  "Width" : 600,
+                                  "Z-index" : 10,
+                                  "__TypeDisplayName" : "Value Display",
+                                  "__supportsLabel" : true,
+                                  "__supportsTooltip" : true
+                                },
+                                "Widgets" : [ ]
+                              } ]
+                            } ]
+                          }, {
+                            "Properties" : {
+                              "AnimateExpandCollapse" : true,
+                              "Area" : "UI",
+                              "BGImageRepeat" : "no-repeat",
+                              "BGImageSize" : "auto",
+                              "DisplayName" : "Row",
+                              "ExpandCollapseTabLocation" : "outside",
+                              "Expanded" : true,
+                              "Id" : "container-17",
+                              "MinHeight" : 0,
+                              "MinWidth" : 0,
+                              "Overlay" : false,
+                              "OverlayIsTransparent" : false,
+                              "ResponsiveLayout" : true,
+                              "ShowDataLoading" : true,
+                              "ShowExpandCollapseTab" : false,
+                              "Style" : "PTC.SCA.SCO.NoStyle",
+                              "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                              "TabExpandStyle" : "DefaultTabExpandStyle",
+                              "TabHeight" : 36,
+                              "TabLocation" : "center",
+                              "TabOffset" : 0,
+                              "TabWidth" : 36,
+                              "Type" : "container",
+                              "Visible" : true,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Container"
+                            },
+                            "Widgets" : [ {
+                              "Properties" : {
+                                "Area" : "UI",
+                                "DisplayName" : "ContainedMashup-183",
+                                "Height" : 300,
+                                "Id" : "ContainedMashup-183",
+                                "Left" : 0,
+                                "MashupParameters" : [ {
+                                  "BaseType" : "STRING",
+                                  "Description" : "",
+                                  "ParameterName" : "radioDefault",
+                                  "ParmDef" : {
+                                    "aspects" : {
+                                      "ordinal" : "1"
+                                    },
+                                    "baseType" : "STRING",
+                                    "description" : "",
+                                    "name" : "radioDefault",
+                                    "ordinal" : 0
+                                  }
+                                }, {
+                                  "BaseType" : "STRING",
+                                  "Description" : "Trend id",
+                                  "ParameterName" : "TrendId",
+                                  "ParmDef" : {
+                                    "aspects" : {
+                                      "ordinal" : "0"
+                                    },
+                                    "baseType" : "STRING",
+                                    "description" : "Trend id",
+                                    "name" : "TrendId",
+                                    "ordinal" : 0
+                                  }
+                                } ],
+                                "Name" : "PTC.Factory.TrendTroubleshooting.TrendDetail",
+                                "ResponsiveLayout" : true,
+                                "ShowDataLoading" : true,
+                                "TabSequenceGroup" : 0,
+                                "Top" : 0,
+                                "Type" : "mashupcontainer",
+                                "Visible" : true,
+                                "Width" : 400,
+                                "Z-index" : 10,
+                                "__TypeDisplayName" : "Contained Mashup"
+                              },
+                              "Widgets" : [ ]
+                            } ]
+                          } ]
+                        } ]
+                      } ]
+                    } ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview></preview>
+        </Mashup>
+    </Mashups>
+</Entities>

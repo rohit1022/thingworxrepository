@@ -1,0 +1,1082 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Mashup for editing a crew. {PTC.SCA.SCO.EditCrew}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.677+05:30"
+         name="PTC.SCA.SCO.EditCrew"
+         projectName=""
+         rows="0.0"
+         tags="PTC:sca-sco-common">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.bindingDirection="BOTH"
+                 aspect.dataShape="PTC.SCA.SCO.Crew"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="0"
+                 baseType="INFOTABLE"
+                 description=""
+                 name="CrewInfoTable"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>PTC.SCA.SCO.ShiftManagementUtils</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : ".SmallButton ptcs-button {\n  width: 18px !important;\n  height: 18px !important;\n  min-width: 18px;\n  padding: 0px 0px !important;\n}\n\n.ItalicLabel .widget-ptcslabel {\n  font-style: italic !important;\t\n}\n\n.CorrectStyle {\n  font-family: OpenSans;\n}",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_PTC.SCA.SCO.ShiftManagementUtils" : {
+                  "DataName" : "Things_PTC.SCA.SCO.ShiftManagementUtils",
+                  "EntityName" : "PTC.SCA.SCO.ShiftManagementUtils",
+                  "EntityType" : "Things",
+                  "Id" : "1efbb3d9-869f-4fcc-bd97-2efe43466c5f",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "adf58d6e-429e-4c41-ab01-9818199de3a4",
+                    "Name" : "IsFieldEmpty",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "IsFieldEmpty"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "e7575696-ae87-4a7c-8e9f-e60b7301882c",
+                    "Name" : "UpdateCrews",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "UpdateCrews"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "9691d9ba-e6e8-478e-ae91-083cddfc826d",
+                    "Name" : "ValidateCrews",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "ValidateCrews"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "9df1d8d6-ed51-4973-93a9-9693a2cd31a9",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "FieldContent",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ptcstextfield-54",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "IsFieldEmpty",
+                "TargetSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils"
+              }, {
+                "Id" : "d2bc845b-474b-4f26-841d-ac062dd995ee",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "result",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "IsFieldEmpty",
+                "SourceSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "ptcslabel-108",
+                "TargetSection" : ""
+              }, {
+                "Id" : "459ba518-3f9e-439e-9475-69fc28dfd733",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "Crews.Name",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ptcstextfield-54",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateCrews",
+                "TargetSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils"
+              }, {
+                "Id" : "2a6f22f4-2662-4dac-a555-5321d5a17af9",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Value",
+                  "SourcePropertyBaseType" : "NUMBER",
+                  "TargetProperty" : "Crews.CrewCount",
+                  "TargetPropertyBaseType" : "INTEGER",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "numericentry-131",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateCrews",
+                "TargetSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils"
+              }, {
+                "Id" : "8c71d177-1e4e-4211-85bf-206c7668cfbf",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "CrewInfoTable",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "Name",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ptcstextfield-54",
+                "TargetSection" : ""
+              }, {
+                "Id" : "11a6a876-24b5-4f04-8dde-43afa021e586",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "CrewInfoTable",
+                  "SourcePropertyBaseType" : "LONG",
+                  "SubProperty" : "UID",
+                  "TargetProperty" : "Crews.UID",
+                  "TargetPropertyBaseType" : "LONG",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateCrews",
+                "TargetSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils"
+              }, {
+                "Id" : "99455449-3a27-4972-b69b-389dada0f0ad",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "CrewInfoTable",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "LeaderID",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ptcstextfield-56",
+                "TargetSection" : ""
+              }, {
+                "Id" : "4c3adaf9-2d8e-4345-8c16-cf996ca3537a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "CrewInfoTable",
+                  "SourcePropertyBaseType" : "INTEGER",
+                  "SubProperty" : "CrewCount",
+                  "TargetProperty" : "Value",
+                  "TargetPropertyBaseType" : "NUMBER"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "numericentry-131",
+                "TargetSection" : ""
+              }, {
+                "Id" : "fa0ffa2c-5647-4b67-8a6f-b0239d56445e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "Crews.LeaderID",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ptcstextfield-56",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateCrews",
+                "TargetSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils"
+              }, {
+                "Id" : "b99c51b5-1b0e-4c57-bbd5-18ef4de44aeb",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Successful",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Input",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "ValidateCrews",
+                "SourceSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-124",
+                "TargetSection" : ""
+              }, {
+                "Id" : "3cd0bf6d-d70b-406c-b025-0a630d5741c9",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "Crews.Description",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ptcstextarea-132",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "UpdateCrews",
+                "TargetSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils"
+              }, {
+                "Id" : "69ca20f9-0dd6-4753-96dc-d391df284b3e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "Crews.Name",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ptcstextfield-54",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "ValidateCrews",
+                "TargetSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils"
+              }, {
+                "Id" : "5426e41d-aa1b-4c3d-95d5-ff734831990a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "CrewInfoTable",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SubProperty" : "Description",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceDetails" : "AllData",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "ptcstextarea-132",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-23",
+                "EventTriggerSection" : "",
+                "Id" : "b5e26916-1acb-4908-90ae-0b002c20c403"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "datetimepicker-25",
+                "EventHandlerService" : "ClearDateTime",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-28",
+                "EventTriggerSection" : "",
+                "Id" : "2a3a26b8-191b-4fda-84e7-ce570cdb1d35"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "Refresh",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "7f407541-baf4-420d-8a33-a2a75c42282a"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ShiftManagementUtils",
+                "EventHandlerService" : "IsFieldEmpty",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "ptcstextfield-54",
+                "EventTriggerSection" : "",
+                "Id" : "63e9c2f4-5cac-4b12-8faa-70e348fb070c"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "statusmessage-99",
+                "EventHandlerService" : "ShowMessage",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "False",
+                "EventTriggerId" : "validator-124",
+                "EventTriggerSection" : " ",
+                "Id" : "0cb744a8-5d98-444e-9b70-1fde14eebdb4"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ShiftManagementUtils",
+                "EventHandlerService" : "UpdateCrews",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-124",
+                "EventTriggerSection" : " ",
+                "Id" : "b8b49890-016b-49a9-97ac-a9314a61197a"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "UpdateCrews",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils",
+                "Id" : "b35ffbcd-987d-44fc-8cbb-2a430ae0e44f"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "Refresh",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "UpdateCrews",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils",
+                "Id" : "7d941754-125c-417c-8328-67de1a86f09e"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_PTC.SCA.SCO.ShiftManagementUtils",
+                "EventHandlerService" : "ValidateCrews",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-21",
+                "EventTriggerSection" : "",
+                "Id" : "c1df8aca-0e54-4495-9184-bc1c8043916d"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "validator-124",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "ValidateCrews",
+                "EventTriggerSection" : "Things_PTC.SCA.SCO.ShiftManagementUtils",
+                "Id" : "eb046649-39ee-42f7-9181-7158fac102f9"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MigratedOn" : "2019-05-22T15:39:06.000Z",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "StyleProperties" : {
+                    "data" : {
+                      "button-12" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "background" : "#0094c8"
+                            }
+                          },
+                          "label" : {
+                            "$" : {
+                              "color" : "#ffffff",
+                              "font-family" : "Open Sans"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-button"
+                      },
+                      "button-21" : {
+                        "parts" : {
+                          "label" : {
+                            "$" : {
+                              "color" : "#ffffff",
+                              "font-family" : "Open Sans"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-button"
+                      },
+                      "button-23" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "background" : "#6e717c"
+                            }
+                          },
+                          "label" : {
+                            "$" : {
+                              "color" : "#ffffff",
+                              "font-family" : "Open Sans"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-button"
+                      },
+                      "label-100" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "color" : "#bf3030"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-label"
+                      },
+                      "label-101" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "color" : "#bf3030",
+                              "font-family" : "Open Sans",
+                              "font-size" : "11px"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-label"
+                      },
+                      "label-102" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "color" : "#bf3030",
+                              "font-family" : "Open Sans",
+                              "font-size" : "11px"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-label"
+                      },
+                      "label-15" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "font-family" : "Open Sans",
+                              "font-size" : "24px",
+                              "font-weight" : "400",
+                              "line-height" : "normal"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-label"
+                      },
+                      "ptcsbutton-13" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "background" : "#6e717c"
+                            }
+                          },
+                          "label" : {
+                            "$" : {
+                              "color" : "#ffffff",
+                              "font-family" : "Open Sans"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-button"
+                      },
+                      "ptcsbutton-58" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "background" : "#3399ff"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-button"
+                      },
+                      "ptcsbutton-78" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "background" : "#bf3030"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-button"
+                      },
+                      "ptcslabel-108" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "color" : "#bf3030",
+                              "font-family" : "Open Sans",
+                              "font-size" : "11px"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-label"
+                      },
+                      "ptcslabel-127" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "color" : "#bf3030",
+                              "font-family" : "Open Sans",
+                              "font-size" : "11px"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-label"
+                      },
+                      "ptcstextarea-132" : {
+                        "parts" : {
+                          "label" : {
+                            "$" : {
+                              "color" : "#6e717c",
+                              "font-family" : "Open Sans",
+                              "font-size" : "12px",
+                              "font-weight" : "400"
+                            }
+                          },
+                          "text-box" : {
+                            "$" : {
+                              "font-family" : "Open Sans"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-textarea"
+                      },
+                      "ptcstextfield-119" : {
+                        "parts" : {
+                          "label" : {
+                            "$" : {
+                              "color" : "#6e717c",
+                              "font-family" : "Open Sans",
+                              "font-size" : "12px",
+                              "font-weight" : "400"
+                            }
+                          },
+                          "text-box" : {
+                            "$" : {
+                              "font-family" : "Open Sans"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-textfield"
+                      },
+                      "ptcstextfield-54" : {
+                        "parts" : {
+                          "label" : {
+                            "$" : {
+                              "color" : "#6e717c",
+                              "font-family" : "Open Sans",
+                              "font-size" : "12px",
+                              "font-weight" : "400"
+                            }
+                          },
+                          "text-box" : {
+                            "$" : {
+                              "font-family" : "Open Sans"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-textfield"
+                      },
+                      "ptcstextfield-56" : {
+                        "parts" : {
+                          "label" : {
+                            "$" : {
+                              "color" : "#6e717c",
+                              "font-family" : "Open Sans",
+                              "font-size" : "12px",
+                              "font-weight" : "400"
+                            }
+                          },
+                          "text-box" : {
+                            "$" : {
+                              "font-family" : "Open Sans"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-textfield"
+                      },
+                      "ptcstextfield-57" : {
+                        "parts" : {
+                          "label" : {
+                            "$" : {
+                              "color" : "#6e717c",
+                              "font-family" : "Open Sans",
+                              "font-size" : "12px",
+                              "font-weight" : "400"
+                            }
+                          },
+                          "text-box" : {
+                            "$" : {
+                              "font-family" : "Open Sans"
+                            }
+                          }
+                        },
+                        "widget" : "ptcs-textfield"
+                      }
+                    },
+                    "meta" : {
+                      "type" : "WidgetStyler",
+                      "version" : "1.0"
+                    }
+                  },
+                  "StyleTheme" : "PTC Convergence Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseMasterTheme" : false,
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "Aspects" : {
+                      "bindingDirection" : "BOTH",
+                      "dataShape" : "PTC.SCA.SCO.Crew",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "INFOTABLE",
+                    "Description" : "",
+                    "ParameterName" : "CrewInfoTable"
+                  } ],
+                  "flex-grow" : "",
+                  "flex-shrink" : "",
+                  "id_index" : 132,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "Description" : "",
+                    "DisplayName" : "WrapperPanel",
+                    "Height" : 200,
+                    "HideScrollbars" : false,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "panel-2",
+                    "LastContainer" : false,
+                    "Left" : 390,
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "Style" : "DefaultPanelStyle",
+                    "Top" : 135,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 300,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel",
+                    "flex-grow" : "",
+                    "flex-shrink" : ""
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisclosureControl" : "show-more",
+                      "DisplayName" : "HeaderLabel",
+                      "Height" : 30,
+                      "HorizontalAlignment" : "left",
+                      "Id" : "label-15",
+                      "LabelText" : "[[PTC.SCA.SCO.EditCrewTitle]]",
+                      "LabelType" : "label",
+                      "LastContainer" : false,
+                      "Left" : 42,
+                      "MultiLine" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 42,
+                      "Type" : "ptcslabel",
+                      "UseTheme" : true,
+                      "VerticalAlignment" : "flex-start",
+                      "Visible" : true,
+                      "Width" : 516,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Label",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "ButtonType" : "primary",
+                      "ContextID" : "",
+                      "ContextId" : "",
+                      "Description" : "",
+                      "Disabled" : false,
+                      "DisplayName" : "UpdateButton",
+                      "Height" : 34,
+                      "Id" : "button-21",
+                      "Label" : "[[update]]",
+                      "LabelAlignment" : "center",
+                      "LastContainer" : false,
+                      "Left" : 297,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TabSequence" : 0,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 439,
+                      "Type" : "ptcsbutton",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Width" : 123,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "ButtonType" : "secondary",
+                      "ContextID" : "",
+                      "ContextId" : "",
+                      "Disabled" : false,
+                      "DisplayName" : "CancelButton",
+                      "Height" : 34,
+                      "Id" : "button-23",
+                      "Label" : "[[cancel]]",
+                      "LabelAlignment" : "center",
+                      "LastContainer" : false,
+                      "Left" : 436,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TabSequence" : 0,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 439,
+                      "Type" : "ptcsbutton",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Width" : 123,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "Counter" : false,
+                      "CustomClass" : "RedLabelOrField",
+                      "Disabled" : false,
+                      "DisplayName" : "NameTextBox",
+                      "HasText" : false,
+                      "Height" : 58,
+                      "Id" : "ptcstextfield-54",
+                      "Label" : "[[name]]",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 42,
+                      "MaxNumberOfCharacters" : 100,
+                      "Password" : false,
+                      "ReadOnly" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowClearText" : true,
+                      "ShowDataLoading" : true,
+                      "TabSequence" : 0,
+                      "TextAlignment" : "left",
+                      "Top" : 86,
+                      "Type" : "ptcstextfield",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Width" : 516,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Text Field"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "Counter" : false,
+                      "Disabled" : false,
+                      "DisplayName" : "LeaderIDtextBox",
+                      "HasText" : false,
+                      "Height" : 58,
+                      "Id" : "ptcstextfield-56",
+                      "Label" : "[[PTC.SCA.SCO.TitleCaseLeaderID]]",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 42,
+                      "MaxNumberOfCharacters" : 100,
+                      "Password" : false,
+                      "ReadOnly" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowClearText" : true,
+                      "ShowDataLoading" : true,
+                      "TabSequence" : 0,
+                      "TextAlignment" : "left",
+                      "Top" : 156,
+                      "Type" : "ptcstextfield",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Width" : 516,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Text Field"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "CustomClass" : "ItalicLabel",
+                      "DisclosureControl" : "show-more",
+                      "DisplayName" : "NameErrorLabel",
+                      "Height" : 22,
+                      "HorizontalAlignment" : "left",
+                      "Id" : "ptcslabel-108",
+                      "LabelText" : "[[PTC.SCA.SCO.CrewNamePrompt]]",
+                      "LabelType" : "label",
+                      "LastContainer" : false,
+                      "Left" : 160,
+                      "MultiLine" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 86,
+                      "Type" : "ptcslabel",
+                      "UseTheme" : true,
+                      "VerticalAlignment" : "flex-start",
+                      "Visible" : true,
+                      "Width" : 215,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Label",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "AllowDecimals" : true,
+                      "AllowNegatives" : false,
+                      "Area" : "UI",
+                      "ConstrainValue" : false,
+                      "CustomClass" : "CorrectStyle",
+                      "DisplayName" : "CrewCountNumEntry",
+                      "FixedDigits" : 0,
+                      "Height" : 34,
+                      "Id" : "numericentry-131",
+                      "InnerShadow" : false,
+                      "Label" : "[[PTC.SCA.SCO.TitleCaseCrewCount]]",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 43,
+                      "Maximum" : 100,
+                      "Minimum" : 0,
+                      "NumericEntryFocusStyle" : "DefaultFocusStyle",
+                      "NumericEntryLabelStyle" : {
+                        "backgroundColor" : "",
+                        "displayString" : "",
+                        "fontEmphasisBold" : false,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "rgba(110,113,124,1)",
+                        "image" : "",
+                        "lineColor" : "",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "large"
+                      },
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : {
+                        "backgroundColor" : "",
+                        "displayString" : "",
+                        "fontEmphasisBold" : false,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "rgba(35,43,45,1)",
+                        "image" : "",
+                        "lineColor" : "rgba(194,199,206,1)",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "normal"
+                      },
+                      "TabSequence" : 0,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 225,
+                      "Type" : "numericentry",
+                      "UseTheme" : false,
+                      "Value" : 0,
+                      "ValueAlign" : "left",
+                      "Visible" : true,
+                      "Width" : 516,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Numeric Entry",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "Counter" : false,
+                      "Disabled" : false,
+                      "DisplayName" : "DescriptionTextArea",
+                      "HasText" : false,
+                      "Height" : 120,
+                      "Id" : "ptcstextarea-132",
+                      "Label" : "[[description]]",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 42,
+                      "MaxNumberOfCharacters" : 255,
+                      "ReadOnly" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "TabSequence" : 0,
+                      "TextAlignment" : "left",
+                      "Top" : 294,
+                      "Type" : "ptcstextarea",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Width" : 516,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Text Area"
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "InvalidNameMessage",
+                    "Height" : 28,
+                    "Id" : "statusmessage-99",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "Message" : "[[PTC.SCA.SCO.CrewNameError]]",
+                    "MessageType" : "warning",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "statusmessage",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Status Message",
+                    "_currentParameterDefs" : [ ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DisplayName" : "IsValid",
+                    "Expression" : "Input",
+                    "Height" : 28,
+                    "Id" : "validator-124",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "Output" : true,
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "validator",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Validator",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "BOOLEAN",
+                      "DefaultValue" : false,
+                      "Description" : "",
+                      "ParameterName" : "Input",
+                      "bindingDirection" : "",
+                      "bindingStatus" : false,
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "Input"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview></preview>
+        </Mashup>
+    </Mashups>
+</Entities>

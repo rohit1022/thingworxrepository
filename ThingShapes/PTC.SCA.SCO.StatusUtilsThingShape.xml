@@ -1,0 +1,1062 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="Thing Shape that holds all the necessary properties and services for manipulating status definitions in the database {PTC.SCA.SCO.StatusUtilsThingShape}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:20.943+05:30"
+         name="PTC.SCA.SCO.StatusUtilsThingShape"
+         projectName="PTC.SCA.SCO.Status"
+         tags="PTC:sca-sco-common;PTC:sca-sco-status">
+            <PropertyDefinitions></PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to add or update an existing status definition depending if a status definition for same Index/Entity already exists or not"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="AddOrUpdateStatusDefinition">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.StatusDefinition"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="InfoTable containing row(s) for all status definition data (datashape PTC.SCA.SCO.StatusDefinition)"
+                         name="statusDefinition"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to add a status definition at organization, template or thing level"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="AddStatusDefinition">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.StatusDefinition"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="InfoTable containing row(s) for all status definition data (datashape PTC.SCA.SCO.StatusDefinition)"
+                         name="statusDefinition"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Creates the default status definitions once the Status Definition tables have been created in the database"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateDefaultStatusDefinitions">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Retrieves the state value information for a given Thing and adds it to the database table"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateStateValueForThing">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.thingShape="PTC.SCA.SCO.StatusThingShape"
+                         baseType="THINGNAME"
+                         description="Name of the Thing"
+                         name="thingName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service that creates the status definition tables and their contents"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CreateTables">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to delete a status definition"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="DeleteStatusDefinition">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="INTEGER"
+                         description="Index/Entity uniquely identifying the status definition to delete"
+                         name="UID"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="From now, calculate the start time and end time for today and the 6 previous days."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetDaysTimeRangeForPastWeek">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.TimeRange"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="thingName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Return the time for beginning of day 6 days ago from now"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetPastWeekStartTime">
+                    <ResultType
+                     baseType="DATETIME"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Return the list of series visibilities based on user selection of status statistics"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetSeriesVisibilities">
+                    <ResultType
+                     baseType="STRING"
+                     description="Index of selected statuses"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.StatusStatistics"
+                         baseType="INFOTABLE"
+                         description="List of edited status statistics"
+                         name="editedStatusStatistics"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.StatusStatistics"
+                         baseType="INFOTABLE"
+                         description="List of status statistics"
+                         name="statusStatistics"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Get state value for a ownerName (thing name)"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetStateValue">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.StateValue"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="BOOLEAN"
+                         description="Sort ascending"
+                         name="ascending"
+                         ordinal="5"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="DATETIME"
+                         description=""
+                         name="endDate"
+                         ordinal="3"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="INTEGER"
+                         description="limit the number of rows in result"
+                         name="limit"
+                         ordinal="4"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.thingShape="PTC.SCA.SCO.StatusThingShape"
+                         baseType="THINGNAME"
+                         description="Provide Thing name as input"
+                         name="ownerName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="DATETIME"
+                         description=""
+                         name="startDate"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to return the information of status definitions"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetStatusDefinitions">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.StatusDefinition"
+                     baseType="INFOTABLE"
+                     description="InfoTable with status definitions (datashape PTC.SCA.SCO.StatusDefinition)"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.defaultValue="false"
+                         baseType="BOOLEAN"
+                         description="Only return the status definition of the status evaluated for the Thing name"
+                         name="actualStatusOnly"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.defaultValue="true"
+                         baseType="BOOLEAN"
+                         description="Only return the status definitions that are marked as enabled"
+                         name="enabledOnly"
+                         ordinal="3"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Thing name"
+                         name="thingName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to get all status definitions regardless if defined at organization, template or thing level"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetStatusDefinitionsForAllEntities">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.StatusDefinition"
+                     baseType="INFOTABLE"
+                     description="InfoTable with status definitions (datashape PTC.SCA.SCO.StatusDefinition)"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="QUERY"
+                         description="used for filtering"
+                         name="query"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Retrieves the corresponding Status Manager name provided in the Configuration Table"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetStatusManager">
+                    <ResultType
+                     baseType="THINGNAME"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Retrieves statuses that are involved in time element calculations"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetTimeElementStatuses">
+                    <ResultType
+                     aspect.dataShape="PTC.SCA.SCO.TimeElementsStatusesDataShape"
+                     baseType="INFOTABLE"
+                     description="The service retrieves statuses from the status configuration table involved in time element calculations"
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingShape="PTC.SCA.SCO.StatusThingShape"
+                         baseType="THINGNAME"
+                         description="Thing name"
+                         name="thingName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description="Array of time elements with comma ',' separator"
+                         name="timeElements"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Return the time at the end of the day today"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetTodayEndTime">
+                    <ResultType
+                     baseType="DATETIME"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to read all status definitions from database table and cache them all on property statusDefinitions"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ReloadStatusDefinitions">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Service to update a status definition at organization, template or thing level"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="UpdateStatusDefinition">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.StatusDefinition"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description="InfoTable containing row(s) for all status definition data (datashape PTC.SCA.SCO.StatusDefinition)"
+                         name="statusDefinition"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="AddOrUpdateStatusDefinition">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    Things[me.GetStatusManager()].AddOrUpdateStatusDefinition({"statusDefinition": statusDefinition});
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="AddStatusDefinition">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    Things[me.GetStatusManager()].AddStatusDefinition({"statusDefinition":statusDefinition});
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateDefaultStatusDefinitions">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    Things[me.GetStatusManager()].CreateDefaultStatusDefinitions();
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateStateValueForThing">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    Things[me.GetStatusManager()].CreateStateValueForThing({"thingName":thingName});
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CreateTables">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    Things[me.GetStatusManager()].CreateTables();
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="DeleteStatusDefinition">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    Things[me.GetStatusManager()].DeleteStatusDefinition({"UID":UID});
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetDaysTimeRangeForPastWeek">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    function newRow(thingName, startTime, endTime) {
+                                    	var newEntry = new Object();
+                                    	newEntry.thingName = thingName;
+                                    	newEntry.startTime = startTime;
+                                    	newEntry.endTime = endTime;
+                                    	return newEntry;
+                                    }
+                                    
+                                    var params = {
+                                    	infoTableName: "InfoTable",
+                                    	dataShapeName: "PTC.SCA.SCO.TimeRange"
+                                    };
+                                    
+                                    // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.DateRange)
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                    var now = new Date();
+                                    var start = new Date();
+                                    start.setHours(0, 0, 0, 0);
+                                    
+                                    var end = new Date();
+                                    end.setHours(23, 59, 59, 999);
+                                    
+                                    result.AddRow(newRow(thingName, start - (6 * 1000 * 60 * 60 * 24), end - (6 * 1000 * 60 * 60 * 24)));
+                                    result.AddRow(newRow(thingName, start - (5 * 1000 * 60 * 60 * 24), end - (5 * 1000 * 60 * 60 * 24)));
+                                    result.AddRow(newRow(thingName, start - (4 * 1000 * 60 * 60 * 24), end - (4 * 1000 * 60 * 60 * 24)));
+                                    result.AddRow(newRow(thingName, start - (3 * 1000 * 60 * 60 * 24), end - (3 * 1000 * 60 * 60 * 24)));
+                                    result.AddRow(newRow(thingName, start - (2 * 1000 * 60 * 60 * 24), end - (2 * 1000 * 60 * 60 * 24)));
+                                    result.AddRow(newRow(thingName, start - (1 * 1000 * 60 * 60 * 24), end - (1 * 1000 * 60 * 60 * 24)));
+                                    result.AddRow(newRow(thingName, start, end));
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetPastWeekStartTime">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var start = new Date();
+                                    start.setHours(0, 0, 0, 0);
+                                    var result = start - (6 * 1000 * 60 * 60 * 24);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetSeriesVisibilities">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    // Get all status indexes from status statistics sorted ascending
+                                    var statusIndexes = [];
+                                    var unselectedStatusIndexes = [];
+                                    var sort = new Object();
+                                    sort.name = "statusIndex";
+                                    sort.ascending = true;
+                                    statusStatistics.Sort(sort);
+                                    var tableLength = statusStatistics.rows.length;
+                                    for (var x = 0; x < tableLength; x++) {
+                                    	var row = statusStatistics.rows[x];
+                                        statusIndexes.push(row.statusIndex);
+                                    	if (!row.isSelected) {
+                                    		unselectedStatusIndexes.push(row.statusIndex);
+                                    	}
+                                    }
+                                    
+                                    // Get the status indexes in the edit table that are marked as unselected
+                                    if (editedStatusStatistics != undefined) {
+                                    	var editedTableLength = editedStatusStatistics.rows.length;
+                                    	for (var y = 0; y < editedTableLength; y++) {
+                                    		var editedRow = editedStatusStatistics.rows[y];
+                                    		if (!editedRow.isSelected && (unselectedStatusIndexes.indexOf(editedRow.statusIndex) < 0)) {
+                                    			unselectedStatusIndexes.push(editedRow.statusIndex);
+                                    		} else if (editedRow.isSelected && (unselectedStatusIndexes.indexOf(editedRow.statusIndex) >= 0)) {
+                                    			for (var i = unselectedStatusIndexes.length; i--;) {
+                                    				if (unselectedStatusIndexes[i] === editedRow.statusIndex){
+                                                        unselectedStatusIndexes.splice(i, 1);
+                                                    }
+                                    			}
+                                    		}
+                                    	}
+                                    }
+                                    
+                                    // Build an array for series visibilities
+                                    var result = [];
+                                    for (var z=0; z < statusIndexes.length; z++) {
+                                        result.push(z + ":" + (unselectedStatusIndexes.indexOf(statusIndexes[z])<0));
+                                    }
+                                    result = result.toString();
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetStateValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    // result: INFOTABLE dataShape: "PTC.SCA.SCO.StateValue"
+                                    var result =  Things[me.GetStatusManager()].GetStateValue({
+                                    	endDate: endDate /* DATETIME */,
+                                    	limit: limit /* INTEGER */,
+                                    	startDate: startDate /* DATETIME */,
+                                    	ownerName: ownerName /* THINGNAME */,
+                                        ascending: ascending /* BOOLEAN */
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetStatusDefinitions">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    result = Things[me.GetStatusManager()].GetStatusDefinitions({"thingName":thingName, "actualStatusOnly":actualStatusOnly, "enabledOnly":enabledOnly});
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetStatusDefinitionsForAllEntities">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    result = Things[me.GetStatusManager()].GetStatusDefinitionsForAllEntities({"query":query});
+                                    var sort = new Object();
+                                    sort.name = "statusIndex";
+                                    sort.ascending = true;
+                                    result.Sort(sort);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetStatusManager">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    // result: THINGNAME
+                                    var result = Things["PTC.Factory.LaunchPointConfigurationThing"].GetStatusManagerThingName();
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetTimeElementStatuses">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    result = Things[me.GetStatusManager()].GetTimeElementStatuses({"thingName":thingName, "timeElements":timeElements});
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetTodayEndTime">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = new Date();
+                                    result.setHours(23, 59, 59, 999);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ReloadStatusDefinitions">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    Things[me.GetStatusManager()].ReloadStatusDefinitions();
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="UpdateStatusDefinition">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    Things[me.GetStatusManager()].ReloadStatusDefinitions({"statusDefinition":statusDefinition});
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

@@ -1,0 +1,1939 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="GenericThing"
+         description="Context manager template {PTC.SCA.SCO.ContextManagerTemplate} holding the services related to equipment context"
+         documentationContent=""
+         effectiveThingPackage="PTC.SCA.SCO.ContextManagerPackage"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:21.780+05:30"
+         name="PTC.SCA.SCO.ContextManagerTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Equipment;PTC:ThingTemplate;PTC:Context"
+         thingPackage="PTC.SCA.SCO.ContextManagerPackage"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Retrieve the context permission for a specific user or user group"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetContextPermission">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ContextPermissionsDataShape"
+                         baseType="INFOTABLE"
+                         description="Context permission for a specific user or user group"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Principal name. Either user name or user group name to retrieve permissions on contexts for"
+                             name="principal"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="User or Group"
+                             name="principalType"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Retrieves the context permissions for a specified user."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetContextPermissionByUser">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ContextPermissionsDataShape"
+                         baseType="INFOTABLE"
+                         description="Context permission for a specific user"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="USERNAME"
+                             description="Name of user to retrieve permissions on contexts for"
+                             name="userName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Retrieves the context permissions for a specified user group."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetContextPermissionByUserGroup">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.ContextPermissionsDataShape"
+                         baseType="INFOTABLE"
+                         description="Context permission for a specific group"
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="GROUPNAME"
+                             description="Name of group to find permissions on contexts for"
+                             name="userGroupName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Get the enabled configuration rows in EquipmentContextSettings on LaunchPointConfiguration for the contexts that the specified user has the specified permission."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetContextsByUserAndPermission">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.EquipmentContextSettingsDataShape"
+                         baseType="INFOTABLE"
+                         description="The enabled configuration rows in EquipmentContextSettings on LaunchPointConfiguration for the contexts that the specified user has the specified permission. "
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Context permission type, which can be Read or Write."
+                             name="permissionType"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="USERNAME"
+                             description="User name."
+                             name="userName"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Retrieves the permission for the current user on the specified equipment: None, Read, or Write."
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetCurrentUserPermissionOnThing">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="THINGNAME"
+                             description="The equipment (Thing name) for which we want to retrieve the current user’s permission."
+                             name="equipmentName"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Retrieves the entity permissions in a specified context for a specified user group."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEntityPermissionsByUserGroupOnContext">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.EntityPermissionsDataShape"
+                         baseType="INFOTABLE"
+                         description="InfoTable that contains entities and the permissions (Read/Write) a group has on them."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Name of the context to retrieve the entity permissions on."
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="GROUPNAME"
+                             description="Name of the user group to find permissions for."
+                             name="userGroupName"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Retrieves the entity permissions in a specified context for a specified user."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEntityPermissionsByUserOnContext">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.EntityPermissionsDataShape"
+                         baseType="INFOTABLE"
+                         description="InfoTable that contains entities and the permissions (Read/Write) a user has on them."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Name of the context to retrieve the entity permissions on."
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="USERNAME"
+                             description="Name of the user to find permissions for."
+                             name="userName"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Retrieve the permissions on entities that a user or user group has in the given context"
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEntityPermissionsOnContext">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.EntityPermissionsDataShape"
+                         baseType="INFOTABLE"
+                         description="InfoTable that contains entities and the permissions (Read/Write) a user or user group has on them."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Name of the context to retrieve the entity permissions on."
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Principal name. Either user name or user group name to retrieve permissions on contexts for."
+                             name="principal"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="User or Group"
+                             name="principalType"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Gets the equipment structure of a given context. Used mostly for filtering equipment views."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEquipmentStructureForContext">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.SimpleEquipmentStructureTree"
+                         baseType="INFOTABLE"
+                         description="Simplified tree structure representation used mainly in tree structure filters."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="The name of the context for which to get the equipment structure. If no context is passed, or if the user has no permissions on the equipment within the context, this service will return an empty infotable."
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="Whether to include Assets"
+                             name="includeAsset"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="INTEGER"
+                             description="Max level hierarchy level."
+                             name="maxLevel"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="permission type needed by the user on the entities"
+                             name="permissionType"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Retrieves the permissions of the entities in a specified context."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetPermissionsByContext">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.EntityPermissionInContextDataShape"
+                         baseType="INFOTABLE"
+                         description="Entity permission information for a given context."
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Context name"
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Grants read/write permissions to a user or user group on entities or contexts."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GrantPermissionsOnEntities">
+                        <ResultType
+                         baseType="JSON"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.EquipmentOrContextListDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Entities to be granted permissions on, which can be either context or equipment."
+                             name="entities"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Context permission type, which can be Read, Write, or None"
+                             name="permissionType"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Principal name. Either user name or user group name."
+                             name="principal"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="User or Group"
+                             name="principalType"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Grants read/write permissions to user groups on entities or contexts."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GrantUserGroupPermissionsOnEntities">
+                        <ResultType
+                         baseType="JSON"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.EquipmentOrContextListDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Entities to be granted permissions on, which can be either context or equipment."
+                             name="entities"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Entities permission type, which can be Read, Write, or None"
+                             name="permissionType"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.UserGroupNameListDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="User group names."
+                             name="userGroupNames"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Grants read/write permissions to users on entities or contexts."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GrantUserPermissionsOnEntities">
+                        <ResultType
+                         baseType="JSON"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.EquipmentOrContextListDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="Entities to be granted permissions on, which can be either context or equipment."
+                             name="entities"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Entities permission type, which can be Read, Write, or None"
+                             name="permissionType"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.UserNameListDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="User names."
+                             name="userNames"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Propagates user or user group permissions to all entities below a specified entity in a specific context."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="PropagatePermissionsOnEntities">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Context name."
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Equipment entity name in the context starting from which the permission will be propagated down to the &quot;leaf nodes&quot;. If entityName is empty, the permissions are propagated to the entire network from the root."
+                             name="entityName"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Permission type which can be Read, Write or None."
+                             name="permissionType"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Either user name or user group name."
+                             name="principal"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="User or Group to specify the principal type."
+                             name="principalType"
+                             ordinal="4"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Propagates user group permissions to all entities below a specified entity in a specific context."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="PropagateUserGroupPermissionsOnEntities">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Context name."
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Equipment entity name in the context starting from which the permission will be propagated down to the &quot;leaf nodes&quot;. If entityName is empty, the permissions are propagated to the entire network from the root."
+                             name="entityName"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Permission type which can be Read, Write or None."
+                             name="permissionType"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.UserGroupNameListDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="User group names InfoTable."
+                             name="userGroupNames"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category="ContextPermissions"
+                     description="Propagates user permissions to all entities below a specified entity in a specific context."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="PropagateUserPermissionsOnEntities">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Context name."
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Equipment entity name in the context starting from which the permission will be propagated down to the &quot;leaf nodes&quot;. If entityName is empty, the permissions are propagated to the entire network from the root."
+                             name="entityName"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Permission type which can be Read, Write or None."
+                             name="permissionType"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.UserNameListDataShape"
+                             aspect.isRequired="true"
+                             baseType="INFOTABLE"
+                             description="User names InfoTable."
+                             name="userNames"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetContextPermission">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var launchPointConfigThingName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                        var configurationInfoTable = Things[launchPointConfigThingName].GetConfigurationTable({
+                                            tableName: "EquipmentContextSettings"
+                                        });
+                                        
+                                        var tableToReturn = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            dataShapeName: "PTC.SCA.SCO.ContextPermissionsDataShape"
+                                        });
+                                        
+                                        var groupsIn = {};
+                                        var groupInfoTable;
+                                        
+                                        if (principalType === "User") {
+                                            groupInfoTable = me.GetUserGroups({userName:principal});
+                                        } else if (principalType === "Group") {
+                                            groupInfoTable = me.GetGroupGroups({groupName:principal});
+                                        } else {
+                                            logger.error("Invalid principal type: " + entityType + ", which is neither User nor Group.");
+                                            groupInfoTable = {"rows" : []};
+                                        }
+                                        
+                                        for (var i = 0; i < groupInfoTable.rows.length; i++){
+                                            var groupRow = groupInfoTable.rows[i];
+                                            groupsIn[groupRow['UserGroupName']] = true;
+                                        }
+                                        
+                                        for (var x = 0; x < configurationInfoTable.rows.length; x++) {
+                                            /*
+                                                The Thingworx permission system works as follows.
+                                                Assume the following user/usergroup structure.
+                                                        GrandGroup
+                                                            -ParentGroup
+                                                                -User
+                                                All Runtime permissions can be true, false or missing.
+                                                False has precedence over true. What this means is that if the whole structure has
+                                                for example read permission as true and one of them contains false then all users/usergroups
+                                                below that false will return false read permission as a result of this service.
+                                                The following code aims to keep consistent with the platform.
+                                                Another addition here is that Write has precedence over read. Therefore if a user has write
+                                                and read than the value that will be returned is write.
+                                            */
+                                            var row = configurationInfoTable.rows[x];
+                                            var contextName = row['ContextName'];
+                                            var networkName = row['Network'];
+                                            var network = Networks[networkName];
+                                            var permissions;
+                                            try { // takes care of case where user may have write/read permissions but not service execute
+                                                permissions = network.GetRunTimePermissions();
+                                            } catch (err) {
+                                                continue;
+                                            }
+                                            var readPermitted = false; // Whether a read has been found in the structure
+                                            var writePermitted = false; // Whether a write has been found in the structure
+                                            var canRead = true; // Will set to false read if even a single false is found in the structure
+                                            var canWrite = true; // Will set to false write if even a single false is found in the structure
+                                            for (var y = 0; y < permissions.rows.length; y++) {
+                                                var permissionRow = permissions.rows[y];
+                                                var isPrincipal = permissionRow['name'] === principal;
+                                                var isGroup = groupsIn[permissionRow['name']];
+                                                var permissionName = permissionRow['permissionName'];
+                                                var isPermitted = permissionRow['isPermitted'] === true;
+                                                if( (isPrincipal || isGroup) && permissionName == "PropertyWrite" ) {
+                                                    if (isPermitted) {
+                                                        writePermitted = true; // True write has been found
+                                                    } else {
+                                                        canWrite = false; // False write has been found
+                                                    }
+                                                }
+                                                if( (isPrincipal || isGroup) && permissionName == "PropertyRead" ) {
+                                                    if (isPermitted) {
+                                                        readPermitted = true; // true read has been found
+                                                    } else {
+                                                        canRead = false; // false read has been found
+                                                    }
+                                                }
+                                            }
+                                            if (canWrite && writePermitted && !canRead) {
+                                                logger.error("Write permission without Read permission is not valid") ;
+                                                continue;
+                                            }
+                                            if (canWrite && writePermitted) { // true write has been found and false has not
+                                                var writeRow = {
+                                                    ContextName: contextName,
+                                                    PermissionType: "Write"
+                                                };
+                                                tableToReturn.AddRow(writeRow);
+                                            } else if (canRead && readPermitted) { // true read has been found and false has not
+                                                var readRow = {
+                                                    ContextName: contextName,
+                                                    PermissionType: "Read"
+                                                };
+                                                tableToReturn.AddRow(readRow);
+                                            }
+                                        }
+                                        result = tableToReturn;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetContextPermissionByUser">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        result = me.GetContextPermission({
+                                            principal: userName /* STRING */,
+                                            principalType: "User" /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetContextPermissionByUserGroup">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        result = me.GetContextPermission({
+                                            principal: userGroupName /* STRING */,
+                                            principalType: "Group" /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetContextsByUserAndPermission">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (permissionType !== "Read" && permissionType !== "Write") {
+                                            var invalidPermissionTypeErrorMessage = "Invalid permission type: " + permissionType + " which is neither Read nor Write.";
+                                            logger.error(invalidPermissionTypeErrorMessage);
+                                            throw invalidPermissionTypeErrorMessage;
+                                        }
+                                        
+                                        // contextPermission: INFOTABLE dataShape: "PTC.SCA.SCO.ContextPermissionsDataShape"
+                                        var contextPermission =  me.GetContextPermissionByUser({
+                                        	userName: userName /* USERNAME */
+                                        });
+                                        
+                                        // Set of the context names with right permission
+                                        var contextSet = new Object();
+                                        for (var i = 0; i < contextPermission.rows.length; i++) {
+                                            var contextPermissionRow = contextPermission.rows[i];
+                                            if (contextPermissionRow.PermissionType === permissionType) {
+                                                contextSet[contextPermissionRow.ContextName] = true;
+                                            }
+                                        }
+                                        
+                                        var launchPointConfigThingName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                        var equipmentContextSettingsTable = Things[launchPointConfigThingName].GetConfigurationTable({
+                                            tableName: "EquipmentContextSettings"
+                                        });
+                                        
+                                        result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            dataShapeName: "PTC.SCA.SCO.EquipmentContextSettingsDataShape"
+                                        });
+                                        
+                                        
+                                        var isAdmin = Resources["PTC.Factory.CommonUtilities"].IsAdmin({
+                                            userName: userName /* STRING */
+                                        });
+                                        
+                                        for (i = 0; i < equipmentContextSettingsTable.rows.length; i++) {
+                                            var equipmentContextSettingRow = equipmentContextSettingsTable.rows[i];
+                                            if (equipmentContextSettingRow.Enabled === true && (isAdmin === true || contextSet[equipmentContextSettingRow.ContextName] === true)) {
+                                                result.AddRow(equipmentContextSettingRow);
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetCurrentUserPermissionOnThing">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        //***
+                                        // If a thing implements thingshape PTC.Factory.DeviceThingShape
+                                        // then it is a device
+                                        //***
+                                        var isDevice = function(aThing) {
+                                            if (!aThing) {
+                                                return false;
+                                            } else {
+                                                return aThing.ImplementsShape({
+                                                    thingShapeName: 'PTC.Factory.DeviceThingShape'
+                                                });
+                                            }
+                                        }
+                                        
+                                        //***
+                                        // If a thing is derived from any thingtemplate defined in RemoteConnectionSettings for remote conneciton, then
+                                        // it is a remote connection
+                                        //***
+                                        var isRemoteConnection = function(aThing) {
+                                            var result = false;
+                                            if (aThing) {
+                                                var configuratoinThingName =  Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                                var configurationThing = Things[configuratoinThingName];
+                                                var remoteConnectionConfigurationTable = configurationThing.GetConfigurationTable({
+                                                    tableName: 'RemoteConnectionSettings'
+                                                });
+                                        
+                                                var mapRemoteConnectionThingTemplate = {};
+                                                var currentRow;
+                                                for (var i = 0; i < remoteConnectionConfigurationTable.getRowCount(); i++) {
+                                                    currentRow = remoteConnectionConfigurationTable.getRow(i);
+                                                    mapRemoteConnectionThingTemplate[currentRow['RemoteConnectionThingTemplateName']] = true;
+                                                }
+                                        
+                                                var thingTemplateName = aThing.GetThingTemplate().getRow(0).name;
+                                                if (mapRemoteConnectionThingTemplate[thingTemplateName]) {
+                                                    result = true;
+                                                }
+                                            }
+                                        
+                                            return result;
+                                        }
+                                        
+                                        //*******
+                                        // de-coding the result:
+                                        //	"None":  current user do not have permission on given equipment
+                                        //	"Read":  current user have read permission on given equipment
+                                        //	"Write":  current user have write & read permission on given equipment
+                                        //*******
+                                        var customLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.PlantStatusUtil.GetCurrentUserPermissionOnThing");
+                                        
+                                        var result = 'None';
+                                        
+                                        if (equipmentName) {
+                                            var equipmentThing = Things[equipmentName];
+                                        
+                                            // If given thing is a device or a remote connection then anyone has "write" permission to it
+                                            // NOTE: here we don't check permission on Device thing or Remote Connection thing, instead after
+                                            // we identify a thing is a Device or a Remote Connection we just return string indicate any user
+                                            // has "Write" permission on it. this is JUST A TEMPORARY FIX
+                                            // TODO: remove or change this logic after permission check on Device and Remote Connection is
+                                            // implemented
+                                            if (isDevice(equipmentThing) || isRemoteConnection(equipmentThing)) {
+                                                customLogger.debug("Given equipment " + equipmentName + " is a device or a remote connection, anyone has write permission on it.");
+                                                result = 'Write';
+                                            } else {
+                                                // Get current user
+                                                var currentUserName = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                                customLogger.debug("Check Runtime permission of user: " + currentUserName + " on equipment: " + equipmentName) ;
+                                        
+                                                // Prepare map of UserGroup of currentUser
+                                                var mapUserGroupsOfCurentUser = {};
+                                                var userGroupsOfCurrentUser = me.GetUserGroups({userName:currentUserName});
+                                                for (var i = 0; i < userGroupsOfCurrentUser.rows.length; i++){
+                                                    var oneUserGroupRow = userGroupsOfCurrentUser.rows[i];
+                                                    mapUserGroupsOfCurentUser[oneUserGroupRow['UserGroupName']] = true;
+                                                }
+                                        
+                                                if (currentUserName === "Administrator" || mapUserGroupsOfCurentUser['Administrators']) {
+                                                    // current user is Administrator or belongs to Administrators group
+                                                    result = 'Write';
+                                                    customLogger.debug("Current user: " + currentUserName + " is Administrator or belongs to Administrators group, have read & write permission on any equipment") ;
+                                                } else {
+                                                    // Get all runtime permission settings on specific equipment
+                                                    var getRuntimePermissionSuccessful = true;
+                                                    var equipmentRuntimPermissions;
+                                                    try {
+                                                        equipmentRuntimPermissions = equipmentThing.GetRunTimePermissions();
+                                                    } catch (err) {
+                                                        getRuntimePermissionSuccessful = false;
+                                                        customLogger.warn("Failed to run  service to retrieve all rumtime permission on equipment: " + equipmentName + " will consider current user do not have permission on this equipment") ;
+                                                    }
+                                        
+                                                    if (getRuntimePermissionSuccessful) {
+                                                        for (i = 0; i < equipmentRuntimPermissions.rows.length; i++) {
+                                                            var oneRuntimePermissionRow = equipmentRuntimPermissions.rows[i];
+                                                            var isRowRelatedToCurrentUser = oneRuntimePermissionRow['name'] === currentUserName;
+                                                            var isRowrelatedToUserGroupOfCurrentUser = mapUserGroupsOfCurentUser[oneRuntimePermissionRow['name']];
+                                                            if (isRowRelatedToCurrentUser || isRowrelatedToUserGroupOfCurrentUser) {
+                                                                var isPermitted = oneRuntimePermissionRow['isPermitted'];
+                                                                if (isPermitted) {
+                                                                    var permissionName = oneRuntimePermissionRow['permissionName'];
+                                                                    if (permissionName === 'PropertyRead') {
+                                                                        if (result === 'None') {
+                                                                            result = 'Read';
+                                                                        }
+                                                                    } else if (permissionName === "PropertyWrite") {
+                                                                        if (result === 'Read') {
+                                                                            result = 'Write';
+                                                                            // We have confirmed currentUser has write permission, no need to do further check
+                                                                            break;
+                                                                        } else {
+                                                                            // This is an invalid situation!
+                                                                            customLogger.warn("For current user equipment: " + equipmentName + " has Write permission but without Read permission, this is invalid. will consider current user do not have permission on this equipment") ;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEntityPermissionsByUserGroupOnContext">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        result = me.GetEntityPermissionsOnContext({
+                                            contextName: contextName /* STRING */,
+                                            principal: userGroupName /* STRING */,
+                                            principalType: "Group" /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEntityPermissionsByUserOnContext">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        result = me.GetEntityPermissionsOnContext({
+                                            contextName: contextName /* STRING */,
+                                            principal: userName /* STRING */,
+                                            principalType: "User" /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEntityPermissionsOnContext">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        /*
+                                                The Thingworx permission system works as follows.
+                                                Assume the following user/usergroup structure.
+                                                        GrandGroup
+                                                            -ParentGroup
+                                                                -User
+                                                All Runtime permissions can be true, false or missing.
+                                                False has precedence over true. What this means is that if the whole structure has
+                                                for example read permission as true and one of them contains false then all users/usergroups
+                                                below that false will return false read permission as a result of this service.
+                                                The following code aims to keep consistent with the platform.
+                                                Another addition here is that Write has precedence over read. Therefore if a user has write
+                                                and read than the value that will be returned is write.
+                                            */
+                                        function service() {
+                                            var launchPointConfigThingName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                            var configurationInfoTable = Things[launchPointConfigThingName].GetConfigurationTable({
+                                                tableName: "EquipmentContextSettings"
+                                            });
+                                        
+                                            var tableToReturn = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                dataShapeName: "PTC.SCA.SCO.EntityPermissionsDataShape"
+                                            });
+                                        
+                                            var groupsIn = {};
+                                            var groupInfoTable;
+                                            if (principalType === "User") {
+                                                groupInfoTable = me.GetUserGroups({userName:principal});
+                                            } else if (principalType === "Group") {
+                                                groupInfoTable = me.GetGroupGroups({groupName:principal});
+                                            } else {
+                                                logger.error("Invalid principal type: " + entityType + ", which is neither User nor Group.");
+                                                groupInfoTable = {"rows" : []};
+                                            }
+                                        
+                                            for (var i = 0; i < groupInfoTable.rows.length; i++){
+                                                var groupRow = groupInfoTable.rows[i];
+                                                groupsIn[groupRow['UserGroupName']] = true;
+                                            }
+                                        
+                                            var network = null;
+                                            var networkName = null;
+                                        
+                                            for (var x = 0; x < configurationInfoTable.rows.length; x++) {
+                                                var row = configurationInfoTable.rows[x];
+                                                var context = row['ContextName'];
+                                                var currentNetworkName = row['Network'];
+                                                if (context == contextName) {
+                                                    networkName = currentNetworkName;
+                                                    network = Networks[networkName];
+                                                    break;
+                                                }
+                                            }
+                                        
+                                            if (!network) {
+                                                logger.error("Network " + networkName + " does not exist.");
+                                                return tableToReturn;
+                                            }
+                                        
+                                            var canRead;
+                                            var canWrite;
+                                            var readPermitted; // Whether a read has been found in the structure
+                                            var writePermitted; // Whether a write has been found in the structure
+                                            var children = me.GetAllChildrenInNetwork({networkName:networkName});
+                                        
+                                            for (var j = 0; j < children.rows.length; j++){
+                                                canRead = true; // Will set to false read if even a single false is found in the structure
+                                                canWrite = true; // Will set to false write if even a single false is found in the structure
+                                                readPermitted = false;
+                                                writePermitted = false;
+                                                var childRow = children.rows[j];
+                                                var entityName = childRow['Value'];
+                                                var child = Things[entityName];
+                                                var childPermissions;
+                                                try { // takes care of case where user may have write/read permissions but not service execute
+                                                    childPermissions = child.GetRunTimePermissions();
+                                                } catch (err) {
+                                                    continue;
+                                                }
+                                                for (var k = 0; k < childPermissions.rows.length; k++){
+                                                    var childPermissionRow = childPermissions.rows[k];
+                                                    var isPrincipal = childPermissionRow['name'] === principal;
+                                                    var isGroup = groupsIn[childPermissionRow['name']];
+                                                    var permissionName = childPermissionRow['permissionName'];
+                                                    var isPermitted = childPermissionRow['isPermitted'] === true;
+                                                    if(( isPrincipal || isGroup ) && permissionName == "PropertyWrite" ) {
+                                                        if (isPermitted) {
+                                                            writePermitted = true; // true write has been found
+                                                        } else {
+                                                            canWrite = false; // false write has been found
+                                                        }
+                                                    }
+                                                    if(( isPrincipal || isGroup ) && permissionName == "PropertyRead" ) {
+                                                        if (isPermitted) {
+                                                            readPermitted = true; // true read has been found
+                                                        } else {
+                                                            canRead = false; // false read has been found
+                                                        }
+                                                    }
+                                                }
+                                                if (canWrite && writePermitted && !canRead) {
+                                                    logger.error("Write permission without Read permission is not valid") ;
+                                                    continue;
+                                                }
+                                                if (canWrite && writePermitted) { // true write has been found and false has not
+                                                    var writeRow = {
+                                                        Entity: entityName,
+                                                        PermissionType: "Write"
+                                                    };
+                                                    tableToReturn.AddRow(writeRow);
+                                                } else if (canRead && readPermitted) { // true read has been found and false has not
+                                                    var readRow = {
+                                                        Entity: entityName,
+                                                        PermissionType: "Read"
+                                                    };
+                                                    tableToReturn.AddRow(readRow);
+                                                }
+                                            }
+                                            return tableToReturn;
+                                        }
+                                        result = service();
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEquipmentStructureForContext">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // result: STRING
+                                        var launchPointConfigurationName =  Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                        
+                                        // result: STRING
+                                        var user = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        
+                                        // TODO Read permission on StructureEquipmentTreeSelection.xml should not be hardcoded in the future release
+                                        
+                                        var entityPermissionsTable = Things["PTC.SCA.SCO.ContextManager"].GetEntityPermissionsByUserOnContext({contextName:contextName,userName:user});
+                                        var filteredPermissionTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                dataShapeName: "PTC.SCA.SCO.EntityPermissionsDataShape"
+                                        });
+                                        
+                                        for (var i=0;i<entityPermissionsTable.rows.length;i++) {
+                                            var row = entityPermissionsTable.rows[i];
+                                            var rowPermission = row["PermissionType"];
+                                            var newRow = {
+                                                    Entity: row["Entity"],
+                                                    PermissionType: rowPermission
+                                            };
+                                            if ((permissionType === "Read") && (rowPermission === "Read" || rowPermission === "Write")) {
+                                                filteredPermissionTable.AddRow(newRow);
+                                                continue;
+                                            }
+                                        
+                                            if (permissionType === "Write" && rowPermission === "Write") {
+                                                filteredPermissionTable.AddRow(newRow);
+                                            }
+                                        }
+                                        
+                                        var networkName = Things[launchPointConfigurationName].GetNetworkNameByContextName({contextName: contextName});
+                                        
+                                        // result: INFOTABLE dataShape: "PTC.SCA.SCO.SimpleEquipmentStructureTree"
+                                        var result =  Things["PTC.SCA.SCO.EquipmentStructureManager"].GetEquipmentStructure({
+                                            maxLevel: maxLevel /* INTEGER */,
+                                            networkName: networkName /* STRING */,
+                                            includeAsset: includeAsset /* BOOLEAN */,
+                                            entityPermissionsTable: filteredPermissionTable /* INFOTABLE */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetPermissionsByContext">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var networkName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetNetworkNameByContextName({
+                                            contextName: contextName
+                                        });
+                                        
+                                        // result: INFOTABLE dataShape: "PTC.SCA.SCO.StringValueList"
+                                        var allEntitiesInContext = me.GetAllChildrenInNetwork({
+                                            networkName: networkName /* STRING */
+                                        });
+                                        
+                                        result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName: "EntityPermissionInContext" /* STRING */,
+                                            dataShapeName: "PTC.SCA.SCO.EntityPermissionInContextDataShape" /* DATASHAPENAME */
+                                        });
+                                        
+                                        for (var i = 0; i < allEntitiesInContext.rows.length; i++) {
+                                            var entityName = allEntitiesInContext.rows[i].Value;
+                                            var newRow = new Object();
+                                            newRow.EntityName = entityName;
+                                            newRow.Permissions = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                infoTableName: "EntityPermissionList" /* STRING */,
+                                                dataShapeName: "PTC.SCA.SCO.EntityPermissionListDataShape" /* DATASHAPENAME */
+                                            });
+                                        
+                                            var tempPermissions = [];
+                                        
+                                            var runtimePermissions;
+                                            try { // takes care of case where user may have write/read permissions but not service execute
+                                                runtimePermissions = Things[entityName].GetRunTimePermissions();
+                                            } catch (err) {
+                                                continue;
+                                            }
+                                            // In the returned InfoTable, PropertyRead is returned byford PropertyWrite for the same resourceName
+                                            for (var j = 0; j < runtimePermissions.rows.length; j++) {
+                                                var permissionRow = runtimePermissions.rows[j];
+                                                var type = permissionRow.type;
+                                                var nameInRow = permissionRow.name;
+                                                if((type === 'User' && !Users[nameInRow]) || (type === 'Group' && !Groups[nameInRow])){
+                                                    continue;
+                                                }
+                                                if (permissionRow.resourceName === "*") {
+                                                    if (permissionRow.permissionName === "PropertyRead") {
+                                                        tempPermissions.push(permissionRow);
+                                                    } else if (permissionRow.permissionName === "PropertyWrite") {
+                                                        for (var k = 0; k < tempPermissions.length; k++) {
+                                                            var tempRow = tempPermissions[k];
+                                                            if (tempRow.name === permissionRow.name && tempRow.type === permissionRow.type) {
+                                                                tempPermissions.splice(k, 1);   // Delete tempRow from tempPermissions
+                                                                var newPermissionRow = new Object();
+                                                                newPermissionRow.UserOrUserGroupName = permissionRow.name;
+                                                                newPermissionRow.Type = permissionRow.type;
+                                                                if (tempRow.isPermitted && permissionRow.isPermitted) {
+                                                                    newPermissionRow.PermissionType = "Write";
+                                                                } else if (tempRow.isPermitted && !permissionRow.isPermitted) {
+                                                                    newPermissionRow.PermissionType = "Read";
+                                                                } else if (!tempRow.isPermitted && !permissionRow.isPermitted) {
+                                                                    newPermissionRow.PermissionType = "None";
+                                                                } else {
+                                                                    break;
+                                                                }
+                                                                newRow.Permissions.AddRow(newPermissionRow);
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            result.AddRow(newRow);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GrantPermissionsOnEntities">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = {
+                                            message: []
+                                        };
+                                        function replaceOrAddPermission(runtimePermissions,index,propertyString,isPermitted) {
+                                            var permissionFound = false;
+                                            var propertyTypePermissions = runtimePermissions[index][propertyString];
+                                            var newPropertyTypePermissions = [];
+                                            for (j = 0; j < propertyTypePermissions.length; j++) {
+                                                if((propertyTypePermissions[j].type === 'User' && !Users[propertyTypePermissions[j].name]) || (propertyTypePermissions[j].type === 'Group' && !Groups[propertyTypePermissions[j].name])){
+                                                    continue;
+                                                }
+                                                if (propertyTypePermissions[j].name === principal && propertyTypePermissions[j].type === principalType) {
+                                                    propertyTypePermissions[j].isPermitted = isPermitted;
+                                                    permissionFound = true;
+                                                }
+                                                newPropertyTypePermissions.push(propertyTypePermissions[j]);
+                                            }
+                                            if (!permissionFound) {
+                                                newPropertyTypePermissions.push({
+                                                    "isPermitted": isPermitted,
+                                                    "name": principal,
+                                                    "type": principalType
+                                                });
+                                            }
+                                            runtimePermissions[index][propertyString] = newPropertyTypePermissions;
+                                        }
+                                        
+                                        // validate principalType == User or Group
+                                        if (principalType != 'User' && principalType != 'Group'){
+                                            throw "principalType must be either \'User\' or \'Group\' ";
+                                        }
+                                        // validate user or group exists
+                                        if (principalType === 'User' && !Users[principal]){
+                                            throw "User: " + principal + ", does not exist";
+                                        }
+                                        if (principalType === 'Group' && !Groups[principal]){
+                                            throw "Group: " + principal + ", does not exist";
+                                        }
+                                        
+                                        var propertyRead;
+                                        var propertyWrite;
+                                        if (permissionType === "None") {
+                                            propertyRead = false;
+                                            propertyWrite = false;
+                                        } else if (permissionType === "Read") {
+                                            propertyRead = true;
+                                            propertyWrite = false;
+                                        } else if (permissionType === "Write") {
+                                            propertyRead = true;
+                                            propertyWrite = true;
+                                        } else {
+                                            var errorMsg = permissionType + " is not a valid permission type for equipment or context. Valid permission types are Read, Write and None.";
+                                            logger.error(errorMsg);
+                                            throw errorMsg;
+                                        }
+                                        
+                                        for (var i = 0; i < entities.rows.length; i++) {
+                                            var entityRow = entities.rows[i];
+                                            var entityType = entityRow.Type;
+                                            var entityName = entityRow.Name;
+                                            var entity;
+                                            if (entityType === "Context") {
+                                                entityName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetNetworkNameByContextName({
+                                                    contextName: entityName
+                                                });
+                                                entity = Networks[entityName];
+                                            } else if (entityType === "Equipment") {
+                                                entity = Things[entityName];
+                                            } else {
+                                                // Invalid type
+                                                logger.error("Invalid type: " + entityType + ", which is neither Context nor Equipment.");
+                                                addErrorMessage("Invalid type: " + entityType + ", which is neither Context nor Equipment for row "+(i+1) +" from entities");
+                                                continue;
+                                            }
+                                        
+                                            if (!entity) {
+                                                logger.error(entityName + " does not exist. Skip granting permissions and go to the next entity/context.");
+                                                addErrorMessage(entityName + " does not exist");
+                                                continue;
+                                            }
+                                        
+                                            // AddRunTimePermission on PropertyRead and PropertyWrite does not work for Networks.
+                                            // Have to use GetRunTimePermissionsAsJSON and SetRunTimePermissionsAsJSON as a workaround.
+                                            var runtimePermissions = entity.GetRunTimePermissionsAsJSON().permissions;  //JSON Array
+                                            var index = -1;
+                                            for (var j = 0; j < runtimePermissions.length; j++) {
+                                                if (runtimePermissions[j].resourceName === "*") {
+                                                    index = j;
+                                                    break;
+                                                }
+                                            }
+                                            if (index === -1) {
+                                                // Add new runtime permission for PropertyRead, PropertyWrite and ServiceInvoke on resource "*"
+                                                var newRuntimePermission = {
+                                                    "EventSubscribe": [],
+                                                    "PropertyWrite": [
+                                                        {
+                                                            "isPermitted": propertyWrite,
+                                                            "name": principal,
+                                                            "type": principalType
+                                                        }
+                                                    ],
+                                                    "PropertyRead": [
+                                                        {
+                                                            "isPermitted": propertyRead,
+                                                            "name": principal,
+                                                            "type": principalType
+                                                        }
+                                                    ],
+                                                    "ServiceInvoke": [
+                                                        {
+                                                            "isPermitted": true,
+                                                            "name": principal,
+                                                            "type": principalType
+                                                        }
+                                                    ],
+                                                    "resourceName": "*",
+                                                    "EventInvoke": []
+                                                };
+                                                runtimePermissions.push(newRuntimePermission);
+                                            } else {
+                                                // Update existing runtime permission for PropertyWrite and PropertyRead on resource "*"
+                                                replaceOrAddPermission(runtimePermissions,index,"PropertyWrite",propertyWrite);
+                                                replaceOrAddPermission(runtimePermissions,index,"PropertyRead",propertyRead);
+                                                replaceOrAddPermission(runtimePermissions,index,"ServiceInvoke",true);
+                                            }
+                                        
+                                            entity.SetRunTimePermissionsAsJSON({
+                                                permissions: {
+                                                    "permissions" : runtimePermissions  /* JSON */
+                                                }
+                                            });
+                                        }
+                                        function addErrorMessage(message) {
+                                              var errorMessage = {
+                                                  "errorMessage": message,
+                                              };
+                                              result.message.push(errorMessage);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GrantUserGroupPermissionsOnEntities">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = {
+                                              message: []
+                                          };
+                                          var entitiesErrorLogged = false;
+                                          for (var i = 0; i < userGroupNames.rows.length; i++) {
+                                              var userGroupName = userGroupNames.rows[i].UserGroupName;
+                                              if (userGroupName) {
+                                                  var response = me.GrantPermissionsOnEntities({
+                                                      entities: entities /* INFOTABLE */ ,
+                                                      permissionType: permissionType /* STRING */ ,
+                                                      principal: userGroupName /* STRING */ ,
+                                                      principalType: "Group" /* STRING */
+                                                  });
+                                                  if (response.message && !entitiesErrorLogged) {
+                                                      for (var counter = 0; counter < response.message.length; counter++) {
+                                                          addErrorMessage(response.message[counter].errorMessage);
+                                                      }
+                                                      entitiesErrorLogged = true;
+                                                  }
+                                              } else {
+                                                  addErrorMessage("userGroupName in row " + (i + 1) + " from userGroupNames is null or undefiened");
+                                              }
+                                          }
+                                        
+                                          function addErrorMessage(message) {
+                                              var errorMessage = {
+                                                  "errorMessage": message,
+                                              };
+                                              result.message.push(errorMessage);
+                                          }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GrantUserPermissionsOnEntities">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var result = {
+                                          message: []
+                                        };
+                                        var entitiesErrorLogged = false;
+                                        for (var i = 0; i < userNames.rows.length; i++) {
+                                          var userName = userNames.rows[i].UserName;
+                                          if (userName) {
+                                              var response = me.GrantPermissionsOnEntities({
+                                                  entities: entities /* INFOTABLE */ ,
+                                                  permissionType: permissionType /* STRING */ ,
+                                                  principal: userName /* STRING */ ,
+                                                  principalType: "User" /* STRING */
+                                              });
+                                              if(response.message && !entitiesErrorLogged){
+                                                for (var counter = 0; counter < response.message.length; counter++){
+                                                   addErrorMessage(response.message[counter].errorMessage);
+                                                  }
+                                                  entitiesErrorLogged = true;
+                                              }
+                                          } else {
+                                              addErrorMessage("username in row " + (i+1) + " from userNames is null or undefined");
+                                          }
+                                        
+                                        }
+                                        
+                                        function addErrorMessage(message) {
+                                          var errorMessage = {
+                                              "errorMessage": message,
+                                          };
+                                          result.message.push(errorMessage);
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="PropagatePermissionsOnEntities">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var networkName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetNetworkNameByContextName({
+                                            contextName: contextName
+                                        });
+                                        
+                                        var entityExists = true;
+                                        if (entityName === undefined) {
+                                            entityName = "";    // If no entityName is specificed, set it to empty string and treat it as the root of the network
+                                        } else {
+                                            if (!Things[entityName]) {
+                                                logger.error(entityName + " does not exist. Stop propagating permissions in the network/context.");
+                                                entityExists = false;
+                                            }
+                                            if (!Things[entityName].IsInNetwork({
+                                                    network: networkName /* STRING */
+                                                })) {
+                                                logger.error(entityName + " does not exist in the network/context. Stop propagating permissions in the network/context.");
+                                                entityExists = false;
+                                            }
+                                        }
+                                        if (entityExists) {
+                                            // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.EquipmentOrContextListDataShape)
+                                            var entitiesToGrantPermissions = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                infoTableName : "EntitiesToGrantPermissions",
+                                                dataShapeName : "PTC.SCA.SCO.EquipmentOrContextListDataShape"
+                                            });
+                                        
+                                            var processedEntityNames = [];  // This set is not necessary if there is no circle in the network structure.
+                                            var bfsQueue = [];
+                                            processedEntityNames.push(entityName);
+                                            bfsQueue.push(entityName);
+                                            while (bfsQueue.length > 0) {
+                                                var currentEntityName = bfsQueue.shift();
+                                                var entityRow = new Object();
+                                                entityRow.Type = "Equipment";
+                                                entityRow.Name = currentEntityName;
+                                                entitiesToGrantPermissions.AddRow(entityRow);
+                                        
+                                                var childConnections = Networks[networkName].GetChildConnections({
+                                                    name: currentEntityName /* STRING */
+                                                });
+                                                for (var i = 0; i < childConnections.rows.length; i++) {
+                                                    var childConnection = childConnections.rows[i]; // connectionType | from | to
+                                                    if (childConnection.connectionType.toUpperCase() === "CONTAINS" && processedEntityNames.indexOf(childConnection.to) < 0) {
+                                                        bfsQueue.push(childConnection.to);
+                                                        processedEntityNames.push(childConnection.to);
+                                                    }
+                                                }
+                                            }
+                                        
+                                            me.GrantPermissionsOnEntities({
+                                                principal: principal /* STRING */,
+                                                permissionType: permissionType /* STRING */,
+                                                entities: entitiesToGrantPermissions /* INFOTABLE */,
+                                                principalType: principalType /* STRING */
+                                            });
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="PropagateUserGroupPermissionsOnEntities">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        for (var i = 0; i < userGroupNames.rows.length; i++) {
+                                            var userGroupName = userGroupNames.rows[i].UserGroupName;
+                                            me.PropagatePermissionsOnEntities({
+                                                contextName: contextName /* STRING */,
+                                                entityName: entityName /* STRING */,
+                                                principal: userGroupName /* STRING */,
+                                                principalType: "Group" /* STRING */,
+                                                permissionType: permissionType /* STRING */
+                                            });
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="PropagateUserPermissionsOnEntities">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        for (var i = 0; i < userNames.rows.length; i++) {
+                                            var userName = userNames.rows[i].UserName;
+                                            me.PropagatePermissionsOnEntities({
+                                                contextName: contextName /* STRING */,
+                                                entityName: entityName /* STRING */,
+                                                principal: userName /* STRING */,
+                                                principalType: "User" /* STRING */,
+                                                permissionType: permissionType /* STRING */
+                                            });
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

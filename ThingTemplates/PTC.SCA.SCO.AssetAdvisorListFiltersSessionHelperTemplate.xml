@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         aspect.isSystemObject="false"
+         baseThingTemplate="GenericThing"
+         description="ThingTemplate with Javascript services to set and get session data for asset list filters. {PTC.SCA.SCO.AssetAdvisorListFiltersSessionHelperTemplate}"
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:32.706+05:30"
+         name="PTC.SCA.SCO.AssetAdvisorListFiltersSessionHelperTemplate"
+         projectName="PTC.SCA.SCO.Asset Monitor"
+         tags="PTC:sca-sco-assetmonitor;PTC:sca-common;PTC:Asset;PTC:ThingTemplate"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetAssetFilterInfo">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.AssetFilterInfoDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Requested page number in the result set to retrieve"
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetBooleanFilter">
+                        <ResultType
+                         baseType="BOOLEAN"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description=""
+                             name="field"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetFilters">
+                        <ResultType
+                         baseType="JSON"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetInfoTableFilter">
+                        <ResultType
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description=""
+                             name="field"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="This service saves in session the filtered statuses."
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetStatusFilter">
+                        <ResultType
+                         aspect.dataShape="PTC.SCA.SCO.StatusFilterDataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description="Requested page number in the result set to retrieve"
+                             name="contextName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetStringFilter">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description=""
+                             name="field"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="SetBooleanFilter">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description=""
+                             name="field"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="BOOLEAN"
+                             description=""
+                             name="value"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="SetInfoTableFilter">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="field"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="value"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="true"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="SetStatusFilter">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.StatusFilterDataShape"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="editedStatusFilter"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="PTC.SCA.SCO.StatusFilterDataShape"
+                             aspect.isRequired="false"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="editedStatusFilterRow"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="SetStringFilter">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.isRequired="true"
+                             baseType="STRING"
+                             description=""
+                             name="field"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.isRequired="false"
+                             baseType="STRING"
+                             description=""
+                             name="value"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetAssetFilterInfo">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.IdDataShape)
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            dataShapeName : "PTC.SCA.SCO.AssetFilterInfoDataShape"
+                                        });
+                                        
+                                        // AlertDefinition entry object
+                                        var monitorStatusFilter = updateStatusFilterCount(me.GetInfoTableFilter({field: "monitorStatusFilter"}));
+                                        var newEntry = {
+                                            'isModelChecked' : me.GetBooleanFilter({field: "isModelChecked"}),// BOOLEAN
+                                        	'modelNumberSelected' : me.GetStringFilter({field: "modelNumberSelected"}), // STRING
+                                        	'modelNumber' : me.GetStringFilter({field: "modelNumber"}), // STRING
+                                        	'isStructureFilterChecked' : me.GetBooleanFilter({field: "isStructureFilterChecked"}),//BOOLEAN
+                                        	'assetFilterSelectedInfoTableFilter' : me.GetInfoTableFilter({field: "assetFilterSelectedInfoTableFilter"}), //INFOTABLE
+                                        	'monitorStatusFilter' : monitorStatusFilter, //INFOTABLE
+                                        	'monitorStatusSelected' : containsSelectedStatusFilter(monitorStatusFilter) //BOOLEAN
+                                        };
+                                        
+                                        //***DEPRECATED-J*** This method will be deleted in a future release. Replaced by monitorStatusFilter
+                                        addIncludedStatusBooleans(newEntry);
+                                        
+                                        result.AddRow(newEntry);
+                                        
+                                        function updateStatusFilterCount(sessionStatusTable) {
+                                            try {
+                                                var filterCountTable = me.GetStatusFilter({'contextName':contextName});
+                                        
+                                                if (sessionStatusTable == null || sessionStatusTable.getRowCount() == 0) {
+                                                    sessionStatusTable = filterCountTable;
+                                                } else {
+                                                    sessionStatusTable = Resources["InfoTableFunctions"].Intersect({
+                                                        'columns1': 'statusDisplayName,statusDisplay' /* STRING */,
+                                                        'columns2': 'isSelected' /* STRING */,     
+                                                        'joinType': 'LEFT' /* STRING */,
+                                                        't1': filterCountTable /* INFOTABLE */,
+                                                        't2': sessionStatusTable /* INFOTABLE */,
+                                                        'joinColumns1': 'statusDisplayName' /* STRING */,
+                                                        'joinColumns2': 'statusDisplayName' /* STRING */
+                                                    });            
+                                                }
+                                            } catch (err) {
+                                                logger.info (err) ;
+                                            }
+                                            return sessionStatusTable;
+                                        }
+                                        
+                                        function containsSelectedStatusFilter(monitorStatusFilter) {
+                                            return monitorStatusFilter.Find({'isSelected':true}) != null;
+                                        }
+                                        
+                                        //***DEPRECATED-J*** This method will be deleted in a future release. Replaced by monitorStatusFilter
+                                        function addIncludedStatusBooleans(newEntry) {
+                                            // result: BOOLEAN
+                                            var includedStatus = ["includeNotConfiguredStatus","includePlannedDowntimeStatus","includeRunningStatus","includeUnavailableStatus","includeUnplannedDowntimeStatus","includeWarningStatus"];
+                                            for (var i = 0; i < includedStatus.length; i++) {
+                                                var includeStatus =  me.GetBooleanFilter({
+                                                    field: includedStatus[i] /* STRING */
+                                                });
+                                                newEntry[includedStatus[i]]=includeStatus; // BOOLEAN
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetBooleanFilter">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // result: BOOLEAN
+                                        var result =  Things["PTC.SCA.SCO.SessionHelper"].GetBoolean({
+                                        	field: field /* STRING */,
+                                        	JSONFieldName: "AssetListFilters" /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetFilters">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // result: JSON
+                                        var result =  Things["PTC.SCA.SCO.SessionHelper"].GetJSON({
+                                        	field: "AssetListFilters" /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetInfoTableFilter">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // result: INFOTABLE dataShape: ""
+                                        var result =  Things["PTC.SCA.SCO.SessionHelper"].GetInfoTable({
+                                        	field: field /* STRING */,
+                                        	JSONFieldName: "AssetListFilters" /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetStatusFilter">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var REQUIRED_SHAPE_FOR_ASSET = 'PTC.SCA.SCO.AssetIdentifierThingShape';
+                                        var statusManagerName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetStatusManagerThingName();
+                                        var statusManager = Things[statusManagerName];
+                                        var enabledStatusCounts = getStatusWithCounts();
+                                        result = createStatusFilterTable(enabledStatusCounts);
+                                        
+                                        function getStatusWithCounts() {
+                                            var enabledStatusCounts = getAllStatusDisplayNames();
+                                            var equipments = getEquipments();
+                                        
+                                            for (var i = 0; i < equipments.getRowCount(); i++) {
+                                                var equipment = equipments.getRow(i);
+                                                var equipmentName = equipment.name;
+                                                var statusDiplayName = equipment.data[0].actualStatusDisplayName;
+                                        
+                                                if (enabledStatusCounts.hasOwnProperty(statusDiplayName)) {
+                                                    var currentSize = enabledStatusCounts[statusDiplayName].size;
+                                                    enabledStatusCounts[statusDiplayName].size = currentSize + 1;
+                                                }
+                                            }
+                                            return enabledStatusCounts;
+                                        }
+                                        
+                                        function getAllStatusDisplayNames() {
+                                            var statusDisplayNames = {};
+                                            var statusDefinitions = statusManager.GetStatusDefinitionsForAllEntities({"query":{
+                                                "filters":{"fieldName":"enabled","type":"EQ","value":true}}
+                                            });
+                                        
+                                            for (var i = 0; i < statusDefinitions.getRowCount(); i++) {
+                                                var statusDefinition = statusDefinitions.getRow(i);
+                                                var entityName = statusDefinition.entityName;
+                                        
+                                                if (isValidEntityName(entityName)) {
+                                                    var statusDisplayName = getEnglishLocalization(statusDefinition);
+                                                    var statusDisplay = getUserLocalization(statusDefinition);
+                                                    if (!statusDisplayNames.hasOwnProperty(statusDisplayName)) {
+                                                        statusDisplayNames[statusDisplayName] = {
+                                                            "statusDisplayName":statusDisplayName,
+                                                            "statusDisplay":statusDisplay,
+                                                            "size":0,
+                                                            "isSelected":false
+                                                        };
+                                                    }
+                                                }
+                                            }
+                                        
+                                            return statusDisplayNames;
+                                        }
+                                        
+                                        function getEnglishLocalization(statusDefinition) {
+                                            var localizedValue = Resources["RuntimeLocalizationFunctions"].GetEffectiveTokenForLanguage({
+                                                    'language': 'en' /* STRING */,
+                                                    'token': statusDefinition.localizationToken /* STRING */
+                                            });
+                                            return localizeOrDefault (localizedValue, statusDefinition.internalName);
+                                        }
+                                        
+                                        function getUserLocalization(statusDefinition) {
+                                            var localizedValue = Resources["RuntimeLocalizationFunctions"].GetEffectiveToken({
+                                                'token': statusDefinition.localizationToken /* STRING */
+                                            });
+                                            return localizeOrDefault (localizedValue, statusDefinition.internalName);
+                                        }
+                                        
+                                        function localizeOrDefault (localizedValue, defaultString) {
+                                            // default to internal name if no localization was found
+                                            if (localizedValue === '???') {
+                                                localizedValue = defaultString;
+                                            }
+                                            return localizedValue;
+                                        }
+                                        
+                                        function createStatusFilterTable(statusList) {
+                                            // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.StatusFilterDataShape)
+                                            var outputStatusFilterTable = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                infoTableName : "InfoTable",
+                                                dataShapeName : "PTC.SCA.SCO.StatusFilterDataShape"
+                                            });
+                                        
+                                            for (var statusName in statusList) {
+                                                var status = statusList[statusName];
+                                                var statusDisplay = status.statusDisplay + (status.size > 0 ? " (" + status.size + ")": "");
+                                                var isSelected = status.isSelected;
+                                                outputStatusFilterTable.AddRow({
+                                                    "statusDisplayName":status.statusDisplayName,
+                                                    "statusDisplay":statusDisplay,
+                                                    "isSelected":isSelected
+                                                });
+                                            }
+                                        
+                                            // sort by 'statusDisplay' with case insensitive
+                                            outputStatusFilterTable = Resources["PTC.Factory.CommonUtilities"].SortGridRows({
+                                                myInfoTable: outputStatusFilterTable /* INFOTABLE */,
+                                                defaultIsCaseSensitive: false /* BOOLEAN */,
+                                                defaultAscending: true /* BOOLEAN */,
+                                                sortQuery: {} /* QUERY */,
+                                                defaultSortColumn: 'statusDisplay' /* STRING */
+                                            });
+                                        
+                                            return outputStatusFilterTable;
+                                        }
+                                        
+                                        function getEquipments() {
+                                            var filters = me.GetFilters();
+                                            delete filters["monitorStatusFilter"];
+                                            var listOfEquipments =  Things["PTC.SCA.SCO.AssetMonitor.AssetList.AssetListServiceController"].GetFilteredAssetCollection({
+                                                'contextName': contextName /* STRING */,
+                                                'filters' : filters /* JSON */
+                                            })[0].Data;
+                                        
+                                            return listOfEquipments;
+                                        }
+                                        
+                                        function isValidEntityName(entityName) {
+                                        
+                                            // entityName at global level is valid
+                                            if (entityName === "") {
+                                                return true;
+                                            }
+                                        
+                                            var entity = Things[entityName];
+                                            var thingExists = false;
+                                            var isTemplate = false;
+                                            if (entity) {
+                                                thingExists = true;
+                                            } else {
+                                                entity = ThingTemplates[entityName];
+                                                if (entity) {
+                                                    thingExists = true;
+                                                    isTemplate = true;
+                                                }
+                                            }
+                                        
+                                            if (thingExists) {
+                                                var isAsset = false;
+                                                if (isTemplate) {
+                                                    var table = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                        'dataShapeName' : "GenericStringList"
+                                                    });
+                                                    table.AddRow({'item':REQUIRED_SHAPE_FOR_ASSET});
+                                                    isAsset =  Resources["PTC.Factory.CommonUtilities"].IsImplementingAllShapes({
+                                                        'thingShapes': table /* INFOTABLE */,
+                                                        'thingTemplateName': entityName /* TEXT */
+                                                    });
+                                                } else {
+                                                    isAsset = entity.ImplementsShape({
+                                                        'thingShapeName': REQUIRED_SHAPE_FOR_ASSET
+                                                    });
+                                                }
+                                        
+                                                return isAsset;
+                                            }
+                                        
+                                            return false;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetStringFilter">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // result: STRING
+                                        var result =  Things["PTC.SCA.SCO.SessionHelper"].GetString({
+                                        	field: field /* STRING */,
+                                        	JSONFieldName: "AssetListFilters" /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="SetBooleanFilter">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        Things["PTC.SCA.SCO.SessionHelper"].SetBoolean({
+                                        	field: field /* STRING */,
+                                        	JSONFieldName: "AssetListFilters" /* STRING */,
+                                        	value: value /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="SetInfoTableFilter">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        Things["PTC.SCA.SCO.SessionHelper"].SetInfoTable({
+                                        	field: field /* STRING */,
+                                        	value: value /* INFOTABLE */,
+                                        	JSONFieldName: "AssetListFilters" /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="SetStatusFilter">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        updateEditedTable();
+                                        cacheEditedStatusFilter();
+                                        
+                                        function updateEditedTable() {
+                                            if (editedStatusFilterRow && editedStatusFilterRow.getRowCount() > 0 &&
+                                                editedStatusFilter && editedStatusFilter.getRowCount() > 0) {
+                                                for (var i = 0; i < editedStatusFilterRow.getRowCount(); i++) {
+                                                    var status = editedStatusFilterRow.getRow(i);
+                                                    var statusDisplayName = status.statusDisplayName;
+                                        
+                                                    var findStatusRow = editedStatusFilter.Find({'statusDisplayName':statusDisplayName});
+                                                    if (findStatusRow) {
+                                                        findStatusRow.isSelected = status.isSelected;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        
+                                        function cacheEditedStatusFilter() {
+                                            if (editedStatusFilter && editedStatusFilter.getRowCount() > 0) {
+                                                Things["PTC.SCA.SCO.SessionHelper"].SetInfoTable({
+                                                    field: "monitorStatusFilter" /* STRING */,
+                                                    value: editedStatusFilter /* INFOTABLE */,
+                                                    JSONFieldName: "AssetListFilters" /* STRING */
+                                                });
+                                            }
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="SetStringFilter">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        Things["PTC.SCA.SCO.SessionHelper"].SetString({
+                                        	field: field /* STRING */,
+                                        	JSONFieldName: "AssetListFilters" /* STRING */,
+                                        	value: value /* STRING */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <ImplementedShapes></ImplementedShapes>
+            <SharedConfigurationTables></SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead></PropertyRead>
+                    <PropertyWrite></PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="Controls Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Engineer"
+                         type="Group"></Principal>
+                        <Principal
+                         isPermitted="true"
+                         name="Maintenance Manager"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke></EventInvoke>
+                    <EventSubscribe></EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility:AssetPerformance"
+                     type="OrganizationalUnit"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>

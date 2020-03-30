@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="Thing Shape that holds all the necessary properties and services for manipulating post action validation {PTC.SCA.SCO.PostActionValidatorThingShape}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-26T23:56:00.356+05:30"
+         name="PTC.SCA.SCO.PostActionHandlerThingShape"
+         projectName=""
+         tags="PTC:OA;PTC:sco-common-layer">
+            <PropertyDefinitions></PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="LogWorkDefinitionExecutionStatusChange">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.DataChange"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="DataChanges"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="PostCreateAction">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.DataChange"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="DataChanges"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="PostDeleteAction">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.DataChange"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="DataChanges"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="PostUpdateAction">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.DataChange"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="DataChanges"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="WorkDefinitionPostCreate">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.DataChange"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="DataChanges"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="WorkDefinitionPostUpdate">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.DataChange"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="DataChanges"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="LogWorkDefinitionExecutionStatusChange">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    if(DataChanges){
+                                        var params = {
+                                            table: DataChanges
+                                        };
+                                        if(logger.debugEnabled){
+                                            var datasJSON = Resources["InfoTableFunctions"].ToJSON(params);
+                                            logger.debug("LogWorkDefinitionExecutionStatusChange - WorkDefinition datas: " + JSON.stringify(datasJSON));
+                                        }
+                                    }
+                                    
+                                    var getProductionOrderManager = function() {
+                                        return Things["PTC.Factory.LaunchPointConfigurationThing"].GetProductionOrderManagerThingName();
+                                    };
+                                    
+                                    var executionStatusTableInfo = Things[getProductionOrderManager()].GetWorkDefinitionExecutionStatuses();
+                                    var tableLength = DataChanges.rows.length;
+                                    for (var x=0; x < tableLength; x++) {
+                                        var data = DataChanges.rows[x];
+                                        if(data.Values !== null && data.Values !== undefined){
+                                            var valuesLength = data.Values.rows.length;
+                                            for (var y=0; y < valuesLength; y++) {
+                                                var workDefinition = data.Values[y];
+                                                var workDefinitionUid = workDefinition.UID;
+                                                if(typeof workDefinition['ExecutionStatus'] != "undefined"){
+                                                    logger.debug("WorkDefinitionPost" + data.ActionType + ": UID " + workDefinitionUid);
+                                                    var workDefinitionExecutionLog = Things[getProductionOrderManager()].GetWorkDefinitionExecutionLog({WorkDefinitionUID:"" + workDefinitionUid, WorkDefinitionExecStatusTable: executionStatusTableInfo});
+                                                    var workDefinitionExecutionLogLength = workDefinitionExecutionLog.rows.length;
+                                    
+                                                    if (workDefinitionExecutionLogLength === 1) {
+                                                        var workDefinitionLogEntry = workDefinitionExecutionLog.rows[workDefinitionExecutionLogLength - 1];
+                                                        logger.debug("Responsible Agent: " + workDefinitionLogEntry.UserName);
+                                                        logger.debug("New State UID: " + workDefinitionLogEntry.StateUID +
+                                                                     ", New State Value: " + workDefinitionLogEntry.StateName);
+                                                    } else {
+                                                        var currentWorkDefinitionLogEntry = workDefinitionExecutionLog.rows[workDefinitionExecutionLogLength - 1];
+                                                        var previousWorkDefinitionLogEntry = workDefinitionExecutionLog.rows[workDefinitionExecutionLogLength -2];
+                                                        logger.debug("Responsible Agent: " + currentWorkDefinitionLogEntry.UserName);
+                                                        logger.debug("Previous State UID: " + previousWorkDefinitionLogEntry.StateUID +
+                                                                     ", Previous State Value: " + previousWorkDefinitionLogEntry.StateName);
+                                                        logger.debug("New State UID: " + currentWorkDefinitionLogEntry.StateUID +
+                                                                     ", New State Value: " + currentWorkDefinitionLogEntry.StateName);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="PostCreateAction">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                        table: DataChanges
+                                    };
+                                    var datasJSON = Resources["InfoTableFunctions"].ToJSON(params);
+                                    var action = "Create";
+                                    if(logger.debugEnabled){
+                                        logger.debug("PostCreateAction service: " + action + " datas: " + JSON.stringify(datasJSON));
+                                    }
+                                    
+                                    me.CallServices({
+                                    	DataChanges: DataChanges
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="PostDeleteAction">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                        table: DataChanges
+                                    };
+                                    var datasJSON = Resources["InfoTableFunctions"].ToJSON(params);
+                                    var action = "Delete";
+                                    if(logger.debugEnabled){
+                                        logger.debug("PostDeleteAction service: " + action + " datas:" + JSON.stringify(datasJSON));
+                                    }
+                                    
+                                    me.CallServices({
+                                    	DataChanges: DataChanges
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="PostUpdateAction">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params = {
+                                        table: DataChanges
+                                    };
+                                    var datasJSON = Resources["InfoTableFunctions"].ToJSON(params);
+                                    var action = "Update";
+                                    if(logger.debugEnabled){
+                                        logger.debug("PostUpdateAction service: " + action + " datas:" + JSON.stringify(datasJSON));
+                                    }
+                                    
+                                    me.CallServices({
+                                    	DataChanges: DataChanges
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="WorkDefinitionPostCreate">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    logger.debug("WorkDefinitionPostCreate service");
+                                    me.LogWorkDefinitionExecutionStatusChange({
+                                        DataChanges: DataChanges
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="WorkDefinitionPostUpdate">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    logger.debug("WorkDefinitionPostUpdate service");
+                                    me.LogWorkDefinitionExecutionStatusChange({
+                                        DataChanges: DataChanges
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

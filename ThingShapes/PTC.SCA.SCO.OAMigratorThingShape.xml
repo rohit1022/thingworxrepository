@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="Thing Shape that holds all necessary properties and services to migrate data to newer versions of Operator Advisor {PTC.SCA.SCO.OAMigratorThingShape}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:15.947+05:30"
+         name="PTC.SCA.SCO.OAMigratorThingShape"
+         projectName=""
+         tags="PTC:OA">
+            <PropertyDefinitions></PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Migrate Database from 8.4.1 to 8.4.3 release"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="MigrateFrom_8_4_1_To_8_4_3">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingTemplate="PTC.SCA.SCO.JobOrderManagerThingTemplate"
+                         baseType="THINGNAME"
+                         description="ProductionOrderManager thingname that implements PTC.SCA.SCO.JobOrderManagerThingTemplate"
+                         name="ProductionOrderManagerThingName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Migrate Database from 8.4.1 release to 8.5.0"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="MigrateFrom_8_4_1_To_8_5_0">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Migrate Database from 8.4.3 release to 8.5.0"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="MigrateFrom_8_4_3_To_8_5_0">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Migrate the database from 8.5.0 to 8.5.2."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="MigrateFrom_8_5_0_To_8_5_2">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Migrate the database from 8.5.1 to 8.5.2."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="MigrateFrom_8_5_1_To_8_5_2">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Migrate Database to 8.4.1 release"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="MigrateTo_8_4_1">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         aspect.thingTemplate="PTC.SCA.SCO.JobOrderManagerThingTemplate"
+                         baseType="THINGNAME"
+                         description="ProductionOrderManager thingname that implements PTC.SCA.SCO.JobOrderManagerThingTemplate"
+                         name="ProductionOrderManagerThingName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="MigrateFrom_8_4_1_To_8_4_3">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    try {
+                                       createNewWorkDefinitionExecutionStatuses();
+                                    } finally {
+                                    }
+                                    
+                                    function createNewWorkDefinitionExecutionStatuses() {
+                                        createNewWorkDefinitionExecutionStatus("Building");
+                                        createNewWorkDefinitionExecutionStatus("BuildingSuccess");
+                                        createNewWorkDefinitionExecutionStatus("BuildingFailure");
+                                    }
+                                    
+                                    function createNewWorkDefinitionExecutionStatus(statusName) {
+                                        try {
+                                            var params = {
+                                                "infoTableName": "InfoTable",
+                                                "dataShapeName": "PTC.SCA.SCO.WorkDefinitionExecutionStatus"
+                                            };
+                                    
+                                            var new_status = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                            new_status.AddRow({ "Name": statusName });
+                                    
+                                            Things[ProductionOrderManagerThingName].CreateWorkDefinitionExecutionStatuses({
+                                                "WorkDefinitionExecutionStatuses": new_status
+                                            });
+                                        } catch (err) {
+                                            logger.warn("MigrateFrom_8_4_1_To_8_4_2::createNewWorkDefinitionExecutionStatus already contains '" + statusName + "' status, ignoring error.");
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="MigrateFrom_8_4_1_To_8_5_0">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var productionOrderManagerThingName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetProductionOrderManagerThingName();
+                                    me.MigrateFrom_8_4_1_To_8_4_3({
+                                       ProductionOrderManagerThingName: productionOrderManagerThingName /* THINGNAME */
+                                    });
+                                    me.MigrateFrom_8_4_3_To_8_5_0();
+                                    logger.info("Service MigrateFrom_8_4_1_To_8_5_0 is succesdful.");
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="MigrateFrom_8_4_3_To_8_5_0">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var launchPointConfigThingName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                    var dbThingName =  Things[launchPointConfigThingName].GetDatabaseThingName();
+                                    createNewTables(dbThingName);
+                                    addNewColumns(dbThingName);
+                                    initData();
+                                    logger.info("Service MigrateFrom_8_4_3_To_8_5_0 is succesdful.");
+                                    
+                                    function getWorkforceManager() {
+                                        return Things["PTC.Factory.LaunchPointConfigurationThing"].GetWorkforceManagerThingName();
+                                    }
+                                    function getStatusManager() {
+                                        return Things["PTC.Factory.LaunchPointConfigurationThing"].GetStatusManagerThingName();
+                                    }
+                                    function getKpiManager() {
+                                        return Things["PTC.Factory.LaunchPointConfigurationThing"].GetKPIManagerThingName();
+                                    }
+                                    function getShiftManager() {
+                                        return Things["PTC.Factory.LaunchPointConfigurationThing"].GetShiftManagerThingName();
+                                    }
+                                    function getNewTablesDbInfo() {
+                                        var dbInfo = {
+                                           dbInfo: []
+                                        };
+                                    
+                                        Array.prototype.push.apply(dbInfo.dbInfo, Things[getShiftManager()].GetShiftDBInfo().dbInfo);
+                                        Array.prototype.push.apply(dbInfo.dbInfo, Things[getWorkforceManager()].GetCrewDBInfo().dbInfo);
+                                        Array.prototype.push.apply(dbInfo.dbInfo, Things[getKpiManager()].GetDBInfo().dbInfo);
+                                        Array.prototype.push.apply(dbInfo.dbInfo, Things[getStatusManager()].GetDBInfo().dbInfo);
+                                        logger.trace("NewTablesDbInfo::"+JSON.stringify(dbInfo));
+                                        return dbInfo;
+                                    }
+                                    
+                                    function initData() {
+                                       Things[getStatusManager()].InitData();
+                                       Things[getKpiManager()].InitData();
+                                    }
+                                    
+                                    function createNewTables(dbThingName) {
+                                        try {
+                                            var result = Things[dbThingName].CreateTables({"dbInfo":getNewTablesDbInfo()});
+                                            logger.info("All new tables and indexes created successfully");
+                                        } catch(err) {
+                                            logger.warn("Error occured while creating new tables - "+ err);
+                                            logger.warn("one of the new tables/indexs already might be existing, ignoring error during CreateTables.");
+                                        }
+                                    }
+                                    
+                                    function addNewColumns(dbThingName) {
+                                        addNewColumn(dbThingName, "PTC.SCA.SCO.JobOrder", "SiteUID");
+                                        addNewColumn(dbThingName, "PTC.SCA.SCO.MaterialClass", "SiteUID");
+                                        addNewColumn(dbThingName, "PTC.SCA.SCO.MaterialDefinition", "SiteUID");
+                                        addNewColumn(dbThingName, "PTC.SCA.SCO.MaterialLot", "SiteUID");
+                                        addNewColumn(dbThingName, "PTC.SCA.SCO.MaterialSubLot", "SiteUID");
+                                        addNewColumn(dbThingName, "PTC.SCA.SCO.Person", "SiteUID");
+                                        addNewColumn(dbThingName, "PTC.SCA.SCO.PersonnelClass", "SiteUID");
+                                        addNewColumn(dbThingName, "PTC.SCA.SCO.ProcessingResource", "SiteUID");
+                                        addNewColumn(dbThingName, "PTC.SCA.SCO.ProcessingResourceClass", "SiteUID");
+                                        addNewColumn(dbThingName, "PTC.SCA.SCO.WorkDefinition", "SiteUID");
+                                        logger.info("All Tables are updated with SiteUID Column.");
+                                    }
+                                    
+                                    function addNewColumn(dbThingName, dataShapeName, fieldName) {
+                                        try { 
+                                            Things[dbThingName].AddColumn({
+                                                dbInfo: undefined,
+                                                fieldName: fieldName,
+                                                dataShapeName: dataShapeName 
+                                            });
+                                        } catch(err) {
+                                            logger.warn("Error occured while adding a column in DB: "+ err);
+                                            logger.warn("Ignoring error while adding the column in DB - "+dataShapeName + fieldName);
+                                        }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="MigrateFrom_8_5_0_To_8_5_2">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    me.MigrateFrom_8_5_1_To_8_5_2();
+                                        logger.info("Service MigrateFrom_8_5_0_To_8_5_2 is successful.");
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="MigrateFrom_8_5_1_To_8_5_2">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var productionOrderManagerThingName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetProductionOrderManagerThingName();
+                                        try {
+                                        	var params = {
+                                        		"infoTableName": "InfoTable",
+                                        		"dataShapeName": "PTC.SCA.SCO.MaterialUse"
+                                        	};
+                                    
+                                        	var new_material_use = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        	new_material_use.AddRow({
+                                        		"Name": "Destroyed"
+                                        	});
+                                        	new_material_use.AddRow({
+                                        		"Name": "Disassembled"
+                                        	});
+                                        	new_material_use.AddRow({
+                                        		"Name": "OperatedOn"
+                                        	});
+                                    
+                                        	Things[productionOrderManagerThingName].CreateMaterialUses({
+                                        		"MaterialUses": new_material_use
+                                        	});
+                                        } catch (err) {
+                                        	logger.warn("MigrateFrom_8_5_1_To_8_5_2::MaterialUse already contains the provided value, ignoring error.");
+                                        }
+                                        var launchPointConfigurationThingName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                        var thingName = Things[launchPointConfigurationThingName].GetDatabaseThingName();
+                                        try {
+                                            var dbInfo = {"dataShapeName":"PTC.SCA.SCO.WorkDefinitionMaterialSpecificationInstance","indexedFields":[{"name":"WorkDefinitionMaterialSpecificationUID"}],"fields":[{"name":"OccurrencePath","length":4000}]};
+                                            Things[thingName].CreateTable({
+                                               dataShapeName: "PTC.SCA.SCO.WorkDefinitionMaterialSpecificationInstance", /* DATASHAPENAME */
+                                               dbInfo : dbInfo
+                                            });
+                                        } catch(err) {
+                                            logger.warn(err.message);
+                                        }
+                                        try {
+                                            Things[thingName].CreateTable({
+                                               dataShapeName: "PTC.SCA.SCO.WorkDefinitionMaterialSpecificationInstance_AP" /* DATASHAPENAME */
+                                            });
+                                        } catch(err) {
+                                            logger.warn(err.message);
+                                        }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="MigrateTo_8_4_1">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    try {
+                                       createNewTables();
+                                       addNewTableColumns();
+                                       migrateControlCharacteristicActualValue();
+                                       migrateWorkDefinitionRelatedDocumentType();
+                                       removeTableColumns();
+                                    } finally {
+                                            //remove temporary field definition from data shape
+                                            try {
+                                                DataShapes["PTC.SCA.SCO.WorkDefinitionControlCharacteristic"].RemoveFieldDefinition({name: "ActualValue"});
+                                            } catch(err) {
+                                                logger.warn("ActualValue field already removed from datashape, ignoring error.");
+                                            }
+                                    }
+                                    
+                                    function createNewTables(){
+                                        var dbThingName =  Things[ProductionOrderManagerThingName].GetDatabaseThingName();
+                                        //create new tables 1. PTC.SCA.SCO.WorkDefinitionControlCharacteristicResponse, 
+                                        //2. PTC.SCA.SCO.WorkDefinitionControlCharacteristicResponse_AP
+                                        try {
+                                            Things[dbThingName].CreateTable({
+                                                dataShapeName: "PTC.SCA.SCO.WorkDefinitionControlCharacteristicResponse" /* DATASHAPENAME */
+                                            });
+                                        } catch(err) {
+                                            logger.warn("table WorkDefinitionControlCharacteristicResponse already might be existing, ignoring error.");
+                                        }
+                                        try {
+                                            Things[dbThingName].CreateTable({
+                                                dataShapeName: "PTC.SCA.SCO.WorkDefinitionControlCharacteristicResponse_AP" /* DATASHAPENAME */
+                                            });
+                                        } catch(err) {
+                                            logger.warn("table WorkDefinitionControlCharacteristicResponse_AP already might be existing, ignoring error.");
+                                        }
+                                    }
+                                    
+                                    function removeTableColumns () {
+                                        try {
+                                             Things[Things[ProductionOrderManagerThingName].GetDatabaseThingName()].RemoveColumn({
+                                             fieldName: "ActualValue" /* STRING */,
+                                             dataShapeName: "PTC.SCA.SCO.WorkDefinitionControlCharacteristic" /* DATASHAPENAME */
+                                            });
+                                        } catch(err) {
+                                             logger.warn("column WorkDefinitionControlCharacteristic.ActualValue already might be removed, ignoring error.");
+                                        }
+                                    }
+                                    
+                                    function getControlCharacteristicResponse(uid) {
+                                        // result: INFOTABLE dataShape: "PTC.SCA.SCO.WorkDefinitionControlCharacteristicResponse"
+                                        var response = Things[ProductionOrderManagerThingName].GetWorkDefinitionControlCharacteristicResponses({
+                                            WorkDefinitionControlCharacteristicUID: uid /* STRING */
+                                        });
+                                        if(response && response.rows.length > 0) {
+                                        	logger.debug("Response row already exists for the WorkDefinitionControlCharacteristicUID::"+uid);
+                                        }
+                                        return response;
+                                    }
+                                    
+                                    function createNewRow(existingRow) {
+                                        var newEntry = new Object();
+                                        newEntry.SerialNumber = "1"; // STRING
+                                        newEntry.ControlCharacteristicActualValue = existingRow.get("ActualValue");
+                                        newEntry.WorkDefinitionControlCharacteristicUID = existingRow.get("UID");
+                                        newEntry.Comments = "Migrated from WorkDefinitionControlCharacteristic Actual";
+                                        return newEntry;
+                                    }
+                                    
+                                    function migrateControlCharacteristicActualValue() {
+                                        var dbThingName =  Things[ProductionOrderManagerThingName].GetDatabaseThingName();
+                                        
+                                        //Add temporarily ActualValue field to the datashape so that ActualValue data can be fetched from DB    
+                                        try {
+                                              DataShapes["PTC.SCA.SCO.WorkDefinitionControlCharacteristic"].AddFieldDefinition({
+                                                name: "ActualValue" /* STRING */,
+                                                description: undefined /* STRING */,
+                                                type: "STRING" /* BASETYPENAME */,
+                                                ordinal: undefined /* INTEGER */,
+                                                primaryKey: false /* BOOLEAN */,
+                                                dataShape: undefined /* DATASHAPENAME */
+                                            });
+                                        } catch(err) {
+                                            logger.warn("ActualValue field already exists in datashape, ignoring error.");
+                                        }
+                                        
+                                        //get all rows from PTC.SCA.SCO.WorkDefinitionControlCharacteristic
+                                        var existingRows;
+                                        try {    
+                                            var params1 = {
+                                                filter: null,
+                                                dataShapeName: "PTC.SCA.SCO.WorkDefinitionControlCharacteristic"
+                                            };
+                                            existingRows = Things[dbThingName].Query(params1);
+                                        }catch(err) {
+                                            logger.warn("Unable to fetch existing ControlCharacteristic.ActualValues to migrate, no rows to migrate in ControlCharacteristic");
+                                        }
+                                    
+                                        //create an infotable to add new rows to be inserted into new table, WorkDefinitionControlCharacteristicResponse.
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.WorkDefinitionControlCharacteristicResponse"
+                                        };
+                                    
+                                        var NewRows = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    
+                                        //migrate ActualValue data into new table
+                                        if(existingRows) {
+                                            logger.debug("Number of existing CC rows being migrated::"+existingRows.rows.length);
+                                            for (var x=0; x < existingRows.rows.length; x++) {
+                                                var existingRow = existingRows.rows[x];
+                                                //if actualValue exists and existing row is not migrated yet
+                                                if(existingRow.get("ActualValue")) {
+                                                   var response = getControlCharacteristicResponse(existingRow.get("UID"));
+                                                    if(response === null || response.rows.length === 0) {
+                                                        NewRows.AddRow(createNewRow(existingRow));
+                                                    }
+                                                }
+                                            }
+                                    
+                                            //write migrated rows into database.
+                                            if(NewRows.getRowCount() > 0) {
+                                                var result =  Things[ProductionOrderManagerThingName].CreateWorkDefinitionControlCharacteristicResponses({
+                                                    WorkDefinitionControlCharacteristicResponses: NewRows /* INFOTABLE */
+                                                });
+                                                logger.debug("Number of migrated rows inserted in DB::"+result.rows.length);
+                                            }
+                                        }
+                                    }
+                                    
+                                    
+                                    function addNewTableColumns(){
+                                         try {
+                                            //add column Type in WorkDefinitionRelatedDocument
+                                            Things[Things[ProductionOrderManagerThingName].GetDatabaseThingName()].AddColumn({
+                                                fieldName: "Type" /* STRING */,
+                                                dataShapeName: "PTC.SCA.SCO.WorkDefinitionRelatedDocument" /* DATASHAPENAME */
+                                            });
+                                        } catch(err) {
+                                            logger.warn("column WorkDefinitionRelatedDocument.Type might be added already, ignoring error.");
+                                        }
+                                    }
+                                    
+                                    function createNewRowDocumentType(existingRow){
+                                        var newEntry = new Object();
+                                        newEntry.WorkDefinitionUID = existingRow.get("WorkDefinitionUID");
+                                        newEntry.DocumentName = existingRow.get("DocumentName");
+                                        newEntry.DocumentURL = existingRow.get("DocumentURL");
+                                        newEntry.ID = existingRow.get("ID");
+                                        newEntry.UID = existingRow.get("UID");
+                                        if(existingRow.get("Type")!== null && existingRow.get("Type") !== '') {
+                                           newEntry.Type=existingRow.get("Type");
+                                           logger.debug("Type value already exists");
+                                        }
+                                        else
+                                        {
+                                           newEntry.Type=getDocumentType(existingRow.get("DocumentName"));
+                                           logger.debug("derived Type value from extension "+newEntry.Type);
+                                        }
+                                        return newEntry;   
+                                    }
+                                    
+                                    function getDocumentType(documentname){
+                                        if ((/\.(gif|jpg|jpeg|tiff|png|bmp)$/i).test(documentname)){
+                                            return "2D";
+                                        }
+                                        if ((/\.(doc|docx|txt|pdf|xls|xlsx|pptx|ppt)$/i).test(documentname)){
+                                            return "TEXT";
+                                        }
+                                        if ((/\.(mp4|avi|flv|wmv|mov)$/i).test(documentname)){
+                                            return "VIDEO";
+                                        }
+                                        logger.warn("Found a file with an extension that is not of type 2D, Video or Text: " + documentname);
+                                        return undefined;
+                                    }
+                                    
+                                    function migrateWorkDefinitionRelatedDocumentType(){
+                                        var dbThingName =  Things[ProductionOrderManagerThingName].GetDatabaseThingName();
+                                        var params1 = {
+                                            filter: null,
+                                            dataShapeName: "PTC.SCA.SCO.WorkDefinitionRelatedDocument"
+                                        };
+                                        var existingRows = Things[dbThingName].Query(params1);
+                                        
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.WorkDefinitionRelatedDocument"
+                                        };
+                                        var NewRows = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                           
+                                        if(existingRows) {
+                                            logger.debug("Number of existing rows being migrated for WorkDefinitionRelatedDocument::"+existingRows.rows.length);
+                                            for (var x=0; x < existingRows.rows.length; x++) {
+                                                var existingRow = existingRows.rows[x];
+                                               
+                                                if(!existingRow.get("Type")) {
+                                                   
+                                                       NewRows.AddRow(createNewRowDocumentType(existingRow));
+                                                
+                                                }
+                                            }
+                                            
+                                            logger.debug("newrows count "+NewRows.getRowCount());
+                                            
+                                            //write migrated rows into database.
+                                            if(NewRows.getRowCount() > 0) {
+                                               var result =  Things[ProductionOrderManagerThingName].UpdateWorkDefinitionRelatedDocuments({
+                                                   WorkDefinitionRelatedDocuments: NewRows /* INFOTABLE */
+                                               });
+                                               logger.debug("Number of WorkDefinitionRelatedDocument migrated rows inserted in DB::"+result.rows.length);
+                                           }
+                                                
+                                       }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

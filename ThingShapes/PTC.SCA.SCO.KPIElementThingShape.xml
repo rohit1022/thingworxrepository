@@ -1,0 +1,1633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         className=""
+         description="Thing Shape for KPI elements. {PTC.SCA.SCO.KPIElementThingShape}"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:20.913+05:30"
+         name="PTC.SCA.SCO.KPIElementThingShape"
+         projectName="PTC.SCA.SCO.KPI"
+         tags="PTC:sca-sco-kpi">
+            <PropertyDefinitions>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.isLogged="false"
+                 aspect.isPersistent="true"
+                 baseType="NUMBER"
+                 category="KPIs"
+                 description="Actual production time."
+                 isLocalOnly="false"
+                 name="actualProductionTime_APT"
+                 ordinal="2"></PropertyDefinition>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.defaultValue="min"
+                 aspect.isLogged="false"
+                 aspect.isPersistent="true"
+                 baseType="STRING"
+                 category="KPIs"
+                 description="Actual production time unit of measure."
+                 isLocalOnly="false"
+                 name="actualProductionTime_APT_UOM"
+                 ordinal="7"></PropertyDefinition>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.isLogged="false"
+                 aspect.isPersistent="true"
+                 baseType="NUMBER"
+                 category="KPIs"
+                 description="Good quantity."
+                 isLocalOnly="false"
+                 name="goodQuantity_GQ"
+                 ordinal="5"></PropertyDefinition>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.defaultValue="unit"
+                 aspect.isLogged="false"
+                 aspect.isPersistent="true"
+                 baseType="STRING"
+                 category="KPIs"
+                 description="Good quantity unit of measure."
+                 isLocalOnly="false"
+                 name="goodQuantity_GQ_UOM"
+                 ordinal="11"></PropertyDefinition>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.isPersistent="true"
+                 baseType="JSON"
+                 category="KPIs"
+                 description="Cached JSON object used for KPI calculations."
+                 isLocalOnly="false"
+                 name="kpiCacheValue"
+                 ordinal="12"></PropertyDefinition>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.isLogged="false"
+                 aspect.isPersistent="true"
+                 baseType="NUMBER"
+                 category="KPIs"
+                 description="Planned busy time."
+                 isLocalOnly="false"
+                 name="plannedBusyTime_PBT"
+                 ordinal="3"></PropertyDefinition>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.defaultValue="min"
+                 aspect.isLogged="false"
+                 aspect.isPersistent="true"
+                 baseType="STRING"
+                 category="KPIs"
+                 description="Planned busy time unit of measure."
+                 isLocalOnly="false"
+                 name="plannedBusyTime_PBT_UOM"
+                 ordinal="8"></PropertyDefinition>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.isLogged="false"
+                 aspect.isPersistent="true"
+                 baseType="NUMBER"
+                 category="KPIs"
+                 description="Planned run time per item."
+                 isLocalOnly="false"
+                 name="plannedRunTimePerItem_PRI"
+                 ordinal="4"></PropertyDefinition>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.defaultValue="min"
+                 aspect.isLogged="false"
+                 aspect.isPersistent="true"
+                 baseType="STRING"
+                 category="KPIs"
+                 description="Planned run time per item unit of measure."
+                 isLocalOnly="false"
+                 name="plannedRunTimePerItem_PRI_UOM"
+                 ordinal="9"></PropertyDefinition>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.isLogged="false"
+                 aspect.isPersistent="true"
+                 baseType="NUMBER"
+                 category="KPIs"
+                 description="Produced quantity."
+                 isLocalOnly="false"
+                 name="producedQuantity_PQ"
+                 ordinal="6"></PropertyDefinition>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.defaultValue="unit"
+                 aspect.isLogged="false"
+                 aspect.isPersistent="true"
+                 baseType="STRING"
+                 category="KPIs"
+                 description="Produced quantity unit of measure."
+                 isLocalOnly="false"
+                 name="producedQuantity_PQ_UOM"
+                 ordinal="10"></PropertyDefinition>
+            </PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Calculates the actual production time (APT) for a Thing. "
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="actualProductionTime_APT_Calculate">
+                    <ResultType
+                     baseType="NUMBER"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.TimeInfo"
+                         aspect.isRequired="true"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="TimeInfo"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Calculates the value for the KPI elements for a Thing."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CalculateKPIElementValues">
+                    <ResultType
+                     baseType="NOTHING"
+                     description="Calculates the value for the KPI elements for a Thing. "
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.TimeInfo"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="TimeInfo"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Calculates the KPIs for a Thing."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CalculateKPIs">
+                    <ResultType
+                     baseType="NOTHING"
+                     description="Calculates the KPIs for a Thing."
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.TimeInfo"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="TimeInfo"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Calculates the time for a given time element (such as APT or PBT) for a Thing"
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="CalculateTimeElement">
+                    <ResultType
+                     baseType="NUMBER"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="elementName"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.TimeInfo"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="TimeInfo"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Purges the last 7 days history for equipment."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ClearHistory">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Retrieves the value for a specified key from the kpiCachedValue property JSON object."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetKPICachedCurrentTimeInfo">
+                    <ResultType
+                     baseType="STRING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Retrieves the value for a specified key from the kpiCachedValue property JSON object."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetKPICacheValue">
+                    <ResultType
+                     baseType="NUMBER"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="generatedID"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="name"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Returns a comma separated list of KPI Element names."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetKPIElementNames">
+                    <ResultType
+                     baseType="STRING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Returns the KPIManager Thing configured in the application."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetKPIManager">
+                    <ResultType
+                     baseType="THINGNAME"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Returns a comma separated list of KPI names."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetKPINames">
+                    <ResultType
+                     baseType="STRING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Returns the last KPI calculation time."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetLastKPICalculationTime">
+                    <ResultType
+                     baseType="DATETIME"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Calculates the good quantity (GQ) for a Thing. "
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="goodQuantity_GQ_Calculate">
+                    <ResultType
+                     baseType="NUMBER"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.TimeInfo"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="TimeInfo"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Calculates the planned busy time (PBT) for a Thing."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="plannedBusyTime_PBT_Calculate">
+                    <ResultType
+                     baseType="NUMBER"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.TimeInfo"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="TimeInfo"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Calculates the planned run time per item (PRI) for a Thing."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="plannedRunTimePerItem_PRI_Calculate">
+                    <ResultType
+                     baseType="NUMBER"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.TimeInfo"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="TimeInfo"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Calculates the produced quantity (PQ) for a Thing."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="producedQuantity_PQ_Calculate">
+                    <ResultType
+                     baseType="NUMBER"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.TimeInfo"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="TimeInfo"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Holds KPI information in the cache for use in calculations."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="RegisterValueToKPICache">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="key"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.dataShape="PTC.SCA.SCO.TimeInfo"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="TimeInfo"
+                         ordinal="3"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="NUMBER"
+                         description=""
+                         name="value"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Adds or updates a key/value pair to the kpiCacheValue property JSON object."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="SetKPICacheTimeInfoValue">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="generatedID"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category="KPIs"
+                 description="Adds or updates a key/value pair to the kpiCacheValue property JSON object."
+                 isAllowOverride="true"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="SetKPICacheValue">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="generatedID"
+                         ordinal="3"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="STRING"
+                         description=""
+                         name="key"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         aspect.isRequired="true"
+                         baseType="NUMBER"
+                         description=""
+                         name="value"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="actualProductionTime_APT_Calculate">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = me.CalculateTimeElement({
+                                        elementName: "APT", /* STRING */
+                                        TimeInfo:TimeInfo
+                                    });
+                                    me.actualProductionTime_APT = result;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CalculateKPIElementValues">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var myLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.KPICalculation.KPIElement");
+                                    myLogger.debug("Starting CalculateKPIElementValues");
+                                    
+                                    if (TimeInfo && TimeInfo.getRowCount() > 0){
+                                        var row = TimeInfo.getRow(0);
+                                        var generatedID = row.GeneratedID;
+                                        var currentCachedTimeInfo = me.GetKPICachedCurrentTimeInfo();
+                                        //Set Cache Value
+                                        if (currentCachedTimeInfo !== generatedID){
+                                            myLogger.debug("Setting time info cache value to : " + generatedID);
+                                                me.SetKPICacheTimeInfoValue({
+                                                generatedID: generatedID /* STRING */
+                                        	});
+                                        }
+                                    
+                                        var kpiManagerThing = Things[me.GetKPIManager()];
+                                        var kpiElementValue = createKPIElementValue();
+                                        var kpiElements = getKPIElementNames();
+                                        var tableLength = kpiElements.length;
+                                        for (var x = 0; x < tableLength; x++) {
+                                            var element = kpiElements[x];
+                                            var element_UOM = element+"_UOM";
+                                            myLogger.debug("Evaluating service Things[" + me.name + "]." + element + " Generated ID: " + generatedID);
+                                            var serviceName = element + "_Calculate";
+                                            var value = me[serviceName]({"TimeInfo":TimeInfo});
+                                            if (!isEligibleForStoring(element, value, generatedID)) {
+                                                continue;
+                                            }
+                                    
+                                            // PTC.SCA.SCO.KPIElementValue entry object
+                                            var newEntry = new Object();
+                                            if ( row.ShiftUID )
+                                            {
+                                                newEntry.ShiftUID = row.ShiftUID; // LONG
+                                            }
+                                    
+                                            newEntry.UID = undefined; // LONG [Primary Key]
+                                            newEntry.OwnerName = me.name; // THINGNAME
+                                            newEntry.SiteUID = row.SiteUID;
+                                            newEntry.UnitOfMeasure = me[element_UOM]; // STRING
+                                            newEntry.ElementName = element; // STRING
+                                            newEntry.Value = value; // NUMBER
+                                            newEntry.LastUpdatedTime = Date.now(); // DATETIME
+                                    
+                                            if (me.JobOrderUID) {
+                                            	newEntry.JobOrderUID = me.JobOrderUID; // LONG
+                                            }
+                                            
+                                            if (me.CrewUID) {
+                                            	newEntry.CrewUID = me.CrewUID; // LONG
+                                            }
+                                    
+                                            newEntry.ProductUID = undefined;
+                                            kpiElementValue.AddRow(newEntry);
+                                    
+                                            //Store latest value in cache in order to compare at next calculation
+                                            me.SetKPICacheValue({
+                                                key: element,
+                                                value: value ,
+                                                generatedID: generatedID
+                                            });
+                                    
+                                            myLogger.debug("Result Things["+me.name+"]."+element+"="+value);
+                                        }
+                                    
+                                        if (kpiElementValue.getRowCount() > 0){
+                                            var kpiElementValueInsert =  kpiManagerThing.CreateKPIElementValue({
+                                                KPIElementValue: kpiElementValue /* INFOTABLE */
+                                            });
+                                            myLogger.debug("CreateKPIElementValue Inserts KPIElement: " + kpiElementValueInsert);
+                                        }
+                                    } else {
+                                    	myLogger.debug("Thing[" + me.name + "] not in a current time info, skipping calculation");
+                                    }
+                                    
+                                    myLogger.debug("****** CacheValue: " + me.kpiCacheValue);
+                                    
+                                    function createKPIElementValue() {
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.KPIElementValue"
+                                        };
+                                    
+                                        return Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    }
+                                    
+                                    function isEligibleForStoring(elementName, value, generatedID) {
+                                        //Retrieve latest value 
+                                        var currentValue = me.GetKPICacheValue({
+                                            name: elementName /* STRING */,
+                                            generatedID: generatedID /* STRING */
+                                        });
+                                    
+                                        return (isUndefinedOrNull(currentValue) || currentValue !== value);
+                                    }
+                                    
+                                    function getKPIElementNames() {
+                                        var kpiElementNames = me.GetKPIElementNames();
+                                        // Split kpiNames string per ","
+                                        return kpiElementNames.split(/\s*,\s*/);
+                                    }
+                                    
+                                    function isUndefinedOrNull(value) {
+                                        return ( typeof(value) === "undefined"  || value === null );
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CalculateKPIs">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var myLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.KPICalculation.KPIElement");
+                                    myLogger.debug("Starting CalculateKPIs for: " + me.name);
+                                    
+                                    if (TimeInfo && TimeInfo.getRowCount() > 0){
+                                        var row = TimeInfo.getRow(0);
+                                        var kpiManagerThing = Things[me.GetKPIManager()];
+                                        var kpiValue = createKPIValue();
+                                        var kpiNames = getKPINames();
+                                        var length = kpiNames.length;
+                                    										
+                                        for (var x = 0; x < length; x++) {
+                                            var kpiName = kpiNames[x];
+                                            var kpiFn = kpiName + "_Calculate";
+                                            var uomProp = kpiName + "_unitOfMeasure";
+                                            var uom = me[uomProp];
+                                            var kpiResultValue = me[kpiFn]({"TimeInfo":TimeInfo});
+                                            var lastCalculatedTimeProp = kpiName + "_lastCalculatedTime";
+                                            var lastCalculatedTime = me[lastCalculatedTimeProp];
+                                    
+                                    
+                                            // PTC.SCA.SCO.KPIValue entry object
+                                            var newEntry = new Object();
+                                            if ( row.ShiftUID )
+                                            {
+                                                newEntry.ShiftUID = row.ShiftUID; // LONG
+                                            }
+                                    
+                                            newEntry.UID = undefined; // LONG [Primary Key]
+                                            newEntry.OwnerName = me.name; // THINGNAME
+                                            newEntry.SiteUID = row.SiteUID; // STRING
+                                            newEntry.EndTime = row.EndTimeDate; // DATETIME
+                                            newEntry.UnitOfMeasure = uom; // STRING
+                                            newEntry.StartTime = row.StartTimeDate; // DATETIME
+                                            newEntry.Value = kpiResultValue; // STRING
+                                            newEntry.LastUpdatedTime = lastCalculatedTime; // DATETIME
+                                    											
+                                            if ( me.JobOrderUID ){
+                                            	newEntry.JobOrderUID = me.JobOrderUID; // LONG
+                                            }
+                                            if ( me.CrewUID ){
+                                            	newEntry.CrewUID = me.CrewUID; // LONG
+                                            }
+                                            
+                                            newEntry.KPIName = kpiName; // STRING
+                                            kpiValue.AddRow(newEntry);
+                                    
+                                            myLogger.debug("CreateKPIElementValue Things[" + me.name + "]." + kpiName);
+                                            myLogger.debug("Result Things[" + me.name + "]." + kpiFn + " = " + kpiFn);
+                                        }
+                                    
+                                        // result: INFOTABLE dataShape: "PTC.SCA.SCO.KPIValue"
+                                        if (kpiValue.getRowCount() > 0){
+                                            var result =  kpiManagerThing.CreateKPIValue({
+                                                KPIValue: kpiValue /* INFOTABLE */
+                                            });
+                                        }
+                                    } else {
+                                    	myLogger.debug("Thing[" + me.name + "] not in a current time info, skipping calculation");
+                                    }
+                                    
+                                    function createKPIValue() {
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.KPIValue"
+                                        };
+                                    
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.KPIValue)
+                                        return Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                    }
+                                    
+                                    function getKPINames() {
+                                        var kpiNames = me.GetKPINames();
+                                        return kpiNames.split(/\s*,\s*/);
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="CalculateTimeElement">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var myLogger = logger.getLoggerContext().getLogger(logger.getName()+".com.ptc.sca.sco.KPICalculation.KPIElement");
+                                    var durationTime = 0;
+                                    if (TimeInfo.getRowCount() > 0) {
+                                        var startTime = TimeInfo.getRow(0).StartTimeDate;
+                                        var endTime = Date.now();
+                                    
+                                        myLogger.debug("Retrieving list of status for:" + elementName);
+                                        var statusManagerThingName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetStatusManagerThingName();
+                                        var timeElementList =  Things[statusManagerThingName].GetTimeElementStatuses({
+                                            timeElements: elementName,
+                                            thingName: me.name
+                                        });
+                                    
+                                        if (timeElementList.getRowCount() > 0 && timeElementList.getRow(0).statusIndexes.trim() !== "") {
+                                            myLogger.debug("Status index for APT calculation is: " + timeElementList.getRow(0).statusIndexes);
+                                            myLogger.debug("Retrieve duration on [" + me.name + "] start: " + startTime + " endTime: " + endTime);
+                                            durationTime = Things["PTC.Factory.StatusExpressionResourceProvider"].GetDurationForStatuses({
+                                                endDate: endTime /* DATETIME */,
+                                                startDate: startTime /* DATETIME */,
+                                                thingId: me.name /* THINGNAME */,
+                                                statusList : timeElementList.getRow(0).statusIndexes
+                                            });
+                                        } else {
+                                        	logger.debug("No Time elements found for:"+elementName);
+                                        }
+                                        myLogger.debug(elementName + "_Calculate " + elementName + ": " + durationTime + " ms");
+                                        durationTime = durationTime / 60000;
+                                    } else {
+                                    	myLogger.debug("No time info defined for Thing[" + me.name + "]");
+                                    }
+                                    var result = durationTime;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ClearHistory">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var myLogger = logger.getLoggerContext().getLogger(logger.getName() + ".com.ptc.sca.sco.KPICalculation.ClearHistory");
+                                    var startDate = getStartDate(7);  //Purges the last 7 days
+                                    var launchPointConfigName = Things["PTC.Factory.LaunchPointConfigurationThing"].GetLaunchPointConfigurationName();
+                                    var launchPointConfigThing = Things[launchPointConfigName];
+                                    var dbManager = Things[launchPointConfigThing.GetDatabaseThingName()];
+                                    var statusManager = Things[launchPointConfigThing.GetStatusManagerThingName()];
+                                    
+                                    myLogger.debug('Deleting history (KPIElements, KPIValues, Statuses, and Monitored properties) of equipment (' + me.name + ') since: ' + startDate + '.');
+                                    
+                                    try {
+                                        deleteKPIElements();
+                                        deleteKPIs();
+                                        deleteStatuses();
+                                        deleteLoggedProperties();
+                                        updateStatus();
+                                        clearKPICache();
+                                    
+                                        myLogger.debug('Finished deleting history of equipment (' + me.name + ').');
+                                    } catch(e) {
+                                        myLogger.error('Clear data history for equipment: ' + me.name + ', did not complete successfully');
+                                        throw e;
+                                    }
+                                    
+                                    function deleteKPIElements() {
+                                        batchDelete('PTC.SCA.SCO.KPIElementValue');
+                                    }
+                                    
+                                    function deleteKPIs() {
+                                        batchDelete('PTC.SCA.SCO.KPIValue');
+                                    }
+                                    
+                                    function deleteStatuses() {
+                                        batchDelete('PTC.SCA.SCO.StateValue');
+                                    }
+                                    
+                                    function deleteLoggedProperties() {
+                                        me.PurgeAllPropertyHistory({startDate: startDate, endDate: new Date()});
+                                    }
+                                    
+                                    function batchDelete(dsName) {
+                                        var uids = queryUIDs(dsName);
+                                        var table = createBatchDeleteParam(dsName, uids);
+                                    
+                                        if (uids.length != 0) {
+                                            // result: INFOTABLE dataShape: ""
+                                            var result =  dbManager.BatchDelete({
+                                                infoTable: table /* INFOTABLE */
+                                            });
+                                        }
+                                    }
+                                    
+                                    function updateStatus() {
+                                        var status = me.status;
+                                        if (status > 0) {
+                                            var time = new Date();
+                                            time.setTime(time.getTime() - 1000);
+                                            setStatus(0, time);
+                                            setStatus(status, new Date());
+                                        }
+                                    }
+                                    
+                                    function clearKPICache() {
+                                        me.kpiCacheValue = {};
+                                    }
+                                    
+                                    function queryUIDs(dsName) {
+                                        var filters = getFiltersParam();
+                                        var uids = [];
+                                    
+                                        // result: INFOTABLE dataShape: ""
+                                        var list =  dbManager.Query({
+                                            filter: filters /* JSON */,
+                                            limit: 9999999 /* INTEGER */,
+                                            dataShapeName: dsName /* DATASHAPENAME */
+                                        });
+                                    
+                                        var tableLength = list.rows.length;
+                                        for (var x=0; x < tableLength; x++) {
+                                            var row = list.rows[x];
+                                            uids.push(row['UID']);
+                                        }
+                                    
+                                        return uids;
+                                    }
+                                    
+                                    function getFiltersParam() {
+                                        var filter = {
+                                            "filters": {
+                                                "filters":[ {
+                                                		"fieldName": "OwnerName",
+                                                    	"type": "EQ",
+                                                        "value": me.name
+                                                    },  {
+                                                		"fieldName": "LastUpdatedTime",
+                                                    	"type": "GE",
+                                                        "value": startDate
+                                                    }
+                                               ],
+                                                type: "AND",
+                                            }
+                                        };
+                                    
+                                        return filter;
+                                    }
+                                    
+                                    function createBatchDeleteParam(dsName, uids) {
+                                        var params = {
+                                            infoTableName : "BatchDeleteInfoTable",
+                                            dataShapeName : "PTC.SCA.SCO.BatchDeleteDataShape"
+                                        };
+                                    
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(PTC.SCA.SCO.BatchDeleteDataShape)
+                                        var table = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        for(var x=0; x < uids.length; x++) {
+                                            // PTC.SCA.SCO.BatchDeleteDataShape entry object
+                                            var newEntry = new Object();
+                                            newEntry.dataShapeName = dsName; // DATASHAPENAME
+                                            newEntry.UID = uids[x]; // STRING
+                                    
+                                            table.AddRow(newEntry);
+                                        }
+                                    
+                                        return table;
+                                    }
+                                    
+                                    function setStatus(status, time) {
+                                        me.status = status;
+                                        me.statusTimestamp = time;
+                                    
+                                        statusManager.CreateStateValueForThing({
+                                            thingName: me.name
+                                        });
+                                    }
+                                    
+                                    function getStartDate(numDays) {
+                                        var date = new Date();
+                                        date.setDate(date.getDate()-numDays);
+                                    
+                                        return date;
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetKPICachedCurrentTimeInfo">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    function isDefined(value){
+                                    	return (value !== null && typeof(value) !== "undefined" );
+                                    }
+                                    var json = JSON.parse(me.kpiCacheValue);
+                                    var result = "";
+                                    if (isDefined(json) && isDefined(json.timeInfos) && isDefined(json.timeInfos.currentTimeInfo)) {
+                                        result = json.timeInfos.currentTimeInfo["generatedID"];
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetKPICacheValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    function isDefined(value){
+                                    	return (value !== null && typeof(value) !== "undefined" );
+                                    }
+                                    var json = JSON.parse(me.kpiCacheValue);
+                                    var result;
+                                    if (isDefined(json.timeInfos) && isDefined(json.timeInfos.currentTimeInfo) &&
+                                        json.timeInfos.currentTimeInfo["generatedID"] === generatedID &&
+                                        isDefined(json.timeInfos.currentTimeInfo[name])) {
+                                        result = json.timeInfos.currentTimeInfo[name];
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetKPIElementNames">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    result = "actualProductionTime_APT,goodQuantity_GQ,plannedBusyTime_PBT,plannedRunTimePerItem_PRI,producedQuantity_PQ";
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetKPIManager">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result =  Things["PTC.Factory.LaunchPointConfigurationThing"].GetKPIManagerThingName();
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetKPINames">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var kpiInfoJSON = new Object();
+                                    // JSON of KPI information we want to test if they are implemented on "me"
+                                    // For custom KPI, please add into this JSON and following given format
+                                    // Warning the order is important
+                                    kpiInfoJSON.kpiInfoArray = [
+                                        {kpiThingShapeName: 'PTC.SCA.SCO.AvailabilityThingShape', kpiName: 'Availability'},
+                                    	{kpiThingShapeName: 'PTC.SCA.SCO.QualityRatioThingShape', kpiName: 'QualityRatio'},
+                                    	{kpiThingShapeName: 'PTC.SCA.SCO.EffectivenessThingShape', kpiName: 'Effectiveness'},
+                                    	{kpiThingShapeName: 'PTC.SCA.SCO.OEEThingShape', kpiName: 'OEE'}];
+                                    var result =  Things[me.GetKPIManager()].GetImplementedKPIsOnThing({
+                                        thingName: me.name,
+                                        kpiInfo: kpiInfoJSON
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetLastKPICalculationTime">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var kpiNames = getKPINames();
+                                    var length = kpiNames.length;
+                                    var LAST_CALCULATED_TIME = "_lastCalculatedTime";
+                                    
+                                    if (length === 0) {
+                                        result = new Date(0);	// Very old date.
+                                    } else {
+                                        var kpiName = kpiNames[0];
+                                        var lastCalculatedTimeProp = kpiName + LAST_CALCULATED_TIME;
+                                        result = me[lastCalculatedTimeProp];
+                                        //Retrieve newer calculation date
+                                        for (var x = 1; x < length; x++) {
+                                            kpiName = kpiNames[x];
+                                            lastCalculatedTimeProp = kpiName + LAST_CALCULATED_TIME;
+                                            lastCalculatedTime = me[lastCalculatedTimeProp];
+                                            result = lastCalculatedTime.getTime() > result.getTime() ? lastCalculatedTime : result;
+                                        }
+                                    }
+                                    
+                                    function getKPINames() {
+                                        var kpiNames = me.GetKPINames().trim();
+                                        // Split kpiNames string per ","
+                                        return kpiNames ? kpiNames.split(/\s*,\s*/) : [];
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="goodQuantity_GQ_Calculate">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    result = me.goodQuantity_GQ;
+                                    //Register first value to cache
+                                    me.RegisterValueToKPICache({
+                                    	key: "goodQuantity_GQ_firstValue" /* STRING */,
+                                    	value: result, /* NUMBER */
+                                        TimeInfo:TimeInfo
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="plannedBusyTime_PBT_Calculate">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var result = me.CalculateTimeElement({
+                                        elementName:"PBT", /* STRING */
+                                        TimeInfo:TimeInfo
+                                    });
+                                    me.plannedBusyTime_PBT = result;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="plannedRunTimePerItem_PRI_Calculate">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    result = me.plannedRunTimePerItem_PRI;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="producedQuantity_PQ_Calculate">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    result = me.producedQuantity_PQ;
+                                    //Register first value to cache
+                                    me.RegisterValueToKPICache({
+                                    	key: "producedQuantity_PQ_firstValue" /* STRING */,
+                                    	value: result, /* NUMBER */
+                                        TimeInfo:TimeInfo
+                                    });
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="RegisterValueToKPICache">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    function isUndefinedOrNull(value){
+                                    	return (value === null || typeof(value) === "undefined" );
+                                    }
+                                    var generatedID = TimeInfo.getRow(0).GeneratedID;
+                                    var cachedValue =   me.GetKPICacheValue({
+                                            generatedID: generatedID /* STRING */,
+                                            name: key /* STRING */
+                                    });
+                                    if (isUndefinedOrNull(cachedValue)){
+                                    	me.SetKPICacheValue({
+                                            key: key /* STRING */,
+                                            value: value /* NUMBER */,
+                                            generatedID: generatedID /* STRING */
+                                    	});
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="SetKPICacheTimeInfoValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    function isUndefinedOrNull(value){
+                                    	return (value === null || typeof(value) === "undefined" );
+                                    }
+                                    var json = JSON.parse(me.kpiCacheValue);
+                                    if (isUndefinedOrNull(json) || isUndefinedOrNull(json.timeInfos)) {
+                                    	json = {"timeInfos" : {
+                                        	"currentTimeInfo" : {"generatedID": generatedID}
+                                        	}
+                                    	};
+                                    } else {
+                                    	json.timeInfos.currentTimeInfo = {"generatedID": generatedID};
+                                    }
+                                    me.kpiCacheValue = JSON.parse(JSON.stringify(json));
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="SetKPICacheValue">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    function isUndefinedOrNull(value){
+                                    	return (value === null || typeof(value) === "undefined" );
+                                    }
+                                    var json = JSON.parse(me.kpiCacheValue);
+                                    if (isUndefinedOrNull(json) || isUndefinedOrNull(json.timeInfos)) {
+                                    	json = {"timeInfos" : {
+                                        	"currentTimeInfo" : {"generatedID": generatedID}
+                                        	}
+                                    	};
+                                    } else if (isUndefinedOrNull(json.timeInfos.currentTimeInfo)) {
+                                    	json.timeInfos.currentTimeInfo = {"generatedID": generatedID};
+                                    }
+                                    
+                                    if (json.timeInfos.currentTimeInfo["generatedID"] === generatedID) {
+                                        logger.debug("SetKPICacheValue: " + json.timeInfos.currentTimeInfo);
+                                    	json.timeInfos.currentTimeInfo[key] = value;
+                                        json = JSON.parse(JSON.stringify(json));
+                                    	me.kpiCacheValue = json;
+                                    } else {
+                                    	logger.warn("No time info for Thing[" + me.name + "].generatedID: " + generatedID);
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations>
+                <AlertDefinitions
+                 name="actualProductionTime_APT"></AlertDefinitions>
+                <AlertDefinitions
+                 name="actualProductionTime_APT_UOM"></AlertDefinitions>
+                <AlertDefinitions
+                 name="goodQuantity_GQ"></AlertDefinitions>
+                <AlertDefinitions
+                 name="goodQuantity_GQ_UOM"></AlertDefinitions>
+                <AlertDefinitions
+                 name="kpiCacheValue"></AlertDefinitions>
+                <AlertDefinitions
+                 name="plannedBusyTime_PBT"></AlertDefinitions>
+                <AlertDefinitions
+                 name="plannedBusyTime_PBT_UOM"></AlertDefinitions>
+                <AlertDefinitions
+                 name="plannedRunTimePerItem_PRI"></AlertDefinitions>
+                <AlertDefinitions
+                 name="plannedRunTimePerItem_PRI_UOM"></AlertDefinitions>
+                <AlertDefinitions
+                 name="producedQuantity_PQ"></AlertDefinitions>
+                <AlertDefinitions
+                 name="producedQuantity_PQ_UOM"></AlertDefinitions>
+            </AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b222"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1053"
+ universal="password">
+    <ThingTemplates>
+        <ThingTemplate
+         aspect.isEditableExtensionObject="false"
+         aspect.isExtension="true"
+         baseThingTemplate="RemoteThingWithTunnelsAndFileTransfer"
+         description="ThingTemplate for general assets. {PTC.SCA.SCO.GeneralAssetThingTemplate}"
+         documentationContent=""
+         effectiveThingPackage="RemoteThingWithTunnelsAndFileTransfer"
+         homeMashup=""
+         lastModifiedDate="2020-03-19T18:16:22.083+05:30"
+         name="PTC.SCA.SCO.GeneralAssetThingTemplate"
+         projectName="PTC.SCA.SCO.Common"
+         tags="PTC:sca-sco-common;PTC:sca-common;PTC:Asset;PTC:ThingTemplate"
+         thingPackage=""
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 description="Reporting Settings"
+                 isMultiRow="false"
+                 name="ReportingConfiguration"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="NotReporting"
+                             aspect.isPrimaryKey="true"
+                             aspect.isReadOnly="false"
+                             aspect.thingTemplate="ReportingStrategy"
+                             baseType="THINGNAME"
+                             description="Strategy to determine health"
+                             name="reportingStrategy"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <reportingStrategy>
+                            <![CDATA[
+                            AlwaysOnReporting
+                            ]]>
+                            </reportingStrategy>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="General Settings"
+                 isMultiRow="false"
+                 name="TunnelSettings"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.friendlyName="Enable Tunneling"
+                             aspect.isNullable="true"
+                             baseType="BOOLEAN"
+                             description="Enable tunneling"
+                             name="enableTunneling"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row></Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Tunneling Destinations"
+                 isMultiRow="true"
+                 name="Tunnels"
+                 ordinal="1">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue=""
+                             aspect.friendlyName="Application Path"
+                             baseType="STRING"
+                             description="Location of the client app that will use this tunnel"
+                             name="appUri"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue=""
+                             aspect.friendlyName="Description"
+                             baseType="STRING"
+                             description="A description of the tunnel"
+                             name="description"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="127.0.0.1"
+                             aspect.friendlyName="Host"
+                             baseType="STRING"
+                             description="Host or IP that this tunnel will connect to at the edge"
+                             name="host"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="vnc"
+                             aspect.friendlyName="Name"
+                             baseType="STRING"
+                             description="Name of the tunnel"
+                             name="name"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="1.0"
+                             aspect.friendlyName="Number of Connects"
+                             baseType="NUMBER"
+                             description="The number of connections required to establish this tunnel"
+                             name="numConnects"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="5900.0"
+                             aspect.friendlyName="Port"
+                             baseType="NUMBER"
+                             description="Port that this tunnel will connect to at the edge"
+                             name="port"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="tcp"
+                             aspect.friendlyName="Protocol"
+                             baseType="STRING"
+                             description="The protocol used over this tunnel"
+                             name="proto"
+                             ordinal="6"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows></Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions></ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations></ServiceImplementations>
+                <Subscriptions>
+                    <Subscription
+                     description=""
+                     enabled="true"
+                     eventName="FileTransfer"
+                     name="Event.FileTransfer"
+                     source=""
+                     sourceProperty=""
+                     sourceType="Thing">
+                        <ServiceImplementation
+                         description=""
+                         handlerName="Script"
+                         name="Event.FileTransfer">
+                            <ConfigurationTables>
+                                <ConfigurationTable
+                                 description=""
+                                 isMultiRow="false"
+                                 name="Script"
+                                 ordinal="0">
+                                    <DataShape>
+                                        <FieldDefinitions>
+                                            <FieldDefinition
+                                             baseType="STRING"
+                                             description="code"
+                                             name="code"
+                                             ordinal="0"></FieldDefinition>
+                                        </FieldDefinitions>
+                                    </DataShape>
+                                    <Rows>
+                                        <Row>
+                                            <code>
+                                            <![CDATA[
+                                            var params = {
+                                            	assetName: source /* STRING */,
+                                            	fileTransferEventData: eventData /* INFOTABLE */
+                                            };
+                                            
+                                            me.FileTransferHistoryHandler(params);
+                                            ]]>
+                                            </code>
+                                        </Row>
+                                    </Rows>
+                                </ConfigurationTable>
+                            </ConfigurationTables>
+                        </ServiceImplementation>
+                    </Subscription>
+                </Subscriptions>
+            </ThingShape>
+            <ImplementedShapes>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.StatusThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.ISA95.IdentifierThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.FileTransferHistoryHandlerThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.ShiftThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.MonitoredPropertiesThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.AssetIdentifierThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.AssetIdentifierNumberThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.RemoteTunnelingThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.AnomalyThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="RemoteAccessible"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.LocationThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.JobOrderThingShape"
+                 type="ThingShape"></ImplementedShape>
+                <ImplementedShape
+                 name="PTC.SCA.SCO.WorkforceThingShape"
+                 type="ThingShape"></ImplementedShape>
+            </ImplementedShapes>
+            <SharedConfigurationTables>
+                <ConfigurationTable
+                 description="Shared Remote Tunneling Settings"
+                 isMultiRow="false"
+                 name="SharedTunnelSettings"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.friendlyName="Enable Tunneling"
+                             baseType="BOOLEAN"
+                             description="Enable tunneling"
+                             name="enableTunneling"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <enableTunneling>false</enableTunneling>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Shared Tunneling Destinations"
+                 isMultiRow="true"
+                 name="SharedTunnels"
+                 ordinal="1">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.friendlyName="Application Path"
+                             baseType="STRING"
+                             description="Location of the client app that will use this tunnel"
+                             name="appUri"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Description"
+                             baseType="STRING"
+                             description="A description of the tunnel"
+                             name="description"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Host"
+                             baseType="STRING"
+                             description="Host or IP that this tunnel will connect to at the edge"
+                             name="host"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Name"
+                             baseType="STRING"
+                             description="Name of the tunnel"
+                             name="name"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Number of Connects"
+                             baseType="NUMBER"
+                             description="The number of connections required to establish this tunnel"
+                             name="numConnects"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Port"
+                             baseType="NUMBER"
+                             description="Port that this tunnel will connect to at the edge"
+                             name="port"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Protocol"
+                             baseType="STRING"
+                             description="The protocol used over this tunnel"
+                             name="proto"
+                             ordinal="6"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows></Rows>
+                </ConfigurationTable>
+            </SharedConfigurationTables>
+            <InstanceDesignTimePermissions>
+                <Create></Create>
+                <Read>
+                    <Principal
+                     isPermitted="true"
+                     name="Controls Engineer"
+                     type="Group"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="Maintenance Engineer"
+                     type="Group"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="Maintenance Manager"
+                     type="Group"></Principal>
+                </Read>
+                <Update>
+                    <Principal
+                     isPermitted="true"
+                     name="Controls Engineer"
+                     type="Group"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="Maintenance Engineer"
+                     type="Group"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="Maintenance Manager"
+                     type="Group"></Principal>
+                </Update>
+                <Delete>
+                    <Principal
+                     isPermitted="true"
+                     name="Controls Engineer"
+                     type="Group"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="Maintenance Engineer"
+                     type="Group"></Principal>
+                    <Principal
+                     isPermitted="true"
+                     name="Maintenance Manager"
+                     type="Group"></Principal>
+                </Delete>
+                <Metadata></Metadata>
+            </InstanceDesignTimePermissions>
+            <InstanceRunTimePermissions>
+                <Permissions
+                 resourceName="*">
+                    <PropertyRead>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyRead>
+                    <PropertyWrite>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </PropertyWrite>
+                    <ServiceInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </ServiceInvoke>
+                    <EventInvoke>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventInvoke>
+                    <EventSubscribe>
+                        <Principal
+                         isPermitted="true"
+                         name="FactoryUsers"
+                         type="Group"></Principal>
+                    </EventSubscribe>
+                </Permissions>
+            </InstanceRunTimePermissions>
+            <InstanceVisibilityPermissions>
+                <Visibility>
+                    <Principal
+                     isPermitted="true"
+                     name="PTC.Factory.MachineVisibility"
+                     type="Organization"></Principal>
+                </Visibility>
+            </InstanceVisibilityPermissions>
+        </ThingTemplate>
+    </ThingTemplates>
+</Entities>
